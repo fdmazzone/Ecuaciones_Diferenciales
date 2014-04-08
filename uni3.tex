@@ -1,0 +1,1517 @@
+%\documentclass[hyperref={colorlinks=true}]{beamer}
+\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\usepackage{empheq}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,amsmath}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{ esint }
+%\usepackage{pst-all}
+%\usepackage{pstricks-add}
+\usepackage{array}
+%\usepackage[T1]{fontenc}
+\usepackage{animate}
+%\usepackage{media9}
+%% newcommand
+\usepackage{xparse}
+\usepackage{listings}
+
+
+
+\lstdefinelanguage{Sage}[]{Python}
+{morekeywords={False,sage,True},sensitive=true}
+\lstset{
+  frame=none,
+  showtabs=False,
+  showspaces=False,
+  showstringspaces=False,
+  commentstyle={\ttfamily\color{dgreencolor}},
+  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+  language=Sage,
+  basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+  aboveskip=.3em,
+  belowskip=0.1em,
+  numbers=none,
+  numberstyle=\footnotesize
+}
+
+
+ 
+
+
+
+
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\com}{\mathbb{C}}
+\newcommand{\dis}{\mathbb{D}}
+\newcommand{\rr}{\mathbb{R}}
+
+\newcommand{\oo}{\mathcal{O}}
+\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\nl}{\onslide<+-> }
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+
+\makeatother
+
+ 
+
+\DeclareDocumentCommand\boxedeq{ m g }{%
+    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+        \IfNoValueF {#2} {\label{#2}}%
+       #1
+       \end{empheq}
+    }%
+}
+
+
+
+\DeclareMathOperator{\sen}{sen}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}[teorema]{Corolario}
+\newtheorem{proposicion}[teorema]{Proposici\'on}
+\newtheorem{definicion}[teorema]{Definici\'on}
+
+
+\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+
+
+
+\mode<all>
+{
+  \usetheme{Boadilla}
+  % oder ...
+ 
+  \setbeamercovered{wolverine}
+  % oder auch nicht
+}
+
+
+
+
+
+
+\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+{%
+ Ecuaciones lineales de segundo orden
+}
+
+
+
+\author[] % (optional, nur bei vielen Autoren)
+{Fernando Mazzone}
+
+\institute[Depto de Matemática] % (optional, aber oft nötig)
+{
+ Depto de Matemática\\
+Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
+Universidad Nacional de Río Cuarto}
+
+
+\subject{Ecuaciones Diferenciales}
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+  \begin{center}
+   \includegraphics[scale=0.2]{unrc.jpg}
+   \end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Introducción}
+\begin{block}{Ecuación lineal general de segundo orden}
+\boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_gen}
+donde $p,q,r$ son funciones definidas en un intervalo $I=(a,b)$ de $\rr$ con valores en $\rr$. 
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Introducción}
+\nl \begin{block}{Teorema de existencia y unicidad de soluciones}
+ Supongamos $p,q,r$ continuas sobre $I$. Sean $x_0\in I$ e $y_0,y_1\in\rr$ dados. Entonces existe una única solución del PVI
+ \[\left\{
+ \begin{array}{l l l}
+   \frac{d^2y}{dx^2}+&p(x)\frac{dy}{dx}+q(x)y=r(x),&x\in I\\
+   y(x_0)&=y_0&\\
+   y'(x_0)&=y^1_0&\\ 
+  \end{array}\right.
+\]
+
+
+\end{block}
+\nl \textbf{Demostración.} Más adelante.
+\end{frame}
+
+
+\begin{frame}{Introducción}
+Si $r\equiv 0$ se llama homogénea
+\boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,}{ec_2_gen_hom}
+\end{frame}
+
+
+\section{Estructura del conjunto de soluciones}
+
+\begin{frame}{Ecuaciones homogéneas}
+\nl\begin{block}{Teorema}
+ Si $y_1$ e $y_2$ son soluciones de \eqref{ec_2_gen_hom} y $c_1,c_2\in\rr$ entonces $c_1y_1+c_2y_2$ es solución. Vale decir, el conjunto de soluciones 
+ es un espacio vectorial. En particular $y\equiv 0$ es una solución, a la que llameremos \emph{trivial}.
+
+ 
+
+\end{block}
+
+\nl\textbf{Demostración} 
+ El operador 
+ \[L[y]:=y''+py'+qy\]
+es lineal, por consiguiente
+$L[c_1y_1+c_2y_2]=c_1L[y_1]+c_2L[y_2]=0.$\qed
+\end{frame}
+
+
+
+\begin{frame}{Ecuaciones no homogéneas}
+\nl\begin{block}{Teorema}
+ Supongamos que $y_p$ es una solución particular de \eqref{ec_2_gen} y que $y_g=y_g(x,c_1,c_2)$ es una solución
+ general de \eqref{ec_2_gen_hom}. Entonces $y=y_p+y_g$ es solución general de \eqref{ec_2_gen}.
+\end{block}
+
+\nl\textbf{Demostración} 
+ El operador 
+ \[L[y]:=y''+py'+qy\]
+es lineal, por consiguiente
+$L[y_g+y_p]=L[y_g]+L[y_p]=0+r=r.$
+Recíprocamente supongamos $y$ solución de $L[y]=r$, entonces
+$L[y-y_p]=L[y]-L[y_p]=r-r=0.$
+Luego debe haber $c_1$ y $c_2$ con $y(x)-y_p(x)=y_g(x,c_1,c_2)$.\qed 
+ 
+\end{frame}
+
+
+\begin{frame}{Ecuaciones homogéneas}
+\nl Volviendo a las ecuaciones homogénea. Supongamos que tenemos dos soluciones de \eqref{ec_2_gen_hom} $y_1$ e $y_2$. Entonces la expresión 
+\begin{equation}\label{comb_lin}
+   c_1y_1+c_2y_2,\quad c_1,c_2\in\rr
+\end{equation}
+es solución también. \nl Notar que en la expresión aparecen dos constantes y habíamos dicho que era de esperar que la solución general de una ecuación de orden 2 contuviese
+precisamente dos constantes de integración. De modo que podemos conjeturar que \eqref{comb_lin} es solución general de \eqref{ec_2_gen_hom}. 
+
+\nl Hay una situación especial, si,por ejemplo, $y_1=ky_2$, $k\in\rr$,entonces $c_1y_1+c_2y_2=(c_1k+c_2)y_2=cy_2$. Vale decir la combinación lineal \eqref{comb_lin}
+termina siendo sólo combinación lineal de la función $y_2$ y apareciendo esencialmente una expresión uniparamétrica.  
+\end{frame}
+
+\begin{frame}{Independencia lineal}
+ 
+\begin{block}{Definición de independencia lineal}
+ Un conjunto finito de funciones $\{y_1,\ldots,y_n\}$ se dirá linealmente independiente sobre un conjunto $I$, 
+ si la única solución de $c_1y_1(t)+\cdots+c_ny_n(t)=0$, para $t\in I$, es $c_1=c_2=\cdots=c_n=0$.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Independencia lineal}
+ 
+\begin{block}{Definición wronskiano}
+
+Dadas $n$ fuciones  $\{y_1,\ldots,y_n\}$ con dominio $I$ el wronskiano $W(x)=W(y_1,y_2,\ldots,y_n)(x)$ de estas funciones en un punto $x\in I$ se define por
+\boxedeq{W(x)=\det\begin{pmatrix}
+                                  y_1(x_0) & y_2(x_0) & \cdots &y_n(x_0)\\
+                                  y_1'(x_0) & y_2'(x_0) & \cdots &y_n'(x_0)\\
+                                  \vdots & \vdots &\ddots& \vdots\\
+                                  y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \cdots &y_n^{(n-1)}(x_0)\\
+                               \end{pmatrix}}{wronskiano}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Independencia lineal}
+\nl\begin{block}{Lema. Propiedades Wronskiano I}
+Sea $\{y_1,\ldots,y_n\}$ un conjunto de $n$ funciones. Si existe un $x_0\in I$ con $W(x_0)\neq 0$ entonces   $\{y_1,\ldots,y_n\}$ son
+linealmente independientes
+\end{block}
+
+\nl\textbf{Demostración.} Supongamos que $c_1y_1+\cdots+c_ny_n\equiv 0$. Derivando $n-1$ veces esta igualdad y evaluando el resultado en $x_0$ obtenemos
+\[
+ \begin{split}
+    c_1y_1(x_0)+\cdots+c_ny_n(x_0)&=0\\
+    c_1y_1'(x_0)+\cdots+c_ny'_n(x_0)&=0\\
+    \vdots \quad& \quad\vdots\\
+    c_1y_1^{(n-1)}(x_0)+\cdots+c_ny^{(n-1)}_n(x_0)&=0\\
+ \end{split}
+\]
+
+
+\end{frame}
+
+\begin{frame}{Independencia lineal}
+ Las igualdades anteriores dicen que el vector $(c_1,\ldots,c_n)^t$ pertenece al nucleo de la matriz 
+\[
+\begin{pmatrix}
+                                  y_1(x_0) & y_2(x_0) & \cdots &y_n(x_0)\\
+                                  y_1'(x_0) & y_2'(x_0) & \cdots &y_n'(x_0)\\
+                                  \vdots & \vdots &\ddots& \vdots\\
+                                  y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \cdots &y_n^{(n-1)}(x_0)\\
+                               \end{pmatrix}
+\]
+Como por hipótesis la matríz es no singular, debe ocurrir que $c_1=c_2=\cdots c_n=0$. \qed
+
+\end{frame}
+\begin{frame}{Fórmula de Abel}
+\begin{block}{Teorema. Propiedades wronskiano II}
+Supongamos que  $y_1$ e $y_2$  son solución de 
+\begin{equation}\label{eq2orden}\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,\quad x\in I=(a,b)\end{equation}
+ Entonces existe $c\in\rr$ que satisface
+\boxedeq{W(y_1,y_2)(x)=ce^{-\int p dx}.}{formu_abel}
+Esta expresión  se denomina \href{http://en.wikipedia.org/wiki/Abel's_identity}{fórmula de Abel}. En particular vale que
+\[\exists x_0\in I: W(x_0)\neq 0 \Longleftrightarrow \forall x\in I: W(x)\neq 0 .\]
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Demostración fórmula Abel}
+\textbf{Demostración.} Tenemos que 
+\[W(x)=y_1(x)y_2'(x)-y_1'(x)y_2(x).\]
+Derivando y usando \eqref{eq2orden}
+\[\begin{split}W'(x)&=y_1y_2''-y_1y_2''\\
+   &=y_1(-py_2'-qy_2)-y_2(-py_1'-qy_1)\\
+   &=-pW.
+  \end{split}
+\]
+Vale decir $W$ resuelve la ecuación $W'=-pW$ la cual es facilmente resoluble, mostrando su solución que se satisface \eqref{formu_abel}\qed 
+
+
+\end{frame}
+ 
+ 
+\begin{frame}{Independencia y wronskiano}
+\nl\begin{block}{Propiedades wronskiano III}
+ Sean $y_1$ e $y_2$ soluciones de \eqref{eq2orden}. Entonces son equivalentes
+ \begin{enumerate}
+  \item\label{item1} $y_1$ e $y_2$ son linealmente indepenientes en $I$. 
+  \item\label{item2} $W(y_1,y_2)(x)\neq 0$ para todo $x\in I$.
+ \end{enumerate}
+\end{block}
+\nl\textbf{Demostración.}  Que \ref{item1} implica \ref{item2} es consecuencia de las propiedades del wronskiano I y II. 
+Veamos que \ref{item2} implica \ref{item1}. Si $y_1$ e $y_2$ fueran linealmente dependientes, una función sería un multiplo escalar de la otra, digamos
+$y_1=ky_2$ con $k\in\rr$. Luego $W=y_1y_2'-y_1'y_2=ky_2y_2'-ky_2'y_2=0$ lo que contradice \ref{item2}.
+
+\end{frame} 
+ 
+\begin{frame}{Estructura soluciones ecuaciones homogéneas}
+\begin{block}{Teorema, estructura del conjunto de soluciones ecuación lineal de segundo orden homogénea}
+Si $y_1$ e $y_2$ son soluciones linealmente independientes de 
+\[\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,\quad x\in I=(a,b)\]
+entonces
+\boxedeq{ y(x,c_1,c_2)=c_1y_1+c_2y_2}{comb_lin2}
+es solución general.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Estructura soluciones ecuaciones homogéneas}
+\textbf{Demostración.} Que la expresión \eqref{comb_lin2} es solución ya lo hemos dicho.   Restaría ver que cualquier solución se escribe como en \eqref{comb_lin2}. 
+Sea $y$ cualquier solución y $x_0\in I$. La matriz wronskiana
+\[\begin{pmatrix}
+   y_1(x_0)  & y_2(x_0)\\
+   y'_1(x_0)  & y'_2(x_0)\\   
+  \end{pmatrix}
+\]
+Es no singular dado que el determinante es no nulo. Por este motivo el sistema
+\[ \begin{split}
+  c_1 y_1(x_0) + c_2y_2(x_0) &=y(x_0)\\
+   c_1y'_1(x_0)  + c_2y'_2(x_0) &=y'(x_0)\\
+  \end{split}
+\]
+tiene solución para $c_1$ y $c_2$. 
+\end{frame}
+
+
+\begin{frame}{Estructura soluciones ecuaciones homogéneas}
+De este modo vemos que la función  $c_1y_1+c_2y_2$ resuelve el PVI
+
+ \[\left\{
+ \begin{array}{l l l}
+   \frac{d^2z}{dx^2}+&p(x)\frac{dz}{dx}+q(x)z=0,&x\in I\\
+   z(x_0)&=y(x_0)&\\
+   z'(x_0)&=y'(x_0)&\\ 
+  \end{array}.\right.
+\]
+Evidentemente $y$ es solución también, por el Teorema de Existencia y Unicidad vemos que $y=c_1y_1+c_2y_2$ \qed
+\end{frame}
+
+\section{Reducción de orden}
+\begin{frame}{Reduccción de orden}
+\nl Como conclusión de los anterior, si queremos resolver \eqref{eq2orden} que conseguir  dos soluciones linealmente independientes.
+
+\nl Suponiendo que ya contamos con una solución no trivial vamos a describir un método 
+  que posibilita  encontrar otra solución $y_2$ linealmente independiente de $y_1$. 
+  
+\nl El métodoo consiste en proponer que $y_2$ se escribe
+
+\[\boxed{y_2(x)=v(x)y_1(x)}.\]
+
+
+\end{frame}
+
+
+\begin{frame}{Reduccción de orden}
+Luego
+\[
+ \begin{split}
+    0&=y_2''+py_2'+qy_2\\
+    &=y_1v''+2v'y_1'+vy_1''+pv'y_1+pvy_1'+qvy_1\\
+    &=y_1 v''+(2y_1'+py_1)v'+v(y_1''+py_1'+qy_1)\\
+    &=y_1 v''+(2y_1'+py_1)v'
+ \end{split}
+\]
+La fórmula anterior es nuevamente una ecuación de segundo orden para $v$, 
+pero en este caso afortunadamente contamos con herramientas para resolverla puesto que se trata de una ecuación donde la 
+variable dependiente $v$ no aparece explícitamente, sino que aparecen sus derivadas $v'$ y $v''$. Hay que intentar la sustitución $w=v'$
+
+
+\end{frame}
+ 
+ 
+\begin{frame}{Reduccción de orden}
+Luego
+\[
+ w''+(2y_1'+py_1)w=0
+\]
+Recordar que $y_1$ la asumimos conocida y que $p$ es obviamente conocida, así $2y_1'+py_1$ es una funcióon conocida. La ecuación es una ecuación lineal homogénea de primer orden. 
+Usando la fórmula para resolver este tipo de ecuación dada en nuestra 
+\href{https://github.com/fdmazzone/Material-Ecuaciones-Diferenciales/blob/master/uni2.pdf?raw=true}{presentación anterior}, obtenemos
+\[w(x)=Ce^{-\int \frac{y_1'}{y_1}+p dx}=Ce^{-2\ln|y_1|}e^{-\int p dx}=C\frac{1}{y_1^2}e^{-\int p dx} \]
+Es suficiente encontrar sólo una función $v$, de allí podemos tomar $C=1$. 
+\boxedeq{w(x)= \frac{1}{y_1^2}e^{-\int p dx}\Longrightarrow v(x)= \int \frac{1}{y_1^2}e^{-\int p dx}dx }{reduc_orden}
+
+
+
+\end{frame} 
+
+\begin{frame}{Reduccción de orden}
+\nl Otra manera de testear la independencia lineal de dos funciones $y_1$ e $y_2$ es notar por ejemplo que si fueran linealmente dependientes e $y_1\neq 0$ 
+en un conjunto $J\subset I$ entonces $y_2/y_1$
+sería constante.  
+\nl Luego uno chequea independencia si comprueba que $y_2/y_1$ no es constante en un subdominio $J\subset I$. 
+
+\nl En el caso anterior $y_2/y_1=v$, luego 
+deberíamos tener $v$ no constante sobre algún subconjunto $J$. Pero $v$ constante implicaría $y_1^{-2}e^{-\int pdx}=0$ y esto claramente no ocurre. De modo que por el
+método anterior encontramos dos soluciones independientes.   
+
+
+
+
+
+\end{frame} 
+
+
+ \section{Ecuaciones homogéneas con coeficientes constantes}
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+ 
+ Consideramos la ecuación
+ 
+ \boxedeq{y''+py'+qy=0,\quad p,q\in\rr}\label{2orden_coef_ctes}
+    
+ Propongamos una solución de la forma 
+ \[\boxed{y(x)=e^{\lambda x},\quad \lambda\in\mathbb{C}}\]
+ Reemplazando en la ecuación
+ \[(\lambda^2+\lambda p+q)e^{\lambda x}=0.\]
+Se debe satisfacer la llamada \emph{ecuación característica}
+\boxedeq{\lambda^2+p\lambda+q=0}{ecua_carac} 
+\end{frame}
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+Tenemos tres casos acorde al valor de $\Delta=p^2-4c>0$
+
+\nl 1)\textbf{$\boxed{\Delta=p^2-4c>0}$, raices reales distintas $\lambda_1$, $\lambda_2$}. Este es el caso más sencillo de todos, obtenemos las soluciones
+\[y_1(x)=e^{\lambda_1 x}\quad\text{y}\quad y_2(x)=e^{\lambda_2 x}.\]
+Para chequear la independencia
+\[\frac{y_2}{y_1}=e^{(\lambda_2-\lambda_1)x}\neq\text{cte}.\]
+Luego 
+\boxedeq{y(x,c_2,c_2)=c_1e^{\lambda_1 x}+c_2e^{\lambda_2 x}.}{sol_gen1}
+es solución general
+\end{frame}
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+2) \textbf{$\boxed{\Delta=p^2-4c<0}$, raices complejas conjugadas $\lambda_1=\mu+i\nu$, $\lambda_2=\mu-i\nu$, $\mu,\nu\in\rr$}.
+
+Proponemos una solución de la forma
+\[
+ y(x)=e^{\mu x}v(x)
+\]
+
+Hagamos los cálculos con SAGE
+ 
+
+
+
+\end{frame}
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,p,q=var('x,p,q')
+sage: y=function('y',x)
+sage: v=function('v',x)
+sage: y=exp(-p/2*x)*v
+sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==0
+sage: ecuav=(ecua/exp(-p/2*x)).simplify_full()
+sage: ecuav
+-1/4*(p^2 - 4*q)*v(x) + D[0, 0](v)(x) == 0
+
+
+\end{lstlisting}
+ }
+
+
+
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+\lstI
+
+Vale decir  que $v$ resuelve
+\[-\frac{1}{4} \, {\left(p^{2} - 4 \, q\right)} v\left(x\right) + v''(x) = 0.\]
+
+Como $-\frac{1}{4}(p^2-4q)>0$,  estamos en presencia de la ecuación del oscilador armónico. 
+\end{frame}
+
+
+
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+ 
+
+
+Recordar que si $\nu=\sqrt{\frac{|p^2-4q|}{4}}$, la solución general 
+para $v$ es
+\[v(x)=C_1\cos \nu x +C_2\sen \nu x,\]
+y de allí
+\boxedeq{y(x)=e^{\mu x}\left\{C_1\cos \nu x +C_2\sen \nu x\right\}}{sol_gen_2caso}
+
+
+
+\end{frame}
+
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+ 
+\begin{tabular}{c c c}
+ \includegraphics[scale=.1]{mu_neg.png} & \includegraphics[scale=.1]{mu_pos.png}  &
+ \includegraphics[scale=.1]{mu_cero.png}\\
+ $\mu<0$ & $\mu>0$ & $\mu=0$\\
+\end{tabular}
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
+
+
+3)\textbf{$\boxed{\Delta=p^2-4c=0}$, raices iguales }. Conocemos una solución $\boxed{y_1=e^{-\frac{p}{2}x}}$. Podemos hallar otra
+por el método de reducción de orden. Esto consiste en proponer otra solución de la forma $y_2(x)=y_1(x)v(x)$ Dejemos que SAGE nos realice los
+cálculos (ver \texttt{uni4b.sage} ). Podemos ver que el método mencionado proporciona la solución extra 
+
+\[\boxed{y_2(x)=xe^{-\frac{p}{2}x}}.\]
+
+
+\end{frame}
+
+
+\section{Ecuación no homogénea}
+
+\begin{frame}{Ecuaciones no homogéneas. Método coeficientes indeterminados}
+\nl \begin{block}{Ecuación no homogénea}
+ \boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_nohom}
+donde $p,q,r \in C(I)$ y $r\neq 0$.
+ \end{block}
+
+\subsection{Método coeficientes ideterminados}
+
+\nl \begin{block}{Método coeficientes indeterminados}
+ 
+Consiste en buscar soluciones en la misma clase de funciones a la que pertenece $r(x)$. Funciona de manera metódica sólo para algunos tipos de funciones $r(x)$. 
+Concretamente para $r(x)$ combinación lineal de funciones polinómicas, exponenciales $e^{\alpha x}$ o trigonométricas $\cos \alpha x$ y $\sen \alpha x$. 
+Lo vamos a ilustrar con ejemplos para cada caso.
+ \end{block}
+ \end{frame}
+
+ 
+ 
+ 
+ 
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,p,q,a,A=var('x,p,q,a,A')        
+sage: y=function('y',x)
+sage: y=A*exp(a*x)     
+sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x)
+sage: ecua=(ecua/exp(a*x)).simplify_full()      
+sage: ecua
+(a^2 + a*p + q)*A == 1
+sage: solve(ecua,A)                             
+[A == (1/(a^2 + a*p + q))]
+\end{lstlisting}
+ }
+ 
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$ y $a^2+pa+q\neq 0$.}
+ En esta situación se propone como solución una función de la forma $\boxed{y(x)=Ae^{ax}}$. Usamos SAGE para el cálculos
+ 
+ \lstI
+ 
+ Si $a^2+pa+q\neq 0$,  encontramos la solución particular  $\boxed{y(x)=\frac{1}{(a^2+pa+q)}e^{ax}}$.
+ 
+ 
+\end{frame}
+
+ 
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,p,q,a,A=var('x,p,q,a,A')          
+sage: y=A*x*exp(a*x)
+sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x)
+sage: ecua=(ecua/exp(a*x)).simplify_full()      
+sage: ecua
+((a^2 + a*p + q)*x + 2*a + p)*A == 1
+sage: ecua.subs_expr(a^2 + a*p + q==0)          
+(2*a + p)*A == 1
+
+\end{lstlisting}
+ }
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$  y $a^2+pa+q= 0$}
+
+En esta situación diremos que la ecuación está en \emph{resonancia}. Más generalmente, diremos que se presenta resonancia cuando $r(x)$ es solución 
+del problema homogéneo. 
+
+Propongamos como solución $y(x)=Axe^{ax}$. Hagamos los cálculos con SAGE.
+
+\lstI
+
+Luego, si $2a+p\neq 0$, $\boxed{y(x)=\frac{1}{2a+p}xe^{ax}}$  resuelve el problema.
+\end{frame}
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,p,q,a,A=var('x,p,q,a,A')               
+sage: y=function('y',x)
+sage: y=A*x**2*exp(a*x)
+sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x) 
+sage: ecua=(ecua/exp(a*x)).simplify_full()      
+sage: ecua
+((a^2 + a*p + q)*x^2 + 2*(2*a + p)*x + 2)*A == 1
+sage: ecua.subs_expr(2*a+p==0,a^2 + a*p + q==0)
+2*A == 1
+
+\end{lstlisting}
+ }
+ 
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$  y $a^2+pa+q= 0$}
+
+ Si $2a+p=0$, como también $a^2+pa+q=0$, tenemos que $a$ es una raíz doble de la ecuación $\lambda^2+p\lambda+q=0$. 
+ En este caso, proponemos como solución $y(x)=Ax^2e^{ax}$. 
+ 
+ \lstI
+ 
+ Hay que tomar $\boxed{y(x)=\frac{1}{2}x^2e^{ax}}$
+ 
+ 
+\end{frame}
+ 
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,p,q,b,A,B=var('x,p,q,b,A,B')             
+sage: y=function('y',x)      
+sage: y=A*cos(b*x)+B*sin(b*x)
+sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==sin(b*x)
+sage: ecua.simplify_full()                      
+(b*p*cos(b*x) - (b^2 - q)*sin(b*x))*B - (b*p*sin(b*x) 
+...  + (b^2 - q)*cos(b*x))*A == sin(b*x)
+sage: ecua=ecua-sin(b*x)                        
+sage: ecua
+-A*b^2*cos(b*x) - B*b^2*sin(b*x) + (A*cos(b*x) + B*sin(b*x))*q 
+...  - (A*b*sin(b*x) - B*b*cos(b*x))*p - sin(b*x) == 0
+\end{lstlisting}
+ }
+ 
+ 
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$}
+ Proponemos 
+ \[y(x)=A\cos x+ B\sen x,\]
+ como candidato a solución. 
+ 
+ \lstI
+ 
+ 
+ 
+\end{frame}
+ 
+  \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: ecua.lhs().coefficient(sin(b*x)).simplify_full()==0
+-A*b*p - (b^2 - q)*B - 1 == 0
+sage: ecua.lhs().coefficient(cos(b*x)).simplify_full()==0
+B*b*p - (b^2 - q)*A == 0
+\end{lstlisting}
+ }
+ 
+ 
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$}
+La expresión en el miembro de la izquierda es una combinación lineal de las funciones $\cos bx$ y $\sen bx$. Como estas funciones son linealmente independientes
+debemos tener que los coeficientes en la combinación lineal deben ser cero
+\lstI
+Obtenemos un sistema de ecuaciones
+\begin{equation}\label{sist_lin_1}
+  \left\{\begin{array}{l l}
+          -Abp - (b^2 - q)B & = 1\\
+          Bbp - (b^2 - q)A &=0
+         \end{array}
+  \right.
+\end{equation}
+ 
+\end{frame}
+
+ \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$}
+Para que el sistema tenga solución la matriz de coeficientes debe ser no singular
+\[
+  0\neq\det \begin{pmatrix}
+              -bp & -(b^2-q)\\
+              -(b^2-q) & bp
+            \end{pmatrix} = -(b^2p^2+(b^2-q)^2)
+\]
+
+Podemos suponer $b\neq 0$, de lo contrario la ecuación hubiese sido homogénea. entonces la coondición de arriba ocurre si y sólo si 
+$p\neq 0$ o $b^2\neq q$. En esa situación encontraemos una solución de la forma
+\[
+ \boxed{y(x)=A\cos bx + B\sen bx},
+\]
+donde $A$ y $B$ resuelven \eqref{sist_lin_1}.
+\end{frame}
+
+
+
+  \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$ con resonancia}
+Cuando $p=0$ y $b^2= q$ el sistema \eqref{sist_lin_1} puede no tener solución. Notar que en este caso la ecuación queda
+\[
+ y''+b^2y=\sen bx
+\]
+Es una ecuación de un oscilador armónico no homogénea. Habíamos visto que justamente $r(x)=\sen bx$ es una solución del problema homogéno. Nuevamente
+estamos en una situación de resonancia, es decir $r(x)$ es solución el homogéneo.  Como en casos anteriores hay que proponer como solución
+
+ \[y(x)=x\left(A\cos x+ B\sen x\right),\]
+\end{frame}
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x,b,A,B=var('x,b,A,B')        
+sage: y=function('y',x)      
+sage: y=x*(A*cos(b*x)+B*sin(b*x))
+sage: ecua=y.diff(x,2)+b^2*y==sin(b*x)  
+sage: ecua=ecua-sin(b*x)    
+sage: eql1=ecua.lhs().coefficient(sin(b*x))==0
+sage: eql2=ecua.lhs().coefficient(cos(b*x))==0
+sage: solve([eql1,eql2],[A,B])
+[[A == -1/2/b, B == 0]]
+\end{lstlisting}
+ }
+
+   \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$ con resonancia}
+ \lstI
+ 
+ Encontramos la solución general
+ 
+  \[\boxed{y(x)=-\frac{x}{2b}\cos x}.\]
+ 
+El caso donde $r(x)=\cos bx$ se trata de manera completamente similar.
+
+\end{frame}
+
+
+
+
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: PoliQX=QQ['X']
+sage: print(PoliQX) 
+Univariate Polynomial Ring in X over Rational Field
+sage: PoliRX=RR['X'] 
+sage: print(PoliRX) 
+Univariate Polynomial Ring in X over Real Field with 53 bits of 
+...precision
+sage: PoliZ3X=Integers(3)['X']
+sage: print(PoliZ3X)
+Univariate Polynomial Ring in X over Ring of integers modulo 3
+sage: p=PoliZ3X([1,1,1])
+sage: p
+X^2 + X + 1
+sage: p+p
+2*X^2 + 2*X + 2
+sage: p+p+p
+0
+sage: PoliZ3Xb = PolynomialRing(Integers(3),"X")
+sage: PoliZ3X is PoliZ3Xb  
+True
+sage: X+X    
+NameError: name 'X' is not defined
+sage: PoliZ3Xc.<X> = Integers(3)["X"]
+sage: PoliZ3Xc([1,2,1])+X
+X^2 + 1
+
+
+\end{lstlisting}
+ }
+
+   \begin{frame}{Disgresión: \href{http://www.sagemath.org/doc/tutorial/tour_polynomial.html}{anillos de polinomios en SAGE}. Definiendo un anillo de polinomios sobre $\mathbb{Q}$}
+
+\lstI
+
+
+\end{frame}
+
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: P.<X,Y>=QQ["X,Y"]                    
+sage: 1+X+X^2+Y^3 in P 
+True
+sage: p=sum([j*X^j*Y^(3-j) for j in range(4)] )
+sage: p in P
+True
+sage: p
+3*X^3 + 2*X^2*Y + X*Y^2
+sage: P=QQ[['a'+str(j) for j in range(8)]]
+sage: P
+Multivariate Power Series Ring in a0, a1, a2, a3, a4,
+...a5, a6, a7 over Rational Field
+sage: a0 in P
+NameError: name 'a0' is not defined
+sage: a=P.gens()                          
+sage: a
+(a0, a1, a2, a3, a4, a5, a6, a7)
+sage: a[0] in P
+True
+sage: type(a[0])
+<class 'sage.rings.multi_power_series_ring_element.
+...MPowerSeriesRing_generic_with_category.element_class'>
+sage: sum([a[j]*j for j in range(8)])
+a1 + 2*a2 + 3*a3 + 4*a4 + 5*a5 + 6*a6 + 7*a7
+sage: sum([a[j]*j for j in range(8)]) in P
+True
+
+
+
+\end{lstlisting}
+ }
+
+   \begin{frame}{Anillo de polinomios en varias variables}
+
+\lstI
+
+
+\end{frame}
+
+
+
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: A=QQ[['a'+str(j) for j in range(5)]]
+sage: A
+Multivariate Power Series Ring in a0, a1, a2, a3, a4 
+....over Rational Field
+sage: a=A.gens()
+sage: a
+(a0, a1, a2, a3, a4)
+sage: a[0]*X+a[1]*X^2 in P
+True
+sage: a[0]*X+a[1]*X^2     
+a1*X^2 + a0*X
+sage: (a[0]*X+a[1]*X^2)^2 
+a1^2*X^4 + 2*a0*a1*X^3 + a0^2*X^2
+sage: p=sum([a[j]*X^j for j in range(5)])
+sage: p
+a4*X^4 + a3*X^3 + a2*X^2 + a1*X + a0
+
+
+
+
+\end{lstlisting}
+ }
+
+   \begin{frame}{Anillo de polinomios sobre anillo de polinomios}
+
+\lstI
+
+
+\end{frame}
+
+
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: grado=4
+sage: lista_var=['a'+str(j) for j in range(grado)] 
+sage: lista_var+=['b'+str(j) for j in range(grado)]
+sage: lista_var+=['p', 'q']                        
+sage: A = PolynomialRing(QQ,lista_var)
+sage: P=A['X']
+sage: r=P([A.gen(i) for i in range(grado)])
+sage: r
+a3*X^3 + a2*X^2 + a1*X + a0
+sage: y=P([A.gen(i) for i in range(grado,2*grado)])
+sage: y
+b3*X^3 + b2*X^2 + b1*X + b0
+sage: eq=y.derivative(2)+y.derivative()*A.gen(2*grado)+y*A.gen(2*grado+1)-r
+sage: ecuaciones=[SR(l)==0 for l in eq.coefficients()]
+sage: parametros=[SR(A.gen(j)) for j in range(2*grado+2)] 
+sage: Sol=solve(ecuaciones,parametros[grado:2*grado])
+sage: show(Sol[0])
+\end{lstlisting}
+ }
+
+\begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
+ 
+Hay que proponer como solución un polinomio, en primera instancia, del mismo grado. Invocando SAGE.
+
+\lstI
+
+\end{frame}
+
+\begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
+Encontramos las soluciones
+
+\[
+  \begin{split}
+      b_{0} &= \frac{a_{0} q^{3} - 6 \, a_{3} p^{3} - {\left(a_{1} p + 2 \, a_{2}\right)} q^{2} + 2 \, {\left(a_{2} p^{2} + 6 \, a_{3} p\right)} q}{q^{4}},\\
+      b_{1} &= \frac{a_{1} q^{2} + 6 \, a_{3} p^{2} - 2 \, {\left(a_{2} p + 3 \, a_{3}\right)} q}{q^{3}},\\
+      b_{2} &= \frac{a_{2} q - 3 \, a_{3} p}{q^{2}},\\
+      b_{3} &= \frac{a_{3}}{q}
+  \end{split}
+\]
+que tienen sentido solo cuando $q\neq 0$.
+\end{frame}
+
+\begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio y resonancia}
+El caso $q=0$ es una forma de resonancia. Puede ser tratado como las anteriores resonancias, pero notando que la ecuación se reduce a $y''+py'=r$ conviene 
+tomar $v=y'$ como
+nueva variable dependiente y reducir la ecuación a una de primer orden.
+
+Por último señalemos que si deseamos resolver un problema de la forma
+\[L[y]\equiv y''+py'+qy=r_1(x)+\cdots +r_n(x),\]
+donde las funciones $r_i$ son de alguna de las formas descriptas en los casos previos,
+entonces la linealidad de $L$ implica que, si $y_i$ 
+resuelve $L[y_i]=r_i$, $y=y_1+\cdots +y_n$ resuelve la ecuación deseada. 
+
+\end{frame}
+
+\subsection{Método de variación de los parámetros}
+
+\begin{frame}{Método variación de los parámetros}
+Queremos resolver la ecuación
+\begin{equation}\label{eq:2orden_gen}
+  y''(x)+p(x)y'(x)+q(x)y(x)=r(x).
+\end{equation}
+Supongamos que contamos con un par de soluciones $y_1$, $y_2$ linealmente independientes de la ecuación homogénea asociada 
+\begin{equation}\label{eq:hom_asoc}
+  y''(x)+p(x)y'(x)+q(x)y(x)=0.
+\end{equation}
+
+El método de \href{http://en.wikipedia.org/wiki/Variation_of_parameters}{variacion de los parámetros} consiste en proponer una solución de la forma
+\boxedeq{y(x)=c_1(x)y_1(x)+c_2(x)y_2(x).}{eq:var_param0}
+
+\end{frame}
+
+
+
+\begin{frame}{Método variación de los parámetros}
+
+Hay dos funciones incognitas $c_1$ y $c_2$, pero sólo una ecuación. Tendremos por esto libertad de introducir otra condición que consideremos conveniente.
+
+Tenemos
+\[
+  y'=c_1'y_1+c_1y_1'+c_2'y_2+c_2y_2'.
+\]
+Pidamos que
+\begin{equation}\label{eq:var_param1}
+ c_1'y_1+c_2'y_2=0.
+\end{equation}
+Supuesta esta igualad
+\[ y'= c_1y_1'+c_2y_2'.\]
+Derivando
+\[ y''= c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''.\]
+
+
+\end{frame}
+\begin{frame}{Método variación de los parámetros}
+
+Entonces
+\[
+ \begin{split}
+    r(x)&=y''+py'+qy\\
+    &=c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''+p(c_1y_1'+c_2y_2')+q(c_1y_1+c_2y_2)\\
+    &=c_1(y_1''+py_1'+qy_1)+c_2(y_2''+py_2'+qy_2)+c_1'y_1'+c_2y_2'\\
+    &=c_1'y_1'+c_2'y_2'
+ \end{split}
+\]
+Esta ecuación junto a \eqref{eq:var_param1} nos dan el sistema
+\boxedeq{
+  \left\{\begin{array}{c c}
+            c_1'y_1+c_2'y_2&=0\\
+            c_1'y_1'+c_2'y_2'&=r
+         \end{array}
+  \right. 
+}{eq:var_param_sis}
+Las incognitas son $c_1'$ y $c_2'$. El determinante de la matriz de coeficientes es precisamente el Wronskiano $W$ de las soluciones $y_1$ e $y_2$, por la suposición
+de independencia $W\neq 0$ y por lo tanto el sistema tiene solución única.
+
+
+\end{frame}
+
+\begin{frame}{Método variación de los parámetros}
+Se tiene
+\[c_1'=-\frac{\det\begin{pmatrix}
+                0 & y_2\\
+                r & y_2'
+               \end{pmatrix}
+}{W}=-\frac{ry_2}{W}
+\]
+y
+\[c_2'=-\frac{\det\begin{pmatrix}
+                y_1 & 0\\
+                y_1' & r
+               \end{pmatrix}
+}{W}=\frac{ry_1}{W}
+\]
+\end{frame}
+
+\begin{frame}{Método variación de los parámetros}
+En consecuencia
+\boxedeq{c_1=-\int\frac{ry_2}{W}dx}{eq:c1}
+y
+\boxedeq{c_2=\int\frac{ry_1}{W}}{eq:c2}
+
+Usando estas fórmulas y \eqref{eq:var_param0} obtenemos una solución particular del sistema. La solución general es la suma de la particular más
+una solución general del homogéneo. Esta última solución general se escribe como una combinación lineal genérica entre $y_1$ e $y_2$.
+\end{frame}
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x=var('x')
+sage: y1=sin(x)
+sage: y2=cos(x)
+sage: W=y1*y2.diff()-y1.diff()*y2
+sage: W.simplify_full() #chequeamos independencia
+-1
+sage: r=csc(x)
+sage: y=(r*y1/W).integral(x)*y2-(r*y2/W).integral(x)*y1 #formula
+sage: y
+-x*cos(x) + log(sin(x))*sin(x)
+sage: c1,c2=var('c1,c2')
+sage: z=y+c1*y1+c2*y2 #solucion general
+sage: (z.diff(x,2)+z-r).simplify_trig()
+0
+sage: #resolvemos pvi
+sage: C=solve([z(x=pi/2)==0,z.diff(x).subs(x=pi/2)==1],[c1,c2])
+sage: C
+[[c1 == 0, c2 == 1/2*pi - 1]]
+sage: A,B=C[0]
+sage: y=z.subs_expr(A,B)
+sage: y
+1/2*(pi - 2)*cos(x) - x*cos(x) + log(sin(x))*sin(x)
+sage: y(x=pi/2)
+0
+sage: y.diff()(x=pi/2)
+1
+
+\end{lstlisting}
+ }
+
+\begin{frame}{Método variación de los parámetros}
+\textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y  $y'\left(\tfrac{\pi}{2}\right)=1$.
+\lstI
+\end{frame}
+
+\section{Conclusiones}
+
+\begin{frame}{Conclusiones}
+\begin{enumerate}
+ \item Si podemos encontrar dos soluciones linealmente independientes de una ecuación lineal homogénea de segundo orden, tenemos la solución general a traves de 
+ combinaciones lineales.
+ \item Si tenemos una solución no trivial de una ecuación lineal homogénea de segundo orden podemos hallar otra por el método de reducción de orden.
+ \item Podemos resolver completamente una ecuación lineal homogénea de segundo orden con coeficientes constantes.
+ \item Podemos resolver algunos problemas no homogéneos por el método de coeficientes indeterminados.
+ \item Si conocemos las soluciones del problema homogéneo podemos resolver, en teoría, el no homogéneno para cualquier $r(x)$ por el método de variación 
+ de los parámetros
+\end{enumerate}
+
+\end{frame}
+
+\section{Aplicaciones}
+
+\begin{frame}{Aplicaciones. Vibraciones mecánicas }
+ 
+\textbf{Problema:} Estudiar el movimiento de un resorte (cómo el de la unidad anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del resorte,
+tenemos una fuerza de fricción debida ala resistencia del medio. Porla acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
+Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida 
+la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se 
+dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
+\end{frame}
+
+\begin{frame}{Aplicaciones. Vibraciones mecánicas }
+
+La fuerza elástica del resorte se modeliza con la Ley de Hooke. 
+Para la amortiguación, supongamos que su módulo  es proporcional a la velocidad de la masa. La constante de proporcionalidad $c$ se llama coeficiente de 
+\href{http://es.wikipedia.org/wiki/Viscosidad}{viscosidad}. La dirección y sentido de la fuerza amortiguadora es siempre contraria 
+al movimiento. Por el principio de conservación de la energía, vemos que la fuerza de amortiguación siempre realiza un trabajo $W$ negativo, por consiguiente
+hace perder energía cinética. De la fuerza externa $F$ no sabemos nada en principio. Por todo lo expuesto, si ponemos un sistema 
+de coordenadas con origen en la posición de equilibrio del sistema masa-resorte y si $x(t)$ es la posición de la masa en el momento $t$, la ecuación que gobierna 
+el sistema masa-resorte con amortiguación y forzamiento es 
+
+\boxedeq{mx''(t)\underbrace{=}_\text{2° Ley Newton}\underbrace{-kx(t)}_
+\text{Hooke}\underbrace{-cx'(t)}_\text{Amortiguación}+\underbrace{F(t)}_\text{Fuerza externa}}{eq:res_amor_for}
+
+\end{frame}
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+ 
+Escribamos la ecuación \eqref{eq:res_amor_for} de la siguiente froma
+
+\begin{equation}\label{eq:res_amor}
+  \boxed{x''(t)+2\mu x'(t)+\omega^2x=0}\quad \mu:=\frac{c}{2m},\omega:=\sqrt{\frac{k}{m}}. 
+\end{equation}
+
+Las raíces de la ecuación característica son
+\[
+ \boxed{\lambda_{1,2}=-\mu\pm\sqrt{\Delta},\quad \Delta:=\mu^2-\omega^2}
+\]
+
+\textbf{Caso $\Delta>0$.} Aquí la viscocidad es ``grande'' relativa ala rigidez $k$. Se dice que el sistema está sobreamortiguado. En este caso tenemos dos soluciones
+linealmente independientes y la solución general es de la forma
+\[x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}\]
+Notar que $\lambda_1,\lambda_2<0$.
+\end{frame}
+
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: lambda1,lambda2=var('lambda1,lambda2')
+sage: t=var('t')
+sage: x=c1*e^(lambda1*t)+c2*e^(lambda2*t)
+sage: x0=var('x0')
+sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],
+....[c1,c2],solution_dict=True)
+sage: C
+[{c2: lambda1*x0/(lambda1 - lambda2), c1: -lambda2*x0/(lambda1 - lambda2)}]
+sage: x=x.subs(C[0])
+sage: x.show()
+sage: latex(x)
+-\frac{\lambda_{2} x_{0} e^{\left(\lambda_{1} t\right)}}{\lambda_{1} - \lambda_{2}} + 
+...\frac{\lambda_{1} x_{0} e^{\left(\lambda_{2} t\right)}}{\lambda_{1} - \lambda_{2}}
+
+
+
+\end{lstlisting}
+ }
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+De ahora en más supondremos que el sistema parte del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. 
+\lstI
+
+\boxedeq{
+  x(t)= x_0\left\{ \frac{\lambda_{1}  
+  e^{\lambda_{2} t}}{\lambda_{1} - \lambda_{2}}-\frac{\lambda_{2} e^{\lambda_{1} t}}{\lambda_{1} - \lambda_{2}}\right\}
+}{eq:sol_sub_amor}
+\end{frame}
+
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x=x.subs({lambda1:-1,lambda2:-2,x0:1})
+sage: x.plot((x,0,10))
+
+\end{lstlisting}
+ }
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+La masa podría haber pasado por la posición de equilibrio sólo en el pasado puesto que $x(t)=0$ cuando
+\[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
+\begin{tabular}{m{2cm} m{8cm}}
+ \lstI &\hspace{-5cm}\includegraphics[scale=.2]{sobreamortiguado.png}
+\end{tabular}
+
+
+\end{frame}
+
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+
+\begin{center}
+
+\animategraphics[controls, scale=.4]{15}{res_sobre/res_sobre-}{0}{60}
+
+Masa-resorte sobreamortiguado
+\end{center}
+\end{frame}
+
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: c1,c2=var('c1,c2')
+sage: mu=var('mu')
+sage: t=var('t')
+sage: x=e^(-mu*t)*(c1+c2*t)
+sage: x0=var('x0')
+sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
+sage: C
+[{c2: mu*x0, c1: x0}]
+sage: x=x.subs(C[0]).subs({mu:.1,x0:1})
+sage: x.plot((x,0,100))
+
+\end{lstlisting}
+ }
+
+
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Caso $\Delta=0$.} En esta situación se dice que hay amortiguación crítica. Las raíces son iguales $\lambda_1=\lambda_2=-\mu$. Sabemos que
+\boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
+ \lstI 
+ \begin{center}
+   \includegraphics[scale=.1]{crit_amortiguado.png}
+ \end{center}
+
+
+ 
+
+
+\end{frame}
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: c1,c2=var('c1,c2')
+sage: mu=var('mu')
+sage: nu=var('nu')
+sage: x0=var('x0')
+sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
+sage: t=var('t')
+sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
+sage: x=x.subs(C[0]).subs({mu:.1,nu:4,x0:1})
+sage: x.plot((x,0,100))
+
+
+\end{lstlisting}
+ }
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Caso $\Delta<0$.} Caso subamortiguado, $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
+La solución general viene dada por
+
+\boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t    \right\}}{eq:sol_gen_sub}
+ \lstI 
+ \begin{center}
+   \includegraphics[scale=.1]{subamortiguado.png}
+ \end{center}
+ 
+
+
+\end{frame}
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+
+\begin{center}
+
+\animategraphics[controls, scale=.4]{15}{res_sub/res_sub-}{0}{60}
+
+Masa-resorte subamortiguado
+\end{center}
+\end{frame}
+
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+Se suele escribir la ecuación \eqref{eq:sol_gen_sub} de otra forma. Expresemos el vector $(c_1,c_2)$ en 
+coordenadas polares. 
+\[
+c_1=\rho\cos\alpha,\quad c_2=\rho\sen\alpha.
+\]
+Entonces
+\[
+ x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t    \right\}=\boxed{\rho e^{-\mu t}\cos(\nu t-\alpha)}.
+\]
+Movimiento cuasi-oscilatorio. En realidad ejecuta vibraciones, que se van amortiguando, de \href{http://es.wikipedia.org/wiki/Frecuencia}{frecuencia}
+\[
+  f=\frac{1}{\text{peiodo}}=\frac{\nu}{2\pi},\quad \nu=\sqrt{\omega^2-\mu^2}=\sqrt{\left(\frac{k}{m}\right)^2-
+  \left(\frac{c}{2m}\right)^2}.
+\]
+En lugar de la frecuencia se suele considerar la 
+\href{http://luz.izt.uam.mx/mediawiki/index.php/Frecuencia_angular}{frecuencia angular} que se define como 
+$2\pi f$. La ventaja de esta definición es que la frecuencia ángular de la función de arriba es
+$\nu$. 
+\end{frame}
+
+
+
+\begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Ejercicio:} En cualquiera de las situaciones descriptas, $x(t)\to 0$ y $x'(t)\to 0$, cuando $t\to\infty$. 
+Es decir, la masa se va deteniendo.                                                                                                                                                                                                                                                                         
+ 
+
+
+\end{frame}
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: t,mu,omega,omega0,F0=var('t,mu,omega,omega0,F0')
+sage: A,B=var('A,B')                   
+sage: x=A*cos(omega0*t)+B*sin(omega0*t)
+sage: eq=x.diff(t,2)+2*mu*x.diff(t)+omega^2*x-F0*cos(omega0*t)
+sage: eq=eq.simplify_full()
+sage: show(eq)
+sage: eq.coefficient(cos(omega0*t))
+B*mu*omega0 + (omega^2 - omega0^2)*A - F0
+sage: show(eq.coefficient(cos(omega0*t)))
+sage: show(eq.coefficient(sin(omega0*t)))
+sage: eqL1=eq.coefficient(sin(omega0*t))
+sage: eqL2=eq.coefficient(cos(omega0*t))
+sage: show([eqL1,eqL2]) 
+CoefSis=matrix([[eqL1.coefficient(A),eqL1.coefficient(B)],[eqL2.coefficient(A),eqL2.coefficient(B)]])
+sage: show(CoefSis.det()) 
+sage: SolAB=solve([eqL1,eqL2],[A,B],solution_dict=True)    
+sage: show(SolAB)   
+sage: show(x.subs(SolAB[0]))
+sage: x=x.subs(SolAB[0][0])
+
+\end{lstlisting}
+ }
+
+
+\begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
+\boxedeq{x''(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
+Usaremos el método de coeficientes indeterminados y SAGE. Antes, recordar que si $\omega=\omega_0$ estamos en 
+resonancia. Tendremos que considerar ese caso por separado. Supongamos pues $\omega\neq\omega_0$.
+
+ 
+
+\end{frame}
+
+
+
+\begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+ \lstinputlisting{scripts/osc_arm_forz_noamort.sage}
+
+ 
+Notar que el determinante del sistema de ecuaciones algebraicas es $-(\omega-\omega_0)^2$. Luego la matriz 
+es no singular sólo en no resonancia. 
+
+La solución general del problema es la solución particular que acabamos de obtener más una solución 
+general del homogéneo que sabemos es una combinación lineal generica entre $\cos \omega t$ y $\sin \omega t$.
+
+\boxedeq{x(t)=\frac{F_{0} \cos\left(\omega_{0} t\right)}{\omega^{2} - \omega_{0}^{2}}+
+c_1\cos(\omega t)+c_2\sin(\omega t).}{eq:sol_gen_noamort_forz}
+ 
+ 
+\end{frame}
+
+\begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+Como ya hemos visto, considerando las coordenadas polares $\rho$ y $\alpha$ de $c_1,c_2)$
+podemos reescribir la solución 
+
+
+\[x(t)=\frac{F_{0} \cos\left(\omega_{0} t\right)}{\omega^{2} - \omega_{0}^{2}}+
+\rho\cos(\omega t-\alpha)
+\]
+
+Vemos que el movimiento es la superposición de dos movimientos oscilatorios de frecuencias $\omega$, que se
+denomina la \emph{frecuencia natural} del resorte, y $\omega_0$ que se denomina \emph{frecuencia impresa}.
+ 
+\end{frame}
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: t,omega,omega0,F0,rho,alpha=var('t,omega,omega0,F0,rho,alpha')
+sage: x=F0/(omega^2-omega0^2)*cos(omega0*t)+rho*cos(omega*t-alpha)  
+sage: assume(-pi<alpha, alpha<2*pi)
+sage: solve([x(t=0)==0,x.diff(t).subs(t=0)==0],[rho,alpha])         
+[omega*rho*sin(alpha) == 0, rho*cos(alpha) + F0/(omega^2 - omega0^2) == 0]
+sage: x0=x(alpha=0)
+sage: sol=solve([x0(t=0)==0,x0.diff(t).subs(t=0)==0],rho,solution_dict=True) 
+sage: x0=x0.subs(sol[0])
+sage: x0.factor().show()
+
+\end{lstlisting}
+ }
+
+
+\begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+Resolvamos el pvi
+\[
+ \left\{\begin{array}{l}
+         x''(t)+\omega^2x(t)=F_0\cos(\omega_0 t),\\
+         x'(0)=x(0)=0\\
+        \end{array}
+\right.
+\]
+
+
+\lstI
+
+\[x(t)=-\frac{F_{0} \cos\left(\omega t\right)}{\omega^{2} - \omega_{0}^{2}} + \frac{F_{0} \cos\left(\omega_{0} t\right)}{\omega^{2} - \omega_{0}^{2}}
+\]
+\end{frame}
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: x1=x0.subs({F0:1,omega:1,omega0:.9}) 
+sage: x1.plot(x,0,200)
+\end{lstlisting}
+ }
+
+
+\begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+Ahora usemos la identidad $\cos(a-b)-cos(a+b)=2\sen a\sen b$, con $a=\frac12 (\omega+\omega_0)$ y
+$b=\frac12 (\omega-\omega_0)$. Deducimos
+
+\[
+  x(t)=\frac{2F_{0} }{\omega^{2} - \omega_{0}^{2}}\sen (\omega-\omega_0)t \sen (\omega+\omega_0)t. 
+\]
+
+Esta  expresión la podemos ver como una onda de frecuencia  grande $\omega+\omega_0$ modulada por una de frecuencia 
+chica $\omega-\omega_0$. 
+\lstI
+\includegraphics[scale=.2]{batido.jpg}
+
+
+\end{frame}
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: t,mu,omega,omega0,F0=var('t,mu,omega,omega0,F0')
+sage: A,B=var('A,B')                   
+sage: x=A*cos(omega0*t)+B*sin(omega0*t)
+sage: eq=x.diff(t,2)+2*mu*x.diff(t)+omega^2*x-F0*cos(omega0*t)
+sage: eq=eq.simplify_full()
+sage: show(eq)
+sage: eq.coefficient(cos(omega0*t))
+B*mu*omega0 + (omega^2 - omega0^2)*A - F0
+sage: show(eq.coefficient(cos(omega0*t)))
+sage: show(eq.coefficient(sin(omega0*t)))
+sage: eqL1=eq.coefficient(sin(omega0*t))
+sage: eqL2=eq.coefficient(cos(omega0*t))
+sage: show([eqL1,eqL2]) 
+CoefSis=matrix([[eqL1.coefficient(A),eqL1.coefficient(B)],[eqL2.coefficient(A),eqL2.coefficient(B)]])
+sage: show(CoefSis.det()) 
+sage: SolAB=solve([eqL1,eqL2],[A,B],solution_dict=True)    
+sage: show(SolAB)   
+sage: show(x.subs(SolAB[0]))
+sage: x=x.subs(SolAB[0][0])
+
+\end{lstlisting}
+ }
+
+
+\begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
+Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
+\boxedeq{x''(t)+2\mu x'(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
+
+\lstI
+
+\end{frame}
+
+
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: latex(sqrt(A**2+B**2).subs(SolAB[0]).simplify_full())
+\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, 
+{\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}
+\end{lstlisting}
+ }
+
+
+
+ 
+\begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
+\boxedeq{x(t)=
+	  \frac{2 \, F_{0} \mu \omega_{0} \sin\left(\omega_{0} t\right)}{\omega^{4} + \omega_{0}^{4} + 2 \,
+	  {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}} + \frac{{\left(F_{0} \omega^{2} - 
+	  F_{0} \omega_{0}^{2}\right)} \cos\left(\omega_{0} t\right)}{\omega^{4} + 
+	  \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}
+	}{eq:SolGennoHom}
+
+
+Es un movimiento oscilatorio de frecuencia angular $\omega_0$. Podemos escribir $x(t)=\rho\cos(\omega_0 t-\alpha)$, 
+donde $(\rho,\alpha)$ son las coordenadas polares de $(A,B)$. En particular $\rho=\sqrt{A^2+B^2}$
+Recurrimos nuevamente a SAGE
+\lstI
+\[
+\rho(\omega_0)=\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}
+\]
+\end{frame}
+ 
+ 
+ 
+\end{document}
