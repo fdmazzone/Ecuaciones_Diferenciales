@@ -116,7 +116,7 @@
 }
 
 
-
+\DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
 \newtheorem{teorema}{Teorema}[section]
 \newtheorem{lema}[teorema]{Lema}
@@ -167,7 +167,7 @@ Universidad Nacional de Río Cuarto}
 \begin{frame}
   \maketitle
   \begin{center}
-   \includegraphics[scale=0.2]{unrc.jpg}
+   \includegraphics[scale=0.2]{imagenes/unrc.jpg}
    \end{center}
 \end{frame}
 
@@ -557,8 +557,8 @@ y de allí
 \begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
  
 \begin{tabular}{c c c}
- \includegraphics[scale=.1]{mu_neg.png} & \includegraphics[scale=.1]{mu_pos.png}  &
- \includegraphics[scale=.1]{mu_cero.png}\\
+ \includegraphics[scale=.1]{imagenes/mu_neg.png} & \includegraphics[scale=.1]{imagenes/mu_pos.png}  &
+ \includegraphics[scale=.1]{imagenes/mu_cero.png}\\
  $\mu<0$ & $\mu>0$ & $\mu=0$\\
 \end{tabular}
 
@@ -752,7 +752,7 @@ donde $A$ y $B$ resuelven \eqref{sist_lin_1}.
 
 
 
-  \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$ con resonancia}
+  \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$ con resonancia}\label{eq:forz_res}
 Cuando $p=0$ y $b^2= q$ el sistema \eqref{sist_lin_1} puede no tener solución. Notar que en este caso la ecuación queda
 \[
  y''+b^2y=\sen bx
@@ -1199,7 +1199,7 @@ sage: x.plot((x,0,10))
 La masa podría haber pasado por la posición de equilibrio sólo en el pasado puesto que $x(t)=0$ cuando
 \[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 \begin{tabular}{m{2cm} m{8cm}}
- \lstI &\hspace{-5cm}\includegraphics[scale=.2]{sobreamortiguado.png}
+ \lstI &\hspace{-5cm}\includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
 \end{tabular}
 
 
@@ -1241,7 +1241,7 @@ sage: x.plot((x,0,100))
 \boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
  \lstI 
  \begin{center}
-   \includegraphics[scale=.1]{crit_amortiguado.png}
+   \includegraphics[scale=.1]{imagenes/crit_amortiguado.png}
  \end{center}
 
 
@@ -1272,7 +1272,7 @@ La solución general viene dada por
 \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t    \right\}}{eq:sol_gen_sub}
  \lstI 
  \begin{center}
-   \includegraphics[scale=.1]{subamortiguado.png}
+   \includegraphics[scale=.1]{imagenes/subamortiguado.png}
  \end{center}
  
 
@@ -1435,52 +1435,61 @@ sage: x1.plot(x,0,200)
 Ahora usemos la identidad $\cos(a-b)-cos(a+b)=2\sen a\sen b$, con $a=\frac12 (\omega+\omega_0)$ y
 $b=\frac12 (\omega-\omega_0)$. Deducimos
 
-\[
+\boxedeq{%
   x(t)=\frac{2F_{0} }{\omega^{2} - \omega_{0}^{2}}\sen (\omega-\omega_0)t \sen (\omega+\omega_0)t. 
-\]
+}{eq:sol_gen_pulsos}
 
 Esta  expresión la podemos ver como una onda de frecuencia  grande $\omega+\omega_0$ modulada por una de frecuencia 
 chica $\omega-\omega_0$. 
 \lstI
-\includegraphics[scale=.2]{batido.jpg}
+\begin{center}
+\includegraphics[scale=.15]{imagenes/batido.jpg}
+\end{center}
 
 
 \end{frame}
-
-
 \defverbatim[colored]\lstI{ 
 \begin{lstlisting}
-sage: t,mu,omega,omega0,F0=var('t,mu,omega,omega0,F0')
-sage: A,B=var('A,B')                   
-sage: x=A*cos(omega0*t)+B*sin(omega0*t)
-sage: eq=x.diff(t,2)+2*mu*x.diff(t)+omega^2*x-F0*cos(omega0*t)
-sage: eq=eq.simplify_full()
-sage: show(eq)
-sage: eq.coefficient(cos(omega0*t))
-B*mu*omega0 + (omega^2 - omega0^2)*A - F0
-sage: show(eq.coefficient(cos(omega0*t)))
-sage: show(eq.coefficient(sin(omega0*t)))
-sage: eqL1=eq.coefficient(sin(omega0*t))
-sage: eqL2=eq.coefficient(cos(omega0*t))
-sage: show([eqL1,eqL2]) 
-CoefSis=matrix([[eqL1.coefficient(A),eqL1.coefficient(B)],[eqL2.coefficient(A),eqL2.coefficient(B)]])
-sage: show(CoefSis.det()) 
-sage: SolAB=solve([eqL1,eqL2],[A,B],solution_dict=True)    
-sage: show(SolAB)   
-sage: show(x.subs(SolAB[0]))
-sage: x=x.subs(SolAB[0][0])
-
+sage: limit(x0,omega0=omega)
+1/2*F0*t*sin(omega*t)/omega
 \end{lstlisting}
  }
+
+\begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
+Calculemos el límite $\lim_{\omega_0\to\omega}x(t)$,
+\lstI
+
+\[x(t)=\frac{F_{0} t \sin\left(\omega t\right)}{2 \, \omega}
+\]
+El caso $\omega=\omega_0$ es el caso con resonancia, que debemos resolver como fue indicado en la página \ref{eq:forz_res}, 
+esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código sage muestra que la solución es la misma función
+que la obtenida por el proceso de límite de los casos sin resonancia.
+
+\lstinputlisting{scripts/osc_arm_forz_noamort_res.sage}
+
+\end{frame}
+
+ \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
+Se producen ``vibraciones'' no acotadas.
+\begin{center}
+ \includegraphics[scale=0.3]{imagenes/osc_arm_forz_res.png}
+\end{center}
+
+Ver la notebook \texttt{batido.sws} y la wiki \href{http://wiki.sagemath.org/interact/misc\#Hearing_a_trigonometric_identity}{Hearing a trigonometric identity}
+para escuchar ondas sonoras con los fenómenos de resonancia y batido.
+
+\end{frame}
+
 
 
 \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
 Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
 \boxedeq{x''(t)+2\mu x'(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
+\lstinputlisting{scripts/osc_arm_forz_amort.sage}
 
-\lstI
 
 \end{frame}
+
 
 
 \defverbatim[colored]\lstI{ 
@@ -1492,15 +1501,14 @@ sage: latex(sqrt(A**2+B**2).subs(SolAB[0]).simplify_full())
  }
 
 
-
  
 \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
 \boxedeq{x(t)=
-	  \frac{2 \, F_{0} \mu \omega_{0} \sin\left(\omega_{0} t\right)}{\omega^{4} + \omega_{0}^{4} + 2 \,
-	  {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}} + \frac{{\left(F_{0} \omega^{2} - 
-	  F_{0} \omega_{0}^{2}\right)} \cos\left(\omega_{0} t\right)}{\omega^{4} + 
-	  \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}
-	}{eq:SolGennoHom}
+  \frac{2 \, F_{0} \mu \omega_{0} \sin\left(\omega_{0} t\right)}{\omega^{4} + \omega_{0}^{4} + 2 \,
+  {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}} + \frac{{\left(F_{0} \omega^{2} - 
+  F_{0} \omega_{0}^{2}\right)} \cos\left(\omega_{0} t\right)}{\omega^{4} + 
+  \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}
+}{eq:SolGennoHom}
 
 
 Es un movimiento oscilatorio de frecuencia angular $\omega_0$. Podemos escribir $x(t)=\rho\cos(\omega_0 t-\alpha)$, 
@@ -1508,10 +1516,16 @@ donde $(\rho,\alpha)$ son las coordenadas polares de $(A,B)$. En particular $\rh
 Recurrimos nuevamente a SAGE
 \lstI
 \[
-\rho(\omega_0)=\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}
+\rho(\omega_0)=\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}=
+\frac{F_{0}}{\sqrt{(\omega^2-\omega_0^2)^2+4\mu^2\omega_0^2}}
 \]
 \end{frame}
- 
- 
+
+\begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
+\[\alpha=\atan2\left(  {{\omega^{2} - 
+  \omega_{0}^{2}} }  ,  {2 \,  \mu \omega_{0} }   \right)
+\]
+En una consola de sage entrar \texttt{atan2?} para averiguar que función es $\atan2$. 
+\end{frame}
  
 \end{document}
