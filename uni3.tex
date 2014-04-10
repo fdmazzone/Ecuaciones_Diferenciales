@@ -1494,9 +1494,8 @@ Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amp
 
 \defverbatim[colored]\lstI{ 
 \begin{lstlisting}
-sage: latex(sqrt(A**2+B**2).subs(SolAB[0]).simplify_full())
-\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, 
-{\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}
+sage: rho=sqrt(A**2+B**2).subs(SolAB[0]).simplify_full()                                         
+sage: show(rho)
 \end{lstlisting}
  }
 
@@ -1521,11 +1520,59 @@ Recurrimos nuevamente a SAGE
 \]
 \end{frame}
 
+\defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: plot(rho.subs({F0:1, mu:.1,omega:5},(omega0,0,10) )
+\end{lstlisting}
+ }
+
+
+
 \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
 \[\alpha=\atan2\left(  {{\omega^{2} - 
   \omega_{0}^{2}} }  ,  {2 \,  \mu \omega_{0} }   \right)
 \]
 En una consola de sage entrar \texttt{atan2?} para averiguar que función es $\atan2$. 
+
+Grafiquemos la función $\rho(\omega_0)$ para $\omega=5$ y $\mu=0.1$. 
+
+\lstI 
+\begin{center}
+\includegraphics[scale=.2]{imagenes/rho_graf.png}
+\end{center}
+
 \end{frame}
+
+
+ \defverbatim[colored]\lstI{ 
+\begin{lstlisting}
+sage: sol=solve(rho.diff(omega0),omega0)
+sage: sol
+[omega0 == -sqrt(-2*mu^2 + omega^2), omega0 == sqrt(-2*mu^2 + omega^2), omega0 == 0]
+sage: rho.diff(omega0,2).subs(sol[1]).simplify_full().show()
+\end{lstlisting}
+ }
+ \defverbatim[colored]\lstII{ 
+\begin{lstlisting}
+sage: sol[1].rhs().subs({mu:.1,omega:5})                         
+4.99799959983992
+\end{lstlisting}
+ } 
+ \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
+La función tiene un notorio máximo  cerca de $\omega0=5$. Seguramente es debido a la aparición de resonancias. Hallemos el punto de máximo exacto. 
+\lstI
+Si $2\mu^2<\omega$ tendremos un máximo (en realidad un máximo local) en  $\omega_{0} = \sqrt{-2 \, \mu^{2} + \omega^{2}}$. En el ejemplo que graficamos
+el máximo ocurre en
+\lstII
+Vale decir, un oscilador armónico en reposo es más sensible a exitaciones en ciertas frecuencias, aproximadamente la frecuencia
+natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto es utilizado para diseñar dispositivos que captan ondas sísmicas.
+
+
+\end{frame}
+
+ \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
+ Hasta aquí hemos encontrado una solución particular del sistema no homogéneo. Para encontrar una soluciíon general deberíamos  
+\end{frame}
+ 
  
 \end{document}
