@@ -14,4 +14,4 @@ ed1=(sol[0].simplify_full())[0]+mu/r^2
 ed1=ed1.subs_expr((theta.diff(t))==h/r^2)
 #ed1.show()
 z=function('z',theta)
-ed1.
+
