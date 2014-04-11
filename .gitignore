@@ -78,6 +78,9 @@
 *.sagetex.py
 *.sagetex.scmd
 
+#emacs
+*.sage#
+
 # sympy
 *.sout
 *.sympy
