@@ -23,8 +23,8 @@
 %% newcommand
 \usepackage{xparse}
 \usepackage{listings}
-
-
+\usepackage{ wasysym }
+\usepackage{sagetex}
 
 \lstdefinelanguage{Sage}[]{Python}
 {morekeywords={False,sage,True},sensitive=true}
@@ -76,6 +76,7 @@
 \renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
 \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
 
+\renewcommand{\v}[1]{\overrightarrow{#1}}
 \renewcommand{\epsilon}{\varepsilon}
 \newcommand{\nl}{\onslide<+-> }
 
@@ -1583,4 +1584,32 @@ natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto
 \end{frame}
  
  
+ \begin{frame}{Un poco de mecánica celeste}
+ 
+ Vamos a considerar ahora el problema del movimiento de un planeta, digamos la Tierra, de masa $m_{\earth}$ alrededor del sol de masa $m_{\sun}$. Como 
+ $m_{\sun}\gg m_{\earth}$ vamos a ignorar la fuerza que actúa sobre el Sol debido a la atracción gravitatoria de la Tierra. Esta suposición, aunque falsa, la hacemos 
+ por simplicidad. No obstante, con sólo un poco de trabajo, el caso más general se reduce al tratado aquí. Ver el trabajo final de la Lic. Matemática de Leopoldo Buri,
+ para una deducción más cuidadosa. Vamos a suponer además que el movimiento del planeta se retringe a un plano. Esta afirmación es cierta y aunque su demostración
+ es sencilla no la desarrollaremos aquí. 
+ 
+ Supongamos un sistema de coordenadas cartesianas sobre el plano en que se realiza el movimiento orbital del planeta. Asumimos el Sol en el origen de coordenadas y en 
+ reposo. Como no actúa fuerza sobre él,permanecerá en esa situación. Vamos a suponer que la posición de la Tierra es $\v{r}$.
+
+  
+ 
+  
+  \[\frac{1}{\rho \cos\left(s\right) \sen\left(\alpha\right) + \rho \cos\left(\alpha\right) \sen\left(s\right) + \frac{\mu}{h^{2}}}= \frac{p}{1+e\sen(\theta-\omega)}\]
+ \end{frame}
+
+  
+ \begin{frame}[fragile]
+\begin{sageblock}
+    f(x) = exp(x) * sin(2*x)
+\end{sageblock}
+\sageplot[width=.5\textwidth]{plot(f, -1, 1)}
+\[
+  \frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}} \sage{f(x)} =
+  \sage{diff(f, x, 2)(x)}.
+\]
+\end{frame}
 \end{document}

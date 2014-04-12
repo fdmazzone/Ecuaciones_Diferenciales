@@ -78,6 +78,8 @@
 *.sagetex.sage
 *.sagetex.py
 *.sagetex.scmd
+*.sagetex.sout
+*.sage~
 
 #emacs
 *.sage#
