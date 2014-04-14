@@ -1,3 +1,5 @@
+*.*~
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -7,6 +9,7 @@
 *.out
 *.toc
 *.backup
+*.tex~
 
 ## Intermediate documents:
 *.dvi
@@ -43,6 +46,7 @@
 *.snm
 *.vrb
 
+
 # glossaries
 *.acn
 *.acr
@@ -77,6 +81,12 @@
 *.sagetex.sage
 *.sagetex.py
 *.sagetex.scmd
+*.sagetex.sout
+*.sage~
+*doctest.sage
+
+#emacs
+*.sage#
 
 # sympy
 *.sout
