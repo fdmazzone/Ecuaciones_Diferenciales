@@ -1,10 +1,13 @@
+%\documentclass{article}
 %\documentclass[hyperref={colorlinks=true}]{beamer}
 \documentclass[handout,hyperref={colorlinks=true}]{beamer}
- \usepackage{pgfpages}
-% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 
 
-\definecolor{myblue}{rgb}{.8, .8, 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
@@ -20,13 +23,16 @@
 %\usepackage[T1]{fontenc}
 \usepackage{animate}
 %\usepackage{media9}
-%% newcommand
 \usepackage{xparse}
 \usepackage{listings}
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
 \lstdefinelanguage{Sage}[]{Python}
 {morekeywords={False,sage,True},sensitive=true}
 \lstset{
@@ -49,8 +55,8 @@
  
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
+\definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
 \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
 \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
@@ -68,22 +74,19 @@
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
 \newcommand{\com}{\mathbb{C}}
 \newcommand{\dis}{\mathbb{D}}
 \newcommand{\rr}{\mathbb{R}}
-
 \newcommand{\oo}{\mathcal{O}}
 \renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
 \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-
 \renewcommand{\v}[1]{\overrightarrow{#1}}
 \renewcommand{\epsilon}{\varepsilon}
-\newcommand{\nl}{\onslide<+-> }
-
 \newlength\mytemplen
 \newsavebox\mytempbox
-
 \makeatletter
 \newcommand\mybluebox{%
     \@ifnextchar[%]
@@ -106,9 +109,6 @@
     \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 
 \makeatother
-
- 
-
 \DeclareDocumentCommand\boxedeq{ m g }{%
     {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
         \IfNoValueF {#2} {\label{#2}}%
@@ -116,8 +116,6 @@
        \end{empheq}
     }%
 }
-
-
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
 \newtheorem{teorema}{Teorema}[section]
@@ -125,12 +123,27 @@
 \newtheorem{corolario}[teorema]{Corolario}
 \newtheorem{proposicion}[teorema]{Proposici\'on}
 \newtheorem{definicion}[teorema]{Definici\'on}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+
+
+%%%%%%%%%%Para escibir en clase articulo o similar
+% \usepackage{color}
+% \newcommand{\nl}{ }
+% \renewenvironment{frame}[1]{}{}
+% \newcommand{\qed}{$\square$}
+% %\newcommand{\defverbatim}{\def{#1}}
+% \newenvironment{block}[1]{\textbf{#1}}{}
+% \title{Ecuaciones lineales de segundo orden}
+% \author{Fernando Mazzone}
+% 
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
+\newcommand{\nl}{\onslide<+-> }
 % \mode<all>
 % {
 %   \usetheme{Boadilla}
@@ -141,17 +154,17 @@
 % }
 
 
-% \mode<handout>{
-%   \usetheme{default}
-%   %\setbeamercolor{background canvas}{bg=black!5}
-%   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-% }
-
-\mode<all>{
+\mode<handout>{
   \usetheme{default}
   %\setbeamercolor{background canvas}{bg=black!5}
   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
 }
+
+% \mode<all>{
+%   \usetheme{default}
+%   %\setbeamercolor{background canvas}{bg=black!5}
+%   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
+% }
 
 \title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
 {%
@@ -171,6 +184,11 @@ Universidad Nacional de Río Cuarto}
 
 
 \subject{Ecuaciones Diferenciales}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 \begin{document}
 
@@ -1128,7 +1146,7 @@ sage: y.diff()(x=pi/2)
 \begin{frame}{Aplicaciones. Vibraciones mecánicas }
  
 \textbf{Problema:} Estudiar el movimiento de un resorte (cómo el de la unidad anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del resorte,
-tenemos una fuerza de fricción debida ala resistencia del medio. Porla acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
+tenemos una fuerza de fricción debida ala resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
 Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida 
 la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se 
 dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
@@ -1191,7 +1209,7 @@ sage: latex(x)
 \end{lstlisting}
  }
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-De ahora en más supondremos que el sistema parte del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. 
+Supongamos que el sistema masa-resorte parte del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. Resolvamos este pvi
 \lstI
 
 \boxedeq{
@@ -1228,6 +1246,7 @@ La masa podría haber pasado por la posición de equilibrio sólo en el pasado p
 
 \begin{figure}[h]
 \animategraphics[controls, scale=.4]{15}{res_sobre/res_sobre-}{0}{60}
+\vspace{.5cm}
 \caption{Masa-resorte sobreamortiguado}
 \end{figure}
 \end{center}
@@ -1295,15 +1314,17 @@ La solución general viene dada por
 
 
 \end{frame}
+ 
+
 
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-
-\begin{center}
-
+\begin{figure}[h]
 \animategraphics[controls, scale=.4]{15}{res_sub/res_sub-}{0}{60}
-
-Masa-resorte subamortiguado
-\end{center}
+%\includegraphics[scale=.4]{res_sub/res_sub-0.jpg}
+\vspace{.5cm}
+\caption{Masa-resorte subamortiguado}
+\end{figure}
+ 
 \end{frame}
 
 
@@ -1317,9 +1338,10 @@ Entonces
 \[
  x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t    \right\}=\boxed{\rho e^{-\mu t}\cos(\nu t-\alpha)}.
 \]
-Movimiento cuasi-oscilatorio. En realidad ejecuta vibraciones, que se van amortiguando, de \href{http://es.wikipedia.org/wiki/Frecuencia}{frecuencia}
+Llamaremos este régimen \emph{movimiento  cuasi-oscilatorio}. Se ejecutan vibraciones que se van amortiguando
+de \href{http://es.wikipedia.org/wiki/Frecuencia}{frecuencia}
 \[
-  f=\frac{1}{\text{peiodo}}=\frac{\nu}{2\pi},\quad \nu=\sqrt{\omega^2-\mu^2}=\sqrt{\left(\frac{k}{m}\right)^2-
+  f=\frac{1}{\text{período}}=\frac{\nu}{2\pi},\quad \nu=\sqrt{\omega^2-\mu^2}=\sqrt{\left(\frac{k}{m}\right)^2-
   \left(\frac{c}{2m}\right)^2}.
 \]
 En lugar de la frecuencia se suele considerar la 
@@ -1339,38 +1361,14 @@ Es decir, la masa se va deteniendo.
 \end{frame}
 
 
-\defverbatim[colored]\lstI{ 
-\begin{lstlisting}
-sage: t,mu,omega,omega0,F0=var('t,mu,omega,omega0,F0')
-sage: A,B=var('A,B')                   
-sage: x=A*cos(omega0*t)+B*sin(omega0*t)
-sage: eq=x.diff(t,2)+2*mu*x.diff(t)+omega^2*x-F0*cos(omega0*t)
-sage: eq=eq.simplify_full()
-sage: show(eq)
-sage: eq.coefficient(cos(omega0*t))
-B*mu*omega0 + (omega^2 - omega0^2)*A - F0
-sage: show(eq.coefficient(cos(omega0*t)))
-sage: show(eq.coefficient(sin(omega0*t)))
-sage: eqL1=eq.coefficient(sin(omega0*t))
-sage: eqL2=eq.coefficient(cos(omega0*t))
-sage: show([eqL1,eqL2]) 
-CoefSis=matrix([[eqL1.coefficient(A),eqL1.coefficient(B)],[eqL2.coefficient(A),eqL2.coefficient(B)]])
-sage: show(CoefSis.det()) 
-sage: SolAB=solve([eqL1,eqL2],[A,B],solution_dict=True)    
-sage: show(SolAB)   
-sage: show(x.subs(SolAB[0]))
-sage: x=x.subs(SolAB[0][0])
-
-\end{lstlisting}
- }
-
-
 \begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
-Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
+Vamos a considerar una fuerza externa oscilatoria de frecuencia angular $\omega_0$ y amplitud $F_0$. Tenemos que resolver
 \boxedeq{x''(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
 Usaremos el método de coeficientes indeterminados y SAGE. Antes, recordar que si $\omega=\omega_0$ estamos en 
 resonancia. Tendremos que considerar ese caso por separado. Supongamos pues $\omega\neq\omega_0$.
 
+El siguiente código se puede encontrar en la carpeta \texttt{scripts} del repositorio 
+\href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub} de esta  materia. El script se denomina \texttt{osc\_arm\_forz\_noamort.sage} 
  
 
 \end{frame}
@@ -1417,7 +1415,8 @@ sage: assume(-pi<alpha, alpha<2*pi)
 sage: solve([x(t=0)==0,x.diff(t).subs(t=0)==0],[rho,alpha])         
 [omega*rho*sin(alpha) == 0, rho*cos(alpha) + F0/(omega^2 - omega0^2) == 0]
 sage: x0=x(alpha=0)
-sage: sol=solve([x0(t=0)==0,x0.diff(t).subs(t=0)==0],rho,solution_dict=True) 
+sage: sol=solve([x0(t=0)==0,x0.diff(t).subs(t=0)==0],rho,\
+solution_dict=True) 
 sage: x0=x0.subs(sol[0])
 sage: x0.factor().show()
 
@@ -1453,11 +1452,9 @@ sage: x1.plot(x,0,200)
 \begin{frame}{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
 Ahora usemos la identidad $\cos(a-b)-cos(a+b)=2\sen a\sen b$, con $a=\frac12 (\omega+\omega_0)$ y
 $b=\frac12 (\omega-\omega_0)$. Deducimos
-
 \boxedeq{%
   x(t)=\frac{2F_{0} }{\omega^{2} - \omega_{0}^{2}}\sen (\omega-\omega_0)t \sen (\omega+\omega_0)t. 
 }{eq:sol_gen_pulsos}
-
 Esta  expresión la podemos ver como una onda de frecuencia  grande $\omega+\omega_0$ modulada por una de frecuencia 
 chica $\omega-\omega_0$. 
 \lstI
@@ -1494,8 +1491,8 @@ Se producen ``vibraciones'' no acotadas.
  \includegraphics[scale=0.3]{imagenes/osc_arm_forz_res.png}
 \end{center}
 
-Ver la notebook \texttt{batido.sws} y la wiki \href{http://wiki.sagemath.org/interact/misc\#Hearing_a_trigonometric_identity}{Hearing a trigonometric identity}
-para escuchar ondas sonoras con los fenómenos de resonancia y batido.
+Ver la notebook \texttt{batido.sws}. En la wiki \href{http://wiki.sagemath.org/interact/misc\#Hearing_a_trigonometric_identity}{Hearing a trigonometric identity}
+se puede escuchar ondas sonoras con los fenómenos de resonancia y batido.
 
 \end{frame}
 
@@ -1580,7 +1577,7 @@ sage: sol[1].rhs().subs({mu:.1,omega:5})
 \end{lstlisting}
  } 
  \begin{frame}{ Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) } 
-La función tiene un notorio máximo  cerca de $\omega0=5$. Seguramente es debido a la aparición de resonancias. Hallemos el punto de máximo exacto. 
+La función tiene un notorio máximo  cerca de $\omega_0=5$. Seguramente es debido a la aparición de resonancias. Hallemos el punto de máximo exacto. 
 \lstI
 Si $2\mu^2<\omega$ tendremos un máximo (en realidad un máximo local) en  $\omega_{0} = \sqrt{-2 \, \mu^{2} + \omega^{2}}$. En el ejemplo que graficamos
 el máximo ocurre en
@@ -1621,13 +1618,14 @@ natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto
   
 
 \begin{frame}{Un poco de mecánica celeste}
-   Los dos ingredientes básicos para derivar la leyes de movimiento del planeta so la 
+   Los dos ingredientes básicos para derivar la leyes de movimiento del planeta son la 
    \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda Ley de Newton} y la
    \href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley Gravitación Universal}. Ya  hemos considerado ambas con anterioridad. 
    
   Según  la Ley de Gravitación Universal, la magnitud de la fuerza de gravedad es proporcional a $\frac{m_{\earth}m_{\sun}}{d^2}$, donde $d$ es la distancia tierra-sol. 
-  A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los  dos astros y el sentido es tal que la fuerza atrae los cuerpos. Vale decir, la dirección y sentido de la 
-  fuerza de gravedad sola sera la del versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
+  A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los  dos astros y 
+  el sentido es tal que la fuerza atrae los cuerpos. Vale decir, la dirección y sentido de la 
+  fuerza de gravedad vienen dados por el versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
   \[Gm_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
    
    
@@ -1654,7 +1652,8 @@ para representar distintos vectores como combinación lineal de vectores de la b
 usaremos \href{ http://www.sagemath.org/doc/tutorial/sagetex.html}{\textsf{Sage\TeX}} como interfaz de SAGE. 
 \textsf{Sage\TeX} permite incrustar código y outputs  de SAGE dentro de un archivo \LaTeX .
 
-Todos los cálculos que realizamos los pueden encontrar en el repositorio de \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub} 
+Todos los cálculos que realizamos los pueden encontrar en el script \texttt{2cuerpos.sage} dentro de la carpeta scripts en 
+el repositorio de \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub} 
 que mantiene materiales de este curso. Ver el siguiente enlace
 
 \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{https//github.com/fdmazzone/Ecuaciones\_Diferenciales}
@@ -1663,7 +1662,7 @@ que mantiene materiales de este curso. Ver el siguiente enlace
 \end{frame} 
   
 \begin{frame}[fragile]{Un poco de mecánica celeste}
-Primero declaramos las variables, los vectores $\v{u}_r$ y $\v{u}_{\theta}$ y el vector 
+Primero declaramos las variables y asignamos los vectores $\v{u}_r$, $\v{u}_{\theta}$ y el vector 
 $\v{r}$ al que llamamos \texttt{pos}. 
 \begin{sageblock}
 t,mu=var('t,mu')
@@ -1746,7 +1745,7 @@ En la dirección radial $\v{u}_r$ la componente de la fuerza es $-\mu/r^2$. Es d
 \[
   \ddot{r}-r\dot{\theta}^2=-\frac{\mu}{r^2}
 \]
-Notar que esta ecuación entraña dos incognitas $r$ y $\theta$, pero $\dot{\theta}$ puede ser rreemplazado por $h/r^2$ por la segunda Ley de Kepler.  
+Notar que esta ecuación entraña dos incognitas $r$ y $\theta$, pero $\dot{\theta}$ puede ser remplazado por $h/r^2$ por la segunda Ley de Kepler.  
 Declaremos la variable $h$ que juega un rol importante y reemplacemos $\dot{\theta}$ en la ecuación 
 \begin{sageblock}
     h=var('h')
@@ -1760,7 +1759,8 @@ Resulta
   
    
 \begin{frame}[fragile]{Un poco de mecánica celeste}
-Conseguimos una ecuación no lineal para $r$. Ahora el truco mágico consiste en considerar la nueva variable dependiente $z=1/r$ y la nueva variable independiente 
+Conseguimos una ecuación no lineal de segundo orden para $r$. De los métodos que hemos visto, ninguno se aplica a esta ecuación.  
+El truco mágico consiste en considerar la nueva variable dependiente $z=1/r$ y la nueva variable independiente 
 $\theta$. 
 \begin{sageblock}
   z=function('z',theta)
@@ -1788,13 +1788,15 @@ En la ecuación resultante, nuevamente aparece $\dot{\theta}$ y además ahora ap
 $\dot{\theta}$ por $hz^2$ y $\ddot{\theta}$ por $\tfrac{d}{dt}hz^2$. 
 
 \begin{sageblock}
-  theta2diff=(h*z^2).diff(t).subs_expr(theta.diff(t)==h*z^2)
-  ed3=ed2.subs_expr(theta.diff(t)==h*z^2,theta.diff(t,2)==theta2diff)
+  theta2diff=(h*z^2).diff(t).\
+  subs_expr(theta.diff(t)==h*z^2)
+  ed3=ed2.subs_expr\
+  (theta.diff(t)==h*z^2,theta.diff(t,2)==theta2diff)
   ed4=(ed3/z^2/h^2).expand()
 \end{sageblock}
 Resulta
 \[\sage{ed4}\]
-La ecuación del oscilador armónico. Sabemos resolver este ecuación, y SAGE también!!
+La ecuación del oscilador armónico. Sabemos resolver esta ecuación y SAGE también!!
 \begin{sageblock}
   s=var('s')
   ed5=ed4.subs_expr(theta==s)
@@ -1827,7 +1829,7 @@ Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
 
 
 \begin{frame}[fragile]{Un poco de mecánica celeste}
-\textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen, excentricidad $e$.
+\textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen y excentricidad $e$.
 Recordemos que la variable $s$ es el ángulo polar. 
 
 Hagamos algunos gráficos
@@ -1854,7 +1856,15 @@ gra=sum(ListaGra).show()
 
 \end{frame}  
 
+\begin{frame}{Un poco de mecánica celeste}
 
+Hemos logrado encontrar $r$ como función de $\theta$. Esto fue importante, de allí por ejemplo deducimos que las órbitas eran cónicas. No obstante
+no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav},  para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
+\v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en unn dado momento.  Este problema no lo desarrollaremos aquí dado 
+que su solución se aparte del tema de las ecuaciones diferenciales.
+que excede los objetivos de este curso. 
+
+\end{frame}  
 
 
 %  \begin{frame}[fragile]
