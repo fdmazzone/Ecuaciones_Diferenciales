@@ -1,4 +1,4 @@
-x,y,m1,m2,k1,k2,k3=var('x,y,m1,m2,k1,k2,k3')
+x,y,t,m1,m2,k1,k2,k3=var('x,y,t,m1,m2,k1,k2,k3')
 x=function('x',t)
 y=function('y',t)
 eq1=m1*x.diff(2)==-k1*x+k3*(y-x)
@@ -13,7 +13,7 @@ eq5=eq4.subs_expr(x==z,x.diff(4)==z.diff(t,4),x.diff(2)==z.diff(t,2))/z
 eq5=eq5.simplify_full()
 sol=solve(eq5,r)
 A,B,C,D=var('A,B,C,D')
-x=A*cos(t)+B*sin(t)+C*cos(sqrt(3)*t)+C*sin(sqrt(3)*t)
+x=A*cos(t)+B*sin(t)+C*cos(sqrt(3)*t)+D*sin(sqrt(3)*t)
 x1=x.subs({A:1,B:0,C:0,D:0})
 y1=x1.diff(t,2)+2*x1
 gra=parametric_plot([x1,y1],(t,0,10*pi))
