@@ -1,0 +1,11 @@
+x=var('x')
+y=function('y',x)
+u=function('u',x)
+v=function('v',x)
+P=function('P',x)
+Q=function('Q',x)
+y=u*v
+eq=y.diff(2)+P*y.diff()+Q*y
+eq1=eq.coefficient(u.diff())==0
+v=desolve(eq1,v)
+v
