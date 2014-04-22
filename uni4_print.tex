@@ -199,15 +199,43 @@
 El objetivo  de esta unidad es mostrar como se pueden estudiar propiedades de las soluciones sin resolver la ecuación diferencial. En particular estudiaremos propiedades de  los ceros de las soluciones.
 
 \begin{teorema}[Separación de Sturn] Sean $y_1$ e $y_2$ soluciones linealmente independientes de 
-\[y''+P(x)y'+Q(x)y=0.\]
+\boxedeq{y''+P(x)y'+Q(x)y=0.}{eq:2_orden_hom}
 Entonces entre dos ceros consecutivos de $y_2$ hay exactamente un cero de $y_1$. \end{teorema}
 \textbf{Dem.} Sean $x_1$ y $x_2$ ceros sucesivos de $y_2$. Podemos suponer $y_2>0$ en $(x_1,x_2)$. Vamos a considerar el Wronskiano de las soluciones
 \[W=y_1(x)y_2'(x)-y_2(x)y_1'(x),\]
 que es no nulo por la independencia lineal y por lo tanto tiene siempre el  mismo signo. En los puntos $x_1$ y $x_2$ tenemos $W=y_1(x)y_2'(x)$. Notar que
 \[y_2'(x_1)=\lim_{h\to 0+}\frac{y_2(x_1+h)}{h}\geq 0.\]
-De  manera similar deducimos $y_2'(x_2)\leq 0$. Por la invariancia del signo de $W=y_1y_2'$ debe ocurrir que $y_1(x_1)$ e $y_2(x_2)$ tiene signos diferentes. Y por lo tanto $y_1$ se debe anular en $(x_1,x_2)$
- 
+De  manera similar deducimos $y_2'(x_2)\leq 0$. Por la invariancia del signo de $W=y_1y_2'$ debe ocurrir que $y_1(x_1)$ e $y_1(x_2)$ tiene signos diferentes. Y por lo tanto $y_1$ se debe anular en $(x_1,x_2)$
 
+\begin{teorema} Existe una función $v$ tal que el cambio de variables $y(x)=v(x)u(x)$ transforma la ecuación \eqref{eq:2_orden_hom} en la ecuación
+\boxedeq{u''+q(x)u=0.}{eq:2_orden_hom_can}
+\end{teorema}
+\textbf{Dem.} 
+\begin{sageblock}
+x=var('x')
+y=function('y',x)
+u=function('u',x)
+v=function('v',x)
+P=function('P',x)
+Q=function('Q',x)
+y=u*v
+eq=y.diff(2)+P*y.diff()+Q*y
+eq1=eq.coefficient(u.diff())==0
+v=desolve(eq1,v)
+\end{sageblock}
+Obtenemos que $v(x)=\sage{v}$ resuelve nuestro problema.
 
+Hallemos $q$.
+
+\begin{sageblock}
+y=u*v
+eq=y.diff(x,2)+P*y.diff(x)+Q*y
+eq=(eq/v).simplify_full()
+\end{sageblock}
+Obtenemos
+\[\boxed{\sage{eq}=0}.\]
+y por lo tanto
+\[\boxed{q=\sage{eq.coefficient(u)}}.\]
+\qed
 \end{document}
 
