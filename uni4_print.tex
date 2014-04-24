@@ -217,6 +217,7 @@ y=function('y',x)
 u=function('u',x)
 v=function('v',x)
 P=function('P',x)
+
 Q=function('Q',x)
 y=u*v
 eq=y.diff(2)+P*y.diff()+Q*y
@@ -237,5 +238,7 @@ Obtenemos
 y por lo tanto
 \[\boxed{q=\sage{eq.coefficient(u)}}.\]
 \qed
+
+
 \end{document}
 
