@@ -196,6 +196,7 @@
 
 \section{Teorema de separación de Sturn}
 
+
 El objetivo  de esta unidad es mostrar como se pueden estudiar propiedades de las soluciones sin resolver la ecuación diferencial. En particular estudiaremos propiedades de  los ceros de las soluciones.
 
 \begin{teorema}[Separación de Sturn] Sean $y_1$ e $y_2$ soluciones linealmente independientes de 
@@ -238,6 +239,17 @@ Obtenemos
 y por lo tanto
 \[\boxed{q=\sage{eq.coefficient(u)}}.\]
 \qed
+
+Recordemos las distintas  soluciones generales de la  ecuación
+\[y''+ay=0.\]
+Ellas, acordes al valor de $a$ son
+\[
+y(x)=\left\{\begin{array}{l l}
+    c_1e^{\sqrt{|a|}x}+c_2e^{-\sqrt{|a|}x} &\text{cuando } a<0\\
+    c_1\cos(\sqrt{a}x})+c_2\sen(\sqrt{a}x) &\text{cuando } a>0\\
+     c_1x+c_2 &\text{cuando } a=0\\
+\end{array}
+  \]
 
 
 \end{document}
