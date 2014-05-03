@@ -13,11 +13,12 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{times}
 \usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath}
+\usepackage{amssymb,amsmath}%,amsthm}
 \usepackage{enumerate}
 \usepackage{verbatim}
 \usepackage{ esint }
 \usepackage{pdfsync}
+\usepackage{theorem}
 %\usepackage{pst-all}
 %\usepackage{pstricks-add}
 \usepackage{array}
@@ -30,28 +31,8 @@
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
-
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{tabularx}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
-\lstdefinelanguage{Sage}[]{Python}
-{morekeywords={False,sage,True},sensitive=true}
-\lstset{
-  frame=none,
-  showtabs=False,
-  showspaces=False,
-  showstringspaces=False,
-  commentstyle={\ttfamily\color{dgreencolor}},
-  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-  language=Sage,
-  basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-  aboveskip=.3em,
-  belowskip=0.1em,
-  numbers=none,
-  numberstyle=\footnotesize
-}
-
 
  
 
@@ -68,21 +49,15 @@
 
 
 
-\newtheorem{thm}{Teorema}
-
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+\newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
 \newcommand{\com}{\mathbb{C}}
 \newcommand{\dis}{\mathbb{D}}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\oo}{\mathcal{O}}
-\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+%\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
 \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
 \renewcommand{\v}[1]{\overrightarrow{#1}}
 \renewcommand{\epsilon}{\varepsilon}
@@ -125,18 +100,21 @@
 \newtheorem{corolario}[teorema]{Corolario}
 \newtheorem{proposicion}[teorema]{Proposici\'on}
 \newtheorem{definicion}[teorema]{Definici\'on}
+%\newcounter{ejer}
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejemplo}{Ejemplo}[section]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
 %%%%%%%%%%Para escibir en clase articulo o similar
-\usepackage{color}
-\newcommand{\nl}{ }
-\renewenvironment{frame}[1]{}{}
-\newcommand{\qed}{$\square$}
-%\newcommand{\defverbatim}{\def{#1}}
-\newenvironment{block}[1]{\textbf{#1}}{}
+% \usepackage{color}
+% \newcommand{\nl}{ }
+% \renewenvironment{frame}[1]{}{}
+% \newcommand{\qed}{$\square$}
+% %\newcommand{\defverbatim}{\def{#1}}
+% \newenvironment{block}[1]{\textbf{#1}}{}
 \title{Ecuaciones lineales de segundo orden}
 \author{Fernando Mazzone}
 
@@ -194,31 +172,86 @@
 
 \begin{document}
 
-\section{Teorema de separación de Sturn}
+\section{Teorema de separación de Sturm}
+\subsection{Motivación}
 
 
-El objetivo  de esta unidad es mostrar como se pueden estudiar propiedades de las soluciones sin resolver la ecuación diferencial. En particular estudiaremos propiedades de  los ceros de las soluciones.
+El objetivo  de esta unidad es mostrar como se pueden estudiar propiedades de las soluciones de ecuaciones lineales de segundo orden sin resolver la ecuación diferencial. En particular estudiaremos propiedades de  los \href{http://es.wikipedia.org/wiki/Raíz_de_una_función}{ceros} de las soluciones. Recordemos que denominamos cero de una función $y$ a un punto $x$ tal que $y(x)=0$.
 
-\begin{teorema}[Separación de Sturn] Sean $y_1$ e $y_2$ soluciones linealmente independientes de 
+Veamos como se comportan los ceros de la ecuación $y''+ay=0$. Para ser más concretos consideremos el siguiente pvi asociado a esta ecuación.
+\[\left\{\begin{array}{l}
+    y''+ay=0.\\
+    y(0)=0,\quad y'(0)=1\\
+  \end{array}\right.
+  \]
+Las soluciones  acordes al valor de $a$ son
+\[
+y(x)=\left\{\begin{array}{l l}
+    \frac{1}{2\sqrt{|a|}}e^{\sqrt{|a|}x}- \frac{1}{2\sqrt{|a|}}e^{-\sqrt{|a|}x} &\text{cuando } a<0\\
+     x &\text{cuando } a=0\\
+     \frac{1}{\sqrt{|a|}}\sen(\sqrt{a}x) &\text{cuando } a>0\\
+\end{array}\right..
+\]
+En la siguiente animación representamos los gráficos de las soluciones a medida que $a$ varía desde $-2$ hasta $6$ de a saltos de $0.1$.  
+\begin{center}
+\animategraphics[controls, scale=.4]{15}{ondas/ondas}{0}{79}
+\end{center}
+La separación entre ceros sucesivos de la  solución disminuye a medida que $a$ crece, la solución pasa de tener un único cero para $a<0$  a tener infinitos separados una distancia de $\pi/\sqrt{a}$. Cuando $a>0$, el número $\sqrt{a}$ es la frecuencia circular  de la solución sinusoidal $y(x)=   \frac{1}{\sqrt{|a|}}\sen(\sqrt{a}x)$, por analogía la seguiremos denominando frecuencia para otros valores de $a$.   
+
+Vamos a desarrollar dos resultados principales, el Teorema de Separación de Sturm y el Teorema de Comparación de Sturm. Luego generalizaremos este último teorema al Teorema de Comparación de Sturm-Picone.
+
+\subsection{Teorema separación de Sturm}
+
+Nuestra investigación sobre los ceros de soluciones comienza con el siguiente teorema que muestra que los ceros de soluciones linealmente independientes alternan entre si.
+
+
+
+
+\begin{teorema}[\href{http://en.wikipedia.org/wiki/Sturm_separation_theorem}{Separación de Sturm}]\label{sep_sturm} Sean $y_1$ e $y_2$ soluciones linealmente independientes de 
 \boxedeq{y''+P(x)y'+Q(x)y=0.}{eq:2_orden_hom}
 Entonces entre dos ceros consecutivos de $y_2$ hay exactamente un cero de $y_1$. \end{teorema}
-\textbf{Dem.} Sean $x_1$ y $x_2$ ceros sucesivos de $y_2$. Podemos suponer $y_2>0$ en $(x_1,x_2)$. Vamos a considerar el Wronskiano de las soluciones
+\begin{demo} Sean $x_1$ y $x_2$ ceros sucesivos de $y_2$. Podemos suponer $y_2>0$ en $(x_1,x_2)$. Vamos a considerar el Wronskiano de las soluciones
 \[W=y_1(x)y_2'(x)-y_2(x)y_1'(x),\]
 que es no nulo por la independencia lineal y por lo tanto tiene siempre el  mismo signo. En los puntos $x_1$ y $x_2$ tenemos $W=y_1(x)y_2'(x)$. Notar que
 \[y_2'(x_1)=\lim_{h\to 0+}\frac{y_2(x_1+h)}{h}\geq 0.\]
-De  manera similar deducimos $y_2'(x_2)\leq 0$. Por la invariancia del signo de $W=y_1y_2'$ debe ocurrir que $y_1(x_1)$ e $y_1(x_2)$ tiene signos diferentes. Y por lo tanto $y_1$ se debe anular en $(x_1,x_2)$
+De  manera similar deducimos $y_2'(x_2)\leq 0$. Por la invariancia del signo de $W=y_1y_2'$ debe ocurrir que $y_1(x_1)$ e $y_1(x_2)$ tienen signos diferentes. Y por lo tanto $y_1$ se debe anular en $(x_1,x_2)$.\end{demo}
+
+\begin{ejemplo} Las funciones $y_1(x)=c_1\cos x+c_2\sen x$ e $y_2(x)=c_3\cos x+c_4\sen x$ son soluciones de la ecuación del oscilador armónico $y''+y=0$. Para que sean linealmente independientes se tiene que satisfacer que el Wronskiano $W$ sea no nulo en todo punto. Evaluamos $W$  en $0$ 
+\[W=\det\begin{pmatrix} y_1(0) & y_2(0)\\y_1'(0) & y_2'(0) 
+\end{pmatrix}=\det\begin{pmatrix} c_1 & c_3\\c_2 & c_4 
+\end{pmatrix}=c_1c_4-c_2c_3\neq 0\]
+Bajo este supuesto los ceros de $y_1$ e $y_2$ alternan. Veamos esta afirmación de manera directa, sin invocar el Teorema de Separación de Sturm. Como  es costumbre escribamos 
+\[\begin{split}
+y_1(x)=\rho_1\cos(x-\alpha_1),&\quad\text{donde } c_1=\rho_1\cos\alpha_1\text{ y }c_2=\rho_1\sen\alpha_1\\
+y_2(x)=\rho_2\cos(x-\alpha_2),&\quad\text{donde }c_3=\rho_2\cos\alpha_2\text{ y }c_4=\rho_2\sen\alpha_2.
+\end{split}
+\]
+La condición $c_1c_4-c_2c_3\neq 0$ equivale a la independencia lineal de los vectores $(c_1,c_2)$ y $(c_3,c_4)$ y esto último a que $\alpha_1-\alpha_2\notin\mathbb{Z}$. Por consiguiente los ceros de $y_1$ e $y_2$ alternaran como predice el Teorema. 
+
+\begin{sageblock}
+p=plot(cos(x),(x,-4*pi,4*pi),color='red',legend_label='$y_1(x)=\cos x$')
+p+=plot(cos(x-pi/4),(x,-4*pi,4*pi),color='green',legend_label='$y_2(x)=\cos( x-\pi/4)$')
+\end{sageblock}
+\begin{center}
+\sageplot[scale=.5]{p}
+\end{center}
+
+\end{ejemplo}
+
+\subsection{Reducción a la ecuación normal}
+
+La ecuación general lineal  de segundo orden  \eqref{eq:2_orden_hom} no es muy apropiada para el estudio que nos proponemos. Vamos a mostrar que podemos reducir aquella ecuación a una más simple que denominaremos \emph{normal}.
 
 \begin{teorema} Existe una función $v$ tal que el cambio de variables $y(x)=v(x)u(x)$ transforma la ecuación \eqref{eq:2_orden_hom} en la ecuación
 \boxedeq{u''+q(x)u=0.}{eq:2_orden_hom_can}
 \end{teorema}
-\textbf{Dem.} 
+\begin{demo} 
 \begin{sageblock}
 x=var('x')
 y=function('y',x)
 u=function('u',x)
 v=function('v',x)
 P=function('P',x)
-
 Q=function('Q',x)
 y=u*v
 eq=y.diff(2)+P*y.diff()+Q*y
@@ -226,9 +259,9 @@ eq1=eq.coefficient(u.diff())==0
 v=desolve(eq1,v)
 \end{sageblock}
 Obtenemos que $v(x)=\sage{v}$ resuelve nuestro problema.
+\end{demo}
 
 Hallemos $q$.
-
 \begin{sageblock}
 y=u*v
 eq=y.diff(x,2)+P*y.diff(x)+Q*y
@@ -238,19 +271,159 @@ Obtenemos
 \[\boxed{\sage{eq}=0}.\]
 y por lo tanto
 \[\boxed{q=\sage{eq.coefficient(u)}}.\]
-\qed
+ 
+\begin{ejemplo} Un caso particular de importancia lo constituye la ecuación de Bessel
+ \boxedeq{x²y''+xy'+(x²-a²)y=0}{bessel}.
 
-Recordemos las distintas  soluciones generales de la  ecuación
-\[y''+ay=0.\]
-Ellas, acordes al valor de $a$ son
+\begin{sageblock}
+a=var('a') 
+eq2=eq.subs_expr({P(x):1/x,Q(x):1-a^2/x^2,P.diff():(1/x).diff(x)}).simplify_full()
+\end{sageblock}
+
+Vemos que la ecuación equivale a
+\begin{equation}\label{bessel_normal}\boxed{u''+\left(1+\frac{1-4a²}{4x²}\right)u=0}.
+\end{equation}
+\end{ejemplo}
+
+Notar que si $v(x)\neq 0$, entonces los ceros de la función $u(x)$ e $y(x)=v(x)u(x)$ son los mismos. De allí que, si nuestro objetivo es estudiar ceros de soluciones de ecuaciones lineales de segundo orden, podemos suponer que la ecuación viene dada en la forma normal  \eqref{eq:2_orden_hom_can}.
+
+Por  analogía  entre las ecuación a coeficientes constantes $y''+ay=0$ y la ecuación con coeficientes variables \eqref{eq:2_orden_hom_can}, llamaremos a la función $q(x)$ frecuencia. El objetivo que tenemos es ver si se observa un comportamiento similar entre las soluciones de la ecuación  \eqref{eq:2_orden_hom_can} y las de su contraparte a coeficientes constantes. 
+
+\subsection{Teorema de Comparación de Sturm}
+
+\begin{teorema} Sean $q_i$, $i=1,2$,  continuas e  $y_i$, $i=1,2$, soluciones de
+\[ y_i''(x)+q_i(x)y_i(x)=0,\quad i=1,2.\]
+Sean $x_0$ y $x_1$ ceros sucesivos de $y_2$ y supongamos que $q_2(x)\leq q_1(x)$ y $q_2\not\equiv q_1$ en $[x_0,x_1]$. entonces $y_1$ tiene al menos un cero en $(x_0,x_1)$. 
+\end{teorema}
+\begin{demo} Por la linealidad de las ecuaciones y como $x_0$ y $x_1$ son ceros consecutivos, podemos suponer $y_2>0$ en $(x_0,x_1)$. Supongamos que $y_1$ no tiene ceros en $(x_0,x_1)$, entonces en virtud del \href{http://es.wikipedia.org/wiki/Teorema_del_valor_intermedio}{Teorema de Bolzano}, $y_1$ no cambia de signo en $(x_0,x_1)$ y por consiguiente podemos suponer también que $y_1>0$ en $(x_0,x_1)$. Derivando el Wronskiano y usando las ecuaciones diferenciales que satisfacen $y_1$ e $y_2$ 
+\[\begin{split}
+\frac{dW}{dx} &= \frac{d}{dx} (y_1y_2'-y_1'y_2)\\
+&=y_1y_2''-y_1''y_2\\
+&=-q_2y_1y_2+q_1y_1y_2\\
+&=(q_1-q_2)y_1y_2\geq 0\\
+\end{split}
+\]
+Integrado esta desigualdad, tomando en cuenta que $q_1\not\equiv q_2$ y que $x_0$ y $x_1$ son ceros de $y_2$
+\begin{equation}\label{wro_cre}0<\int_{x_0}^{x_1}\frac{dW}{dx}dx=W(x_1)-W(x_2)=y_1(x_1)y_2'(x_1)-y_1(x_0)y_2'(x_0).
+\end{equation}
+Por un razonamiento análogo al de la demostración del Teorema \ref{sep_sturm} debemos tener que $y_2'(x_0)\geq 0$ e $y_2'(x_1)\leq 0$. Luego $y_1(x_0)y_2'(x_0)\geq 0\geq y_1(x_1)y_2'(x_1)$ que es una contradicción con \eqref{wro_cre}.\end{demo}
+
+
+\begin{corolario} Si $q\leq 0$ y $q\not\equiv 0$ en el intervalo, acotado o no, $I$ e  $y(x)$ es solución de $y''+q(x)y=0$, entonces $y$ tiene a los sumo un cero en $I$.
+\end{corolario}
+\begin{demo} Si $y(x)$ tuviese dos ceros entonces podemos usar el Teorema de Comparación de Sturm con $q_2=q$, $y_2=y$, $q_1=0$ e $y_1\equiv 1$ (notar que $y_1$ resuleve $z''+q_1(x)z=0$) y llegaríamos a que $y_1$ debería anularse en algún punto. Esta contradicción demuestra el corolario.  
+\end{demo}
+
+
+
+\begin{corolario} Si existe $q_0\in\mathbb{R}$ tal que  $q(x)\geq q_0>0$ en $I=(a,+\infty)$ y si  $y(x)$ es solución de $y''+q(x)y=0$, entonces $y$ tiene infinitos ceros en el intervalo no acotado $(a,+\infty)$. De hecho $y$ tiene un cero en cualquier intervalo de longitud $\pi/\sqrt{q_0}$.
+\end{corolario}
+\begin{demo}  Evidentemente hay que usar el Teorema de Comparación de Sturm con la ecuación $z''+q_0z=0$. La función  $z(x)=\cos(\sqrt{q_0}x-\alpha)$ es solución  esta ecuación. La función $z$ tiene ceros en  $k\frac{\pi}{\sqrt{q_0}}+\alpha$, $k=1,2,\ldots$. Si $[a,b]$ es cualquier intervalo de longitud $ \frac{\pi}{\sqrt{q_0}}$, podemos elegir $\alpha=a$ y entonces $b$ será $\frac{\pi}{\sqrt{q_0}}+\alpha$. Por consiguiente $y$ tiene un cero en $[a,b]$.
+\end{demo}
+
+
+
+\begin{corolario} Supongamos que $q(x)\geq (1+\epsilon)/4x²$, para $x>0$. Entonces toda solución de $y''+q(x)y=0$ tiene infinitos ceros en $(0,+\infty)$. Más aún, hay una sucesión de ceros tendiendo a infinito y otra tendiendo a cero.
+\end{corolario}
+
+\begin{demo} En la ecuación 
+\begin{equation}\label{eq_osc}\frac{d²z}{dx²}+\frac{1+\epsilon}{4x²}z=0,
+\end{equation}
+hagamos el cambio de variable dependiente $z=y\sqrt{x}$. Primero computemos las derivadas
 \[
-y(x)=\left\{\begin{array}{l l}
-    c_1e^{\sqrt{|a|}x}+c_2e^{-\sqrt{|a|}x} &\text{cuando } a<0\\
-    c_1\cos(\sqrt{a}x})+c_2\sen(\sqrt{a}x) &\text{cuando } a>0\\
-     c_1x+c_2 &\text{cuando } a=0\\
-\end{array}
-  \]
+\frac{dz}{dx}=\frac{x^{-\frac{1}{2}}}{2}y+x^{\frac{1}{2}}\frac{dy}{dx}
+\]
+y
+\begin{equation}\label{sus_1}
+\frac{d²z}{dx²}=-\frac{x^{-\frac{3}{2}}}{4}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}
+\end{equation}
+Sustituyendo \eqref{sus_1} y  $z=y\sqrt{x}$ en \eqref{eq_osc} obtenemos
+\begin{equation}\label{eq_osc2}
+0=\frac{d²z}{dx²}+\frac{1+\epsilon}{4x²}z=-\frac{x^{-\frac{3}{2}}}{4}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}+\frac{1+\epsilon}{4x²}x^{\frac{1}{2}}y=\boxed{\frac{\epsilon}{4}x^{-\frac{3}{2}}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}}.
+\end{equation}
+Ahora cambiemos la variable independiente por $t=\ln x$. Entonces
+\begin{equation}\label{sus_2}\frac{dy}{dx}=\frac{dy}{dt}\frac{dt}{dx}=\frac{1}{x}\frac{dy}{dt}=\boxed{
+e^{-t}\frac{dy}{dt}}.
+\end{equation}
+y
+\begin{equation}\label{sus_3}\frac{d²y}{dx²}=\left(\frac{d}{dx}e^{-t}\right)\frac{dy}{dt}+
+e^{-t}\frac{d}{dx}\left(\frac{dy}{dt}\right)=e^{-t}\left(\frac{-1}{x}\right)\frac{dy}{dt}+
+e^{-t}\frac{d^2y}{dt²}\frac{1}{x}=-e^{-2t}\frac{dy}{dt}+
+e^{-2t}\frac{d^2y}{dt²}=\boxed{e^{-2t}\left(-\frac{dy}{dt}+
+\frac{d^2y}{dt²}\right)}.
+\end{equation}
+Sustituyendo \eqref{sus_2} y \eqref{sus_3} y $x=e^t$ en \eqref{eq_osc2}
+\[
+0=\frac{\epsilon}{4}e^{-\frac{3}{2}t}y+e^{-\frac{3}{2}t}\frac{dy}{dt}+e^{-\frac{3}{2}t}\left(-\frac{dy}{dt}+
+\frac{d^2y}{dt²}\right)=\frac{\epsilon}{4}e^{-\frac{3}{2}t}y+e^{-\frac{3}{2}t}\frac{d^2y}{dt²}
+\]
+Dividiendo por $e^{-\frac{3}{2}t}$ vemos que $y$ resuelve la ecuación del oscilador armónico
+\begin{equation}\label{osc_fin}
+\boxed{\frac{\epsilon}{4}y+\frac{d^2y}{dt²}=0}.
+\end{equation}
+Con SAGE es más facil hacer la sustitución
+\begin{sageblock}
+x,t,epsilon=var('x,t,epsilon')
+t=ln(x)
+y=function('y',t)
+z=y*sqrt(x)
+eq=z.diff(x,2)+(1+epsilon)/4/x^2*z==0
+eq=(eq*x^(3/2)).subs(x==e^t).simplify_full()
+s=var('s')
+eq=eq.subs_expr(ln(x)==s)
+\end{sageblock}
+Resulta
+\[\boxed{\sage{eq}}.\]
 
+Continuando con la demostración, observemos que como las soluciones de la ecuación del oscilador armónico \eqref{osc_fin} tienen infinitos ceros de la forma $k\pi+\alpha$, para $k\in\mathbb{Z}$ y para algún $\alpha\in\mathbb{R}$, entonces $z(x)=\sqrt{x}y(\ln(x))$ va a tener infinitos
+de la forma $e^{k\pi+\alpha}$. 
+
+Sea ahora $y$ solución de $y''+q(x)y=0$. Si aplicamos el Teorema de Comparación de Sturm con $q_2(x)=\frac{1+\epsilon}{4x^2}$ y $q_1=q$. Deducimos que entre los números  $e^{\alpha}(e^{\pi})^k$ y $e^{\alpha}(e^{\pi})^{k+1}$, para todo $\alpha\in\mathbb{R}$ y $k\in\mathbb{Z}$, hay siempre un cero de $y$, digamos  $e^{\alpha}(e^{\pi})^k<x_{k,\alpha}<e^{\alpha}(e^{\pi})^{k+1}$. Ahora tomando $\alpha=0$ y $k\to\infty$ obtenemos una sucesión $x_{k,0}$, $k=1,2,\ldots,$, de ceros tendiendo a infinito. Tomando $\alpha=0$ y   $k\to-\infty$ obtenemos la sucesión $x_{k,0}$, $k=-1,-2,\ldots,$, de ceros tendiendo a cero.
+\end{demo}
+
+\begin{corolario}  Toda solución a la ecuación de Bessel \eqref{bessel} tiene infinitos ceros en $(0,+\infty)$ que forman una sucesión $x_n$ tal que $x_{n+1}-x_n\to\pi$ cuando $n\to\infty$.
+\end{corolario}
+\begin{demo} Vamos a utilizar la ecuación \eqref{bessel_normal} cuyas soluciones $u$ tienen los mismos ceros que las respectivas de \eqref{bessel}. Fijemos una de estas soluciones $u(x)$. Vamos a distiguir tres casos.
+
+\noindent\textbf{Caso $\boldsymbol{a=\frac12}$} En este caso la ecuación se reduce a la ecuación del oscilador armónico $u''+u=0$ y la afirmación es ya conocida.
+\noindent\textbf{Caso $\boldsymbol{a<\frac12}$} En esta situación $1+\frac{1-4a²}{4x²}>1$ en $(0,+\infty)$.  Luego por el Teorema de Comparación de Sturm, entre dos ceros de la solución $z(x)=\sen(x-\alpha)$ de la ecuación $z''+z=0$ tenemos un cero de $u$. Como $\alpha$ es arbitrario, esto implica que $u$ tiene infinitos ceros que distan entre si menos de $\pi$. Ahora como $(1-4a²)/4x²\to 0$, cuando $x\to\infty$, para todo $\epsilon>0$ existe $x_0>0$ tal que   $(1-4a²)/4x<\epsilon$, para $x\geq x_0$. Entonces en $[x_0,+\infty)$  podemos usar el Teorema de comparación de Sturm, con $q_2(x)=1+(1-4a²)/4x²$ y $q_1(x)=1+\epsilon$, $y_2(x)=u(x)$ e $y_1(x)=\sen(\sqrt{1+\epsilon}x-\alpha)$, que es solución de $y''+(1+\epsilon)y=0$. Concluímos que entre dos ceros de $u$ hay siempre uno de $y_1$. Debe ocurrir entonces que  dos ceros sucesivos de $u$ en $[x_0,+\infty)$ distan en más de $\pi/\sqrt{1+\epsilon}$. De lo contrario, si $a$ y $b$ son ceros de $u$ y $b-a< \pi/\sqrt{1+\epsilon}$, entonces para $\alpha=\sqrt{1+\epsilon}a$,   la función $y_1(x)=\sen(\sqrt{1+\epsilon}x-\alpha)$ satisface $y_1(a)=\sen0=0$. Además el cero de $y_1$ inmediato posterior al cero $a$ es  $a+\pi/\sqrt{1+\epsilon}$ que es mayor que $b$. Por consiguiente entre $(a,a+\pi/\sqrt{1+\epsilon})$ (y de allí en $(a,b)$) $y_1$ no se anula, contradiciendo esto el Teorema de Comparación de Sturm.
+
+\noindent\textbf{Caso $\boldsymbol{a>\frac12}$} Es esencialmente muy similar y queda como \textbf{ejercicio}.
+\end{demo}
+
+Ahora vamos a extender el Teorema de Comparación de Sturm a ecuaciones que, sin ser la ecuación general lineal de segundo orden, son más generales que \eqref{eq:2_orden_hom_can}. Concretamente, supongamos que $p(x)$ es una función diferenciable y $q(x)$ es continua en un intervalo $I$, entonces consideraremos ecuaciones del tipo
+\boxedeq{\left(p(x)y'(x)\right)'+q(x)y(x)=0.}{eq_div}
+
+\begin{lema}[Identidad de Picone] Supongamos $y,z$ dos veces diferenciables en $I$ con $z(x)\neq 0$ en $I$, y $p_0,p_1$ diferencialbles en $I$. Entonces
+\boxedeq{\left[\frac{y}{z}\left(zp_0y'-yp_1z' \right) \right]'=y(p_0y')'-\frac{y^2}{z}
+(p_1z')'+(p_0-p_1)y'^2+p_1\left(y'-\frac{y}{z}z'\right)^2}{picone}    
+\end{lema}
+\begin{demo} 
+\begin{sagecommandline}
+sage: x=var('x')
+sage: y=function('y',x)
+sage: z=function('z',x)
+sage: p0=function('p0',x)
+sage: p1=function('p1',x)
+sage: eq=(y/z*(z*p0*y.diff()-y*p1*z.diff())).diff()==y*(p0*y.diff()).diff()-y^2/z*(p1*z.diff()).diff()+(p0-p1)*(y.diff())^2+p1*(y.diff()-y/z*z.diff())^2
+sage: bool(eq)
+True
+\end{sagecommandline}
+\end{demo}
+\begin{teorema}[Teorema de comparación de Sturn-Picone] Sean $p_i$,$i=1,2$,  diferenciables y $q_i$, $i=1,2$, continuas sobre $I$, con $0<p_1(x)\leq p_0(x)$, $q_0(x)\leq q_1(x)$ en $I$.  Supongamos $y_i$, $i=1,2$, soluciones no triviales de las ecuaciones 
+\boxedeq{(p_i(x)y_i'(x))'+q_i(x)y_i=0,\quad i=1,2}{ecua-div2}
+respectivamente.  Entonces entre ceros consecutivos de $y_0$ hay uno de $y_1$, a menos que $p_0\equiv p_1$, $q_0\equiv q_1$ y que las funciones $y_0$ e $y_1$ sean linealmente dependientes. 
+\end{teorema}
+\begin{demo} Supongamos $a$ y $b$ ceros consecutivos de $y_0$ y que $y_1\neq 0$ en $(a,b)$. Aplicando la identidad de Picone, con $y=y_0$, $z=y_1$, y las ecuaciones \eqref{ecua-div2} permiten reemplazar $(p_iy_i')'$ por $-q_iy_i$ en  \eqref{picone}. Obtenemos
+\[\left[\frac{y_0}{y_1}\left(y_1p_0y_0'-y_0p_1y_1' \right) \right]'=
+  (q_1-q_0)y_0^2+(p_0-p_1)y_0'²+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\\
+\]
+Ahora integramos esta desigualdad entre $a$ y $b$, al ser estos puntos ceros de $y_0$ obtenemos
+\[0=\int_a^b\left[\frac{y_0}{y_1}\left(y_1p_0y_0'-y_0p_1y_1' \right) \right]'dx=
+\int_a^b\left[
+  (q_1-q_0)y_0^2+(p_0-p_1)y_0'²+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\right]dx\]
+Como por hipotesis el integrando es una función no negativa, entonces debe ser la función identicamente nula y de allí cada término que lo compone es la función nula. Como $y_i$, $i=1,2$, son no triviales, debemos tener que   $p_0\equiv p_1$, $q_0\equiv q_1$ y que $W(y_0,y_1)=-(y_1y_0'-y_0y_1')=0$, es decir $y_0$ e $y_1$ son linealmente independientes.
+\end{demo}
 
 \end{document}
 
