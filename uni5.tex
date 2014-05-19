@@ -26,66 +26,68 @@
 %\usepackage{media9}
 %\usepackage{movie15}
 \usepackage{xparse}
-\usepackage{listings}
+%\usepackage{listings}
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
-
 \usepackage{tabularx}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
-\lstdefinelanguage{Sage}[]{Python}
-{morekeywords={False,sage,True},sensitive=true}
-\lstset{
-  frame=none,
-  showtabs=False,
-  showspaces=False,
-  showstringspaces=False,
-  commentstyle={\ttfamily\color{dgreencolor}},
-  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-  language=Sage,
-  basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-  aboveskip=.3em,
-  belowskip=0.1em,
-  numbers=none,
-  numberstyle=\footnotesize
-}
-
-
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-\definecolor{myblue}{rgb}{.8, .8, 1}
-\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\newcommand{\dblue}{\color{dbluecolor}\bf}
-\newcommand{\dred}{\color{dredcolor}\bf}
-\newcommand{\dblack}{\color{dblackcolor}\bf}
-
-
-
-\newtheorem{thm}{Teorema}
-
-
-
+\usepackage{xcolor}
+\usepackage{adjustbox}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
+
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\definecolor{color_teor}{HTML}{FFFDA2}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+
+
+%%%%%%%%%%%%%%%%%%%Teoremas, definiciones , etc
+
+
 \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
-\newcommand{\com}{\mathbb{C}}
+\newenvironment{colbox}[2]{%
+    \begin{adjustbox}{minipage={\linewidth},margin=1ex,bgcolor=#1,env=center}
+        #2}{%
+    \end{adjustbox}%
+}
+
+\newcounter{defi_cont}\stepcounter{defi_cont}
+\newenvironment{definicion}[1]{\begin{colbox}{myblue}{\textbf{Definición \arabic{defi_cont}.} #1}}{\stepcounter{defi_cont}\end{colbox}}
+
+\newcounter{teor_cont}\stepcounter{teor_cont}
+\newenvironment{teorema}[1]{\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\stepcounter{teor_cont}\end{colbox}}
+
+\newcounter{ejem_cont}\stepcounter{ejem_cont}
+\newenvironment{ejemplo}[1]{\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{\stepcounter{ejem_cont}}
+
+%\newtheorem{teorema}{Teorema}[section]
+%\newtheorem{lema}[teorema]{Lema}
+%\newtheorem{corolario}[teorema]{Corolario}
+%\newtheorem{proposicion}[teorema]{Proposici\'on}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
+
+\newcommand{\com}{\mathbb{R}}
 \newcommand{\dis}{\mathbb{D}}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\oo}{\mathcal{O}}
-\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\renewcommand{\emph}[1]{\textcolor[rgb]{0,0,1}{#1}}
 \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
 \renewcommand{\v}[1]{\overrightarrow{#1}}
 \renewcommand{\epsilon}{\varepsilon}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\sen}{sen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Formulas en cajas 
 \newlength\mytemplen
 \newsavebox\mytempbox
 \makeatletter
@@ -117,82 +119,373 @@
        \end{empheq}
     }%
 }
-\DeclareMathOperator{\mcd}{mcd}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-\newtheorem{teorema}{Teorema}[section]
-\newtheorem{lema}[teorema]{Lema}
-\newtheorem{corolario}[teorema]{Corolario}
-\newtheorem{proposicion}[teorema]{Proposici\'on}
-\newtheorem{definicion}[teorema]{Definici\'on}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
-%%%%%%%%%%Para escibir en clase articulo o similar
-\usepackage{color}
-\newcommand{\nl}{ }
-\renewenvironment{frame}[1]{}{}
-\newcommand{\qed}{$\square$}
-%\newcommand{\defverbatim}{\def{#1}}
-\newenvironment{block}[1]{\textbf{#1}}{}
-\title{Ecuaciones lineales de segundo orden}
-\author{Fernando Mazzone}
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
-% \newcommand{\nl}{\onslide<+-> }
-% % \mode<all>
-% % {
-% %   \usetheme{Boadilla}
-% %   % oder ...
-% %  
-% %   \setbeamercovered{wolverine}
-% %   % oder auch nicht
-% % }
-% 
-% 
-% \mode<handout>{
-%   \usetheme{default}
-%   %\setbeamercolor{background canvas}{bg=black!5}
-%  % \pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=2.5mm]
-% }
-% 
-% % \mode<all>{
-% %   \usetheme{default}
-% %   %\setbeamercolor{background canvas}{bg=black!5}
-% %   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-% % }
-% 
-% \title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
-% {%
-%  Ecuaciones lineales de segundo orden
-% }
-% 
-% 
-% 
-% \author[] % (optional, nur bei vielen Autoren)
-% {Fernando Mazzone}
-% 
-% \institute[Depto de Matemática] % (optional, aber oft nötig)
-% {
-%  Depto de Matemática\\
-% Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
-% Universidad Nacional de Río Cuarto}
-% 
-% 
-% \subject{Ecuaciones Diferenciales}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
 \begin{document}
+
+
+
+\section{Series de potencias}
+
+\subsection{Definición} %Primer Frame para información personal.
+\begin{definicion} Una serie de potencias es una serie de la forma:
+\[
+	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n
+\]
+donde $a_n$, $n=0,1,\ldots$, $z_0$ y $z$ son elementos de $\com$.
+\end{definicion}
+
+
+Estamos interesados en determinar los valores de $z$ para los cuales   una serie converge. 
+
+\begin{ejemplo} La serie geométrica
+\[
+	\sum\limits_{n=0}^{\infty}z^n,
+\]
+es una serie de potencias. Aquí  $a_n=1$, $n=0,1,\ldots$ y $z_0=0$. Esta serie converge para $|z|<1$ a
+\[ \frac{1}{1-z}\]
+y no converge para cualquier otro valor de $z\in\com$.
+\end{ejemplo}
+
+\begin{ejemplo} Supongamos $f:I\to\rr$, donde $I$ es un intervalo abierto $I=(a,b)$ y que $f$ tiene derivadas de todo orden en  $z_0\in I$. Entonces es posible construir la serie de Taylor de $f$ en $z_0$ que es una serie de potencias. Recordemos que esta serie es
+\[S(f,z_0,z)=\sum\limits_{n=0}^{\infty}\frac{f^{(n)}(z_0)}{n!}(z-z_0)^n.\]
+\end{ejemplo}
+
+ 
+ 
+
+\section{Límites superior e inferior}
+
+
+\begin{definicion} Dada una sucesión de números reales $x_n$, 
+ consideramos una nueva sucesión:
+
+\[
+	A_n=\sup\{x_n, x_{n+1},\ldots \}
+\]
+
+La nueva sucesión de reales $A_n$ es siempre nocreciente ($A_n\geq A_{n+1}$), luego tiene un límite (puede ser $\pm\infty$). A este límite lo llamamos \emph{el límite superior de $x_n$}. Lo denotamos por $\limsup$. Es decir:   
+
+
+\[
+\limsup x_n=\lim_{n\to\infty} A_n=\lim\limits_{n\to \infty} \sup\{x_n, x_{n+1},\ldots \}.
+\]
+
+
+Tomando ínfimo en lugar de supremo conseguimos \emph{el límite inferior} ($\liminf$).  
+\end{definicion}
+\begin{ejemplo}  Si $x_n=(-1)^n$, entonces
+\[
+	\{x_n,x_{n+1},\ldots\}=\{\pm1,\mp1,\pm1,\ldots\}.
+\]
+El supremode este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1. Luego $\liminf x_n=-1$ y $\limsup=1$. 
+\end{ejemplo}
+
+
+
+\begin{ejemplo}  Si $x_n=1/n$, si $n$ es par y $x_n=1$ si $n$ es impar, entonces el conjunto
+
+\[
+	\{x_n,x_{n+1},\ldots\}
+\]
+tiene por supremo 1 y el ínfimo igual a $0$ . Luego $\liminf x_n=0$ y $\limsup=1$. 
+\end{ejemplo}
+
+\begin{teorema}\textbf{Propiedades} Sea $x_n$  e $y_n$ dos sucesiones de números reales, entonces:
+
+\begin{enumerate}
+	\item El $\limsup$ y el $\liminf$  existen siempre si se permite que $\pm\infty$ sean sus posibles valores.
+	\item $\liminf x_n \leq \limsup x_n$.
+	\item $\liminf x_n=\limsup x_n$ si y solo si el $\lim x_n$ existe. En este caso todos los límites coinciden.
+	\item $\liminf (x_n+y_n)\geq \liminf x_n + \liminf y_n$.
+	\item $\limsup (x_n+y_n)\leq \limsup x_n + \limsup y_n$
+
+\end{enumerate}
+\end{teorema}
+
+
+
+\section{Radio de convergencia}
+
+
+\begin{definicion} Dada la serie de potencias 
+\[
+	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n,
+\]
+definimos el \emph{radio de convergencia} $R$ de la siguiente forma:
+
+
+
+\[
+\frac{1}{R}=\limsup\limits_{n\to \infty} |a_n|^{1/n}.
+\]
+
+\end{definicion}
+
+\begin{ejemplo} La serie  
+\[
+	\sum\limits_{n=0}^{\infty}z^n,
+\]
+tiene radio de convergencia:
+
+\[\frac{1}{R}=\limsup\limits_{n\to \infty}1^{1/n}=\lim\limits_{n\to\infty}1^{1/n}=1\]
+
+Luego $R=1$. 
+\end{ejemplo}
+
+\begin{ejemplo} La serie  
+\[
+	\sum\limits_{n=0}^{\infty}\bigg(\frac{1}{M}\bigg)^nz^n,
+\]
+tiene radio de convergencia:
+
+\[\frac{1}{R}=\limsup\limits_{n\to \infty}\bigg(\bigg(\frac{1}{M}\bigg)^n\bigg)^{1/n}=\lim\limits_{n\to\infty}\bigg(\bigg(\frac{1}{M}\bigg)^n\bigg)^{1/n}=\frac1M\]
+
+Luego $R=M$. 
+
+\end{ejemplo}
+
+\begin{ejemplo} Fijemos $M>0$ y $n$ un natural tal que $[n/2] >M$ (aquí $[x]$ es la parte entera de $x$). Entonces,
+como $n-[n/2]\geq [n/2]>M$
+
+\[ 
+\begin{split}
+n!=n(n-1)\cdots 1 &> n(n-1)\cdots (n-[n/2]) \\
+&>\underbrace{M\cdots M }_{[n/2]-\hbox{veces}}\\
+&\geq M^{[n/2]}\\
+&> M^{n/3}\\
+\end{split}
+\]
+Luego 
+\[\frac{1}{R}:=\limsup_{n\to\infty} (1/n!)^{1/n}\leq \lim_{n\to\infty} \bigg(\frac{1}{M^{n/3}}\bigg)^{1/n}=\frac{1}{\sqrt[3]{M}}\]
+Como $M$ es arbitrario, haciendo $M\to\infty$ vemos que el radio de convergencia de la serie  $\sum\limits_{n=0}^{\infty}\frac{1}{n!}z^n$ 
+es $R=\infty$. 
+\end{ejemplo}
+
+
+
+
+
+ 
+
+
+
+
+\textbf{ Primer Teorema Principal}
+
+\textbf{Teorema}  Consideremos la serie:
+
+\[
+	\sum\limits_{n=0}^{\infty}a_nz^n,
+\]
+
+Entonces:
+
+\begin{enumerate}
+	\item<+-> Si $|z|<R$, la serie converge absolutamente en $z$. 
+	\item<+-> Si $|z|>R$, la serie diverge.
+	\item<+-> Si $|z|=R$, ?????
+	
+\end{enumerate}
+
+	
+ 
+
+
+\textbf{Demostración Primer Teorema Principal}
+\textbf{Dem.} Supongamos $0<R<\infty$. Sea $L=1/R$ y tomemos $\epsilon>0$ pequeño. Como
+\[\lim_{n\to\infty}\sup\{|a_n|^{1/n},|a_{n+1}|^{1/n+1},\ldots\}=L\]
+para $n_0$ suficientemente grande
+\[\sup\{|a_n|^{1/n},|a_{n+1}|^{1/n+1},\ldots\}<L+\epsilon.\]
+ Así
+\[|a_n|^{1/n}<L+\epsilon\quad\hbox{para } n\geq n_0.\]
+Elijamos $0<r<1/(L+\epsilon)<1/L=R$. Si $|z|<r$ entonces
+\[|a_n||z|^n<(L+\epsilon)^nr^n\quad\hbox{para } n\geq n_0.\]
+
+ 
+
+
+\textbf{Demostración Primer Teorema Principal}
+
+Pero $r(L+\epsilon)<1$. La desigualdad de arriba y el teorema de comparación (notar que el miembro de la derecha forma una serie geométrica) implican que la serie converge absolutamente para este $z$.  Como $epsilon$ es arbitrario, dado cualquier $z$, con $|z|<1$, tenemos un $\epsilon$ lo suficientemente chico para que $|z|<1/(L+\epsilon)$. 
+
+ \textbf{Ejercicio:} Demostrar los casos $R=0$, $R=\infty$ y el segundo inciso.
+
+	
+ 
+
+\textbf{ Segundo Teorema Principal}
+
+\textbf{Teorema}  La función
+
+\[
+f(z)=	\sum\limits_{n=0}^{\infty}a_nz^n,
+\]
+es holomorfa dentro del círculo con centro en el origen dado por el radio de convergencia. Además
+
+
+\[
+f'(z)=g(z):=	\sum\limits_{n=1}^{\infty}na_nz^{n-1},
+\]
+teniendo esta serie el mismo radio de convergencia que el de $f$.
+
+
+	
+ 
+
+
+\textbf{Demostración Segundo Teorema Principal}
+\textbf{Dem.} La afirmación sobre el radio de convergencia es consecuencia de que $\lim_{n\to\infty}n^{1/n}=1$. Como el radio $R'$ de convergencia de $g$ es:
+
+\[
+\begin{split}
+\frac{1}{R'}&=\limsup_{n\to\infty}|a_{n+1}(n+1)|^{1/(n+1)}\\
+&\underbrace{=}_{\hbox{\emph{ Ejer. Matemáticos}}}\limsup_{n\to\infty}|a_{n+1}|^{1/(n+1)}\lim_{n\to\infty}|(n+1)|^{1/(n+1)}\\
+&=\limsup_{n\to\infty}|a_{n+1}|^{1/(n+1)}=\frac{1}{R}
+\end{split}\]
+
+
+
+
+
+
+ 
+
+
+\textbf{Demostración Segundo Teorema Principal}
+Ahora veamos que $f$ es holomorfa y $f'=g$.   Sea $0<r<R$, $|z_0|<r$ y $N\in\mathbb{N}$. Pongamos:
+\[f(z)=S_N(z)+E_N(z),\]
+\[S_N(z)=\sum_{n=0}^{N}a_nz^n\quad\hbox{y}\quad E_N(z)=\sum_{n=N+1}^{\infty}a_nz^n\]
+Tomemos $|h|<r-|z_0|$, así $|z_0+h|<r$.  Tenemos
+\[\begin{split}
+\frac{f(z_0+h)-f(z_0)}{h}-g(z_0)&= \frac{S_N(z_0+h)-S_N(z_0)}{h}-S_N'(z_0)\\
+				&+S_N'(z_0)-g(z_0)\\
+				&+\frac{E_N(z_0+h)-E_N(z_0)}{h}
+\end{split}\]
+
+
+
+ 
+
+
+\textbf{Demostración Segundo Teorema Principal}
+Ahora si $\epsilon>0$
+
+\[\begin{split}
+				&\bigg|\frac{E_N(z_0+h)-E_N(z_0)}{h}\bigg|\leq\sum_{n=N+1}^{\infty}|a_n|\bigg|\frac{(z_0+h)^n-z_0^n}{h}\bigg|\\
+				&=\sum_{n=N+1}^{\infty}|a_n|(|z_0|^{n-1}+|z_0|^{n-2}h+\cdots+h^{n-1})\\
+				&\leq2\sum_{n=N+1}^{\infty}|a_n|nr^{n-1}<\epsilon\\
+\end{split}\]
+Para $N$ suficientemente grande. Además como $S_N'(z)\to g(z)$ cuando $N\to\infty$ podemos elegir, a su vez, $N$ suficientemente grande para que
+
+\[
+	|S_N'(z_0)-g(z_0)|<\epsilon
+\]
+
+
+
+
+ 
+
+
+\textbf{Demostración Segundo Teorema Principal}
+ Fijemos un $N$ que satisfaga las condiciones anteriores. Ahora podemos encontrar $\delta>0$ para que $|h|<\delta$ cumpla que 
+\[
+\bigg|\frac{S_N(z_0+h)-S_N(z_0)}{h}-S_N'(z_0)\bigg|<\epsilon.
+\]
+
+Esto muestra que $f'(z_0)=g(z_0)$ y por consiguiente $f$ es holomorfa.
+
+
+
+ 
+
+
+\textbf{Un corolario}
+
+\textbf{Corolario}  Una serie de potencias es infinitamente diferenciable. Las sucesivas derivadas se obtienen derivando término a término la serie. El radio de convergencia se conserva.
+
+	
+
+
+ 
+
+\textbf{Representación de la función exponencial}
+
+\textbf{Ejemplo}  Habímos visto que la serie:
+\[
+	f(z)=\sum_{n=0}^{\infty}\frac{1}{n!}z^n
+\]
+tenía radio de convergencia infinito y por ende converge en $\com$. Ahora vemos que
+\[f'(z)=\sum_{n=1}^{\infty}\frac{1}{(n-1)!}z^{n-1} =\sum_{n=0}^{\infty}\frac{1}{n!}z^n
+\]
+
+
+
+	
+
+
+ 
+
+
+\textbf{Representación de la función exponencial}
+
+\textbf{Ejemplo}  Esta $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. La misma ecuación es resuelta por $g(z)=e^z$. Tenemos:
+\[
+	\frac{d}{dz}f(z)e^{-z}=f'(z)e^{-z}-f(z)e^{-z}=0
+\]
+Entonces $h(z)=f(z)e^{-z}$ es una función costante. Pero $h(0)=1$, entonces $f(z)e^{-z}=1$ y de allí $f(z)=e^z$. 
+
+
+
+	
+\textbf{Comentario} Podemos a partir de la exponencial encontrar desarrollos en serie para las funciones trigonométricas.
+
+ 
+
+
+
+\section{Funciones analíticas}
+\textbf{Funciones Analíticas}
+
+Podemos hacer un desarrollo de pontencias centrado en otro punto $z_0\in\com$ diferente que $0$. Nos referimos a considerar series de la forma
+\[ 
+\sum_{n=0}^{\infty}a_n(z-z_0)^n
+\]
+
+Claramente a este tipo de serie se le aplican todos los resultados anteriores. Ahora el disco de convergencia es un disco centrado en $z_0$ y de radio dado por el radio de convergencia dado por la misma fórmula que antes.
+
+
+
+ 
+
+\textbf{Funciones Analíticas}
+
+\textbf{Definición} Una función $f:\Omega\subset\com\to\com$ se dirá analítica si para cada $z_0\in\Omega$, existe un $R$ y $a_n\in\com$, tal que vale la igualdad:
+
+\[ f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n,\quad\hbox{para } |z-z_0|<R \]
+
+
+
+\textbf{Ejercicio} Si $f$ es analítica tenemos la siguiente fórmula
+\[
+	a_n=\frac{f^{(n)}(z_0)}{n!}
+\]
+para los coeficientes $a_n$. 
+
+
+
+ 
+
+
+
+
+
+
 
 \end{document}
 
