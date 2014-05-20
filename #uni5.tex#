@@ -319,7 +319,7 @@ teniendo esta serie el mismo radio de convergencia que el de $f$.
 &=\limsup_{n\to\infty}|a_{n+1}|^{1/(n+1)}=\frac{1}{R}
 \end{split}\]
 
-Ahora veamos que $f$ es holomorfa y $f'=g$.   Sea $0<r<R$, $|z_0|<r$ y $N\in\mathbb{N}$. Pongamos:
+Ahora veamos que  $f'=g$.   Sea $0<r<R$, $|z_0|<r$ y $N\in\mathbb{N}$. Pongamos:
 \[f(z)=S_N(z)+E_N(z),\]
 \[S_N(z)=\sum_{n=0}^{N}a_nz^n\quad\hbox{y}\quad E_N(z)=\sum_{n=N+1}^{\infty}a_nz^n\]
 Tomemos $|h|<r-|z_0|$, así $|z_0+h|<r$.  Tenemos
