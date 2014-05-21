@@ -438,8 +438,14 @@ la expresión
  \end{definicion}
 
  
-
-
+\begin{sageblock}
+A.<a0,a1,a2,a3,a4,a5>=PolynomialRing(QQ, 'a0,a1,a2,a3,a4,a5')
+Series.<X>=PowerSeriesRing(A)
+y= a0+ a1*X+a2*X^2 +a3*X^3 + a4*X^4 + a5*X^5
+eq=y-y.derivative()
+Ecuaciones=eq.coefficients()
+\end{sageblock}
+$\sage{Ecuaciones}$ 
 
 
 
