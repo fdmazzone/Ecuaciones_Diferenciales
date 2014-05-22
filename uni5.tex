@@ -762,9 +762,6 @@ y graficarlos
 \section{Teorema fundamental sobre puntos ordinarios}
 
 
-
-\subsection{Puntos Ordinarios y Singulares}
-
 \begin{definicion} Dada la ecuación diferencial
 \[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
 donde $p,q$ son funciones   definidas en algún intervalo abierto $I$, diremos que $x_0\in I$ es un \emph{punto ordinario} de la ecuación si $p$ y $q$ son analíticas en $x_0$. Un punto no ordinario se llama \emph{singular}.
@@ -854,6 +851,125 @@ Entonces
 \]
 Luego la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para $|x|<r$. Como $|a_n|\leq b_n$ la misma afirmación es cierta para $\sum_{n=0}^{\infty}a_nx^n$. Como $r<R$ fue elegido arbitrariamente, tenemos que $\sum_{n=0}^{\infty}a_nx^n$ converge en $|x|<R$.
 \end{demo}
+
+
+\section{Puntos singulares, método de Frobenius}
+
+
+\begin{definicion}\textbf{ Sigularidades, Polos.} Sea $f$ definida en un intervalo abierto $I$ con valores en $\rr$. Diremos que $f$ posee un \emph{polo de orden $k$} en $x_0\in\rr$, si la función $(x-x_0)^kf(x)$ es analítica en un entorno de $x_0$. Vale decir que $(x-x_0)^kf(x)$ se desarrolla en serie de potencias.
+\[(x-x_0)^kf(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^n.\]
+En consecuencia
+\[f(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^{n-k}=\frac{a_0}{(x-x_0)^k}+\cdots+\frac{a_{k-1}}{(x-x_0)}+a_k+a_{k+1}(x-x_0)+\cdots.\]
+Este tipo de desarrollo en serie es un caso particular de serie de Laurent. 
+
+Cuando el orden de un polo es $1$ se lo denomina \emph{polo simple}.
+\end{definicion}
+
+
+
+\begin{definicion} Un punto singular $x_0$ de la ecuación
+\[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
+se llama singular regular si $p(x)$ tiene un polo a lo sumo simple en $x_0$ y $q(x)$ tiene un polo a lo sumo de orden $2$ en $x_0$. Es decir
+\[(x-x_0)p(x)\quad\hbox{y}\quad (x-x_0)^2q(x)\]
+son analíticas en $x_0$.
+\end{definicion}
+Algunas de las ecuaciones más importantes de la Física-Matemática tienen puntos singulares regulares.
+
+\begin{ejemplo} 1 y -1 son puntos singulares regulares de la ecuación de Legendre de orden $p$
+\[y''-\frac{2x}{1-x^2}y'+\frac{p(p+1)}{1-x^2}y=0\]
+\end{ejemplo}
+
+
+\begin{ejemplo} 0 es un punto singular regular de la ecuación de Bessel de orden $p$
+\[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
+\end{ejemplo}
+
+El método de coeficientes indeterminados puede fallar en los puntos donde $p$ y $q$ tienen polos. En su lugar vamos a proponer otro tipo de desarrollo en serie. Lo vamos a motivar con un ejemplo.
+
+\begin{ejemplo} Consideremos la ecuación de Euler, para $p,q\in\rr$
+\[y''+\frac{p}{x}y'+\frac{q}{x^2}y=0\]
+o equivalentemente
+\[x^2y''+pxy'+qy=0\]
+Aquí es facil verificar que las funciones
+\[P(x):=\frac{p}{x}\quad\hbox{ y }\quad Q(x):= \frac{q}{x^2}\]
+satisfacen la relación
+\[\frac{Q'+2PQ}{Q^{\frac{3}{2}}}\]
+es constante. Cuando se daba esta condición el ejercicio 6 de la página 102 del libro de Simmons nos enseña que podemos reducir la ecuación a una ecuación con coeficientes constantes por medio del cambio de la variable independiente
+\[z=\int\sqrt{Q}dx\]
+En es caso, obviando las constantes, el cambio de variables que debemos hacer, asumamos $x>0$, es
+\[z=\ln(x)\]
+Seguramente, a esta altura del curso,  el alumno ya hizo los cálculos que muestran que la ecuación de Euler se transforma,  por medio del cambio de variables propuesto, en la ecuación a coeficientes constantes
+\[y''+(p-1)y'+qy=0.\]
+Cuya ecuación característica es
+\[\lambda^2+(p-1)\lambda+q=0\]
+Resolviendo esta ecuación con SAGE
+
+\begin{sageblock}
+s,p,q=var('s,p,q')
+Raices=solve(s^2+(p-1)*s+q==0,s)
+\end{sageblock}
+Obtenemos las raíces 
+\[s_1=\sage{Raices[0].rhs()}\quad\text{y}\quad s_2=\sage{Raices[1].rhs()}.\]
+ Si $s_1\neq s_2$ dos soluciones linealmente independientes son:
+\[y_1(z)=e^{s_1z}\quad\hbox{y}\quad y_2(z)=e^{s_2z}\]
+ Si $s_1=s_2$
+\[y_1(z)=e^{s_1z} \quad\hbox{y}\quad y_2(z)=ze^{s_1z}\]
+son soluciones linealmente independientes. Asumamos que las raices $s_1$ y $s_2$ son reales, entonces como $z=\ln(x)$ las soluciones en términos de la variable $x$ son 
+\[y_1(x)=x^{s_1}\quad\hbox{y}\quad y_2(x)=x^{s_2}\quad\text{para }  s_1\neq s_2\]
+y
+\[y_1(x)=x^{s_1} \quad\hbox{y}\quad y_2(x)=\ln(x)x^{s_1}\quad\text{para }  s_1= s_2\]
+
+
+
+Estas funciones, a menos que $s_1$ y $s_2$ sean enteros positivos, ya no son analíticas en cero, pues una función analítica es derivable infinitas veces y claramente hay derivadas (o las mismas funciones si las raices son negativas) de $y_1$ e $y_2$ que son discontinuas. 
+\end{ejemplo}
+
+
+De modo que, como era de suponer, no podremos encontrar en general en un punto singular una solución analítica.  Vamos a intentar flexibilar nuestro método para incluir otro tipo de desarrollo en serie, que está inspirado en los resultados obtenidos para la ecuación de Euler. 
+
+\begin{definicion} A una expresión de la forma
+ \[y(x)=(x-x_0)^m(a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots),\]
+donde $m\in\rr$, lo llamaremos \emph{Serie de Frobenius}.
+\end{definicion}
+Las series de Frobenius no son series de potencias ni de Laurent ya que en ellas aparecen potencias no enteras.
+
+El método de Frobenius consiste en proponer como solución de una ecuación diferencial una serie de Frobenius. Este método tiene éxito, por ejemplo, en los puntos sigulares regulares de ecuaciones diferenciales lineales de segundo orden.
+
+\begin{ejemplo} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
+\[y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0\]
+Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SAGE. 
+
+Proponemos como solución
+
+ \[y(x)=x^m\sum_{n=0}^{\infty}a_{n}x^n=\sum_{n=0}^{\infty}a_{n}x^{n+m}\]
+y calculamos
+\[
+    \begin{split}
+     -\frac{1}{2x^2}y&=-\sum_{n=0}^{\infty}\frac{a_n}{2}x^{m+n-2}=-\frac{a_0}{2}x^{m-2}
+-\frac{a_1}{2}x^{m-1}-\cdots-\frac{a_{n+2}}{2}x^{m+n}-\cdots\\
+      y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
+      \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
+      y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdot 3a_3x+\cdots+(n+1)(n+2)a_{n+2}x^n+\cdots.
+    \end{split}
+\]
+Sumando las cuatro igualdades miembro a miembro 
+
+\[y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y= -\frac{a_0}{2}\frac{1}{x^2}+\left(-\frac{a_1}{2}+\frac{a_1}{2} \right)\frac{1}{x}+\]
+
+
+
+
+
+e igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
+ 
+% \[
+%     \begin{split}
+%       -\frac{1}{2x^}
+%     \end{split}
+% \]
+
+\end{ejemplo}
+
 
 
 \end{document}
