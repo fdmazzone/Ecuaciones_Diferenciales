@@ -936,7 +936,8 @@ Las series de Frobenius no son series de potencias ni de Laurent ya que en ellas
 El método de Frobenius consiste en proponer como solución de una ecuación diferencial una serie de Frobenius. Este método tiene éxito, por ejemplo, en los puntos sigulares regulares de ecuaciones diferenciales lineales de segundo orden.
 
 \begin{ejemplo} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
-\[y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0\]
+\begin{equation}\label{eq:ejem_sim}y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0.
+\end{equation}
 Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SAGE. 
 
 Proponemos como solución
@@ -949,14 +950,18 @@ y calculamos
 -\frac{a_1}{2}x^{m-1}-\cdots-\frac{a_{n+2}}{2}x^{m+n}-\cdots\\
       y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
       \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
-      y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdot 3a_3x+\cdots+(n+1)(n+2)a_{n+2}x^n+\cdots.
+      y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}\\
+&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots+(m+n+2)(m+n+1)a_{m+n+2}x^{m+n}+\cdots.
     \end{split}
 \]
-Sumando las cuatro igualdades miembro a miembro 
+Sumando las cuatro igualdades miembro a miembro y sustiyendo en \eqref{eq:ejem_sim}
 
-\[y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y= -\frac{a_0}{2}\frac{1}{x^2}+\left(-\frac{a_1}{2}+\frac{a_1}{2} \right)\frac{1}{x}+\]
-
-
+\[
+  \begin{split}
+    0=& \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}  + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2} \right)x^{m-1}+\cdots \\
+ &+\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{m+n+2} \right)x^{m+n}+\cdots .
+  \end{split}
+\]
 
 
 
