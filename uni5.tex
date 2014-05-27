@@ -1050,7 +1050,9 @@ La solución es
 
 \subsection{Ecuación de Bessel}
 
-\begin{definicion} Recordemos a la ecuación de Bessel de orden $p$
+\subsubsection{Relaciones de recurrencia y solución por el método de Frobenius}
+
+\begin{definicion} Recordemos a la ecuación de Bessel de orden $p$ ($p>0$)
  \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
 \end{definicion}
 
@@ -1104,7 +1106,7 @@ Iterando esta relación
 \end{split}
 \]
 Obtenemos la solución 
-\boxedeq{y(x)=\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{}
+\boxedeq{y(x)=x^p\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{eq:sol_bessel_1}
 Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
 
 En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
@@ -1114,6 +1116,17 @@ y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
 
 \[\sage{y1}.\]
 
+\subsubsection{Función Gamma y la función de Bessel de primera especie}
+
+Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresiòn quedaría
+\[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
+No obstante, nos previene aún de utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no tenemos claro que significa $p!$. El propósito de esta subsección es introducir la extensión de la función factorial a una función de variable real. 
+
+\begin{definicion} Para $p>0$ definimos la \emph{función Gamma} por 
+\boxedeq{\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt}{eq:gamma}
+\end{definicion}
+
+En otros cursos se demuestra que la integral impropia en la definición converge. Adeás se 
 
 
 
@@ -1125,14 +1138,12 @@ y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
 
 
 
-
-
-% Ahora vamos a tomarla segunda solución de la ecuación indicial.
-% \begin{sageblock}
-% Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
-% for f in Ecuaciones[1:-2]]
-% \end{sageblock}
-% \[\sage{vector(Ecuaciones1).column()}\]
+Ahora vamos a tomar la solución $m=-p$ de la ecuación indicial.
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
+for f in Ecuaciones[1:-2]]
+\end{sageblock}
+ \[\sage{vector(Ecuaciones1).column()}\]
 % Resolvamos las ecuaciones. 
 % \begin{sageblock}
 % Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
