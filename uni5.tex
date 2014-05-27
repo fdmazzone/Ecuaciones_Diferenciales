@@ -48,6 +48,7 @@
 \definecolor{color_teor}{HTML}{FFFDA2}
 \definecolor{color_ejer}{HTML}{F6BFBF}
 \definecolor{color_cor}{HTML}{49E6D8}
+\definecolor{color_lem}{HTML}{C6F6AB}
 \newcommand{\dblue}{\color{dbluecolor}\bf}
 \newcommand{\dred}{\color{dredcolor}\bf}
 \newcommand{\dblack}{\color{dblackcolor}\bf}
@@ -61,21 +62,23 @@
     \end{adjustbox}%
 }
 
-\newcounter{defi_cont}\stepcounter{defi_cont}
-\newenvironment{definicion}[1]{\begin{colbox}{myblue}{\textbf{Definición \arabic{defi_cont}.} #1}}{\stepcounter{defi_cont}\end{colbox}}
+\newcounter{defi_cont}
+\newenvironment{definicion}[1]{\begin{colbox}{myblue}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
 
-\newcounter{teor_cont}\stepcounter{teor_cont}
-\newenvironment{teorema}[1]{\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\stepcounter{teor_cont}\end{colbox}}
+\newcounter{teor_cont}
+\newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
 
-\newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\textbf{Corolario \arabic{teor_cont}.} #1}}{\stepcounter{teor_cont}\end{colbox}}
+\newcounter{cor_cont}
+\newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\refstepcounter{cor_cont}\textbf{Corolario \arabic{cor_cont}.} #1}}{\end{colbox}}
 
+\newcounter{lem_cont}
+\newenvironment{lema}[1]{\begin{colbox}{color_lem}{\refstepcounter{lem_cont}\textbf{Lema \arabic{lem_cont}.} #1}}{\end{colbox}}
 
+\newcounter{ejem_cont}
+\newenvironment{ejemplo}[1]{\refstepcounter{ejem_cont}\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{}
 
-\newcounter{ejem_cont}\stepcounter{ejem_cont}
-\newenvironment{ejemplo}[1]{\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{\stepcounter{ejem_cont}}
-
-\newcounter{ejer_cont}\stepcounter{ejer_cont}
-\newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\stepcounter{ejer_cont}\end{colbox}}
+\newcounter{ejer_cont}
+\newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\refstepcounter{ejer_cont}\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\end{colbox}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
@@ -133,8 +136,9 @@
 
 
 
-\section{Series de potencias}
+ \section{Series de potencias}
 
+En esta sección recordamos algunos conceptos y teoremas sobre series de potencias. Dado que este tema es motivo de un estudio más profundo en otras materias de la licenciatura en matemática omitimos algunas demostraciones.
 \subsection{Definición} %Primer Frame para información personal.
 \begin{definicion} Una serie de potencias es una serie de la forma:
 \[
@@ -319,7 +323,7 @@ teniendo esta serie el mismo radio de convergencia que el de $f$.
 &=\limsup_{n\to\infty}|a_{n+1}|^{1/(n+1)}=\frac{1}{R}
 \end{split}\]
 
-Ahora veamos que $f$ es holomorfa y $f'=g$.   Sea $0<r<R$, $|z_0|<r$ y $N\in\mathbb{N}$. Pongamos:
+Ahora veamos que  $f'=g$.   Sea $0<r<R$, $|z_0|<r$ y $N\in\mathbb{N}$. Pongamos:
 \[f(z)=S_N(z)+E_N(z),\]
 \[S_N(z)=\sum_{n=0}^{N}a_nz^n\quad\hbox{y}\quad E_N(z)=\sum_{n=N+1}^{\infty}a_nz^n\]
 Tomemos $|h|<r-|z_0|$, así $|z_0+h|<r$.  Tenemos
@@ -371,7 +375,6 @@ Luego $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. La misma ecuaci
 \end{ejemplo}
 
 
- 
 
 
 
@@ -390,9 +393,18 @@ Luego $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. La misma ecuaci
 para los coeficientes $a_n$. 
 \end{ejercicio}
 
+ \begin{teorema}\label{teor_oper_series}\textbf{Operaciones entre series de potencias} Supongamos que $f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n$ y  $g(z)=\sum_{n=0}^{\infty}b_n(z-z_0)^n$ son series de potencias con radio de convergencia mayor o igual a $R>0$. Entonces $f+g$ y $fg$ son funciones analíticas que tienen por desarrollo en serie
+\[
+    \begin{split}
+      (f+g)(z)&=\sum_{n=0}^{\infty}(a_n+b_n)(z-z_0)^n\\
+      (fg)(z)&=\sum_{n=0}^{\infty}\left(\sum_{k=0}^na_kb_{n-k}\right)(z-z_0)^n,\\
+    \end{split}
+\]
+y los radios de convergencia de las series anteriores es, al menos, $R$.
+\end{teorema}
 
 
-\section{Solución de EDO mediante series de potencias. Puntos Ordinarios}
+\section{Solución de EDO mediante series de potencias. Método coeficientes indeterminados}
 
 
 
@@ -410,7 +422,7 @@ remplazar $y(x)$ por este desarrollo en  en la ecuación (1) y tratar de resolve
 
 \begin{ejemplo} Hallar el desarrollo en serie de la solución del siguiente pvi 
 \[\left\{\begin{array}{l l} y'&=y\\ y(0)&=1\end{array}\right.\]
-La solución es bien sabido que es $y(x)=e^x$,  pero pretendemos reencontrarla por el método expuesto. Escribimos
+La solución, es bien sabido, es $y(x)=e^x$,  pero pretendemos reencontrarla por el método expuesto. Escribimos
 \[\begin{split}
    y&=a_0+a_1x+a_2x^2+\cdots+a_nx^n+\cdots\\
    y'&=a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots
@@ -429,7 +441,56 @@ Si iteramos la fórmula $a_{n+1}=a_{n}/(n+1)$, obtenemos
 \[a_n=\frac{1}{n}a_{n-1}=\frac{1}{n(n-1)}a_{n-2}=\cdots=\frac{1}{n(n-1)\cdots 1}a_{0}=\frac{a_0}{n!}.\]
 Pero $a_0=y(0)=1$. Luego 
 \boxedeq{a_n=\frac{1}{n!}}{eq:exp}
-La expresión $a_{n+1}=\frac{a_{n}}{n+1}$ es un ejemplo de relación de recurrencia.
+
+
+
+
+  También podemos usar SAGE para obtener el resultado.
+\begin{sageblock}
+"""
+Método de coeficientes indeterminados para
+la ecuación y'=y
+"""
+#La serie la sumamos hasta X^orden
+orden=7
+# Lista coeficientes
+Lista=['a%s'%i for i in range(orden)]
+#expresiones polinómicos con los an
+A = PolynomialRing(QQ,Lista)
+#Series con coeficientes en A
+Series.<X> = PowerSeriesRing(A)
+#n-upla de los a_n
+Coef=A.gens() 
+#serie truncada en orden
+y=sum(Coef[i]*X^i for i in range(orden)) 
+#sustituyo en la ecuación
+Ecua=y.derivative()-y
+#lista de los a_n convertidos en expresión 
+a= [SR(i) for i in A.gens()] 
+""" A las ecuaciones le agrego a0=1 y evito usar la
+última pues tiene un problema que viene del truncamiento
+"""
+Ecuaciones=[a[0]-1,list(Ecua)[:-1]] 
+#resuelvo las relaciones de recurrencia
+Sol_a_n=solve(Ecuaciones,a) 
+"""Lista de los coeficientes convertidos en racionales """
+L=[QQ(f.rhs()) for f in Sol_a_n[0]] 
+# Desarrollo en serie de la solución
+y=sum([L[i]*X^i for i in range(orden)])+O(X^orden)
+\end{sageblock}
+
+Vemos que la solución es 
+\boxedeq{y(x)=\sage{y}}{eq:sol_sage} 
+\end{ejemplo}
+
+
+
+
+
+
+\subsection{Relaciones de recurrencia}
+
+La expresión $a_{n+1}=\frac{a_{n}}{n+1}$ es un ejemplo de \href{http://es.wikipedia.org/wiki/Relación_de_recurrencia}{relación de recurrencia}.
 \begin{definicion} Una  relación de recurrencia para una sucesión $b_n$ de números reales es una sucesión de 
 funciones $f_n:\rr^n\to\rr$ que relaciona $b_{n+1}$ con los términos anteriores de la sucesión por medio de 
 la expresión
@@ -437,19 +498,688 @@ la expresión
  Resolver una relación de recurrencia es encontrar una fórmula explícita de $b_n$ como función de $n$.
  \end{definicion}
 
- 
+
+Hay técnicas y métodos para resolver relaciones de recurrencia que guardan analogías con técnicas y métodos de resolver ecuaciones diferenciales.  No vamos a desarrollar este tema en este curso, sólo agregamos que  SAGE resuelve relaciones recurrentes. Para ello se necesita de un módulo extra, también basado en \href{https://www.python.org/}{Python}, llamado \href{http://sympy.org/en/index.html}{Sympy}. Este módulo tiene el comando \texttt{rsolve} para resolver relaciones de recurrencia. Sympy tiene sus propios comandos, que son parecidos pero no iguales a SAGE.
+
+\begin{ejemplo}Resolvamos la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$ con SAGE.
 \begin{sageblock}
-A.<a0,a1,a2,a3,a4,a5>=PolynomialRing(QQ, 'a0,a1,a2,a3,a4,a5')
-Series.<X>=PowerSeriesRing(A)
-y= a0+ a1*X+a2*X^2 +a3*X^3 + a4*X^4 + a5*X^5
-eq=y-y.derivative()
-Ecuaciones=eq.coefficients()
+""" Resolvemos la relación de recurrencia 
+de los números de Fibonacci"""
+#Importamos Sympy 
+from sympy import *
+#En Sympy se declaran símbolos en lugar de variables
+n=Symbol('n',integer=True)
+#Y así se declaran funciones
+y = Function('y')
+#Así una ecuación
+f=Equality(y(n),y(n-1)+y(n-2))
+#Así la resolvemos
+rsolve(f,y(n))
+
+\end{sageblock}  
+
+ El resultado es
+ \boxedeq{a_n=\sage{rsolve(f,y(n))}}{}
+Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de $k$ de los anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$.
+
+\begin{sageblock}
+reset()
+n=var('n')
+C0,C1=var('C0,C1')
+A=C0*(1/2+sqrt(5)/2)^n+C1*(1/2-sqrt(5)/2)^n
+Cval=solve([A(n=0)-1,A(n=1)-1],[C0,C1],solution_dict=True)
+Fib=A.subs(Cval[0])
+[Fib(n=i).expand() for i in range(10)]
+\end{sageblock}  
+Llegamos a la fórmula
+\boxedeq{a_n=\sage{Fib}.}{}
+Los primeros 20 números de Fibonacci son 
+\[\sage{[Fib(n=i).expand() for i in range(20)]}.\]
+
+\end{ejemplo}
+
+\subsection{Serie binomial}
+
+ Se puede utilizar el método de coeficientes indeterminados para encontrar desarrollos en serie de una función  $f$. La técnica consiste en encontrar un pvi que satisfaga $f$ y le aplicamos el método de coeficientes indeterminados a ese pvi.
+
+\begin{ejemplo}  Encontrar el desarrollo en serie de la función
+\[y(x)=(1+x)^p\quad p\in\rr\]
+La función $y(x)$ resuelve el pvi  $(1+x)y'(x)=py$, $y(0)=1$. apliquemos el método de coeficientes indeterminados a este pvi.
+Como
+\[\begin{split}
+   y&=a_0+a_1x+a_2x^2+\cdots+a_nx^n+\cdots\\
+   y'&=a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots
+  \end{split}
+\]
+Tenemos
+\[\begin{split}
+   py=&pa_0+pa_1x+pa_2x^2+\cdots+pa_nx^n+\cdots\\
+  (1+x)y'=&a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots\\
+          &+a_1x+2a_2x^2+3a_3x³+\cdots+na_{n}x^n+\cdots\\
+-------&----------------------\\
+0=(1+x)y'-py =& (a_1-pa_0)+(a_1+2a_2-pa_1)x+\cdots +((n+1)a_{n+1}+na_n-pa_n)x^n+\cdots
+  \end{split}
+\]
+Tenemos la relación
+\[ a_{n+1}=\frac{(p-n)}{n+1}a_n.
+\]
+Que es una relación de reciurrencia de un sólo término. Estas relaciones se resuelven iterando la relación de manera sucesiva de modo de relacionar $a_n$ con $a_0$
+\[a_n=\frac{(p-n+1)}{n}a_{n-1}=\frac{(p-n+1)(p-n+2)}{n(n-1)}a_{n-2}=\cdots=\frac{(p-n+1)(p-n+2)\cdots p}{n!}a_0.\]
+Como $a_0=y(0)=1$ vemos que
+\boxedeq{a_n=\frac{(p-n+1)(p-n+2)\cdots p}{n!}.}{eq:coef_bin}
+Si $p\in\mathbb{N}$ entonces $a_n=0$ para $n>p$. Esto es claro, por otro lado, ya que en este caso $(1+x)^p$ es un polinomio. Por fórmula del binomio de Newton los coeficientes cuando $p\in \mathbb{N}$  no son más que los coeficientes binomiales
+\[a_n=\binom{p}{n}\]
+ Cuando $p\in\mathbb{R}$ aún vamos a seguir denominado a $a_n$, dado por la fórmula \eqref{eq:coef_bin},   el coeficiente binomial. La serie resultante se llama la serie binomial. Cuando $p\in\mathbb{R}-\mathbb{N}$ es una serie infinita y no  un polinomio. Notar que para $p$ no entero positivo
+\[\lim\limits_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}=\lim\limits_{n\to\infty}\frac{|p-n|}{|n+1|}=1\]
+Luego la serie tiene radio de convergencia 1.  Hemos demostrado asi que vale la siguiente fórmula, que es una generalización de la fórmula binomial de Newton
+\boxedeq{(1+x)^p=1+px+\frac{p(p-1)}{2!}x^2  +\cdots=1+\binom{p}{1}x+\binom{p}{2}x^2+\cdots}{}
+Esta importante serie se denomina \href{http://en.wikipedia.org/wiki/Binomial_series}{serie binomial}.
+
+
+\begin{sageblock}
+"""
+Método de coeficientes indeterminados para
+la ecuación (1+x)y'=py , y(0)=1
+"""
+orden=4
+#En la lista de coeficientes debemos poner p
+Lista=['a%s'%i for i in range(orden)]+['p']
+A = PolynomialRing(QQ,Lista)
+Series.<X> = PowerSeriesRing(A)
+Coef=A.gens() 
+y=sum(Coef[i]*X^i for i in range(orden)) 
+Ecua=(1+X)*y.derivative()-A.gens()[-1]*y
+a= [SR(i) for i in A.gens()[:-1]] 
+Ecuaciones=[a[0]-1,list(Ecua)[:-1]] 
+Sol_a_n=solve(Ecuaciones,a) 
+L=[f.rhs().factor() for f in Sol_a_n[0]] 
+x=var('x')
+y=sum([L[i]*x^i for i in range(orden)])
 \end{sageblock}
-$\sage{Ecuaciones}$ 
+
+\boxedeq{y(x)=\sage{y}.}{}
+
+\end{ejemplo}
+
+\subsection{Oscilador armónico}
+
+\begin{ejemplo} Consideremos la ecuación 
+\[y''+\omega^2y=0.\]
+Esta es una ecuación de segundo orden. Veamos si el método de coeficientes indeterminados nos lleva a la solución. Se tiene
+\[\begin{split}
+    \omega^2y&=\omega^2a_0+\omega^2a_1x+\omega^2a_2x^2+\cdots+\omega^2a_nx^n+\cdots\\
+  y''&=2a_2+2\cdot 3a_3x+\cdots+(n+1)(n+2)a_{n+2}x^n+\cdots\\
+--&---------------------------\\
+0=y''+\omega^2y =& (\omega^2a_0+2a_2)+(\omega^2a_1+2\cdot 3a_3)x+\cdots +(\omega^2a_n+(n+1)(n+2)a_{n+2})x^n+\cdots
+  \end{split}
+\]
+Encontramos la relación de recurrencia de dos términos
+\boxedeq{a_{n+2}=-\frac{\omega^2a_n}{(n+1)(n+2)}.}{}
+Notar que  en este caso $a_1$ y, obviamente, $a_0$ no se relacionan con ningún coeficiente anterior. Por este motivo es de esperar que podamos elegir de manera arbitraria $a_0$ y $a_1$. Esto está de acuerdo con el hecho que remarcamos antes de que en una relación de recurrencia de dos términos aparecen dos constantes arbitrarias y también está de acuerdo con que la solución general de una ecuación de segundo orden tiene dos constantes arbitrarias. En este caso resolvemos la relación de recurrencia relacionando $a_n$ con $a_0$ cuando $n$ es impar y con $a_1$ cuando es impar. Concretamente si $n=2k$, $k\in\mathbb{N}$,
+\[a_{2k}=-\frac{\omega^2}{2k(2k-2)}a_{2k-2}=\cdots=(-1)^k\frac{\omega^{2k}}{(2k)!}a_0.\]
+En cambio si $n=2k+1$ es impar
+\[a_{2k+1}=-\frac{\omega^2}{2k+1}{2k-1}a_{2k-1}=\cdots=(-1)^k\frac{\omega^{2k}}{(2k+1)!}a_1.\]
+Agrupando los términos pares y los impares de la serie de potencias resultante queda
+\boxedeq{
+   \begin{split}
+     y(x) &=a_0\sum_{k=0}^{\infty}(-1)^k\frac{1}{(2k)!}\left(\omega x\right)^{2k}+\frac{a_1}{\omega}\sum_{k=0}^{\infty}(-1)^k\frac{1}{(2k+1)!}\left(\omega x\right)^{2k+1}\\
+&=a_0\cos\omega x+\frac{a_1}{\omega}\sen\omega x
+   \end{split}
+ }{}
+La última igualdad es conocida de las asignaturas de análisis. Es facil verificar, lo dejamos de ejercicio, que las series involucradas tienen radio de convergencia infinito.
+
+Podemos hacer los cálculos anteriores con SAGE
+
+\begin{sageblock}
+"""
+Método de coeficientes indeterminados para
+la ecuación y''+omega^2y=0
+"""
+orden=8
+Lista=['a%s'%i for i in range(orden)]+['omega']
+A = PolynomialRing(QQ,Lista)
+Series.<X> = PowerSeriesRing(A)
+Coef=A.gens() 
+y=sum(Coef[i]*X^i for i in range(orden)) 
+Ecua=y.derivative(2)+A.gens()[-1]^2*y
+a= [SR(i) for i in A.gens()[:-1]] 
+Ecuaciones=[a[0]-1,a[1],list(Ecua)[:-2]]
+Sol_a_n=solve(Ecuaciones,a) 
+L=[f.rhs() for f in Sol_a_n[0]] 
+x=var('x')
+y1=sum([L[i]*x^i for i in range(orden)])
+Ecuaciones=[a[0],a[1]-1,list(Ecua)[:-2]]
+Sol_a_n=solve(Ecuaciones,a) 
+L=[f.rhs() for f in Sol_a_n[0]] 
+y2=sum([L[i]*x^i for i in range(orden)])
+\end{sageblock}
+ Obtenemos las soluciones
+\[
+    \begin{split}
+      y_1(x)&=\cdots\sage{y1}=\cos\omega x\\
+      y_2(x)&=\cdots\sage{y2}=\frac{1}{\omega}\sen\omega x\\
+    \end{split}
+\]
+\end{ejemplo}
+
+\subsection{Ecuación de Legendre. Primera aproximación}
+
+\begin{ejemplo} Consideremos la \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{ecuación de Legendre}.
+\boxedeq{(1-x^2)y''-2xy'+p(p+1)y=0,}{eq:ecua_lege}
+donde $p>0$. Esta ecuación aparece en muchas aplicaciones, por ejemplo en muchos problemas que involucran funciones definidas en esferas, como es el caso de los modos normales de vibración de una esfera y en problemas de potenciales esféricos
+
+\[\begin{split}
+   p(p+1)y= p(p+1)&a_0+ p(p+1)a_1x+ p(p+1)a_2x^2+\cdots+ p(p+1)a_nx^n+\cdots\\
+  -2xy'=&-2a_1x-4a_2x^2-6a_3x^3+\cdots-2na_{n}x^n+\cdots\\
+(1-x^2)y''=& 2a_2+2\cdot 3a_3x+\cdots +(n+1)(n+2)a_{n+2}x^n+\cdots\\
+          &-2a_2x^2-2\cdot 3a_3x^3-\cdots -(n-1)na_{n}x^n-\cdots\\
+     -------&----------------------\\
+0=(1-x^2)y''-2xy+p(p+1)y =& (p(p+1)a_0+2a_2)+(p(p+1)a_1-2a_12\cdot 3a_3)x+\cdots\\
+     &+ \left( (p(p+1)-n(n+1)\right)a_n+n(n+1)a_{n+2})x^n+\cdots
+  \end{split}
+\]
+Obtenemos la relación de recurrencia
+\boxedeq{a_{n+2}=-\frac{(p-n)(p+n+1)}{(n+1)(n+2)} a_n}{eq:leg_rel_recu}
+ Ahora vamos a dividir la serie en los términos pares e impares
+\[\sum\limits_{n=0}^{\infty}a_nx^n= \sum\limits_{k=0}^{\infty}a_{2k}x^{2k}+\sum\limits_{k=0}^{\infty}a_{2k+1}x^{2k+1}\]
+A cada una de estas series le podemos aplicar el criterio de la razón usando la fórmula de recuerrencia de arriba. Por ejemplo para los términos pares
+\[\lim\limits_{k\to\infty}\frac{|a_{2k+2}x^{2k+2}|}{|a_{2k}x^{2k}|}=\lim\limits_{k\to\infty}\frac{|p_0-2k||p_0+2k+1|}{(2k+1)(2k+2)}|x|^2=|x|^2\]
+De modo que la serie tiene radio de convergencia 1. La misma situación ocurre con la serie de términos impares. Esto muestra que la serie en su conjunto tambien tiene radio de convergencia igual a 1. Era previsible que el radio de convergencia no fuese mayor a 1, pues la forma explícita de la ecuación de la ecuación de Legendre es
+\[y''-\frac{2x}{(1-x^2)}y'+\frac{p(p+1)}{(1-x^2)}y=0.\]
+Se observa que $1$ y $-1$ son puntos singulares de la ecuación.
+
+Podemos relacionar cualquier coeficiente de índice par $a_{2k}$ con el $a_0$ y cualquiera con índice impar $a_{2k+1}$ con el $a_1$. Esto lo resolveremos con SAGE
+
+\begin{sageblock}
+"""
+Método de coeficientes indeterminados para
+la ecuación(1-x^2)y''-2xy'+p(p+1)y=0
+"""
+orden=10
+Lista=['a%s'%i for i in range(orden)]+['p']
+A = PolynomialRing(QQ,Lista)
+Series.<X> = PowerSeriesRing(A)
+Coef=A.gens() 
+y=sum(Coef[i]*X^i for i in range(orden)) 
+p=A.gens()[-1]
+Ecua=(1-X^2)*y.derivative(2)-2*X*y.derivative()+p*(p+1)*y
+a= [SR(i) for i in A.gens()[:-1]] 
+Ecuaciones=list(Ecua)[:-2]
+Sol_a_n=solve(Ecuaciones,a) 
+Sol_a_n=[i.lhs()==i.rhs().factor() for i in Sol_a_n[0]]
+\end{sageblock}
+Obtenemos que la solución a la relación de recurrencia de dos términos es
+\[\sage{vector(Sol_a_n).column()}\]
+En general 
+\[a_{2n}=\frac{(p+1)(p_0+3)\cdots (p+2n-1) \times p(p-2)\cdots (p-2n+2)}{(2n)!}a_0\]
+y
+\[a_{2n+1}=\frac{(p+2)(p+4)\cdots (p+2n) \times (p-1)(p-3)\cdots (p-2n+1)}{(2n+1)!}a_1\]
+Podemos elegir $a_0$ y $a_1$ de manera arbitraria (esto está de acuerdo con que en una ecuación de orden 2 aparece 2 constantes de integración) y por las relaciones anteriores deducir el valor de los restantes $a_n$.
+
+Un caso especial se plantea cuando  $p\in\mathbb{N}$. En esa situación vemos que infinitos de los $a_n$ resultan iguales a cero. De hecho una de las series, la de términos impares o la de términos pares acorde a que $p$ sea par o impar respectivamente,  se trunca. Supongamos que esto ocurre con la serie de términos impares, es decir $p$ es entero positivo impar. Si ahora tomamos $a_0=0$ toda la serie de términos pares se hará cero. Para $a_1$ elijo algún valor no nulo y esto me garantiza que los términos impares son no nulos hasta el término $a_{n}$, pero a partir de allí también se hacen cero. Es usual elegir $a_1$ para que $y(1)=1$. Nos queda definida así una función polinómica que se denomina \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{polinomio de Legendre} y se denota por $P_p$. Cuando $p$ es par hacemos una construcción análoga, quedando un polinomio $P_p$, con todas potencias pares, tal que $P_p(1)=1$.
+
+Todos estos cálculos los programamos en la siguiente función de SAGE. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
+
+\begin{sageblock}
+def legendre(n):
+    """
+    Método de coeficientes indeterminados para
+    la ecuación(1-x^2)y''-2xy'+p(p+1)y=0
+    """
+    if n not in NN:
+        print "n no es entero"
+    else:
+        orden=n+2
+        Lista=['a%s'%i for i in range(orden)]
+        A = PolynomialRing(QQ,Lista)
+        Series.<X> = PowerSeriesRing(A)
+        Coef=A.gens() 
+        y=sum(Coef[i]*X^i for i in range(orden)) 
+        Ecua=(1-X^2)*y.derivative(2)-2*X*y.derivative()+n*(n+1)*y
+        a= [SR(i) for i in A.gens()] 
+        Ecuaciones=list(Ecua)[:-2]
+        s=var('s')
+        if n%2==0:
+            Ecuaciones+=[a[0]-s,a[1]]
+        else:
+            Ecuaciones+=[a[0],a[1]-s]
+        Sol_a_n=solve(Ecuaciones,a) 
+        L=[f.rhs() for f in Sol_a_n[0]] 
+        x=var('x')
+        y=sum([L[i]*x^i for i in range(orden)])
+        sol=solve(y(x=1)==1,s)
+        return y.subs(sol[0])
+\end{sageblock}
+Con la ayuda de esta función podemos generar rápidamente una tabla de polinomios de Legendre
+\begin{sageblock}
+L=[legendre(i) for i in range(10)]
+\end{sageblock} 
+\[\sage{vector(L).column()}\]
+y graficarlos
+\[\sageplot[scale=.5]{plot(L)}\]
+\end{ejemplo}
+
+\section{Teorema fundamental sobre puntos ordinarios}
+
+
+\begin{definicion} Dada la ecuación diferencial
+\[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
+donde $p,q$ son funciones   definidas en algún intervalo abierto $I$, diremos que $x_0\in I$ es un \emph{punto ordinario} de la ecuación si $p$ y $q$ son analíticas en $x_0$. Un punto no ordinario se llama \emph{singular}.
+\end{definicion}
+
+\begin{ejemplo} En la ecuación del oscilador armónico
+\[y''+\omega^2 y=0 \]
+todo punto es ordinario. 
+\end{ejemplo}
+
+\begin{ejemplo} En la ecuación de Legendre
+\[(1-x^2)y''-2xy'+p(p+1)y=0 \]
+$1$ y $-1$ son puntos singulares, otros valores de $x$ son puntos ordinarios. 
+\end{ejemplo}
+
+Antes de ir al Teorema más importante de esta sección vamos a enunciar un  lema que nos resultará útil.
+
+\begin{lema}\label{lema:comp_recu}\textbf{Comparación.} Supongamos que tenemos una relación de recurrencia de dos términos
+ \begin{equation}\label{eq:recu2} a_{n+2}=f_n(a_n,a_{n+1})\end{equation}
+donde las funciones $f_n$ son crecientes respecto a sus dos variables. Si la sucesión  $\{a_n\}$ resuelve \eqref{eq:recu2}, la sucesión  $\{b_n\}$ resuelve la desigualdad
+ \[b_{n+2}\leq f_n(b_n,b_{n+1})\]
+y además vale que  $b_0\leq a_0$ y $b_1\leq a_1$, entonces $b_n\leq a_n$ para todo $n=2,3,\ldots$. En particular la afirmación se satisface cuando $f_n$ es lineal con coeficientes positivos, es decir $f_n(x,y)=\alpha_nx+\beta_ny$, con $\alpha,\beta\geq 0$.
+\end{lema}
+\begin{demo}
+Es muy sencilla y la dejamos de ejercicio (evidentemenete hay que utilizar el principio de inducción). 
+\end{demo}
+
+
+\begin{teorema}\textbf{Teorema Fundamental Sobre Puntos Ordinarios.} Sea $x_0$ un punto ordinario de la ecuación
+\[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
+y sean $a_0,a_1\in\mathbb{R}$. Existe una solución de la ecuación que es analítica en un entorno de $x_0$ y que satisface $y(x_0)=a_0$ e $y'(x_0)=a_1$. El radio de convergencia del desarrollo en serie de $y$ es al menos tan grande como el mínimo de los radios de convergencia de los desarrollos en serie de $p$ y $q$.
+\end{teorema}
+
+\begin{demo}
+Supongamos, sin perder generalidad, que $x_0=0$. Consideremos que los desarrollos en serie de potencias de $p$ y $q$.
+\begin{equation}\label{eq:series_p_q}p(x)=\sum_{n=0}^{\infty}p_nx^n\quad\text{y}\quad q(x)=\sum_{n=0}^{\infty}q_nx^n.
+\end{equation}
+Supongamos que ambas series convergen en $|x|<R$, para cierto $R>0$. Vamos a aplicar el método de coeficientes indeterminados. Tenemos
+\[
+    \begin{split}
+      y&=\sum_{n=0}^{\infty}a_nx^n=a_0+a_1x+\cdots+a_nx^n+\cdots\\
+      y'&=\sum_{n=0}^{\infty}(n+1)a_{n+1}x^n=a_1+2a_2x+\cdots+(n+1)a_{n+1}x^n+\cdots\\
+      y''&=\sum_{n=0}^{\infty}(n+1)(n+2)a_{n+2}x^n= 2a_2+2\cdot 3a_3x+\cdots+(n+1)(n+2)a_{n+2}x^n+\cdots.
+    \end{split}
+\]
+Por el  Teorema \ref{teor_oper_series} 
+\[
+   \begin{split}
+     q(x)y&=\left(\sum_{n=0}^{\infty}a_nx^n\right)\left(\sum_{n=0}^{\infty}q_nx^n\right)=\sum_{n=0}^{\infty}\left(\sum_{k=0}^na_kq_{n-k}\right)x^n,\\
+     p(x)y'&=\left(\sum_{n=0}^{\infty}(n+1)a_{n+1}x^n\right)\left(\sum_{n=0}^{\infty}p_nx^n\right)=\sum_{n=0}^{\infty}\left(\sum_{k=0}^n(k+1)a_{k+1}p_{n-k}\right)x^n.
+   \end{split}
+\]
+Sustituyendo estos, y los anteriores, desarrollos en la ecuación, obtenemos
+\[\sum_{n=0}^{\infty}\left\{ (n+1)(n+2)a_{n+2}+ \sum_{k=0}^na_kq_{n-k}+ \sum_{k=0}^n(k+1)a_{k+1}p_{n-k} \right\}x^n.\]
+De esta forma deducimos la ecuación de recurrencia que se satisface en una ecuación lineal general de segundo orden en un punto ordinario.
+\boxedeq{a_{n+2}=-\frac{ \sum_{k=0}^n\left\{ a_kq_{n-k}+ (k+1)a_{k+1}p_{n-k}\right\}}{n(n+1)}}{eq:rel_recu_gral}
+Dados los coeficientes $a_0$ y $a_1$ la relación de recurrencia determina los $a_n$, $n\geq 2$. Queda ver que la serie así definida tiene radio de convergencia al menos $R$. 
+
+Tomemos $r$ tal que $0<r<R$. Como las series \eqref{eq:series_p_q} tienen radio de convergencia $R$, estas series convergen absolutamente para $x=r$. El criterio de convergencia de series conocido como criterio del resto implica que $p_nr^n,q_nr^n$ son suceciones que tienden a $0$. En particular estan acotadas, y por ello existe $M>0$ tal que
+\[ |p_n|r^n,|q_n|r^n\leq M.\]
+Tomando módulo en \eqref{eq:rel_recu_gral} y usando las desigualdades de arriba concluímos
+\[
+  \begin{split}
+    |a_{n+2}|&\leq\frac{M}{(n+1)(n+2)r^n} \sum_{k=0}^n\left(|a_k|+ (k+1)|a_{k+1}|\right)r^k\\
+&\leq\frac{M}{(n+1)(n+2)r^n} \sum_{k=0}^n\left(|a_k|+ (k+1)|a_{k+1}|\right)r^k+\frac{M|a_{n+1}|r}{(n+1)(n+2)}.
+  \end{split}
+  \]
+En la última desigualdad se agregó un término en apariencia por capricho, pero este término nos servirá para complementar una expresión en el futuro. Definamos la sucesión $b_n$ como la solución de la siguiente relación de recurrencia
+\begin{equation}\label{eq:bn_recu}b_{n+2}=\frac{M}{(n+1)(n+2)r^n} \sum_{k=0}^n\left(b_k+ (k+1)b_{k+1}\right)r^k+\frac{Mb_{n+1}r}{(n+1)(n+2)},
+\end{equation}
+con las condiciones iniciales $b_0=|a_0|$ y $b_1=|a_1|$. Por el Lema \ref{lema:comp_recu} tenemos que $|a_n|\leq b_n$ para todo $n$. Aplicando \eqref{eq:bn_recu} a $n-1$ en lugar de $n$
+\begin{equation}\label{eq:bn_recu_2}b_{n+1}=\frac{M}{n(n+1)r^{n-1}} \sum_{k=0}^{n-1}\left(b_k+ (k+1)b_{k+1}\right)r^k+\frac{Mb_{n}r}{n(n+1)},
+\end{equation}
+Multiplicando  \eqref{eq:bn_recu} por $r$ y usando \ref{eq:bn_recu_2}
+\[
+\begin{split}
+rb_{n+2}=&\frac{M}{(n+1)(n+2)r^{n-1}} \sum_{k=0}^{n-1}\left(b_k+ (k+1)b_{k+1}\right)r^k\\
+&+\frac{Mr\left(b_n+ (n+1)b_{n+1}\right)}{(n+1)(n+2)}+\frac{Mb_{n+1}r²}{(n+1)(n+2)}\\
+=&\frac{n(n+1)b_{n+1}-Mb_nr}{(n+1)(n+2)}
++\frac{Mr\left(b_n+ (n+1)b_{n+1}\right)}{(n+1)(n+2)}\\
+&+\frac{Mb_{n+1}r²}{(n+1)(n+2)}\\
+=&\frac{(n(n+1)+Mr(n+1)+Mr^2)}{(n+1)(n+2)}b_{n+1},
+\end{split}
+\]
+Entonces 
+\[\lim_{n\to\infty}\frac{|b_{n+2}x^{n+2}|}{|b_{n+1}x^{n+1}|}=\lim_{n\to\infty}\frac{(n(n+1)+Mr(n+1)+Mr^2)}{(n+1)(n+2)}\frac{|x|}{r}=\frac{|x|}{r}.
+\]
+Luego la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para $|x|<r$. Como $|a_n|\leq b_n$ la misma afirmación es cierta para $\sum_{n=0}^{\infty}a_nx^n$. Como $r<R$ fue elegido arbitrariamente, tenemos que $\sum_{n=0}^{\infty}a_nx^n$ converge en $|x|<R$.
+\end{demo}
+
+
+\section{Puntos singulares, método de Frobenius}
+
+\subsection{Series de Frobenius}
+\begin{definicion}\textbf{ Sigularidades, Polos.} Sea $f$ definida en un intervalo abierto $I$ con valores en $\rr$. Diremos que $f$ posee un \emph{polo de orden $k$} en $x_0\in\rr$, si la función $(x-x_0)^kf(x)$ es analítica en un entorno de $x_0$. Vale decir que $(x-x_0)^kf(x)$ se desarrolla en serie de potencias.
+\[(x-x_0)^kf(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^n.\]
+En consecuencia
+\[f(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^{n-k}=\frac{a_0}{(x-x_0)^k}+\cdots+\frac{a_{k-1}}{(x-x_0)}+a_k+a_{k+1}(x-x_0)+\cdots.\]
+Este tipo de desarrollo en serie es un caso particular de serie de Laurent. 
+
+Cuando el orden de un polo es $1$ se lo denomina \emph{polo simple}.
+\end{definicion}
 
 
 
+\begin{definicion} Un punto singular $x_0$ de la ecuación
+\[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
+se llama singular regular si $p(x)$ tiene un polo a lo sumo simple en $x_0$ y $q(x)$ tiene un polo a lo sumo de orden $2$ en $x_0$. Es decir
+\[(x-x_0)p(x)\quad\hbox{y}\quad (x-x_0)^2q(x)\]
+son analíticas en $x_0$.
+\end{definicion}
+Algunas de las ecuaciones más importantes de la Física-Matemática tienen puntos singulares regulares.
+
+\begin{ejemplo} 1 y -1 son puntos singulares regulares de la ecuación de Legendre de orden $p$
+\[y''-\frac{2x}{1-x^2}y'+\frac{p(p+1)}{1-x^2}y=0\]
+\end{ejemplo}
+
+
+\begin{ejemplo} 0 es un punto singular regular de la ecuación de Bessel de orden $p$
+\[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
+\end{ejemplo}
+
+El método de coeficientes indeterminados puede fallar en los puntos donde $p$ y $q$ tienen polos. En su lugar vamos a proponer otro tipo de desarrollo en serie. Lo vamos a motivar con un ejemplo.
+
+\begin{ejemplo} Consideremos la ecuación de Euler, para $p,q\in\rr$
+\[y''+\frac{p}{x}y'+\frac{q}{x^2}y=0\]
+o equivalentemente
+\[x^2y''+pxy'+qy=0\]
+Aquí es facil verificar que las funciones
+\[P(x):=\frac{p}{x}\quad\hbox{ y }\quad Q(x):= \frac{q}{x^2}\]
+satisfacen la relación
+\[\frac{Q'+2PQ}{Q^{\frac{3}{2}}}\]
+es constante. Cuando se daba esta condición el ejercicio 6 de la página 102 del libro de Simmons nos enseña que podemos reducir la ecuación a una ecuación con coeficientes constantes por medio del cambio de la variable independiente
+\[z=\int\sqrt{Q}dx\]
+En es caso, obviando las constantes, el cambio de variables que debemos hacer, asumamos $x>0$, es
+\[z=\ln(x)\]
+Seguramente, a esta altura del curso,  el alumno ya hizo los cálculos que muestran que la ecuación de Euler se transforma,  por medio del cambio de variables propuesto, en la ecuación a coeficientes constantes
+\[y''+(p-1)y'+qy=0.\]
+Cuya ecuación característica es
+\[\lambda^2+(p-1)\lambda+q=0\]
+Resolviendo esta ecuación con SAGE
+
+\begin{sageblock}
+s,p,q=var('s,p,q')
+Raices=solve(s^2+(p-1)*s+q==0,s)
+\end{sageblock}
+Obtenemos las raíces 
+\[s_1=\sage{Raices[0].rhs()}\quad\text{y}\quad s_2=\sage{Raices[1].rhs()}.\]
+ Si $s_1\neq s_2$ dos soluciones linealmente independientes son:
+\[y_1(z)=e^{s_1z}\quad\hbox{y}\quad y_2(z)=e^{s_2z}\]
+ Si $s_1=s_2$
+\[y_1(z)=e^{s_1z} \quad\hbox{y}\quad y_2(z)=ze^{s_1z}\]
+son soluciones linealmente independientes. Asumamos que las raices $s_1$ y $s_2$ son reales, entonces como $z=\ln(x)$ las soluciones en términos de la variable $x$ son 
+\[y_1(x)=x^{s_1}\quad\hbox{y}\quad y_2(x)=x^{s_2}\quad\text{para }  s_1\neq s_2\]
+y
+\[y_1(x)=x^{s_1} \quad\hbox{y}\quad y_2(x)=\ln(x)x^{s_1}\quad\text{para }  s_1= s_2\]
+
+
+
+Estas funciones, a menos que $s_1$ y $s_2$ sean enteros positivos, ya no son analíticas en cero, pues una función analítica es derivable infinitas veces y claramente hay derivadas (o las mismas funciones si las raices son negativas) de $y_1$ e $y_2$ que son discontinuas. 
+\end{ejemplo}
+
+
+De modo que, como era de suponer, no podremos encontrar en general en un punto singular una solución analítica.  Vamos a intentar flexibilar nuestro método para incluir otro tipo de desarrollo en serie, que está inspirado en los resultados obtenidos para la ecuación de Euler. 
+
+\begin{definicion} A una expresión de la forma
+ \[y(x)=(x-x_0)^m(a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots),\]
+donde $m\in\rr$, lo llamaremos \emph{Serie de Frobenius}.
+\end{definicion}
+Las series de Frobenius no son series de potencias ni de Laurent ya que en ellas aparecen potencias no enteras.
+
+El método de Frobenius consiste en proponer como solución de una ecuación diferencial una serie de Frobenius. Este método tiene éxito, por ejemplo, en los puntos sigulares regulares de ecuaciones diferenciales lineales de segundo orden.
+
+\begin{ejemplo} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
+\begin{equation}\label{eq:ejem_sim}y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0.
+\end{equation}
+Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SAGE. 
+
+Proponemos como solución
+
+ \[y(x)=x^m\sum_{n=0}^{\infty}a_{n}x^n=\sum_{n=0}^{\infty}a_{n}x^{n+m}\]
+y calculamos
+\[
+    \begin{split}
+     -\frac{1}{2x^2}y&=-\sum_{n=0}^{\infty}\frac{a_n}{2}x^{m+n-2}=-\frac{a_0}{2}x^{m-2}
+-\frac{a_1}{2}x^{m-1}-\cdots-\frac{a_{n+2}}{2}x^{m+n}-\cdots\\
+      y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
+      \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
+      y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}\\
+&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots+(m+n+2)(m+n+1)a_{n+2}x^{m+n}+\cdots.
+    \end{split}
+\]
+Sumando las cuatro igualdades miembro a miembro y sustiyendo en \eqref{eq:ejem_sim}
+
+\[
+  \begin{split}
+    0=& \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}  + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2}+ (m+1)ma_1 \right)x^{m-1}+\cdots \\
+  &+\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{n+2} \right)x^{m+n}+\cdots\\
+ =&\frac12\left(2m+1\right)(m-1) a_0x^{m-2}+ \frac{1}{2} \, {\left( 2 \, a_{0} + (1+2(m+1))\, a_{1}\right)}m x^{m-1}+\cdots\\
+ &+\frac12\left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1)x^{m+n}+\cdots.
+  \end{split}
+\]
+Igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
+ 
+\begin{equation}\label{eq:ecua_ejem_frob}
+    \begin{split}
+      \frac12\left(2m+1\right)(m-1) a_0&=0\\
+       \frac{1}{2}  \left(   2 a_{0} + (1+2(m+1)) a_{1}\right)m&=0\\
+                                      &\vdots\\
+     \left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1) &=0\\
+    \end{split}
+\end{equation}
+Despejando de la última ecuación nos queda la relación de recurrencia de un término
+\boxedeq{a_{n+2}=-\frac{2a_{n+1}}{2(m+n+2)+1},}{eq:recu_ecua_ejem_frob}
+que es satisfecha, al menos, si $2(m+n+2)+1\neq 0$. 
+La primera de las ecuaciones en \eqref{eq:ecua_ejem_frob} es importante puesto que determina el valor de $m$. Se llama ecuación indicial. Vemos que si tomamos $m=1$ o $m=-1/2$ se resuelve la primera ecuacion. Supongamos $m=1$. Entonces \eqref{eq:recu_ecua_ejem_frob} se transforma en
+\[
+a_{n+2}=-\frac{2a_{n+1}}{2n+7},\quad n=-1,0,\ldots.
+\]
+Con ayuda de la relación de recurrencia podemos determinar el radio de convergencia de la serie
+
+\[\lim_{n\to\infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^{n}|}=
+\lim_{n\to\infty}\frac{2|x|}{2n+7}=0.\]
+Por consiguiente el radio de convergencia es infinito.  Iterando la relación de recurrencia llegamos 
+\[a_{n}=-\frac{2}{2n+3}a_{n-1}=\frac{2}{(2n+3)(2n+1)}a_{n-2}=\cdots=
+\frac{(-1)^n2^{n}}{(2n+3)(2n+1)\cdots 5}a_0.\]
+El valor de $a_0$ determina al resto de los $a_n$ y se puede elegir arbitrariamente. Supongamos que $a_0=1$. Hemos hallado la siguiente solución  
+\boxedeq{y_1(x)=x\sum_{n=0}^{\infty}(-1)^n\frac{2^{n}}{(2n+3)(2n+1)\cdots 5}x^n.}{}
+Cuando $m=-\frac12$, la relación de recurrencia es
+\[a_{n+1}=-\frac{a_{n}}{n+1}.\]
+Por ende
+\[a_n=-\frac{a_{n-1}}{n}=\frac{1}{n(n-1)}a_{n-2}=\cdots=\frac{(-1)^n}{n!}a_{0}=\frac{(-1)^n}{n!}.\]
+Conseguimos la solución
+\boxedeq{y_2(x)=x^{-\frac12}\sum_{n=0}^{\infty}\frac{(-1)^n}{n!}x^n=\frac{e^{-x}}{\sqrt{x}}}{}
+Estas dos soluciones son linealmente independientes. Para justificaresto basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
+
+Resolvamos el ejemplo con SAGE. Desafortunadamente hasta donde sabemos SAGE no tiene implementado el anillo de series de Frobenius. Luego vamos a tener que usar otra aproximación  con el método de Frobenius. Vamos a definir series de Frobenius como expresiones de SAGE. 
+
+\begin{sageblock}
+orden=7
+#Declaramos muchas variables en una sola linea
+ListaCoefNom='a0'
+for i in range(1,orden):
+    ListaCoefNom+=',a'+str(i)
+a=var(ListaCoefNom)
+x=var('x')
+m=var('m')
+y = x^m*sum(a[i]*x^i for i in range(orden))
+Ecua=y.diff(x,2)+(1/2+x)/x*y.diff(x,1)-(1/(2*x^2))*y
+
+"""
+La exponente más chico para el x en esta expresión es, a los sumo, m-2. Dividimos por m-2 asi todos los exponentes son enteros positivos
+"""
+Ecua=Ecua/x^(m-2)
+Ecua=Ecua.coefficients(x)
+Ecuaciones=[f[0] for f in Ecua] 
+\end{sageblock}
+
+Con esta parte del script hemos generado la lista de las 10 primeras ecuaciones. Ellas son
+\[\sage{vector(Ecuaciones).column()}.\]
+Resolvamos la ecuación indicial
+\begin{sageblock}
+Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+\end{sageblock}
+Obtenemos
+\[\sage{Sol_Ecua_Ind}.\]
+Sustituyamos los valores de $m$ en la lista de ecuaciones, agreguemos la ecuación $a_0=1$, resolvamos para los $a_i$ y sustituyamos la solución en $y$. Obtenemos la primer solución (truncada) 
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]) for f in Ecuaciones[1:]]
+Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
+y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
+\end{sageblock}
+La solución es 
+\[\boxed{y_1(x)=\sage{y1.expand()}.}\]
+Para obtener la segunda solución solo hay que cambiar la última parte del script
+\begin{sageblock}
+Ecuaciones2=[f.subs(Sol_Ecua_Ind[0]) for f in Ecuaciones[1:]]
+Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
+y2=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[0])
+\end{sageblock}
+La solución es 
+\[\boxed{y_2(x)=\sage{y2.expand()}.}\]
 
 
 \end{ejemplo}
+
+\subsection{Ecuación de Bessel}
+
+\subsubsection{Relaciones de recurrencia y solución por el método de Frobenius}
+
+\begin{definicion} Recordemos a la ecuación de Bessel de orden $p$ ($p>0$)
+ \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
+\end{definicion}
+
+En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SAGE.
+
+\begin{sageblock}
+orden=10
+ListaCoefNom='a0'
+for i in range(1,orden):
+    ListaCoefNom+=',a'+str(i)
+a=var(ListaCoefNom)
+x=var('x')
+m,p=var('m,p')
+y = x^m*sum(a[i]*x^i for i in range(orden))
+Ecua=y.diff(x,2)+1/x*y.diff(x,1)+(1-p^2/x^2)*y
+Ecua=Ecua/x^(m-2)
+Ecua=Ecua.coefficients(x)
+Ecuaciones=[f[0] for f in Ecua] 
+Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+\end{sageblock}
+Las raíces de la ecuación indicial son
+\[\sage{Sol_Ecua_Ind}\]
+Vamos a trabajar con la raíz $m=p$. Las ecuaciones para los $a_n$ (abajo falta igualar a $0$) son las de abajo, hemos decartado las dos últimas ecuaciones dado que presentan problemas que vienen del truncamiento.
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]).factor()\
+for f in Ecuaciones[1:-2]]
+\end{sageblock}
+\[\sage{vector(Ecuaciones1).column()}\]
+Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$. Es decir que son relaciones de dos términos. A menos que $p=-1/2$ (este caso lo estudiaremos separadamente después) la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SAGE confirma esta aseveración. Resolvamos las ecuaciones. Notar que no pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ esarbitrario. Resulta en que SAGE nos resuelve todos los coeficientes en función de $a_0$.
+\begin{sageblock}
+Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
+\end{sageblock}
+\begin{sagesilent}
+SolucionesA=solve(Ecuaciones1,a[1:])[0]
+SolucionesB=[f.factor() for f in SolucionesA]
+for i in range(0,len(SolucionesB),2):
+    SolucionesB[i]=SolucionesB[i]==0
+\end{sagesilent}
+Obtenemos
+\[\sage{ vector( SolucionesB).column() }\]
+Por inspección de la lista vemos que
+\[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
+Vale la relación de recurrencia
+\boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
+Iterando esta relación
+\[
+\begin{split}
+  a_{2n}&=-\frac{1}{4n(p+n)}a_{2n-2}\\
+       &=\frac{1}{4n(p+n-1)}\cdot\frac{1}{4(n-1)(p+n-1)}a_{2n-4}=\cdots\\
+       & =(-1)^n\frac{1}{4^nn!(p+n)(p+n-1)\cdots (p+1)}a_{0}.
+\end{split}
+\]
+Obtenemos la solución 
+\boxedeq{y(x)=x^p\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{eq:sol_bessel_1}
+Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
+
+En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
+\begin{sageblock}
+y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
+\end{sageblock}
+
+\[\sage{y1}.\]
+
+\subsubsection{Función Gamma y la función de Bessel de primera especie}
+
+Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresiòn quedaría
+\[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
+No obstante, nos previene aún de utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no tenemos claro que significa $p!$. El propósito de esta subsección es introducir la extensión de la función factorial a una función de variable real. 
+
+\begin{definicion} Para $p>0$ definimos la \emph{función Gamma} por 
+\boxedeq{\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt}{eq:gamma}
+\end{definicion}
+
+En otros cursos se demuestra que la integral impropia en la definición converge. Adeás se 
+
+
+
+
+
+
+
+
+
+
+
+Ahora vamos a tomar la solución $m=-p$ de la ecuación indicial.
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
+for f in Ecuaciones[1:-2]]
+\end{sageblock}
+ \[\sage{vector(Ecuaciones1).column()}\]
+% Resolvamos las ecuaciones. 
+% \begin{sageblock}
+% Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
+% \end{sageblock}
+% \begin{sagesilent}
+% SolucionesA=solve(Ecuaciones1,a[1:])[0]
+% SolucionesB=[f.factor() for f in SolucionesA]
+% for i in range(0,len(SolucionesB),2):
+%     SolucionesB[i]=SolucionesB[i]==0
+% \end{sagesilent}
+% Obtenemos
+% \[\sage{ vector( SolucionesB).column() }\]
+% Por inspección de la lista vemos que
+% \[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
+% Vale la relación de recurrencia
+% \boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
+% Iterando esta relación
+% \[
+% \begin{split}
+%   a_{2n}&=-\frac{1}{4n(p+n)}a_{2n-2}\\
+%        &=\frac{1}{4n(p+n-1)}\cdot\frac{1}{4(n-1)(p+n-1)}a_{2n-4}=\cdots\\
+%        & =(-1)^n\frac{1}{4^nn!(p+n)(p+n-1)\cdots (p+1)}a_{0}.
+% \end{split}
+% \]
+% Obtenemos la solución 
+% \boxedeq{y(x)=\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{}
+% Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
+
+% En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
+% \begin{sageblock}
+% Coef=[f.factor() for f in Coef_Sol_1[0]]
+% y1=y.subs(f).subs(Sol_Ecua_Ind[1])
+% \end{sageblock}
+
+% \[\sage{y1}.\]
+
+
+
 \end{document}
