@@ -855,7 +855,7 @@ Luego la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para $|x|<r$. Como $|a_n|\le
 
 \section{Puntos singulares, método de Frobenius}
 
-
+\subsection{Series de Frobenius}
 \begin{definicion}\textbf{ Sigularidades, Polos.} Sea $f$ definida en un intervalo abierto $I$ con valores en $\rr$. Diremos que $f$ posee un \emph{polo de orden $k$} en $x_0\in\rr$, si la función $(x-x_0)^kf(x)$ es analítica en un entorno de $x_0$. Vale decir que $(x-x_0)^kf(x)$ se desarrolla en serie de potencias.
 \[(x-x_0)^kf(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^n.\]
 En consecuencia
@@ -951,29 +951,223 @@ y calculamos
       y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
       \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
       y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}\\
-&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots+(m+n+2)(m+n+1)a_{m+n+2}x^{m+n}+\cdots.
+&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots+(m+n+2)(m+n+1)a_{n+2}x^{m+n}+\cdots.
     \end{split}
 \]
 Sumando las cuatro igualdades miembro a miembro y sustiyendo en \eqref{eq:ejem_sim}
 
 \[
   \begin{split}
-    0=& \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}  + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2} \right)x^{m-1}+\cdots \\
- &+\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{m+n+2} \right)x^{m+n}+\cdots .
+    0=& \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}  + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2}+ (m+1)ma_1 \right)x^{m-1}+\cdots \\
+  &+\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{n+2} \right)x^{m+n}+\cdots\\
+ =&\frac12\left(2m+1\right)(m-1) a_0x^{m-2}+ \frac{1}{2} \, {\left( 2 \, a_{0} + (1+2(m+1))\, a_{1}\right)}m x^{m-1}+\cdots\\
+ &+\frac12\left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1)x^{m+n}+\cdots.
   \end{split}
 \]
-
-
-
-e igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
+Igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
  
-% \[
-%     \begin{split}
-%       -\frac{1}{2x^}
-%     \end{split}
-% \]
+\begin{equation}\label{eq:ecua_ejem_frob}
+    \begin{split}
+      \frac12\left(2m+1\right)(m-1) a_0&=0\\
+       \frac{1}{2}  \left(   2 a_{0} + (1+2(m+1)) a_{1}\right)m&=0\\
+                                      &\vdots\\
+     \left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1) &=0\\
+    \end{split}
+\end{equation}
+Despejando de la última ecuación nos queda la relación de recurrencia de un término
+\boxedeq{a_{n+2}=-\frac{2a_{n+1}}{2(m+n+2)+1},}{eq:recu_ecua_ejem_frob}
+que es satisfecha, al menos, si $2(m+n+2)+1\neq 0$. 
+La primera de las ecuaciones en \eqref{eq:ecua_ejem_frob} es importante puesto que determina el valor de $m$. Se llama ecuación indicial. Vemos que si tomamos $m=1$ o $m=-1/2$ se resuelve la primera ecuacion. Supongamos $m=1$. Entonces \eqref{eq:recu_ecua_ejem_frob} se transforma en
+\[
+a_{n+2}=-\frac{2a_{n+1}}{2n+7},\quad n=-1,0,\ldots.
+\]
+Con ayuda de la relación de recurrencia podemos determinar el radio de convergencia de la serie
+
+\[\lim_{n\to\infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^{n}|}=
+\lim_{n\to\infty}\frac{2|x|}{2n+7}=0.\]
+Por consiguiente el radio de convergencia es infinito.  Iterando la relación de recurrencia llegamos 
+\[a_{n}=-\frac{2}{2n+3}a_{n-1}=\frac{2}{(2n+3)(2n+1)}a_{n-2}=\cdots=
+\frac{(-1)^n2^{n}}{(2n+3)(2n+1)\cdots 5}a_0.\]
+El valor de $a_0$ determina al resto de los $a_n$ y se puede elegir arbitrariamente. Supongamos que $a_0=1$. Hemos hallado la siguiente solución  
+\boxedeq{y_1(x)=x\sum_{n=0}^{\infty}(-1)^n\frac{2^{n}}{(2n+3)(2n+1)\cdots 5}x^n.}{}
+Cuando $m=-\frac12$, la relación de recurrencia es
+\[a_{n+1}=-\frac{a_{n}}{n+1}.\]
+Por ende
+\[a_n=-\frac{a_{n-1}}{n}=\frac{1}{n(n-1)}a_{n-2}=\cdots=\frac{(-1)^n}{n!}a_{0}=\frac{(-1)^n}{n!}.\]
+Conseguimos la solución
+\boxedeq{y_2(x)=x^{-\frac12}\sum_{n=0}^{\infty}\frac{(-1)^n}{n!}x^n=\frac{e^{-x}}{\sqrt{x}}}{}
+Estas dos soluciones son linealmente independientes. Para justificaresto basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
+
+Resolvamos el ejemplo con SAGE. Desafortunadamente hasta donde sabemos SAGE no tiene implementado el anillo de series de Frobenius. Luego vamos a tener que usar otra aproximación  con el método de Frobenius. Vamos a definir series de Frobenius como expresiones de SAGE. 
+
+\begin{sageblock}
+orden=7
+#Declaramos muchas variables en una sola linea
+ListaCoefNom='a0'
+for i in range(1,orden):
+    ListaCoefNom+=',a'+str(i)
+a=var(ListaCoefNom)
+x=var('x')
+m=var('m')
+y = x^m*sum(a[i]*x^i for i in range(orden))
+Ecua=y.diff(x,2)+(1/2+x)/x*y.diff(x,1)-(1/(2*x^2))*y
+
+"""
+La exponente más chico para el x en esta expresión es, a los sumo, m-2. Dividimos por m-2 asi todos los exponentes son enteros positivos
+"""
+Ecua=Ecua/x^(m-2)
+Ecua=Ecua.coefficients(x)
+Ecuaciones=[f[0] for f in Ecua] 
+\end{sageblock}
+
+Con esta parte del script hemos generado la lista de las 10 primeras ecuaciones. Ellas son
+\[\sage{vector(Ecuaciones).column()}.\]
+Resolvamos la ecuación indicial
+\begin{sageblock}
+Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+\end{sageblock}
+Obtenemos
+\[\sage{Sol_Ecua_Ind}.\]
+Sustituyamos los valores de $m$ en la lista de ecuaciones, agreguemos la ecuación $a_0=1$, resolvamos para los $a_i$ y sustituyamos la solución en $y$. Obtenemos la primer solución (truncada) 
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]) for f in Ecuaciones[1:]]
+Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
+y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
+\end{sageblock}
+La solución es 
+\[\boxed{y_1(x)=\sage{y1.expand()}.}\]
+Para obtener la segunda solución solo hay que cambiar la última parte del script
+\begin{sageblock}
+Ecuaciones2=[f.subs(Sol_Ecua_Ind[0]) for f in Ecuaciones[1:]]
+Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
+y2=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[0])
+\end{sageblock}
+La solución es 
+\[\boxed{y_2(x)=\sage{y2.expand()}.}\]
+
 
 \end{ejemplo}
+
+\subsection{Ecuación de Bessel}
+
+\begin{definicion} Recordemos a la ecuación de Bessel de orden $p$
+ \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
+\end{definicion}
+
+En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SAGE.
+
+\begin{sageblock}
+orden=10
+ListaCoefNom='a0'
+for i in range(1,orden):
+    ListaCoefNom+=',a'+str(i)
+a=var(ListaCoefNom)
+x=var('x')
+m,p=var('m,p')
+y = x^m*sum(a[i]*x^i for i in range(orden))
+Ecua=y.diff(x,2)+1/x*y.diff(x,1)+(1-p^2/x^2)*y
+Ecua=Ecua/x^(m-2)
+Ecua=Ecua.coefficients(x)
+Ecuaciones=[f[0] for f in Ecua] 
+Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+\end{sageblock}
+Las raíces de la ecuación indicial son
+\[\sage{Sol_Ecua_Ind}\]
+Vamos a trabajar con la raíz $m=p$. Las ecuaciones para los $a_n$ (abajo falta igualar a $0$) son las de abajo, hemos decartado las dos últimas ecuaciones dado que presentan problemas que vienen del truncamiento.
+\begin{sageblock}
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]).factor()\
+for f in Ecuaciones[1:-2]]
+\end{sageblock}
+\[\sage{vector(Ecuaciones1).column()}\]
+Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$. Es decir que son relaciones de dos términos. A menos que $p=-1/2$ (este caso lo estudiaremos separadamente después) la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SAGE confirma esta aseveración. Resolvamos las ecuaciones. Notar que no pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ esarbitrario. Resulta en que SAGE nos resuelve todos los coeficientes en función de $a_0$.
+\begin{sageblock}
+Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
+\end{sageblock}
+\begin{sagesilent}
+SolucionesA=solve(Ecuaciones1,a[1:])[0]
+SolucionesB=[f.factor() for f in SolucionesA]
+for i in range(0,len(SolucionesB),2):
+    SolucionesB[i]=SolucionesB[i]==0
+\end{sagesilent}
+Obtenemos
+\[\sage{ vector( SolucionesB).column() }\]
+Por inspección de la lista vemos que
+\[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
+Vale la relación de recurrencia
+\boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
+Iterando esta relación
+\[
+\begin{split}
+  a_{2n}&=-\frac{1}{4n(p+n)}a_{2n-2}\\
+       &=\frac{1}{4n(p+n-1)}\cdot\frac{1}{4(n-1)(p+n-1)}a_{2n-4}=\cdots\\
+       & =(-1)^n\frac{1}{4^nn!(p+n)(p+n-1)\cdots (p+1)}a_{0}.
+\end{split}
+\]
+Obtenemos la solución 
+\boxedeq{y(x)=\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{}
+Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
+
+En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
+\begin{sageblock}
+y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
+\end{sageblock}
+
+\[\sage{y1}.\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Ahora vamos a tomarla segunda solución de la ecuación indicial.
+% \begin{sageblock}
+% Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
+% for f in Ecuaciones[1:-2]]
+% \end{sageblock}
+% \[\sage{vector(Ecuaciones1).column()}\]
+% Resolvamos las ecuaciones. 
+% \begin{sageblock}
+% Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
+% \end{sageblock}
+% \begin{sagesilent}
+% SolucionesA=solve(Ecuaciones1,a[1:])[0]
+% SolucionesB=[f.factor() for f in SolucionesA]
+% for i in range(0,len(SolucionesB),2):
+%     SolucionesB[i]=SolucionesB[i]==0
+% \end{sagesilent}
+% Obtenemos
+% \[\sage{ vector( SolucionesB).column() }\]
+% Por inspección de la lista vemos que
+% \[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
+% Vale la relación de recurrencia
+% \boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
+% Iterando esta relación
+% \[
+% \begin{split}
+%   a_{2n}&=-\frac{1}{4n(p+n)}a_{2n-2}\\
+%        &=\frac{1}{4n(p+n-1)}\cdot\frac{1}{4(n-1)(p+n-1)}a_{2n-4}=\cdots\\
+%        & =(-1)^n\frac{1}{4^nn!(p+n)(p+n-1)\cdots (p+1)}a_{0}.
+% \end{split}
+% \]
+% Obtenemos la solución 
+% \boxedeq{y(x)=\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{}
+% Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
+
+% En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
+% \begin{sageblock}
+% Coef=[f.factor() for f in Coef_Sol_1[0]]
+% y1=y.subs(f).subs(Sol_Ecua_Ind[1])
+% \end{sageblock}
+
+% \[\sage{y1}.\]
 
 
 
