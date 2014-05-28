@@ -1118,22 +1118,50 @@ y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
 
 \subsubsection{Función Gamma y la función de Bessel de primera especie}
 
-Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresiòn quedaría
+Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresión quedaría
 \[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
 No obstante, nos previene aún de utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no tenemos claro que significa $p!$. El propósito de esta subsección es introducir la extensión de la función factorial a una función de variable real. 
 
-\begin{definicion} Para $p>0$ definimos la \emph{función Gamma} por 
+\begin{definicion}\label{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por 
 \boxedeq{\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt}{eq:gamma}
 \end{definicion}
 
-En otros cursos se demuestra que la integral impropia en la definición converge. Adeás se 
+En otros cursos se demuestra que la integral impropia en la definición converge. Además se tiene la siguiente relación
+\boxedeq{\begin{split}\Gamma(1)&=1\\
+ \Gamma(p+1)&=p\Gamma(p)\end{split}}{eq:recu_gamma}
+Esta relación implica cuando $p=n$ es entero positivo que $\Gamma(n+1)=n\Gamma(n)=\cdots=n!\Gamma(1)=n!$. Luego podemos ver a la función gamma como una extensión de la función factorial a los reales no negativos. Notar que
+\[\lim_{p\to 0+}\Gamma(p)=\lim_{p\to 0+}\frac{\Gamma(p+1)}{p}=+\infty.\]
+La función Gamma tiende a  infinito cuando nos acercamos a cero por derecha.
+
+La Definición \ref{eq:gamma} es válida para $p>0$. No obstante podemos extender la función a $p<0$ valores de $p$ de manera tal que se satisfaga la relación \eqref{eq:ecu_gama}. Concretamente,  supongamos  que $-1<p<0$,  este caso definimos
+\boxedeq{\Gamma(p):=\frac{\Gamma(p+1)}{p}.}{eq:gama_iter}
+Observar que el segundo miembro esta bien definido pues $p+1>0$. Como consecuencia de esta definición tendremos
+\[\lim_{p\to 0-}\Gamma(p)=\lim_{p\to 0-}\frac{\Gamma(p+1)}{p}=-\infty.\]
+y 
+\[\lim_{p\to -1+}\Gamma(p)=\lim_{p\to -1+}\frac{\Gamma(p+1)}{p}=+\infty.\] 
+Ahora podemos extender $\Gamma$ para $p\in (-2,1)$. Pues  podemos usar la fórmula \eqref{eq:gama_iter} y el hecho de que ya tenemos definida la función Gamma en $(-1,0)$. Continuando de esta forma, definimos $\Gamma$ para cualquier valor de $p<0$ y $p\notin \mathbb{Z}$. Si $n$ es un entero negativo ocurre que
+\[\lim_{p\to n+}\Gamma(p)=+\infty\quad\text{y}\quad \lim_{p\to n-}\Gamma(p)=-\infty.\] 
+
+\begin{sagecommandline}
+ sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
+\end{sagecommandline}
+\sageplot[scale=.5]{graf}
+
+Ahora estamos en condiciones de definir nustra primer función de Bessel que resulta de tomar$a_0$ como $1/2^p\Gamma(p+1)$ la expresión quedaría
+
+\begin{definicion} Definimos la función de Bessel de primera especie como
+\[J_p(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(p+n+1)}\left(\frac{x}{2}\right)^{2n+p}\]
+\end{definicion}
 
 
+Una aproximación a esta función se programa en SAGE de manera muy sencilla
+\begin{sagecommandline}
+sage: J= lambda x,p: sum([(-1)^n/factorial(n)/gamma(p+n+1)*(x/2)^(2*n+p) for n in range(20)])
+\end{sagecommandline}
 
-
-
-
-
+\begin{center}
+\sageplot[scale=.4]{plot(J(x,1),(x,0,15))}
+\end{center}
 
 
 
