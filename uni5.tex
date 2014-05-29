@@ -1145,8 +1145,11 @@ Ahora podemos extender $\Gamma$ para $p\in (-2,1)$. Pues  podemos usar la fórmu
 \begin{sagecommandline}
  sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
 \end{sagecommandline}
-\sageplot[scale=.5]{graf}
 
+\begin{figure}[h]
+\sageplot[scale=.5]{graf}
+\caption{La función gamma $\Gamma$}
+\end{figure}
 Ahora estamos en condiciones de definir nustra primer función de Bessel que resulta de tomar$a_0$ como $1/2^p\Gamma(p+1)$ la expresión quedaría
 
 \begin{definicion} Definimos la función de Bessel de primera especie como
@@ -1156,21 +1159,29 @@ Ahora estamos en condiciones de definir nustra primer función de Bessel que res
 
 Una aproximación a esta función se programa en SAGE de manera muy sencilla
 \begin{sagecommandline}
-sage: J= lambda x,p: sum([(-1)^n/factorial(n)/gamma(p+n+1)*(x/2)^(2*n+p) for n in range(20)])
+sage: J= lambda x,p: sum([(-1)^n/factorial(n)/gamma(p+n+1)*(x/2)^(2*n+p) for n in range(100)])
 \end{sagecommandline}
 
-\begin{center}
-\sageplot[scale=.4]{plot(J(x,1),(x,0,15))}
-\end{center}
+%\begin{center}
+\begin{figure}[h]
+\sageplot[scale=.4]{plot(J(x,1),(x,0,35))}
+\caption{Función de Bessel $J_1$}
+\end{figure}
+%\end{center}
 
 
 
 
-Ahora vamos a tomar la solución $m=-p$ de la ecuación indicial.
+Ahora consideremos la solución $m=-p$ de la ecuación indicial.
 \begin{sageblock}
 Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
 for f in Ecuaciones[1:-2]]
 \end{sageblock}
+
+En realidad la situaciòn es exactamente la misma que antes, sólo hay que reemplazar $p$ por $-p$. Por ejemplo ahhllemos las relación de recurrencia despejando de cada ecuación el $a_i$ con el índice $i$ más grande. 
+ 
+
+
  \[\sage{vector(Ecuaciones1).column()}\]
 % Resolvamos las ecuaciones. 
 % \begin{sageblock}
