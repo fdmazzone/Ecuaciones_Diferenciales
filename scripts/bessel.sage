@@ -22,4 +22,7 @@ Sol_Ecua_Ind=solve(Ecuaciones[0],m)
 Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]).factor() for f in Ecuaciones[1:-2]]
 Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)[0]
 y1=y.subs(Coef_Sol_1).subs(Sol_Ecua_Ind[1])
-    
+Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor() for f in Ecuaciones[1:-2]]
+Ecuaciones2=[]
+for i in range(1,len(Ecuaciones1)):
+    Ecuaciones2+=[solve(Ecuaciones1[i],a[i+1])[0]]
