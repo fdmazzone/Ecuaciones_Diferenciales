@@ -1161,13 +1161,19 @@ Una aproximación a esta función se programa en SAGE de manera muy sencilla
 \begin{sagecommandline}
 sage: J= lambda x,p: sum([(-1)^n/factorial(n)/gamma(p+n+1)*(x/2)^(2*n+p) for n in range(100)])
 \end{sagecommandline}
-
-%\begin{center}
+Podemos aprovechar que hemos programado esta fórmula para graficar varias funciones de Bessel de distintos órdenes.
+\begin{sagecommandline}
+sage: p1=plot(J(x,1),(x,0,35),rgbcolor=(1,0,0))
+sage: p2=plot(J(x,2),(x,0,35),rgbcolor=(0,1,0))
+sage: p3=plot(J(x,3),(x,0,35),rgbcolor=(0,0,1))
+\end{sagecommandline}
+Estos gráficos los representamos en la figura \ref{fig:bessel}.
+\begin{center}
 \begin{figure}[h]
-\sageplot[scale=.4]{plot(J(x,1),(x,0,35))}
-\caption{Función de Bessel $J_1$}
+\sageplot[scale=.4]{p1+p2+p3}
+\caption{Función de Bessel $J_1$}\label{fig:bessel}
 \end{figure}
-%\end{center}
+\end{center}
 
 
 
@@ -1185,7 +1191,8 @@ for i in range(1,len(Ecuaciones1)):
     Ecuaciones2+=[solve(Ecuaciones1[i],a[i+1])[0]]
  \end{sageblock}
  \boxedeq{\sage{vector(Ecuaciones2).column()}}{eq:recu_-p} 
-Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en, como se aprecia con claridad en \eqref{eq:recu_-p}, que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  
+Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la direfencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo decimos porque esta situación es problemática en cualguier punto regular singular de cualquier ecuación. También notar que $p=0$ es también una situación problemática, esto porque en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
+
 
 
 
