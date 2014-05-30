@@ -1194,11 +1194,47 @@ for i in range(1,len(Ecuaciones1)):
 Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la direfencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo decimos porque esta situación es problemática en cualguier punto regular singular de cualquier ecuación. También notar que $p=0$ es también una situación problemática, esto porque en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
 
 Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
-\begin{definicion} Definimos la función de Bessel de primera especie como
+\begin{definicion} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$ como
 \[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
 \end{definicion}
+Grafiquemos algunas de estas funciones de Bessel.
+\begin{sagecommandline}
+sage: p1=plot(J(x,-1/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(1,0,0))
+sage: p2=plot(J(x,-2/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(0,1,0))
+sage: p3=plot(J(x,-5/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(0,0,1))
+\end{sagecommandline}
+\begin{figure}[h]
+\sageplot[scale=.5]{p1+p2+p3}
+\caption{Funciones de Bessel $J_{-1/3}$, $J_{-2/3}$ y $J_{-5/3}$.} 
+\end{figure}
+Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
 
- Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
+\subsection{Teorema fundamental sobre puntos singulares regulares}
+Habiendo visto algunos ejemplos, ahora pasaremos a discutir la situación general del método de Frobenius. 
+
+Supongamos $x=0$ un punto regular singular de la ecuación
+\begin{equation}\label{eq:dif_2_orden} y''+p(x)y'+q(x)y=0.
+\end{equation}
+Supongamos que $xp(x)$ y $x^2q(x)$ poseen los  siguientes desarrollos en serie 
+\[xp(x)=\sum_{n=0}^{\infty}p_nx^n\quad\text{y}\quad x^2q(x)=\sum_{n=0}^{\infty}q_nx^n\]
+Proponemos como solución
+\[y=x^{m}\sum_{n=0}^{\infty}a_nx^n=\sum_{n=0}^{\infty}a_nx^{m+n}.\]
+Empecemos por hallar las relaciones de recurrencia para los coeficientes $a_n$, $n=0,1,\ldots$. 
+
+
+
+
+\begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
+\begin{equation}\label{eq:dif_2_orden} y''+p(x)y'+q(x)y=0.
+\end{equation}
+Supongamos que $xp(x)$ y $x^2q(x)$ poseen los  siguientes desarrollos en serie 
+\[xp(x)=\sum_{n=0}^{\infty}p_nx^n\quad\text{y}\quad x^2q(x)=\sum_{n=0}^{\infty}q_nx^n\]
+y que estas series convergen para $|x|<R$ ($R>0$). Supongamos que la ecuación indicial tiene la raíces reales $m_1$, $m_2$ con  $m_2\leq m_1$.  Entonces la ecuación \eqref{eq:dif_2_orden}  tiene una solución en serie de Frobenius dada por
+\[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad a_0\neq 0.\]
+La serie $\sum_{n=0}^{\infty}a_nx^n$ converge en $|x|<R$. Si $m_1-m_2$ no es un entero no negativo entonces tenemos una segunda solución en serie de Frobenius con $m_2$ en lugar de $m_1$ y satisfaciendo las mismas condiciones que la primer serie.  
+\end{teorema}
+\begin{demo}
+ \end{demo}
 
 
 
