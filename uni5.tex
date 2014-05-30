@@ -1191,46 +1191,14 @@ for i in range(1,len(Ecuaciones1)):
     Ecuaciones2+=[solve(Ecuaciones1[i],a[i+1])[0]]
  \end{sageblock}
  \boxedeq{\sage{vector(Ecuaciones2).column()}}{eq:recu_-p} 
-Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la direfencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo decimos porque esta situación es problemática en cualguier punto regular singular de cualquier ecuación. También notar que $p=0$ es también una situación problemática, esto porque en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
+Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la direfencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo decimos porque esta situación es problemática en cualguier punto regular singular de cualquier ecuación. También notar que $p=0$ es también una situación problemática, esto porque en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
 
+Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
+\begin{definicion} Definimos la función de Bessel de primera especie como
+\[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
+\end{definicion}
 
-
-
-% Resolvamos las ecuaciones. 
-% \begin{sageblock}
-% Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
-% \end{sageblock}
-% \begin{sagesilent}
-% SolucionesA=solve(Ecuaciones1,a[1:])[0]
-% SolucionesB=[f.factor() for f in SolucionesA]
-% for i in range(0,len(SolucionesB),2):
-%     SolucionesB[i]=SolucionesB[i]==0
-% \end{sagesilent}
-% Obtenemos
-% \[\sage{ vector( SolucionesB).column() }\]
-% Por inspección de la lista vemos que
-% \[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
-% Vale la relación de recurrencia
-% \boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
-% Iterando esta relación
-% \[
-% \begin{split}
-%   a_{2n}&=-\frac{1}{4n(p+n)}a_{2n-2}\\
-%        &=\frac{1}{4n(p+n-1)}\cdot\frac{1}{4(n-1)(p+n-1)}a_{2n-4}=\cdots\\
-%        & =(-1)^n\frac{1}{4^nn!(p+n)(p+n-1)\cdots (p+1)}a_{0}.
-% \end{split}
-% \]
-% Obtenemos la solución 
-% \boxedeq{y(x)=\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{}
-% Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
-
-% En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
-% \begin{sageblock}
-% Coef=[f.factor() for f in Coef_Sol_1[0]]
-% y1=y.subs(f).subs(Sol_Ecua_Ind[1])
-% \end{sageblock}
-
-% \[\sage{y1}.\]
+ Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
 
 
 
