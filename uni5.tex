@@ -49,6 +49,7 @@
 \definecolor{color_ejer}{HTML}{F6BFBF}
 \definecolor{color_cor}{HTML}{49E6D8}
 \definecolor{color_lem}{HTML}{C6F6AB}
+\definecolor{color_defi}{HTML}{EDA07C}
 \newcommand{\dblue}{\color{dbluecolor}\bf}
 \newcommand{\dred}{\color{dredcolor}\bf}
 \newcommand{\dblack}{\color{dblackcolor}\bf}
@@ -63,7 +64,7 @@
 }
 
 \newcounter{defi_cont}
-\newenvironment{definicion}[1]{\begin{colbox}{myblue}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
+\newenvironment{definicion}[1]{\begin{colbox}{color_defi}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
 
 \newcounter{teor_cont}
 \newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
@@ -1123,7 +1124,8 @@ Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la e
 No obstante, nos previene aún de utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no tenemos claro que significa $p!$. El propósito de esta subsección es introducir la extensión de la función factorial a una función de variable real. 
 
 \begin{definicion}\label{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por 
-\boxedeq{\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt}{eq:gamma}
+\begin{equation}\label{eq:gamma}\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt
+\end{equation}
 \end{definicion}
 
 En otros cursos se demuestra que la integral impropia en la definición converge. Además se tiene la siguiente relación
@@ -1262,7 +1264,15 @@ Entonces las ecuaciones \eqref{eq:recu_gral_frob} se escriben
 \boxedeq{f(m+n)a_n=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
 q_{n-k}\right],\quad n=0,1,\ldots}{eq:recu_gral_frob_2}
 La primera de estas ecuaciones es 
-\begin{definicio}
+\begin{definicion} Cuando $n=0$ \eqref{eq:recu_gral_frob_2} la ecuación
+\begin{equation}\label{eq:eq_indicial} 
+  f(m)=m(m-1)+p_0m+q_0=0,
+\end{equation}
+se denomina ecuación indicial.
+\end{definicion}
+
+
+
 
 
 \begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
