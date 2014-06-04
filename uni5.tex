@@ -1254,11 +1254,15 @@ q_{n-k}\right]\bigg\}x^n.
 \end{split}
 \end{equation}
 Entonces se debe satisfacer
-
 \boxedeq{\left[(m+n)(m+n-1)+p_0(m+n)  +q_0  \right] a_{n}+\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
-q_{n-k}\right]}{eq:recu_gral_frob}
-
-
+q_{n-k}\right]=0,}{eq:recu_gral_frob}
+para $n=0,1,\ldots$. Definamos
+\boxedeq{f(m)=m(m-1)+p_0m+q_0.}{eq:func_f}
+Entonces las ecuaciones \eqref{eq:recu_gral_frob} se escriben
+\boxedeq{f(m+n)a_n=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
+q_{n-k}\right],\quad n=0,1,\ldots}{eq:recu_gral_frob_2}
+La primera de estas ecuaciones es 
+\begin{definicio}
 
 
 \begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
