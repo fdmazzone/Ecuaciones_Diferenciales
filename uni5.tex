@@ -930,7 +930,7 @@ De modo que, como era de suponer, no podremos encontrar en general en un punto s
 
 \begin{definicion} A una expresión de la forma
  \[y(x)=(x-x_0)^m(a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots),\]
-donde $m\in\rr$, lo llamaremos \emph{Serie de Frobenius}.
+donde $m\in\rr$ y $a_0\neq 0$, lo llamaremos \emph{Serie de Frobenius}.
 \end{definicion}
 Las series de Frobenius no son series de potencias ni de Laurent ya que en ellas aparecen potencias no enteras.
 
@@ -1264,15 +1264,81 @@ Entonces las ecuaciones \eqref{eq:recu_gral_frob} se escriben
 \boxedeq{f(m+n)a_n=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
 q_{n-k}\right],\quad n=0,1,\ldots}{eq:recu_gral_frob_2}
 La primera de estas ecuaciones es 
-\begin{definicion} Cuando $n=0$ \eqref{eq:recu_gral_frob_2} la ecuación
+\begin{definicion} Definimos la  ecuación indicial por
 \begin{equation}\label{eq:eq_indicial} 
-  f(m)=m(m-1)+p_0m+q_0=0,
+  f(m)=m(m-1)+p_0m+q_0=0.
 \end{equation}
-se denomina ecuación indicial.
+
 \end{definicion}
 
+Si $m$ resuelve la ecuación indicial entonces $m$ resuelve la ecuación \eqref{eq:recu_gral_frob_2} para $n=0$ y el valor de $a_0$ se puede elegir arbitrariamente. 
+
+Supongamos que la ecuación indicial tiene las soluciones $m_2\leq m_1$. Podría ocurrir que las soluciones fueran complejos conjugados, pero no trataremos este caso aquí. Ahora discutamos  cuando es posible resolver las relaciones de recurrencia \eqref{eq:recu_gral_frob_2}. El único problema que podría ocurrir es que  $f(m+n)=0$ para algún valor de $n=1,2,\ldots$, dado que en ese caso \eqref{eq:recu_gral_frob_2} se reduce a 
+\begin{equation}\label{eq:ec_enter} 0=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
+q_{n-k}\right].
+\end{equation}
+Esta ecuación no nos dice nada sobre $a_n$ y no podemos esperar que se satisfaga. Sin embargo, cuando $m=m_1$ esta desafortunada situación no se da, de lo contrario  $m_1+n$ sería una raíz de la ecuación indicial distinta que $m_2$ y $m_1$. En consecuencia, \emph{si $m=m_1$ y $a_0\neq 0$ es elegido arbitrariamente las ecuaciones \eqref{eq:recu_gral_frob_2} determinan los coeficientes $a_n$, $n=1,2,\ldots$.}
+
+Cuando $m=m_2$ si puede ocurrir que $f(m_2+n)=0$, esto es así cuando $m_2+n=m_1$ para algún $n=1,2,\ldots$, vale decir cuando $m_1-m_2\in\mathbb{Z}$.  Luego estamos en condiciones de afirmar que \emph{si $m=m_2$, $m_1-m_2\notin \mathbb{Z}$ y $a_0\neq 0$ es elegido arbitrariamente las ecuaciones \eqref{eq:recu_gral_frob_2} determinan los coeficientes $a_n$, $n=1,2,\ldots$.} En esta situación, se demuestra con facilidad que las dos soluciones obtenidas por el método de Frobenius son linealmente independientes. Por ejemplo, si estas soluciones son
+\[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad\text{y}\quad y_2=x^{m_2}\sum_{n=0}^{\infty}n_nx^n,\]
+con $a_0\neq 0\neq b_0$ y si suponemos que ellas son linealmente dependientes en tonces su cociente $y_1/y_2$ sería una constante $c$  no nula. Pero tomando límite en la expresión $y_1/y_2$ cuando $x\to 0$ vemos que
+\[c=\lim_{x\to 0} \frac{y_1}{y_2}=\lim_{x\to 0} x^{m_1-m_2}\frac{\sum_{n=0}^{\infty}a_nx^n}{ \sum_{n=0}^{\infty}b_nx^n  }=0.\frac{a_0}{b_0}=0.\]
+
+Si $m_1-m_2:=n_0\in\mathbb{Z}$, entonces la situación es diferente. Si, en particular,  \emph{tuviesemos $n_0=0$ ( $m_1=m_2$) entonces claramente podremos encontrar esencialemente sólo una solución en serie de Frobenius.}   
 
 
+
+
+Supongamos $n_0>0$.  Cuando $n=n_0$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte, como ya se dijo, en \eqref{eq:ec_enter} con $m_2$ en lugar de $m$. Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolvería la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
+\begin{equation}\label{eq:iter_m1}
+  \begin{split}
+    f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0-k}(m_2+k) + q_{n_0-k}\right]=-p_0a_{n_0}m_1-q_0\\
+   f(m_1+2) a_{n_0+2}&=-\sum_{k=0}^{n_0+1}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]\\
+                   &=-p_1a_{n_0}m_1-q_1-p_0a_{n_0+1}(m_1+1)+q_0\\
+                   &\,\,\,\vdots
+  \end{split}
+\end{equation}
+Como se ve, la iteración termina siendo la misma que la correpondiente iteración para la raíz $m_1$. Además tendríamos que el desarrollo en serie
+\[y(x)=x^{m_2}\sum_{n=0}^{\infty}a_nx^n=x^{m_2}\sum_{n=n_0}^{\infty}a_nx^n
+ =x^{m_2+n_0}\sum_{n=0}^{\infty}a_{n+n_0}x^n
+=x^{m_1}\sum_{n=0}^{\infty}b_nx^n
+,\]
+donde $b_n:=a_{n+n_0}$ resuelve el esquema de iteración \eqref{eq:iter_m1} que, como dijimos, es el esquema de iteración correspondiente a $m=m_1$. Vale decir que elegir  $0=a_0=\cdots=a_{n_0-1}$ nos lleva a una solución linealmente dependiente con la solución que ya encontramos para $m=m_1$. Podríamos tener la suerte que eligiendo $a_0\neq 0$ se satisfaga la ecuación \eqref{eq:ec_enter} con $m=m_2$ y $n=n_0$. Si esto ocurre podemos elegir $a_{n_0}$ arbitrariamente, por ejemplo $a_{n_0}=0$, y continuar la iteración. Obtenemos una solución que es linealmente independiente   de la correspondiente a $m_1$. En síntesis, \emph{si $n_0:=m_1-m_2\in\mathbb{Z}$, si $a_0\neq 0$ es eligido arbitrariamente, si  $a_1,\ldots,a_{n_0-1}$ son hayados mediante \eqref{eq:recu_gral_frob} y si se satisface  \eqref{eq:ec_enter} tenemos una segunda solución en serie de Frobenius para $m=m_2$}
+
+Si falla esta última condición ya no hay otra solución en serie de Frobenius. Se puede encontrar un desarrollo, que ya no constituye una Serie de Frobenius,  para otra solución de la siguiente formaempleando el método de reducción de orden a partir de la solución conocida $y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n$. Este método no decía que la otra solución venía dada a partir de las relaciones
+\[y_2(x)=v(x)y_1(x),\quad\text{donde  } v'(x)=\frac{1}{y_1^2}e^{-\int p(x)dx}.\]  
+Teniendo en cuenta que
+\[p(x)=\sum_{n=0}^{\infty}p_nx^{n-1}=\frac{p_0}{x}+p_1+p_2x+\cdots.\]
+Vemos que
+\[
+   \begin{split}
+     v'(x)&=\frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-\int \left(\frac{p_0}{x}+p_1+p_2x+\cdots \right)dx}\\
+  &= \frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-p_0 \ln x -p_1x-\cdots }\\
+  &= \frac{1}{x^{2m_1+p_0}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{ -p_1x-\cdots }
+   \end{split}
+\]
+
+Ahora la función
+\[
+  g(x)= \frac{ e^{ -p_1x-\cdots } }{\left(\sum_{n=0}^{\infty}a_nx^n\right)^2},
+\]
+es analítica en $0$ puesto que el denominador no se anula en cero. Por consiguiente tenemos un desarrollo en serie
+\[ g(x)=\sum_{n=0}^{\infty}b_nx^n, \quad b_0\neq 0.\]
+En la práctica encontrar este desarrollo en serie de manera explícita puede ser muy difícil. Llamando $k:=2m_1+p_0$ tendremos que
+\[v'(x)=\frac{b_0}{x^k}+ \frac{b_1}{x^{k-1}}+\cdots+\frac{b_{k-1}}{x}+b_{k}+\cdots\]
+Entonces
+\[v(x)=\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\]
+Reemplazando esta identidad en la expresión para $y_2$,
+\[
+   \begin{split}
+     y_2&=vy_1\\
+&=y_1\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\right)\\
+       &=b_{k-1}\ln x y_1+ x^{m_1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}\cdots\right)\\
+       &=b_{k-1}\ln x y_1+ x^{m_1-k+1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)}+ \frac{b_1}{(-k+2)}x+\cdots\right)\\
+   \end{split}
+\]
+Ahora $m_1-k+1=m_1-2m_1-p_0+1=-p_0-m_1+1$. Es sabido que la suma de las raices $m_1+m_2$ es igual a $-p_0+1$, es decir $m_1=-p_0+1-m_2$. Entonces $m_1-k+1=m_2$. Obtenemos una solución de la forma
+\boxedeq{y_2(x)=b_{k-1}y_1\ln x+x^{m_2}\sum_{n=0}^{\infty}c_nx^n.}{eq:des_enter}
 
 
 \begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
