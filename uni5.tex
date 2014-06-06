@@ -1292,9 +1292,9 @@ Si $m_1-m_2:=n_0\in\mathbb{Z}$, entonces la situación es diferente. Si, en part
 Supongamos $n_0>0$.  Cuando $n=n_0$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte, como ya se dijo, en \eqref{eq:ec_enter} con $m_2$ en lugar de $m$. Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolvería la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
 \begin{equation}\label{eq:iter_m1}
   \begin{split}
-    f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0-k}(m_2+k) + q_{n_0-k}\right]=-p_0a_{n_0}m_1-q_0\\
-   f(m_1+2) a_{n_0+2}&=-\sum_{k=0}^{n_0+1}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]\\
-                   &=-p_1a_{n_0}m_1-q_1-p_0a_{n_0+1}(m_1+1)+q_0\\
+    f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]=-a_{n_0}[p_1m_1+q_1]\\
+   f(m_1+2) a_{n_0+2}&=-\sum_{k=0}^{n_0+1}a_k\left[p_{n_0+2-k}(m_2+k) + q_{n_0+2-k}\right]\\
+                   &=-a_{n_0}[p_2m_1+q_2]-a_{n_0+1}[p_1(m_1+1)+q_0]\\
                    &\,\,\,\vdots
   \end{split}
 \end{equation}
@@ -1339,7 +1339,9 @@ Reemplazando esta identidad en la expresión para $y_2$,
 \]
 Ahora $m_1-k+1=m_1-2m_1-p_0+1=-p_0-m_1+1$. Es sabido que la suma de las raices $m_1+m_2$ es igual a $-p_0+1$, es decir $m_1=-p_0+1-m_2$. Entonces $m_1-k+1=m_2$. Obtenemos una solución de la forma
 \boxedeq{y_2(x)=b_{k-1}y_1\ln x+x^{m_2}\sum_{n=0}^{\infty}c_nx^n.}{eq:des_enter}
+La segunda solución $y_2$ es la suma de una serie de Frobenius, con $m=m_2$, y un multiplo de la función $y_1\ln x$. Esta última función no se puede desarrollar en serie de potencias alrededor de $0$.
 
+Hemos discutido con cierto detalle las posibles soluciones de las ecuaciones de recurrencia. No resta considerar la cuestión de la convergencia de las series. Esto lo tratamos en el siguiente teorema. 
 
 \begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
 \begin{equation}\label{eq:dif_2_orden} y''+p(x)y'+q(x)y=0.
@@ -1350,7 +1352,12 @@ y que estas series convergen para $|x|<R$ ($R>0$). Supongamos que la ecuación i
 \[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad a_0\neq 0.\]
 La serie $\sum_{n=0}^{\infty}a_nx^n$ converge en $|x|<R$. Si $m_1-m_2$ no es un entero no negativo entonces tenemos una segunda solución en serie de Frobenius con $m_2$ en lugar de $m_1$ y satisfaciendo las mismas condiciones que la primer serie.  
 \end{teorema}
-\begin{demo}
+\begin{demo} Dado que $m_1$ y $m_2$ son raíces de la ecuación indicial vale la factorización
+\[f(m)=(m-m_1)(m-m_2)=m^2-(m_1+m_2)m+m_1m_2.\]
+Entonces
+\[f(m_1+n)=n(n+m_1-m_2)\quad\text{y}\quad f(m_2+n)=n(n+m_2-m_1).\]
+Luego
+\[|f(m_1+n)|\geq n(n-
 
  \end{demo}
 
