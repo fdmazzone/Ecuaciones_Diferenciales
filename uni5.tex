@@ -791,7 +791,7 @@ Es muy sencilla y la dejamos de ejercicio (evidentemenete hay que utilizar el pr
 \end{demo}
 
 
-\begin{teorema}\textbf{Teorema Fundamental Sobre Puntos Ordinarios.} Sea $x_0$ un punto ordinario de la ecuación
+\begin{teorema}\textbf{Teorema Fundamental Sobre Puntos Ordinarios.}\label{eq:teor_ptos_ord} Sea $x_0$ un punto ordinario de la ecuación
 \[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
 y sean $a_0,a_1\in\mathbb{R}$. Existe una solución de la ecuación que es analítica en un entorno de $x_0$ y que satisface $y(x_0)=a_0$ e $y'(x_0)=a_1$. El radio de convergencia del desarrollo en serie de $y$ es al menos tan grande como el mínimo de los radios de convergencia de los desarrollos en serie de $p$ y $q$.
 \end{teorema}
@@ -1357,7 +1357,14 @@ La serie $\sum_{n=0}^{\infty}a_nx^n$ converge en $|x|<R$. Si $m_1-m_2$ no es un 
 Entonces
 \[f(m_1+n)=n(n+m_1-m_2)\quad\text{y}\quad f(m_2+n)=n(n+m_2-m_1).\]
 Luego
-\[|f(m_1+n)|\geq n(n-
+\begin{equation}\label{eq:desig_aux}|f(m_1+n)|\geq n(n-|m_1-m_2|)\quad\text{y}\quad f(m_2+n)\geq n(n-|m_1-m_2|).
+\end{equation}
+Tomemos $r$ tal que $0<r<R$. Por las mismas razones expresadas  en el Teorema \eqref{eq:teor_ptos_ord},  existe $M>0$ tal que
+\[ |p_n|r^n,|q_n|r^n\leq M.\]
+Usando \eqref{eq:recu_gral_frob_2}, con $m=m_1$, \eqref{eq:desig_aux} y las desigualdades de arriba concluímos
+\[n(n-|m_1-m_2|)|a_n|\leq M\sum_{k=0}^{n-1}\frac{|a_k|}{r^{n-k}}(|m_1|+k+1).\]
+Ahora definimos la sucesión $b_n$ por $b_n=|a_n|$, para $0\leq n\leq|m_1-m_2|$ y para $ n>|m_1-m_2|$
+\[n(n-|m_1-m_2|)|b_n|= M\sum_{k=0}^{n-1}\frac{|a_k|}{r^{n-k}}(|m_1|+k+1).\]
 
  \end{demo}
 
