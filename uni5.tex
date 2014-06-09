@@ -780,11 +780,11 @@ $1$ y $-1$ son puntos singulares, otros valores de $x$ son puntos ordinarios.
 
 Antes de ir al Teorema más importante de esta sección vamos a enunciar un  lema que nos resultará útil.
 
-\begin{lema}\label{lema:comp_recu}\textbf{Comparación.} Supongamos que tenemos una relación de recurrencia de dos términos
- \begin{equation}\label{eq:recu2} a_{n+2}=f_n(a_n,a_{n+1})\end{equation}
-donde las funciones $f_n$ son crecientes respecto a sus dos variables. Si la sucesión  $\{a_n\}$ resuelve \eqref{eq:recu2}, la sucesión  $\{b_n\}$ resuelve la desigualdad
- \[b_{n+2}\leq f_n(b_n,b_{n+1})\]
-y además vale que  $b_0\leq a_0$ y $b_1\leq a_1$, entonces $b_n\leq a_n$ para todo $n=2,3,\ldots$. En particular la afirmación se satisface cuando $f_n$ es lineal con coeficientes positivos, es decir $f_n(x,y)=\alpha_nx+\beta_ny$, con $\alpha,\beta\geq 0$.
+\begin{lema}\label{lema:comp_recu}\textbf{Comparación.} Supongamos que tenemos una relación de recurrencia 
+ \begin{equation}\label{eq:recu2} a_{n}=f_n(a_0,\ldots,a_{n-1})\quad n\geq 2\end{equation}
+donde las funciones $f_n$ son crecientes respecto a sus todas las variables. Si la sucesión  $\{a_n\}$ resuelve \eqref{eq:recu2}, la sucesión  $\{b_n\}$ resuelve la desigualdad
+ \[b_{n}\leq f_n(b_0,\ldots,b_{n-1})\quad n\geq 2 \]
+y además vale que  $b_0\leq a_0$ y $b_1\leq a_1$, entonces $b_n\leq a_n$ para todo $n=2,3,\ldots$. En particular la afirmación se satisface cuando $f_n$ es lineal con coeficientes positivos, es decir $f_n(a_0,\ldots,a_{n-1})=\sum_{k=0}^{n-1}\alpha^n_ka_k$, con $\alpha^n_k\geq 0$ para $k=0,\ldots,n-1$.
 \end{lema}
 \begin{demo}
 Es muy sencilla y la dejamos de ejercicio (evidentemenete hay que utilizar el principio de inducción). 

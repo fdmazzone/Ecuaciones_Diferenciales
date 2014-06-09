@@ -1,0 +1,178 @@
+\documentclass{article}
+%\documentclass[hyperref={colorlinks=true}]{beamer}
+%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+\usepackage{empheq}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,amsmath}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{ esint }
+\usepackage{pdfsync}
+%\usepackage{pst-all}
+%\usepackage{pstricks-add}
+\usepackage{array}
+%\usepackage[T1]{fontenc}
+\usepackage{animate}
+%\usepackage{media9}
+%\usepackage{movie15}
+\usepackage{xparse}
+%\usepackage{listings}
+\usepackage{ wasysym }
+\usepackage{sagetex}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
+
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\definecolor{color_teor}{HTML}{FFFDA2}
+\definecolor{color_ejer}{HTML}{F6BFBF}
+\definecolor{color_cor}{HTML}{49E6D8}
+\definecolor{color_lem}{HTML}{C6F6AB}
+\definecolor{color_defi}{HTML}{EDA07C}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+
+%%%%%%%%%%%%%%%%%%%Teoremas, definiciones , etc
+
+\newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
+\newenvironment{colbox}[2]{%
+    \begin{adjustbox}{minipage={\linewidth},margin=1ex,bgcolor=#1,env=center}
+        #2}{%
+    \end{adjustbox}%
+}
+
+\newcounter{defi_cont}
+\newenvironment{definicion}[1]{\begin{colbox}{color_defi}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
+
+\newcounter{teor_cont}
+\newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
+
+\newcounter{cor_cont}
+\newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\refstepcounter{cor_cont}\textbf{Corolario \arabic{cor_cont}.} #1}}{\end{colbox}}
+
+\newcounter{lem_cont}
+\newenvironment{lema}[1]{\begin{colbox}{color_lem}{\refstepcounter{lem_cont}\textbf{Lema \arabic{lem_cont}.} #1}}{\end{colbox}}
+
+\newcounter{ejem_cont}
+\newenvironment{ejemplo}[1]{\refstepcounter{ejem_cont}\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{}
+
+\newcounter{ejer_cont}
+\newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\refstepcounter{ejer_cont}\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\end{colbox}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
+
+\newcommand{\com}{\mathbb{R}}
+\newcommand{\dis}{\mathbb{D}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\oo}{\mathcal{O}}
+\renewcommand{\emph}[1]{\textcolor[rgb]{0,0,1}{#1}}
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\v}[1]{\overrightarrow{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\sen}{sen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Formulas en cajas 
+\newlength\mytemplen
+\newsavebox\mytempbox
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+
+\makeatother
+\DeclareDocumentCommand\boxedeq{ m g }{%
+    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+        \IfNoValueF {#2} {\label{#2}}%
+       #1
+       \end{empheq}
+    }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+\section{Ecuación de la membrana, separación de variables}
+
+El movimiento de una membrana elástica sujeta a un aro circular viene gobernada por la ecuación de \emph{ondas bidimensional}
+
+\[ u_{tt}=\Delta u:=u_{xx}+u_{yy}\]
+
+Esta ecuación es un ejemplo de \emph{ecuación en derivadas parciales}. Aquí la funció incognita $u$ depende de tres variables independientes $x,y,t$. No hemos tratado hasta aquí este tipo de ecuaciones, en esta breve unidad vamos a ver como los resultados que desarrollamos antes  nos sirven para encontrar algunas soluciones de esta ecuación.  
+
+En la deducción de esta ecuación, que no haremos, se supone que no actúa otra fuerza más que la tensión de la membrana, que el material de esta membrana es uniforme, que la dirección de desplazamientos de un punto sobre la membrana es perpendiculares al plano que contiene al aro de sujeción. 
+
+El significado de las variables es el siguiente: $t$ es el tiempo, las variables $x,y,u$ son las coordenadas de un punto sobre la membrana en un sistema de coordenadas ortogonal. Las coordenadas $x,y$     se toman en el plano que contiene al aro de sujeción y por ende son independientes de $t$. Se supone que $u$ es función de $x,y$ y de $t$. Suponemos que la ecuación  se satisface en la bola de radio $1$ y centro $(0,0)$ de $\mathbb{R}^2$.  Se impone además una \emph{condición de contorno} $u=0$ en $\partial B$ y una \emph{condición inicial}  $u_t(x,y,0)=0$.
+
+ Buscaremos soluciones de la ecuación de ondas en variables separadas, esto es supondremos que $u$ se escribe  $u(x,y,t)=v(x,y)T(t)$. Estas soluciones tienen el significado físico de ser tonos normales, esto es regímenes de vibración donde todos los puntos de la membrana vibran a la misma frecuencia. Asumamos además  que $u$ parte del reposo, esto es $u_t(x,y,0)=0$. 
+
+Reemplazando $u(x,y,t)=v(x,y)T(t)$ en la ecuación obtenemos
+
+\[v(x,y)T''(t)=T(t)\left(v_{xx}(x,y)+v_{yy}(x,y) \right).\]
+Vale decir que
+\[\frac{T''(t)}{T(t) }=\frac{v_{xx}(x,y)+v_{yy}(x,y)}{v(x,y)}.\]
+Las variables $t,x,y$ son independientes entre si.  En el miembro de la izquierda sólo aparece $t$ y en el de la derecha sólo $x,y$.  Por consiguiente  podríamos cambiar $t$ en el miembro de la izquierda dejando $x,y$ fijos. La conclusión es entonces que el miembro de la izquierda no cambia por cambiar $t$, vale decir $T''/T$ es una función constante y por lo tanto $\Delta v/v$ es constante. Debe exixtir $\lambda>0$ tal que
+ 
+ \[\frac{T'(t)}{T(t) }=\frac{v_{xx}(x,y)+v_{yy}(x,y)}{v(x,y)}=-\lambda.\]
+Tenemos así las dos ecuaciones
+\[
+\left\{\begin{align}
+  T''(t)+\lambda T(t)&=0,\\
+  v_{xx}(x,y)+v_{yy}(x,y)+\lambda v(x,y)&=0\\
+\end{align}
+\right.
+\]
+Además se deben satisfacer la condiciones de contorno  $u(x,y,t)=0$ para  $(x,y)\in \partial B$. Esta condición implica que \footnote{Otra posible solución sería tomar  $T=0$ nos llevaría a la solución trivial}
+\[ v=0 \hbox{ en } \partial B. \] 
+
+No olvidemos  la condición inicial $u_t(x,y,0)=0$. Atendiendo a la separación de variables debe ocurrir que $T'(0)v(x,y)=0$ y esto implica que  $T'(0)=0$ o $v(x,y)\equiv 0$. La segunda opción nos llevaría a encontrar la solución trivial de la ecuación, lo que no es de nuestro interés. De modo que aceptaremos $T'(0)=0$.
+
+La ecuación (1) es una ecuación de segundo orden, lineal con coeficientes constantes, la solución se obtiene resolviendo la ecuación característica
+
+\[s^2+\lambda=0\]
+
+Si $\lambda\leq 0$ obtendrìamos soluciones que tienden a infinito cuando $t\to\infty$ lo que no es compatible con el comportamieno esperado para una membrana. Hay que tener en cuenta que la validez física del modelo matemático alcanza solo a pequeñas oscilaciones, esto es valores chicos de $u$. De modo que podemos suponer $\lambda=\omega^2$. La ecuación resulta la ultraconocida ecuación del oscilador armónico. 
+
+\end{document}
