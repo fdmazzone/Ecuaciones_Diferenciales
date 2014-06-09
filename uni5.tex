@@ -1362,7 +1362,9 @@ Luego
 Tomemos $r$ tal que $0<r<R$. Por las mismas razones expresadas  en el Teorema \eqref{eq:teor_ptos_ord},  existe $M>0$ tal que
 \[ |p_n|r^n,|q_n|r^n\leq M.\]
 Usando \eqref{eq:recu_gral_frob_2}, con $m=m_1$, \eqref{eq:desig_aux} y las desigualdades de arriba concluímos
-\[n(n-|m_1-m_2|)|a_n|\leq M\sum_{k=0}^{n-1}
+\[n(n-|m_1-m_2|)|a_n|\leq M\sum_{k=0}^{n-1}\frac{|a_k|}{r^{n-k}}(|m_1|+k+1).\]
+Ahora definimos la sucesión $b_n$ por $b_n=|a_n|$, para $0\leq n\leq|m_1-m_2|$ y para $ n>|m_1-m_2|$
+\[n(n-|m_1-m_2|)|b_n|= M\sum_{k=0}^{n-1}\frac{|a_k|}{r^{n-k}}(|m_1|+k+1).\]
 
  \end{demo}
 
