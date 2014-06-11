@@ -157,22 +157,117 @@ Las variables $t,x,y$ son independientes entre si.  En el miembro de la izquierd
  
  \[\frac{T'(t)}{T(t) }=\frac{v_{xx}(x,y)+v_{yy}(x,y)}{v(x,y)}=-\lambda.\]
 Tenemos así las dos ecuaciones
-\[
-\left\{\begin{align}
-  T''(t)+\lambda T(t)&=0,\\
-  v_{xx}(x,y)+v_{yy}(x,y)+\lambda v(x,y)&=0\\
+\begin{colbox}{myblue}{
+\begin{align}
+  T''(t)+\lambda T(t)&=0,\label{eq:eq_t}\\
+  v_{xx}(x,y)+v_{yy}(x,y)+\lambda v(x,y)&=0\label{eq:eq_xy}
 \end{align}
-\right.
-\]
+}
+\end{colbox}
+
 Además se deben satisfacer la condiciones de contorno  $u(x,y,t)=0$ para  $(x,y)\in \partial B$. Esta condición implica que \footnote{Otra posible solución sería tomar  $T=0$ nos llevaría a la solución trivial}
-\[ v=0 \hbox{ en } \partial B. \] 
+\boxedeq{ v=0 \hbox{ en } \partial B. }{eq:cond_contor}
 
-No olvidemos  la condición inicial $u_t(x,y,0)=0$. Atendiendo a la separación de variables debe ocurrir que $T'(0)v(x,y)=0$ y esto implica que  $T'(0)=0$ o $v(x,y)\equiv 0$. La segunda opción nos llevaría a encontrar la solución trivial de la ecuación, lo que no es de nuestro interés. De modo que aceptaremos $T'(0)=0$.
+No olvidemos  la condición inicial $u_t(x,y,0)=0$. Atendiendo a la separación de variables debe ocurrir que $T'(0)v(x,y)=0$ y esto implica que  $T'(0)=0$ o $v(x,y)\equiv 0$. La segunda opción nos llevaría a encontrar la solución trivial de la ecuación, lo que no es de nuestro interés. De modo que aceptaremos
 
-La ecuación (1) es una ecuación de segundo orden, lineal con coeficientes constantes, la solución se obtiene resolviendo la ecuación característica
+\boxedeq{T'(0)=0.}{eq:cond_ini}
 
-\[s^2+\lambda=0\]
+La ecuación \eqref{eq:eq_t} es una ecuación de segundo orden, lineal con coeficientes constantes, que hemos considerado en multiples oportunidades. Si $\lambda\leq 0$ obtendríamos soluciones que tienden a infinito cuando $t\to\infty$ lo que no es compatible con el comportamieno esperado para una membrana. Hay que tener en cuenta que la validez física del modelo matemático alcanza solo a pequeñas oscilaciones, esto es valores chicos de $u$. De modo que podemos suponer $\lambda=\omega^2$. La ecuación resulta la ecuación del oscilador armónico. 
+\begin{sagecommandline}
+sage: t,omega=var('t,omega')
+sage: assume(omega>0)
+sage: T=function('T',t)
+sage: T=desolve(T.diff(t,2)+omega^2*T,T,ivar=t)
+\end{sagecommandline}
+Luego
+\[T(t)=\sage{T}\]
+Se debe cumplir \eqref{eq:cond_ini}
+\begin{sagecommandline}
+sage: k1,k2=var('k1,k2')
+sage: solve(T.diff(t)(t=0),[k1,k2])
+\end{sagecommandline}
+De modo que $k_1=0$ y $k_2$ es arbitrario, entonces 
+\[T=\sage{T(k1=0)}.\]
 
-Si $\lambda\leq 0$ obtendrìamos soluciones que tienden a infinito cuando $t\to\infty$ lo que no es compatible con el comportamieno esperado para una membrana. Hay que tener en cuenta que la validez física del modelo matemático alcanza solo a pequeñas oscilaciones, esto es valores chicos de $u$. De modo que podemos suponer $\lambda=\omega^2$. La ecuación resulta la ultraconocida ecuación del oscilador armónico. 
+La segunda ecuación, que ahora escribimos
+
+\boxedeq{  v_{xx}(x, y) + v_{yy}(x, y) +\omega^2 v(x, y)=0,}{eq:helmotz}
+se conoce como la ecuación de autovalores del Laplaciano o ecuación de Helmholtz.  Los valores de $\omega$ para los que esta ecuación tiene solución (no todo $\omega$ lo es)  son justamente los autovalores del operador de Laplace. Es decir los autovalores de Laplaciano resultan ser los cuadrados de las frecuencias de los tonos normales. Para encontrar estos autovalores vamos a escribir $v$ en coordenadas polares $v=v(r,\theta)$. Acorde a la \eqref{eq:lapla_polares} del Apéndice  \ref{eq:apendice} tenemos que \eqref{eq:helmotz} equivale a
+
+\begin{equation}\label{eq:ecu_aux_1}u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}+\omega^2v=0
+\end{equation}
+Nuevamente vamos a considerar la técnica de separación de variables. Proponemos que
+\[v(r,\theta)=R(r)\Theta(\theta)\]
+Reemplazando en \eqref{eq:ecua_aux}
+\begin{equation*}\label{eq:ecua_aux_2} 
+R''\Theta +\frac{1}{r}R'\Theta+\frac{1}{r^2}R\Theta''+\omega^2R\Theta=0.
+\end{equation*}
+Multiplicando por $r^2/R\Theta$
+\begin{equation}\label{eq:ecua_aux_3} 
+\frac{r^2R''}{R} +\frac{rR'}{R}+\frac{\Theta''}{\Theta}+\omega^2r^2=0.
+\end{equation}
+
+\section{Apéndice: Laplaciano en coordenadas polares}\label{eq:apendice}
+En primera instancia escribamos el operador de Laplace en coordenadas polares. Las coordenadas cartesianas  $x,y$ se escriben en función de las coordenadas polares $r,\theta$ de la siguiente forma
+\[x=r\cos\theta\quad y=r\sen\theta.\]
+Tenemos que expresar las derivas tomadas respecto a las coordenadas cartesianas en términos de derivas tomadas respecto a coordenadas polares.  
+\begin{align}
+  u_x&=u_rr_x+u_{\theta}\theta_x\notag\\
+  u_{xx}&=\left(u_r\right)_xr_x+u_rr_{xx}+\left(u_{\theta}\right)_x\theta_x+u_{\theta}\theta_{xx}\notag\\
+&=u_{rr}r_x^2+u_{\theta\theta}\theta_x^2+2u_{r\theta}r_x\theta_x+u_rr_{xx}+u_{\theta}\theta_{xx}\label{eq:lapla_pol}
+\end{align}
+
+Usemos SAGE para calcular $r_x,\theta_x,r_{xx},\theta_{xx}$
+
+\begin{sagecommandline}
+sage: x,y=var('x,y')
+sage: r=sqrt(x^2+y^2)
+sage: theta=atan2(y,x)
+sage: rho,phi=var('rho,phi') 
+sage: r.diff(x)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
+Es decir 
+\begin{equation}\label{eq:r_x}r_x=\cos(\theta).
+\end{equation}
+En el cálculo anterior \texttt{rho} y \texttt{phi} son introducidas en reemplazo de \texttt{r} y \texttt{theta} aunque son exactamente iguales. La razón de hacer esto es que SAGE reemplaza \texttt{r} y \texttt{theta} por sus expresiones en términos de \texttt{x} e \texttt{y}. Oviamente SAGE  ``no se da cuenta'' que nosotros queremos expresar todo en función de\texttt{r} y \texttt{theta}. LAs restantes derivadas son
+\begin{sagecommandline}
+sage: r.diff(x,2)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
+\begin{equation}\label{eq:r_xx}r_{xx}=\frac{\sen^2(\theta)}{r}.
+\end{equation}
+\begin{sagecommandline}
+sage: theta.diff(x)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
+\begin{equation}\label{eq:theta_x}\theta_x=-\frac{\sen(\theta)}{r}.
+\end{equation}
+\begin{sagecommandline}
+sage: theta.diff(x,2)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
+\begin{equation}\label{eq:theta_xx}\theta_{xx}=\frac{2\sen(\theta)\cos(\theta)}{r^2}.
+\end{equation}
+Sustituyendo en \eqref{eq:r_x}, \eqref{eq:r_xx}, \eqref{eq:theta_x} y \eqref{eq:theta_xx} en \eqref{eq:lapla_pol}
+\boxedeq{u_{xx}=u_{rr}\cos^2\theta+ u_{\theta\theta}\frac{\sen^2\theta}{r^2}-2u_{r\theta}\frac{\cos\theta\sen\theta}{r}+u_r\frac{\sen^2(\theta)}{r}+u_{\theta}
+\frac{2\sen(\theta)\cos(\theta)}{r^2}.}{eq:u_xx}
+
+Para las derivadas respecto a $y$ tenemos
+\[u_{yy}=u_{rr}r_y^2+u_{\theta\theta}\theta_y^2+2u_{r\theta}r_y\theta_y+u_rr_{yy}+u_{\theta}\theta_{yy}\]
+Y las derivadas
+ \begin{sagecommandline}
+sage: theta.diff(y)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+sage: r.diff(y)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+sage: theta.diff(y,2)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+sage: r.diff(y,2)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
+Luego
+\boxedeq{u_{yy}=u_{rr}\sin^2\theta+ u_{\theta\theta}\frac{\cos^2\theta}{r^2}+2u_{r\theta}\frac{\cos\theta\sen\theta}{r}+u_r\frac{\cos^2(\theta)}{r}-u_{\theta}
+\frac{2\sen(\theta)\cos(\theta)}{r^2}.}{eq:u_yy}
+De \eqref{eq:u_xx} y \eqref{eq:u_yy} obtenemos
+
+\boxedeq{u_{xx}+u_{yy}=u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}}{eq:lapla_polares} 
+
+
+
+ 
+
 
 \end{document}
