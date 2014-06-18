@@ -150,7 +150,8 @@ El significado de las variables es el siguiente: $t$ es el tiempo, las variables
 
 Reemplazando $u(x,y,t)=v(x,y)T(t)$ en la ecuación obtenemos
 
-\[v(x,y)T''(t)=T(t)\left(v_{xx}(x,y)+v_{yy}(x,y) \right).\]
+\begin{equation}\label{eq:sep_var}v(x,y)T''(t)=T(t)\left(v_{xx}(x,y)+v_{yy}(x,y) \right).
+\end{equation}
 Vale decir que
 \[\frac{T''(t)}{T(t) }=\frac{v_{xx}(x,y)+v_{yy}(x,y)}{v(x,y)}.\]
 Las variables $t,x,y$ son independientes entre si.  En el miembro de la izquierda sólo aparece $t$ y en el de la derecha sólo $x,y$.  Por consiguiente  podríamos cambiar $t$ en el miembro de la izquierda dejando $x,y$ fijos. La conclusión es entonces que el miembro de la izquierda no cambia por cambiar $t$, vale decir $T''/T$ es una función constante y por lo tanto $\Delta v/v$ es constante. Debe exixtir $\lambda>0$ tal que
@@ -198,15 +199,15 @@ se conoce como la ecuación de autovalores del Laplaciano o ecuación de Helmhol
 \end{equation}
 Nuevamente vamos a considerar la técnica de separación de variables. Proponemos que
 \[v(r,\theta)=R(r)\Theta(\theta)\]
-Reemplazando en \eqref{eq:ecua_aux}
+Reemplazando en \eqref{eq:ecu_aux_1}
 \begin{equation*}\label{eq:ecua_aux_2} 
 R''\Theta +\frac{1}{r}R'\Theta+\frac{1}{r^2}R\Theta''+\omega^2R\Theta=0.
 \end{equation*}
-Multiplicando por $r^2/R\Theta$
+Multiplicando por $r^2/R\Theta$ y depejando los términos conteniendo $\Theta$
 \begin{equation}\label{eq:ecua_aux_3} 
-\frac{r^2R''}{R} +\frac{rR'}{R}+\frac{\Theta''}{\Theta}+\omega^2r^2=0.
+\frac{r^2R''}{R} +\frac{rR'}{R}+\omega^2r^2=-\frac{\Theta''}{\Theta}.
 \end{equation}
-
+Ahora se razona como lo hemos hecho con la ecuación \eqref{eq:sep_var}. Como cada miembro depende de variables independientes 
 \section{Apéndice: Laplaciano en coordenadas polares}\label{eq:apendice}
 En primera instancia escribamos el operador de Laplace en coordenadas polares. Las coordenadas cartesianas  $x,y$ se escriben en función de las coordenadas polares $r,\theta$ de la siguiente forma
 \[x=r\cos\theta\quad y=r\sen\theta.\]
