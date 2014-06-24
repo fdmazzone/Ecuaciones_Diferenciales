@@ -33,6 +33,7 @@
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{adjustbox}
+\usepackage[spanish]{varioref}
 
 
 
@@ -177,11 +178,11 @@ y no converge para cualquier otro valor de $z\in\com$.
 	A_n=\sup\{x_n, x_{n+1},\ldots \}
 \]
 
-La nueva sucesión de reales $A_n$ es siempre nocreciente ($A_n\geq A_{n+1}$), luego tiene un límite (puede ser $\pm\infty$). A este límite lo llamamos \emph{el límite superior de $x_n$}. Lo denotamos por $\limsup$. Es decir:   
+La nueva sucesión de reales $A_n$ es  no creciente ($A_n\geq A_{n+1}$), luego tiene un límite (puede ser $\pm\infty$). A este límite lo llamamos \emph{el límite superior de $x_n$}. Lo denotamos por $\limsup_{n\to\infty} x_n$. Es decir:   
 
 
 \[
-\limsup x_n=\lim_{n\to\infty} A_n=\lim\limits_{n\to \infty} \sup\{x_n, x_{n+1},\ldots \}.
+\limsup_{n\to\infty} x_n=\lim_{n\to\infty} A_n=\lim\limits_{n\to \infty} \sup\{x_n, x_{n+1},\ldots \}.
 \]
 
 
@@ -191,7 +192,7 @@ Tomando ínfimo en lugar de supremo conseguimos \emph{el límite inferior} ($\li
 \[
 	\{x_n,x_{n+1},\ldots\}=\{\pm1,\mp1,\pm1,\ldots\}.
 \]
-El supremode este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1. Luego $\liminf x_n=-1$ y $\limsup=1$. 
+El supremo de este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1. Luego $\liminf x_n=-1$ y $\limsup x_n=1$. 
 \end{ejemplo}
 
 
@@ -201,13 +202,13 @@ El supremode este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1. 
 \[
 	\{x_n,x_{n+1},\ldots\}
 \]
-tiene por supremo 1 y el ínfimo igual a $0$ . Luego $\liminf x_n=0$ y $\limsup=1$. 
+tiene por supremo 1 y el ínfimo igual a $0$ . Luego $\liminf x_n=0$ y $\limsup x_n=1$. 
 \end{ejemplo}
 
 \begin{teorema}\textbf{Propiedades} Sea $x_n$  e $y_n$ dos sucesiones de números reales, entonces:
 
 \begin{enumerate}
-	\item El $\limsup$ y el $\liminf$  existen siempre si se permite que $\pm\infty$ sean sus posibles valores.
+	\item El $\limsup x_n$ y el $\liminf x_n$  existen si se permite que $\pm\infty$ sean sus posibles valores.
 	\item $\liminf x_n \leq \limsup x_n$.
 	\item $\liminf x_n=\limsup x_n$ si y solo si el $\lim x_n$ existe. En este caso todos los límites coinciden.
 	\item $\liminf (x_n+y_n)\geq \liminf x_n + \liminf y_n$.
@@ -242,7 +243,6 @@ definimos el \emph{radio de convergencia} $R$ de la siguiente forma:
 tiene radio de convergencia:
 
 \[\frac{1}{R}=\limsup\limits_{n\to \infty}1^{1/n}=\lim\limits_{n\to\infty}1^{1/n}=1\]
-
 Luego $R=1$. 
 \end{ejemplo}
 
@@ -253,7 +253,6 @@ Luego $R=1$.
 tiene radio de convergencia:
 
 \[\frac{1}{R}=\limsup\limits_{n\to \infty}\bigg(\bigg(\frac{1}{M}\bigg)^n\bigg)^{1/n}=\lim\limits_{n\to\infty}\bigg(\bigg(\frac{1}{M}\bigg)^n\bigg)^{1/n}=\frac1M\]
-
 Luego $R=M$. 
 
 \end{ejemplo}
@@ -275,14 +274,11 @@ Como $M$ es arbitrario, haciendo $M\to\infty$ vemos que el radio de convergencia
 es $R=\infty$. 
 \end{ejemplo}
 
-\begin{teorema}  Consideremos la serie:
-
+\begin{teorema}  Supongamos que la serie:
 \[
 	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n,
 \]
-
-Entonces:
-
+tiene radio de convergencia $R>0$. Entonces:
 \begin{enumerate}
 	\item Si $|z-z_0|<R$, la serie converge absolutamente en $z$. 
 	\item Si $|z-z_0|>R$, la serie diverge.
@@ -291,19 +287,17 @@ Entonces:
 \end{enumerate}
 \end{teorema}
 	
- \begin{demo} Se puede suponer sin perdida de generalidad $z_0=0$. Supongamos $0<R<\infty$. Sea $L=1/R$ y tomemos $\epsilon>0$ pequeño. Como
+ \begin{demo} Se puede suponer sin perdida de generalidad $z_0=0$. Supongamos $0<R<\infty$.  Sea $L=1/R$ y tomemos $\epsilon>0$ pequeño. Como
 \[\lim_{n\to\infty}\sup\{|a_n|^{1/n},|a_{n+1}|^{1/n+1},\ldots\}=L\]
 para $n_0$ suficientemente grande
 \[\sup\{|a_n|^{1/n},|a_{n+1}|^{1/n+1},\ldots\}<L+\epsilon.\]
- Así
+para $n\geq n_0$.   Así
 \[|a_n|^{1/n}<L+\epsilon\quad\hbox{para } n\geq n_0.\]
 Elijamos $0<r<1/(L+\epsilon)<1/L=R$. Si $|z|<r$ entonces
 \[|a_n||z|^n<(L+\epsilon)^nr^n\quad\hbox{para } n\geq n_0.\]
-Pero $r(L+\epsilon)<1$. La desigualdad de arriba y el teorema de comparación (notar que el miembro de la derecha forma una serie geométrica) implican que la serie converge absolutamente para este $z$.  Como $\epsilon$ es arbitrario, dado cualquier $z$, con $|z|<1/L$, tenemos un $\epsilon$ lo suficientemente chico para que $|z|<1/(L+\epsilon)$. \end{demo}
-
- \begin{ejercicio} Demostrar los casos $R=0$, $R=\infty$ y el segundo inciso.
+Pero $r(L+\epsilon)<1$. La desigualdad de arriba y el teorema de comparación para series (notar que el miembro de la derecha forma una serie geométrica) implican que la serie converge absolutamente para este $z$.  Esto implica la convergencia para cualquier $|z|<R$, ya que si $|z|<R=1/L$ existe $\epsilon>0$ lo suficientemente chico para que $|z|<1/(L+\epsilon)$. Por el resultado ya demostrado la serie converge absolutamente para este $z$.\end{demo}
+\begin{ejercicio} Demostrar los casos $R=0$, $R=\infty$ y el segundo inciso.
  \end{ejercicio}
-  
 \begin{teorema}  La función
 \[
 f(z)=	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n,
@@ -369,19 +363,11 @@ Esto muestra que $f'(z_0)=g(z_0)$ y por consiguiente $f$ es derivavble.
 tiene radio de convergencia infinito y por ende converge en $\com$. Ahora vemos que
 \[f'(z)=\sum_{n=1}^{\infty}\frac{1}{(n-1)!}z^{n-1} =\sum_{n=0}^{\infty}\frac{1}{n!}z^n
 \]
-
-Luego $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. La misma ecuación es resuelta por $g(z)=e^z$. Además $f(0)=g(0)=1$. Por el Teorema de existencia y unicidad $f(z)=g(z)$ para todo $z$. Hemos probado la importante fórmula.
-
+Lo que nos dice que $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. La misma ecuación es resuelta por $g(z)=e^z$. Además $f(0)=g(0)=1$. Por el Teorema de existencia y unicidad $f(z)=g(z)$ para todo $z$. Hemos probado la importante fórmula.
 \boxedeq{e^z=\sum_{n=0}^{\infty}\frac{1}{n!}z^n}{eq:exp}
 \end{ejemplo}
-
-
-
-
-
 \subsection{Funciones analíticas}
-
-\begin{definicion} Una función $f:\Omega\subset\com\to\com$ se dirá analítica si para cada $z_0\in\Omega$, existe un $R$ y $a_n\in\com$, tal que vale la igualdad:
+\begin{definicion} Una función $f:\Omega\subset\com\to\com$ se dirá analítica si para cada $z_0\in\Omega$, existe  $R>0$ y $a_n\in\com$, tal que:
 
 \[ f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n,\quad\hbox{para } |z-z_0|<R \]
 \end{definicion}
@@ -401,7 +387,7 @@ para los coeficientes $a_n$.
       (fg)(z)&=\sum_{n=0}^{\infty}\left(\sum_{k=0}^na_kb_{n-k}\right)(z-z_0)^n,\\
     \end{split}
 \]
-y los radios de convergencia de las series anteriores es, al menos, $R$.
+y los radios de convergencia de las series anteriores es, al menos, $R$. Si $g(z)\neq 0$ para $|z-z_0|<R$ entonces $f(z)/g(z)$ es analítica y se desarrolla por  una  serie de radio de convergencia al menos $R$. Es posible expresar los coeficientes del cociente en términos de los coeficientes del dividendo y divisor, pero no nos detendremos en ello.   
 \end{teorema}
 
 
@@ -414,7 +400,7 @@ y los radios de convergencia de las series anteriores es, al menos, $R$.
 Dada una EDO
 
 \begin{equation} \hbox{(1)}\quad  F(x,y,y',\ldots,y^{(n)})=0\end{equation}
-queremos encontrar el desarrollo en series de potencias de la solución general a esta ecuación. El método que estudiaremos se denomina \emph{metodo de los coeficientes indeterminados}. Consiste en proponer el desarrollo en serie de la solución
+queremos desarrollar en series de potencias  la solución general a esta ecuación. El método que estudiaremos se denomina \emph{metodo de los coeficientes indeterminados}. Consiste en proponer el desarrollo en serie de la solución
 
 \[y(x)=a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots  \]
 remplazar $y(x)$ por este desarrollo en  en la ecuación (1) y tratar de resolver la ecuación resultante para los coeficientes (indeterminados) $a_n$. El método suele funcionar en algunas ecuaciones. Desarrollemos un ejemplo.
@@ -495,8 +481,9 @@ La expresión $a_{n+1}=\frac{a_{n}}{n+1}$ es un ejemplo de \href{http://es.wikip
 \begin{definicion} Una  relación de recurrencia para una sucesión $b_n$ de números reales es una sucesión de 
 funciones $f_n:\rr^n\to\rr$ que relaciona $b_{n+1}$ con los términos anteriores de la sucesión por medio de 
 la expresión
-\boxedeq{b_{n+1}=f_n(b_1,\ldots,b_n)}{eq:recu}
- Resolver una relación de recurrencia es encontrar una fórmula explícita de $b_n$ como función de $n$.
+\begin{equation}\label{eq:recu} b_{n+1}=f_n(b_1,\ldots,b_n).
+\end{equation}
+Resolver una relación de recurrencia es encontrar una fórmula explícita de $b_n$ como función de $n$.
  \end{definicion}
 
 
@@ -521,7 +508,7 @@ rsolve(f,y(n))
 
  El resultado es
  \boxedeq{a_n=\sage{rsolve(f,y(n))}}{}
-Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de $k$ de los anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$.
+Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de los $k$  anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$.
 
 \begin{sageblock}
 reset()
@@ -564,13 +551,13 @@ Tenemos
 Tenemos la relación
 \[ a_{n+1}=\frac{(p-n)}{n+1}a_n.
 \]
-Que es una relación de reciurrencia de un sólo término. Estas relaciones se resuelven iterando la relación de manera sucesiva de modo de relacionar $a_n$ con $a_0$
+Que es una relación de recurrencia de un sólo término. Estas relaciones se resuelven iterando la relación de manera sucesiva de modo de relacionar $a_n$ con $a_0$
 \[a_n=\frac{(p-n+1)}{n}a_{n-1}=\frac{(p-n+1)(p-n+2)}{n(n-1)}a_{n-2}=\cdots=\frac{(p-n+1)(p-n+2)\cdots p}{n!}a_0.\]
 Como $a_0=y(0)=1$ vemos que
 \boxedeq{a_n=\frac{(p-n+1)(p-n+2)\cdots p}{n!}.}{eq:coef_bin}
-Si $p\in\mathbb{N}$ entonces $a_n=0$ para $n>p$. Esto es claro, por otro lado, ya que en este caso $(1+x)^p$ es un polinomio. Por fórmula del binomio de Newton los coeficientes cuando $p\in \mathbb{N}$  no son más que los coeficientes binomiales
+Si $p\in\mathbb{N}$ entonces $a_n=0$ para $n>p$. Esto es claro, por otro lado, ya que en este caso $(1+x)^p$ es un polinomio. Por la fórmula del binomio de Newton los coeficientes para $p\in \mathbb{N}$  no son más que los coeficientes binomiales
 \[a_n=\binom{p}{n}\]
- Cuando $p\in\mathbb{R}$ aún vamos a seguir denominado a $a_n$, dado por la fórmula \eqref{eq:coef_bin},   el coeficiente binomial. La serie resultante se llama la serie binomial. Cuando $p\in\mathbb{R}-\mathbb{N}$ es una serie infinita y no  un polinomio. Notar que para $p$ no entero positivo
+ Cuando $p\in\mathbb{R}$ aún vamos a seguir denominado a $a_n$, dado por la fórmula \eqref{eq:coef_bin},   coeficiente binomial. La serie resultante se llama la serie binomial. Cuando $p\in\mathbb{R}-\mathbb{N}$ es una serie infinita y no  un polinomio. Notar que para $p$ no entero positivo
 \[\lim\limits_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}=\lim\limits_{n\to\infty}\frac{|p-n|}{|n+1|}=1\]
 Luego la serie tiene radio de convergencia 1.  Hemos demostrado asi que vale la siguiente fórmula, que es una generalización de la fórmula binomial de Newton
 \boxedeq{(1+x)^p=1+px+\frac{p(p-1)}{2!}x^2  +\cdots=1+\binom{p}{1}x+\binom{p}{2}x^2+\cdots}{}
@@ -619,7 +606,7 @@ Encontramos la relación de recurrencia de dos términos
 Notar que  en este caso $a_1$ y, obviamente, $a_0$ no se relacionan con ningún coeficiente anterior. Por este motivo es de esperar que podamos elegir de manera arbitraria $a_0$ y $a_1$. Esto está de acuerdo con el hecho que remarcamos antes de que en una relación de recurrencia de dos términos aparecen dos constantes arbitrarias y también está de acuerdo con que la solución general de una ecuación de segundo orden tiene dos constantes arbitrarias. En este caso resolvemos la relación de recurrencia relacionando $a_n$ con $a_0$ cuando $n$ es impar y con $a_1$ cuando es impar. Concretamente si $n=2k$, $k\in\mathbb{N}$,
 \[a_{2k}=-\frac{\omega^2}{2k(2k-2)}a_{2k-2}=\cdots=(-1)^k\frac{\omega^{2k}}{(2k)!}a_0.\]
 En cambio si $n=2k+1$ es impar
-\[a_{2k+1}=-\frac{\omega^2}{2k+1}{2k-1}a_{2k-1}=\cdots=(-1)^k\frac{\omega^{2k}}{(2k+1)!}a_1.\]
+\[a_{2k+1}=-\frac{\omega^2}{(2k+1)2k}a_{2k-1}=\cdots=(-1)^k\frac{\omega^{2k}}{(2k+1)!}a_1.\]
 Agrupando los términos pares y los impares de la serie de potencias resultante queda
 \boxedeq{
    \begin{split}
@@ -821,7 +808,7 @@ De esta forma deducimos la ecuación de recurrencia que se satisface en una ecua
 \boxedeq{a_{n+2}=-\frac{ \sum_{k=0}^n\left\{ a_kq_{n-k}+ (k+1)a_{k+1}p_{n-k}\right\}}{n(n+1)}}{eq:rel_recu_gral}
 Dados los coeficientes $a_0$ y $a_1$ la relación de recurrencia determina los $a_n$, $n\geq 2$. Queda ver que la serie así definida tiene radio de convergencia al menos $R$. 
 
-Tomemos $r$ tal que $0<r<R$. Como las series \eqref{eq:series_p_q} tienen radio de convergencia $R$, estas series convergen absolutamente para $x=r$. El criterio de convergencia de series conocido como criterio del resto implica que $p_nr^n,q_nr^n$ son suceciones que tienden a $0$. En particular estan acotadas, y por ello existe $M>0$ tal que
+Tomemos $r$ tal que $0<r<R$. Como las series \eqref{eq:series_p_q} tienen radio de convergencia al menos  $R$,  convergen absolutamente para $x=r$. El criterio de convergencia de series conocido como criterio del resto implica que $p_nr^n,q_nr^n$ son suceciones que tienden a $0$. En particular estan acotadas, y por ello existe $M>0$ tal que
 \[ |p_n|r^n,|q_n|r^n\leq M.\]
 Tomando módulo en \eqref{eq:rel_recu_gral} y usando las desigualdades de arriba concluímos
 \[
@@ -893,13 +880,13 @@ o equivalentemente
 \[x^2y''+pxy'+qy=0\]
 Aquí es facil verificar que las funciones
 \[P(x):=\frac{p}{x}\quad\hbox{ y }\quad Q(x):= \frac{q}{x^2}\]
-satisfacen la relación
-\[\frac{Q'+2PQ}{Q^{\frac{3}{2}}}\]
-es constante. Cuando se daba esta condición el ejercicio 6 de la página 102 del libro de Simmons nos enseña que podemos reducir la ecuación a una ecuación con coeficientes constantes por medio del cambio de la variable independiente
+satisfacen que
+\[\frac{Q'+2PQ}{Q^{\frac{3}{2}}}\quad\text{es constante.}\]
+ Cuando se daba esta condición, el ejercicio 6 de la página 102 del libro de Simmons nos enseña que podemos reducir la ecuación a una ecuación con coeficientes constantes por medio del cambio de la variable independiente
 \[z=\int\sqrt{Q}dx\]
-En es caso, obviando las constantes, el cambio de variables que debemos hacer, asumamos $x>0$, es
+En este caso, obviando las constantes, el cambio de variables que debemos hacer es
 \[z=\ln(x)\]
-Seguramente, a esta altura del curso,  el alumno ya hizo los cálculos que muestran que la ecuación de Euler se transforma,  por medio del cambio de variables propuesto, en la ecuación a coeficientes constantes
+Aquí  asumimos $x>0$. Seguramente, a esta altura del curso,  el alumno ya hizo los cálculos que muestran que la ecuación de Euler se transforma,  por medio del cambio de variables propuesto, en la ecuación a coeficientes constantes
 \[y''+(p-1)y'+qy=0.\]
 Cuya ecuación característica es
 \[\lambda^2+(p-1)\lambda+q=0\]
@@ -915,7 +902,7 @@ Obtenemos las raíces
 \[y_1(z)=e^{s_1z}\quad\hbox{y}\quad y_2(z)=e^{s_2z}\]
  Si $s_1=s_2$
 \[y_1(z)=e^{s_1z} \quad\hbox{y}\quad y_2(z)=ze^{s_1z}\]
-son soluciones linealmente independientes. Asumamos que las raices $s_1$ y $s_2$ son reales, entonces como $z=\ln(x)$ las soluciones en términos de la variable $x$ son 
+son soluciones linealmente independientes. Asumamos que las raices $s_1$ y $s_2$ son reales, entonces como $z=\ln(x)$, las soluciones en términos de la variable $x$ son 
 \[y_1(x)=x^{s_1}\quad\hbox{y}\quad y_2(x)=x^{s_2}\quad\text{para }  s_1\neq s_2\]
 y
 \[y_1(x)=x^{s_1} \quad\hbox{y}\quad y_2(x)=\ln(x)x^{s_1}\quad\text{para }  s_1= s_2\]
@@ -926,7 +913,7 @@ Estas funciones, a menos que $s_1$ y $s_2$ sean enteros positivos, ya no son ana
 \end{ejemplo}
 
 
-De modo que, como era de suponer, no podremos encontrar en general en un punto singular una solución analítica.  Vamos a intentar flexibilar nuestro método para incluir otro tipo de desarrollo en serie, que está inspirado en los resultados obtenidos para la ecuación de Euler. 
+De modo que, como era de suponer, no podremos encontrar en general en un punto singular una solución analítica.  Vamos a intentar flexibilizar nuestro método para incluir otro tipo de desarrollo en serie, que está inspirado en los resultados obtenidos para la ecuación de Euler. 
 
 \begin{definicion} A una expresión de la forma
  \[y(x)=(x-x_0)^m(a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots),\]
@@ -976,13 +963,13 @@ Igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
     \end{split}
 \end{equation}
 Despejando de la última ecuación nos queda la relación de recurrencia de un término
-\boxedeq{a_{n+2}=-\frac{2a_{n+1}}{2(m+n+2)+1},}{eq:recu_ecua_ejem_frob}
-que es satisfecha, al menos, si $2(m+n+2)+1\neq 0$. 
+\boxedeq{a_{n+2}=-\frac{2a_{n+1}}{2(m+n+2)+1}.}{eq:recu_ecua_ejem_frob}
+Para llegar a esta igualdad debimos suponer $2(m+n+2)+1\neq 0$. 
 La primera de las ecuaciones en \eqref{eq:ecua_ejem_frob} es importante puesto que determina el valor de $m$. Se llama ecuación indicial. Vemos que si tomamos $m=1$ o $m=-1/2$ se resuelve la primera ecuacion. Supongamos $m=1$. Entonces \eqref{eq:recu_ecua_ejem_frob} se transforma en
 \[
 a_{n+2}=-\frac{2a_{n+1}}{2n+7},\quad n=-1,0,\ldots.
 \]
-Con ayuda de la relación de recurrencia podemos determinar el radio de convergencia de la serie
+Con ayuda de la relación de recurrencia podemos determinar el radio de convergencia de la serie sin necesidad de conocer el valor de los $a_n$
 
 \[\lim_{n\to\infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^{n}|}=
 \lim_{n\to\infty}\frac{2|x|}{2n+7}=0.\]
@@ -997,7 +984,7 @@ Por ende
 \[a_n=-\frac{a_{n-1}}{n}=\frac{1}{n(n-1)}a_{n-2}=\cdots=\frac{(-1)^n}{n!}a_{0}=\frac{(-1)^n}{n!}.\]
 Conseguimos la solución
 \boxedeq{y_2(x)=x^{-\frac12}\sum_{n=0}^{\infty}\frac{(-1)^n}{n!}x^n=\frac{e^{-x}}{\sqrt{x}}}{}
-Estas dos soluciones son linealmente independientes. Para justificaresto basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
+Estas dos soluciones son linealmente independientes. Para justificar esta afirmación basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
 
 Resolvamos el ejemplo con SAGE. Desafortunadamente hasta donde sabemos SAGE no tiene implementado el anillo de series de Frobenius. Luego vamos a tener que usar otra aproximación  con el método de Frobenius. Vamos a definir series de Frobenius como expresiones de SAGE. 
 
@@ -1049,7 +1036,7 @@ La solución es
 
 \end{ejemplo}
 
-\subsection{Ecuación de Bessel}
+\subsection{Ecuación de Bessel, funciones de Bessel de primera especie}\label{sec:bessel_1}
 
 \subsubsection{Relaciones de recurrencia y solución por el método de Frobenius}
 
@@ -1075,14 +1062,14 @@ Ecuaciones=[f[0] for f in Ecua]
 Sol_Ecua_Ind=solve(Ecuaciones[0],m)
 \end{sageblock}
 Las raíces de la ecuación indicial son
-\[\sage{Sol_Ecua_Ind}\]
-Vamos a trabajar con la raíz $m=p$. Las ecuaciones para los $a_n$ (abajo falta igualar a $0$) son las de abajo, hemos decartado las dos últimas ecuaciones dado que presentan problemas que vienen del truncamiento.
+\boxedeq{\sage{Sol_Ecua_Ind}.}{eq:sol_ec_ind}
+Vamos a trabajar con la raíz $m=p$.  Las ecuaciones para los $a_n$ (sin igualar a $0$) son las que figuran  debajo, hemos decartado las dos últimas ecuaciones dado que presentan problemas que vienen del truncamiento de la serie hasta la potencia 10.
 \begin{sageblock}
 Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]).factor()\
 for f in Ecuaciones[1:-2]]
 \end{sageblock}
 \[\sage{vector(Ecuaciones1).column()}\]
-Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$. Es decir que son relaciones de dos términos. A menos que $p=-1/2$ (este caso lo estudiaremos separadamente después) la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SAGE confirma esta aseveración. Resolvamos las ecuaciones. Notar que no pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ esarbitrario. Resulta en que SAGE nos resuelve todos los coeficientes en función de $a_0$.
+Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$. Es decir que son relaciones de dos términos. A menos que $p=-1/2$ (este caso lo estudiaremos separadamente después) la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SAGE confirma esta aseveración. Resolvamos las ecuaciones. Notar que no pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ es arbitrario. Resulta en que SAGE nos resuelve todos los coeficientes en función de $a_0$.
 \begin{sageblock}
 Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
 \end{sageblock}
@@ -1119,30 +1106,30 @@ y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
 
 \subsubsection{Función Gamma y la función de Bessel de primera especie}
 
-Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresión quedaría
+Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=-p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresión quedaría
 \[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
-No obstante, nos previene aún de utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no tenemos claro que significa $p!$. El propósito de esta subsección es introducir la extensión de la función factorial a una función de variable real. 
+No obstante, nos previene utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no es claro que significa $p!$. El propósito de esta subsección es introducir una extensión de la función factorial a una función de variable real. 
 
 \begin{definicion}\label{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por 
 \begin{equation}\label{eq:gamma}\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt
 \end{equation}
 \end{definicion}
 
-En otros cursos se demuestra que la integral impropia en la definición converge. Además se tiene la siguiente relación
+En la clase demostraremos que la integral impropia en la definición converge. Además demostraremos las siguientes relaciones
 \boxedeq{\begin{split}\Gamma(1)&=1\\
  \Gamma(p+1)&=p\Gamma(p)\end{split}}{eq:recu_gamma}
-Esta relación implica cuando $p=n$ es entero positivo que $\Gamma(n+1)=n\Gamma(n)=\cdots=n!\Gamma(1)=n!$. Luego podemos ver a la función gamma como una extensión de la función factorial a los reales no negativos. Notar que
+Estas igualdades  implican, cuando $p=n$ es entero positivo, que $\Gamma(n+1)=n\Gamma(n)=\cdots=n!\Gamma(1)=n!$. Luego podemos ver a la función gamma como una extensión de la función factorial a los reales no negativos. Notar que
 \[\lim_{p\to 0+}\Gamma(p)=\lim_{p\to 0+}\frac{\Gamma(p+1)}{p}=+\infty.\]
 La función Gamma tiende a  infinito cuando nos acercamos a cero por derecha.
 
-La Definición \ref{eq:gamma} es válida para $p>0$. No obstante podemos extender la función a $p<0$ valores de $p$ de manera tal que se satisfaga la relación \eqref{eq:ecu_gama}. Concretamente,  supongamos  que $-1<p<0$,  este caso definimos
+La Definición \ref{eq:gamma} es válida para $p>0$. Utilizando la relación \eqref{eq:recu_gamma} podemos extender la función a $p<0$. Concretamente,  supongamos  que $-1<p<0$, en  este caso definimos
 \boxedeq{\Gamma(p):=\frac{\Gamma(p+1)}{p}.}{eq:gama_iter}
 Observar que el segundo miembro esta bien definido pues $p+1>0$. Como consecuencia de esta definición tendremos
 \[\lim_{p\to 0-}\Gamma(p)=\lim_{p\to 0-}\frac{\Gamma(p+1)}{p}=-\infty.\]
 y 
-\[\lim_{p\to -1+}\Gamma(p)=\lim_{p\to -1+}\frac{\Gamma(p+1)}{p}=+\infty.\] 
-Ahora podemos extender $\Gamma$ para $p\in (-2,1)$. Pues  podemos usar la fórmula \eqref{eq:gama_iter} y el hecho de que ya tenemos definida la función Gamma en $(-1,0)$. Continuando de esta forma, definimos $\Gamma$ para cualquier valor de $p<0$ y $p\notin \mathbb{Z}$. Si $n$ es un entero negativo ocurre que
-\[\lim_{p\to n+}\Gamma(p)=+\infty\quad\text{y}\quad \lim_{p\to n-}\Gamma(p)=-\infty.\] 
+\[\lim_{p\to -1+}\Gamma(p)=\lim_{p\to -1+}\frac{\Gamma(p+1)}{p}=-\infty.\] 
+Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula \eqref{eq:gama_iter} y el hecho de que ya tenemos definida la función Gamma en $(-1,0)$. Continuando de esta forma, definimos $\Gamma$ para cualquier valor de $p<0$ y $p\notin \mathbb{Z}$. Si $n$ es un entero negativo ocurre que
+\[\lim_{p\to n+}\Gamma(p)=(-1)^n\infty\quad\text{y}\quad \lim_{p\to n-}\Gamma(p)=(-1)^{n-1}\infty.\] 
 
 \begin{sagecommandline}
  sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
@@ -1152,9 +1139,9 @@ Ahora podemos extender $\Gamma$ para $p\in (-2,1)$. Pues  podemos usar la fórmu
 \sageplot[scale=.5]{graf}
 \caption{La función gamma $\Gamma$}
 \end{figure}
-Ahora estamos en condiciones de definir nustra primer función de Bessel que resulta de tomar$a_0$ como $1/2^p\Gamma(p+1)$ la expresión quedaría
+Ahora estamos en condiciones de definir la función de Bessel de primera espacie que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
 
-\begin{definicion} Definimos la función de Bessel de primera especie como
+\begin{definicion}\label{def:bessel_primera} Definimos la función de Bessel de primera especie como
 \[J_p(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(p+n+1)}\left(\frac{x}{2}\right)^{2n+p}\]
 \end{definicion}
 
@@ -1170,12 +1157,15 @@ sage: p2=plot(J(x,2),(x,0,35),rgbcolor=(0,1,0))
 sage: p3=plot(J(x,3),(x,0,35),rgbcolor=(0,0,1))
 \end{sagecommandline}
 Estos gráficos los representamos en la figura \ref{fig:bessel}.
-\begin{center}
+
 \begin{figure}[h]
+\begin{center}
 \sageplot[scale=.4]{p1+p2+p3}
-\caption{Función de Bessel $J_1$}\label{fig:bessel}
-\end{figure}
 \end{center}
+\caption{Función de Bessel $J_1$}\label{fig:bessel}
+
+\end{figure}
+
 
 
 
@@ -1185,7 +1175,7 @@ Ahora consideremos la solución $m=-p$ de la ecuación indicial.
 Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
 for f in Ecuaciones[1:-2]]
 \end{sageblock}
- \[\sage{vector(Ecuaciones1).column()}\]
+ \boxedeq{\sage{vector(Ecuaciones1).column()}}{eq:rel_recu_-p_a}
 En realidad la situación es exactamente la misma que antes, sólo hay que reemplazar $p$ por $-p$. Por ejemplo, hallemos la relación de recurrencia despejando de cada ecuación el $a_i$ con el índice $i$ más grande. 
 \begin{sageblock}
 Ecuaciones2=[]
@@ -1193,10 +1183,10 @@ for i in range(1,len(Ecuaciones1)):
     Ecuaciones2+=[solve(Ecuaciones1[i],a[i+1])[0]]
  \end{sageblock}
  \boxedeq{\sage{vector(Ecuaciones2).column()}}{eq:recu_-p} 
-Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la direfencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo decimos porque esta situación es problemática en cualguier punto regular singular de cualquier ecuación. También notar que $p=0$ es también una situación problemática, esto porque en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
+Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la diferencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo remarcamos porque veremos más adelante que en general es un problema que la diferencia de las raíces de la ecuación indicial sean negativas. También $p=0$ es una situación problemática, dado que en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
 
 Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
-\begin{definicion} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$ como
+\begin{definicion}\label{def:bessel_segunda} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$) como
 \[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
 \end{definicion}
 Grafiquemos algunas de estas funciones de Bessel.
@@ -1211,7 +1201,7 @@ sage: p3=plot(J(x,-5/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(0,0,1))
 \end{figure}
 Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
 
-\subsection{Teorema fundamental sobre puntos singulares regulares}
+\subsection{Teorema fundamental sobre puntos singulares regulares}\label{eq:sec_teor_fund_frob}
 Habiendo visto algunos ejemplos, ahora pasaremos a discutir la situación general del método de Frobenius. 
 
 Supongamos $x=0$ un punto regular singular de la ecuación
@@ -1273,7 +1263,7 @@ La primera de estas ecuaciones es
 
 Si $m$ resuelve la ecuación indicial entonces $m$ resuelve la ecuación \eqref{eq:recu_gral_frob_2} para $n=0$ y el valor de $a_0$ se puede elegir arbitrariamente. 
 
-Supongamos que la ecuación indicial tiene las soluciones $m_2\leq m_1$. Podría ocurrir que las soluciones fueran complejos conjugados, pero no trataremos este caso aquí. Ahora discutamos  cuando es posible resolver las relaciones de recurrencia \eqref{eq:recu_gral_frob_2}. El único problema que podría ocurrir es que  $f(m+n)=0$ para algún valor de $n=1,2,\ldots$, dado que en ese caso \eqref{eq:recu_gral_frob_2} se reduce a 
+Supongamos que la ecuación indicial tiene las soluciones $m_2\leq m_1$. Podría ocurrir que las soluciones fueran complejos conjugados, pero no trataremos este caso aquí. Ahora discutamosVeamos  cuando es posible resolver las relaciones de recurrencia \eqref{eq:recu_gral_frob_2}. El único problema que podría ocurrir es que  $f(m+n)=0$ para algún valor de $n=1,2,\ldots$, dado que en ese caso \eqref{eq:recu_gral_frob_2} se reduce a 
 \begin{equation}\label{eq:ec_enter} 0=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
 q_{n-k}\right].
 \end{equation}
@@ -1281,7 +1271,7 @@ Esta ecuación no nos dice nada sobre $a_n$ y no podemos esperar que se satisfag
 
 Cuando $m=m_2$ si puede ocurrir que $f(m_2+n)=0$, esto es así cuando $m_2+n=m_1$ para algún $n=1,2,\ldots$, vale decir cuando $m_1-m_2\in\mathbb{Z}$.  Luego estamos en condiciones de afirmar que \emph{si $m=m_2$, $m_1-m_2\notin \mathbb{Z}$ y $a_0\neq 0$ es elegido arbitrariamente las ecuaciones \eqref{eq:recu_gral_frob_2} determinan los coeficientes $a_n$, $n=1,2,\ldots$.} En esta situación, se demuestra con facilidad que las dos soluciones obtenidas por el método de Frobenius son linealmente independientes. Por ejemplo, si estas soluciones son
 \[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad\text{y}\quad y_2=x^{m_2}\sum_{n=0}^{\infty}n_nx^n,\]
-con $a_0\neq 0\neq b_0$ y si suponemos que ellas son linealmente dependientes en tonces su cociente $y_1/y_2$ sería una constante $c$  no nula. Pero tomando límite en la expresión $y_1/y_2$ cuando $x\to 0$ vemos que
+con $a_0\neq 0\neq b_0$ y si suponemos que ellas son linealmente dependientes entonces su cociente $y_1/y_2$ sería una constante $c$  no nula. Pero tomando límite en la expresión $y_1/y_2$ cuando $x\to 0$ vemos que
 \[c=\lim_{x\to 0} \frac{y_1}{y_2}=\lim_{x\to 0} x^{m_1-m_2}\frac{\sum_{n=0}^{\infty}a_nx^n}{ \sum_{n=0}^{\infty}b_nx^n  }=0.\frac{a_0}{b_0}=0.\]
 
 Si $m_1-m_2:=n_0\in\mathbb{Z}$, entonces la situación es diferente. Si, en particular,  \emph{tuviesemos $n_0=0$ ( $m_1=m_2$) entonces claramente podremos encontrar esencialemente sólo una solución en serie de Frobenius.}   
@@ -1289,7 +1279,7 @@ Si $m_1-m_2:=n_0\in\mathbb{Z}$, entonces la situación es diferente. Si, en part
 
 
 
-Supongamos $n_0>0$.  Cuando $n=n_0$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte, como ya se dijo, en \eqref{eq:ec_enter} con $m_2$ en lugar de $m$. Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolvería la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
+Supongamos $n_0>0$.  Cuando $n=n_0$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte, como ya se dijo, en \eqref{eq:ec_enter} con $m_2$ en lugar de $m$.\label{pag:apar_sol} Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolvería la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
 \begin{equation}\label{eq:iter_m1}
   \begin{split}
     f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]=-a_{n_0}[p_1m_1+q_1]\\
@@ -1303,9 +1293,9 @@ Como se ve, la iteración termina siendo la misma que la correpondiente iteraci�
  =x^{m_2+n_0}\sum_{n=0}^{\infty}a_{n+n_0}x^n
 =x^{m_1}\sum_{n=0}^{\infty}b_nx^n
 ,\]
-donde $b_n:=a_{n+n_0}$ resuelve el esquema de iteración \eqref{eq:iter_m1} que, como dijimos, es el esquema de iteración correspondiente a $m=m_1$. Vale decir que elegir  $0=a_0=\cdots=a_{n_0-1}$ nos lleva a una solución linealmente dependiente con la solución que ya encontramos para $m=m_1$. Podríamos tener la suerte que eligiendo $a_0\neq 0$ se satisfaga la ecuación \eqref{eq:ec_enter} con $m=m_2$ y $n=n_0$. Si esto ocurre podemos elegir $a_{n_0}$ arbitrariamente, por ejemplo $a_{n_0}=0$, y continuar la iteración. Obtenemos una solución que es linealmente independiente   de la correspondiente a $m_1$. En síntesis, \emph{si $n_0:=m_1-m_2\in\mathbb{Z}$, si $a_0\neq 0$ es eligido arbitrariamente, si  $a_1,\ldots,a_{n_0-1}$ son hayados mediante \eqref{eq:recu_gral_frob} y si se satisface  \eqref{eq:ec_enter} tenemos una segunda solución en serie de Frobenius para $m=m_2$}
+donde $b_n:=a_{n+n_0}$ resuelve el esquema de iteración \eqref{eq:iter_m1} que, como dijimos, es el esquema de iteración correspondiente a $m=m_1$. Vale decir que elegir  $0=a_0=\cdots=a_{n_0-1}$ nos lleva a una solución linealmente dependiente con la solución que ya encontramos para $m=m_1$. Podríamos tener la suerte que eligiendo $a_0\neq 0$ se satisfaga la ecuación \eqref{eq:ec_enter} con $m=m_2$ y $n=n_0$. Si esto ocurre podemos elegir $a_{n_0}$ arbitrariamente, por ejemplo $a_{n_0}=0$, y continuar la iteración. Obtenemos una solución que es linealmente independiente   de la correspondiente a $m_1$. En síntesis, \emph{si $n_0:=m_1-m_2\in\mathbb{Z}$, si $a_0\neq 0$ es eligido arbitrariamente, si  $a_1,\ldots,a_{n_0-1}$ son hallados mediante \eqref{eq:recu_gral_frob} y si se satisface  \eqref{eq:ec_enter} tenemos una segunda solución en serie de Frobenius para $m=m_2$}
 
-Si falla esta última condición ya no hay otra solución en serie de Frobenius. Se puede encontrar un desarrollo, que ya no constituye una Serie de Frobenius,  para otra solución de la siguiente formaempleando el método de reducción de orden a partir de la solución conocida $y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n$. Este método no decía que la otra solución venía dada a partir de las relaciones
+Si falla esta última condición ya no hay otra solución en serie de Frobenius. Se puede encontrar un desarrollo, que ya no constituye una serie de Frobenius,  para otra solución de la siguiente forma empleando el método de reducción de orden a partir de la solución conocida $y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n$. Este método no decía que la otra solución venía dada a partir de las relaciones
 \[y_2(x)=v(x)y_1(x),\quad\text{donde  } v'(x)=\frac{1}{y_1^2}e^{-\int p(x)dx}.\]  
 Teniendo en cuenta que
 \[p(x)=\sum_{n=0}^{\infty}p_nx^{n-1}=\frac{p_0}{x}+p_1+p_2x+\cdots.\]
@@ -1324,7 +1314,9 @@ Ahora la función
 \]
 es analítica en $0$ puesto que el denominador no se anula en cero. Por consiguiente tenemos un desarrollo en serie
 \[ g(x)=\sum_{n=0}^{\infty}b_nx^n, \quad b_0\neq 0.\]
-En la práctica encontrar este desarrollo en serie de manera explícita puede ser muy difícil. Llamando $k:=2m_1+p_0$ tendremos que
+En la práctica encontrar este desarrollo en serie de manera explícita puede ser muy difícil. Llamemos $k:=2m_1+p_0$. Por la conocida fórmula para la suma de las raíces de una ecuación de segundo grado, se tiene que $m_1+m_2=1-p_0$.  Luego  $2m_1+p_0=2m_1+1-m_1-m_2=m_1-m_2+1\in\mathbb{N}$. 
+
+Tenemos que
 \[v'(x)=\frac{b_0}{x^k}+ \frac{b_1}{x^{k-1}}+\cdots+\frac{b_{k-1}}{x}+b_{k}+\cdots\]
 Entonces
 \[v(x)=\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\]
@@ -1365,7 +1357,7 @@ Usando \eqref{eq:recu_gral_frob_2}, con $m=m_1$, \eqref{eq:desig_aux} y las desi
 \[n(n-|m_1-m_2|)|a_n|\leq M\sum_{k=0}^{n-1}\frac{|a_k|}{r^{n-k}}(|m_1|+k+1).\]
 Ahora definimos la sucesión $b_n$ por $b_n=|a_n|$, para $0\leq n\leq|m_1-m_2|$ y para $ n>|m_1-m_2|$
 \begin{equation}\label{eq:bn_iter}n(n-|m_1-m_2|)b_n= M\sum_{k=0}^{n-1}\frac{b_k}{r^{n-k}}(|m_1|+k+1).\end{equation}
-Por el Lema \ref{lema:comp_recu} tenemos que $|a_n|\leq b_n$, para todo $n=0,1,\ldots$. Ahora veremos que la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para  $|x|<r$. Por \eqref{eq:bn_iter} tenemos que
+Por una variación simple  del Lema \ref{lema:comp_recu} tenemos que $|a_n|\leq b_n$, para todo $n=0,1,\ldots$. Ahora veremos que la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para  $|x|<r$. Por \eqref{eq:bn_iter} tenemos que
 \[ 
    \begin{split}
      r(n+1)(n+1-|m_1-m_2|)b_{n+1}&=M\sum_{k=0}^{n}\frac{|b_k|}{r^{n-k}}(|m_1|+k+1)\\
@@ -1386,6 +1378,39 @@ Luego la serie  $\sum_{n=0}^{\infty}b_nx^n$   converge para $|x|<r$. Como $|a_n|
 Restaría considerar el caso $m=m_2$ cuando $m_1-m_2$ no es entero. Pero la demostración del mismo sigue el mismo camino que para $m=m_1$.
 
 \end{demo}
+
+\subsection{Funciones de Bessel  de segunda especie}
+
+En la subsección \ref{sec:bessel_1} discutimos sobre soluciones de la ecuación de Bessel de orden $p\geq 0$. Obtuvimos la solución en serie de Frobenius asociada a la solución de la ecuación indicial $m=p$ \eqref{eq:sol_ec_ind}, dada en la Definición \ref{def:bessel_primera}. Esta solución es llamada función de Bessel de primera especie y es denotada por $J_p$. Es bueno decir que esta función es continua en $0$ y $J_p(0)=0$. Para la segunda solución de la ecuación indicial $m=-p$, hemos dicho también que para $p\neq 0,\frac12,1,\frac32,\ldots$ hay otra solución linealmente independiente de $J_p$. Esta solución se denomina también función de Bessel de primera especie, se denota $J_{-p}$ y es una función no acotada en $0$.  Según lo que hemos expresado en la Subsección \ref{eq:sec_teor_fund_frob}, aún en el caso $p=0,\frac12,1,\frac32,\ldots$ tenemos esperanzas de encontrar una solución en serie de Frobenius o al menos una solución de la forma \eqref{eq:des_enter}. Este tipo de soluciones es lo que discutiremos en esta subsección. 
+
+Empecemos suponiendo $p$ entero positivo. A partir de \eqref{eq:recu_-p} sabemos que la fórmula de recurrencia para $m=-p$ es
+\boxedeq{n(2p-n) a_{n} = a_{n-2},\quad n\geq 2}{eq:rel_recu_-p}
+También recordemos de \eqref{eq:rel_recu_-p_a}  la ecuación
+\[-a_1(2p-1)=0,\]
+que  implica $a_1=0$, puesto que $p$ es entero y por ende $p\neq\frac12$. Como consecuencia de la relación de recurrencia  \eqref{eq:rel_recu_-p} tenemos $a_n=0$ para todo $n$ impar. Para afirmar esto último tomamos en cuenta que al ser $p$ entero  $2p-n\neq 0$ cuando $n$ es impar.   Cuando  $n$ es par y más en concreto $n=2p$ la relación de recurrencia \eqref{eq:rel_recu_-p} toma la forma $a_{n-2}=0$. Ahora si $a_{n-2}=0$ entonces \eqref{eq:rel_recu_-p} implica que $a_{n-4}=a_{n-6}=\cdots a_0=0$. Eligiendo $a_n$ arbitrariamente y al resto de los $a_k$ con $k$ par mayor a $n$ de modo que se satisfaga la relación de recurrencia se llega a una solución en serie de Frobenius. Lamentablemente esta segunda solución es esencialmente la misma  que $J_p$. Esto ya lo hemos discutido en sección \vref{pag:apar_sol}.  De modo que cuando $p$ es entero positivo no tenemos una segunda solución en serie de Frobenius. 
+
+Más adelante volveremos al caso $p$ entero. Ahora consideremos $p=\frac{2k+1}{2}$ con $k$ entero $k\geq 0$.  Reemplazando $p$ en \eqref{eq:rel_recu_-p}  por este valor y reemplazando $n$ por $2k+1$, concluímos $a_{2k-1}=0$. Ahora iterando la relación de recurrencia $a_{2k-3}=\cdots=a_1=0$. La situación es parecida al caso anterior, podemos elegir $a_{2k+1}$ libremente, vamos a elegirlo igual a $0$. Esto anula todos los coeficientes $a_n$ con $n$ impar. Pero la diferencia con el caso anterior es que podemos elegir libremente $a_0$. Llegamos así a la misma solución de la Definición \ref{def:bessel_segunda}. En síntesis \emph{para todo $p$ que no es un entero no negativo, tenemos el par de soluciones linealmente independientes $J_p$ y $J_{-p}$ tales que
+\boxedeq{y=c_1J_p+c_2J_{-p}}{eq:sol_gen_bessel_1}
+es la solución general de la ecuación de Bessel}
+
+Ahora volvamos al caso $p\in\mathbb{Z}$ para encontrar una segunda solución  linealmente independiente de $J_p$. Podríamos buscar esta solución apelando a la expresión \eqref{eq:des_enter}, pero es costumbre buscar de otra manera esta segunda solución y vamos a discutir brevemente,  sin justificar todos los detalles,  esta otra forma. La idea es expresar la segunda solución para  $p=n\in\mathbb{Z}$ como límite de soluciones  de la forma  \eqref{eq:sol_gen_bessel_1} cuando $p\to n$. Más concretamente.
+
+\begin{definicion} Para $p\notin\mathbb{Z}$ definimos la función de Bessel $Y_p$ de segunda especie por
+\begin{equation}\label{eq:bessel_2_especie}
+Y_p=\frac{\cos p\pi J_p-J_{-p}}{\sen p\pi}.
+\end{equation}
+\end{definicion}
+
+La función $Y_p$ es una solución puesto que es una expresión del tipo \eqref{eq:sol_gen_bessel_1}. Además es no acotada cerca de $0$ dado que $J_p$ es acotada y $J_{-p}$ no. La razón de esta llamativa definición es el siguiente resultado. 
+
+\begin{lema} Para $n$ entero no negativo,  el  límite $\lim_{p\to n}Y_p$ existe. Por consiguiente, podemos definir
+\begin{equation}\label{eq:bessel_2_especie_b}
+Y_n(x):=\lim_{p\to n}Y_p(x).
+\end{equation}  
+Esta función es solución de la ecuación de Bessel de orden $n$ y se denomina, también, función de Bessel de segunda especie. También resulta ser una función no acotada cerca de $0$ y por consiguiente, linealmente idependiente de $J_n$.
+\end{lema}
+
+
 
 
 
