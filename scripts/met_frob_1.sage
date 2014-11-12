@@ -7,7 +7,8 @@ a=var(ListaCoefNom)
 x=var('x')
 m=var('m')
 y = x^m*sum(a[i]*x^i for i in range(orden))
-Ecua=x^2*y.diff(x,2)-x^2*y.diff(x)+(x^2-2)*y
+a,b=var('a,b')
+Ecua=x*y.diff(x,2)+(b-x)*y.diff(x)-a*y
 """
 La exponente más chico para el x en esta expresión es, a los sumo, m-2. Dividimos por m-2 asi todos los exponentes son enteros positivos. Extraemos los coeficientes que acompañan a x que son las ecuaciones que debemos resolver
 """
