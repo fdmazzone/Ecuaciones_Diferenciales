@@ -1101,7 +1101,7 @@ una solución general del homogéneo. Esta última solución general se escribe 
 \begin{lstlisting}
 sage: x=var('x')
 sage: y1=sin(x)
-sage: y2=cos(x)
+sage: y2= cos(x)
 sage: W=y1*y2.diff()-y1.diff()*y2
 sage: W.simplify_full() #chequeamos independencia
 -1
@@ -1125,6 +1125,7 @@ sage: y(x=pi/2)
 0
 sage: y.diff()(x=pi/2)
 1
+
 
 \end{lstlisting}
  }
