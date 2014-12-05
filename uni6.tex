@@ -354,7 +354,14 @@ transformation=Trans,viewer='tachyon')+aux
 
 \end{sageblock}
 
- 
+ \begin{sagecommandline}
+sage: 2+2
+% sage: x,y=var('x,y')
+% sage: r=sqrt(x^2+y^2)
+% sage: theta=atan2(y,x)
+% sage: rho,phi=var('rho,phi') 
+% sage: r.diff(x)(x=rho*cos(phi),y=rho*sin(phi)).simplify_full()
+\end{sagecommandline}
 
 
 \end{document}

@@ -2,11 +2,12 @@
 %\documentclass[hyperref={colorlinks=true}]{beamer}
 \documentclass[handout,hyperref={colorlinks=true}]{beamer}
 
-
+\usecolortheme{crane}
+\usetheme{Darmstadt}
+\usefonttheme{structuresmallcapsserif}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{pgfpages}
+%\usepackage{pgfpages}
 %\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
@@ -28,33 +29,24 @@
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
 \lstdefinelanguage{Sage}[]{Python}
 {morekeywords={False,sage,True},sensitive=true}
 \lstset{
-  frame=none,
-  showtabs=False,
-  showspaces=False,
-  showstringspaces=False,
-  commentstyle={\ttfamily\color{dgreencolor}},
-  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-  language=Sage,
-  basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-  aboveskip=.3em,
-  belowskip=0.1em,
-  numbers=none,
-  numberstyle=\footnotesize
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=Sage,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
 }
-
-
- 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
@@ -64,16 +56,6 @@
 \newcommand{\dblue}{\color{dbluecolor}\bf}
 \newcommand{\dred}{\color{dredcolor}\bf}
 \newcommand{\dblack}{\color{dblackcolor}\bf}
-
-
-
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
@@ -89,32 +71,29 @@
 \newsavebox\mytempbox
 \makeatletter
 \newcommand\mybluebox{%
-    \@ifnextchar[%]
-       {\@mybluebox}%
-       {\@mybluebox[0pt]}}
-
+\@ifnextchar[%]
+{\@mybluebox}%
+{\@mybluebox[0pt]}}
 \def\@mybluebox[#1]{%
-    \@ifnextchar[%]
-       {\@@mybluebox[#1]}%
-       {\@@mybluebox[#1][0pt]}}
-
+\@ifnextchar[%]
+{\@@mybluebox[#1]}%
+{\@@mybluebox[#1][0pt]}}
 \def\@@mybluebox[#1][#2]#3{
-    \sbox\mytempbox{#3}%
-    \mytemplen\ht\mytempbox
-    \advance\mytemplen #1\relax
-    \ht\mytempbox\mytemplen
-    \mytemplen\dp\mytempbox
-    \advance\mytemplen #2\relax
-    \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-
+\sbox\mytempbox{#3}%
+\mytemplen\ht\mytempbox
+\advance\mytemplen #1\relax
+\ht\mytempbox\mytemplen
+\mytemplen\dp\mytempbox
+\advance\mytemplen #2\relax
+\dp\mytempbox\mytemplen
+\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 \makeatother
 \DeclareDocumentCommand\boxedeq{ m g }{%
-    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-        \IfNoValueF {#2} {\label{#2}}%
-       #1
-       \end{empheq}
-    }%
+{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+\IfNoValueF {#2} {\label{#2}}%
+#1
+\end{empheq}
+}%
 }
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
@@ -124,10 +103,6 @@
 \newtheorem{proposicion}[teorema]{Proposici\'on}
 \newtheorem{definicion}[teorema]{Definici\'on}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 %%%%%%%%%%Para escibir en clase articulo o similar
 % \usepackage{color}
 % \newcommand{\nl}{ }
@@ -137,34 +112,9 @@
 % \newenvironment{block}[1]{\textbf{#1}}{}
 % \title{Ecuaciones lineales de segundo orden}
 % \author{Fernando Mazzone}
-% 
-
-
-
-
+%
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
-% \mode<all>
-% {
-%   \usetheme{Boadilla}
-%   % oder ...
-%  
-%   \setbeamercovered{wolverine}
-%   % oder auch nicht
-% }
-
-
-\mode<handout>{
-  \usetheme{default}
-  %\setbeamercolor{background canvas}{bg=black!5}
-  \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-}
-
-% \mode<all>{
-%   \usetheme{default}
-%   %\setbeamercolor{background canvas}{bg=black!5}
-%   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-% }
 
 \title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
 {%
@@ -207,10 +157,6 @@ Universidad Nacional de Río Cuarto}
 
 
 
-
-
-
-
 \section{Sobre esta materia}
 
 \begin{frame}{Sobre la materia}
@@ -218,7 +164,7 @@ Universidad Nacional de Río Cuarto}
 \begin{itemize}
  \item  \href{https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxlY3VhY2lvbmVzZGlmZXJlbmNpYWxldW5yY3xneDoyZjE0YzJmMDcyODc0ZGQ3}{Programa analítico.}
  \item  \href{https://sites.google.com/site/ecuacionesdiferencialeunrc/ecuaciones-diferenciales-unrc}{Página web} de la materia
- \item  Vamos a hacer uso intensivo de \href{http://www.sagemath.org/}{SAGE}.
+ \item  Vamos a hacer uso intensivo de paquetes de matemática basados en \href{https://www.python.org/}{Python}, por ejemplo \href{http://www.scipy.org/}{SciPy},  \href{http://www.scipy.org/}{SymPy} y \href{http://www.sagemath.org/}{SAGE}.
  \item  Requeriremos muchos contenidos de la asignatura Física.
  \item  \begin{tabular}{m{4cm} m{2cm}} Bibliografía principal & \includegraphics[scale=0.05]{imagenes/Tapa_Simmons.jpg}           \end{tabular} 
 
@@ -273,6 +219,7 @@ vale decir
 
 
 
+
 \begin{frame}{Algunos conceptos relacionados con ecuaciones diferenciales}
 \begin{itemize}
 \nl  \item \textbf{Orden} El índice de la mayor derivada interviniente en la ecuación. Por ejemplo la ecuación \eqref{caidaLibre1} es de orden 2 y la
@@ -280,14 +227,43 @@ ecuación \eqref{caidaLibre2}, si bien está estrechamente relacionada con la an
 
 \nl  \item \textbf{Solución} Una función que satisface la relación que indica la ecuación. Por ejemplo
 \begin{equation}\label{SolGencaidaLibre2} v(t)=\frac{m}{c}g+ke^{-\frac{c}{m}t},\end{equation}
-resuelve \eqref{caidaLibre2}, para todo $C\in\rr$. No deberíamos perder tiempo en chequear una cuestión tan sencilla, pero aprovechemos la ocasión para presentar 
-un recurso que utilizaremos de manera sistemática: \href{https://sage.ccad.unrc.edu.ar/home/pub/63/}{SAGE}.
+resuelve \eqref{caidaLibre2}, para todo $C\in\rr$. No deberíamos perder tiempo en chequear una cuestión tan sencilla, pero aprovechemos la ocasión para usar  \href{http://www.sympy.org}{SymPy}.
 
 \end{itemize}
 
- 
+
 
 \end{frame}
+
+\begin{frame}[fragile]{Chequando solución con  SymPy}
+
+\begin{sageblock}
+from sympy import *
+m,g,c,k,t=symbols('m,g,c,k,t')
+v=m/c*g+k*exp(-c/m*t)
+simplify(v.diff(t)+c/m*v)
+\end{sageblock}
+
+Obtenemos que el resultado es $\sage{simplify(v.diff(t)+c/m*v)}$.
+ \texttt{SymPy} les puede encontrar la solución
+
+\begin{sageblock}
+v=symbols('v',cls=Function)
+EqCaida=Eq(v(t).diff(t)+c/m*v(t),g)
+Vel=dsolve(EqCaida,v(t))
+\end{sageblock}
+
+La solución obtenida es $\sage{Vel}$
+\end{frame}
+
+
+
+
+ 
+
+
+
+
 
 \begin{frame}{Algunos conceptos relacionados con ecuaciones diferenciales}
 \begin{itemize}
@@ -336,9 +312,9 @@ también. Por ejemplo, admitiremos como válida una expresión que contenga una 
 contiene parámetros. Cada elección de estos parámetros determina una solución distinta. Por ejemplo \eqref{SolGencaidaLibre2} es la solución general de \eqref{caidaLibre2}.
 
 \nl  La afirmación anterior requiere una demostración puesto que sólo hemos mostrado que \eqref{SolGencaidaLibre2} es solución, pero no
-que toda solución se expresa con \eqref{SolGencaidaLibre2}. Para demostrar la afirmación, hay que multiplicar ambos miembros de \eqref{SolGencaidaLibre2} 
-por $e^{\frac{c}{m}t}$ y luego intergar respecto a $t$ 
-\[\frac{mg}{c}e^{\frac{c}{m}t}=\int ge^{\frac{c}{m}t}dt=\int \left(v'(t)e^{\frac{c}{m}t}+\frac{c}{m}e^{\frac{c}{m}t}\right) vdt=e^{\frac{c}{m}t}v+C.\]
+que toda solución se expresa con \eqref{SolGencaidaLibre2}. Para demostrar la afirmación, hay que multiplicar ambos miembros de \eqref{caidaLibre2} 
+por $e^{\frac{c}{m}t}$ y luego integrar respecto a $t$ 
+\[\frac{mg}{c}e^{\frac{c}{m}t}=\int ge^{\frac{c}{m}t}dt=\int v'(t)e^{\frac{c}{m}t}+\frac{c}{m}e^{\frac{c}{m}t} vdt=e^{\frac{c}{m}t}v+C.\]
  Despejando $v$ del primer y último miembro obtenemos \eqref{SolGencaidaLibre2} con $k=-C$.
 
  
@@ -371,7 +347,7 @@ donde $\Omega$ es abierto de $\rr^{n+1}$ y $(a,b)$ un intervalo de $\rr$.
 \end{frame}
 
 \begin{frame}{Primitivas y ecuaciones}
-\textbf{Ejemplo} El problema de hallar una primitiva de una función es una ecuación diferencial que, como ya haz visto en curso iniciales de análisis, se resuelve 
+\textbf{Ejemplo} El problema de hallar una primitiva de una función es una ecuación diferencial que, como ya has visto en curso iniciales de análisis, se resuelve 
 con la integral. Supongamos $f:(a,b)\subset \rr\to\rr$ una función continua. Consideremos la ecuación diferencial
 \[y'(x)=f(x).\]
 Sea $x_0\in(a,b)$, integrando respecto a $x$ entre $x_0$ y $x$
@@ -509,7 +485,23 @@ Para resolver este problema se completan estos pasos
 
 \[x^2+y^2=c^2\]
 
-Solución: ver la \href{https://sage.ccad.unrc.edu.ar/home/pub/63/}{notebook de SAGE}
+Hallamos antes que la ecuación que satisfacen estas curvas es
+\[y'=-\frac{x}{y}.\]
+Luego deberíamos resolver
+\[y'=\frac{y}{x}.\]
+Que no sabemos pero SymPy si!!!
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+\begin{sageblock}
+
+\end{sageblock}
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+dsolve(MiEcua,y)
 \end{frame}
 
 \section{Separación de variables}
