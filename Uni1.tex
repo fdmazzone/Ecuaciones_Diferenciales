@@ -496,12 +496,25 @@ Que no sabemos pero SymPy si!!!
 
 \begin{frame}[fragile]{Familias paramétricas de funciones} 
 \begin{sageblock}
-
-\end{sageblock}
 x=symbols('x')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),y/x)
-dsolve(MiEcua,y)
+f=dsolve(MiEcua,y)
+\end{sageblock}
+
+Las soluciones obtenidas son $\sage{f}$, todas las rectas que pasan por el origen
+
+\begin{sageblock}
+from sympy import *
+x=symbols('x')
+Rango=range(5)+range(6,10)
+L=[tan(pi*k/10.0) for k in Rango] 
+p=plot(L[0]*x,(x,-2,2),show=False)
+for pend in L[1:]:
+    p1=plot(pend*x,(x,-2,2),show=False)
+    p.append(p1[0]);
+\end{sageblock}
+\sageplot{p.show()}
 \end{frame}
 
 \section{Separación de variables}
