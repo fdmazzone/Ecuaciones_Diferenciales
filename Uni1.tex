@@ -116,21 +116,21 @@ numberstyle=\footnotesize
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
 
-\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+\title[Introducción] % (optional, nur bei langen Titeln nötig)
 {%
- Ecuaciones lineales de segundo orden
+ Introducción
 }
 
 
 
-\author[] % (optional, nur bei vielen Autoren)
-{Fernando Mazzone}
+%\author[] % (optional, nur bei vielen Autoren)
+%{Fernando Mazzone}
 
-\institute[Depto de Matemática] % (optional, aber oft nötig)
-{
- Depto de Matemática\\
-Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
-Universidad Nacional de Río Cuarto}
+%\institute[Depto de Matemática] % (optional, aber oft nötig)
+%{
+% Depto de Matemática\\
+%Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
+%Universidad Nacional de Río Cuarto}
 
 
 \subject{Ecuaciones Diferenciales}
@@ -494,7 +494,20 @@ Que no sabemos pero SymPy si!!!
 
 \end{frame}
 
-\begin{frame}[fragile]{Familias paramétricas de funciones} 
+\begin{frame}[fragile]{\texttt{SymPy}: función \texttt{dsolve}} 
+
+\textbf{Sintaxis} (\href{http://docs.sympy.org/latest/modules/solvers/ode.html#}{documentación \texttt{SymPy}})
+
+\texttt{dsolve(eq, f(x), hint)}
+
+\texttt{eq:} Ecuación (posicional)
+
+\texttt{f(x):} función incognita (posicional)
+
+\texttt{hint: } Método a emplear. Argumento con nombre \texttt{hint='cadena'}.
+
+\textbf{Ejemplo:}
+
 \begin{sageblock}
 x=symbols('x')
 y=Function('y')(x)
@@ -502,20 +515,46 @@ MiEcua=Eq(y.diff(x),y/x)
 f=dsolve(MiEcua,y)
 \end{sageblock}
 
-Las soluciones obtenidas son $\sage{f}$, todas las rectas que pasan por el origen
+\textbf{Resultado:} 
+Flía rectas  por el origen. \\
+La instrucción\\
+\texttt{f=dsolve(MiEcua,y,hint='separable')}
+\\produce el mismo resultado.
 
+\end{frame}
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+Grafiquemos
 \begin{sageblock}
 from sympy import *
-x=symbols('x')
-Rango=range(5)+range(6,10)
-L=[tan(pi*k/10.0) for k in Rango] 
-p=plot(L[0]*x,(x,-2,2),show=False)
+x,y=symbols('x,y')
+Rango=range(21)
+L=[tan(pi*k/21.0) for k in Rango] 
+p=plot(L[0]*x,(x,-2,2),show=False,xlim=(-2,2),\
+ylim=(-2,2),aspect_ratio=(1,1))
 for pend in L[1:]:
-    p1=plot(pend*x,(x,-2,2),show=False)
-    p.append(p1[0]);
+    p1=plot(pend*x,(x,-2,2),show=False,\
+xlim=(-2,2),ylim=(-2,2),aspect_ratio=(1,1))
+    p.append(p1[0])
+for r in range(1,10):
+    p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
+show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
+    p.append(p1[0])
 \end{sageblock}
-\sageplot{p.show()}
+
+
+
 \end{frame}
+
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+\begin{center}
+\includegraphics[scale=.3]{imagenes/flia_curvas_ortogonales.png}
+\end{center}
+\end{frame}
+
+
+
 
 \section{Separación de variables}
 \begin{frame}{Separación de variables}
@@ -551,6 +590,26 @@ Es común emplear el método de la siguiente forma
    &\Longrightarrow y= kx, \hbox{ con }k\in\rr
   \end{split}
 \]
+
+\end{frame}
+
+
+\begin{frame}[fragile]{\texttt{SymPy}: clasificación de ecuaciones} 
+\textbf{Sintaxis}\\
+\texttt{classify\_ode(eq, f(x))}\\
+\textbf{Ejemplo}
+\begin{sageblock}
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+tipo=classify_ode(MiEcua,y)
+\end{sageblock}
+\textbf{Resultado:}\\
+\begin{verbatim}
+('separable', '1st_exact', '1st_linear', 
+'almost_linear', 'lie_group',  etc)
+\end{verbatim}
+
 
 \end{frame}
 
@@ -865,6 +924,24 @@ otras propiedades notables de esta curva.
 \end{center}
   
   \end{frame}
+
+\begin{frame}[fragile]{\texttt{SymPy:} Braquistócrona}
+\begin{sageblock}
+x,c=symbols('x,c')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
+f=dsolve(MiEcua,y,hint='separable')
+\end{sageblock}
+
+
+\textbf{Resultado:}
+\begingroup
+\everymath{\scriptstyle}
+\scriptsize
+\[\sage{f}\]
+\endgroup
+\end{frame}
+
 
 
   \begin{frame}{La tautócrona}
