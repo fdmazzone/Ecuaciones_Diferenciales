@@ -224,7 +224,7 @@ sage: G1.quotient(H1)
 \nl\begin{block}{Grupos de simetrías}
 Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\varphi$, invertibles,  de clase $C^{\infty}$, donde $\varphi:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$. Acostumbraremos escribir $(\xi,\eta)=\varphi(x,y)$ y diremos que $(\xi,\eta)$ son la variables nuevas e $(x,y)$ las viejas.
 
-Lamaremos $\mathscr{T}$ al conjunto de todas los cambios de variables $\varphi$. 
+Llamaremos $\mathscr{T}$ al conjunto de todas los cambios de variables $\varphi$. 
 El conjunto  $\mathscr{T}$ tiene una estructura de grupo con la operación de composición.
 
 
@@ -247,13 +247,80 @@ El conjunto  $\mathscr{T}$ tiene una estructura de grupo con la operación de co
 \end{frame}
 
 \begin{frame}{Grupos de Lie uniparamétricos}
-\nl\begin{block}{Definición}
-Un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico}} es un hom,eomorfismo
+\nl\begin{block}{Grupos uniparamétricos de simetrías}
+Sea $\mathscr{T}$ el grupo de cambios de variables. Supongamos dado un homomorfismo de grupos $P:(\rr,+)\to (\mathscr{T},\circ)$.  
+
+\textbf{Notación:} 
+\begin{enumerate}
+\item Para $\lambda\in\rr$ escribiremos $P_{\lambda}=P(\lambda)$ 
+\item Si $(x,y)\in\rr^2$ escribimos $(\xi,\eta)=f(x,y,\lambda):=P_{\lambda}(x,y)$.
+\end{enumerate}
+Si $f(x,y,\lambda)$ es diferenciable respecto a $(x,y)$ y analítica respecto a $\lambda$ diremos que $\{P_{\lambda}|\lambda\in\rr\}$ es un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico de simetrías}}.
+\end{block}
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Grupos de Lie uniparamétricos}
+\nl\begin{block}{Propiedades de $P_{\lambda}$}
+\begin{enumerate}
+\item<+->$P_{\lambda}$ es biyectiva y diferenciable sobre su domio de definición en su imagen.
+ \item<+-> $P_{\lambda_1}\circ P_{\lambda_2}=P_{\lambda_1+\lambda_2}$, equivalentemente $f(f(x,y,\lambda_1),\lambda_2)=f(x,y,\lambda_1+\lambda_2)$.
+
+\item<+-> $P_0=I$, o $f(x,y,0)=(x,y)$.
+
+\item<+-> $\left(P_{\lambda}\right)^{-1}=P_{-\lambda}$
+
+\item<+-> Si $P_{\lambda}(x,y)=(\xi,\eta)$, entonces  $\xi(x,y,\lambda)$ y $\eta(x,y,\lambda)$ son  diferenciables respecto $(x,y)$ y se desarrollan en serie de potencias respecto a $\lambda$. Es decir para todo $\lambda_0\in\rr$ 
+\[
+\begin{array}{cc}
+\xi(x,y,\lambda)&=a_0(x,y)+a_1(x,y)(\lambda- \lambda_0)+\cdots\\
+\eta(x,y,\lambda)&=b_0(x,y)+b_1(x,y)(\lambda- \lambda_0)+\cdots\\
+\end{array}
+\]
+
+\end{enumerate}
 
 \end{block}
 
 
 \end{frame}
+
+
+\begin{frame}{Ejemplos grupos de Lie uniparamétricos}
+\textbf{Ejercicio:} Demostrar que las siguientes aplicaciones induce grupos de Lie uniparamétricos
+\begin{enumerate}
+\item<+-> $P_{\lambda}(x,y)=(x+\lambda,y)$ y $P_{\lambda}(x,y)=(x,y+\lambda)$.
+\item<+-> $P_{\lambda}(x,y)=(e^{\lambda}x,y)$
+\item<+->$P_{\lambda}(x,y)=\left(\frac{x}{1-\lambda x},\frac{y}{1-\lambda x} \right)$
+\item<+->$P_{\lambda}(x,y)=\begin{pmatrix} \cos(\lambda) & -\sen(\lambda)
+\\ \sen(\lambda) & \cos(\lambda)
+\end{pmatrix} \begin{pmatrix} x\\ y
+\end{pmatrix}
+$
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Cambios de variables con \textt{SymPy}}
+\begin{block}{Procedimiento}
+\begin{enumerate}
+\item<+-> Declarar variables independientes vieja y nueva,
+\item<+-> Introducir relación entre ellas
+\item<+-> Declarar variable dependiente nueva, como función de variable independiente nueva.
+\item<+-> Introducir relación variables dependientes
+\item<+-> Introducir ecuación. 
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
 
 % \begin{frame}{Acción de grupos}
 % \begin{block}{Acción de grupos}
