@@ -147,6 +147,55 @@ Universidad Nacional de Río Cuarto}
    \end{center}
 \end{frame}
 
+\begin{frame}{Cambios de variables}
+Consideremos la ecuación diferencial general de primer orden 
+
+\begin{equation}\label{eq:gral_orden1}
+\frac{dy}{dx}=f(x,y)
+\end{equation}
+O su equivalente como forma diferencial
+\begin{equation}\label{eq:gral_orden1_FormDif}
+M(x,y)dx+N(x,y)dy=0
+\end{equation}
+ La expresión $\frac{dy}{dx}$ implica una asimetría entre las variables $x$ e $y$, una de ellas es independiente ($x$) y la otra ($y$) independiente.
+
+La expresión  $M(x,y)dx+N(x,y)dy$ es más simétrica, las dos variables tienen el mismo estatus en la expresión.  Además las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}
+
+
+\end{frame}
+
+\begin{frame}{Formas diferenciales, idea somera}
+
+
+\begin{enumerate}
+\item<+-> Como los polinomios, las formas diferenciales tienen grado. 
+\item<+-> Dadas dos (pueden ser mas) variables $x,y$ una 0-forma diferencial es una función $g(x,y)$ de $x,y$. 
+\item<+> La expresión \eqref{eq:gral_orden1_FormDif} es una 1-forma diferencial.
+\item<+-> Hay un operador llamado diferencial y denotado por $d$. Si $\omega$ es una $k$-forma diferencial $d\omega$ es una $k+1$ forma diferencial.
+\item<+-> En el caso de $0$-forma (función) $g(x,y)$ el diferencial se define
+\[dg=\frac{\partial M}{\partial x}dx+ \frac{\partial N}{\partial y}dy.\]
+\Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-forma.
+\end{enumerate}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
+\begin{sagecommandline}
+sage: var('r,theta')
+sage: U = CoordinatePatch((r,theta))
+sage: F = DifferentialForms(U)
+sage: x= DifferentialForm(F, 0, r*cos(theta))
+sage: y= DifferentialForm(F, 0, r*sin(theta))
+sage: w=(x^3+x*y^2-x+y)*y.diff()-(y^3+x^2*y-x-y)*x.diff()
+sage: w[0].simplify_full()
+sage: w[1].simplify_full()
+\end{sagecommandline}
+La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()})d\theta$.
+\end{frame}
 
 \begin{frame}{Grupos, Repaso}
 \begin{block}{Grupos}
@@ -308,18 +357,7 @@ $
 \end{frame}
 
 
-\begin{frame}[fragile]{Cambios de variables con \textt{SymPy}}
-\begin{block}{Procedimiento}
-\begin{enumerate}
-\item<+-> Declarar variables independientes vieja y nueva,
-\item<+-> Introducir relación entre ellas
-\item<+-> Declarar variable dependiente nueva, como función de variable independiente nueva.
-\item<+-> Introducir relación variables dependientes
-\item<+-> Introducir ecuación. 
-\end{enumerate}
-\end{block}
 
-\end{frame}
 
 
 % \begin{frame}{Acción de grupos}
