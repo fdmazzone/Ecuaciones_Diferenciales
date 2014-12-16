@@ -229,45 +229,6 @@ Que es una ecuación muy facil de resolver.
 
 
 
-\begin{frame}{Cambios de variables}
-\textbf{Cambio de variable general $\xi=\xi(x,y)$, $\eta=\eta(x,y)$}
-
-1) Calculamos $d\eta/d\xi$ en las variables $x,y$
-\begin{equation}\label{eq:subsder}
-\frac{d\eta}{d\xi}=\frac{{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}y'}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}y'}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x,y)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x,y)}.
-\end{equation}
-
-2) En la expresión resultante sustituir $x,y$ por las tansformaciones inversas $x=x(\xi,\eta)$ y  $y=y(\xi,\eta)$
-
-
-\end{frame}
-
-
-\begin{frame}[fragile]{Cambios de variables}
-\textbf{Ejemplo 3. Transformar a polares:} $\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.$
-
-Dado que el cálculo es extenso lo haremos sólo con \texttt{SymPy}
-\begin{sageblock}
-from sympy import *
-x=symbols('x')
-y=Function('y')(x)
-r=sqrt(x**2+y**2)
-theta=atan(y/x)
-Expr2=r.diff()/theta.diff()
-Expr3=Expr2.subs(y.diff(),\
-(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
-r,theta=symbols('r,theta',positive=True)
-Expr4=Expr3.subs([(y,r*sin(theta)),\
-(x,r*cos(theta))])
-Expr5=simplify(Expr4)
-\end{sageblock}
-\end{frame}
-
-\begin{frame}[fragile]{Cambios de variables}
-Encontramos que en polares la ecuación es mucho más simple
-\[\frac{dr}{d\theta}=\sage{powsimp(Expr5)}.\]
-
-\end{frame}
 
 
 
@@ -335,12 +296,45 @@ Obtenemos la ecuación
 Nuevamente \texttt{SymPy} no simplifica a nuestro gusto
 \end{frame}
 
-\begin{frame}{Cómputos de cambios de variables}
-\textbf{Cambio de variables general $x=x(\xi,\eta)$,$y=y(\xi,\eta)$ } 
+\begin{frame}{Cambios de variables}
+\textbf{Cambio de variable general $\xi=\xi(x,y)$, $\eta=\eta(x,y)$}
 
- $M(x,y)dx+N(x,y)dy$
+1) Calculamos $d\eta/d\xi$ en las variables $x,y$
+\begin{equation}\label{eq:subsder}
+\frac{d\eta}{d\xi}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}y'}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}y'}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x,y)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x,y)}.
+\end{equation}
+
+2) En la expresión resultante sustituir $x,y$ por las tansformaciones inversas $x=x(\xi,\eta)$ y  $y=y(\xi,\eta)$
+
+
 \end{frame}
 
+
+\begin{frame}[fragile]{Cambios de variables}
+\textbf{Ejemplo 3. Transformar a polares:} $\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.$
+
+Dado que el cálculo es extenso lo haremos sólo con \texttt{SymPy}
+\begin{sageblock}
+from sympy import *
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff(x)/theta.diff(x)
+Expr3=Expr2.subs(y.diff(x),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+r,theta=symbols('r,theta',positive=True)
+Expr4=Expr3.subs([(y,r*sin(theta)),\
+(x,r*cos(theta))])
+Expr5=simplify(Expr4)
+\end{sageblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cambios de variables}
+Encontramos que en polares la ecuación es mucho más simple
+\[\frac{dr}{d\theta}=\sage{powsimp(Expr5)}.\]
+
+\end{frame}
 
 
 
@@ -350,8 +344,9 @@ reset()
 
 
 \begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
+\texttt{SAGE} puede operar con formas diferenciales
 \begin{sagecommandline}
-sage: var('r,theta')
+sage: r,theta=var('r,theta')
 sage: U = CoordinatePatch((r,theta))
 sage: F = DifferentialForms(U)
 sage: x= DifferentialForm(F, 0, r*cos(theta))
@@ -604,7 +599,7 @@ from sympy import *
 x,theta=symbols('x,theta')
 y=Function('y')(x)
 xi=cos(theta)*x-sin(theta)*y
-eta=-sin(theta)*x+cos(theta)*y
+eta=sin(theta)*x+cos(theta)*y
 Expr2=eta.diff(x)/xi.diff(x)
 Expr3=Expr2.subs(y.diff(),\
 (y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
@@ -618,12 +613,30 @@ Expr7=Expr6.subs([(sin(2*theta + pi/4),sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2)
 \end{frame}
 
 \begin{frame}[fragile]{Encontrar simetrías}
-
-\[\sage{simplify(Expr7)}\]
+Tiene problemas para simplificar, lo tenemos que ayudar
+\begin{sageblock}
+Expr5=simplify(Expr4)
+Expr6=Expr5.subs(sin(2*theta + pi/4),\
+sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2))
+Expr7=Expr6.subs(cos(2*theta),\
+1+(cos(theta))**2   )
+Expr8=Expr7.subs(cos(2*theta),\
+1+(cos(theta))**2)
+Expr9=Expr8.subs(sin(2*theta),\
+1-(cos(theta))**2)
+\end{sageblock}
+La ecuación resultante es \emph{la misma}
+\boxedeq{\frac{d\eta}{d\xi}=\sage{simplify(Expr9)}.}{}
 \end{frame}
 
 
 
+
+\begin{frame}{Encontrar simetrías}
+A la misma cocnclusión arribábamos si observamos que en polares la ecuación se escribe
+\[\frac{dr}{d\theta}=r-r^3,\]
+y que esta ecuación tiene las simetrías $P_{\lambda}:(r,\theta)\mapsto (r,\theta+\lambda)$. 
+\end{frame}
 
 
 
