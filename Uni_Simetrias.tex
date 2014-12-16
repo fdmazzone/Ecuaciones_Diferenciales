@@ -174,7 +174,7 @@ La expresión  $M(x,y)dx+N(x,y)dy$ es más simétrica, las dos variables tienen 
 \item<+-> Hay un operador llamado diferencial y denotado por $d$. Si $\omega$ es una $k$-forma diferencial $d\omega$ es una $k+1$ forma diferencial.
 \item<+-> En el caso de $0$-forma (función) $g(x,y)$ el diferencial se define
 \[dg=\frac{\partial M}{\partial x}dx+ \frac{\partial N}{\partial y}dy.\]
-\Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-forma.
+Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-forma.
 \end{enumerate}
 
 
@@ -183,19 +183,77 @@ La expresión  $M(x,y)dx+N(x,y)dy$ es más simétrica, las dos variables tienen 
 
 
 
-\begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
-\begin{sagecommandline}
-sage: var('r,theta')
-sage: U = CoordinatePatch((r,theta))
-sage: F = DifferentialForms(U)
-sage: x= DifferentialForm(F, 0, r*cos(theta))
-sage: y= DifferentialForm(F, 0, r*sin(theta))
-sage: w=(x^3+x*y^2-x+y)*y.diff()-(y^3+x^2*y-x-y)*x.diff()
-sage: w[0].simplify_full()
-sage: w[1].simplify_full()
-\end{sagecommandline}
-La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()})d\theta$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Cambios de variables}
+\textbf{Cambio de variable general $\xi=\xi(x,y)$, $\eta=\eta(x,y)$}
+
+1) Calculamos $d\eta/d\xi$ en las variables $x,y$
+\begin{equation}\label{eq:subsder}
+\frac{d\eta}{d\xi}=\frac{{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}y'}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}y'}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x,y)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x,y)}.
+\end{equation}
+
+2) En la expresión resultante sustituir $x,y$ por las tansformaciones inversas $x=x(\xi,\eta)$ y  $y=y(\xi,\eta)$
+
+
 \end{frame}
+
+
+\begin{frame}[fragile]{Cambios de variables}
+\textbf{Ejemplo 3. Transformar a polares:} $\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.$
+
+Dado que el cálculo es extenso lo haremos sólo con \texttt{SymPy}
+\begin{sageblock}
+from sympy import *
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff()/theta.diff()
+Expr3=Expr2.subs(y.diff(),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+r,theta=symbols('r,theta',positive=True)
+Expr4=Expr3.subs([(y,r*sin(theta)),\
+(x,r*cos(theta))])
+Expr5=simplify(Expr4)
+\end{sageblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cambios de variables}
+Encontramos que en polares la ecuación es mucho más simple
+\[\frac{dr}{d\theta}=\sage{powsimp(Expr5)}.\]
+
+\end{frame}
+
+
+
+
+
 
 \begin{frame}{Grupos, Repaso}
 \begin{block}{Grupos}
@@ -242,6 +300,10 @@ Misión: Creación de una alternativa libre de código abierto viable a Magma, M
 
 
 \end{frame}
+
+\begin{sagesilent}
+reset()
+\end{sagesilent}
 
 \begin{frame}[fragile]{Teoría de grupos computacional: SAGE y GAP}
 \begin{sagecommandline}
@@ -342,7 +404,7 @@ Si $f(x,y,\lambda)$ es diferenciable respecto a $(x,y)$ y analítica respecto a 
 
 
 \begin{frame}{Ejemplos grupos de Lie uniparamétricos}
-\textbf{Ejercicio:} Demostrar que las siguientes aplicaciones induce grupos de Lie uniparamétricos
+\textbf{Ejercicio:} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
 \begin{enumerate}
 \item<+-> $P_{\lambda}(x,y)=(x+\lambda,y)$ y $P_{\lambda}(x,y)=(x,y+\lambda)$.
 \item<+-> $P_{\lambda}(x,y)=(e^{\lambda}x,y)$
@@ -355,6 +417,106 @@ $
 \end{enumerate}
 
 \end{frame}
+
+
+
+\begin{frame}{Grupo de simetrías de una ecuación}
+
+\begin{block}{Definición}
+Consideremos una ecuación
+\[y'=f(x,y).\]
+Una transformación $P\in \mathscr{T}$ se denomina una simetría de la ecuación si el cambio de variables dado por $(\xi,\eta)=P(x,y)$ deja invariante  la ecuación. 
+
+\textbf{Ejercicio:} el conjunto de todas las simetría de una ecuación es un subgrupo de  $( \mathscr{T},\circ)$. Lo llamaremos \emph{grupo de simetrías} de la ecuación.
+
+ 
+
+\end{block}
+
+
+\end{frame}
+
+ \begin{frame}{Encontrar simetrías}
+ \textbf{Ejemplo: hallar simetrías de }
+\[\frac{dy}{dx}=f(x).\]
+
+De acuerdo con \eqref{eq:subsder} se debe cumplir que 
+ \[\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x)}=f(\xi)\]
+
+ Parece que debemos hacer las elecciones
+   \[\boxed{\xi=x},\quad \frac{\partial\eta}{\partial x}=\frac{\partial\xi}{\partial y}=0,\quad
+   \frac{\partial\eta}{\partial y}=\frac{\partial\xi}{\partial x}. \]
+ Luego 
+\[\frac{\partial\eta}{\partial y}=1\Rightarrow \boxed{\eta=y+\lambda} \]
+con $\lambda$ constante arbitraria.
+ \end{frame}
+
+\begin{frame}{Encontrar simetrías}
+Hallamos que el 
+\[P_{\lambda}(x,y)=(x,y+\lambda)\]
+es un grupo uniparamétrico de simetrías. De manera similar
+\[P_{\lambda}(x,y)=(x+\lambda,y)\]
+es un grupo uniparamétrico de simetrías para 
+\[\frac{dy}{dx}=f(y).\]
+
+\end{frame}
+
+\begin{frame}{Encontrar simetrías}
+\textbf{Demostrar que las rotaciones alrededor del origen es un grupo uniparamétrico de simetrías de}
+ \[\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.\]
+Sea $P_{\lambda}$ la transformación que rota un ángulo $\lambda$ alrededor del origen. Era un ejercicio demostrar que  $\{P_{\lambda}|\lambda\in\rr\}$ es un grupo uniparamétrico de simetrías. Se tiene la representación matricial
+\[
+P_{\lambda}(x,y)= \begin{pmatrix} \xi\\ \eta
+\end{pmatrix}=\begin{pmatrix} \cos(\lambda) & -\sen(\lambda)
+\\ \sen(\lambda) & \cos(\lambda)
+\end{pmatrix} \begin{pmatrix} x\\ y
+\end{pmatrix}
+\]
+
+\[
+P^{-1}_{\lambda}(\xi,\eta)= \begin{pmatrix} x\\ y
+\end{pmatrix}=\begin{pmatrix} \cos(\lambda) & \sen(\lambda)
+\\ -sen(\lambda) & \cos(\lambda)
+\end{pmatrix} \begin{pmatrix} \xi\\ \eta
+\end{pmatrix}
+\]
+
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Encontrar simetrías}
+ Para el cálculo recurrimos a \texttt{SymPy}
+\begin{sageblock}
+from sympy import *
+x,theta=symbols('x,theta')
+y=Function('y')(x)
+xi=cos(theta)*x-sin(theta)*y
+eta=-sin(theta)*x+cos(theta)*y
+Expr2=eta.diff(x)/xi.diff(x)
+Expr3=Expr2.subs(y.diff(),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+xi,eta=symbols('xi,eta')
+Expr4=Expr3.subs([(y, -sin(theta)*xi+cos(theta)*eta),\
+(x,cos(theta)*xi+sin(theta)*eta)])
+Expr5=simplify(Expr4)
+Expr6=simplify(Expr5)
+Expr7=Expr6.subs([(sin(2*theta + pi/4),sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2))  , (cos(2*theta),1+(cos(theta))**2),(sin(2*theta),1-(cos(theta))**2)])
+\end{sageblock}
+\end{frame}
+
+\begin{frame}[fragile]{Encontrar simetrías}
+
+\[\sage{simplify(Expr7)}\]
+\end{frame}
+
+
+
+
+
+
+
 
 
 
@@ -375,6 +537,19 @@ $
 % \end{frame}
 
 
+% \begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
+% \begin{sagecommandline}
+% sage: var('r,theta')
+% sage: U = CoordinatePatch((r,theta))
+% sage: F = DifferentialForms(U)
+% sage: x= DifferentialForm(F, 0, r*cos(theta))
+% sage: y= DifferentialForm(F, 0, r*sin(theta))
+% sage: w=(x^3+x*y^2-x+y)*y.diff()-(y^3+x^2*y-x-y)*x.diff()
+% sage: w[0].simplify_full()
+% sage: w[1].simplify_full()
+% \end{sagecommandline}
+% La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()})d\theta$.
+% \end{frame}
 
 
 \end{document}
