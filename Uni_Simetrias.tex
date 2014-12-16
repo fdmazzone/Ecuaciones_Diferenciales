@@ -30,6 +30,7 @@
 \usepackage{sagetex}
 \usepackage{yfonts,mathrsfs,eufrak}
 \usepackage{hyperref}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
 \lstdefinelanguage{Sage}[]{Python}
 {morekeywords={False,sage,True},sensitive=true}
@@ -119,7 +120,7 @@ numberstyle=\footnotesize
 
 \title[Teoría de Lie y ODE] % (optional, nur bei langen Titeln nötig)
 {%
-Teoría de Lie y ODE
+Cambios de variables, Teoría de Lie y EDO
 }
 
 
@@ -147,7 +148,7 @@ Universidad Nacional de Río Cuarto}
    \end{center}
 \end{frame}
 
-\begin{frame}{Cambios de variables}
+\begin{frame}{Distintas formas para una ecuación}
 Consideremos la ecuación diferencial general de primer orden 
 
 \begin{equation}\label{eq:gral_orden1}
@@ -180,29 +181,47 @@ Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-
 
 \end{frame}
 
+\begin{frame}{Cambios de variables}
+
+\begin{block}{Idea básica}
+ Suṕongamos la ecuación \eqref{eq:gral_orden1} o \eqref{eq:gral_orden1_FormDif} en las variables $x,y$. La idea es encontrar nuevas variables $\xi=\xi(x,y)$ y $\eta=\eta(x,y)$ tales que la ecuación se transforme en una más sencilla de resolver. 
+\end{block}
 
 
 
 
+\end{frame}
+
+\begin{frame}{Cómputos de cambiamos variables}
+\textbf{Cambio de la variable dependiente $y=h(x,z)$ manteniendo la independiente} 
+
+\[\frac{dy}{dx}=\frac{\partial h}{\partial x}+\frac{\partial h}{\partial z}\frac{dz}{dx}.\]
+
+La ecuación se convierte
+
+\[\frac{\partial h}{\partial x}+\frac{\partial h}{\partial z}\frac{dz}{dx}=f(x,h(x,z)).\]
+
+Que es una expresión sólo en $z$ y $x$. Parece más complicada, pero en un ejemplo concreto puede ser más simple.
 
 
 
+\end{frame}
+
+\begin{frame}{Cómputos de cambios de variables, ejemplo}
+
+\textbf{Ejemplo 1} Hacer el cambio de variable en la  ecuación 
+
+\[y=\frac{e^z}{x}\quad\text{en}\quad  y'=\left[\ln(xy)\right]^2xy-\frac{y}{x}.\]
+1) Expresemos $dy/dx$ sólo con $x$ y $z$ y $dz/dx$.
+\[\frac{dy}{dx}=-\frac{e^z}{x^2}+\frac{e^z}{x}\frac{dz}{dx}.\]
+2) Remplacemos $y'$ e $y$ en la ecuación 
+\[-\frac{e^z}{x^2}+\frac{e^z}{x}\frac{dz}{dx}=\left[\ln\left(x \frac{e^z}{x} \right)\right]^2x\frac{e^z}{x}-\frac{\frac{e^z}{x} }{x}.\]
+3) Simplifiquemos
+\[\frac{dz}{dx}=z^2x.\]
+Que es una ecuación muy facil de resolver.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{frame}
 
 
 
@@ -251,6 +270,98 @@ Encontramos que en polares la ecuación es mucho más simple
 \end{frame}
 
 
+
+\begin{frame}[fragile]{Cómputos de cambios de variables, ejemplo}
+Lo podemos hacer con \texttt{SymPy}
+
+\begin{sageblock}
+from sympy import *
+x,y,z=symbols('x,y,z')
+y=Function('y')(x)
+z=Function('z')(x)
+y=exp(z)/x
+eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0)
+simplify(eq)
+\end{sageblock}
+Obtenemos la ecuación
+\[\sage{simplify(eq)}\]
+que \texttt{SymPy} no simplifica a nuestro gusto
+\end{frame}
+
+
+
+\begin{frame}{Cómputos de cambios de variables}
+\textbf{Cambio de la variable independiente $t=h(x)$ manteniendo la dependiente} 
+
+\[\frac{dy}{dx}=\frac{dy}{dt}\frac{dh}{dx}=\frac{dy}{dt}h'(x).\]
+
+Suponiendo $h$ biyectiva, la ecuación se convierte
+
+\[\frac{dy}{dt}h'(h^{-1}(t))=f(h^{-1}(t),y).\]
+
+Que es una expresión sólo en $t$ e $y$. 
+
+
+
+\end{frame}
+
+\begin{frame}{Cómputos de cambios de variables, ejemplo}
+
+\textbf{Ejemplo 2} Hacer el cambio de variable en la  ecuación 
+\[x=\cos t\quad\text{en}\quad  -\frac{dy}{dx}+\frac{1}{\sqrt{1-x^2}}y=0.\]
+1) $h(x)=\arcsen x$
+\[\frac{dy}{dx}=\frac{dy}{dt}h'(x)=-\frac{1}{\sqrt{1-x^2}}\frac{dy}{dt}.\]
+2) Remplacemos $x$ e $y'$ en la ecuación 
+\[\frac{1}{\sqrt{1-x^2}}\frac{dy}{dt}+ \frac{1}{\sqrt{1-x^2}}y=0\]
+3) Simplificando
+\[\frac{dy}{dt}+ y=0\]
+Que es una ecuación lineal a coeficientes constantes.
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Cómputos de cambios de variables, ejemplo}
+Lo podemos hacer con \texttt{SymPy}
+
+\begin{sageblock}
+from sympy import *
+x,t=symbols('x,t')
+t=acos(x)
+y=Function('y')(t)
+Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
+\end{sageblock}
+Obtenemos la ecuación
+\[\sage{simplify(Ecuacion)}=0\]
+Nuevamente \texttt{SymPy} no simplifica a nuestro gusto
+\end{frame}
+
+\begin{frame}{Cómputos de cambios de variables}
+\textbf{Cambio de variables general $x=x(\xi,\eta)$,$y=y(\xi,\eta)$ } 
+
+ $M(x,y)dx+N(x,y)dy$
+\end{frame}
+
+
+
+
+\begin{sagesilent}
+reset()
+\end{sagesilent}
+
+
+\begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
+\begin{sagecommandline}
+sage: var('r,theta')
+sage: U = CoordinatePatch((r,theta))
+sage: F = DifferentialForms(U)
+sage: x= DifferentialForm(F, 0, r*cos(theta))
+sage: y= DifferentialForm(F, 0, r*sin(theta))
+sage: w=(x^3+x*y^2-x+y)*y.diff()-(y^3+x^2*y-x-y)*x.diff()
+sage: w[0].simplify_full()
+sage: w[1].simplify_full()
+\end{sagecommandline}
+La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()})d\theta$.
+\end{frame}
 
 
 
