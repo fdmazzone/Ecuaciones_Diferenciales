@@ -619,15 +619,13 @@ xi,eta=symbols('xi,eta')
 Expr4=Expr3.subs([(y, -sin(theta)*xi+cos(theta)*eta),\
 (x,cos(theta)*xi+sin(theta)*eta)])
 Expr5=simplify(Expr4)
-Expr6=simplify(Expr5)
-Expr7=Expr6.subs([(sin(2*theta + pi/4),sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2))  , (cos(2*theta),1+(cos(theta))**2),(sin(2*theta),1-(cos(theta))**2)])
 \end{sageblock}
 \end{frame}
 
 \begin{frame}[fragile]{Encontrar simetrías}
 Tiene problemas para simplificar, lo tenemos que ayudar
 \begin{sageblock}
-Expr5=simplify(Expr4)
+
 Expr6=Expr5.subs(sin(2*theta + pi/4),\
 sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2))
 Expr7=Expr6.subs(cos(2*theta),\
@@ -651,27 +649,54 @@ y que esta ecuación tiene las simetrías $P_{\lambda}:(r,\theta)\mapsto (r,\the
 % \begin{frame}{Encontrar simetrías}
 
 
-\vspace{1cm}
-\begin{tabular}{p{6cm} p{4cm}}
-\vspace{-3cm}\includegraphics[scale=.4]{imagenes/sol_rotadas.png}&
-\begin{minipage}[b]{4cm} Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
-\end{minipage}
+
+\begin{tabular}{m{6cm} m{4cm}}
+\includegraphics[scale=.4]{imagenes/sol_rotadas.png}&
+ Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
+
   \\
 \end{tabular} 
 \end{frame}
 
 
 
+\begin{frame}{Simetrías triviales}
+Consideremos la ecuación
+\boxedeq{y'=0}{eq:trivial}
+
+
+\begin{tabular}{m{5cm}m{5cm}}
+Tiene muchas simetrías. Las traslaciones en cualquier dirección $(x,y)\mapsto (x+\alpha \lambda,y+\beta\lambda)$ ($\alpha,\beta\in\rr$). Cambios de escala en ambos ejes  $(x,y)\mapsto (e^{\lambda}x,y)$, $(x,y)\mapsto (x,e^{\lambda}y)$. Reflexiones respecto ambos ejes  $(x,y)\mapsto (-x,y)$, $(x,y)\mapsto (x,-y)$.
+& 
+\includegraphics[scale=.3]{imagenes/sol_trivial.png}\\
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}{Simetrías triviales}
+De todas las simetrías encontradas $P_{\lambda}(x,y)=(e^{\lambda}x,y)$, $P_{\lambda}(x,y)=(x+\lambda,y)$ y  $P_{\lambda}(x,y)=(x+\lambda,y)$ se llaman \emph{triviales} pues llevan una curva solución en si misma. 
+
+Estamos interesados en grupo uniparamétricos de simetrías, es decir simetrías que dependan de un parámetro continuo $\lambda$. Las reflexiones $P(x,y)=(-x,y)$  no forman tal grupo, sino que generan un grupo discreto, ya que $P^2=P\circ P=I$. Luego $P$ genera el grupo $G=\{I,P\}$ que es isomorfo a $\mathbb{Z}_2$. En este caso diremos que    $\{I,P\}$ es un \emph{grupo discreto} de simetrías. 
+\end{frame}
+
+\begin{frame}{Órbitas}
+
+\nl\begin{block}{Definición}
+Dado un grupo uniparamétrico de simetrías $G=\{P_{\lambda}|\lambda\in\rr\}$, y $(x_0,y_0)\in\rr^2$ llamamos \emph{órbita $(x_0,y_0)$ bajo la acción de  $G$} (simplemente órbita si es claro quien es $G$) a la curva
+\[\{P_{\lambda}(x_0,y_0)|\lambda\in\rr\} \]
+\end{block}
+
+\nl 
+\begin{tabular}{m{5cm} m{4cm}}
+\includegraphics[scale=.3]{imagenes/sol_trivialB.png} &
+Si $G$ es un grupo de simetrías no trivial, entonces es de esperar que la órbita de  $(x_0,y_0)$ cruza transversalmente las curvas solución. La órbita se usará como una nueva coordenada.   
+\end{tabular}
+
+\end{frame}
 
 
 
-
-
-
-
-
-
-
+\end{document}
 % \begin{frame}{Acción de grupos}
 % \begin{block}{Acción de grupos}
 % Sea $G$ un grupo   y $X$ un conjunto. Diremos que $G$ actúa a izquierda sobre $X$ si existe una función $\alpha:G\times X\to X$, denotada $\alpha(g,x)=gx$ con las propiedades
@@ -686,20 +711,3 @@ y que esta ecuación tiene las simetrías $P_{\lambda}:(r,\theta)\mapsto (r,\the
 % \end{block}
 % \end{frame}
 
-
-% \begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
-% \begin{sagecommandline}
-% sage: var('r,theta')
-% sage: U = CoordinatePatch((r,theta))
-% sage: F = DifferentialForms(U)
-% sage: x= DifferentialForm(F, 0, r*cos(theta))
-% sage: y= DifferentialForm(F, 0, r*sin(theta))
-% sage: w=(x^3+x*y^2-x+y)*y.diff()-(y^3+x^2*y-x-y)*x.diff()
-% sage: w[0].simplify_full()
-% sage: w[1].simplify_full()
-% \end{sagecommandline}
-% La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()})d\theta$.
-% \end{frame}
-
-
-\end{document}
