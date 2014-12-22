@@ -149,18 +149,19 @@ Universidad Nacional de Río Cuarto}
 \end{frame}
 
 \begin{frame}{Distintas formas para una ecuación}
-Consideremos la ecuación diferencial general de primer orden 
 
-\begin{equation}\label{eq:gral_orden1}
-\frac{dy}{dx}=f(x,y)
-\end{equation}
-O su equivalente como forma diferencial
-\begin{equation}\label{eq:gral_orden1_FormDif}
-M(x,y)dx+N(x,y)dy=0
-\end{equation}
- La expresión $\frac{dy}{dx}$ implica una asimetría entre las variables $x$ e $y$, una de ellas es independiente ($x$) y la otra ($y$) independiente.
+\nl\begin{block}{Ecuación diferencial general de primer orden} 
+\boxedeq{\frac{dy}{dx}=f(x,y)}{eq:gral_orden1}
+\end{block}
 
-La expresión  $M(x,y)dx+N(x,y)dy$ es más simétrica, las dos variables tienen el mismo estatus en la expresión.  Además las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}
+\nl\begin{block}{Forma diferencial}
+\boxedeq{M(x,y)dx+N(x,y)dy=0}{eq:gral_orden1_FormDif}
+\end{block}
+\nl La primera expresión es más asimetría, entre las variables $x$ e $y$ una de ellas es independiente ($x$) y la otra ($y$) independiente. 
+
+\nl La segunda expresión es  más simétrica, las dos variables tienen el mismo estatus.
+
+\nl Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}
 
 
 \end{frame}
@@ -184,7 +185,7 @@ Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-
 \begin{frame}{Cambios de variables}
 
 \begin{block}{Idea básica}
- Suṕongamos la ecuación \eqref{eq:gral_orden1} o \eqref{eq:gral_orden1_FormDif} en las variables $x,y$. La idea es encontrar nuevas variables $\xi=\xi(x,y)$ y $\eta=\eta(x,y)$ tales que la ecuación se transforme en una más sencilla de resolver. 
+ Suṕongamos la ecuación \eqref{eq:gral_orden1} o \eqref{eq:gral_orden1_FormDif} en las variables $x,y$. La idea es encontrar nuevas variables $\hat{x}=\hat{x}(x,y)$ y $\hat{y}=\hat{y}(x,y)$ tales que la ecuación se transforme en una más sencilla de resolver. 
 \end{block}
 
 
@@ -193,15 +194,15 @@ Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-
 \end{frame}
 
 \begin{frame}{Cómputos de cambiamos variables}
-\textbf{Cambio de la variable dependiente $y=h(x,z)$ manteniendo la independiente} 
-
-\[\frac{dy}{dx}=\frac{\partial h}{\partial x}+\frac{\partial h}{\partial z}\frac{dz}{dx}.\]
+\textbf{Cambio de la variable dependiente $y=h(x,\hat{y})$ manteniendo la independiente} 
+\nl
+\boxedeq{\frac{dy}{dx}=\frac{\partial h}{\partial x}+\frac{\partial h}{\partial \hat{y}}\frac{d\hat{y}}{dx}.}{}
 
 La ecuación se convierte
 
-\[\frac{\partial h}{\partial x}+\frac{\partial h}{\partial z}\frac{dz}{dx}=f(x,h(x,z)).\]
+\[\frac{\partial h}{\partial x}+\frac{\partial h}{\partial \hat{y}}\frac{d\hat{y}}{dx}=f(x,h(x,\hat{y})).\]
 
-Que es una expresión sólo en $z$ y $x$. Parece más complicada, pero en un ejemplo concreto puede ser más simple.
+Que es una expresión sólo en $\hat{y}$ y $x$. Parece más complicada, pero en un ejemplo concreto puede ser más simple.
 
 
 
@@ -209,16 +210,16 @@ Que es una expresión sólo en $z$ y $x$. Parece más complicada, pero en un eje
 
 \begin{frame}{Cómputos de cambios de variables, ejemplo}
 
-\textbf{Ejemplo 1} Hacer el cambio de variable en la  ecuación 
+\textbf{Ejemplo 1}\nl Hacer el cambio de variable en la  ecuación 
+\boxedeq{y=\frac{e^{\hat{y}}}{x}\quad\text{en}\quad  y'=\left[\ln(xy)\right]^2xy-\frac{y}{x}.}{}
+\nl 1) Expresemos $dy/dx$ sólo con $x$, $\hat{y}$ y $d\hat{y}/dx$.
+\[\frac{dy}{dx}=-\frac{e^{\hat{y}}}{x^2}+\frac{e^{\hat{y}}}{x}\frac{d\hat{y}}{dx}.\]
+\nl 2) Remplacemos $y'$ e $y$ en la ecuación 
+\[-\frac{e^{\hat{y}}}{x^2}+\frac{e^{\hat{y}}}{x}\frac{d\hat{y}}{dx}=\left[\ln\left(x \frac{e^{\hat{y}}}{x} \right)\right]^2x\frac{e^{\hat{y}}}{x}-\frac{\frac{e^{\hat{y}}}{x} }{x}.\]
+\nl 3) Simplifiquemos
+\boxedeq{\frac{d\hat{y}}{dx}=\hat{y}^2x.}{}
 
-\[y=\frac{e^z}{x}\quad\text{en}\quad  y'=\left[\ln(xy)\right]^2xy-\frac{y}{x}.\]
-1) Expresemos $dy/dx$ sólo con $x$ y $z$ y $dz/dx$.
-\[\frac{dy}{dx}=-\frac{e^z}{x^2}+\frac{e^z}{x}\frac{dz}{dx}.\]
-2) Remplacemos $y'$ e $y$ en la ecuación 
-\[-\frac{e^z}{x^2}+\frac{e^z}{x}\frac{dz}{dx}=\left[\ln\left(x \frac{e^z}{x} \right)\right]^2x\frac{e^z}{x}-\frac{\frac{e^z}{x} }{x}.\]
-3) Simplifiquemos
-\[\frac{dz}{dx}=z^2x.\]
-Que es una ecuación muy facil de resolver.
+
 
 
 \end{frame}
@@ -237,10 +238,10 @@ Lo podemos hacer con \texttt{SymPy}
 
 \begin{sageblock}
 from sympy import *
-x,y,z=symbols('x,y,z')
+x,y,y_n=symbols('x,y,y_n')
 y=Function('y')(x)
-z=Function('z')(x)
-y=exp(z)/x
+y_n=Function('y_n')(x)
+y=exp(y_n)/x
 eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0)
 simplify(eq)
 \end{sageblock}
@@ -252,15 +253,15 @@ que \texttt{SymPy} no simplifica a nuestro gusto
 
 
 \begin{frame}{Cómputos de cambios de variables}
-\textbf{Cambio de la variable independiente $t=h(x)$ manteniendo la dependiente} 
+\textbf{Cambio de la variable independiente $\hat{x}=h(x)$ manteniendo la dependiente} 
 
-\[\frac{dy}{dx}=\frac{dy}{dt}\frac{dh}{dx}=\frac{dy}{dt}h'(x).\]
+\boxedeq{\frac{dy}{dx}=\frac{dy}{d\hat{x}}\frac{dh}{dx}=\frac{dy}{d\hat{x}}h'(x).}{}
 
 Suponiendo $h$ biyectiva, la ecuación se convierte
 
-\[\frac{dy}{dt}h'(h^{-1}(t))=f(h^{-1}(t),y).\]
+\[\frac{dy}{d\hat{x}}h'(h^{-1}(\hat{x}))=f(h^{-1}(\hat{x}),y).\]
 
-Que es una expresión sólo en $t$ e $y$. 
+Que es una expresión sólo en $\hat{x}$ e $y$. 
 
 
 
@@ -269,14 +270,14 @@ Que es una expresión sólo en $t$ e $y$.
 \begin{frame}{Cómputos de cambios de variables, ejemplo}
 
 \textbf{Ejemplo 2} Hacer el cambio de variable en la  ecuación 
-\[x=\cos t\quad\text{en}\quad  -\frac{dy}{dx}+\frac{1}{\sqrt{1-x^2}}y=0.\]
-1) $h(x)=\arcsen x$
-\[\frac{dy}{dx}=\frac{dy}{dt}h'(x)=-\frac{1}{\sqrt{1-x^2}}\frac{dy}{dt}.\]
-2) Remplacemos $x$ e $y'$ en la ecuación 
-\[\frac{1}{\sqrt{1-x^2}}\frac{dy}{dt}+ \frac{1}{\sqrt{1-x^2}}y=0\]
-3) Simplificando
-\[\frac{dy}{dt}+ y=0\]
-Que es una ecuación lineal a coeficientes constantes.
+\nl \boxedeq{x=\cos \hat{x}\quad\text{en}\quad  -\frac{dy}{dx}+\frac{1}{\sqrt{1-x^2}}y=0.}{}
+\nl 1) $h(x)=\arcsen x$
+\[\frac{dy}{dx}=\frac{dy}{d\hat{x}}h'(x)=-\frac{1}{\sqrt{1-x^2}}\frac{dy}{d\hat{x}}.\]
+\nl 2) Remplacemos $x$ e $y'$ en la ecuación 
+\[\frac{1}{\sqrt{1-x^2}}\frac{dy}{d\hat{x}}+ \frac{1}{\sqrt{1-x^2}}y=0\]
+\nl 3) Simplificando
+\boxedeq{\frac{dy}{d\hat{x}}+ y=0.}{}
+
 
 
 \end{frame}
@@ -286,9 +287,9 @@ Lo podemos hacer con \texttt{SymPy}
 
 \begin{sageblock}
 from sympy import *
-x,t=symbols('x,t')
-t=acos(x)
-y=Function('y')(t)
+x,x_n=symbols('x,x_n')
+x_n=acos(x)
+y=Function('y')(x_n)
 Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
 \end{sageblock}
 Obtenemos la ecuación
@@ -297,14 +298,14 @@ Nuevamente \texttt{SymPy} no simplifica a nuestro gusto
 \end{frame}
 
 \begin{frame}{Cambios de variables}
-\textbf{Cambio de variable general $\xi=\xi(x,y)$, $\eta=\eta(x,y)$}
+\textbf{Cambio de variable general $\hat{x}=\hat{x}(x,y)$, $\hat{y}=\hat{y}(x,y)$}
 
-1) Calculamos $d\eta/d\xi$ en las variables $x,y$
-\begin{equation}\label{eq:subsder}
-\frac{d\eta}{d\xi}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}y'}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}y'}=\frac{\frac{d\eta}{dx}}{\frac{d\xi}{dx}}=\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x,y)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x,y)}.
-\end{equation}
+\nl 1) Calculamos $d\hat{y}/d\hat{x}$ en las variables $x,y$
+\boxedeq{
+\frac{d\hat{y}}{d\hat{x}}=\frac{\frac{d\hat{y}}{dx}}{\frac{d\hat{x}}{dx}}=\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}y'}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}y'}=\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}.
+}{eq:subsder}
 
-2) En la expresión resultante sustituir $x,y$ por las tansformaciones inversas $x=x(\xi,\eta)$ y  $y=y(\xi,\eta)$
+\nl 2) En la expresión resultante sustituir $x,y$ por las tansformaciones inversas $x=x(\hat{x},\hat{y})$ y  $y=y(\hat{x},\hat{y})$
 
 
 \end{frame}
@@ -331,9 +332,18 @@ Expr5=simplify(Expr4)
 \end{frame}
 
 \begin{frame}[fragile]{Cambios de variables}
-Encontramos que en polares la ecuación es mucho más simple
-\[\frac{dr}{d\theta}=\sage{powsimp(Expr5)}.\]
+\nl Encontramos que en polares la ecuación es mucho más simple
+\boxedeq{\frac{dr}{d\theta}=\sage{powsimp(Expr5)}.}{}
 
+\nl Puede que usar la notación como forma diferencial sea más efectivo. Como $r$ y $\theta$ son funciones de $x$ e $y$, son 0-formas. Usando las reglas de la diferencial, hay que reemplazar
+\boxedeq{
+\begin{array}{ll}
+x=r\cos\theta; &dx=\cos\theta dr-\sen\theta r d\theta\\
+ y= r\sen\theta; & dy=\sen\theta dr+\cos\theta r d\theta\\
+\end{array}
+}{}
+ en la 1-forma:
+\boxedeq{ (y^3+x^2y-x-y)dx-(x^3+xy^2-x+y)dy}{}
 \end{frame}
 
 
@@ -343,8 +353,8 @@ reset()
 \end{sagesilent}
 
 
-\begin{frame}[fragile]{Cambios de variables con \texttt{SAGE} y formas diferenciales}
-\texttt{SAGE} puede operar con formas diferenciales
+\begin{frame}[fragile]{\texttt{SAGE} y formas diferenciales}
+ Encontramos a  \texttt{SAGE} más cómodo para operar con formas diferenciales que \texttt{SymPy}
 \begin{sagecommandline}
 sage: r,theta=var('r,theta')
 sage: U = CoordinatePatch((r,theta))
@@ -439,7 +449,7 @@ sage: G1.quotient(H1)
 
 \begin{frame}{Grupos de simetrías}
 \nl\begin{block}{Grupos de simetrías}
-Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\varphi$, invertibles,  de clase $C^{\infty}$, donde $\varphi:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$. Acostumbraremos escribir $(\xi,\eta)=\varphi(x,y)$ y diremos que $(\xi,\eta)$ son la variables nuevas e $(x,y)$ las viejas.
+Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\varphi$, invertibles,  de clase $C^{\infty}$, donde $\varphi:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$. Acostumbraremos escribir $(\hat{x},\hat{y})=\varphi(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas e $(x,y)$ las viejas.
 
 Llamaremos $\mathscr{T}$ al conjunto de todas los cambios de variables $\varphi$. 
 El conjunto  $\mathscr{T}$ tiene una estructura de grupo con la operación de composición.
@@ -470,7 +480,7 @@ Sea $\mathscr{T}$ el grupo de cambios de variables. Supongamos dado un homomorfi
 \textbf{Notación:} 
 \begin{enumerate}
 \item Para $\lambda\in\rr$ escribiremos $P_{\lambda}=P(\lambda)$ 
-\item Si $(x,y)\in\rr^2$ escribimos $(\xi,\eta)=f(x,y,\lambda):=P_{\lambda}(x,y)$.
+\item Si $(x,y)\in\rr^2$ escribimos $(\hat{x},\hat{y})=f(x,y,\lambda):=P_{\lambda}(x,y)$.
 \end{enumerate}
 Si $f(x,y,\lambda)$ es diferenciable respecto a $(x,y)$ y analítica respecto a $\lambda$ diremos que $\{P_{\lambda}|\lambda\in\rr\}$ es un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico de simetrías}}.
 \end{block}
@@ -493,11 +503,11 @@ Si $f(x,y,\lambda)$ es diferenciable respecto a $(x,y)$ y analítica respecto a 
 
 \item<+-> $\left(P_{\lambda}\right)^{-1}=P_{-\lambda}$
 
-\item<+-> Si $P_{\lambda}(x,y)=(\xi,\eta)$, entonces  $\xi(x,y,\lambda)$ y $\eta(x,y,\lambda)$ son  diferenciables respecto $(x,y)$ y se desarrollan en serie de potencias respecto a $\lambda$. Es decir para todo $\lambda_0\in\rr$ 
+\item<+-> Si $P_{\lambda}(x,y)=(\hat{x},\hat{y})$, entonces  $\hat{x}(x,y,\lambda)$ y $\hat{y}(x,y,\lambda)$ son  diferenciables respecto $(x,y)$ y se desarrollan en serie de potencias respecto a $\lambda$. Es decir para todo $\lambda_0\in\rr$ 
 \[
 \begin{array}{cc}
-\xi(x,y,\lambda)&=a_0(x,y)+a_1(x,y)(\lambda- \lambda_0)+\cdots\\
-\eta(x,y,\lambda)&=b_0(x,y)+b_1(x,y)(\lambda- \lambda_0)+\cdots\\
+\hat{x}(x,y,\lambda)&=a_0(x,y)+a_1(x,y)(\lambda- \lambda_0)+\cdots\\
+\hat{y}(x,y,\lambda)&=b_0(x,y)+b_1(x,y)(\lambda- \lambda_0)+\cdots\\
 \end{array}
 \]
 
@@ -531,7 +541,7 @@ $
 \begin{block}{Definición}
 Consideremos una ecuación
 \[y'=f(x,y).\]
-Una transformación $P\in \mathscr{T}$ se denomina una simetría de la ecuación si el cambio de variables dado por $(\xi,\eta)=P(x,y)$ deja invariante  la ecuación. 
+Una transformación $P\in \mathscr{T}$ se denomina una simetría de la ecuación si el cambio de variables dado por $(\hat{x},\hat{y})=P(x,y)$ deja invariante  la ecuación. 
 
 \textbf{Ejercicio:} el conjunto de todas las simetría de una ecuación es un subgrupo de  $( \mathscr{T},\circ)$. Lo llamaremos \emph{grupo de simetrías} de la ecuación.
 
@@ -547,13 +557,13 @@ Una transformación $P\in \mathscr{T}$ se denomina una simetría de la ecuación
 \[\frac{dy}{dx}=f(x).\]
 
 De acuerdo con \eqref{eq:subsder} se debe cumplir que 
- \[\frac{\frac{\partial\eta}{\partial x}+\frac{\partial\eta}{\partial y}f(x)}{\frac{\partial\xi}{\partial x}+\frac{\partial\xi}{\partial y}f(x)}=f(\xi)\]
+ \[\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x)}=f(\hat{x})\]
 
  Parece que debemos hacer las elecciones
-   \[\boxed{\xi=x},\quad \frac{\partial\eta}{\partial x}=\frac{\partial\xi}{\partial y}=0,\quad
-   \frac{\partial\eta}{\partial y}=\frac{\partial\xi}{\partial x}. \]
+   \[\boxed{\hat{x}=x},\quad \frac{\partial\hat{y}}{\partial x}=\frac{\partial\hat{x}}{\partial y}=0,\quad
+   \frac{\partial\hat{y}}{\partial y}=\frac{\partial\hat{x}}{\partial x}. \]
  Luego 
-\[\frac{\partial\eta}{\partial y}=1\Rightarrow \boxed{\eta=y+\lambda} \]
+\[\frac{\partial\hat{y}}{\partial y}=1\Rightarrow \boxed{\hat{y}=y+\lambda} \]
 con $\lambda$ constante arbitraria.
  \end{frame}
 
@@ -584,7 +594,7 @@ Soluciones de $y'=x^3-x$ &\hspace{-1.5cm}Soluciones de $y'=y^3-y$
  \[\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.\]
 Sea $P_{\lambda}$ la transformación que rota un ángulo $\lambda$ alrededor del origen. Era un ejercicio demostrar que  $\{P_{\lambda}|\lambda\in\rr\}$ es un grupo uniparamétrico de simetrías. Se tiene la representación matricial
 \[
-P_{\lambda}(x,y)= \begin{pmatrix} \xi\\ \eta
+P_{\lambda}(x,y)= \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\lambda) & -\sen(\lambda)
 \\ \sen(\lambda) & \cos(\lambda)
 \end{pmatrix} \begin{pmatrix} x\\ y
@@ -592,10 +602,10 @@ P_{\lambda}(x,y)= \begin{pmatrix} \xi\\ \eta
 \]
 
 \[
-P^{-1}_{\lambda}(\xi,\eta)= \begin{pmatrix} x\\ y
+P^{-1}_{\lambda}(\hat{x},\hat{y})= \begin{pmatrix} x\\ y
 \end{pmatrix}=\begin{pmatrix} \cos(\lambda) & \sen(\lambda)
 \\ -sen(\lambda) & \cos(\lambda)
-\end{pmatrix} \begin{pmatrix} \xi\\ \eta
+\end{pmatrix} \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}
 \]
 
@@ -636,7 +646,7 @@ Expr9=Expr8.subs(sin(2*theta),\
 1-(cos(theta))**2)
 \end{sageblock}
 La ecuación resultante es \emph{la misma}
-\boxedeq{\frac{d\eta}{d\xi}=\sage{simplify(Expr9)}.}{}
+\boxedeq{\frac{d\hat{y}}{d\hat{x}}=\sage{simplify(Expr9)}.}{}
 \end{frame}
 
 \begin{frame}{Encontrar simetrías}
