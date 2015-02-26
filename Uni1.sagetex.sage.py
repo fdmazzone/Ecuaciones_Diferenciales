@@ -76,7 +76,7 @@ except:
  _st_.goboom(_sage_const_7 )
 _st_.blockend()
 try:
- _st_.inline(_sage_const_2 , latex({f}))
+ _st_.inline(_sage_const_2 , latex(f))
 except:
  _st_.goboom(_sage_const_14 )
 _st_.endofdoc()
