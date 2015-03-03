@@ -1,4 +1,4 @@
-\frac{d\eta}{d\xi}=\sage{simplify(Expr9)}.%\documentclass{article}
+%\documentclass{article}
 %\documentclass[hyperref={colorlinks=true}]{beamer}
 \documentclass[handout,hyperref={colorlinks=true}]{beamer}
 
@@ -863,7 +863,7 @@ Entonces
   \end{split}
  \]
 
-Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimientoi es oscilatorio con frecuencia
+Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimiento es oscilatorio con frecuencia
 \[\boxed{f=\sqrt{\frac{k}{m}} }.\]
 En particular, no importan las condiciones iniciales, la frecuencia es siempre la misma. 
 
@@ -871,4 +871,82 @@ En particular, no importan las condiciones iniciales, la frecuencia es siempre l
  
 
 \end{frame}
+
+\begin{frame}{EDP, método características}
+
+\onslide<+->Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden. 
+
+\onslide<+->Para tener un problema bien planteado con una ecuación en derivadas parciales no es suficiente conocer el valor de la función en un punto (como en una EDO de primer orden). En cambio una condición típica es dar el valor de la función a lo largo de una recta. 
+
+\onslide<+-> Por ejemplo
+
+\begin{equation}\label{eq:EDP_gral_1orden}
+  \left.\begin{array}{l}
+  a(x,y)u_x+b(x,y)u_y=c(x,y,u)\\
+  u(x,0)=f(x)\\
+\end{array}\right\}
+\end{equation}
+Aquí $x,y$ son variables independientes y $u$ dependiente.
+
+
+ 
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+\onslide<+-> El método de características consiste en encotrar $u$ a lo largo de las soluciones de la ecuación
+
+\boxedeq{\frac{dy}{dx}=\frac{b(x,y)}{a(x,y)}}{eq:ecua_caract}
+
+\onslide<+-> Una solución de esta ecuación es normalmente una curva en el plano  $x,y$. La idea es que las soluciones de \eqref{eq:ecua_caract} forman un flia uniparamétrica
+ de curvas que llena una gran parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$ 
+
+\onslide<+-> Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los papales de $x$ e $y$.
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+
+\onslide<+-> Supongamos $y(x)$ solución de \eqref{eq:ecua_caract}, entonces pongamos por abuso de notación $u(x)=u(x,y(x))$. Se tiene que
+
+\boxedeq{\frac{du}{dx}=u_x+u_yy'=u_x+u_y\frac{b}{a}=\frac{c(x,y(x),u(x))}{a(x,y)}}{eq:ecua_caract2}
+Que es otra ecuación ordinaria. Podemos escribir  \eqref{eq:ecua_caract} y \eqref{eq:ecua_caract2} en una ecuación más simétrica
+\boxedeq{\frac{du}{c}=\frac{dx}{a}=\frac{dy}{b}}{eq:caract}
+Estas ecuaciones se llaman \emph{ecuaciones características}.
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+\textbf{Ejemplo:} Resolver
+\begin{equation}\label{eq:EDP_gral_1orden}
+  \left.\begin{array}{l}
+  u_x+u_y=yu\\
+  u(x,0)=f(x)\\
+\end{array}\right\}
+\end{equation}
+En este caso
+\[\frac{dy}{dx}=\frac{b}{a}\Rightarrow y'=1\Rightarrow y(x)=x+\mu,\quad\mu=\hbox{cte}.\]
+Entonces
+\[\frac{du}{dx}=\frac{c}{a}\Rightarrow u'=yu=(x+\mu)u\Rightarrow \ln|u|=\frac{x^2}{2}+\mu x+C(\mu).\]
+Notar que la nueva constante de integración $C(\mu)$ debe depender de la primera $\mu$. Entonces
+\[u=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{C(y-x)}.\]
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+Ahora
+\[u(x,0)=f(x)\Rightarrow f(x)=\pm e^{\frac{x^2}{2}}e^{(-x^2}e^{C(-x)}\Rightarrow C(\mu)=\frac{\mu^2}{2}+\ln|f(-\mu)|.\]
+
+Entonces
+
+\[u(x,y)=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{\frac{(y-x)^2}{2}+\ln|f(x-y)|        }
+=e^{\frac{y^2}{2}}f(x-y).\]
+
+
+
+\end{frame}
+
 \end{document}

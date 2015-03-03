@@ -564,7 +564,7 @@ Una transformación $\Gamma\in \mathscr{T}$ se denomina una simetría de la ecua
 \nl De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
  \boxedeq{\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}=f(\hat{x},\hat{y})}{eq:cond_sim}
 
-\nl Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}.
+\nl Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de un  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}.
 
 \end{frame}
 
@@ -886,7 +886,7 @@ Tiene simetrías de escala
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,e^{\epsilon}y).\]
 Luego 
 \[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right)=(0,y)\]
-El conjunto de puntos donde $y=0$ es invariante. La ecuación característica reducida es.
+Cualquier punto en el conjunto $\{(x,0)|x\in\rr\}$  es invariante. La ecuación característica reducida es.
 \[\overline{Q}(x,y)=0\Rightarrow y=0\]
 Esta formada enteramente por puntos invariantes.
 
@@ -949,7 +949,7 @@ Tenemos dos soluciones invariantes
 \begin{frame}{Una observación}
 
 \nl La mayoría de los métodos de simetría usan los infinitesimales $(\xi,\eta)$ en lugar de las simetrías en si mismas.  
-No obstante  $(\xi,\eta)$ determinan las simetrías a traves de las ecuaciones
+No obstante  $(\xi(\hat{x},\hat{y}),\eta(\hat{x},\hat{y}))$ determinan las simetrías a traves de las ecuaciones
 
 \[
 \left\{
@@ -962,7 +962,8 @@ No obstante  $(\xi,\eta)$ determinan las simetrías a traves de las ecuaciones
 \right.
 \] 
 
-\nl \textbf{Ejemplo:} Estas ecuaciones pueden ser dificiles de resolver. Pero en algunos casos sencillos puede ser fácil. Supongamos dado  $(\xi,\eta)=(0,y)$. Las ecuaciones implican $\hat{x}$ independiente de $\epsilon$. Luego $\hat{x}=A(x,y)$ es función de $x,y$ solo. Además para $\hat{y}$ tenemos $\hat{y}=B(x,y)e^{\epsilon}$. Las condiciones iniciales implican $A(x,y)=x$ y $B(x,y)=y$.  
+\nl \textbf{Ejemplo:} Estas ecuaciones pueden ser dificiles de resolver. Pero en algunos casos sencillos puede ser fácil. Supongamos dado  $(\xi,\eta)=(0,\hat{y})$. Las ecuaciones implican $\hat{x}$ independiente de $\epsilon$.  Luego por la condición inicial $\hat{x}=x0$
+ es función de $x,y$ solo. Además para $\hat{y}$ tenemos $\hat{y}=B(x,y)e^{\epsilon}$. Las condiciones iniciales implican $A(x,y)=x$ y $B(x,y)=y$.  
 
 \end{frame}
 
@@ -1069,6 +1070,123 @@ Luego $r=\sqrt{x^2+y^2}$ es una integral primera.
 
 
 \end{frame}
+
+
+
+\begin{frame}{Encontrando coordenadas canónicas}
+La coordenada $r$ es constante sobre los puntos en la gráfica de una solución de \eqref{eq:int_pri}. Sobre esos puntos $(x,y(x))$, la coordenada $s$ satisface:
+
+\begin{equation} \label{eq:coor_can_s}
+\begin{array}{lll}
+\frac{ds}{dx}&=\frac{\partial s}{\partial x}+\frac{\partial s}{\partial y} y'(x) & \hbox{(Regla cadena)}\\
+&=\frac{\partial s}{\partial x}+\frac{\partial s}{\partial y} \frac{\eta}{\xi} &
+  \eqref{eq:int_pri}\\
+&=\frac{1}{\xi} &\hbox{\eqref{eq:coor_can_dif}}.
+\end{array}
+\end{equation}
+
+Ahora podemos aprovechar que ya conocemos $r$ y  expresar $y$ como función de $r,x$. Luego
+
+\begin{block}{Teorema: Expresión para $s$}
+\boxedeq{s=\int\frac{ds}{dx}dx=\int\frac{dx}{\xi(x,y(r,x))}.}{eq:expr_coor_s}
+ 
+\end{block}
+
+ 
+
+
+
+
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{Encontrando coordenadas canónicas}
+En la igualdad resultante puede ser necesario reemplazar $r$ por su expresión en las variables $x,y$.
+
+
+Si ocurriese que $\xi=0$ y $\eta\neq 0$. Entonces por \eqref{eq:int_pri} $r_y=0$, de modo que $r$ es sólo función de $x$. Se puede asumir $r=x$. Además $\eta s_y=1$, entonces
+\boxedeq{s=\int\frac{dy}{\eta(r,y)} .}{eq:s_xi_0}
+
+
+\textbf{Ejemplo} Retornando al ejemplo de las rotaciones, donde hallamos que $r=\sqrt(x^2+y²)$, vemos que
+
+\[s=\int\frac{dx}{-y}=-\int\frac{dx}{\sqrt{r^2-x^2}}=\arccos\left(\frac{x}{r}\right).\]
+Por consiguiente  $s$ es el ángulo polar.
+
+\end{frame}
+
+
+
+\begin{frame}{Encontrando coordenadas canónicas}
+\textbf{Ejemplo} Econtrar coordenadas canónicas para el grupo de Lie de simetrías
+\[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{k\epsilon}y)\quad k>0.\]
+El vector tangente es
+\[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0},\left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}\right)=(x,ky).\]
+Resolvamos la ecuación  \eqref{eq:int_pri} 
+\[\frac{dy}{dx}=\frac{ky}{x}\Rightarrow y=Cx^k.\]
+Luego $\Phi=y/x^k$ es integral primera. Entonces podemos tomar $r=y/x^k$. 
+
+
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{Encontrando coordenadas canónicas}
+ Para $s$
+\[s=\int\frac{dx}{\xi}=\frac{dx}{x}=\ln|x|.\]
+Entonces $(r,s)=(yx^{-k},\ln|x|)$ son coordenadas canónicas. No estan definidas en $x=0$.
+Podemos encontrar coordenadas canónicas definidas en $x=0$ del siguiente modo. Recordamos que para todas $F$ y $G$
+\[(\tilde{r},\tilde{s})=(F(r),G(r)+s)=(F(x^{-k}y),G(x^{-k}y)+\ln|x|).\]
+So canónicas también. Si tomamos $F(r)=1/r$ y $G(r)=\frac{1}{k}\ln|x|$, evitamos la singularidad. Luego
+
+\[(\tilde{r},\tilde{s})=(x^ky^{-1},\frac{1}{k}\ln|y|).\]
+Son canónicas, están definidas en $x=0$ pero no en $y=0$.  
+
+
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{Encontrando coordenadas canónicas}
+\textbf{Ejemplo} Encontrar coordenadas canónicas para
+\[(\hat{x},\hat{y})=\left( \frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}\right).\]
+
+\[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0},\left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}\right)=(x^2,xy).\]
+
+\[\frac{dy}{dx}=\frac{eta}{\xi}=\frac{y}{x}\Rightarrow \frac{y}{x}=\hbox{cte}.\]
+
+Podemos tomar $r=y/x$. Para $s$
+\[s=\int\frac{dx}{x^2}=-\frac{1}{x}.\]
+Luego $(r,s)=(\frac{y}{x},\frac{1}{x})$ son canónicas.
+
+
+
+En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordenadas canónicas allí.
+
+
+ 
+\end{frame}
+
+
+
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+
+
+ 
+\end{frame}
+
+
+
 
 \end{document}
 % \begin{frame}{Acción de grupos}
