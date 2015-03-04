@@ -746,7 +746,7 @@ y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (
 
 
 
-\begin{frame}{Simetrías resuelven ecuaciones}
+\begin{frame}{Simetrías resuelven ecuaciones}\label{pag:sim_tras}
 \textbf{Ejemplo:} Supongamos que $y'=f(x,y)$ tiene  el grupo de Lie uniparamétrico de simetrías
 \boxedeq{(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)}{eq:tras_lie}
 Usando la condición de simetrías \eqref{eq:cond_sim} tenemos
@@ -1121,8 +1121,8 @@ Por consiguiente  $s$ es el ángulo polar.
 
 
 
-\begin{frame}{Encontrando coordenadas canónicas}
-\textbf{Ejemplo} Econtrar coordenadas canónicas para el grupo de Lie de simetrías
+\begin{frame}{Encontrando coordenadas canónicas}\label{pag_ejem_canon1}
+\textbf{Ejemplo} Encontrar coordenadas canónicas para el grupo de Lie de simetrías
 \[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{k\epsilon}y)\quad k>0.\]
 El vector tangente es
 \[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0},\left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}\right)=(x,ky).\]
@@ -1138,7 +1138,7 @@ Luego $\Phi=y/x^k$ es integral primera. Entonces podemos tomar $r=y/x^k$.
 
 
 
-\begin{frame}{Encontrando coordenadas canónicas}
+\begin{frame}{Encontrando coordenadas canónicas}\label{pag_ejem_canon2}
  Para $s$
 \[s=\int\frac{dx}{\xi}=\frac{dx}{x}=\ln|x|.\]
 Entonces $(r,s)=(yx^{-k},\ln|x|)$ son coordenadas canónicas. No estan definidas en $x=0$.
@@ -1181,25 +1181,60 @@ En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordena
 
 \begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
 
+\onslide<+-> Supongamos que tenemos un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
+\boxedeq{y'=f(x,y)}{eq:eq_princi}
 
+\onslide<+-> Supongamos  que las simetrías son no triviales, es decir no dejan invariante las soluciones. Según \eqref{eq:sol_inv} debemos tener
+ \[\eta(x,y)\not\equiv f(x,y)\xi(x,y)\]
+La razón de esta condición se verá más adelante.
+
+\onslide<+->Supongamos $(r,s)$ coordenadas canónicas. La ecuación en las coordenadas $(r,s)$, según \eqref{eq:subsder}, se escribirá
+\boxedeq{\frac{ds}{dr}=\hat{f}(r,s):=\frac{s_x+f(x,y)s_y}{r_x+f(x,y)r_y}.}{eq:prin_en_canon}
  
+\end{frame}
+
+
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+\onslide<+->Las coordenadas canónicas se definen por \eqref{eq:coorcan} de modo que el grupo de simetrías actúe por traslación $(\hat{r},\hat{s})=(r,s+\epsilon)$. 
+\onslide<+->Por los resultados de la página  \ref{pag:sim_tras}, $\hat{f}$ es independiente de $s$. Y la ecuación se reduce a
+\boxedeq{\frac{ds}{dr}=\hat{f}(r)}{eq:ecu_prin_canonica}
+
+que se resuelve integrando.
+
+
+\onslide<+->\textbf{Ejemplo:} Resolver 
+\[y'=xy^2-\frac{2y}{x}-\frac{1}{x^3},\quad x\neq 0,\]
+sabiendo que la ecuación es invariante para el grupo de simetrías
+\[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{-2\epsilon}y).\]
+\end{frame}
+
+
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+\onslide<+->Por los resultados de las páginas \ref{pag_ejem_canon1} y \ref{pag_ejem_canon2}:
+\[(r,s)=(x^2y,\ln|x|)\]
+son canónicas.
+\onslide<+-> Según \eqref{eq:prin_en_canon} la ecuación en $(r,s)$ es:
+\[\frac{dr}{ds}=\frac{\frac{1}{x}}{2xy+x^2\left(  xy^2-\frac{2y}{x}-\frac{1}{x^3}     \right)}=\frac{1}{x^4y^2-1}=\frac{1}{r^2-1}\]
+Como sabíamos que debía suceder el resultado del segundo miembro ndepende sólo de $r$. Integrando
+\[s=\frac12\ln\left( \frac{r-1}{r+1}  \right)+C.\]
+Sustituyendo
+\[\ln|x|=\frac12\ln\left( \frac{x^2y-1}{x²y+1}  \right)+C.\]
+
+
+
+\end{frame}
+
+
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+Despejando
+\[y =-\frac{x^2 + C}{x^2(x^2 - C)}\]
+
+
+
 \end{frame}
 
 
 
 
 \end{document}
-% \begin{frame}{Acción de grupos}
-% \begin{block}{Acción de grupos}
-% Sea $G$ un grupo   y $X$ un conjunto. Diremos que $G$ actúa a izquierda sobre $X$ si existe una función $\alpha:G\times X\to X$, denotada $\alpha(g,x)=gx$ con las propiedades
-% \begin{enumerate}
-% \item $ex=x$,  donde $e$ neutro de $G$ y $x\in X$.
-% \item $g(hx)=(gh)x$, donde $g,h\in G$ y $x\in X$ .
-% \end{enumerate}
-% \end{block}
-
-% \nl\begin{block}{Acción de grupos}
-% Si $G$ actúa a izquierda sobre $X$ y $x\in X$ definimos la \emph{órbita} de $x$ como el conjunto $\{gx|g\in G\}$. Denotamos la órbita de $x$ por $Gx$.
-% \end{block}
-% \end{frame}
 
