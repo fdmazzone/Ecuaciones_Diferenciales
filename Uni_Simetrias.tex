@@ -147,6 +147,33 @@ Universidad Nacional de Río Cuarto}
    \includegraphics[scale=0.2]{imagenes/unrc.jpg}
    \end{center}
 \end{frame}
+\begin{frame}
+\tableofcontents
+
+\end{frame}
+
+\section[Historia]{Introducción histórica}
+
+\begin{frame}{Sophus Lie}
+\begin{tabular}{m{0.8\linewidth} >{\centering\arraybackslash}m{0.2\linewidth} }
+ 
+Marius Sophus Lie fue un matemático noruego (17 de diciembre de 1842-18 de febrero de 1899) que creó en gran parte la teoría de la simetría continua, y la aplicó al estudio de la geometría y las ecuaciones diferenciales.
+La herramienta principal de Lie, y uno de sus logros más grandes fue el descubrimiento de que los grupos continuos de transformación (ahora llamados grupos de Lie), podían ser
+
+ &
+
+\includegraphics[scale=.25]{imagenes/Sophus_Lie.jpg}
+\\
+\end{tabular}
+ entendidos mejor "linealizándolos", y estudiando los correspondientes campos vectoriales generadores (los, así llamados, generadores infinitesimales). 
+Los generadores obedecen una versión linealizada de la ley del grupo llamada el corchete o conmutador, y tienen la estructura de lo que hoy, en honor suyo, llamamos un álgebra de Lie. (Wikipedia)
+\end{frame}
+
+
+
+
+
+\section[Formas]{Formas Diferenciales, idea vaga}
 
 \begin{frame}{Distintas formas para una ecuación}
 
@@ -185,7 +212,7 @@ Una $k$-forma diferencial se llama exacta cuando es el diferencial de una $k-1$-
 \end{frame}
 
 
-
+\section{Cambios de Variables}
 
 
 
@@ -376,7 +403,7 @@ La forma obtenida es $\sage{w[0].simplify_full()}dr+(\sage{w[1].simplify_full()}
 \end{frame}
 
 
-
+\section[Grupos]{Grupos}
 
 \begin{frame}{Grupos, Repaso}
 \begin{block}{Grupos}
@@ -451,6 +478,9 @@ sage: H1.is_normal()
 sage: G1.quotient(H1)
 \end{sagecommandline}
 \end{frame}
+
+
+\section[Simetrías]{Grupos continuos de simetrías}
 
 \begin{frame}{Grupos de simetrías}
 \nl\begin{block}{Grupos de simetrías}
@@ -759,7 +789,7 @@ se resuelve simplemente integrando.
 
 \end{frame}
 
-
+\section[Órbitas]{Órbitas, tangentes y curvas invariantes}
 \begin{frame}{Órbitas}
 
 \nl\begin{block}{Definición}
@@ -967,6 +997,8 @@ No obstante  $(\xi(\hat{x},\hat{y}),\eta(\hat{x},\hat{y}))$ determinan las simet
 
 \end{frame}
 
+\section{Coordenadas canónicas}
+
 \begin{frame}{Coordenadas canónicas}
 \nl \begin{block}{Definición}   Diremos que las coordenadas $(r,s)$ son canónicas respecto a el grupo de Lie de simetrías $\Gamma{\epsilon}$  si en las coordenadas $(r,s)$ la acción de grupo es la traslación 
 
@@ -1157,7 +1189,7 @@ Son canónicas, están definidas en $x=0$ pero no en $y=0$.
 \end{frame}
 
 
-\begin{frame}{Encontrando coordenadas canónicas}
+\begin{frame}{Encontrando coordenadas canónicas}\label{pag:can_ejem_p}
 \textbf{Ejemplo} Encontrar coordenadas canónicas para
 \[(\hat{x},\hat{y})=\left( \frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}\right).\]
 
@@ -1177,16 +1209,16 @@ En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordena
  
 \end{frame}
 
-
+\section[Resolviendo EDO]{Resolviendo EDO con grupos de Lie de simetrías}
 
 \begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
 
-\onslide<+-> Supongamos que tenemos un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
+\onslide<+-> Supongamos dado  un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
 \boxedeq{y'=f(x,y)}{eq:eq_princi}
 
-\onslide<+-> Supongamos  que las simetrías son no triviales, es decir no dejan invariante las soluciones. Según \eqref{eq:sol_inv} debemos tener
+\onslide<+-> Supongamos  que las simetrías son no triviales. Según \eqref{eq:sol_inv} debemos tener
  \[\eta(x,y)\not\equiv f(x,y)\xi(x,y)\]
-La razón de esta condición se verá más adelante.
+La razón de esta condición es que si fuese falsa entonces la ecuación \eqref{eq:int_pri} es la misma que la ecuación \eqref{eq:eq_princi} y el método es inútil.
 
 \onslide<+->Supongamos $(r,s)$ coordenadas canónicas. La ecuación en las coordenadas $(r,s)$, según \eqref{eq:subsder}, se escribirá
 \boxedeq{\frac{ds}{dr}=\hat{f}(r,s):=\frac{s_x+f(x,y)s_y}{r_x+f(x,y)r_y}.}{eq:prin_en_canon}
@@ -1227,14 +1259,63 @@ Sustituyendo
 
 \begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
 Despejando
-\[y =-\frac{x^2 + C}{x^2(x^2 - C)}\]
+\boxedeq{y =-\frac{x^2 + C}{x^2(x^2 - C)}}{eq:sol_ejem}
+La ecuación característica reducida \eqref{eq:sol_inv} es para la ecuación de este ejemplo:
+
+\[0=\overline{Q}=-2y- \left(xy^2-\frac{2y}{x}-\frac{1}{x^3}  \right)x=-x^2y^2+\frac{1}{x^2}\]
+Cuyas soluciones son
+\[y=\pm\frac{1}{x^2}.\]
+Que además son solución de la ecuación diferencial. La curva $y=-1/x^2$ se obtiene de \eqref{eq:sol_ejem} con $C=0$. La  curva $y=-1/x^2$
+
+\end{frame}
 
 
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+
+\begin{tabular}{m{0.3\linewidth} >{\centering\arraybackslash}m{0.7\linewidth} }
+Las curvas azules y naranjas se corresponden con las gráficas de \eqref{eq:sol_ejem} con $c>0$ y $c<0$ respectivamente. La verde es la de $y=1/x^2$ y la roja de $y=-1/x^2$.
+&
+\includegraphics[scale=.4]{imagenes/SolGrup.png}
+\end{tabular}
+\end{frame}
+
+
+
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+
+
+
+\onslide<+->\textbf{Ejemplo:} Resolver 
+\[y'=\frac{y+1}{x}+\frac{y^2}{x^3},\quad x\neq 0,\]
+sabiendo que la ecuación es invariante para el grupo de simetrías
+\[(\hat{x},\hat{y})=(\frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}   ).\]
+Ya hemos computado las coordenadas canónicas en página \ref{pag:can_ejem_p}:
+\[(r,s)=\left(\frac{y}{x},\frac{1}{x}\right).\]
+Por \eqref{eq:prin_en_canon} la ecuación se escribe
+\[\frac{dr}{ds}=\frac{-\frac{1}{x^2} }{-\frac{y}{x^2}+\frac{1}{x}\left(
+\frac{y+1}{x}+\frac{y^2}{x^3}\right)}=\frac{1}{1+r^2}\]
 
 \end{frame}
 
 
 
+\begin{frame}{Resolviendo EDO con grupos de Lie de simetrías}
+Cuya solución es 
+\[s=\arctan(r)+C\Rightarrow y=-x\tan\left(\frac{1}{x}+C\right).\]
+\end{frame}
 
+
+\begin{frame}{Ecuaciones homogéneas}
+\textbf{Ejemplo:} Resolver la ecuación 
+\boxedeq{y'=F\left(\frac{y}{x}\right).}{eq:homogenea}
+Aquí tenemos el Grupo de Lie de simetrías de cambio de escalas
+\[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{\epsilon}y).\] 
+
+Por los resultados de páginas \ref{pag_ejem_canon1} y \ref{pag_ejem_canon2}, $(r,s)=(y/x,\ln|x|)$ son canónicas y la ecuación se escribe
+\[\frac{ds}{dr}=\frac{\frac{1}{x}}{-\frac{y}{x^2}+\frac{F\left(\frac{y}{x}\right)}{x}}=\frac{1}{F(r)-r}.\]
+La solución general es 
+\[\ln|x|=\int^{y/x}\frac{dr}{F(r)-r}+c.\]
+
+\end{frame}
 \end{document}
 

@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabularx}
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\C}[1]{\overline{#1}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand\eme {\mbox{\tiny\sc M}}
+\newcommand\bfm {\mbox{\tiny\sc BFM}}
+\newcommand\btuk {\mbox{\tiny\sc BT}}
+\newcommand\rice {\mbox{\tiny\sc R}}
+\newcommand\pc {\mbox{\tiny\sc PC}}
+\newcommand\gasser {\mbox{\tiny\sc G}}
+\newcommand\hall {\mbox{\tiny\sc H}}
+\newcommand\h {\widehat{h}_n}
+\newcommand\ta {\widehat{\tau}_n}
+\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+\newcommand{\seno}{\hbox{sen}}
+\DeclareMathOperator{\sen}{sen}
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1cm}
+%
+%\setlength{\extrarowheight}{5mm}
+%
+
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Primer Cuatrimestre de 2015\par
+        Ecuaciones Diferenciales (1913) \par
+        Práctica 3: Simetrías.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+\setlength{\unitlength}{1cm}
+%
+%\setlength{\extrarowheight}{5mm}
+
+\begin{ejercicio}\label{ejer: 1} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
+\begin{enumerate}
+\item\label{item:1_ejer1} $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y $\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)$.
+\item\label{item:2_ejer1} $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$
+\item$\Gamma_{\epsilon}(x,y)=\left(\frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x} \right)$
+\item$\Gamma_{\epsilon}(x,y)=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
+\\ \sen(\epsilon) & \cos(\epsilon)
+\end{pmatrix} \begin{pmatrix} x\\ y
+\end{pmatrix}
+$
+\end{enumerate}
+\end{ejercicio}
+
+\begin{ejercicio} Encontrar coordenadas canónicas para las simetrías de los incisos 
+\ref{item:1_ejer1} y \ref{item:2_ejer1} del ejercicio \ref{ejer: 1}.
+\end{ejercicio}
+
+\begin{ejercicio} Ejercicios 1.1, 1.2, 1.4 y 1.5 de \cite{hydon2000symmetry}
+\end{ejercicio}
+\begin{ejercicio} Hallar un grupo de Lie de transformaciones para los siguientes vectores tangentes
+\begin{enumerate}
+  \item $(\xi,\eta)=(1,y)$.
+\item $(\xi,\eta)=(1,y)$.
+\end{enumerate}
+\end{ejercicio}
+
+
+\bibliographystyle{plain}
+\bibliography{biblio}
+\end{document}
