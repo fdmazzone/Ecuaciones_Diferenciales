@@ -570,6 +570,40 @@ $
 
 \end{frame}
 
+\begin{frame}[fragile]{Ejemplos grupos de Lie uniparamétricos}
+Podemos usar \texttt{SymPy} para la tarea
+\begin{sageblock}
+from sympy import *
+T=lambda x,y,epsilon:  Matrix([x+epsilon,y])
+x,y,epsilon1,epsilon2=\
+symbols('x,y,epsilon1,epsilon2')
+PropGrupo=T(T(x,y,epsilon1)[0],\
+T(x,y,epsilon1)[1],epsilon2)-\
+T(x,y,epsilon1+epsilon2)
+\end{sageblock}
+
+El resultado es $\sage{PropGrupo}$.
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplos grupos de Lie uniparamétricos}
+El mismo ejemplo lo podemos desarrollar usando expresiones en lugar del operador \texttt{lambda}.
+\begin{sageblock}
+from sympy import *
+x,y,epsilon,epsilon1,epsilon2=\
+symbols('x,y,epsilon,epsilon1,epsilon2')
+T=Matrix([x+epsilon,y])
+PropGrupo=T.subs([(\
+x,T.subs(epsilon,epsilon1)[0]),\
+(1,T.subs(epsilon,epsilon1)[1]),\
+(epsilon,epsilon2)\
+])\
+-T.subs(epsilon,epsilon1+epsilon2)
+
+\end{sageblock}
+
+El resultado es $\sage{PropGrupo}$.
+\end{frame}
+
 
 
 \begin{frame}{Grupo de simetrías de una ecuación}
@@ -1199,7 +1233,7 @@ Son canónicas, están definidas en $x=0$ pero no en $y=0$.
 
 Podemos tomar $r=y/x$. Para $s$
 \[s=\int\frac{dx}{x^2}=-\frac{1}{x}.\]
-Luego $(r,s)=(\frac{y}{x},\frac{1}{x})$ son canónicas.
+Luego $(r,s)=(\frac{y}{x},-\frac{1}{x})$ son canónicas.
 
 
 
@@ -1208,6 +1242,41 @@ En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordena
 
  
 \end{frame}
+
+
+
+\begin{frame}[fragile]{Encontrando coordenadas canónicas}
+Lo podemos desarrollar con \texttt{SymPy}. 
+\begin{sagecommandline}
+sage: from sympy import *
+sage: x,y,epsilon=symbols('x,y,epsilon')
+sage: T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
+sage: xi=T[0].diff(epsilon).subs(epsilon,0)
+sage: xi
+sage: eta=T[1].diff(epsilon).subs(epsilon,0)
+sage: eta/xi
+sage: y=Function('y')(x)
+sage: dsolve(y.diff(x)-y/x,y)
+
+
+\end{sagecommandline}
+\end{frame}
+
+\begin{frame}[fragile]{Encontrando coordenadas canónicas}
+ 
+\begin{sagecommandline}
+sage: Integral(1/xi,x).doit()
+
+\end{sagecommandline}
+\end{frame}
+
+
+
+
+
+
+
+
 
 \section[Resolviendo EDO]{Resolviendo EDO con grupos de Lie de simetrías}
 
@@ -1317,5 +1386,16 @@ La solución general es
 \[\ln|x|=\int^{y/x}\frac{dr}{F(r)-r}+c.\]
 
 \end{frame}
+
+
+\begin{frame}{Método de Lie y \texttt{SymPy}}
+\text{SymPy} Incorpora distintas estrategías para resolver ecuaciones por el método de Lie. Hay mucho por indagar al respecto, pero sólo vamos a mencionar una función para calcular los infinitesimales $(\xi,\eta)$.  Aprovechamos para mostrar como luce una consola de \texttt{ipython}, otra manera de usar \texttt{Python} y \texttt{SymPy}.
+
+\includegraphics[scale=.45]{imagenes/ipython.png}
+
+
+
+\end{frame}
+
 \end{document}
 
