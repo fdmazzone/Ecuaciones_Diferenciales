@@ -2,11 +2,12 @@
 %\documentclass[hyperref={colorlinks=true}]{beamer}
 \documentclass[handout,hyperref={colorlinks=true}]{beamer}
 
-
+\usecolortheme{crane}
+\usetheme{Darmstadt}
+\usefonttheme{structuresmallcapsserif}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{pgfpages}
+%\usepackage{pgfpages}
 %\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
@@ -28,33 +29,24 @@
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
 \lstdefinelanguage{Sage}[]{Python}
 {morekeywords={False,sage,True},sensitive=true}
 \lstset{
-  frame=none,
-  showtabs=False,
-  showspaces=False,
-  showstringspaces=False,
-  commentstyle={\ttfamily\color{dgreencolor}},
-  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-  language=Sage,
-  basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-  aboveskip=.3em,
-  belowskip=0.1em,
-  numbers=none,
-  numberstyle=\footnotesize
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=Sage,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
 }
-
-
- 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
@@ -64,16 +56,6 @@
 \newcommand{\dblue}{\color{dbluecolor}\bf}
 \newcommand{\dred}{\color{dredcolor}\bf}
 \newcommand{\dblack}{\color{dblackcolor}\bf}
-
-
-
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
@@ -89,32 +71,29 @@
 \newsavebox\mytempbox
 \makeatletter
 \newcommand\mybluebox{%
-    \@ifnextchar[%]
-       {\@mybluebox}%
-       {\@mybluebox[0pt]}}
-
+\@ifnextchar[%]
+{\@mybluebox}%
+{\@mybluebox[0pt]}}
 \def\@mybluebox[#1]{%
-    \@ifnextchar[%]
-       {\@@mybluebox[#1]}%
-       {\@@mybluebox[#1][0pt]}}
-
+\@ifnextchar[%]
+{\@@mybluebox[#1]}%
+{\@@mybluebox[#1][0pt]}}
 \def\@@mybluebox[#1][#2]#3{
-    \sbox\mytempbox{#3}%
-    \mytemplen\ht\mytempbox
-    \advance\mytemplen #1\relax
-    \ht\mytempbox\mytemplen
-    \mytemplen\dp\mytempbox
-    \advance\mytemplen #2\relax
-    \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-
+\sbox\mytempbox{#3}%
+\mytemplen\ht\mytempbox
+\advance\mytemplen #1\relax
+\ht\mytempbox\mytemplen
+\mytemplen\dp\mytempbox
+\advance\mytemplen #2\relax
+\dp\mytempbox\mytemplen
+\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 \makeatother
 \DeclareDocumentCommand\boxedeq{ m g }{%
-    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-        \IfNoValueF {#2} {\label{#2}}%
-       #1
-       \end{empheq}
-    }%
+{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+\IfNoValueF {#2} {\label{#2}}%
+#1
+\end{empheq}
+}%
 }
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
@@ -124,10 +103,6 @@
 \newtheorem{proposicion}[teorema]{Proposici\'on}
 \newtheorem{definicion}[teorema]{Definici\'on}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 %%%%%%%%%%Para escibir en clase articulo o similar
 % \usepackage{color}
 % \newcommand{\nl}{ }
@@ -137,53 +112,33 @@
 % \newenvironment{block}[1]{\textbf{#1}}{}
 % \title{Ecuaciones lineales de segundo orden}
 % \author{Fernando Mazzone}
-% 
-
-
-
-
+%
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
-% \mode<all>
-% {
-%   \usetheme{Boadilla}
-%   % oder ...
-%  
-%   \setbeamercovered{wolverine}
-%   % oder auch nicht
-% }
 
-
-\mode<handout>{
-  \usetheme{default}
-  %\setbeamercolor{background canvas}{bg=black!5}
-  \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-}
-
-% \mode<all>{
-%   \usetheme{default}
-%   %\setbeamercolor{background canvas}{bg=black!5}
-%   \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-% }
-
-\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+\title[Ecuaciones de primer orden] % (optional, nur bei langen Titeln nötig)
 {%
- Ecuaciones lineales de segundo orden
+ Ecuaciones de primer orden
 }
 
+\date{}
 
+%\author[] % (optional, nur bei vielen Autoren)
+%{Fernando Mazzone}
 
-\author[] % (optional, nur bei vielen Autoren)
-{Fernando Mazzone}
-
-\institute[Depto de Matemática] % (optional, aber oft nötig)
-{
- Depto de Matemática\\
-Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
-Universidad Nacional de Río Cuarto}
+%\institute[Depto de Matemática] % (optional, aber oft nötig)
+%{
+% Depto de Matemática\\
+%Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
+%Universidad Nacional de Río Cuarto}
 
 
 \subject{Ecuaciones Diferenciales}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 
 \begin{document}
@@ -908,7 +863,7 @@ Entonces
   \end{split}
  \]
 
-Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimientoi es oscilatorio con frecuencia
+Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimiento es oscilatorio con frecuencia
 \[\boxed{f=\sqrt{\frac{k}{m}} }.\]
 En particular, no importan las condiciones iniciales, la frecuencia es siempre la misma. 
 
@@ -916,4 +871,82 @@ En particular, no importan las condiciones iniciales, la frecuencia es siempre l
  
 
 \end{frame}
+
+\begin{frame}{EDP, método características}
+
+\onslide<+->Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden. 
+
+\onslide<+->Para tener un problema bien planteado con una ecuación en derivadas parciales no es suficiente conocer el valor de la función en un punto (como en una EDO de primer orden). En cambio una condición típica es dar el valor de la función a lo largo de una recta. 
+
+\onslide<+-> Por ejemplo
+
+\begin{equation}\label{eq:EDP_gral_1orden}
+  \left.\begin{array}{l}
+  a(x,y)u_x+b(x,y)u_y=c(x,y,u)\\
+  u(x,0)=f(x)\\
+\end{array}\right\}
+\end{equation}
+Aquí $x,y$ son variables independientes y $u$ dependiente.
+
+
+ 
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+\onslide<+-> El método de características consiste en encotrar $u$ a lo largo de las soluciones de la ecuación
+
+\boxedeq{\frac{dy}{dx}=\frac{b(x,y)}{a(x,y)}}{eq:ecua_caract}
+
+\onslide<+-> Una solución de esta ecuación es normalmente una curva en el plano  $x,y$. La idea es que las soluciones de \eqref{eq:ecua_caract} forman un flia uniparamétrica
+ de curvas que llena una gran parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$ 
+
+\onslide<+-> Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los papales de $x$ e $y$.
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+
+\onslide<+-> Supongamos $y(x)$ solución de \eqref{eq:ecua_caract}, entonces pongamos por abuso de notación $u(x)=u(x,y(x))$. Se tiene que
+
+\boxedeq{\frac{du}{dx}=u_x+u_yy'=u_x+u_y\frac{b}{a}=\frac{c(x,y(x),u(x))}{a(x,y)}}{eq:ecua_caract2}
+Que es otra ecuación ordinaria. Podemos escribir  \eqref{eq:ecua_caract} y \eqref{eq:ecua_caract2} en una ecuación más simétrica
+\boxedeq{\frac{du}{c}=\frac{dx}{a}=\frac{dy}{b}}{eq:caract}
+Estas ecuaciones se llaman \emph{ecuaciones características}.
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+\textbf{Ejemplo:} Resolver
+\begin{equation}\label{eq:EDP_gral_1orden}
+  \left.\begin{array}{l}
+  u_x+u_y=yu\\
+  u(x,0)=f(x)\\
+\end{array}\right\}
+\end{equation}
+En este caso
+\[\frac{dy}{dx}=\frac{b}{a}\Rightarrow y'=1\Rightarrow y(x)=x+\mu,\quad\mu=\hbox{cte}.\]
+Entonces
+\[\frac{du}{dx}=\frac{c}{a}\Rightarrow u'=yu=(x+\mu)u\Rightarrow \ln|u|=\frac{x^2}{2}+\mu x+C(\mu).\]
+Notar que la nueva constante de integración $C(\mu)$ debe depender de la primera $\mu$. Entonces
+\[u=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{C(y-x)}.\]
+
+\end{frame}
+
+\begin{frame}{EDP, método características}
+
+Ahora
+\[u(x,0)=f(x)\Rightarrow f(x)=\pm e^{\frac{x^2}{2}}e^{(-x^2}e^{C(-x)}\Rightarrow C(\mu)=\frac{\mu^2}{2}+\ln|f(-\mu)|.\]
+
+Entonces
+
+\[u(x,y)=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{\frac{(y-x)^2}{2}+\ln|f(x-y)|        }
+=e^{\frac{y^2}{2}}f(x-y).\]
+
+
+
+\end{frame}
+
 \end{document}

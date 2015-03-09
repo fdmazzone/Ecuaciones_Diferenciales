@@ -116,21 +116,21 @@ numberstyle=\footnotesize
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
 
-\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+\title[Introducción] % (optional, nur bei langen Titeln nötig)
 {%
- Ecuaciones lineales de segundo orden
+ Introducción
 }
 
 
 
-\author[] % (optional, nur bei vielen Autoren)
-{Fernando Mazzone}
+%\author[] % (optional, nur bei vielen Autoren)
+%{Fernando Mazzone}
 
-\institute[Depto de Matemática] % (optional, aber oft nötig)
-{
- Depto de Matemática\\
-Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
-Universidad Nacional de Río Cuarto}
+%\institute[Depto de Matemática] % (optional, aber oft nötig)
+%{
+% Depto de Matemática\\
+%Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
+%Universidad Nacional de Río Cuarto}
 
 
 \subject{Ecuaciones Diferenciales}
@@ -149,7 +149,9 @@ Universidad Nacional de Río Cuarto}
 
 
 
-
+\begin{frame}
+\tableofcontents
+\end{frame}
 
 
 
@@ -166,7 +168,7 @@ Universidad Nacional de Río Cuarto}
  \item  \href{https://sites.google.com/site/ecuacionesdiferencialeunrc/ecuaciones-diferenciales-unrc}{Página web} de la materia
  \item  Vamos a hacer uso intensivo de paquetes de matemática basados en \href{https://www.python.org/}{Python}, por ejemplo \href{http://www.scipy.org/}{SciPy},  \href{http://www.scipy.org/}{SymPy} y \href{http://www.sagemath.org/}{SAGE}.
  \item  Requeriremos muchos contenidos de la asignatura Física.
- \item  \begin{tabular}{m{4cm} m{2cm}} Bibliografía principal & \includegraphics[scale=0.05]{imagenes/Tapa_Simmons.jpg}           \end{tabular} 
+ \item  \begin{tabular}{m{4cm} m{2cm} m{2cm}} Bibliografía principal & \includegraphics[scale=0.05]{imagenes/Tapa_Simmons.jpg} &    \includegraphics[scale=0.13]{imagenes/tapa_hydon.png}          \end{tabular} 
 
 \end{itemize}
 
@@ -267,9 +269,9 @@ La solución obtenida es $\sage{Vel}$
 
 \begin{frame}{Algunos conceptos relacionados con ecuaciones diferenciales}
 \begin{itemize}
-\nl  \item \textbf{Ecuación diferencial ordinaria} Es una ecuación donde las variables dependientes sólo dependen de una única variable independiente. Las 
+\nl  \item \textbf{Ecuación diferencial ordinaria (EDO)} Es una ecuación donde las variables dependientes sólo dependen de una única variable independiente. Las 
 ecuaciones \eqref{caidaLibre1} y \eqref{caidaLibre2} son ejemplo de ello, la variable independiente es el tiempo.
-\nl  \item \textbf{Ecuación en derivadas parciales} Es una ecuación donde las variables dependientes dependen de más de una variable independiente. 
+\nl  \item \textbf{Ecuación en derivadas parciales (EDP)} Es una ecuación donde las variables dependientes dependen de más de una variable independiente. 
 Ejemplo de este tipo de ecuación es la ecuación de Laplace
 
 \[\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0\]
@@ -281,7 +283,7 @@ Ejemplo de este tipo de ecuación es la ecuación de Laplace
 \begin{itemize}
 \nl  \item \textbf{Sistema de ecuaciones} También puede ocurrir  que tengamos varias variables dependientes. En ese caso tendríamos varias incognitas en 
 nuestro problema. En general una sóla ecuación no sirve para determinar todas las incognitas, sino que, a semejanza de lo que ocurre con ecuaciones algebraicas, es 
-necesario tener tantas ecuaciones como incognitas. En ese caso hablamos de sistema de ecuaciones. Por ejemplo, el sistema de ecuaciones para el resorte
+necesario tener tantas ecuaciones como incognitas. En ese caso hablamos de sistema de ecuaciones. Por ejemplo, el sistema de ecuaciones: 
 
 \[\left\{ \begin{array}{l l} x'&=y \\y'&=-\sen(x) \end{array}\right.\]
 
@@ -347,7 +349,7 @@ donde $\Omega$ es abierto de $\rr^{n+1}$ y $(a,b)$ un intervalo de $\rr$.
 \end{frame}
 
 \begin{frame}{Primitivas y ecuaciones}
-\textbf{Ejemplo} El problema de hallar una primitiva de una función es una ecuación diferencial que, como ya has visto en curso iniciales de análisis, se resuelve 
+\textbf{Ejemplo} El problema de hallar una primitiva de una función es una ecuación diferencial que, como ya has visto en cursos iniciales de análisis, se resuelve 
 con la integral. Supongamos $f:(a,b)\subset \rr\to\rr$ una función continua. Consideremos la ecuación diferencial
 \[y'(x)=f(x).\]
 Sea $x_0\in(a,b)$, integrando respecto a $x$ entre $x_0$ y $x$
@@ -384,7 +386,7 @@ a nuestro problema para que sea bien planteado. Es así que aparecen condiciones
 
 
 \begin{frame}{Problemas de valores iniciales}
-\begin{block}{Problemas de valores iniciales} Sea $x_0\in(a,b)$, $F:(a,b)\times \Omega\to\rr$ e $y_0,y_0^1,\ldots,y_0^{n-1}\in\rr$. Las siguientes relaciones  se denominan problemas de 
+\begin{block}{Problemas de valores iniciales} Sea $x_0\in(a,b)$, $F:(a,b)\times \Omega\to\rr$ e $y_0,y_0^1,\ldots,y_0^{n-1}\in\rr$. Las siguientes relaciones  se denominan problema de 
 valores iniciales
 \[
  \left\{\begin{array}{l l l}
@@ -494,7 +496,20 @@ Que no sabemos pero SymPy si!!!
 
 \end{frame}
 
-\begin{frame}[fragile]{Familias paramétricas de funciones} 
+\begin{frame}[fragile]{\texttt{SymPy}: función \texttt{dsolve}} 
+
+\textbf{Sintaxis} (\href{http://docs.sympy.org/latest/modules/solvers/ode.html#}{documentación \texttt{SymPy}})
+
+\texttt{dsolve(eq, f(x), hint)}
+
+\texttt{eq:} Ecuación (posicional)
+
+\texttt{f(x):} función incognita (posicional)
+
+\texttt{hint: } Método a emplear. Argumento con nombre \texttt{hint='cadena'}.
+
+\textbf{Ejemplo:}
+
 \begin{sageblock}
 x=symbols('x')
 y=Function('y')(x)
@@ -502,20 +517,83 @@ MiEcua=Eq(y.diff(x),y/x)
 f=dsolve(MiEcua,y)
 \end{sageblock}
 
-Las soluciones obtenidas son $\sage{f}$, todas las rectas que pasan por el origen
+\textbf{Resultado:} 
+Flía rectas  por el origen. \\
+La instrucción\\
+\texttt{f=dsolve(MiEcua,y,hint='separable')}
+\\produce el mismo resultado.
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{\texttt{SymPy}: función \texttt{plot}} 
+
+\textbf{Sintaxis} (\href{http://docs.sympy.org/latest/modules/plotting.html}{documentación \texttt{SymPy}})
+Para un gráfico simple
+\texttt{plot(expr,rango,opcionales(claves))}
+
+\texttt{expr:} Expresión a graficar 
+
+\texttt{rango:} Conjunto donde varia la variable independiente 
+
+\texttt{opcionales } Argumentos que modifican la apariencia del gráfico. Generalemente de la forma de clave=valor
+
+\textbf{Ejemplo:}
 
 \begin{sageblock}
-from sympy import *
 x=symbols('x')
-Rango=range(5)+range(6,10)
-L=[tan(pi*k/10.0) for k in Rango] 
-p=plot(L[0]*x,(x,-2,2),show=False)
-for pend in L[1:]:
-    p1=plot(pend*x,(x,-2,2),show=False)
-    p.append(p1[0]);
+f=plot(1/x,(x,-3,3),ylim=(-3,3))
 \end{sageblock}
-\sageplot{p.show()}
+
+\textbf{Resultado:} 
+
+\includegraphics[scale=.15]{imagenes/ejemplo_plot.png}
 \end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+Grafiquemos
+\begin{sageblock}
+from sympy import *
+x,y=symbols('x,y')
+Rango=range(21)
+L=[tan(pi*k/21.0) for k in Rango] 
+p=plot(L[0]*x,(x,-2,2),show=False,xlim=(-2,2),\
+ylim=(-2,2),aspect_ratio=(1,1))
+for pend in L[1:]:
+    p1=plot(pend*x,(x,-2,2),show=False,\
+xlim=(-2,2),ylim=(-2,2),aspect_ratio=(1,1))
+    p.append(p1[0])
+for r in range(1,10):
+    p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
+show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
+    p.append(p1[0])
+\end{sageblock}
+
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+\begin{center}
+\includegraphics[scale=.3]{imagenes/flia_curvas_ortogonales.png}
+\end{center}
+\end{frame}
+
+
+
 
 \section{Separación de variables}
 \begin{frame}{Separación de variables}
@@ -551,6 +629,26 @@ Es común emplear el método de la siguiente forma
    &\Longrightarrow y= kx, \hbox{ con }k\in\rr
   \end{split}
 \]
+
+\end{frame}
+
+
+\begin{frame}[fragile]{\texttt{SymPy}: clasificación de ecuaciones} 
+\textbf{Sintaxis}\\
+\texttt{classify\_ode(eq, f(x))}\\
+\textbf{Ejemplo}
+\begin{sageblock}
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+tipo=classify_ode(MiEcua,y)
+\end{sageblock}
+\textbf{Resultado:}\\
+\begin{verbatim}
+('separable', '1st_exact', '1st_linear', 
+'almost_linear', 'lie_group',  etc)
+\end{verbatim}
+
 
 \end{frame}
 
@@ -865,6 +963,24 @@ otras propiedades notables de esta curva.
 \end{center}
   
   \end{frame}
+
+\begin{frame}[fragile]{\texttt{SymPy:} Braquistócrona}
+\begin{sageblock}
+x,c=symbols('x,c')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
+f=dsolve(MiEcua,y,hint='separable')
+\end{sageblock}
+
+
+\textbf{Resultado:}
+\begingroup
+\everymath{\scriptstyle}
+\scriptsize
+\[\sage{f}\]
+\endgroup
+\end{frame}
+
 
 
   \begin{frame}{La tautócrona}
