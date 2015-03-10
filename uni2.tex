@@ -154,6 +154,9 @@ numberstyle=\footnotesize
 
 
 
+\begin{frame}
+\tableofcontents
+\end{frame}
 
 
 
@@ -164,7 +167,7 @@ numberstyle=\footnotesize
 
 
 
-\section{Ecuaciones homogéneas}
+\section[Homogéneas]{Ecuaciones homogéneas}
 
 \begin{frame}{Ecuaciones homogéneas}
 
@@ -215,7 +218,7 @@ Como $y'=f(x,y)$ tenemos
 La ecuación \eqref{cambio_hom} queda
 \[ \begin{array}{c} \frac{dx}{x}=\frac{dz}{\frac{1+z}{1-z}-z}=\frac{(1-z)dz}{1+z^2}\\
  \Downarrow\\
-\ln|x|+C=\arctan(x)-\frac{1}{2}\ln|1+z^2|
+\ln|x|+C=\arctan(z)-\frac{1}{2}\ln|1+z^2|
     \end{array}.
 \]
 
@@ -223,7 +226,7 @@ La ecuación \eqref{cambio_hom} queda
 
 \end{frame}
 
-\section{Ecuaciones exactas}
+\section[Exactas]{Ecuaciones exactas}
 
 \begin{frame}{Ecuaciones exactas}
 
@@ -241,7 +244,7 @@ entonces
 \end{frame}
 
 \begin{frame}{Ecuaciones exactas}
-\nl Recordemos, dada $f:\rr\times\rr\to\rr$ la familia paramétrica de curvas
+\nl Dada $f:\rr\times\rr\to\rr$ la familia paramétrica de curvas
 \[f(x,y)=c\]
 satisface a ecuación diferencial
 
@@ -249,7 +252,7 @@ satisface a ecuación diferencial
  \frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}y'=0\Longleftrightarrow \frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy=0
  \Longleftrightarrow df=0.
 \]
-\nl El recíproco es tambien cierto, estos es una ecuación que se puede expresar como $df=0$  tiene soluciones dadas por la familia paramétrica de arriba. 
+\nl El recíproco es tambien cierto, esto es una ecuación que se puede expresar como $df=0$  tiene soluciones dadas por la familia paramétrica de arriba. 
 
 \nl Para que una ecuación cualquiera
 \[M(x,y)dx+N(x,y)dy=0\]
@@ -258,7 +261,7 @@ Se pueda expresar como $df=0$ se debe cumplir que debe existir $f(x,y)$ tal que 
 
 \begin{frame}{Ecuaciones exactas}\label{camposconservativos}
 \nl Vale decir el campo vectorial $(x,y)\mapsto (M(x,y),N(x,y))$ es un \href{http://es.wikipedia.org/wiki/Fuerza_conservativa}{campo 
-gradiente o conservatico} con potencial $f$. No todo campo es un campo gradiente, recordemos
+gradiente o conservativo} con potencial $f$. No todo campo es un campo gradiente, recordemos
 
 \nl \begin{block}{Caracterización de campos conservativos}Sea $\mathcal{O}$ abierto de $\rr^n$ y simplemente conexo. Son equivalentes
  \begin{enumerate}
@@ -372,7 +375,7 @@ La observación nos dice que parece razonable que siempre exista un factor integ
 para hacerlo. O deberíamos resolver la ecuación \eqref{carac_factor} que es una ecuación en derivadas parciales para $\mu$.
 
 Hay que señalar que sólo necesitamos una solución de \eqref{carac_factor} y no su solución general. En la práctica se suele proceder a hacer alguna suposición
-sobre $\mu$ que simplifique la expresión. Es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuaciones 
+sobre $\mu$ que simplifique la expresión (\href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}). Es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuaciones 
 \eqref{carac_factor} se escriben
 
 \[\mu\der{M}{y}=\mu\der{N}{x}+N\mu'(x) \Longrightarrow\boxed{\frac{\mu'}{\mu}=\frac{\partial M/\partial y-\partial N/\partial x}{N}}\]
@@ -474,7 +477,7 @@ Despejando
 Podemos escribir la ecuación de este otro modo
 \[xdx+ydy=\pm\sqrt{x^2+y^2}dx.\]
 Tomando en cuenta \eqref{eq:exacta_mod2}
-\[\pm\frac{x^2+y^2}{2\sqrt{x^2+y^2}}=dx.\]
+\[\pm\frac{d(x^2+y^2)}{2\sqrt{x^2+y^2}}=dx.\]
 Si $r=x^2+y^2$
 \[dx=\pm\frac{dr}{2\sqrt{r}}=\pm d\sqrt{r}=\pm d\sqrt{x^2+y^2}\]
 Las solución general es
@@ -492,7 +495,7 @@ Las solución general es
 Que es la familia de todas las parábolas con eje de simetría $x$, positivamente orientadas y con foco en $(0,0)$. \\
  \end{tabular}
  \end{frame}
-\section{Ecuaciones Lineales}
+\section[Lineales]{Ecuaciones Lineales}
 
 \begin{frame}{Ecuaciones Lineales}
 Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal} a una ecuación que es lineal
@@ -690,16 +693,6 @@ persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro
 \end{center}
 
  
- 
-
- 
-% \begin{tabular}{m{6cm} m{4cm}}
-\textbf{Problema} Supongamos que un conejo se mueve sobre una 
-línea recta con rapidez uniforme $a$ y de un punto por fuera de la recta parte un perro que lo persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro
-\begin{center}
-\animategraphics[controls, scale=.4]{15}{pursuit/pursuit-}{0}{40}
-\end{center}
-%\end{tabular}
  
  
 \end{frame}
