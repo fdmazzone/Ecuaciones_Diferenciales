@@ -580,7 +580,62 @@ La ecuación se reduce ala ecuación de primer orden
 
 \end{frame}
 
-\section{Ejemplos}
+\section{\texttt{SymPy}}
+
+
+
+\begin{frame}[fragile]{\texttt{SymPy}: Clasificación de EDO}
+\textbf{Sintaxis:} \verb+classify_ode(Eq)+
+
+Donde
+\verb+Eq+: es la ecuación.
+
+El output son los métodos que se le pueden aplicar
+\begin{sageblock}
+from sympy import *
+x=symbols('x')
+y=Function('y')(x)
+classify_ode(y.diff()+y)
+\end{sageblock}
+
+\verb+('separable', '1st_exact','1st_linear',+
+
+\verb+'almost_linear','1st_power_series','lie_group',+
+
+
+\verb+'nth_linear_constant_coeff_homogeneous', +
+
+\verb+'separable_Integral', '1st_exact_Integral',  +
+
+\verb+'1st_linear_Integral','almost_linear_Integral')+
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{SymPy}: Clasificación de EDO}
+\textbf{Sintaxis:} \verb+classify_ode(Eq)+
+
+Donde
+\verb+Eq+: es la ecuación.
+
+El output son los métodos que se le pueden aplicar
+\begin{sageblock}
+Ecuacion=Eq((x**2*y-x)*sin((y.diff(x,1)))**3\
++y**5+x**3*sin(y),0)
+classify_ode(Ecuacion)
+\end{sageblock}
+
+El único método que puede aplicar \texttt{SymPy} a la ecuación 
+
+\[\sage{Ecuacion}\]
+
+Es \verb+('lie_group',)+
+
+
+\end{frame}
+
+
+
+\section[Ejemplos]{Ejemplos}
 
 \begin{frame}{Velocidad de escape}\label{pag:vel_esc}
 
