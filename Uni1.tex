@@ -593,7 +593,32 @@ show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
 \end{frame}
 
 
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+En ocasiones la ecuación de la familia de curvas esta dada en otras coordenadas. Por ejemplo supongamos que tenemos la flia de curvas dadas por una EDO en coordenadas polares
+\boxedeq{\frac{dr}{d\theta}=f(r,\theta),}{eq:flia_curvas_polar}
+y queremos hallar su flia ortogonal. Calculemos $dy/dx$
+\[\frac{dy}{dx}=\frac{dy/d\theta}{dx/d\theta}=\frac{r_{\theta}\sen\theta+r\cos\theta}{r_{\theta}\cos\theta-r\sen\theta}=\frac{f\sen\theta+r\cos\theta}{f\cos\theta-r\sen\theta},\]
 
+donde $r_{\theta}=dr/d\theta$. La flia ortogonal tiene que satisfacer
+
+\[\frac{dy}{dx}=-\frac{f\cos\theta-r\sen\theta}{f\sen\theta+r\cos\theta}\]
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Familias paramétricas de funciones} 
+
+Luego
+
+\[\frac{r_{\theta}\sen\theta+r\cos\theta}{r_{\theta}\cos\theta-r\sen\theta}=-\frac{f\cos\theta-r\sen\theta}{f\sen\theta+r\cos\theta}.\]
+
+Si despejamos $r_{\theta}$ llegamos a la ecuación de la flia de curvas ortogonales en coordenadas polares
+
+\boxedeq{\frac{dr}{d\theta}=-\frac{r^2}{f}.}{eq_flia_ortogonal_polares}
+
+
+\end{frame}
 
 \section{Separación de variables}
 \begin{frame}{Separación de variables}
@@ -769,8 +794,7 @@ al cuerpo de la guía.  En el caso del tobogán la gravedad trata de apartar al 
 
 \begin{frame}{Caída a lo largo de guías}
 
-Analicemos más en detalle el movimiento de un cuerpo cayendo a lo largo de una guía estando además influído  por la acción de la gravedad. Supondremos el movimiento
-en las proximidades de la superficie de la Tierra y por ello, supondremos que la fuerza de la gravedad es constante $mg$. 
+Analicemos más en detalle el movimiento de un cuerpo cayendo a lo largo de una guía estando además influído  por la acción de la gravedad. Supondremos el movimiento en las proximidades de la superficie de la Tierra y por ello, supondremos que la fuerza de la gravedad es la constante $mg$. 
 \begin{tabular}{m{5cm} m{4.5cm}}
  \includegraphics[scale=.07]{imagenes/caida_guia.jpg} & Supongamos que la guía esta
 confinada a un plano. Introducimos un sistema de coordenadas ortogonales en dicho plano, con el suelo paralelo al eje $x$
@@ -869,7 +893,7 @@ de acuerdo al \href{http://es.wikipedia.org/wiki/Velocidad_de_la_luz_en_un_medio
 La velocidad de la luz en el vacío es 299.792,458km/h y en el diamante 124.034,943 km/h. La velocidad de la luz cambia no sólo con la sustancia sino con sus cualidades, 
 como la densidad. 
 
-\nl Si la luz se mueve dentro de un medio homogéneo, el camino que sigue es la línea recta. Las cosas cambian cuando la luz cambia de medio de propagación. Por ejemplo
+\nl Si la luz se mueve dentro de un medio homogéneo, el camino que sigue es la línea recta. Esto cambia cuando la luz cambia de medio de propagación. Por ejemplo
 cuando pasa del aire al vidrio. 
 
 \end{frame}
