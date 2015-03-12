@@ -47,6 +47,16 @@ belowskip=0.1em,
 numbers=none,
 numberstyle=\footnotesize
 }
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
@@ -155,6 +165,7 @@ numberstyle=\footnotesize
 
 
 \begin{frame}
+  \frametitle{Índice}
 \tableofcontents
 \end{frame}
 
@@ -629,8 +640,10 @@ El único método que puede aplicar \texttt{SymPy} a la ecuación
 \[\sage{Ecuacion}\]
 
 Es \verb+('lie_group',)+
-
-
+\begin{sageblock}
+dsolve(Ecuacion,y)
+\end{sageblock}
+Piensa, piensa   pero no llega a nada.
 \end{frame}
 
 
