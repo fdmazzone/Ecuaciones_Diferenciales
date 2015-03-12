@@ -633,9 +633,39 @@ Es \verb+('lie_group',)+
 
 \end{frame}
 
+\begin{frame}[fragile]{\texttt{SymPy: dsolve} }
 
+\begin{lstlisting}
+>>>Ecuacion=Eq(y.diff()+(-x+sqrt(x**2+y**2))/y,0)
+>>>classify_ode(Ecuacion)
+('1st_homogeneous_coeff_best', 
+'1st_homogeneous_coeff_subs_indep_div_dep', 
+'1st_homogeneous_coeff_subs_dep_div_indep', 
+'1st_power_series', 'lie_group', 
+'1st_homogeneous_coeff_subs_indep_div_dep_Integral', 
+'1st_homogeneous_coeff_subs_dep_div_indep_Integral')
+\end{lstlisting}
+
+\begin{lstlisting}
+>>>dsolve(Ecuacion,y,hint='lie_group')
+\end{lstlisting}
+Piensa rato largo y:
+\begin{lstlisting}
+The given ODE (-x + sqrt(x**2 + y(x)**2))/y(x) + Derivative(y(x), x) 
+cannot be solved by the lie group method
+\end{lstlisting}
+
+
+\begin{lstlisting}
+>>>sol=dsolve(Ecuacion,y,hint='1st_homogeneous_coeff_best')
+\end{lstlisting}
+
+\[y{\left (x \right )} = C_{1} e^{\int^{\frac{x}{y{\left (x \right )}}} -\frac{u_{2}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2} + \int^{\frac{x}{y{\left (x \right )}}} \frac{\sqrt{u_{2}^{2} + 1}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2}}\]
+
+\end{frame}
 
 \section[Ejemplos]{Ejemplos}
+
 
 \begin{frame}{Velocidad de escape}\label{pag:vel_esc}
 
