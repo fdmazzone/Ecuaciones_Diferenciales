@@ -1,7 +1,10 @@
 %\documentclass{article}
-\documentclass[hyperref={colorlinks=true}]{beamer}
+%\documentclass[hyperref={colorlinks=true}]{beamer}
 %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
-
+\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+\usecolortheme{crane}
+\usetheme{Madrid}
+\usefonttheme{structuresmallcapsserif}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,11 +160,11 @@
 % }
 
 
-\mode<handout>{
-  \usetheme{default}
+%\mode<handout>{
+%  \usetheme{default}
   %\setbeamercolor{background canvas}{bg=black!5}
  % \pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=2.5mm]
-}
+%}
 
 % \mode<all>{
 %   \usetheme{default}
@@ -179,7 +182,7 @@
 \author[] % (optional, nur bei vielen Autoren)
 {Fernando Mazzone}
 
-\institute[Depto de Matemática] % (optional, aber oft nötig)
+\institute% (optional, aber oft nötig)
 {
  Depto de Matemática\\
 Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
@@ -298,7 +301,7 @@ Dado un polinomio $p(X)=p_nX^n+p_{n-1}X^{n-1}+\cdots+p_1X+p_0$, $p_i\in\rr$, $i=
 \[p(D)y=p_ny^{(n)}+p_{n-1}y^{(n-1)}+\cdots+p_1y'+p_0y.\]
 Diremos que $p(D)$ es un \emph{operador diferencial polinomial}. 
 
-\textbf{Ejercicio 1} Dado que dos polinomios se pueden sumar y multiplicar resultando estas operaciones en un nuevo polinomio, es posible hacer lo propio con operadores diferenciales polinomiales. Demostrar que el producto de dos de tales operadores  $p(D)$ y $q(D)$ es conmutativo. Esta propiedad es lo mismo que afirmar que el producto de polinomios es conmutativo. Analizar que ocurriría si permitiesemos que los coeficientes $p_i$ fuese funciones de $x$, $p_i=p_i(x)$.
+\textbf{Ejercicio 1} Dado que dos polinomios se pueden sumar y multiplicar resultando estas operaciones en un nuevo polinomio, es posible hacer lo propio con operadores diferenciales polinomiales. Demostrar que el producto de dos de tales operadores  $p(D)$ y $q(D)$ es conmutativo. Esta propiedad es lo mismo que afirmar que el producto de polinomios es conmutativo. Analizar que ocurriría si permitiesemos que los coeficientes $p_i$ fuesen funciones de $x$, $p_i=p_i(x)$.
  
 \end{frame}
 
@@ -645,8 +648,9 @@ Obtenemos los siguientes coeficientes asociados a cada exponente $\sage{L}$.
 Ahora el siguiente código evalúa el segundo miembro de  \eqref{eq:des_serie}
 \begin{sageblock}
 r=x^4+2*x+5
-y=sum([k[0]*r.diff(x,ZZ(k[1])) for k in L]) 
-    #ZZ() convierte a entero
+y=sum([k[0]*r.diff(x,ZZ(k[1])) for k in L])
+#ZZ convierte a entero 
+    
 \end{sageblock}
 Llegamos a la solución
 \[y=\sage{y}\]

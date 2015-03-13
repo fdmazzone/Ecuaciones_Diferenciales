@@ -3,7 +3,7 @@
 %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
 \documentclass[handout,hyperref={colorlinks=true}]{beamer}
 \usecolortheme{crane}
-\usetheme{Darmstadt}
+\usetheme{Madrid}
 \usefonttheme{structuresmallcapsserif}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,7 +106,7 @@ numberstyle=\footnotesize
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of Contents}
+    \frametitle{Índice}
     \tableofcontents[currentsection]
   \end{frame}
 }
@@ -142,13 +142,13 @@ numberstyle=\footnotesize
 % %\setbeamercolor{background canvas}{bg=black!5}
 % \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
 % }
-\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+\title[Ecuaciones lineales ] % (optional, nur bei langen Titeln nötig)
 {%
 Ecuaciones lineales de segundo orden
 }
 \author[] % (optional, nur bei vielen Autoren)
 {Fernando Mazzone}
-\institute[Depto de Matemática] % (optional, aber oft nötig)
+\institute[] % (optional, aber oft nötig)
 {
 Depto de Matemática\\
 Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
@@ -165,7 +165,7 @@ Universidad Nacional de Río Cuarto}
 
 
 \begin{frame}
-\frametitle{Table of Contents}
+\frametitle{Índice}
 \tableofcontents
 \end{frame}
 
@@ -496,10 +496,11 @@ La solución general para $v$ es $v=c_1+c_2x$. Así el método mencionado proporcio
 \section[ENH]{Ecuación no homogénea}
 \begin{frame}{Ecuaciones no homogéneas. Método coeficientes indeterminados}
 \nl \begin{block}{Ecuación no homogénea}
-\boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_nohom}
-donde $p,q,r \in C(I)$ y $r\neq 0$.
+\boxedeq{\frac{d^2y}{dx^2}+p\frac{dy}{dx}+qy=r(x),}{ec_2_nohom}
+donde $p,q,r \in \rr$, $r\in C(I)$ $r\neq 0$.
 \end{block}
-\subsection[1]{Método coeficientes ideterminados}
+
+%\subsection[MCI]{Método coeficientes ideterminados}
 \nl \begin{block}{Método coeficientes indeterminados}
 Consiste en buscar soluciones en la misma clase de funciones a la que pertenece $r(x)$. Funciona de manera metódica sólo para algunos tipos de funciones $r(x)$.
 Concretamente para $r(x)$ combinación lineal de funciones polinómicas, exponenciales $e^{\alpha x}$ o trigonométricas $\cos \alpha x$ y $\sen \alpha x$.
@@ -657,21 +658,80 @@ El caso donde $r(x)=\cos bx$ se trata de manera completamente similar.
 
 
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
-Hay que proponer como solución un polinomio, en primera instancia, del mismo grado. Invocando SAGE.
-\lstI
+\onslide<+-> Hay que proponer como solución un polinomio, en primera instancia, del mismo grado.
+
+\onslide<+-> Supongamos
+
+ \boxedeq{\frac{d^2y}{dx^2}+p\frac{dy}{dx}+q(x)y=c_0+c_1x+\cdots+c_nx^n}{eq:no_hom_pol}
+
+Se propone $y=a_0+a_1x+\cdots+a_nx^n$. Luego
+
+\[\begin{array}{l}
+2a_2+3\cdot2x+\cdots+n(n-1)x^{n-2}+\\
+pa_1+p2a_2x+\cdots+pna_nx^{n-1}+\\
+qa_0+qa_1x+\cdots+qa_nx^n=c_0+c_1x+\cdots+c_nx^n
+\end{array}
+.\]
 \end{frame}
+
+
+
+
+
+
+
+
+
+
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
-Encontramos las soluciones
+Como las funciones $1,x,\ldots,x^n$ son linealmente independientes, los coeficientes en ambos lados de la igualdad deben ser iguales.
+
 \[
 \begin{split}
-b_{0} &= \frac{a_{0} q^{3} - 6 \, a_{3} p^{3} - {\left(a_{1} p + 2 \, a_{2}\right)} q^{2} + 2 \, {\left(a_{2} p^{2} + 6 \, a_{3} p\right)} q}{q^{4}},\\
-b_{1} &= \frac{a_{1} q^{2} + 6 \, a_{3} p^{2} - 2 \, {\left(a_{2} p + 3 \, a_{3}\right)} q}{q^{3}},\\
-b_{2} &= \frac{a_{2} q - 3 \, a_{3} p}{q^{2}},\\
-b_{3} &= \frac{a_{3}}{q}
+2a_2+pa_1+qa_0&=c_0\\
+3\cdot 2+2pa_2+qa_1&=c_1\\
+ &\hspace{2mm} \vdots\\
+n(n-1)+p(n-1)a_{n-1}+qa_{n-2} &=c_{n-2}\\
+pna_{n}+qa_{n-1} &=c_{n-1}\\
+qa_n &=c_n\\
 \end{split}
 \]
-que tienen sentido solo cuando $q\neq 0$.
+Es útil escribir estas igualdades matricialmente.
 \end{frame}
+
+
+\begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
+
+\[\begin{pmatrix} q &\cdots  &\cdots&\cdots&\cdots\\
+&q & \cdots & \cdots&\cdots \\
+\vdots & &\ddots&& \vdots\\
+\vdots&&&q&pn\\
+\vdots&&&&q\\
+\end{pmatrix}
+\begin{pmatrix}
+a_0\\
+a_1\\
+a_2\\
+\vdots\\
+a_{n-1}\\
+a_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+c_0\\
+c_1\\
+c_2\\
+\vdots\\
+c_{n-1}\\
+c_n
+\end{pmatrix}
+\]
+Queda un sistema triángular superior que se resuelve por sustitución ascendente. Esto siempre que $q\neq 0$. En caso contrario la matríz es singular y es posible que el sistema no tenga solución.
+
+\end{frame}
+
+
+
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio y resonancia}
 El caso $q=0$ es una forma de resonancia. Puede ser tratado como las anteriores resonancias, pero notando que la ecuación se reduce a $y''+py'=r$ conviene
 tomar $v=y'$ como
@@ -682,7 +742,8 @@ donde las funciones $r_i$ son de alguna de las formas descriptas en los casos pr
 entonces la linealidad de $L$ implica que, si $y_i$
 resuelve $L[y_i]=r_i$, $y=y_1+\cdots +y_n$ resuelve la ecuación deseada.
 \end{frame}
-\subsection{Método de variación de los parámetros}
+
+%\subsection[MVP]{Método de variación de los parámetros}
 \begin{frame}{Método variación de los parámetros}
 Queremos resolver la ecuación
 \begin{equation}\label{eq:2orden_gen}
@@ -783,15 +844,11 @@ sage: y(x=pi/2)
 0
 sage: y.diff()(x=pi/2)
 1
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/master
 \end{lstlisting}
 }
 \begin{frame}{Método variación de los parámetros}
-\textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$.
+\textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$. Usaremos \texttt{SAGE} que nos dió mejores resultados para este ejemplo. 
 \lstI
 \end{frame}
 \section{Conclusiones}
@@ -809,7 +866,7 @@ de los parámetros
 \section{Aplicaciones}
 \begin{frame}{Aplicaciones. Vibraciones mecánicas }
 \textbf{Problema:} Estudiar el movimiento de un resorte (cómo el de la unidad anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del resorte,
-tenemos una fuerza de fricción debida ala resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
+tenemos una fuerza de fricción debida a la resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
 Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida
 la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se
 dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
@@ -871,7 +928,7 @@ sage: x.plot((x,0,10))
 \end{lstlisting}
 }
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-La masa podría haber pasado por la posición de equilibrio sólo en el pasado puesto que $x(t)=0$ cuando
+La masa podría haber pasado por la posición de equilibrio sólo en el pasado, puesto que $x(t)=0$ cuando
 \[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 \lstI
 \includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
@@ -887,11 +944,8 @@ La masa podría haber pasado por la posición de equilibrio sólo en el pasado pues
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: c1,c2=var('c1,c2')
-sage: mu=var('mu')
-sage: t=var('t')
+sage: c1,c2,mu,t,x0=var('c1,c2,mu,t,x0')
 sage: x=e^(-mu*t)*(c1+c2*t)
-sage: x0=var('x0')
 sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
 sage: C
 [{c2: mu*x0, c1: x0}]
@@ -904,17 +958,13 @@ sage: x.plot((x,0,100))
 \boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
 \lstI
 \begin{center}
-\includegraphics[scale=.1]{imagenes/crit_amortiguado.png}
+\includegraphics[scale=0.12]{imagenes/crit_amortiguado.png}
 \end{center}
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: c1,c2=var('c1,c2')
-sage: mu=var('mu')
-sage: nu=var('nu')
-sage: x0=var('x0')
+sage: c1,c2,mu,nu,x0,t=var('c1,c2,mu,nu,x0,t')
 sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
-sage: t=var('t')
 sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
 sage: x=x.subs(C[0]).subs({mu:.1,nu:4,x0:1})
 sage: x.plot((x,0,100))
@@ -926,7 +976,7 @@ La solución general viene dada por
 \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
 \lstI
 \begin{center}
-\includegraphics[scale=.1]{imagenes/subamortiguado.png}
+\includegraphics[scale=.15]{imagenes/subamortiguado.png}
 \end{center}
 \end{frame}
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
@@ -1046,7 +1096,7 @@ Calculemos el límite $\lim_{\omega_0\to\omega}x(t)$,
 \[x(t)=\frac{F_{0} t \sin\left(\omega t\right)}{2 \, \omega}
 \]
 El caso $\omega=\omega_0$ es el caso con resonancia, que debemos resolver como fue indicado en la página \ref{eq:forz_res},
-esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código sage muestra que la solución es la misma función
+esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código \texttt{SAGE} muestra que la solución es la misma función
 que la obtenida por el proceso de límite de los casos sin resonancia.
 \lstinputlisting{scripts/osc_arm_forz_noamort_res.sage}
 \end{frame}
@@ -1128,7 +1178,7 @@ natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto
 Hasta aquí hemos encontrado una solución particular del sistema no homogéneo. Para encontrar una solución general deberíamos adicionar a la particular que disponemos
 una solución general $x_g(t)$ de la ecuación homogénea. La forma de esta solución general es de alguno de los tipos \ref{eq:sol_gen_sub},
 \ref{eq:sol_gen_crit} o \ref{eq:sol_sub_amor}. Sin embargo no nos importa ahora la fórmula explícita de estas soluciones, sino que nos interesa resaltar que
-tratese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
+trátese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
 \emph{transitoria}. En cambio la solución que prevalece en el tiempo dada por \eqref{eq:SolGennoHom} la denominaremos solución \emph{estacionaria}.
 \end{frame}
 \begin{frame}{Un poco de mecánica celeste}
@@ -1303,25 +1353,31 @@ Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
 Recordemos que la variable $s$ es el ángulo polar.
 Hagamos algunos gráficos
 \begin{sageblock}
-ListaGra=[]
+ListaGra=plot([])
 for e in srange(0,.8,.1):
-    ListaGra+=[polar_plot(1/(1+e*cos(s)),\
-(s,0,2*pi),rgbcolor=(e,1-e,0))]
-    ListaGra+=[polar_plot(1/(1+cos(s)),\
-(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))]
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,0,2*pi),rgbcolor=(e,1-e,0))
+    ListaGra+=polar_plot(1/(1+cos(s)),\
+(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))
 for e in srange(1.2,2,.1):
-    ListaGra+=[polar_plot(1/(1+e*cos(s)),\
-(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))]
-gra=sum(ListaGra).show()
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))
+gra=ListaGra.show()
 \end{sageblock}
 \end{frame}
 \begin{frame}[fragile]{Un poco de mecánica celeste}
+\begin{center}
 \includegraphics[scale=.5]{imagenes/conicas.png}
+\end{center}
 \end{frame}
 \begin{frame}[fragile]{Un poco de mecánica celeste}
-Hemos logrado encontrar $r$ como función de $\theta$. Esto fue importante, de allí por ejemplo deducimos que las órbitas eran cónicas. No obstante
+Hemos logrado encontrar $r$ como función de $\theta$. No obstante
 no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav}, para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
 \v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en un dado momento. Este problema no lo desarrollaremos aquí dado
 que su solución se aparta del tema de las ecuaciones diferenciales.
 \end{frame}
+
+
+
+
 \end{document}
