@@ -1,9 +1,13 @@
 %\documentclass{article}
-\documentclass[hyperref={colorlinks=true}]{beamer}
+%\documentclass[hyperref={colorlinks=true}]{beamer}
 %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+\usecolortheme{crane}
+\usetheme{Madrid}
+\usefonttheme{structuresmallcapsserif}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{pgfpages}
+%\usepackage{pgfpages}
 %\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
@@ -98,6 +102,15 @@ numberstyle=\footnotesize
 \newtheorem{corolario}[teorema]{Corolario}
 \newtheorem{proposicion}[teorema]{Proposici\'on}
 \newtheorem{definicion}[teorema]{Definici\'on}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%Para escibir en clase articulo o similar
 % \usepackage{color}
@@ -119,23 +132,23 @@ numberstyle=\footnotesize
 % \setbeamercovered{wolverine}
 % % oder auch nicht
 % }
-\mode<handout>{
-\usetheme{default}
+%\mode<handout>{
+%\usetheme{default}
 %\setbeamercolor{background canvas}{bg=black!5}
 %\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
-}
+%}
 % \mode<all>{
 % \usetheme{default}
 % %\setbeamercolor{background canvas}{bg=black!5}
 % \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=2.5mm]
 % }
-\title[Ecuaciones lineales de segundo orden] % (optional, nur bei langen Titeln nötig)
+\title[Ecuaciones lineales ] % (optional, nur bei langen Titeln nötig)
 {%
 Ecuaciones lineales de segundo orden
 }
 \author[] % (optional, nur bei vielen Autoren)
 {Fernando Mazzone}
-\institute[Depto de Matemática] % (optional, aber oft nötig)
+\institute[] % (optional, aber oft nötig)
 {
 Depto de Matemática\\
 Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
@@ -151,6 +164,10 @@ Universidad Nacional de Río Cuarto}
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Índice}
+\tableofcontents
+\end{frame}
 
 
 
@@ -167,7 +184,7 @@ Francis Collins
 
 
 
-
+\section{Introducción}
 \begin{frame}{Introducción}
 \begin{block}{Ecuación lineal general de segundo orden}
 \boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_gen}
@@ -189,7 +206,7 @@ y'(x_0)&=y^1_0&\\
 \end{block}
 \nl \textbf{Demostración.} Más adelante.
 \end{frame}
-\section{Estructura del conjunto de soluciones}
+\section[Estructura]{Estructura del conjunto de soluciones}
 \begin{frame}{Ecuaciones homogéneas}
 \nl\begin{block}{Teorema}
 Si $y_1$ e $y_2$ son soluciones de \eqref{ec_2_gen_hom} y $c_1,c_2\in\rr$ entonces $c_1y_1+c_2y_2$ es solución. Vale decir, el conjunto de soluciones
@@ -382,7 +399,7 @@ sería constante.
 deberíamos tener $v$ no constante sobre algún subconjunto $J$. Pero $v$ constante implicaría $y_1^{-2}e^{-\int pdx}=0$ y esto claramente no ocurre. De modo que por el
 método anterior encontramos dos soluciones independientes.
 \end{frame}
-\section{Ecuaciones homogéneas con coeficientes constantes}
+\section[EHCC]{Ecuaciones homogéneas con coeficientes constantes}
 \begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
 Consideramos la ecuación
 \boxedeq{y''+py'+qy=0,\quad p,q\in\rr}\label{2orden_coef_ctes}
@@ -409,20 +426,24 @@ Proponemos una solución de la forma
 \[
 y(x)=e^{\mu x}v(x)
 \]
-Hagamos los cálculos con SAGE
+Hagamos los cálculos con \texttt{SymPy}
 \end{frame}
+
+
+
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,p,q=var('x,p,q')
-sage: y=function('y',x)
-sage: v=function('v',x)
-sage: y=exp(-p/2*x)*v
-sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==0
-sage: ecuav=(ecua/exp(-p/2*x)).simplify_full()
-sage: ecuav
--1/4*(p^2 - 4*q)*v(x) + D[0, 0](v)(x) == 0
+>>> from sympy import *
+>>> x,p,q=symbols('x,p,q')
+>>> y=Function('y')(x)
+>>> v=Function('v')(x)
+>>> y=exp(-p/2*x)*v
+>>> ecua=y.diff(x,2)+p*y.diff(x)+q*y
+>>> simplify(ecua/exp(-p/2*x))
+-p**2*v(x)/4 + q*v(x) + Derivative(v(x), x, x)
 \end{lstlisting}
 }
+
 \begin{frame}{Ecuaciones homogéneas con coeficientes constantes}
 \lstI
 Vale decir que $v$ resuelve
@@ -443,30 +464,43 @@ y de allí
 $\mu<0$ & $\mu>0$ & $\mu=0$\\
 \end{tabular}
 \end{frame}
+
+\defverbatim[colored]\lstI{
+\begin{lstlisting}
+>>> x,p=symbols('x,p')
+>>> y=Function('y')(x)
+>>> v=Function('v')(x)
+>>> y=v*exp(-p/2*x)
+>>> ecua=y.diff(x,2)+p*y.diff(x)+p**2/4*y
+>>> ecuav=simplify(ecua/exp(-p/2*x))
+>>> ecuav
+Derivative(v(x), x, x)
+>>> dsolve(ecuav,v)
+v(x) == C1 + C2*x
+\end{lstlisting}
+}
+
+
+
 \begin{frame}[fragile]{Ecuaciones homogéneas con coeficientes constantes}
 3)\textbf{$\boxed{\Delta=p^2-4c=0}$, raices iguales }. Conocemos una solución $\boxed{y_1=e^{-\frac{p}{2}x}}$. Podemos hallar otra
-por el método de reducción de orden. Esto consiste en proponer otra solución de la forma $y_2(x)=y_1(x)v(x)$ Dejemos que SAGE nos realice los
-cálculos (ver \texttt{uni4b.sage} ).
-\begin{sageblock}
-x,p=var('x,p')
-y=function('y',x)
-v=function('v',x)
-y1=exp(-p/2*x)
-y=v*y1
-ecua=y.diff(x,2)+p*y.diff(x)+p^2/4*y==0
-ecuav=(ecua/exp(-p/2*x)).simplify_full()
-sol=desolve(ecuav,v,ivar=x)
-\end{sageblock}
-La solución general para $v$ es $v=\sage{sol}$. Así el método mencionado proporciona la solución extra
+por el método de reducción de orden. Esto consiste en proponer otra solución de la forma $y_2(x)=y_1(x)v(x)$ Dejemos que lo haga \texttt{SymPy}
+
+\lstI
+
+
+La solución general para $v$ es $v=c_1+c_2x$. Así el método mencionado proporciona la solución extra
 \[\boxed{y_2(x)=xe^{-\frac{p}{2}x}}.\]
 \end{frame}
-\section{Ecuación no homogénea}
+
+\section[ENH]{Ecuación no homogénea}
 \begin{frame}{Ecuaciones no homogéneas. Método coeficientes indeterminados}
 \nl \begin{block}{Ecuación no homogénea}
-\boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_nohom}
-donde $p,q,r \in C(I)$ y $r\neq 0$.
+\boxedeq{\frac{d^2y}{dx^2}+p\frac{dy}{dx}+qy=r(x),}{ec_2_nohom}
+donde $p,q,r \in \rr$, $r\in C(I)$ $r\neq 0$.
 \end{block}
-\subsection{Método coeficientes ideterminados}
+
+%\subsection[MCI]{Método coeficientes ideterminados}
 \nl \begin{block}{Método coeficientes indeterminados}
 Consiste en buscar soluciones en la misma clase de funciones a la que pertenece $r(x)$. Funciona de manera metódica sólo para algunos tipos de funciones $r(x)$.
 Concretamente para $r(x)$ combinación lineal de funciones polinómicas, exponenciales $e^{\alpha x}$ o trigonométricas $\cos \alpha x$ y $\sen \alpha x$.
@@ -475,52 +509,53 @@ Lo vamos a ilustrar con ejemplos para cada caso.
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,p,q,a,A=var('x,p,q,a,A')
-sage: y=function('y',x)
-sage: y=A*exp(a*x)
-sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x)
-sage: ecua=(ecua/exp(a*x)).simplify_full()
-sage: ecua
-(a^2 + a*p + q)*A == 1
-sage: solve(ecua,A)
-[A == (1/(a^2 + a*p + q))]
+>>> x,p,q,a,A=symbols('x,p,q,a,A')
+>>> y=A*exp(a*x)
+>>> ecua=y.diff(x,2)+p*y.diff(x)+q*y-exp(a*x)
+>>> ecua=simplify(ecua/exp(a*x))
+>>> ecua
+A*a**2 + A*a*p + A*q - 1
+>>> solve(ecua,A)
+[1/(a**2 + a*p + q)]
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$ y $a^2+pa+q\neq 0$.}
-En esta situación se propone como solución una función de la forma $\boxed{y(x)=Ae^{ax}}$. Usamos SAGE para el cálculos
+En esta situación se propone como solución una función de la forma $\boxed{y(x)=Ae^{ax}}$. Usamos \texttt{SymPy} para el cálculo
 \lstI
 Si $a^2+pa+q\neq 0$, encontramos la solución particular $\boxed{y(x)=\frac{1}{(a^2+pa+q)}e^{ax}}$.
 \end{frame}
+
+
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,p,q,a,A=var('x,p,q,a,A')
-sage: y=A*x*exp(a*x)
-sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x)
-sage: ecua=(ecua/exp(a*x)).simplify_full()
-sage: ecua
-((a^2 + a*p + q)*x + 2*a + p)*A == 1
-sage: ecua.subs_expr(a^2 + a*p + q==0)
-(2*a + p)*A == 1
+>>> x,p,q,a,A=var('x,p,q,a,A')
+>>> y=A*x*exp(a*x)
+>>> ecua=y.diff(x,2)+p*y.diff(x)+q*y-exp(a*x)
+>>> ecua=simplify(ecua/exp(a*x))
+>>> ecua
+A*a*(a*x + 2) + A*p*(a*x + 1) + A*q*x - 1
+>>> ecua.subs(q,-a**2 - a*p).simplify()
+2*A*a + A*p - 1
+
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$ y $a^2+pa+q= 0$}
 En esta situación diremos que la ecuación está en \emph{resonancia}. Más generalmente, diremos que se presenta resonancia cuando $r(x)$ es solución
 del problema homogéneo.
-Propongamos como solución $y(x)=Axe^{ax}$. Hagamos los cálculos con SAGE.
+Propongamos como solución $y(x)=Axe^{ax}$. Hagamos los cálculos con \texttt{SymPy}.
 \lstI
 Luego, si $2a+p\neq 0$, $\boxed{y(x)=\frac{1}{2a+p}xe^{ax}}$ resuelve el problema.
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,p,q,a,A=var('x,p,q,a,A')
-sage: y=function('y',x)
-sage: y=A*x**2*exp(a*x)
-sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==exp(a*x)
-sage: ecua=(ecua/exp(a*x)).simplify_full()
-sage: ecua
-((a^2 + a*p + q)*x^2 + 2*(2*a + p)*x + 2)*A == 1
-sage: ecua.subs_expr(2*a+p==0,a^2 + a*p + q==0)
-2*A == 1
+>>> x,p,q,a,A=var('x,p,q,a,A')
+>>> y=A*x**2*exp(a*x)
+>>> ecua=y.diff(x,2)+p*y.diff(x)+q*y-exp(a*x)
+>>> ecua=simplify(ecua/exp(a*x))
+>>> ecua
+A*p*x*(a*x + 2) + A*q*x**2 + A*(a**2*x**2 + 4*a*x + 2) - 1
+>>> ecua.subs([(q,-a**2 - a*p) , (p,-2*a)]).simplify()
+2*A - 1
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=e^{a x}$, $a^2+pa+q= 0$ y $2a+p=0$}
@@ -529,19 +564,17 @@ En este caso, proponemos como solución $y(x)=Ax^2e^{ax}$.
 \lstI
 Hay que tomar $\boxed{y(x)=\frac{1}{2}x^2e^{ax}}$
 \end{frame}
+
+
+
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,p,q,b,A,B=var('x,p,q,b,A,B')
-sage: y=function('y',x)
-sage: y=A*cos(b*x)+B*sin(b*x)
-sage: ecua=y.diff(x,2)+p*y.diff(x)+q*y==sin(b*x)
-sage: ecua.simplify_full()
-(b*p*cos(b*x) - (b^2 - q)*sin(b*x))*B - (b*p*sin(b*x)
-... + (b^2 - q)*cos(b*x))*A == sin(b*x)
-sage: ecua=ecua-sin(b*x)
-sage: ecua
--A*b^2*cos(b*x) - B*b^2*sin(b*x) + (A*cos(b*x) + B*sin(b*x))*q
-... - (A*b*sin(b*x) - B*b*cos(b*x))*p - sin(b*x) == 0
+>>> x,p,q,a,b,A,B=var('x,p,q,a,b,A,B')
+>>> y=A*cos(b*x)+B*sin(b*x)
+>>> ecua=y.diff(x,2)+p*y.diff(x)+q*y-sin(b*x)
+>>> ecua.simplify()
+-b**2*(A*cos(b*x) + B*sin(b*x)) - b*p*(A*sin(b*x) - 
+B*cos(b*x)) + q*(A*cos(b*x) + B*sin(b*x)) - sin(b*x)
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$}
@@ -549,13 +582,20 @@ Proponemos
 \[y(x)=A\cos x+ B\sen x,\]
 como candidato a solución.
 \lstI
+
+La expresión en el miembro de la izquierda es una combinación lineal de las funciones $\cos bx$ y $\sen bx$. Como estas funciones son linealmente independientes
+debemos tener que los coeficientes en la combinación lineal deben ser cero.
+
 \end{frame}
+
+
+
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: ecua.lhs().coefficient(sin(b*x)).simplify_full()==0
--A*b*p - (b^2 - q)*B - 1 == 0
-sage: ecua.lhs().coefficient(cos(b*x)).simplify_full()==0
-B*b*p - (b^2 - q)*A == 0
+>>> ecua.expand().coeff(sin(b*x))
+-A*b*p - B*b**2 + B*q - 1
+>>> ecua.expand().coeff(cos(b*x))
+-A*b**2 + A*q + B*b*p
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$}
@@ -597,149 +637,101 @@ estamos en una situación de resonancia. Como en casos anteriores hay que propone
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: x,b,A,B=var('x,b,A,B')
-sage: y=function('y',x)
-sage: y=x*(A*cos(b*x)+B*sin(b*x))
-sage: ecua=y.diff(x,2)+b^2*y==sin(b*x)
-sage: ecua=ecua-sin(b*x)
-sage: eql1=ecua.lhs().coefficient(sin(b*x))==0
-sage: eql2=ecua.lhs().coefficient(cos(b*x))==0
-sage: solve([eql1,eql2],[A,B])
-[[A == -1/2/b, B == 0]]
+>>> x,b,A,B=symbols('x,b,A,B')
+>>> y=x*(A*cos(b*x)+B*sin(b*x))
+>>> ecua=y.diff(x,2)+b**2*y-sin(b*x)
+>>> eq1=ecua.expand().coeff(sin(b*x))
+>>> eq2=ecua.expand().coeff(cos(b*x))
+>>> H=solve([eq1,eq2],[A,B])
+>>> H
+{B: 0, A: -1/(2*b)}
+>>> y.subs(H)
+-x*cos(b*x)/(2*b)
 \end{lstlisting}
 }
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)=\sen bx$ con resonancia}
 \lstI
 Encontramos la solución general
-\[\boxed{y(x)=-\frac{x}{2b}\cos x}.\]
+\[\boxed{y(x)=-\frac{x}{2b}\cos bx}.\]
 El caso donde $r(x)=\cos bx$ se trata de manera completamente similar.
 \end{frame}
-\defverbatim[colored]\lstI{
-\begin{lstlisting}
-sage: PoliQX=QQ['X']
-sage: print(PoliQX)
-Univariate Polynomial Ring in X over Rational Field
-sage: PoliRX=RR['X']
-sage: print(PoliRX)
-Univariate Polynomial Ring in X over Real Field with 53 bits of
-...precision
-sage: PoliZ3X=Integers(3)['X']
-sage: print(PoliZ3X)
-Univariate Polynomial Ring in X over Ring of integers modulo 3
-sage: p=PoliZ3X([1,1,1])
-sage: p
-X^2 + X + 1
-sage: p+p
-2*X^2 + 2*X + 2
-sage: p+p+p
-0
-sage: PoliZ3Xb = PolynomialRing(Integers(3),"X")
-sage: PoliZ3X is PoliZ3Xb
-True
-sage: X+X
-NameError: name 'X' is not defined
-sage: PoliZ3Xc.<X> = Integers(3)["X"]
-sage: PoliZ3Xc([1,2,1])+X
-X^2 + 1
-\end{lstlisting}
-}
-\begin{frame}{Disgresión: \href{http://www.sagemath.org/doc/tutorial/tour_polynomial.html}{anillos de polinomios en SAGE}. Definiendo un anillo de polinomios sobre $\mathbb{Q}$}
-\lstI
-\end{frame}
-\defverbatim[colored]\lstI{
-\begin{lstlisting}
-sage: P.<X,Y>=QQ["X,Y"]
-sage: 1+X+X^2+Y^3 in P
-True
-sage: p=sum([j*X^j*Y^(3-j) for j in range(4)] )
-sage: p in P
-True
-sage: p
-3*X^3 + 2*X^2*Y + X*Y^2
-sage: P=QQ[['a'+str(j) for j in range(8)]]
-sage: P
-Multivariate Power Series Ring in a0, a1, a2, a3, a4,
-...a5, a6, a7 over Rational Field
-sage: a0 in P
-NameError: name 'a0' is not defined
-sage: a=P.gens()
-sage: a
-(a0, a1, a2, a3, a4, a5, a6, a7)
-sage: a[0] in P
-True
-sage: type(a[0])
-<class 'sage.rings.multi_power_series_ring_element.
-...MPowerSeriesRing_generic_with_category.element_class'>
-sage: sum([a[j]*j for j in range(8)])
-a1 + 2*a2 + 3*a3 + 4*a4 + 5*a5 + 6*a6 + 7*a7
-sage: sum([a[j]*j for j in range(8)]) in P
-True
-\end{lstlisting}
-}
-\begin{frame}{Anillo de polinomios en varias variables}
-\lstI
-\end{frame}
-\defverbatim[colored]\lstI{
-\begin{lstlisting}
-sage: A=QQ[['a'+str(j) for j in range(5)]]
-sage: A
-Multivariate Power Series Ring in a0, a1, a2, a3, a4
-....over Rational Field
-sage: P.<X>=A["X"]
-sage: a=A.gens()
-sage: a
-(a0, a1, a2, a3, a4)
-sage: a[0]*X+a[1]*X^2 in P
-True
-sage: a[0]*X+a[1]*X^2
-a1*X^2 + a0*X
-sage: (a[0]*X+a[1]*X^2)^2
-a1^2*X^4 + 2*a0*a1*X^3 + a0^2*X^2
-sage: p=sum([a[j]*X^j for j in range(5)])
-sage: p
-a4*X^4 + a3*X^3 + a2*X^2 + a1*X + a0
-\end{lstlisting}
-}
-\begin{frame}{Anillo de polinomios sobre anillo de polinomios}
-\lstI
-\end{frame}
-\defverbatim[colored]\lstI{
-\begin{lstlisting}
-sage: grado=4
-sage: lista_var=['a'+str(j) for j in range(grado)]
-sage: lista_var+=['b'+str(j) for j in range(grado)]
-sage: lista_var+=['p', 'q']
-sage: A = PolynomialRing(QQ,lista_var)
-sage: P=A['X']
-sage: r=P([A.gen(i) for i in range(grado)])
-sage: r
-a3*X^3 + a2*X^2 + a1*X + a0
-sage: y=P([A.gen(i) for i in range(grado,2*grado)])
-sage: y
-b3*X^3 + b2*X^2 + b1*X + b0
-sage: eq=y.derivative(2)+y.derivative()*A.gen(2*grado)+y*A.gen(2*grado+1)-r
-sage: ecuaciones=[SR(l)==0 for l in eq.coefficients()]
-sage: parametros=[SR(A.gen(j)) for j in range(2*grado+2)]
-sage: Sol=solve(ecuaciones,parametros[grado:2*grado])
-sage: show(Sol[0])
-\end{lstlisting}
-}
+
+
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
-Hay que proponer como solución un polinomio, en primera instancia, del mismo grado. Invocando SAGE.
-\lstI
+\onslide<+-> Hay que proponer como solución un polinomio, en primera instancia, del mismo grado.
+
+\onslide<+-> Supongamos
+
+ \boxedeq{\frac{d^2y}{dx^2}+p\frac{dy}{dx}+q(x)y=c_0+c_1x+\cdots+c_nx^n}{eq:no_hom_pol}
+
+Se propone $y=a_0+a_1x+\cdots+a_nx^n$. Luego
+
+\[\begin{array}{l}
+2a_2+3\cdot2x+\cdots+n(n-1)x^{n-2}+\\
+pa_1+p2a_2x+\cdots+pna_nx^{n-1}+\\
+qa_0+qa_1x+\cdots+qa_nx^n=c_0+c_1x+\cdots+c_nx^n
+\end{array}
+.\]
 \end{frame}
+
+
+
+
+
+
+
+
+
+
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
-Encontramos las soluciones
+Como las funciones $1,x,\ldots,x^n$ son linealmente independientes, los coeficientes en ambos lados de la igualdad deben ser iguales.
+
 \[
 \begin{split}
-b_{0} &= \frac{a_{0} q^{3} - 6 \, a_{3} p^{3} - {\left(a_{1} p + 2 \, a_{2}\right)} q^{2} + 2 \, {\left(a_{2} p^{2} + 6 \, a_{3} p\right)} q}{q^{4}},\\
-b_{1} &= \frac{a_{1} q^{2} + 6 \, a_{3} p^{2} - 2 \, {\left(a_{2} p + 3 \, a_{3}\right)} q}{q^{3}},\\
-b_{2} &= \frac{a_{2} q - 3 \, a_{3} p}{q^{2}},\\
-b_{3} &= \frac{a_{3}}{q}
+2a_2+pa_1+qa_0&=c_0\\
+3\cdot 2+2pa_2+qa_1&=c_1\\
+ &\hspace{2mm} \vdots\\
+n(n-1)+p(n-1)a_{n-1}+qa_{n-2} &=c_{n-2}\\
+pna_{n}+qa_{n-1} &=c_{n-1}\\
+qa_n &=c_n\\
 \end{split}
 \]
-que tienen sentido solo cuando $q\neq 0$.
+Es útil escribir estas igualdades matricialmente.
 \end{frame}
+
+
+\begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio}
+
+\[\begin{pmatrix} q &\cdots  &\cdots&\cdots&\cdots\\
+&q & \cdots & \cdots&\cdots \\
+\vdots & &\ddots&& \vdots\\
+\vdots&&&q&pn\\
+\vdots&&&&q\\
+\end{pmatrix}
+\begin{pmatrix}
+a_0\\
+a_1\\
+a_2\\
+\vdots\\
+a_{n-1}\\
+a_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+c_0\\
+c_1\\
+c_2\\
+\vdots\\
+c_{n-1}\\
+c_n
+\end{pmatrix}
+\]
+Queda un sistema triángular superior que se resuelve por sustitución ascendente. Esto siempre que $q\neq 0$. En caso contrario la matríz es singular y es posible que el sistema no tenga solución.
+
+\end{frame}
+
+
+
 \begin{frame}{Método coeficientes indeterminados. Caso $r(x)$ polinomio y resonancia}
 El caso $q=0$ es una forma de resonancia. Puede ser tratado como las anteriores resonancias, pero notando que la ecuación se reduce a $y''+py'=r$ conviene
 tomar $v=y'$ como
@@ -750,7 +742,8 @@ donde las funciones $r_i$ son de alguna de las formas descriptas en los casos pr
 entonces la linealidad de $L$ implica que, si $y_i$
 resuelve $L[y_i]=r_i$, $y=y_1+\cdots +y_n$ resuelve la ecuación deseada.
 \end{frame}
-\subsection{Método de variación de los parámetros}
+
+%\subsection[MVP]{Método de variación de los parámetros}
 \begin{frame}{Método variación de los parámetros}
 Queremos resolver la ecuación
 \begin{equation}\label{eq:2orden_gen}
@@ -851,15 +844,11 @@ sage: y(x=pi/2)
 0
 sage: y.diff()(x=pi/2)
 1
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/master
 \end{lstlisting}
 }
 \begin{frame}{Método variación de los parámetros}
-\textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$.
+\textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$. Usaremos \texttt{SAGE} que nos dió mejores resultados para este ejemplo. 
 \lstI
 \end{frame}
 \section{Conclusiones}
@@ -877,7 +866,7 @@ de los parámetros
 \section{Aplicaciones}
 \begin{frame}{Aplicaciones. Vibraciones mecánicas }
 \textbf{Problema:} Estudiar el movimiento de un resorte (cómo el de la unidad anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del resorte,
-tenemos una fuerza de fricción debida ala resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
+tenemos una fuerza de fricción debida a la resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
 Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida
 la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se
 dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
@@ -939,7 +928,7 @@ sage: x.plot((x,0,10))
 \end{lstlisting}
 }
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-La masa podría haber pasado por la posición de equilibrio sólo en el pasado puesto que $x(t)=0$ cuando
+La masa podría haber pasado por la posición de equilibrio sólo en el pasado, puesto que $x(t)=0$ cuando
 \[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 \lstI
 \includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
@@ -955,11 +944,8 @@ La masa podría haber pasado por la posición de equilibrio sólo en el pasado pues
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: c1,c2=var('c1,c2')
-sage: mu=var('mu')
-sage: t=var('t')
+sage: c1,c2,mu,t,x0=var('c1,c2,mu,t,x0')
 sage: x=e^(-mu*t)*(c1+c2*t)
-sage: x0=var('x0')
 sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
 sage: C
 [{c2: mu*x0, c1: x0}]
@@ -972,17 +958,13 @@ sage: x.plot((x,0,100))
 \boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
 \lstI
 \begin{center}
-\includegraphics[scale=.1]{imagenes/crit_amortiguado.png}
+\includegraphics[scale=0.12]{imagenes/crit_amortiguado.png}
 \end{center}
 \end{frame}
 \defverbatim[colored]\lstI{
 \begin{lstlisting}
-sage: c1,c2=var('c1,c2')
-sage: mu=var('mu')
-sage: nu=var('nu')
-sage: x0=var('x0')
+sage: c1,c2,mu,nu,x0,t=var('c1,c2,mu,nu,x0,t')
 sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
-sage: t=var('t')
 sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
 sage: x=x.subs(C[0]).subs({mu:.1,nu:4,x0:1})
 sage: x.plot((x,0,100))
@@ -994,7 +976,7 @@ La solución general viene dada por
 \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
 \lstI
 \begin{center}
-\includegraphics[scale=.1]{imagenes/subamortiguado.png}
+\includegraphics[scale=.15]{imagenes/subamortiguado.png}
 \end{center}
 \end{frame}
 \begin{frame}{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
@@ -1114,7 +1096,7 @@ Calculemos el límite $\lim_{\omega_0\to\omega}x(t)$,
 \[x(t)=\frac{F_{0} t \sin\left(\omega t\right)}{2 \, \omega}
 \]
 El caso $\omega=\omega_0$ es el caso con resonancia, que debemos resolver como fue indicado en la página \ref{eq:forz_res},
-esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código sage muestra que la solución es la misma función
+esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código \texttt{SAGE} muestra que la solución es la misma función
 que la obtenida por el proceso de límite de los casos sin resonancia.
 \lstinputlisting{scripts/osc_arm_forz_noamort_res.sage}
 \end{frame}
@@ -1196,7 +1178,7 @@ natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto
 Hasta aquí hemos encontrado una solución particular del sistema no homogéneo. Para encontrar una solución general deberíamos adicionar a la particular que disponemos
 una solución general $x_g(t)$ de la ecuación homogénea. La forma de esta solución general es de alguno de los tipos \ref{eq:sol_gen_sub},
 \ref{eq:sol_gen_crit} o \ref{eq:sol_sub_amor}. Sin embargo no nos importa ahora la fórmula explícita de estas soluciones, sino que nos interesa resaltar que
-tratese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
+trátese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
 \emph{transitoria}. En cambio la solución que prevalece en el tiempo dada por \eqref{eq:SolGennoHom} la denominaremos solución \emph{estacionaria}.
 \end{frame}
 \begin{frame}{Un poco de mecánica celeste}
@@ -1371,25 +1353,31 @@ Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
 Recordemos que la variable $s$ es el ángulo polar.
 Hagamos algunos gráficos
 \begin{sageblock}
-ListaGra=[]
+ListaGra=plot([])
 for e in srange(0,.8,.1):
-    ListaGra+=[polar_plot(1/(1+e*cos(s)),\
-(s,0,2*pi),rgbcolor=(e,1-e,0))]
-    ListaGra+=[polar_plot(1/(1+cos(s)),\
-(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))]
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,0,2*pi),rgbcolor=(e,1-e,0))
+    ListaGra+=polar_plot(1/(1+cos(s)),\
+(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))
 for e in srange(1.2,2,.1):
-    ListaGra+=[polar_plot(1/(1+e*cos(s)),\
-(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))]
-gra=sum(ListaGra).show()
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))
+gra=ListaGra.show()
 \end{sageblock}
 \end{frame}
 \begin{frame}[fragile]{Un poco de mecánica celeste}
+\begin{center}
 \includegraphics[scale=.5]{imagenes/conicas.png}
+\end{center}
 \end{frame}
 \begin{frame}[fragile]{Un poco de mecánica celeste}
-Hemos logrado encontrar $r$ como función de $\theta$. Esto fue importante, de allí por ejemplo deducimos que las órbitas eran cónicas. No obstante
+Hemos logrado encontrar $r$ como función de $\theta$. No obstante
 no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav}, para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
 \v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en un dado momento. Este problema no lo desarrollaremos aquí dado
 que su solución se aparta del tema de las ecuaciones diferenciales.
 \end{frame}
+
+
+
+
 \end{document}

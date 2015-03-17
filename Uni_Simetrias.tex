@@ -49,6 +49,16 @@ belowskip=0.1em,
 numbers=none,
 numberstyle=\footnotesize
 }
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
@@ -148,6 +158,7 @@ Universidad Nacional de Río Cuarto}
    \end{center}
 \end{frame}
 \begin{frame}
+    \frametitle{Índice}
 \tableofcontents
 
 \end{frame}
@@ -1376,6 +1387,7 @@ sabiendo que la ecuación es invariante para el grupo de simetrías
 \onslide<+->Por los resultados de las páginas \ref{pag_ejem_canon1} y \ref{pag_ejem_canon2}:
 \[(r,s)=(x^2y,\ln|x|)\]
 son canónicas.
+
 \onslide<+-> Según \eqref{eq:prin_en_canon} la ecuación en $(r,s)$ es:
 \[\frac{dr}{ds}=\frac{\frac{1}{x}}{2xy+x^2\left(  xy^2-\frac{2y}{x}-\frac{1}{x^3}     \right)}=\frac{1}{x^4y^2-1}=\frac{1}{r^2-1}\]
 Como sabíamos que debía suceder el resultado del segundo miembro ndepende sólo de $r$. Integrando

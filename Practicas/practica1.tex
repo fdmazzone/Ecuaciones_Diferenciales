@@ -67,7 +67,7 @@
 \begin{bfseries}  \begin{scshape}
 Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
         Depto de Matem\'atica.\par
-        Primer Cuatrimestre de 2012\par
+        Primer Cuatrimestre de 2015\par
         Ecuaciones Diferenciales (1913) \par
         Práctica 1: Generalidades.
 
@@ -85,24 +85,10 @@ Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
 %
 \setlength{\extrarowheight}{5mm}
 
-\begin{ejercicio} \cite[Pag. 16-17, Ejercicios 1,2,5,6]{simmons_esp}.
+\begin{ejercicio} \cite[Pag. 16-17, Ejercicios 1,2,5]{simmons_esp}. Graficar los resultados con \texttt{SymPy}. 
 \end{ejercicio}
 
-
-
-\begin{ejercicio} \textbf{Ley de enfriamiento de Newton} La ley de Newton de enfriamiento (calentamiento) de un cuerpo dice que la tasa de cambio en la temperatura de un cuerpo es proporcional a la diferencia de temperaturas entre el cuerpo y el medio ambiente. Tomar en cuenta esta ley para los siguientes ejercicios.
-
-\begin{enumerate}
-    \item Un huevo duro se saca de la cacerola y se pone a enfriar arriba de una mesa a una temperatura ambiente de 30°C. Supongamos que la temperatura en el instante que es retirado de la cacerola es 100°C y que una hora después la temperatura fue de 80°C. ¿Cuándo el huevo estuvo a 90°C?.
-    \item Al cuerpo de un ser humano vivo no se le aplica la ley de enfriamiento de Newton, pues el cuerpo humano regula su temperatura para que  aproximadamente sean unos 36.5°C, independientemente de la temperatura del ambiente. No obstante si podemos aplicar a un cadaver  la Ley de Enfriamiento.  Razonar como un médico forense puede usar La Ley de Enfriamiento, para determinar el tiempo transcurrido desde la muerte de una persona. ¿Cuántas mediciones le serán necesarias?
-\end{enumerate}
-
-
-
-\end{ejercicio}
-
-
- \begin{ejercicio} Se denomina isótopos a los átomos de un mismo elemento cuyos núcleos tienen distintos número de neutrones. Alguno materiales tienen isótopos que son inestables, esto implica que cada cierta unidad de tiempo cierta cantidad de ellos se convierten en otros isótopos, del mismo o de diferente elemento químico.  Esto ocurre con el Uranio, y en general con los elementos radioactivos. Llamamos a este proceso \emph{decaimiento radioactivo}. Si $N(t)$ es la cantidad de isótopos inestables presentes en una muestra, la ley que sigue el decaimiento radioactivo es
+\begin{ejercicio} Se denomina isótopos a los átomos de un mismo elemento cuyos núcleos tienen distintos número de neutrones. Alguno materiales tienen isótopos que son inestables, esto implica que cada cierta unidad de tiempo cierta cantidad de ellos se convierten en otros isótopos, del mismo o de diferente elemento químico.  Esto ocurre con el Uranio, y en general con los elementos radioactivos. Llamamos a este proceso \emph{decaimiento radioactivo}. Si $N(t)$ es la cantidad de isótopos inestables presentes en una muestra, la ley que sigue el decaimiento radioactivo es
 
  \begin{equation}\label{radio}\frac{dN}{dt}=-kN(t).\end{equation}
  La constante $k$ se estima experimentalmente. El carbono tiene un isótopo inestable, llamado Carbono 14 ($C_{14}$). Este es usado para datar muestras arqueológicas. La cantidad de $C_{14}$ en un ser vivo se mantiene constante en el tiempo y en la especie. Esto es así, pues los seres vivos extraen el $C_{14}$ de la atmósfera donde este isótopo es creado por el bombardeo por rayos cósmicos sobre átomos de nitrogeno ordinarios. De esta manera la cantidad de $C_{14}$ se mantiene constante en la atmósfera. Una vez muerto la cantidad de $C_{14}$ decae. La constante de deaimiento del $C_{14}$ es $k=0.0001216$ cuando el tiempo se mide en años.
@@ -138,14 +124,14 @@ Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
 \begin{center}
 	\includegraphics{tanques_2.jpg}
 	\end{center}
-	\caption{Una cascada dedos tanques}
+	\caption{Una cascada de dos tanques}
 	\label{fig:UnaCascadaDedosTanques}
 \end{figure}
 Los tanques contienen $V_1=100l$ y $V_2=200l$ de salmuera e inicialmente hay 25kg de sal en cada tanque. Los flujos en cada parte de la cascada son de 5l/min y al primer tanque ingresa agua pura. Hallar la cantidad $x(t)$ de sal en el primer tanque en el momento $t$. Si $y(t)$ es la cantidad de sal en el segundo tanque, demostrar que
 \[
 	\frac{dy}{dt}=\frac{5x}{100}-\frac{5y}{200}
 \]
-Usar el valor encontrado para $x(t)$ para hallar $y(t)$. 
+Usar el valor encontrado para $x(t)$  para hallar $y(t)$. Comparar la solución obtenida con la que encuentra \texttt{SymPy}.
 \end{ejercicio}
 
 \begin{ejercicio} Supongamos ahora que tenemos $n$ tanques, como en la figura \ref{fig:UnaCascadaDenTanques}.
@@ -162,26 +148,16 @@ El tanque 0 contiene, en $t=0$, 1l de etano mezclado con 1l de agua. Los restant
  
  \end{ejercicio}
  
- \begin{ejercicio} \cite[Pag. 34-34, Ejercicios 1,3,4,9]{simmons_esp}.
+ \begin{ejercicio} \cite[Pag. 34-34, Ejercicios 1,3,4]{simmons_esp}.
 \end{ejercicio}
  
 
-\begin{ejercicio} \textbf{Estudiando el péndulo}  Considerar la ecuación del péndulo, donde suponemos todos los parámetros igual a 1
 
- \[ x''=-\hbox{sen }(x).\]
+
+
  
-\begin{enumerate}
-	 \item Usar $v=x'$ como variable dependiente y $x$ como variable independiente para transformar la ecuación en:
-	 		\[  v'=-\frac{\hbox{sen }(x)}{v}.\]
-	 		
-	 \item Usar SAGE para estudiar la ecuación a) realizar campo de direcciones b) resolver numéricamente la ecuación con la función desolve\_rk4. En \cite[pag. 162]{gallardo} se explica como usar esta función.
-\end{enumerate}
-\end{ejercicio} 
-
- \bibliography{practica1.bib}
- \printbibliography
- 
-
+\bibliographystyle{plain}
+\bibliography{biblio}
 
 
 \end{document}
