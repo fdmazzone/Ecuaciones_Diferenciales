@@ -1036,16 +1036,33 @@ Por otra parte  $(\xi(\hat{x},\hat{y}),\eta(\hat{x},\hat{y}))$ determinan las si
 \end{array}
 \right.
 }{eq:ecua_infinitesimales}
-Estas ecuaciones pueden ser dificiles de resolver. Pero en algunos casos sencillos puede ser fácil.
 
-\nl \textbf{Ejemplo:} Encontrar el grupo de simetrías para los infinitesimales $\xi(x,y),\eta(x,y))=(x^2,xy)$.
-
+\textbf{Justificación de las ecuaciones}. Si ponemos $(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)$, de la propiedad de grupo ($ \Gamma_{\Delta\epsilon} \circ  \Gamma_{\epsilon}= \Gamma_{\epsilon+\Delta\epsilon}$), deducimos 
+\[\hat{x}(\Gamma_{\epsilon}(x,y),\Delta\epsilon)=\hat{x}(x,y,\epsilon+\Delta\epsilon).\]
 
 \end{frame}
 
 
 \begin{frame}{Infinitesimales$\to$Simetrías}
-Tenemos
+Luego
+
+\[
+\begin{split}
+\frac{d\hat{x}}{d\epsilon}&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(x,y,\epsilon+\Delta\epsilon)-\hat{x}(x,y,\epsilon)  }{\Delta\epsilon}\\
+&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(\Gamma_{\epsilon}(x,y),\Delta\epsilon)  -\hat{x}(x,y,\epsilon)  }{\Delta\epsilon}\\
+&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon),\Delta\epsilon)  -\hat{x}(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon),0)  }{\Delta\epsilon}\\
+&=\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}=\xi(\hat{x},\hat{y})
+\end{split}
+\]
+
+\end{frame}
+\begin{frame}{Infinitesimales$\to$Simetrías}
+
+El \emph{sistema de ecuaciones} \eqref{eq:ecua_infinitesimales}    pueden ser dificiles de resolver. Pero en algunos casos sencillos puede ser fácil.
+
+\nl \textbf{Ejemplo:} Encontrar el grupo de simetrías para los infinitesimales $\xi(x,y),\eta(x,y))=(x^2,xy)$.
+
+
 \[ \frac{d\hat{x}}{d\epsilon}=\xi(\hat{x},\hat{y})=\hat{x}^2\text{ y }\hat{x}(x,y,0)=x
 \Rightarrow \hat{x}=\frac{x}{1-\epsilon x}\]
 y
@@ -1260,7 +1277,7 @@ Luego $\Phi=y/x^k$ es integral primera. Entonces podemos tomar $r=y/x^k$.
 Entonces $(r,s)=(yx^{-k},\ln|x|)$ son coordenadas canónicas. No estan definidas en $x=0$.
 Podemos encontrar coordenadas canónicas definidas en $x=0$ del siguiente modo. Recordamos que para todas $F$ y $G$
 \[(\tilde{r},\tilde{s})=(F(r),G(r)+s)=(F(x^{-k}y),G(x^{-k}y)+\ln|x|).\]
-So canónicas también. Si tomamos $F(r)=1/r$ y $G(r)=\frac{1}{k}\ln|x|$, evitamos la singularidad. Luego
+So canónicas también. Si tomamos $F(r)=1/r$ y $G(r)=\frac{1}{k}\ln|r|$, evitamos la singularidad. Luego
 
 \[(\tilde{r},\tilde{s})=(x^ky^{-1},\frac{1}{k}\ln|y|).\]
 Son canónicas, están definidas en $x=0$ pero no en $y=0$.  
@@ -1279,7 +1296,7 @@ Son canónicas, están definidas en $x=0$ pero no en $y=0$.
 
 \[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0},\left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}\right)=(x^2,xy).\]
 
-\[\frac{dy}{dx}=\frac{eta}{\xi}=\frac{y}{x}\Rightarrow \frac{y}{x}=\hbox{cte}.\]
+\[\frac{dy}{dx}=\frac{\eta}{\xi}=\frac{y}{x}\Rightarrow \frac{y}{x}=\hbox{cte}.\]
 
 Podemos tomar $r=y/x$. Para $s$
 \[s=\int\frac{dx}{x^2}=-\frac{1}{x}.\]
