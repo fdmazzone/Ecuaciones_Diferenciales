@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\usepackage{pgfpages}
-%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border srhrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
@@ -26,7 +26,7 @@
 %\usepackage{media9}
 %\usepackage{movie15}
 \usepackage{xparse}
-%\usepackage{listings}
+\usepackage{listings}
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
@@ -130,6 +130,26 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinelanguage{SymPy}[]{Python}
+{morekeywords={False,sage,True,symbols},sensitive=true}
+\lstset{
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=SymPy,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
+}
+
+
+
 
 
 
@@ -432,42 +452,38 @@ Pero $a_0=y(0)=1$. Luego
 
 
 
-  También podemos usar SAGE para obtener el resultado.
-\begin{sageblock}
-"""
-Método de coeficientes indeterminados para
-la ecuación y'=y
-"""
-#La serie la sumamos hasta X^orden
-orden=7
-# Lista coeficientes
-Lista=['a%s'%i for i in range(orden)]
-#expresiones polinómicos con los an
-A = PolynomialRing(QQ,Lista)
-#Series con coeficientes en A
-Series.<X> = PowerSeriesRing(A)
-#n-upla de los a_n
-Coef=A.gens() 
-#serie truncada en orden
-y=sum(Coef[i]*X^i for i in range(orden)) 
-#sustituyo en la ecuación
-Ecua=y.derivative()-y
-#lista de los a_n convertidos en expresión 
-a= [SR(i) for i in A.gens()] 
-""" A las ecuaciones le agrego a0=1 y evito usar la
-última pues tiene un problema que viene del truncamiento
-"""
-Ecuaciones=[a[0]-1,list(Ecua)[:-1]] 
-#resuelvo las relaciones de recurrencia
-Sol_a_n=solve(Ecuaciones,a) 
-"""Lista de los coeficientes convertidos en racionales """
-L=[QQ(f.rhs()) for f in Sol_a_n[0]] 
-# Desarrollo en serie de la solución
-y=sum([L[i]*X^i for i in range(orden)])+O(X^orden)
-\end{sageblock}
+\begin{lstlisting}
+>>> from sympy import *
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> Lista
+['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6']
+>>> x=symbols('x')
+>>> a=symbols(Lista)
+>>> y=0
+>>> for i in range(orden):
+...     y=y+a[i]*x**i   
+... 
+>>> y
+a0 + a1*x + a2*x**2 + a3*x**3 + a4*x**4 + a5*x**5 + a6*x**6
+>>> Ecua=y.diff(x)-y
+>>> Ecua
+-a0 - a1*x + a1 - a2*x**2 + 2*a2*x - a3*x**3 + 3*a3*x**2 - a4*x**4 + 4*a4*x**3 - a5*x**5 + 5*a5*x**4 - a6*x**6 + 6*a6*x**5
+>>> Ecuaciones=[Ecua.coeff(x**i) for i in range(orden)]
+>>> Ecuaciones
+[a1, -a1 + 2*a2, -a2 + 3*a3, -a3 + 4*a4, -a4 + 5*a5, -a5 + 6*a6, -a6]
+>>> Ecuaciones=[a[0]-1,Ecua.subs(x,0)]+Ecuaciones[1:-1]
+>>> Ecuaciones
+[a0 - 1, -a0 + a1, -a1 + 2*a2, -a2 + 3*a3, -a3 + 4*a4, -a4 + 5*a5, -a5 + 6*a6]
+>>> coef=solve(Ecuaciones,Lista)
+>>> coef
+{a1: 1, a5: 1/120, a2: 1/2, a6: 1/720, a3: 1/6, a0: 1, a4: 1/24}
+>>> y.subs(coef)
+x**6/720 + x**5/120 + x**4/24 + x**3/6 + x**2/2 + x + 1
+\end{lstlisting}
+
 
 Vemos que la solución es 
-\boxedeq{y(x)=\sage{y}}{eq:sol_sage} 
+\boxedeq{y(x)=1+x+\frac{x^2}{2}+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\frac{x^5}{120}+\frac{x^6}{720}          }{eq:sol_sage} 
 \end{ejemplo}
 
 
