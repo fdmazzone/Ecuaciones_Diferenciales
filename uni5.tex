@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\usepackage{pgfpages}
-%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border srhrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
@@ -26,7 +26,7 @@
 %\usepackage{media9}
 %\usepackage{movie15}
 \usepackage{xparse}
-%\usepackage{listings}
+\usepackage{listings}
 \usepackage{ wasysym }
 \usepackage{sagetex}
 \usepackage{hyperref}
@@ -130,6 +130,26 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinelanguage{SymPy}[]{Python}
+{morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand},sensitive=true}
+\lstset{
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=SymPy,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
+}
+
+
+
 
 
 
@@ -432,42 +452,35 @@ Pero $a_0=y(0)=1$. Luego
 
 
 
-  También podemos usar SAGE para obtener el resultado.
-\begin{sageblock}
-"""
-Método de coeficientes indeterminados para
-la ecuación y'=y
-"""
-#La serie la sumamos hasta X^orden
-orden=7
-# Lista coeficientes
-Lista=['a%s'%i for i in range(orden)]
-#expresiones polinómicos con los an
-A = PolynomialRing(QQ,Lista)
-#Series con coeficientes en A
-Series.<X> = PowerSeriesRing(A)
-#n-upla de los a_n
-Coef=A.gens() 
-#serie truncada en orden
-y=sum(Coef[i]*X^i for i in range(orden)) 
-#sustituyo en la ecuación
-Ecua=y.derivative()-y
-#lista de los a_n convertidos en expresión 
-a= [SR(i) for i in A.gens()] 
-""" A las ecuaciones le agrego a0=1 y evito usar la
-última pues tiene un problema que viene del truncamiento
-"""
-Ecuaciones=[a[0]-1,list(Ecua)[:-1]] 
-#resuelvo las relaciones de recurrencia
-Sol_a_n=solve(Ecuaciones,a) 
-"""Lista de los coeficientes convertidos en racionales """
-L=[QQ(f.rhs()) for f in Sol_a_n[0]] 
-# Desarrollo en serie de la solución
-y=sum([L[i]*X^i for i in range(orden)])+O(X^orden)
-\end{sageblock}
+\begin{lstlisting}
+>>> from sympy import *
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> Lista
+['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6']
+>>> x=symbols('x')
+>>> a=symbols(Lista)
+>>> y=sum([a[i]*x**i for i in range(orden)])
+>>> y
+a0 + a1*x + a2*x**2 + a3*x**3 + a4*x**4 + a5*x**5 + a6*x**6
+>>> Ecua=y.diff(x)-y
+>>> Ecua
+-a0 - a1*x + a1 - a2*x**2 + 2*a2*x - a3*x**3 + 3*a3*x**2 - a4*x**4 + 4*a4*x**3 - a5*x**5 + 5*a5*x**4 - a6*x**6 + 6*a6*x**5
+>>> Ecuaciones=[Ecua.coeff(x**i) for i in range(orden)]
+>>> Ecuaciones
+[a1, -a1 + 2*a2, -a2 + 3*a3, -a3 + 4*a4, -a4 + 5*a5, -a5 + 6*a6, -a6]
+>>> Ecuaciones=[a[0]-1,Ecua.subs(x,0)]+Ecuaciones[1:-1]
+>>> Ecuaciones
+[a0 - 1, -a0 + a1, -a1 + 2*a2, -a2 + 3*a3, -a3 + 4*a4, -a4 + 5*a5, -a5 + 6*a6]
+>>> coef=solve(Ecuaciones,Lista)
+>>> coef
+{a1: 1, a5: 1/120, a2: 1/2, a6: 1/720, a3: 1/6, a0: 1, a4: 1/24}
+>>> y.subs(coef)
+x**6/720 + x**5/120 + x**4/24 + x**3/6 + x**2/2 + x + 1
+\end{lstlisting}
+
 
 Vemos que la solución es 
-\boxedeq{y(x)=\sage{y}}{eq:sol_sage} 
+\boxedeq{y(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\frac{x^5}{120}+\frac{x^6}{720} +\cdots         }{eq:sol_sage} 
 \end{ejemplo}
 
 
@@ -487,42 +500,34 @@ Resolver una relación de recurrencia es encontrar una fórmula explícita de $b
  \end{definicion}
 
 
-Hay técnicas y métodos para resolver relaciones de recurrencia que guardan analogías con técnicas y métodos de resolver ecuaciones diferenciales.  No vamos a desarrollar este tema en este curso, sólo agregamos que  SAGE resuelve relaciones recurrentes. Para ello se necesita de un módulo extra, también basado en \href{https://www.python.org/}{Python}, llamado \href{http://sympy.org/en/index.html}{Sympy}. Este módulo tiene el comando \texttt{rsolve} para resolver relaciones de recurrencia. Sympy tiene sus propios comandos, que son parecidos pero no iguales a SAGE.
+Hay técnicas y métodos para resolver relaciones de recurrencia que guardan analogías con técnicas y métodos de resolver ecuaciones diferenciales.  No vamos a desarrollar este importante tema en este curso, sugerimos la \href{http://es.wikipedia.org/wiki/Relación_de_recurrencia}{correspondiente wiki} en la wikipedia. Sólo agregamos que  SymPy resuelve relaciones recurrentes a través del comando \texttt{rsolve}. 
 
-\begin{ejemplo}Resolvamos la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$ con SAGE.
-\begin{sageblock}
-""" Resolvemos la relación de recurrencia 
-de los números de Fibonacci"""
-#Importamos Sympy 
-from sympy import *
-#En Sympy se declaran símbolos en lugar de variables
-n=Symbol('n',integer=True)
-#Y así se declaran funciones
-y = Function('y')
-#Así una ecuación
-f=Equality(y(n),y(n-1)+y(n-2))
-#Así la resolvemos
-rsolve(f,y(n))
-
-\end{sageblock}  
+\begin{ejemplo} Resolvamos con SymPy la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$.
+\begin{lstlisting}
+>>> from sympy import *
+>>> n=symbols('n',integer=True)
+>>> y = Function('y')
+>>> f=Equality(y(n),y(n-1)+y(n-2))
+>>> rsolve(f,y(n))
+\end{lstlisting}
 
  El resultado es
- \boxedeq{a_n=\sage{rsolve(f,y(n))}}{}
+ \boxedeq{a_n=C_0\left(\frac12+\frac{\sqrt{5}}{2}\right)^n +
+ C_1\left(\frac12-\frac{\sqrt{5}}{2}\right)^n  }{}
 Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de los $k$  anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$.
 
-\begin{sageblock}
-reset()
-n=var('n')
-C0,C1=var('C0,C1')
-A=C0*(1/2+sqrt(5)/2)^n+C1*(1/2-sqrt(5)/2)^n
-Cval=solve([A(n=0)-1,A(n=1)-1],[C0,C1],solution_dict=True)
-Fib=A.subs(Cval[0])
-[Fib(n=i).expand() for i in range(10)]
-\end{sageblock}  
+\begin{lstlisting}
+>>> C0,C1=symbols('C0,C1')
+>>> A=C0*(1/2+sqrt(5)/2)**n+C1*(1/2-sqrt(5)/2)**n
+>>> Cval=solve([A.subs(n,0)-1,A.subs(n,1)-1],[C0,C1])
+>>> Fib=A.subs(Cval)
+>>> [Fib.subs(n,i).expand() for i in range(10)]
+[1, 1, 5/4, 5/4, 25/16, 25/16, 125/64, 125/64, 625/256, 625/256]
+\end{lstlisting}
 Llegamos a la fórmula
-\boxedeq{a_n=\sage{Fib}.}{}
-Los primeros 20 números de Fibonacci son 
-\[\sage{[Fib(n=i).expand() for i in range(20)]}.\]
+\boxedeq{a_n
+\frac{1}{10} \, \left(\frac{1}{2} \, \sqrt{5}\right)^{n} {\left(2 \, \sqrt{5} + 5\right)} - \frac{1}{10} \, \left(-\frac{1}{2} \, \sqrt{5}\right)^{n} {\left(2 \, \sqrt{5} - 5\right)}
+}{}
 
 \end{ejemplo}
 
@@ -564,28 +569,35 @@ Luego la serie tiene radio de convergencia 1.  Hemos demostrado asi que vale la 
 Esta importante serie se denomina \href{http://en.wikipedia.org/wiki/Binomial_series}{serie binomial}.
 
 
-\begin{sageblock}
-"""
-Método de coeficientes indeterminados para
-la ecuación (1+x)y'=py , y(0)=1
-"""
-orden=4
-#En la lista de coeficientes debemos poner p
-Lista=['a%s'%i for i in range(orden)]+['p']
-A = PolynomialRing(QQ,Lista)
-Series.<X> = PowerSeriesRing(A)
-Coef=A.gens() 
-y=sum(Coef[i]*X^i for i in range(orden)) 
-Ecua=(1+X)*y.derivative()-A.gens()[-1]*y
-a= [SR(i) for i in A.gens()[:-1]] 
-Ecuaciones=[a[0]-1,list(Ecua)[:-1]] 
-Sol_a_n=solve(Ecuaciones,a) 
-L=[f.rhs().factor() for f in Sol_a_n[0]] 
-x=var('x')
-y=sum([L[i]*x^i for i in range(orden)])
-\end{sageblock}
+\begin{lstlisting}
+>>> from sympy import *
+>>> orden=4
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> a=symbols(Lista)
+>>> a
+[a0, a1, a2, a3]
+>>> x,p=symbols('x,p')
+>>> y=sum([a[i]*x**i for i in range(orden)])
+>>> y
+a0 + a1*x + a2*x**2 + a3*x**3
+>>> Ecua=(1+x)*y.diff(x)-p*y
+>>> Ecua=Ecua.expand()
+>>> Ecua
+-a0*p - a1*p*x + a1*x + a1 - a2*p*x**2 + 2*a2*x**2 + 2*a2*x - a3*p*x**3 + 3*a3*x**3 + 3*a3*x**2
+>>> Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+>>> Ecuaciones
+[-a0*p + a1, -a1*p + a1 + 2*a2, -a2*p + 2*a2 + 3*a3, a3*(-p + 3)]
+>>> Ecuaciones=[a[0]-1]+Ecuaciones[:-1]
+>>> Sol_a_n=solve(Ecuaciones,a)
+>>> Sol_a_n
+{a3: p*(p - 2)*(p - 1)/6, a0: 1, a2: p*(p - 1)/2, a1: p}
+>>> y.subs(Sol_a_n)
+p*x**3*(p - 2)*(p - 1)/6 + p*x**2*(p - 1)/2 + p*x + 1
+\end{lstlisting}
 
-\boxedeq{y(x)=\sage{y}.}{}
+
+
+\boxedeq{y(x)=\frac{1}{6} \, {\left(p - 1\right)} {\left(p - 2\right)} p x^{3} + \frac{1}{2} \, {\left(p - 1\right)} p x^{2} + p x + 1}{}
 
 \end{ejemplo}
 
@@ -618,34 +630,33 @@ La última igualdad es conocida de las asignaturas de análisis. Es facil verifi
 
 Podemos hacer los cálculos anteriores con SAGE
 
-\begin{sageblock}
-"""
-Método de coeficientes indeterminados para
-la ecuación y''+omega^2y=0
-"""
-orden=8
-Lista=['a%s'%i for i in range(orden)]+['omega']
-A = PolynomialRing(QQ,Lista)
-Series.<X> = PowerSeriesRing(A)
-Coef=A.gens() 
-y=sum(Coef[i]*X^i for i in range(orden)) 
-Ecua=y.derivative(2)+A.gens()[-1]^2*y
-a= [SR(i) for i in A.gens()[:-1]] 
-Ecuaciones=[a[0]-1,a[1],list(Ecua)[:-2]]
-Sol_a_n=solve(Ecuaciones,a) 
-L=[f.rhs() for f in Sol_a_n[0]] 
-x=var('x')
-y1=sum([L[i]*x^i for i in range(orden)])
-Ecuaciones=[a[0],a[1]-1,list(Ecua)[:-2]]
-Sol_a_n=solve(Ecuaciones,a) 
-L=[f.rhs() for f in Sol_a_n[0]] 
-y2=sum([L[i]*x^i for i in range(orden)])
-\end{sageblock}
+\begin{lstlisting}
+>>> from sympy import *
+>>> orden=10
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> a=symbols(Lista)
+>>> x,omega=symbols('x,omega')
+>>> y=sum([a[i]*x**i for i in range(orden)])
+>>> Ecua=y.diff(x,2)+omega**2*y
+>>> Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+>>> Ecuaciones_a=[a[0]-1,a[1]]+Ecuaciones[:-2]
+>>> Sol_a_n=solve(Ecuaciones_a,a)
+>>> y.subs(Sol_a_n)
+omega**8*x**8/40320 - omega**6*x**6/720 + omega**4*x**4/24 - omega**2*x**2/2 + 1
+>>> Ecuaciones_b=[a[0],a[1]-1]+Ecuaciones[:-2]
+>>> Sol_a_n=solve(Ecuaciones_b,a)
+>>> y.subs(Sol_a_n)
+omega**8*x**9/362880 - omega**6*x**7/5040 + omega**4*x**5/120 - omega**2*x**3/6 + x
+\end{lstlisting}
+
+
+
  Obtenemos las soluciones
 \[
     \begin{split}
-      y_1(x)&=\cdots\sage{y1}=\cos\omega x\\
-      y_2(x)&=\cdots\sage{y2}=\frac{1}{\omega}\sen\omega x\\
+      y_1(x)&=\cdots+\frac{\omega^{8} x^{8}}{40320} - \frac{\omega^{6} x^{6}}{720} + \frac{\omega^{4} x^{4}}{24} - \frac{\omega^{2} x^{2}}{2} + 1
+=\cos(\omega x)\\
+      y_2(x)&=\cdots+\frac{\omega^{8} x^{9}}{362880} - \frac{\omega^{6} x^{7}}{5040} + \frac{\omega^{4} x^{5}}{120} - \frac{\omega^{2} x^{3}}{6} + x=\frac{1}{\omega}\sen\omega x\\
     \end{split}
 \]
 \end{ejemplo}
@@ -676,28 +687,49 @@ De modo que la serie tiene radio de convergencia 1. La misma situación ocurre c
 \[y''-\frac{2x}{(1-x^2)}y'+\frac{p(p+1)}{(1-x^2)}y=0.\]
 Se observa que $1$ y $-1$ son puntos singulares de la ecuación.
 
-Podemos relacionar cualquier coeficiente de índice par $a_{2k}$ con el $a_0$ y cualquiera con índice impar $a_{2k+1}$ con el $a_1$. Esto lo resolveremos con SAGE
+Podemos relacionar cualquier coeficiente de índice par $a_{2k}$ con el $a_0$ y cualquiera con índice impar $a_{2k+1}$ con el $a_1$. Esto lo resolveremos con SymPy
 
-\begin{sageblock}
-"""
-Método de coeficientes indeterminados para
-la ecuación(1-x^2)y''-2xy'+p(p+1)y=0
-"""
-orden=10
-Lista=['a%s'%i for i in range(orden)]+['p']
-A = PolynomialRing(QQ,Lista)
-Series.<X> = PowerSeriesRing(A)
-Coef=A.gens() 
-y=sum(Coef[i]*X^i for i in range(orden)) 
-p=A.gens()[-1]
-Ecua=(1-X^2)*y.derivative(2)-2*X*y.derivative()+p*(p+1)*y
-a= [SR(i) for i in A.gens()[:-1]] 
-Ecuaciones=list(Ecua)[:-2]
-Sol_a_n=solve(Ecuaciones,a) 
-Sol_a_n=[i.lhs()==i.rhs().factor() for i in Sol_a_n[0]]
-\end{sageblock}
-Obtenemos que la solución a la relación de recurrencia de dos términos es
-\[\sage{vector(Sol_a_n).column()}\]
+\begin{lstlisting}
+>>> from sympy import *
+>>> orden=10
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> a=symbols(Lista)
+>>> x,p=symbols('x,p')
+>>> y=sum([a[i]*x**i for i in range(orden)])
+>>> Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+p*(p+1)*y
+>>> Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+>>> for ec in Ecuaciones:
+...     ec
+... 
+a0*p*(p + 1) + 2*a2
+a1*p*(p + 1) - 2*a1 + 6*a3
+a2*p*(p + 1) - 6*a2 + 12*a4
+a3*p*(p + 1) - 12*a3 + 20*a5
+a4*p*(p + 1) - 20*a4 + 30*a6
+a5*p*(p + 1) - 30*a5 + 42*a7
+a6*p*(p + 1) - 42*a6 + 56*a8
+a7*p*(p + 1) - 56*a7 + 72*a9
+a8*p*(p + 1) - 72*a8
+a9*(p*(p + 1) - 90)
+>>> Sol_a_n=solve(Ecuaciones[:-2],a[2:])
+>>> for sol in a[2:]:
+...     Sol_a_n[sol].factor()
+... 
+-a0*p*(p + 1)/2
+-a1*(p - 1)*(p + 2)/6
+a0*p*(p - 2)*(p + 1)*(p + 3)/24
+a1*(p - 3)*(p - 1)*(p + 2)*(p + 4)/120
+-a0*p*(p - 4)*(p - 2)*(p + 1)*(p + 3)*(p + 5)/720
+-a1*(p - 5)*(p - 3)*(p - 1)*(p + 2)*(p + 4)*(p + 6)/5040
+a0*p*(p - 6)*(p - 4)*(p - 2)*(p + 1)*(p + 3)*(p + 5)*(p + 7)/40320
+a1*(p - 7)*(p - 5)*(p - 3)*(p - 1)*(p + 2)*(p + 4)*(p + 6)*(p + 8)/362880
+
+\end{lstlisting}
+
+
+
+
+
 En general 
 \[a_{2n}=\frac{(p+1)(p_0+3)\cdots (p+2n-1) \times p(p-2)\cdots (p-2n+2)}{(2n)!}a_0\]
 y
@@ -706,45 +738,69 @@ Podemos elegir $a_0$ y $a_1$ de manera arbitraria (esto está de acuerdo con que
 
 Un caso especial se plantea cuando  $p\in\mathbb{N}$. En esa situación vemos que infinitos de los $a_n$ resultan iguales a cero. De hecho una de las series, la de términos impares o la de términos pares acorde a que $p$ sea par o impar respectivamente,  se trunca. Supongamos que esto ocurre con la serie de términos impares, es decir $p$ es entero positivo impar. Si ahora tomamos $a_0=0$ toda la serie de términos pares se hará cero. Para $a_1$ elijo algún valor no nulo y esto me garantiza que los términos impares son no nulos hasta el término $a_{n}$, pero a partir de allí también se hacen cero. Es usual elegir $a_1$ para que $y(1)=1$. Nos queda definida así una función polinómica que se denomina \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{polinomio de Legendre} y se denota por $P_p$. Cuando $p$ es par hacemos una construcción análoga, quedando un polinomio $P_p$, con todas potencias pares, tal que $P_p(1)=1$.
 
-Todos estos cálculos los programamos en la siguiente función de SAGE. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
+Todos estos cálculos los programamos en la siguiente función de SymPy. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
 
-\begin{sageblock}
-def legendre(n):
-    """
-    Método de coeficientes indeterminados para
-    la ecuación(1-x^2)y''-2xy'+p(p+1)y=0
-    """
-    if n not in NN:
-        print "n no es entero"
+
+\begin{lstlisting}
+from sympy import *
+def Legendre(n):
+    orden=n+2
+    Lista=['a%s'%i for i in range(orden)]
+    a=symbols(Lista)
+    x,p=symbols('x,p')
+    y=sum([a[i]*x**i for i in range(orden)])
+    Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+n*(n+1)*y
+    Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden-2)]       
+    s=symbols('s')
+    if n%2==0:
+        Ecuaciones+=[a[0]-s,a[1]]
     else:
-        orden=n+2
-        Lista=['a%s'%i for i in range(orden)]
-        A = PolynomialRing(QQ,Lista)
-        Series.<X> = PowerSeriesRing(A)
-        Coef=A.gens() 
-        y=sum(Coef[i]*X^i for i in range(orden)) 
-        Ecua=(1-X^2)*y.derivative(2)-2*X*y.derivative()+n*(n+1)*y
-        a= [SR(i) for i in A.gens()] 
-        Ecuaciones=list(Ecua)[:-2]
-        s=var('s')
-        if n%2==0:
-            Ecuaciones+=[a[0]-s,a[1]]
-        else:
-            Ecuaciones+=[a[0],a[1]-s]
-        Sol_a_n=solve(Ecuaciones,a) 
-        L=[f.rhs() for f in Sol_a_n[0]] 
-        x=var('x')
-        y=sum([L[i]*x^i for i in range(orden)])
-        sol=solve(y(x=1)==1,s)
-        return y.subs(sol[0])
-\end{sageblock}
+        Ecuaciones+=[a[0],a[1]-s]
+    Sol_a_n=solve(Ecuaciones,a)
+    y=y.subs(Sol_a_n)
+    sol=solve(y.subs(x,1)-1,s)
+    return y.subs(s,sol[0])
+\end{lstlisting}
+
+Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{legendre.py} y esta en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
+
+\begin{lstlisting}
+>>> import os
+>>> os.chdir('/home/fdmazzone/Git/Ecuaciones_Diferenciales/scripts')
+>>> from legendre import Legendre
+\end{lstlisting}
+
+
 Con la ayuda de esta función podemos generar rápidamente una tabla de polinomios de Legendre
-\begin{sageblock}
-L=[legendre(i) for i in range(10)]
-\end{sageblock} 
-\[\sage{vector(L).column()}\]
+\begin{lstlisting}
+>>> for n in range(1,6):
+...     Legendre(n)
+... 
+x
+3*x**2/2 - 1/2
+5*x**3/2 - 3*x/2
+35*x**4/8 - 15*x**2/4 + 3/8
+63*x**5/8 - 35*x**3/4 + 15*x/8
+\end{lstlisting}
 y graficarlos
-\[\sageplot[scale=.5]{plot(L)}\]
+\begin{lstlisting}
+>>> for n in range(2,8):
+...     p1=plot(Legendre(n),(x,-1,1),show=False)
+...     p.append(p1[0])
+... 
+>>> p.show()
+\end{lstlisting}
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=.25]{imagenes/legendre.png}
+\caption{Polinomios de Legendre hasta el orden 8}
+\end{center}
+\end{figure}
+
+
+
 \end{ejemplo}
 
 \section{Teorema fundamental sobre puntos ordinarios}
@@ -890,14 +946,18 @@ Aquí  asumimos $x>0$. Seguramente, a esta altura del curso,  el alumno ya hizo 
 \[y''+(p-1)y'+qy=0.\]
 Cuya ecuación característica es
 \[\lambda^2+(p-1)\lambda+q=0\]
-Resolviendo esta ecuación con SAGE
+Resolviendo esta ecuación con SymPy
 
-\begin{sageblock}
-s,p,q=var('s,p,q')
-Raices=solve(s^2+(p-1)*s+q==0,s)
-\end{sageblock}
+\begin{lstlisting}
+>>> s,p,q=symbols('s,p,q')
+>>> Raices=solve(s**2+(p-1)*s+q,s)
+>>> Raices[0]
+-p/2 - sqrt(p**2 - 2*p - 4*q + 1)/2 + 1/2
+>>> Raices[1]
+-p/2 + sqrt(p**2 - 2*p - 4*q + 1)/2 + 1/2
+\end{lstlisting}
 Obtenemos las raíces 
-\[s_1=\sage{Raices[0].rhs()}\quad\text{y}\quad s_2=\sage{Raices[1].rhs()}.\]
+\[s_1= -\frac{p-1}{2} - \frac{\sqrt{p^2 - 2p - 4q + 1}}{2}   \quad\text{y}\quad s_2=-\frac{p-1}{2} +\frac{\sqrt{p^2 - 2p - 4q + 1}}{2} .\]
  Si $s_1\neq s_2$ dos soluciones linealmente independientes son:
 \[y_1(z)=e^{s_1z}\quad\hbox{y}\quad y_2(z)=e^{s_2z}\]
  Si $s_1=s_2$
@@ -926,7 +986,7 @@ El método de Frobenius consiste en proponer como solución de una ecuación dif
 \begin{ejemplo} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
 \begin{equation}\label{eq:ejem_sim}y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0.
 \end{equation}
-Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SAGE. 
+Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SymPy. 
 
 Proponemos como solución
 
@@ -986,52 +1046,71 @@ Conseguimos la solución
 \boxedeq{y_2(x)=x^{-\frac12}\sum_{n=0}^{\infty}\frac{(-1)^n}{n!}x^n=\frac{e^{-x}}{\sqrt{x}}}{}
 Estas dos soluciones son linealmente independientes. Para justificar esta afirmación basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
 
-Resolvamos el ejemplo con SAGE. Desafortunadamente hasta donde sabemos SAGE no tiene implementado el anillo de series de Frobenius. Luego vamos a tener que usar otra aproximación  con el método de Frobenius. Vamos a definir series de Frobenius como expresiones de SAGE. 
+Resolvamos el ejemplo con SymPy. 
 
-\begin{sageblock}
-orden=7
-#Declaramos muchas variables en una sola linea
-ListaCoefNom='a0'
-for i in range(1,orden):
-    ListaCoefNom+=',a'+str(i)
-a=var(ListaCoefNom)
-x=var('x')
-m=var('m')
-y = x^m*sum(a[i]*x^i for i in range(orden))
-Ecua=y.diff(x,2)+(1/2+x)/x*y.diff(x,1)-(1/(2*x^2))*y
-
+\begin{lstlisting}
+""" Para evitar el problema que 1/2 queda cero se puede usar
+>>> from __future__ import division
+El problema que todos los nros quedan flotantes
+"""
+>>> orden=5
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> a=symbols(Lista)
+>>> x,m=symbols('x,m')
+>>> y=x**m*sum([a[i]*x**i for i in range(orden)])
+>>> Ecua=y.diff(x,2)+(1/(2*x)+1)*y.diff(x,1)-(1/(2*x**2))*y
 """
 La exponente más chico para el x en esta expresión es, a los sumo, m-2. Dividimos por m-2 asi todos los exponentes son enteros positivos
 """
-Ecua=Ecua/x^(m-2)
-Ecua=Ecua.coefficients(x)
-Ecuaciones=[f[0] for f in Ecua] 
-\end{sageblock}
+>>> Ecua=Ecua/x**(m-2)
+>>> Ecua=Ecua.expand()
+>>> Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+>>> for ec in Ecuaciones:
+...     ec
+... 
+a0*m**2 - 0.5*a0*m - a0/2
+a0*m + a1*m**2 + 1.5*a1*m
+a1*m + a1 + a2*m**2 + 3.5*a2*m + 2.5*a2
+a2*m + 2*a2 + a3*m**2 + 5.5*a3*m + 7.0*a3
+a3*m + 3*a3 + a4*m**2 + 7.5*a4*m + 13.5*a4
+\end{lstlisting}
 
-Con esta parte del script hemos generado la lista de las 10 primeras ecuaciones. Ellas son
-\[\sage{vector(Ecuaciones).column()}.\]
+Con esta parte del script hemos generado la lista de las 5 primeras ecuaciones.
 Resolvamos la ecuación indicial
-\begin{sageblock}
-Sol_Ecua_Ind=solve(Ecuaciones[0],m)
-\end{sageblock}
-Obtenemos
-\[\sage{Sol_Ecua_Ind}.\]
+
+\begin{lstlisting}
+>>> Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+>>> Sol_Ecua_Ind
+[-1/2, 1]
+\end{lstlisting}
+
 Sustituyamos los valores de $m$ en la lista de ecuaciones, agreguemos la ecuación $a_0=1$, resolvamos para los $a_i$ y sustituyamos la solución en $y$. Obtenemos la primer solución (truncada) 
-\begin{sageblock}
-Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]) for f in Ecuaciones[1:]]
-Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
-y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
-\end{sageblock}
-La solución es 
-\[\boxed{y_1(x)=\sage{y1.expand()}.}\]
-Para obtener la segunda solución solo hay que cambiar la última parte del script
-\begin{sageblock}
-Ecuaciones2=[f.subs(Sol_Ecua_Ind[0]) for f in Ecuaciones[1:]]
-Coef_Sol_1=solve([a[0]-1]+ Ecuaciones1[:-1],a,solution_dict=True)
-y2=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[0])
-\end{sageblock}
-La solución es 
-\[\boxed{y_2(x)=\sage{y2.expand()}.}\]
+\begin{lstlisting}
+>>> Ecuaciones1=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in Ecuaciones]
+>>> Ecuaciones1
+[0, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
+>>> Ecuaciones1[0]=a[0]-1
+>>> Ecuaciones1
+[a0 - 1, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
+>>> sol=solve(Ecuaciones1,a)
+>>> y1=y.subs(sol).subs(m,Sol_Ecua_Ind[1])
+>>> y1
+x*(16*x**4/3465 - 8*x**3/315 + 4*x**2/35 - 2*x/5 + 1)
+
+
+\end{lstlisting}
+La segunda solución se obtinene
+\begin{lstlisting}
+>>> Ecuaciones2=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in Ecuaciones]
+>>> Ecuaciones2
+[0, -a0/2 - a1/2, a1/2 + a2, 3*a2/2 + 9*a3/2, 5*a3/2 + 10*a4]
+>>> Ecuaciones2[0]=a[0]-1
+>>> sol=solve(Ecuaciones2,a)
+>>> y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
+(x**4/24 - x**3/6 + x**2/2 - x + 1)/sqrt(x)
+
+\end{lstlisting}
+
 
 
 \end{ejemplo}
