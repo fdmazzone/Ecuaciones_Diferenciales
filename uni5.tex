@@ -738,32 +738,38 @@ Podemos elegir $a_0$ y $a_1$ de manera arbitraria (esto está de acuerdo con que
 
 Un caso especial se plantea cuando  $p\in\mathbb{N}$. En esa situación vemos que infinitos de los $a_n$ resultan iguales a cero. De hecho una de las series, la de términos impares o la de términos pares acorde a que $p$ sea par o impar respectivamente,  se trunca. Supongamos que esto ocurre con la serie de términos impares, es decir $p$ es entero positivo impar. Si ahora tomamos $a_0=0$ toda la serie de términos pares se hará cero. Para $a_1$ elijo algún valor no nulo y esto me garantiza que los términos impares son no nulos hasta el término $a_{n}$, pero a partir de allí también se hacen cero. Es usual elegir $a_1$ para que $y(1)=1$. Nos queda definida así una función polinómica que se denomina \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{polinomio de Legendre} y se denota por $P_p$. Cuando $p$ es par hacemos una construcción análoga, quedando un polinomio $P_p$, con todas potencias pares, tal que $P_p(1)=1$.
 
-Todos estos cálculos los programamos en la siguiente función de SAGE. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
+Todos estos cálculos los programamos en la siguiente función de SymPy. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
 
 
 \begin{lstlisting}
 def Legendre(n):
-    if floor(n)!=n or n<=0:
-        print "n no es entero positivo"
+    from sympy import *
+    orden=n+2
+    Lista=['a%s'%i for i in range(orden)]
+    a=symbols(Lista)
+    x,p=symbols('x,p')
+    y=sum([a[i]*x**i for i in range(orden)])
+    Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+n*(n+1)*y
+    Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden-2)]       
+    s=symbols('s')
+    if n%2==0:
+        Ecuaciones+=[a[0]-s,a[1]]
     else:
-        orden=n+2
-        Lista=['a%s'%i for i in range(orden)]
-        a=symbols(Lista)
-        x,p=symbols('x,p')
-        y=sum([a[i]*x**i for i in range(orden)])
-        Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+n*(n+1)*y
-        Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden-2)]       
-        s=symbols('s')
-        if n%2==0:
-            Ecuaciones+=[a[0]-s,a[1]]
-        else:
-            Ecuaciones+=[a[0],a[1]-s]
-        Sol_a_n=solve(Ecuaciones,a)
-        y=y.subs(Sol_a_n)
-        sol=solve(y.subs(x,1)-1,s)
-        return y.subs(s,sol[0])
+        Ecuaciones+=[a[0],a[1]-s]
+    Sol_a_n=solve(Ecuaciones,a)
+    y=y.subs(Sol_a_n)
+    sol=solve(y.subs(x,1)-1,s)
+    return y.subs(s,sol[0])
 \end{lstlisting}
-      
+
+Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{legendre.py} y esta en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
+
+\begin{lstlisting}
+>>> import os
+>>> os.chdir('/home/fdmazzone/Git/Ecuaciones_Diferenciales/scripts')
+>>> from legendre import Legendre
+\end{lstlisting}
+
 
 Con la ayuda de esta función podemos generar rápidamente una tabla de polinomios de Legendre
 \begin{lstlisting}
