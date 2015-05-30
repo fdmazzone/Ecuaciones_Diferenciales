@@ -1060,7 +1060,7 @@ El problema que todos los nros quedan flotantes
 >>> y=x**m*sum([a[i]*x**i for i in range(orden)])
 >>> Ecua=y.diff(x,2)+(1/(2*x)+1)*y.diff(x,1)-(1/(2*x**2))*y
 """
-La exponente más chico para el x en esta expresión es, a los sumo, m-2. Dividimos por m-2 asi todos los exponentes son enteros positivos
+ Dividimos por m-2 asi todos los exponentes son enteros positivos
 """
 >>> Ecua=Ecua/x**(m-2)
 >>> Ecua=Ecua.expand()
@@ -1123,46 +1123,83 @@ La segunda solución se obtinene
  \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
 \end{definicion}
 
-En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SAGE.
+En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SymPy.
 
-\begin{sageblock}
-orden=10
-ListaCoefNom='a0'
-for i in range(1,orden):
-    ListaCoefNom+=',a'+str(i)
-a=var(ListaCoefNom)
-x=var('x')
-m,p=var('m,p')
-y = x^m*sum(a[i]*x^i for i in range(orden))
-Ecua=y.diff(x,2)+1/x*y.diff(x,1)+(1-p^2/x^2)*y
-Ecua=Ecua/x^(m-2)
-Ecua=Ecua.coefficients(x)
-Ecuaciones=[f[0] for f in Ecua] 
-Sol_Ecua_Ind=solve(Ecuaciones[0],m)
-\end{sageblock}
+
+
+
+
+
+\begin{lstlisting}
+""" Para evitar el problema que 1/2 queda cero se puede usar
+>>> from __future__ import division
+El problema que todos los nros quedan flotantes
+"""
+>>> orden=8
+>>> Lista=['a%s'%i for i in range(orden)]
+>>> a=symbols(Lista)
+>>> x,m,p=symbols('x,m,p')
+>>> y=x**m*sum([a[i]*x**i for i in range(orden)])
+>>> Ecua=y.diff(x,2)+1/x*y.diff(x,1)+(1-p**2/x**2)*y
+>>> Ecua=Ecua/x**(m-2)
+>>> Ecua=Ecua.expand()
+>>> Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+>>> Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+>>> Sol_Ecua_Ind
+[-p, p]
+\end{lstlisting}
 Las raíces de la ecuación indicial son
-\boxedeq{\sage{Sol_Ecua_Ind}.}{eq:sol_ec_ind}
-Vamos a trabajar con la raíz $m=p$.  Las ecuaciones para los $a_n$ (sin igualar a $0$) son las que figuran  debajo, hemos decartado las dos últimas ecuaciones dado que presentan problemas que vienen del truncamiento de la serie hasta la potencia 10.
-\begin{sageblock}
-Ecuaciones1=[f.subs(Sol_Ecua_Ind[1]).factor()\
-for f in Ecuaciones[1:-2]]
-\end{sageblock}
-\[\sage{vector(Ecuaciones1).column()}\]
-Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$. Es decir que son relaciones de dos términos. A menos que $p=-1/2$ (este caso lo estudiaremos separadamente después) la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SAGE confirma esta aseveración. Resolvamos las ecuaciones. Notar que no pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ es arbitrario. Resulta en que SAGE nos resuelve todos los coeficientes en función de $a_0$.
-\begin{sageblock}
-Coef_Sol_1=solve(Ecuaciones1,a[1:],solution_dict=True)
-\end{sageblock}
-\begin{sagesilent}
-SolucionesA=solve(Ecuaciones1,a[1:])[0]
-SolucionesB=[f.factor() for f in SolucionesA]
-for i in range(0,len(SolucionesB),2):
-    SolucionesB[i]=SolucionesB[i]==0
-\end{sagesilent}
-Obtenemos
-\[\sage{ vector( SolucionesB).column() }\]
-Por inspección de la lista vemos que
-\[a_2=-\frac{1}{4(p+1)}a_0,\,a_4=-\frac{1}{8(p+2)}a_2,\,a_6=-\frac{1}{12(p+3)}a_4,\ldots\]
-Vale la relación de recurrencia
+\boxedeq{m=p\quad\text{y}\quad m=-p}{eq:sol_ec_ind}
+Vamos a trabajar con la raíz $m=p$. 
+
+\begin{lstlisting}
+>>> Ecuaciones1=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in Ecuaciones]
+>>> for ec in Ecuaciones1:
+...     pprint(ec)
+... 
+0
+a1*(2*p + 1)
+a0 + 4*a2*p + 4*a2
+a1 + 6*a3*p + 9*a3
+a2 + 8*a4*p + 16*a4
+a3 + 10*a5*p + 25*a5
+a4 + 12*a6*p + 36*a6
+a5 + 14*a7*p + 49*a7
+\end{lstlisting}
+Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$, i.e. que son relaciones de dos términos.  Podemos hacer explícita la relación
+
+\begin{lstlisting}
+>>> for i in range(1,orden):
+...     iter=solve(Ecuaciones1[i],a[i])[0].factor()
+...     print repr(a[i])+'='+repr(iter)
+... 
+a1=0
+a2=-a0/(4*(p + 1))
+a3=-a1/(3*(2*p + 3))
+a4=-a2/(8*(p + 2))
+a5=-a3/(5*(2*p + 5))
+a6=-a4/(12*(p + 3))
+a7=-a5/(7*(2*p + 7))
+\end{lstlisting}
+
+ La ecuación $a_1(2p+1)=0$ no fue correctamente resuelta por SymPy. SymPy consigna la solución $a_1=0$, pero si  $p=-1/2$ cualquier $a_1$ es solución. Este caso lo estudiaremos separadamente después, por ahora supondremos $p\neq -1/2$. Luego la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SymPy confirma esta aseveración. Ahora resolvamos las ecuaciones, en el sentido de expresar todos los coeficientes en función de $a_0$. No pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ es arbitrario. 
+
+
+\begin{lstlisting}
+>>> sol=solve(Ecuaciones1,a[1,:])
+>>> for i in sol:
+...     print repr(i)+'='+repr(sol[i].factor())
+... 
+a1=0
+a5=0
+a7=0
+a2=-a0/(4*(p + 1))
+a6=-a0/(384*(p + 1)*(p + 2)*(p + 3))
+a3=0
+a4=a0/(32*(p + 1)*(p + 2))
+
+\end{lstlisting}
+No queda muy claro cual es la ley que siguen los números 4, 32, 384, etc. que aparecen en el denominador. De modo que nos asitiremos ``manualmente'' a partir de la relación de recurrencia que es
 \boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
 Iterando esta relación
 \[
@@ -1175,13 +1212,11 @@ Iterando esta relación
 Obtenemos la solución 
 \boxedeq{y(x)=x^p\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{eq:sol_bessel_1}
 Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
-
-En SAGE solo nos restaba hacer las sustituciones de los coeficientes para arribar a esta función.
-\begin{sageblock}
-y1=y.subs(Coef_Sol_1[0]).subs(Sol_Ecua_Ind[1])
-\end{sageblock}
-
-\[\sage{y1}.\]
+\begin{lstlisting}
+>>> y1=y.subs(sol)
+>>> pprint(y1)
+\end{lstlisting}
+y el output confirma \eqref{eq:sol_bessel_1}.
 
 \subsubsection{Función Gamma y la función de Bessel de primera especie}
 
@@ -1209,6 +1244,11 @@ y
 \[\lim_{p\to -1+}\Gamma(p)=\lim_{p\to -1+}\frac{\Gamma(p+1)}{p}=-\infty.\] 
 Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula \eqref{eq:gama_iter} y el hecho de que ya tenemos definida la función Gamma en $(-1,0)$. Continuando de esta forma, definimos $\Gamma$ para cualquier valor de $p<0$ y $p\notin \mathbb{Z}$. Si $n$ es un entero negativo ocurre que
 \[\lim_{p\to n+}\Gamma(p)=(-1)^n\infty\quad\text{y}\quad \lim_{p\to n-}\Gamma(p)=(-1)^{n-1}\infty.\] 
+
+
+
+
+
 
 \begin{sagecommandline}
  sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
