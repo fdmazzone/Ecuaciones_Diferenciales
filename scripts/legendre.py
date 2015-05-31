@@ -1,5 +1,5 @@
+from sympy import *
 def Legendre(n):
-    from sympy import *
     orden=n+2
     Lista=['a%s'%i for i in range(orden)]
     a=symbols(Lista)
