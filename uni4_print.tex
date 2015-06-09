@@ -167,6 +167,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%Listing
+\lstdefinelanguage{SymPy}[]{Python}
+{morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand,atan2,sqrt,simplify,positive,cos,sin,Function,coeff },sensitive=true}
+\lstset{
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=SymPy,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
+}
 
 
 
@@ -246,39 +264,59 @@ La ecuación general lineal  de segundo orden  \eqref{eq:2_orden_hom} no es muy 
 \boxedeq{u''+q(x)u=0.}{eq:2_orden_hom_can}
 \end{teorema}
 \begin{demo} 
-\begin{sageblock}
-x=var('x')
-y=function('y',x)
-u=function('u',x)
-v=function('v',x)
-P=function('P',x)
-Q=function('Q',x)
-y=u*v
-eq=y.diff(2)+P*y.diff()+Q*y
-eq1=eq.coefficient(u.diff())==0
-v=desolve(eq1,v)
-\end{sageblock}
-Obtenemos que $v(x)=\sage{v}$ resuelve nuestro problema.
+\begin{lstlisting}
+>>> from sympy import *
+>>> x=symbols('x')
+>>> y=Function('y')(x)
+>>> u=Function('u')(x)
+>>> v=Function('v')(x)
+>>> Q=Function('Q')(x)
+>>> Q=Function('Q')(x)
+>>> y=u*v
+>>> eq=y.diff(x,2)+P*y.diff(x)+Q*y
+>>> eq.expand().coeff(u.diff(x))
+P(x)*v(x) + 2*Derivative(v(x), x)
+
+\end{lstlisting}
+
+Para que la ecuación lineal de segundo orden resultante no tenga el término con $u'$ se debe cumplir que
+\[ P{\left (x \right )} v{\left (x \right )} + 2 \frac{d}{d x} v{\left (x \right )}=0,\]
+que es una ecuación lineal de primer orden para $v$. Resolvamos la ecuación
+
+\begin{lstlisting}
+>>> dsolve(eq.expand().coeff(u.diff(x)),v)
+v(x) == C1*exp(-Integral(P(x), x)/2)
+\end{lstlisting}
+
+Obtenemos que una solución es $v(x)=e^{-\int\frac{P}{2}dx}$.
 \end{demo}
 
 Hallemos $q$.
-\begin{sageblock}
-y=u*v
-eq=y.diff(x,2)+P*y.diff(x)+Q*y
-eq=(eq/v).simplify_full()
-\end{sageblock}
+\begin{lstlisting}
+>>> y=u*exp(-Integral(P/2,x))
+>>> eq=y.diff(x,2)+P*y.diff(x)+Q*y
+>>> eq=(eq/exp(-Integral(P/2,x))).simplify()
+>>> eq
+-P(x)**2*u(x)/4 + Q(x)*u(x) - u(x)*Derivative(P(x), x)/2 + Derivative(u(x), x, x)
+\end{lstlisting}
+
+
 Obtenemos
-\[\boxed{\sage{eq}=0}.\]
+\[\boxed{- \frac{1}{4} P^{2}{\left (x \right )} u{\left (x \right )} + Q{\left (x \right 
+)} u{\left (x \right )} - \frac{1}{2} u{\left (x \right )} \frac{d}{d x} P{\left
+ (x \right )} + \frac{d^{2}}{d x^{2}}  u{\left (x \right )}=0}.\]
 y por lo tanto
-\[\boxed{q=\sage{eq.coefficient(u)}}.\]
+\[\boxed{q=- \frac{1}{4} P^{2}{\left (x \right )} + Q{\left (x \right )} - \frac{1}{2} \frac{d}{d x} P{\left (x \right )}}.\]
  
 \begin{ejemplo} Un caso particular de importancia lo constituye la ecuación de Bessel
  \boxedeq{x²y''+xy'+(x²-a²)y=0}{bessel}.
 
-\begin{sageblock}
-a=var('a') 
-eq2=eq.subs_expr({P(x):1/x,Q(x):1-a^2/x^2,P.diff():(1/x).diff(x)}).simplify_full()
-\end{sageblock}
+\begin{lstlisting}
+>>> a=symbols('a') 
+>>> eq2=eq.subs({P:1/x,Q(x):1-a**2/x**2,P.diff():(1/x).diff(x)}).simplify()
+>>> eq2.expand()
+-a**2*u(x)/x**2 + u(x) + Derivative(u(x), x, x) + u(x)/(4*x**2)
+\end{lstlisting}
 
 Vemos que la ecuación equivale a
 \begin{equation}\label{bessel_normal}\boxed{u''+\left(1+\frac{1-4a²}{4x²}\right)u=0}.
@@ -311,7 +349,7 @@ Por un razonamiento análogo al de la demostración del Teorema \ref{sep_sturm} 
 
 \begin{corolario} Si $q\leq 0$ y $q\not\equiv 0$ en el intervalo, acotado o no, $I$ e  $y(x)$ es solución de $y''+q(x)y=0$, entonces $y$ tiene a los sumo un cero en $I$.
 \end{corolario}
-\begin{demo} Si $y(x)$ tuviese dos ceros entonces podemos usar el Teorema de Comparación de Sturm con $q_2=q$, $y_2=y$, $q_1=0$ e $y_1\equiv 1$ (notar que $y_1$ resuleve $z''+q_1(x)z=0$) y llegaríamos a que $y_1$ debería anularse en algún punto. Esta contradicción demuestra el corolario.  
+\begin{demo} Si $y(x)$ tuviese dos ceros entonces podemos usar el Teorema de Comparación de Sturm con $q_2=q$, $y_2=y$, $q_1=0$ e $y_1\equiv 1$ (notar que $y_1$ resueleve $z''+q_1(x)z=0$) y llegaríamos a que $y_1$ debería anularse en algún punto. Esta contradicción demuestra el corolario.  
 \end{demo}
 
 
@@ -361,19 +399,7 @@ Dividiendo por $e^{-\frac{3}{2}t}$ vemos que $y$ resuelve la ecuación del oscil
 \begin{equation}\label{osc_fin}
 \boxed{\frac{\epsilon}{4}y+\frac{d^2y}{dt²}=0}.
 \end{equation}
-Con SAGE es más facil hacer la sustitución
-\begin{sageblock}
-x,t,epsilon=var('x,t,epsilon')
-t=ln(x)
-y=function('y',t)
-z=y*sqrt(x)
-eq=z.diff(x,2)+(1+epsilon)/4/x^2*z==0
-eq=(eq*x^(3/2)).subs(x==e^t).simplify_full()
-s=var('s')
-eq=eq.subs_expr(ln(x)==s)
-\end{sageblock}
-Resulta
-\[\boxed{\sage{eq}}.\]
+
 
 Continuando con la demostración, observemos que como las soluciones de la ecuación del oscilador armónico \eqref{osc_fin} tienen infinitos ceros de la forma $k\pi+\alpha$, para $k\in\mathbb{Z}$ y para algún $\alpha\in\mathbb{R}$, entonces $z(x)=\sqrt{x}y(\ln(x))$ va a tener infinitos
 de la forma $e^{k\pi+\alpha}$. 
