@@ -762,7 +762,7 @@ def Legendre(n):
     return y.subs(s,sol[0])
 \end{lstlisting}
 
-Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{legendre.py} y esta en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
+Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{legendre.py} y está en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
 
 \begin{lstlisting}
 >>> import os
@@ -1247,7 +1247,7 @@ Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula 
 
 
 
-
+Lamentablemente, SymPy (al menos la versión 7.4.1) produce un error si intentamos graficar la función $\Gamma$. Aparentemente la presencia de polos es el problema. Sage parece no tener este problema. 
 
 
 \begin{sagecommandline}
@@ -1265,23 +1265,24 @@ Ahora estamos en condiciones de definir la función de Bessel de primera espacie
 \end{definicion}
 
 
-Una aproximación a esta función se programa en SAGE de manera muy sencilla
-\begin{sagecommandline}
-sage: J= lambda x,p: sum([(-1)^n/factorial(n)/gamma(p+n+1)*(x/2)^(2*n+p) for n in range(100)])
-\end{sagecommandline}
-Podemos aprovechar que hemos programado esta fórmula para graficar varias funciones de Bessel de distintos órdenes.
-\begin{sagecommandline}
-sage: p1=plot(J(x,1),(x,0,35),rgbcolor=(1,0,0))
-sage: p2=plot(J(x,2),(x,0,35),rgbcolor=(0,1,0))
-sage: p3=plot(J(x,3),(x,0,35),rgbcolor=(0,0,1))
-\end{sagecommandline}
-Estos gráficos los representamos en la figura \ref{fig:bessel}.
+Una aproximación a esta función se programa en SymPy de manera muy sencilla. Una vez definida esta función podemos aprovecharla  para graficar varias funciones de Bessel de distintos órdenes.
 
+\begin{lstlisting}
+>>> p,x=symbols('p,x')
+>>> J= sum([(-1)**n/factorial(n)/gamma(p+n+1)*(x/2)**(2*n+p) for n in range(30)])
+>>> p1=plot(J.subs(p,1),(x,0,20),line_color=(1,0,0))
+>>> p2=plot(J.subs(p,2),(x,0,20),line_color=(0,1,0))[0]
+>>> p1.append(p2)
+>>> p2=plot(J.subs(p,3),(x,0,20),line_color=(0,0,1))[0]
+>>> p1.append(p2)
+>>> p1.show()
+\end{lstlisting}
 \begin{figure}[h]
 \begin{center}
-\sageplot[scale=.4]{p1+p2+p3}
+\includegraphics[scale=.5]{imagenes/bessel.png}
 \end{center}
-\caption{Función de Bessel $J_1$}\label{fig:bessel}
+
+\caption{Funciones de Bessel $J_p$, $p=1,2,3$}\label{fig:bessel}
 
 \end{figure}
 
@@ -1290,32 +1291,42 @@ Estos gráficos los representamos en la figura \ref{fig:bessel}.
 
 
 Ahora consideremos la solución $m=-p$ de la ecuación indicial.
-\begin{sageblock}
-Ecuaciones1=[f.subs(Sol_Ecua_Ind[0]).factor()\
-for f in Ecuaciones[1:-2]]
-\end{sageblock}
- \boxedeq{\sage{vector(Ecuaciones1).column()}}{eq:rel_recu_-p_a}
-En realidad la situación es exactamente la misma que antes, sólo hay que reemplazar $p$ por $-p$. Por ejemplo, hallemos la relación de recurrencia despejando de cada ecuación el $a_i$ con el índice $i$ más grande. 
-\begin{sageblock}
-Ecuaciones2=[]
-for i in range(1,len(Ecuaciones1)):
-    Ecuaciones2+=[solve(Ecuaciones1[i],a[i+1])[0]]
- \end{sageblock}
- \boxedeq{\sage{vector(Ecuaciones2).column()}}{eq:recu_-p} 
-Precisamente el patrón que sigue esta sucesión es \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en una de las relaciones\eqref{eq:recu_-p} se anula y esto  habría impedido que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la diferencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo remarcamos porque veremos más adelante que en general es un problema que la diferencia de las raíces de la ecuación indicial sean negativas. También $p=0$ es una situación problemática, dado que en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
+\begin{lstlisting}
+>>> Ecuaciones2=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in Ecuaciones]
+>>> for i in range(1,orden):
+...     iter=solve(Ecuaciones2[i],a[i])[0].factor()
+...     print repr(a[i])+'='+repr(iter)
+... 
+a1=0
+a2=a0/(4*(p - 1))
+a3=a1/(3*(2*p - 3))
+a4=a2/(8*(p - 2))
+a5=a3/(5*(2*p - 5))
+a6=a4/(12*(p - 3))
+a7=a5/(7*(2*p - 7))
+
+\end{lstlisting}
+Estas relaciones siguen el mismo patrón que la relación de recurrencia \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en la relación
+\boxedeq{a_{n}=\frac{a_{n-2}}{n(2p-n)}}{eq:rel_recu_bess-p}
+se puede anular y esto  impediría que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la diferencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo remarcamos porque veremos más adelante que en general es un problema que la diferencia de las raíces de la ecuación indicial sean negativas. También $p=0$ es una situación problemática, dado que en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$. 
 
 Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
 \begin{definicion}\label{def:bessel_segunda} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$) como
 \[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
 \end{definicion}
-Grafiquemos algunas de estas funciones de Bessel.
-\begin{sagecommandline}
-sage: p1=plot(J(x,-1/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(1,0,0))
-sage: p2=plot(J(x,-2/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(0,1,0))
-sage: p3=plot(J(x,-5/3),(x,0,35),ymin=-2,ymax=2,rgbcolor=(0,0,1))
-\end{sagecommandline}
+Grafiquemos algunas de estas funciones de Bessel, la función de Bessel $J$ que habíamos introducido en SymPy arriba, sigue siendo útil.
+\begin{lstlisting}
+>>> p1=plot(J.subs(p,-1.0/3),(x,0,20),line_color=(1,0,0),ylim=(-2,2))
+>>> p2=plot(J.subs(p,-2.0/3),(x,0,20),line_color=(0,1,0),ylim=(-2,2))
+>>> p3=plot(J.subs(p,-5.0/3),(x,0,20),line_color=(0,0,1),ylim=(-2,2))
+>>> p1.append(p3[0])
+>>> p1.append(p3[0])
+\end{lstlisting}
+
 \begin{figure}[h]
-\sageplot[scale=.5]{p1+p2+p3}
+\begin{center}
+\includegraphics[scale=.5]{imagenes/bessel2.png}
+\end{center}
 \caption{Funciones de Bessel $J_{-1/3}$, $J_{-2/3}$ y $J_{-5/3}$.} 
 \end{figure}
 Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
