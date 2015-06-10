@@ -400,6 +400,30 @@ Dividiendo por $e^{-\frac{3}{2}t}$ vemos que $y$ resuelve la ecuación del oscil
 \boxed{\frac{\epsilon}{4}y+\frac{d^2y}{dt²}=0}.
 \end{equation}
 
+Confirmemos los cálculos con SymPy
+\begin{lstlisting}
+>>> from sympy import *
+>>> t=symbols('t') 
+>>> y=Function('y')(t)
+>>> x=symbols('x') 
+>>> z=y.subs(t,ln(x))*sqrt(x)
+>>> epsilon=symbols('epsilon')
+>>> eq=z.diff(x,2)+(1+epsilon)/4/x**2*z
+\end{lstlisting}
+
+Obtenemos
+
+\[
+\frac{1}{x^{\frac{3}{2}}} \left(\frac{\epsilon}{4} + \frac{1}{4}\right) y{\left (\log{\left (x \right )} \right )} + \frac{1}{4 x^{\frac{3}{2}}} \left(- y{\left (\log{\left (x \right )} \right )} + 4 \left. \frac{d^{2}}{d \xi_{1}^{2}}  y{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\log{\left (x \right )} }}\right)
+\]
+
+\begin{lstlisting}
+>>> eq1=(eq*x**(3.0/2)).subs(ln(x),t).simplify() 
+>>> eq1
+\end{lstlisting}
+
+\[\frac{\epsilon}{4} y{\left (t \right )} + \left. \frac{d^{2}}{d \xi_{1}^{2}}  y{\left (
+\xi_{1} \right )} \right|_{\substack{ \xi_{1}=t }}\]
 
 Continuando con la demostración, observemos que como las soluciones de la ecuación del oscilador armónico \eqref{osc_fin} tienen infinitos ceros de la forma $k\pi+\alpha$, para $k\in\mathbb{Z}$ y para algún $\alpha\in\mathbb{R}$, entonces $z(x)=\sqrt{x}y(\ln(x))$ va a tener infinitos
 de la forma $e^{k\pi+\alpha}$. 
