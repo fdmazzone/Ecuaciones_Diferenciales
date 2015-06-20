@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{tabularx}
+\usepackage{natbib}
+\usepackage{url}
+
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\C}[1]{\overline{#1}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand\eme {\mbox{\tiny\sc M}}
+\newcommand\bfm {\mbox{\tiny\sc BFM}}
+\newcommand\btuk {\mbox{\tiny\sc BT}}
+\newcommand\rice {\mbox{\tiny\sc R}}
+\newcommand\pc {\mbox{\tiny\sc PC}}
+\newcommand\gasser {\mbox{\tiny\sc G}}
+\newcommand\hall {\mbox{\tiny\sc H}}
+\newcommand\h {\widehat{h}_n}
+\newcommand\ta {\widehat{\tau}_n}
+\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+\newcommand{\seno}{\hbox{sen}}
+
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1cm}
+%
+\setlength{\extrarowheight}{5mm}
+%
+
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Primer Cuatrimestre de 2015\par
+        Ecuaciones Diferenciales (1913) \par
+        Práctica 1: Generalidades.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+\setlength{\unitlength}{1cm}
+%
+\setlength{\extrarowheight}{5mm}
+
+\begin{ejercicio} \cite[Pag. 16-17, Ejercicios 1,2,5]{simmons_esp}. Graficar los resultados con \texttt{SymPy}. 
+\end{ejercicio}
+
+\begin{ejercicio} Se denomina isótopos a los átomos de un mismo elemento cuyos núcleos tienen distintos número de neutrones. Alguno materiales tienen isótopos que son inestables, esto implica que cada cierta unidad de tiempo cierta cantidad de ellos se convierten en otros isótopos, del mismo o de diferente elemento químico.  Esto ocurre con el Uranio, y en general con los elementos radioactivos. Llamamos a este proceso \emph{decaimiento radioactivo}. Si $N(t)$ es la cantidad de isótopos inestables presentes en una muestra, la ley que sigue el decaimiento radioactivo es
+
+ \begin{equation}\label{radio}\frac{dN}{dt}=-kN(t).\end{equation}
+ La constante $k$ se estima experimentalmente. El carbono tiene un isótopo inestable, llamado Carbono 14 ($C_{14}$). Este es usado para datar muestras arqueológicas. La cantidad de $C_{14}$ en un ser vivo se mantiene constante en el tiempo y en la especie. Esto es así, pues los seres vivos extraen el $C_{14}$ de la atmósfera donde este isótopo es creado por el bombardeo por rayos cósmicos sobre átomos de nitrogeno ordinarios. De esta manera la cantidad de $C_{14}$ se mantiene constante en la atmósfera. Una vez muerto la cantidad de $C_{14}$ decae. La constante de deaimiento del $C_{14}$ es $k=0.0001216$ cuando el tiempo se mide en años.
+
+ Supongamos que cierto espécimen fósil tiene el 55 \% de isótopos $C_{14}$ respecto a un ser vivo en la actualidad y de la misma especie. ¿Cuál es la edad del fósil?.
+
+ \end{ejercicio}
+
+\begin{ejercicio} En muchas ocaciones, en lugar de especificar la constante $k$ en la ecuación \eqref{radio} se especifica la \emph{vida media} de un isótopo. La vida media  $\tau$ es el tiempo necesario para que la cantidad de isótopo se reduzca a la mitad. 
+
+\begin{enumerate}
+	\item Hallar una relación entre $k$ y $\tau$.
+	\item Acorde a una teoría cosmológica hubo igual cantidad de dos isótopos de uranio ($U_{235}$ y $U_{238}$) en el comienzo del universo. Usando que las vidas medias de estos isótopos son $4.51\times 10^9$, para $U_{235}$, y $7.10\times 10^8$, para  $U_{238}$; hallar la edad del universo.
+\end{enumerate}
+
+\end{ejercicio} 
+
+
+\begin{ejercicio} En la actualidad hay aproximadamente 3300 ``familias de lenguajes'' en toda la humanidad. Se cree que todos estos lenguajes derivan de uno sólo. Suponer que cada familia de lenguajes deriva en 1.5 nuevas familias cada 6000 años. ¿Cuándo el hombre aprendió a hablar? 
+
+\end{ejercicio}
+
+
+\begin{ejercicio} Hace miles de años los ancestros de los pueblos originarios de América cruzaron el Estrecho de Bering desde Asia.  Desde entonces estos pueblos se desperdigaron por toda América y su lenguaje original se dividió en muchas ``familias de lenguajes'' diferentes. Si, estimativamente, hay en la actualidad 150 familias de lenguajes americanos y si asumimos la misma ley de evolución que en el problema anterior ¿Cuándo llegaron los primeros habitantes a América? 
+
+\end{ejercicio}
+ 
+ 
+ 
+ 
+\begin{ejercicio} Considerar dos tanques, dispuestos en ``cascada'' como en la figura \ref{fig:UnaCascadaDedosTanques}:
+\begin{figure}[h]
+\begin{center}
+	\includegraphics{tanques_2.jpg}
+	\end{center}
+	\caption{Una cascada de dos tanques}
+	\label{fig:UnaCascadaDedosTanques}
+\end{figure}
+Los tanques contienen $V_1=100l$ y $V_2=200l$ de salmuera e inicialmente hay 25kg de sal en cada tanque. Los flujos en cada parte de la cascada son de 5l/min y al primer tanque ingresa agua pura. Hallar la cantidad $x(t)$ de sal en el primer tanque en el momento $t$. Si $y(t)$ es la cantidad de sal en el segundo tanque, demostrar que
+\[
+	\frac{dy}{dt}=\frac{5x}{100}-\frac{5y}{200}
+\]
+Usar el valor encontrado para $x(t)$  para hallar $y(t)$. Comparar la solución obtenida con la que encuentra \texttt{SymPy}.
+\end{ejercicio}
+
+\begin{ejercicio} Supongamos ahora que tenemos $n$ tanques, como en la figura \ref{fig:UnaCascadaDenTanques}.
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=.6]{tanques_n.jpg}
+	\end{center}
+	\caption{Una cascada de $n$-tanques}
+	\label{fig:UnaCascadaDenTanques}
+\end{figure}
+El tanque 0 contiene, en $t=0$, 1l de etano mezclado con 1l de agua. Los restantes contienen 2l de agua pura. Al tanque 0 ingresa agua pura con una rapidéz de 1l/min, y de cada tanque sale agua que ingresa al de abajo a la misma rapidéz. Sea $x_n(t)$ la cantidad de etano en el tanque $n$. Demostrar  por inducción que 
+ 
+ \[x_n(t)=\frac{t^ne^{-t/2}}{n!2^n}.\]
+ 
+ \end{ejercicio}
+ 
+ \begin{ejercicio} \cite[Pag. 34-34, Ejercicios 1,3,4]{simmons_esp}.
+\end{ejercicio}
+ 
+
+
+
+
+ 
+\bibliographystyle{plain}
+\bibliography{biblio}
+
+
+\end{document}
