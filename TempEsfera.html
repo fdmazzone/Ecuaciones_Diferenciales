@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TempEsfera</title>
+<style type="text/css">
+/* <![CDATA[ */
+span.S0, a.S0 { font-family:sans-serif; font-size:11pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S1, a.S1 { font-family:sans-serif; font-size:20pt; font-style:normal; font-weight:normal; color:#99cc00; }
+span.S2, a.S2 { font-family:sans-serif; font-size:14pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S3, a.S3 { font-family:monospace; font-size:11pt; font-style:normal; font-weight:normal; color:#ff0000; }
+span.S4, a.S4 { font-family:sans-serif; font-size:11pt; font-style:normal; font-weight:normal; text-decoration:underline; color:#0000ff; }
+p.P0 { margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+p.P1 { text-align:center; margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+p.P2 { text-align:left; white-space:pre; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; }
+div.C3 { padding-top:0pt; padding-bottom:0pt; padding-left:5.7pt; border-left-width:1pt; border-left-style: solid; border-color: #808080; border-right-width: 0; border-right-style: none; border-top-width: 0; border-top-style: none; border-bottom-width: 0; border-bottom-style: none; }
+div.Csep4in { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-top:2.85pt; margin-bottom: 0; }
+div.Csep4out { padding: 0; height: 0; width: 3pt; border-bottom: 1px solid #808080; margin-top: 0;  margin-bottom: 0; }
+div.Csep4end { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-bottom:2.85pt; margin-top: 0; }
+body { background-color:white; }
+@page { margin:56pt; size:612pt 792pt; background-color:white; }
+/* ]]> */
+</style>
+</head>
+<body>
+<p class="P0"><span class="S1">Temperatura estacionaria en una esfera</span></p>
+<p class="P0">&nbsp;</p>
+<p class="P0"><span class="S2">En esta notebook desarrollamos el tema del título tal como lo expone Simmons. </span></p>
+<p class="P1">&nbsp;</p>
+<p class="P0">&nbsp;</p>
+<p class="P0"><span class="S2">Vamos a desarrollar esta sustitución que sugiere Simmons. Primero pongamos la propuesta de separación de variables</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">T:=u(`&amp;rho;`)*v(Simplify(`&amp;psi;`))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="u(`&amp;rho;`)*v(`&amp;psi;`)" style="vertical-align:-38%" width="76" height="39" src="TempEsfera_images/math0.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Traigamos&nbsp; el laplaciano en esféricas de la </span><a href="C:/Users/fer/Google Drive/Ecuaciones diferenciales/Mupad/coor_esfe.html#subs(%, [sin(2*`&amp;psi;`)=2*sin(`&amp;psi;`)*cos(`&amp;psi;`)]) ￼" class="S4">notebook</a><span class="S0"> que hicimos a tal efecto</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">(2/`&amp;rho;`)*u[`&amp;rho;`] + u[`&amp;psi;&amp;psi;`]/`&amp;rho;`^2 + u[`&amp;rho;`, `&amp;rho;`] + u[`&amp;theta;`, `&amp;theta;`]/(`&amp;rho;`^2*sin(`&amp;psi;`)^2) + (cos(`&amp;psi;`)*u[`&amp;psi;`])/(`&amp;rho;`^2*sin(`&amp;psi;`))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="u[`&amp;psi;&amp;psi;`]/`&amp;rho;`^2 + (2*u[`&amp;rho;`])/`&amp;rho;` + u[`&amp;rho;`, `&amp;rho;`] + u[`&amp;theta;`, `&amp;theta;`]/(`&amp;rho;`^2*sin(`&amp;psi;`)^2) + (cos(`&amp;psi;`)*u[`&amp;psi;`])/(`&amp;rho;`^2*sin(`&amp;psi;`))" style="vertical-align:-44%" width="289" height="68" src="TempEsfera_images/math1.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Como Simmons supone que la temperatura en la superficie solo depende de la latitud psi, es intuitivamente válido que en el interior tendrál la misma simetría. Luego podemos eliminar los términos en que aparece la derivada de theta. Además, como el estado es estacionario debemos considerar la ecuación igualada a 0</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">u[`&amp;psi;&amp;psi;`]/`&amp;rho;`^2 + (2*u[`&amp;rho;`])/`&amp;rho;` + u[`&amp;rho;`, `&amp;rho;`] +&nbsp; (cos(`&amp;psi;`)*u[`&amp;psi;`])/(`&amp;rho;`^2*sin(`&amp;psi;`))=0</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="u[`&amp;psi;&amp;psi;`]/`&amp;rho;`^2 + (2*u[`&amp;rho;`])/`&amp;rho;` + u[`&amp;rho;`, `&amp;rho;`] + (cos(`&amp;psi;`)*u[`&amp;psi;`])/(`&amp;rho;`^2*sin(`&amp;psi;`)) = 0" style="vertical-align:-44%" width="231" height="68" src="TempEsfera_images/math2.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Conviene multiplicar por rho^2</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">expand(%*`&amp;rho;`^2)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^2*u[`&amp;rho;`, `&amp;rho;`] + 2*`&amp;rho;`*u[`&amp;rho;`] + u[`&amp;psi;&amp;psi;`] + (cos(`&amp;psi;`)*u[`&amp;psi;`])/sin(`&amp;psi;`) = 0" style="vertical-align:-44%" width="255" height="68" src="TempEsfera_images/math3.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0">&nbsp;</p>
+<p class="P0"><span class="S0">Tenemos que aplicarle este operador diferencia a nuestra función T</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">`&amp;rho;`^2*diff(diff(T,`&amp;rho;`),`&amp;rho;`)+2*`&amp;rho;`*diff(T,`&amp;rho;`)+diff(diff(T, `&amp;psi;`), `&amp;psi;`)+diff(T, `&amp;psi;`)*cos(`&amp;psi;`)/sin(`&amp;psi;`)=0</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="u(`&amp;rho;`)*diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`) + 2*`&amp;rho;`*v(`&amp;psi;`)*diff(u(`&amp;rho;`), `&amp;rho;`) + `&amp;rho;`^2*v(`&amp;psi;`)*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`) + (cos(`&amp;psi;`)*u(`&amp;rho;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/sin(`&amp;psi;`) = 0" style="vertical-align:-36%" width="540" height="83" src="TempEsfera_images/math4.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">En este caso, como en otros similares, se trata de separar esta suma como suma de términos que dependen de sólo una de las variables. Esto se logra dividiendo por T</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">expand(%/T)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`)/v(`&amp;psi;`) + (`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`))/u(`&amp;rho;`) + (2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`))/u(`&amp;rho;`) + (cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/(sin(`&amp;psi;`)*v(`&amp;psi;`)) = 0" style="vertical-align:-34%" width="404" height="88" src="TempEsfera_images/math5.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Los términos primero y cuarto varían respecto a una variable que es independiente respecto a la sola variable de la cual dependen el segundo y tercer miembro. De modo que los términos primero y cuarto deben sumar una&nbsp; constante, llamemos esta constante lambda, y el tercero más el segundo debe ser -lambda. Tenemos así dos ecuaciones</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ1:=(`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`))/u(`&amp;rho;`) + (2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`))/u(`&amp;rho;`)&nbsp; = `&amp;lambda;`</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`))/u(`&amp;rho;`) + (2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`))/u(`&amp;rho;`) = `&amp;lambda;`" style="vertical-align:-34%" width="213" height="88" src="TempEsfera_images/math6.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ2:= diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`)/v(`&amp;psi;`)+ (cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/(sin(`&amp;psi;`)*v(`&amp;psi;`))&nbsp; = -`&amp;lambda;`</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`)/v(`&amp;psi;`) + (cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/(sin(`&amp;psi;`)*v(`&amp;psi;`)) = -`&amp;lambda;`" style="vertical-align:-34%" width="229" height="88" src="TempEsfera_images/math7.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Acomodemos las ecuaciones un poco</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">expand(EQ1*u(`&amp;rho;`))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`) + 2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`) = `&amp;lambda;`*u(`&amp;rho;`)" style="vertical-align:-48%" width="248" height="63" src="TempEsfera_images/math8.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ1:=`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`) + 2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`) - `&amp;lambda;`*u(`&amp;rho;`)=0</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^2*diff(u(`&amp;rho;`), `&amp;rho;`, `&amp;rho;`) - `&amp;lambda;`*u(`&amp;rho;`) + 2*`&amp;rho;`*diff(u(`&amp;rho;`), `&amp;rho;`) = 0" style="vertical-align:-48%" width="270" height="63" src="TempEsfera_images/math9.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">expand(EQ2*v(`&amp;psi;`))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/sin(`&amp;psi;`) + diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`) = -`&amp;lambda;`*v(`&amp;psi;`)" style="vertical-align:-36%" width="264" height="83" src="TempEsfera_images/math10.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ2:=(cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/sin(`&amp;psi;`) + diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`) +`&amp;lambda;`*v(`&amp;psi;`)=0</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;lambda;`*v(`&amp;psi;`) + (cos(`&amp;psi;`)*diff(v(`&amp;psi;`), `&amp;psi;`))/sin(`&amp;psi;`) + diff(v(`&amp;psi;`), `&amp;psi;`, `&amp;psi;`) = 0" style="vertical-align:-36%" width="273" height="83" src="TempEsfera_images/math11.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">La ecuación EQ1 es una ecuación de Euler . Ya sabemos que la solución a la ecuación de Euler son potencias. Averiguemos cual</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">u(`&amp;rho;`):=`&amp;rho;`^r</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^r" style="vertical-align:-35%" width="27" height="31" src="TempEsfera_images/math12.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ1</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="2*`&amp;rho;`*`&amp;rho;`^(r - 1)*r - `&amp;lambda;`*`&amp;rho;`^r + `&amp;rho;`^2*`&amp;rho;`^(r - 2)*r*(r - 1) = 0" style="vertical-align:-38%" width="256" height="39" src="TempEsfera_images/math13.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(`&amp;rho;`&gt;0);Expos:=solve(EQ1,r)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="{- (4*`&amp;lambda;` + 1)^(1/2)/2 - 1/2, (4*`&amp;lambda;` + 1)^(1/2)/2 - 1/2}" style="vertical-align:-37%" width="221" height="51" src="TempEsfera_images/math14.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">De modo que la solución general sería</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">u(`&amp;rho;`):=c1*`&amp;rho;`^(op(Expos,1))+c2*`&amp;rho;`^(op(Expos,2)) </span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^((4*`&amp;lambda;` + 1)^(1/2)/2 - 1/2)*c1 + c2/`&amp;rho;`^((4*`&amp;lambda;` + 1)^(1/2)/2 + 1/2)" style="vertical-align:-51%" width="198" height="79" src="TempEsfera_images/math15.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Estamos buscando una solución con sentido físico, de modo que una solución que tiende a infinito en 0 no nos sirve, pues la temperatura no satisfacería esto. Esto nos dice que debemos hacer c(2)=0 </span></p>
+<p class="P0">&nbsp;</p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">u(`&amp;rho;`):=c1*`&amp;rho;`^(op(Expos,1))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="`&amp;rho;`^((4*`&amp;lambda;` + 1)^(1/2)/2 - 1/2)*c1" style="vertical-align:-22%" width="105" height="50" src="TempEsfera_images/math16.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0">&nbsp;</p>
+<p class="P0"><span class="S0">Además el otro exponente debería ser positivo, ¿Cuando ocurre?</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(`&amp;lambda;` in R_);solve((4*`&amp;lambda;` + 1)^(1/2)/2 - 1/2&gt;0,`&amp;lambda;`)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="Dom::Interval(0, infinity)" style="vertical-align:-38%" width="52" height="39" src="TempEsfera_images/math17.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Asumamos lambda allí y expresemos lambda por medio del exponente</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(`&amp;lambda;` in %)</span></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(r&gt;0);solve(r=op(Expos,1),`&amp;lambda;`)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="{r^2 + r}" style="vertical-align:-38%" width="63" height="39" src="TempEsfera_images/math18.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ3:=subs(EQ2,`&amp;lambda;`=factor(op(%,1)))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(D@@2)(v)(cos(`&amp;psi;`))*sin(`&amp;psi;`)^2 - 2*cos(`&amp;psi;`)*D(v)(cos(`&amp;psi;`)) + r*(r + 1)*v(cos(`&amp;psi;`)) = 0" style="vertical-align:-41%" width="436" height="51" src="TempEsfera_images/math19.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P0"><span class="S0">Ahora un poco de magia, queremos hacer el cambio de variable independiente x=cos(psi) o phi=arccos(psi)</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">v(`&amp;psi;`):=v(cos(`&amp;psi;`))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="v(cos(`&amp;psi;`))" style="vertical-align:-41%" width="81" height="51" src="TempEsfera_images/math20.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ3</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(D@@2)(v)(cos(`&amp;psi;`))*sin(`&amp;psi;`)^2 - 2*cos(`&amp;psi;`)*D(v)(cos(`&amp;psi;`)) + r*(r + 1)*v(cos(`&amp;psi;`)) = 0" style="vertical-align:-41%" width="436" height="51" src="TempEsfera_images/math21.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ4:=subs(%,cos(`&amp;psi;`)=x)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(D@@2)(v)(x)*sin(`&amp;psi;`)^2 - 2*x*D(v)(x) + r*(r + 1)*v(x) = 0" style="vertical-align:-38%" width="278" height="39" src="TempEsfera_images/math22.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(abs(x)&lt;1)</span></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">subs(EQ4,sin(`&amp;psi;`) =sqrt(1-x^2))</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(1 - x^2)*(D@@2)(v)(x) - 2*x*D(v)(x) + r*(r + 1)*v(x) = 0" style="vertical-align:-38%" width="281" height="39" src="TempEsfera_images/math23.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P2"><span class="S0">Que es la ecuación de Legendre, si queremos que nuestra solución se comporte bien en x=-1 y x=1 (psi=-pi/2 , psi=pi/2 -los polos) rdebe ser un entero positivo, </span></p>
+<p class="P2"><span class="S0">en cuyo caso hay una solución que es un polinomio (Legendre)</span></p>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">EQ5:=subs(%,r=n)</span></p>
+</div>
+<div class="Csep4out"></div>
+<div class="C3">
+<p class="P2"><img alt="(1 - x^2)*(D@@2)(v)(x) - 2*x*D(v)(x) + n*(n + 1)*v(x) = 0" style="vertical-align:-38%" width="285" height="39" src="TempEsfera_images/math24.png"></img></p>
+</div>
+<div class="Csep4end"></div>
+<div class="Csep4in"></div>
+<div class="C3">
+<p class="P2"><span class="S3">assume(n in N_)</span></p>
+</div>
+<div class="Csep4end"></div>
+<p class="P2"><span class="S0">Las soluciones son c1*u^n*Pn, con Pn polinomio de Legendre. Leer las conclusiones desde &quot;el Simmons&quot;</span></p>
+<p class="P0">&nbsp;</p>
+</body>
+</html>

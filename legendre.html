@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>legendre</title>
+<style type="text/css">
+/* <![CDATA[ */
+span.S0, a.S0 { font-family:sans-serif; font-size:11pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S1, a.S1 { font-family:sans-serif; font-size:20pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S2, a.S2 { font-family:sans-serif; font-size:16pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S3, a.S3 { font-family:sans-serif; font-size:16pt; font-style:italic; font-weight:normal; color:#000000; }
+span.S4, a.S4 { font-family:monospace; font-size:11pt; font-style:normal; font-weight:normal; color:#ff0000; }
+p.P0 { text-align:left; white-space:pre; margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+div.C1 { padding-top:0pt; padding-bottom:0pt; padding-left:5.7pt; border-left-width:1pt; border-left-style: solid; border-color: #808080; border-right-width: 0; border-right-style: none; border-top-width: 0; border-top-style: none; border-bottom-width: 0; border-bottom-style: none; }
+div.Csep2in { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-top:2.85pt; margin-bottom: 0; }
+div.Csep2out { padding: 0; height: 0; width: 3pt; border-bottom: 1px solid #808080; margin-top: 0;  margin-bottom: 0; }
+div.Csep2end { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-bottom:2.85pt; margin-top: 0; }
+p.P3 { margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+body { background-color:white; }
+@page { margin:56pt; size:612pt 792pt; background-color:white; }
+/* ]]> */
+</style>
+</head>
+<body>
+<p class="P0"><span class="S1">Generador de Polinomios de Legendre</span></p>
+<p class="P0"><span class="S2">Este pequeño programa calcula los polinomios de Legendre por el método de Frobenius.</span></p>
+<p class="P0"><span class="S2">Debe elegir la variable </span><span class="S3">grado, </span><span class="S2">que debe ser el punto de truncamiento de la Serie de Taylor y </span></p>
+<p class="P0"><span class="S3">GradoMax</span><span class="S2"> el orden de la ecuación&nbsp; de Legendre,para un buen resultado&nbsp; </span><span class="S3">GradoMax+2&lt;=grado</span></p>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">grado:=20:GradoMax:=18:</span></p>
+</div>
+<div class="Csep2end"></div>
+<p class="P0">&nbsp;</p>
+<p class="P0">&nbsp;</p>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">assume(n in Z_)</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">assumeAlso(n&gt;0)</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">a:=array(0..grado):</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">eqcoef:=array(0..grado):</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">Legendre:=array(1..GradoMax):</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">Incog:=[a[i] $ i = 0..grado];</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="[a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15], a[16], a[17], a[18], a[19], a[20]]" style="vertical-align:-38%" width="544" height="39" src="legendre_images/math0.png"></img></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">y:=sum(a[n]*x^n,n=0..grado):</span></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">for GradoPol from 1 to GradoMax do<br />&nbsp;&nbsp;&nbsp; eq:=diff((1-x^2)*diff(y,x),x)+GradoPol*(GradoPol+1)*y:<br />&nbsp;&nbsp;&nbsp; if mods(GradoPol,2)=0 then<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eqcoef[0]:=a[1]=0<br />&nbsp;&nbsp;&nbsp; else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eqcoef[0]:=a[0]=0<br />&nbsp;&nbsp;&nbsp; end_if:<br />&nbsp;&nbsp;&nbsp; eqcoef[1]:=a[GradoPol]=(2*GradoPol)!/(2^GradoPol*(GradoPol!)^2):<br />&nbsp;&nbsp;&nbsp; for i from 2 to grado do<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eqcoef[i]:=coeff(eq,x,i-2)=0:<br />&nbsp;&nbsp;&nbsp; end_for:<br />&nbsp;&nbsp;&nbsp; Ecuaciones:=coerce(eqcoef,DOM_LIST):<br />&nbsp;&nbsp;&nbsp; Var:=solve(Ecuaciones,Incog):<br />&nbsp;&nbsp;&nbsp; Legendre[GradoPol]:=subs(y,op(Var,1)):<br />&nbsp;&nbsp; <br />end_for</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="(2268783825*x^18)/65536 - (9917826435*x^16)/65536 + (4508102925*x^14)/16384 - (4411154475*x^12)/16384 + (5019589575*x^10)/32768 - (1673196525*x^8)/32768 + (156165009*x^6)/16384 - (14549535*x^4)/16384 + (2078505*x^2)/65536 - 12155/65536" style="vertical-align:-34%" width="993" height="44" src="legendre_images/math1.png"></img></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">Legendre</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="array(1..18, (1) = x, (2) = (3*x^2)/2 - 1/2, (3) = (5*x^3)/2 - (3*x)/2, (4) = (35*x^4)/8 - (15*x^2)/4 + 3/8, (5) = (63*x^5)/8 - (35*x^3)/4 + (15*x)/8, (6) = (231*x^6)/16 - (315*x^4)/16 + (105*x^2)/16 - 5/16, (7) = (429*x^7)/16 - (693*x^5)/16 + (315*x^3)/16 - (35*x)/16, (8) = (6435*x^8)/128 - (3003*x^6)/32 + (3465*x^4)/64 - (315*x^2)/32 + 35/128, (9) = (12155*x^9)/128 - (6435*x^7)/32 + (9009*x^5)/64 - (1155*x^3)/32 + (315*x)/128, (10) = (46189*x^10)/256 - (109395*x^8)/256 + (45045*x^6)/128 - (15015*x^4)/128 + (3465*x^2)/256 - 63/256, (11) = (88179*x^11)/256 - (230945*x^9)/256 + (109395*x^7)/128 - (45045*x^5)/128 + (15015*x^3)/256 - (693*x)/256, (12) = (676039*x^12)/1024 - (969969*x^10)/512 + (2078505*x^8)/1024 - (255255*x^6)/256 + (225225*x^4)/1024 - (9009*x^2)/512 + 231/1024, (13) = (1300075*x^13)/1024 - (2028117*x^11)/512 + (4849845*x^9)/1024 - (692835*x^7)/256 + (765765*x^5)/1024 - (45045*x^3)/512 + (3003*x)/1024, (14) = (5014575*x^14)/2048 - (16900975*x^12)/2048 + (22309287*x^10)/2048 - (14549535*x^8)/2048 + (4849845*x^6)/2048 - (765765*x^4)/2048 + (45045*x^2)/2048 - 429/2048, (15) = (9694845*x^15)/2048 - (35102025*x^13)/2048 + (50702925*x^11)/2048 - (37182145*x^9)/2048 + (14549535*x^7)/2048 - (2909907*x^5)/2048 + (255255*x^3)/2048 - (6435*x)/2048, (16) = (300540195*x^16)/32768 - (145422675*x^14)/4096 + (456326325*x^12)/8192 - (185910725*x^10)/4096 + (334639305*x^8)/16384 - (20369349*x^6)/4096 + (4849845*x^4)/8192 - (109395*x^2)/4096 + 6435/32768, (17) = (583401555*x^17)/32768 - (300540195*x^15)/4096 + (1017958725*x^13)/8192 - (456326325*x^11)/4096 + (929553625*x^9)/16384 - (66927861*x^7)/4096 + (20369349*x^5)/8192 - (692835*x^3)/4096 + (109395*x)/32768, (18) = (2268783825*x^18)/65536 - (9917826435*x^16)/65536 + (4508102925*x^14)/16384 - (4411154475*x^12)/16384 + (5019589575*x^10)/32768 - (1673196525*x^8)/32768 + (156165009*x^6)/16384 - (14549535*x^4)/16384 + (2078505*x^2)/65536 - 12155/65536)" style="vertical-align:-41%" width="6462" height="51" src="legendre_images/math2.png"></img></p>
+</div>
+<div class="Csep2end"></div>
+<p class="P0">&nbsp;</p>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">plot(Legendre[k] $ k=1..GradoMax,x=-1..1)</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="MuPAD graphics" src="legendre_images/plt8.png" width="454pt" height="302pt"></img></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">eqcoef</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="array(0..20, (0) = a[1] = 0, (1) = a[18] = 2268783825/65536, (2) = 342*a[0] + 2*a[2] = 0, (3) = 340*a[1] + 6*a[3] = 0, (4) = 336*a[2] + 12*a[4] = 0, (5) = 330*a[3] + 20*a[5] = 0, (6) = 322*a[4] + 30*a[6] = 0, (7) = 312*a[5] + 42*a[7] = 0, (8) = 300*a[6] + 56*a[8] = 0, (9) = 286*a[7] + 72*a[9] = 0, (10) = 270*a[8] + 90*a[10] = 0, (11) = 252*a[9] + 110*a[11] = 0, (12) = 232*a[10] + 132*a[12] = 0, (13) = 210*a[11] + 156*a[13] = 0, (14) = 186*a[12] + 182*a[14] = 0, (15) = 160*a[13] + 210*a[15] = 0, (16) = 132*a[14] + 240*a[16] = 0, (17) = 102*a[15] + 272*a[17] = 0, (18) = 70*a[16] + 306*a[18] = 0, (19) = 36*a[17] + 342*a[19] = 0, (20) = 380*a[20] = 0)" style="vertical-align:-43%" width="2509" height="51" src="legendre_images/math3.png"></img></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0"><span class="S4">int(Legendre[1]*Legendre[1]*sqrt(1-x^2),x=-1..1)</span></p>
+</div>
+<div class="Csep2out"></div>
+<div class="C1">
+<p class="P0"><img alt="PI/8" style="vertical-align:-43%" width="27" height="35" src="legendre_images/math4.png"></img></p>
+</div>
+<div class="Csep2end"></div>
+<div class="Csep2in"></div>
+<div class="C1">
+<p class="P0">&nbsp;</p>
+</div>
+<div class="Csep2end"></div>
+<p class="P3">&nbsp;</p>
+</body>
+</html>

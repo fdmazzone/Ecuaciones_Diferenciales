@@ -1,0 +1,1544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BesselMembrana</title>
+    <style type="text/css">
+/* <![CDATA[ */
+span.S0, a.S0 { font-family:sans-serif; font-size:11pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S1, a.S1 { font-family:sans-serif; font-size:28pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S2, a.S2 { font-family:MS Shell Dlg 2; font-size:16pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S3, a.S3 { font-family:sans-serif; font-size:10pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S4, a.S4 { font-family:sans-serif; font-size:20pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S5, a.S5 { font-family:sans-serif; font-size:16pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S6, a.S6 { font-family:monospace; font-size:11pt; font-style:normal; font-weight:normal; color:#ff0000; }
+span.S7, a.S7 { font-family:sans-serif; font-size:16pt; font-style:normal; font-weight:normal; text-decoration:underline; color:#0000ff; }
+span.S8, a.S8 { font-family:sans-serif; font-size:16pt; font-style:italic; font-weight:normal; color:#000000; }
+span.S9, a.S9 { font-family:Ms Shell Dlg 2; font-size:16pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S10, a.S10 { font-family:MS Shell Dlg 2; font-size:20pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S11, a.S11 { font-family:MS Shell Dlg 2; font-size:28pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S12, a.S12 { font-family:MS Shell Dlg 2; font-size:16pt; font-style:italic; font-weight:normal; color:#000000; }
+span.S13, a.S13 { font-family:MS Shell Dlg 2; font-size:16pt; font-style:normal; font-weight:normal; text-decoration:underline; color:#0000ff; }
+span.S14, a.S14 { font-family:serif; font-size:11pt; font-style:normal; font-weight:normal; color:#5500ff; }
+span.S15, a.S15 { font-family:MS Shell Dlg 2; font-size:18pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S16, a.S16 { font-family:MS Shell Dlg 2; font-size:18pt; font-style:normal; font-weight:normal; text-decoration:underline; color:#0000ff; }
+span.S17, a.S17 { font-family:sans-serif; font-size:16pt; font-style:normal; font-weight:normal; color:#ff6600; }
+span.S18, a.S18 { font-family:sans-serif; font-size:14pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S19, a.S19 { font-family:Arial; font-size:24pt; font-style:normal; font-weight:normal; color:#00ff00; }
+span.S20, a.S20 { font-family:Arial; font-size:14pt; font-style:normal; font-weight:normal; color:#000000; }
+span.S21, a.S21 { font-family:Arial; font-size:14pt; font-style:italic; font-weight:normal; color:#000000; }
+span.S22, a.S22 { font-family:Arial; font-size:18pt; font-style:normal; font-weight:normal; color:#99cc00; }
+p.P0 { margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+p.P1 { text-align:left; white-space:pre; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; }
+div.C2 { padding-top:0pt; padding-bottom:0pt; padding-left:5.7pt; border-left-width:1pt; border-left-style: solid; border-color: #808080; border-right-width: 0; border-right-style: none; border-top-width: 0; border-top-style: none; border-bottom-width: 0; border-bottom-style: none; }
+div.Csep3in { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-top:2.85pt; margin-bottom: 0; }
+div.Csep3out { padding: 0; height: 0; width: 3pt; border-bottom: 1px solid #808080; margin-top: 0;  margin-bottom: 0; }
+div.Csep3end { padding: 0; height: 0; width: 5pt; border-bottom: 1px solid #808080; margin-bottom:2.85pt; margin-top: 0; }
+p.P4 { text-align:justify; margin-top:0pt; margin-left:0pt; margin-right:0pt; margin-bottom:0pt; text-indent:0pt; }
+body { background-color:white; }
+@page { margin:56.0125pt; size:595.275pt 841.89pt; background-color:white; }
+/* ]]> */
+</style>
+  </head>
+  <body>
+    <p class="P0"><span class="S1">Vibraciones normales de una membrana</span></p>
+    <p class="P0"><span class="S2">Esta notebook para Mupad lleva a la
+        práctica el tema de funciones de Bessel y vibracones de
+        membranas, ver Simmons página 388</span></p>
+    <p class="P0">&nbsp;</p>
+    <p class="P0"><span class="S4">1. Laplaciano en coordenadas polares</span></p>
+    <p class="P0"><span class="S5">El laplaciano de una función </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6"> U:=u(x,y)<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="u(x, y)" style="vertical-align:-38%"
+          src="BesselMembrana_images/math0.png" height="39" width="57"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S5">se define por</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">`&amp;Delta;`*u=diff(diff(U, x),
+          x)+diff(diff(U, y), y)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="`&amp;Delta;`*u = diff(u(x, y), x, x) +
+          diff(u(x, y), y, y)" style="vertical-align:-48%"
+          src="BesselMembrana_images/math1.png" height="63" width="216"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P4"><span class="S5">Como parte de esta actividad te
+        recomendamos leer, además del libro de Simmons, el artículo de
+        la Wikipedia relativo a la </span><a
+        href="http://es.wikipedia.org/wiki/Ecuaci%C3%B3n_de_onda"
+        class="S7">ecuación de ondas</a><span class="S5"> también el
+        artículo sobre el </span><a
+        href="http://es.wikipedia.org/wiki/Laplaciano" class="S7">laplaciano.</a><span
+        class="S5"> En este artículo puedes ver en que se transforma el
+        laplaciano en función de varios sistemas de coordenadas, en
+        partícular coordenadas polares. En&nbsp; esta sección de la
+        notebook derivamos la fórmula del laplacianos en coordenadas
+        polares.</span></p>
+    <p class="P4"><span class="S5">Para derivar esta fórmula&nbsp;
+        supongamos que&nbsp; </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">eq:=u(x,y)=v(r,`&amp;theta;`)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="u(x, y) = v(r, `&amp;theta;`)"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math2.png" height="39" width="115"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S5">esto es, la función </span><span
+        class="S8">u</span><span class="S5">&nbsp;&nbsp; (de </span><span
+        class="S8">x </span><span class="S5">e </span><span class="S8">y</span><span
+        class="S5">) se llama </span><span class="S8">v</span><span
+        class="S5"> cuando la representamos como función de las
+        coordenadas polares. ¿En qué se transforma el laplaciano? Para
+        contestar esto reemplazamos las coordenadas polares en función
+        de </span><span class="S8">x </span><span class="S5">e </span><span
+        class="S8">y:</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">u:=v(sqrt(x^2+y^2),arctan(y/x))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="v((x^2 + y^2)^(1/2), arctan(y/x))"
+          style="vertical-align:-43%"
+          src="BesselMembrana_images/math3.png" height="60" width="175"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S5">Ahora calculamos el laplaciano de u</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">lapla:=diff(diff(u, x),
+          x)+diff(diff(u, y), y)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(2*D([1], v)((x^2 + y^2)^(1/2),
+          arctan(y/x)))/(x^2 + y^2)^(1/2) + (D([2, 2], v)((x^2 +
+          y^2)^(1/2), arctan(y/x))/(x*(y^2/x^2 + 1)) + (y*D([1, 2],
+          v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^2 +
+          y^2)^(1/2))/(x*(y^2/x^2 + 1)) + (y*(D([1, 2], v)((x^2 +
+          y^2)^(1/2), arctan(y/x))/(x*(y^2/x^2 + 1)) + (y*D([1, 1],
+          v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^2 + y^2)^(1/2)))/(x^2 +
+          y^2)^(1/2) + (x*((x*D([1, 1], v)((x^2 + y^2)^(1/2),
+          arctan(y/x)))/(x^2 + y^2)^(1/2) - (y*D([1, 2], v)((x^2 +
+          y^2)^(1/2), arctan(y/x)))/(x^2*(y^2/x^2 + 1))))/(x^2 +
+          y^2)^(1/2) - (x^2*D([1], v)((x^2 + y^2)^(1/2),
+          arctan(y/x)))/(x^2 + y^2)^(3/2) - (y^2*D([1], v)((x^2 +
+          y^2)^(1/2), arctan(y/x)))/(x^2 + y^2)^(3/2) - (y*((x*D([1, 2],
+          v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^2 + y^2)^(1/2) -
+          (y*D([2, 2], v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^2*(y^2/x^2
+          + 1))))/(x^2*(y^2/x^2 + 1)) - (2*y^3*D([2], v)((x^2 +
+          y^2)^(1/2), arctan(y/x)))/(x^5*(y^2/x^2 + 1)^2) + (2*y*D([2],
+          v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^3*(y^2/x^2 + 1)) -
+          (2*y*D([2], v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^3*(y^2/x^2
+          + 1)^2)" style="vertical-align:-49%"
+          src="BesselMembrana_images/math4.png" height="283"
+          width="2266"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Simplifiquemos un poco la expresión</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">lapla:=Simplify(lapla)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="D([2, 2], v)((x^2 + y^2)^(1/2),
+          arctan(y/x))/(x^2 + y^2) + D([1, 1], v)((x^2 + y^2)^(1/2),
+          arctan(y/x)) + (x^4*D([1], v)((x^2 + y^2)^(1/2),
+          arctan(y/x)))/(x^2 + y^2)^(5/2) + (y^4*D([1], v)((x^2 +
+          y^2)^(1/2), arctan(y/x)))/(x^2 + y^2)^(5/2) +
+          (2*x^2*y^2*D([1], v)((x^2 + y^2)^(1/2), arctan(y/x)))/(x^2 +
+          y^2)^(5/2)" style="vertical-align:-48%"
+          src="BesselMembrana_images/math5.png" height="219" width="509"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S9">Ahora</span><span class="S6"> </span><span
+        class="S2">volavamos a las variables polares, antes es
+        coveniente declarar eldominio de variación de estas variables</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">assume(r&gt;0)</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">assume(`&amp;theta;`&gt;0)</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">assumeAlso(`&amp;theta;`&lt;2*PI)</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S5">Y la sustitución en concreto:</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">lapla:=subs(lapla,[x=r*cos(`&amp;theta;`),y=r*sin(`&amp;theta;`)])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="D([1, 1], v)((r^2*cos(`&amp;theta;`)^2 +
+          r^2*sin(`&amp;theta;`)^2)^(1/2),
+          arctan(sin(`&amp;theta;`)/cos(`&amp;theta;`))) + D([2, 2],
+          v)((r^2*cos(`&amp;theta;`)^2 +
+          r^2*sin(`&amp;theta;`)^2)^(1/2),
+          arctan(sin(`&amp;theta;`)/cos(`&amp;theta;`)))/(r^2*cos(`&amp;theta;`)^2
+          + r^2*sin(`&amp;theta;`)^2) + (r^4*cos(`&amp;theta;`)^4*D([1],
+          v)((r^2*cos(`&amp;theta;`)^2 +
+          r^2*sin(`&amp;theta;`)^2)^(1/2),
+          arctan(sin(`&amp;theta;`)/cos(`&amp;theta;`))))/(r^2*cos(`&amp;theta;`)^2
+          + r^2*sin(`&amp;theta;`)^2)^(5/2) +
+          (r^4*sin(`&amp;theta;`)^4*D([1], v)((r^2*cos(`&amp;theta;`)^2
+          + r^2*sin(`&amp;theta;`)^2)^(1/2),
+          arctan(sin(`&amp;theta;`)/cos(`&amp;theta;`))))/(r^2*cos(`&amp;theta;`)^2
+          + r^2*sin(`&amp;theta;`)^2)^(5/2) +
+          (2*r^4*cos(`&amp;theta;`)^2*sin(`&amp;theta;`)^2*D([1],
+          v)((r^2*cos(`&amp;theta;`)^2 +
+          r^2*sin(`&amp;theta;`)^2)^(1/2),
+          arctan(sin(`&amp;theta;`)/cos(`&amp;theta;`))))/(r^2*cos(`&amp;theta;`)^2
+          + r^2*sin(`&amp;theta;`)^2)^(5/2)" style="vertical-align:-49%"
+          src="BesselMembrana_images/math6.png" height="274" width="537"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Simplifiquemos</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">lapla:=simplify(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(D([2, 2], v)(r,
+          arctan(tan(`&amp;theta;`))) + r^2*D([1, 1], v)(r,
+          arctan(tan(`&amp;theta;`))) + r*D([1], v)(r,
+          arctan(tan(`&amp;theta;`))))/r^2" style="vertical-align:-25%"
+          src="BesselMembrana_images/math7.png" height="79" width="600"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S5">Mupad es muy riguroso, arctan es la
+        inversa de tan en un intervalo específico, vamos a tener que
+        decirle a Mupad que simplifique esta expresión</span><span
+        class="S0"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">lapla:=subs(lapla,
+          [arctan(tan(`&amp;theta;`))=`&amp;theta;` ])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(r*D([1], v)(r, `&amp;theta;`) + D([2, 2],
+          v)(r, `&amp;theta;`) + r^2*D([1, 1], v)(r,
+          `&amp;theta;`))/r^2" style="vertical-align:-33%"
+          src="BesselMembrana_images/math8.png" height="61" width="315"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S5">Que es la fórmula de laplaciano en
+        polares. Si queremos apreciala con una notación más familiar</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(lapla,r)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="D([1, 1], v)(r, `&amp;theta;`) + D([1],
+          v)(r, `&amp;theta;`)/r + D([2, 2], v)(r, `&amp;theta;`)/r^2"
+          style="vertical-align:-33%"
+          src="BesselMembrana_images/math9.png" height="61" width="293"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S2">Todavía más familiar</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><a id="subs(%, [D([1, 1], v)(r,
+          `&amp;theta;`)=v[rr], D([1], v)(r, `&amp;theta;" name="subs(%,
+          [D([1, 1], v)(r, `&amp;theta;`)=v[rr], D([1], v)(r,
+          `&amp;theta;" class="S6">subs(%, [D([1, 1], v)(r,
+          `&amp;theta;`)=v[rr], D([1], v)(r, `&amp;theta;`)=v[r], D([2,
+          2], v)(r, `&amp;theta;`)=v[`&amp;theta;&amp;theta;`]])</a></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="v[`&amp;theta;&amp;theta;`]/r^2 + v[rr] +
+          v[r]/r" style="vertical-align:-45%"
+          src="BesselMembrana_images/math10.png" height="44" width="97"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S2">Borremos los datos en la sesión</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">reset()</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S10">2. Tonos Normales</span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S2">Supongamos que tenemos una membrana
+        sujetada a un borde fijo, que supondremos circular, como en el
+        caso de un tambor. </span></p>
+    <p class="P1"><span class="S2">Introduzcamos coordenadas espaciales
+        y supongamos que la posición de la membrana en el momento </span><span
+        class="S12">t</span><span class="S2"> viene dada por la </span></p>
+    <p class="P1"><span class="S2">gráfica de la función </span><span
+        class="S12">u(x,y,t). </span><span class="S2">Entonces la
+        función </span><span class="S12">u</span><span class="S2">
+        obedece la ecuación de ondas:</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">f:=u(x,y,t)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="u(x, y, t)" style="vertical-align:-38%"
+          src="BesselMembrana_images/math11.png" height="39" width="69"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">EcuacionOndas:=diff(diff(f, t),
+          t)-diff(diff(f, x), x)-diff(diff(f, y), y)=0</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(u(x, y, t), t, t) - diff(u(x, y, t),
+          x, x) - diff(u(x, y, t), y, y) = 0"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math12.png" height="63" width="324"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Que es una ecuación en derivadas
+        parciales. Sugiero leer el siguiente </span><a
+        href="http://luz.izt.uam.mx/mediawiki/index.php/Ondas:_Membrana"
+        class="S13">artículo</a><span class="S2"> relacionado con esta
+        cuestión. Como el aro es circular supongamos que (x,y) pertenece
+        a la bola de centro (0,0) y radio </span><span class="S12">a.&nbsp;
+      </span><span class="S2">A esta ecuación hay que agregarle algunas
+        condiciones extras. La condición de que la membrana está sujeta
+        en el borde se puede expresar como u=0 cuando (x,y) estan en el
+        borde de la bola. Además vamos a suponer que la membrana parte
+        del reposo, esto es la derivada de </span><span class="S12">u</span><span
+        class="S2"> respecto a </span><span class="S12">t</span><span
+        class="S2"> es cero en </span><span class="S12">t</span><span
+        class="S2">=0. </span></p>
+    <p class="P0">&nbsp;</p>
+    <p class="P0"><span class="S2"> Los tonos normales de vibración
+        ocurren cuando todos los puntos de la membrana vibran a la misma
+        frecuencia, se obtienen cuando se separan variables, esto es
+        cuando u(x,y,t)=T(t)*v(v,y). Hagamos esta sustitución en la
+        ecuación</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">u:=v(x,y)*T(t)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="T(t)*v(x, y)" style="vertical-align:-38%"
+          src="BesselMembrana_images/math13.png" height="39" width="85"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">EcuacionOndas:=diff(diff(u, t),
+          t)-diff(diff(u, x), x)-diff(diff(u, y), y)=0</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="v(x, y)*diff(T(t), t, t) - T(t)*diff(v(x,
+          y), x, x) - T(t)*diff(v(x, y), y, y) = 0"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math14.png" height="63" width="372"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Dividamos por T*V</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%/(T(t)*v(x,y))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="-(- v(x, y)*diff(T(t), t, t) +
+          T(t)*diff(v(x, y), x, x) + T(t)*diff(v(x, y), y,
+          y))/(T(t)*v(x, y)) = 0" style="vertical-align:-34%"
+          src="BesselMembrana_images/math15.png" height="88" width="389"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Expandamos en suma</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(T(t), t, t)/T(t) - diff(v(x, y), x,
+          x)/v(x, y) - diff(v(x, y), y, y)/v(x, y) = 0"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math16.png" height="88" width="267"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><a id="Ahora viene un razonamiento más conceptual. En
+        la ecuación anter" name="Ahora viene un razonamiento más
+        conceptual. En la ecuación anter" class="S2">Ahora viene un
+        razonamiento más conceptual. En la ecuación anterior el primer
+        miembro tiene tres términos, el primero es sólo función de t,
+        los restantes funciones sólo de x&nbsp; e y . De esta forma el
+        primer término varia independientemente de los otros dos, es
+        decir podemos cambiar x e y&nbsp; y dejar t fijo. Esto me dice
+        que cuando cambio (x,y)&nbsp; la suma de los dos últimos
+        términos permanece constante. Esta constante, llamada constante
+        de separación, será la lambda^2 de abajo. Hemos supuesto esta
+        constante positiva, pues de lo contrario la ecuación para el
+        tiempo t no es oscilatorio y la membrana no estaría en un
+        régimen vibratorio. El primer término es igual a -lambda^2. </a></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">diff(T(t), t, t)/T(t) =
+          -`&amp;lambda;`^2</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(T(t), t, t)/T(t) = -`&amp;lambda;`^2"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math17.png" height="88" width="111"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%*T(t)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(T(t), t, t) = -`&amp;lambda;`^2*T(t)"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math18.png" height="63" width="140"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0">&nbsp;</p>
+    <p class="P0"><span class="S2">La ecuación es la de un oscilador
+        armónico. La membrana vibra con frecuencia lambda</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">T(t):=c1*cos(`&amp;lambda;`*t)+c2*sin(`&amp;lambda;`*t)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="c1*cos(`&amp;lambda;`*t) +
+          c2*sin(`&amp;lambda;`*t)" style="vertical-align:-38%"
+          src="BesselMembrana_images/math19.png" height="39" width="157"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Para v(x,y) tenemos:</span></p>
+    <p class="P0"><span class="S2"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">- diff(v(x, y), x, x)/v(x, y) -
+          diff(v(x, y), y, y)/v(x, y) = `&amp;lambda;`^2</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="- diff(v(x, y), x, x)/v(x, y) - diff(v(x,
+          y), y, y)/v(x, y) = `&amp;lambda;`^2"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math20.png" height="88" width="219"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%*v(x,y)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="-(diff(v(x, y), x, x)/v(x, y) + diff(v(x,
+          y), y, y)/v(x, y))*v(x, y) = `&amp;lambda;`^2*v(x, y)"
+          style="vertical-align:-36%"
+          src="BesselMembrana_images/math21.png" height="98" width="337"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="- diff(v(x, y), x, x) - diff(v(x, y), y,
+          y) = `&amp;lambda;`^2*v(x, y)" style="vertical-align:-48%"
+          src="BesselMembrana_images/math22.png" height="63" width="266"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><a id="+ diff(v(x, y), x, x) + diff(v(x, y), y, y) +
+          `&amp;lambda;`*v(x, y)" name="+ diff(v(x, y), x, x) +
+          diff(v(x, y), y, y) + `&amp;lambda;`*v(x, y)" class="S6">+
+          diff(v(x, y), x, x) + diff(v(x, y), y, y) +
+          `&amp;lambda;`^2*v(x, y)=0</a></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(v(x, y), x, x) + diff(v(x, y), y, y)
+          + v(x, y)*`&amp;lambda;`^2 = 0" style="vertical-align:-48%"
+          src="BesselMembrana_images/math23.png" height="63" width="275"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S2">Esta ecuación se llama de
+        autovalores. La pasamos a polares por la </span><a
+href="#subs%28%,%20[D%28[1,%201],%20v%29%28r,%20%60&amp;theta;%60%29=v[rr],%20D%28[1],%20v%29%28r,%20%60&amp;theta;"
+        class="S13">fórmula</a><span class="S2"> nos queda</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">EQ1:=diff(diff(v(r,`&amp;theta;`),`&amp;theta;`),`&amp;theta;`)/r^2+diff(diff(v(r,`&amp;theta;`),r),r)+diff(v(r,`&amp;theta;`),r)/r+`&amp;lambda;`^2*v(r,`&amp;theta;`)=0&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(v(r, `&amp;theta;`), r)/r + diff(v(r,
+          `&amp;theta;`), `&amp;theta;`, `&amp;theta;`)/r^2 +
+          `&amp;lambda;`^2*v(r, `&amp;theta;`) + diff(v(r,
+          `&amp;theta;`), r, r) = 0" style="vertical-align:-34%"
+          src="BesselMembrana_images/math24.png" height="88" width="349"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Esta ecuación la resolveremos por el
+        método de separación de variables, vale decir supondremos
+        nuevamente que la función se factoriza como producto de una
+        función sólo de r y otra de theta.</span><span class="S0"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">v(r,`&amp;theta;`):=R(r)*`&amp;Theta;`(`&amp;theta;`)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="`&amp;Theta;`(`&amp;theta;`)*R(r)"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math25.png" height="39" width="76"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">EQ1</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="`&amp;Theta;`(`&amp;theta;`)*diff(R(r), r,
+          r) + (`&amp;Theta;`(`&amp;theta;`)*diff(R(r), r))/r +
+          (R(r)*diff(`&amp;Theta;`(`&amp;theta;`), `&amp;theta;`,
+          `&amp;theta;`))/r^2 +
+          `&amp;lambda;`^2*`&amp;Theta;`(`&amp;theta;`)*R(r) = 0"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math26.png" height="88" width="433"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Multipliquemos por r^2/(R*Theta)</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">r^2*%/(`&amp;Theta;`(`&amp;theta;`)*R(r))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="(r^2*(`&amp;Theta;`(`&amp;theta;`)*diff(R(r), r, r) +
+          (`&amp;Theta;`(`&amp;theta;`)*diff(R(r), r))/r +
+          (R(r)*diff(`&amp;Theta;`(`&amp;theta;`), `&amp;theta;`,
+          `&amp;theta;`))/r^2 +
+          `&amp;lambda;`^2*`&amp;Theta;`(`&amp;theta;`)*R(r)))/(`&amp;Theta;`(`&amp;theta;`)*R(r))
+          = 0" style="vertical-align:-24%"
+          src="BesselMembrana_images/math27.png" height="125"
+          width="434"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(`&amp;Theta;`(`&amp;theta;`),
+          `&amp;theta;`, `&amp;theta;`)/`&amp;Theta;`(`&amp;theta;`) +
+          `&amp;lambda;`^2*r^2 + (r^2*diff(R(r), r, r))/R(r) +
+          (r*diff(R(r), r))/R(r) = 0" style="vertical-align:-34%"
+          src="BesselMembrana_images/math28.png" height="88" width="307"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Nuevamente queda una suma de términos
+        donde el primero depende de una variable y los demás de una
+        variable independiente de la primera. Por iguales razones que
+        las de </span><a
+href="#Ahora+viene+un+razonamiento+m%C3%A1s+conceptual.+En+la+ecuaci%C3%B3n+anter"
+        class="S13">arriba,</a><span class="S2"> tenemos que el primer
+        término es una constante de separación y la suma de los otros
+        dos el opuesto de esta constante. Ahora bien,&nbsp; cuando
+        igualamos el primer término a una constante (digamos -mu) nos
+        queda la ecuación lineal de segundo orden</span></p>
+    <p class="P0">&nbsp;</p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">diff(`&amp;Theta;`(`&amp;theta;`),
+          `&amp;theta;`, `&amp;theta;`)/`&amp;Theta;`(`&amp;theta;`) =
+          -`&amp;mu;`</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(`&amp;Theta;`(`&amp;theta;`),
+          `&amp;theta;`, `&amp;theta;`)/`&amp;Theta;`(`&amp;theta;`) =
+          -`&amp;mu;`" style="vertical-align:-34%"
+          src="BesselMembrana_images/math29.png" height="88" width="114"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%*`&amp;Theta;`(`&amp;theta;`)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="diff(`&amp;Theta;`(`&amp;theta;`),
+          `&amp;theta;`, `&amp;theta;`) =
+          -`&amp;mu;`*`&amp;Theta;`(`&amp;theta;`)"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math30.png" height="63" width="150"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Esta ecuación tiene soluciones no
+        acotadas (exponenciales)&nbsp; cuando mu es negativo. Pero Theta
+        tiene que ser una función períodica, pues es el ángulo polar. De
+        modo que no queda más remedio que mu sea positivo, más aún Theta
+        no tiene cualquier período, sino que es de período 2*Pi, de modo
+        que la frecuencia al cuadrado (mu) debe ser un entero positivo
+        al cuadrado n^2, pues es la única forma que&nbsp; 2*Pi sea
+        un&nbsp; período de la solución. Para la función R tendremos
+        entoces que </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">`&amp;Theta;`(`&amp;theta;`):=c3*cos(n*`&amp;theta;`)+c4*sin(n*`&amp;theta;`)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="c3*cos(`&amp;theta;`*n) +
+          c4*sin(`&amp;theta;`*n)" style="vertical-align:-38%"
+          src="BesselMembrana_images/math31.png" height="39" width="165"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Nos queda una ecuación</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">`&amp;lambda;`^2*r^2 +
+          (r^2*diff(R(r), r, r))/R(r) + (r*diff(R(r), r))/R(r) = n^2</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="`&amp;lambda;`^2*r^2 + (r^2*diff(R(r), r,
+          r))/R(r) + (r*diff(R(r), r))/R(r) = n^2"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math32.png" height="88" width="237"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%*R(r)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="R(r)*(`&amp;lambda;`^2*r^2 +
+          (r^2*diff(R(r), r, r))/R(r) + (r*diff(R(r), r))/R(r)) =
+          n^2*R(r)" style="vertical-align:-36%"
+          src="BesselMembrana_images/math33.png" height="98" width="325"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="r^2*diff(R(r), r, r) + r*diff(R(r), r) +
+          `&amp;lambda;`^2*r^2*R(r) = n^2*R(r)"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math34.png" height="63" width="301"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">r^2*diff(R(r), r, r) + r*diff(R(r),
+          r) + `&amp;lambda;`*r^2*R(r) -n^2*R(r)=0</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="r^2*diff(R(r), r, r) + r*diff(R(r), r) -
+          n^2*R(r) + `&amp;lambda;`*r^2*R(r) = 0"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math35.png" height="63" width="317"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%/r^2</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(r^2*diff(R(r), r, r) + r*diff(R(r), r) -
+          n^2*R(r) + `&amp;lambda;`*r^2*R(r))/r^2 = 0"
+          style="vertical-align:-26%"
+          src="BesselMembrana_images/math36.png" height="78" width="311"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><a id="expand(%) ￼" name="expand(%) ￼" class="S6">EQ2:=expand(%)</a></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="`&amp;lambda;`*R(r) + diff(R(r), r)/r +
+          diff(R(r), r, r) - (n^2*R(r))/r^2 = 0"
+          style="vertical-align:-36%"
+          src="BesselMembrana_images/math37.png" height="83" width="278"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Que se parece mucho a la ecuación de
+        Bessel, la única diferencia es que en la ecuación de Bessel el
+        lambda es 1. Esto lo arreglamos facilmente con el siguiente
+        cambio de variable independiente</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">R(r):=J(sqrt(`&amp;lambda;`)*r);EQ2</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="J(`&amp;lambda;`^(1/2)*r)"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math38.png" height="39" width="65"><span
+          class="S14"><br>
+        </span><img alt="`&amp;lambda;`*J(`&amp;lambda;`^(1/2)*r) +
+          `&amp;lambda;`*(D@@2)(J)(`&amp;lambda;`^(1/2)*r) +
+          (`&amp;lambda;`^(1/2)*D(J)(`&amp;lambda;`^(1/2)*r))/r -
+          (n^2*J(`&amp;lambda;`^(1/2)*r))/r^2 = 0"
+          style="vertical-align:-34%"
+          src="BesselMembrana_images/math39.png" height="58" width="370"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Divido por lambda</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">%/`&amp;lambda;`</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(`&amp;lambda;`*J(`&amp;lambda;`^(1/2)*r)
+          + `&amp;lambda;`*(D@@2)(J)(`&amp;lambda;`^(1/2)*r) +
+          (`&amp;lambda;`^(1/2)*D(J)(`&amp;lambda;`^(1/2)*r))/r -
+          (n^2*J(`&amp;lambda;`^(1/2)*r))/r^2)/`&amp;lambda;` = 0"
+          style="vertical-align:-23%"
+          src="BesselMembrana_images/math40.png" height="66" width="343"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">expand(%)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(D@@2)(J)(`&amp;lambda;`^(1/2)*r) +
+          J(`&amp;lambda;`^(1/2)*r) +
+          D(J)(`&amp;lambda;`^(1/2)*r)/(`&amp;lambda;`^(1/2)*r) -
+          (n^2*J(`&amp;lambda;`^(1/2)*r))/(`&amp;lambda;`*r^2) = 0"
+          style="vertical-align:-36%"
+          src="BesselMembrana_images/math41.png" height="59" width="321"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S2">Reemplazo r en función de s</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">subs(%,r=s/sqrt(`&amp;lambda;`))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(D@@2)(J)(s) + J(s) + D(J)(s)/s -
+          (n^2*J(s))/s^2 = 0" style="vertical-align:-34%"
+          src="BesselMembrana_images/math42.png" height="58" width="221"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S2">Que si es la ecuación de Bessel.
+        Sabemos que la solución general de la ecuación de Bessel es
+        combinación lineal</span></p>
+    <p class="P1"><span class="S2">de una función analítica (función de
+        Bessel de primera especie) y otra no acotada cerca de cero. La
+        solución que </span></p>
+    <p class="P1"><span class="S2">buscamos debe ser acotada, de modo
+        que solo puede ser un múltiplo de la función de Bessel de
+        primera especie.</span></p>
+    <p class="P1"><span class="S2">Notar que la condición de que la
+        membrana esta fija al borde de la bola de radio </span><span
+        class="S12">a, </span><span class="S2">equivale a que R(a)=0 y
+        esto</span></p>
+    <p class="P1"><span class="S2">su vez dice </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J(sqrt(`&amp;lambda;`)*a)=0</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="J(`&amp;lambda;`^(1/2)*a) = 0"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math43.png" height="39" width="91"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S2">Sabemos que los ceros de la función
+        de Bessel de grado n ocurren en una sucesión que tiene a
+        infinito</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">c[1](n),c[2](n),c[3](n),etc</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="c[1](n), c[2](n), c[3](n), etc"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math44.png" height="39" width="155"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S2">Por ende las frecuencias admisibles
+        son: </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">(c[1](n)/a)^2,(c[2](n)/a)^2,(c[3](n)/a)^2,etc</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="c[1](n)^2/a^2, c[2](n)^2/a^2,
+          c[3](n)^2/a^2, etc" style="vertical-align:-34%"
+          src="BesselMembrana_images/math45.png" height="58" width="185"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1"><span class="S15">Estas son las únicas frecuencias a
+        las que un tambor circular puede vibrar en modo normal. En el
+        siguiente </span><a
+        href="http://www.youtube.com/watch?v=9W5ozlg7lLc" class="S16">video</a><span
+        class="S15"> se </span></p>
+    <p class="P1"><span class="S2">muestra un efecto consecuencia de
+        estas frecuencias fundamentales&nbsp; que se denomina </span><a
+        href="http://es.wikipedia.org/wiki/Figuras_de_Chladni"
+        class="S13">Figuras de Chladni.</a></p>
+    <p class="P1"><span class="S17">Para continuar debes cargar el
+        procedimiento BesseF de la carpeta procedimientos</span><span
+        class="S5">. Esto se hace yendo en la </span></p>
+    <p class="P1"><span class="S5">barra de menus a Notebook-&gt;Read
+        Commands y buscando el archivo BesselF.mu. Con esa rutina,
+        accedes a las funciones de </span></p>
+    <p class="P1"><span class="S5">Bessel por medio de
+        BesselF(0),BesselF(1/2), etc. De manera alternativa, se puede
+        cargar el procedimiento desde la línea de comandos</span></p>
+    <p class="P1"><span class="S5">con la instrucción de más abajo,
+        deberás reemplazar el camino especificado por el correspondiente
+        en tu compu</span></p>
+    <p class="P1">&nbsp;</p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">read("Procedimientos\\BesselF.mu"):</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S5">La solución que obtenemos es pues</span></p>
+    <p class="P1">&nbsp;</p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J:=BesselF(n);
+          U:=T(t)*`&amp;Theta;`(`&amp;theta;`)*subs(J,x=sqrt(`&amp;lambda;`)*a*r)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="(x/2)^n/gamma(n + 1) - (x/2)^(n +
+          2)/gamma(n + 2) + (x/2)^(n + 4)/(2*gamma(n + 3)) - (x/2)^(n +
+          6)/(6*gamma(n + 4)) + (x/2)^(n + 8)/(24*gamma(n + 5)) -
+          (x/2)^(n + 10)/(120*gamma(n + 6)) + (x/2)^(n +
+          12)/(720*gamma(n + 7)) - (x/2)^(n + 14)/(5040*gamma(n + 8)) +
+          (x/2)^(n + 16)/(40320*gamma(n + 9)) - (x/2)^(n +
+          18)/(362880*gamma(n + 10)) + (x/2)^(n + 20)/(3628800*gamma(n +
+          11)) - (x/2)^(n + 22)/(39916800*gamma(n + 12)) + (x/2)^(n +
+          24)/(479001600*gamma(n + 13)) - (x/2)^(n +
+          26)/(6227020800*gamma(n + 14)) + (x/2)^(n +
+          28)/(87178291200*gamma(n + 15)) - (x/2)^(n +
+          30)/(1307674368000*gamma(n + 16)) + (x/2)^(n +
+          32)/(20922789888000*gamma(n + 17)) - (x/2)^(n +
+          34)/(355687428096000*gamma(n + 18)) + (x/2)^(n +
+          36)/(6402373705728000*gamma(n + 19)) - (x/2)^(n +
+          38)/(121645100408832000*gamma(n + 20)) + (x/2)^(n +
+          40)/(2432902008176640000*gamma(n + 21)) - (x/2)^(n +
+          42)/(51090942171709440000*gamma(n + 22)) + (x/2)^(n +
+          44)/(1124000727777607680000*gamma(n + 23)) - (x/2)^(n +
+          46)/(25852016738884976640000*gamma(n + 24)) + (x/2)^(n +
+          48)/(620448401733239439360000*gamma(n + 25)) - (x/2)^(n +
+          50)/(15511210043330985984000000*gamma(n + 26)) + (x/2)^(n +
+          52)/(403291461126605635584000000*gamma(n + 27)) - (x/2)^(n +
+          54)/(10888869450418352160768000000*gamma(n + 28)) + (x/2)^(n +
+          56)/(304888344611713860501504000000*gamma(n + 29)) - (x/2)^(n
+          + 58)/(8841761993739701954543616000000*gamma(n + 30)) +
+          (x/2)^(n + 60)/(265252859812191058636308480000000*gamma(n +
+          31))" style="vertical-align:-44%"
+          src="BesselMembrana_images/math46.png" height="68"
+          width="5444"><span class="S14"><br>
+        </span><img alt="(c3*cos(`&amp;theta;`*n) +
+          c4*sin(`&amp;theta;`*n))*(c1*cos(`&amp;lambda;`*t) +
+          c2*sin(`&amp;lambda;`*t))*(((`&amp;lambda;`^(1/2)*a*r)/2)^n/gamma(n
+          + 1) - ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 2)/gamma(n + 2) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 4)/(2*gamma(n + 3)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 6)/(6*gamma(n + 4)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 8)/(24*gamma(n + 5)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 10)/(120*gamma(n + 6)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 12)/(720*gamma(n + 7)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 14)/(5040*gamma(n + 8)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 16)/(40320*gamma(n + 9)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 18)/(362880*gamma(n + 10))
+          + ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 20)/(3628800*gamma(n +
+          11)) - ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          22)/(39916800*gamma(n + 12)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 24)/(479001600*gamma(n +
+          13)) - ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          26)/(6227020800*gamma(n + 14)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n + 28)/(87178291200*gamma(n +
+          15)) - ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          30)/(1307674368000*gamma(n + 16)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          32)/(20922789888000*gamma(n + 17)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          34)/(355687428096000*gamma(n + 18)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          36)/(6402373705728000*gamma(n + 19)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          38)/(121645100408832000*gamma(n + 20)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          40)/(2432902008176640000*gamma(n + 21)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          42)/(51090942171709440000*gamma(n + 22)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          44)/(1124000727777607680000*gamma(n + 23)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          46)/(25852016738884976640000*gamma(n + 24)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          48)/(620448401733239439360000*gamma(n + 25)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          50)/(15511210043330985984000000*gamma(n + 26)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          52)/(403291461126605635584000000*gamma(n + 27)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          54)/(10888869450418352160768000000*gamma(n + 28)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          56)/(304888344611713860501504000000*gamma(n + 29)) -
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          58)/(8841761993739701954543616000000*gamma(n + 30)) +
+          ((`&amp;lambda;`^(1/2)*a*r)/2)^(n +
+          60)/(265252859812191058636308480000000*gamma(n + 31)))"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math47.png" height="147"
+          width="4903"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S18">La condición que debe partir del
+        reposo implica que la derivada respecto a t en t=0 debe ser 0
+        cualquiera sea el valor del resto de las variables. Esto implica
+        que c2=0. Asumamos aparte que a=1.</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">U:=subs(U,[c2=0,a=1,
+          c1=1,c3=1,c4=0])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(`&amp;theta;`*n)*cos(`&amp;lambda;`*t)*(((`&amp;lambda;`^(1/2)*r)/2)^n/gamma(n
+          + 1) - ((`&amp;lambda;`^(1/2)*r)/2)^(n + 2)/gamma(n + 2) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 4)/(2*gamma(n + 3)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 6)/(6*gamma(n + 4)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 8)/(24*gamma(n + 5)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 10)/(120*gamma(n + 6)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 12)/(720*gamma(n + 7)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 14)/(5040*gamma(n + 8)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 16)/(40320*gamma(n + 9)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 18)/(362880*gamma(n + 10)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 20)/(3628800*gamma(n + 11))
+          - ((`&amp;lambda;`^(1/2)*r)/2)^(n + 22)/(39916800*gamma(n +
+          12)) + ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          24)/(479001600*gamma(n + 13)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 26)/(6227020800*gamma(n +
+          14)) + ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          28)/(87178291200*gamma(n + 15)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 30)/(1307674368000*gamma(n +
+          16)) + ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          32)/(20922789888000*gamma(n + 17)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n + 34)/(355687428096000*gamma(n
+          + 18)) + ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          36)/(6402373705728000*gamma(n + 19)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          38)/(121645100408832000*gamma(n + 20)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          40)/(2432902008176640000*gamma(n + 21)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          42)/(51090942171709440000*gamma(n + 22)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          44)/(1124000727777607680000*gamma(n + 23)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          46)/(25852016738884976640000*gamma(n + 24)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          48)/(620448401733239439360000*gamma(n + 25)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          50)/(15511210043330985984000000*gamma(n + 26)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          52)/(403291461126605635584000000*gamma(n + 27)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          54)/(10888869450418352160768000000*gamma(n + 28)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          56)/(304888344611713860501504000000*gamma(n + 29)) -
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          58)/(8841761993739701954543616000000*gamma(n + 30)) +
+          ((`&amp;lambda;`^(1/2)*r)/2)^(n +
+          60)/(265252859812191058636308480000000*gamma(n + 31)))"
+          style="vertical-align:-48%"
+          src="BesselMembrana_images/math48.png" height="147"
+          width="4673"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S19">Modos Normales de Vibración</span></p>
+    <p class="P0"><span class="S18">A los efectos de obtener graficos
+        debemos concretar algunos valores y hallar ceros de la función
+        de Bessel.. Supongamos n=0 y hallemos los ceros.</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J0:=subs(J,n=0):</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=numeric::solve(J0=0,x)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="{-23.87181043, -21.21193164, -18.07106395,
+          -14.93091771, -11.79153444, -8.653727913, -5.52007811,
+          -2.404825558, 2.404825558, 5.52007811, 8.653727913,
+          11.79153444, 14.93091771, 18.07106395, 21.21193164,
+          23.87181043, - 26.11580697 + (- 20.02436919*I), - 26.1636936 +
+          (- 9.542185084*I), - 26.39574208 + (- 16.12333213*I), -
+          25.20693112 + (- 4.144688533*I), - 18.49826388 + (-
+          45.38771619*I), - 22.1946272 + (- 36.29293022*I), 22.1946272 +
+          36.29293022*I, 18.49826388 + 45.38771619*I, 25.20693112 +
+          4.144688533*I, 26.39574208 + 16.12333213*I, 26.1636936 +
+          9.542185084*I, 26.11580697 + 20.02436919*I, 25.45466997 +
+          24.49377296*I, 26.39072758 + 12.65765038*I, 25.75844905 +
+          6.718578551*I, 24.52267271 + 1.789008415*I, - 26.39574208 +
+          16.12333213*I, 24.25123833 + 29.76122515*I, - 25.20693112 +
+          4.144688533*I, - 26.1636936 + 9.542185084*I, - 26.11580697 +
+          20.02436919*I, 24.25123833 + (- 29.76122515*I), 18.49826388 +
+          (- 45.38771619*I), 24.52267271 + (- 1.789008415*I), -
+          22.1946272 + 36.29293022*I, 25.75844905 + (- 6.718578551*I), -
+          26.39072758 + 12.65765038*I, - 25.45466997 + 24.49377296*I,
+          25.45466997 + (- 24.49377296*I), 26.39072758 + (-
+          12.65765038*I), - 25.75844905 + 6.718578551*I, 22.1946272 + (-
+          36.29293022*I), - 24.52267271 + 1.789008415*I, - 18.49826388 +
+          45.38771619*I, - 24.25123833 + 29.76122515*I, 26.11580697 + (-
+          20.02436919*I), 26.1636936 + (- 9.542185084*I), 25.20693112 +
+          (- 4.144688533*I), - 24.25123833 + (- 29.76122515*I),
+          26.39574208 + (- 16.12333213*I), - 24.52267271 + (-
+          1.789008415*I), - 25.75844905 + (- 6.718578551*I), -
+          26.39072758 + (- 12.65765038*I), - 25.45466997 + (-
+          24.49377296*I)}" style="vertical-align:-38%"
+          src="BesselMembrana_images/math49.png" height="39"
+          width="9472"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S18">Hay que quedarnos con los ceros
+        reales y postivos, cambiamos el tipo de datos y ordenamos de
+        menor a mayor</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=sort(coerce(select(Ceros,
+          testtype, Type::Positive),DOM_LIST))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="[2.404825558, 5.52007811, 8.653727913,
+          11.79153444, 14.93091771, 18.07106395, 21.21193164,
+          23.87181043]" style="vertical-align:-38%"
+          src="BesselMembrana_images/math50.png" height="39" width="662"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S20">Las vibraciones normales (modos
+        normales) de una membrana las tenemos parametrizadas por dos
+        parámetros naturales U=U(n,k), </span></p>
+    <p class="P1"><span class="S21">n</span><span class="S20"> el grado
+        de la función de Bessel y </span><span class="S21">k</span><span
+        class="S20"> la posición delcero en la lista de ceros</span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S22">Modo (0,1) </span></p>
+    <p class="P1">&nbsp;</p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Modo(0,1):=subs(U,[n=0,`&amp;lambda;`=Ceros[1]^2])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(0)*cos(5.783185963*t)*((2.396375736*10^(-28)*r^60)/gamma(31)
+          - (4.97243371*10^(-27)*r^58)/gamma(30) +
+          (9.973781132*10^(-26)*r^56)/gamma(29) -
+          (1.931571099*10^(-24)*r^54)/gamma(28) +
+          (3.6071757*10^(-23)*r^52)/gamma(27) -
+          (6.486844365*10^(-22)*r^50)/gamma(26) +
+          (1.121673141*10^(-20)*r^48)/gamma(25) -
+          (1.861960211*10^(-19)*r^46)/gamma(24) +
+          (2.962041001*10^(-18)*r^44)/gamma(23) -
+          (4.507197413*10^(-17)*r^42)/gamma(22) +
+          (6.546643755*10^(-16)*r^40)/gamma(21) -
+          (9.056106855*10^(-15)*r^38)/gamma(20) +
+          (1.19011238*10^(-13)*r^36)/gamma(19) -
+          (1.481676223*10^(-12)*r^34)/gamma(18) +
+          (1.742188196*10^(-11)*r^32)/gamma(17) -
+          (0.0000000001928003789*r^30)/gamma(16) +
+          (0.00000000200028545*r^28)/gamma(15) -
+          (0.00000001936925181*r^26)/gamma(14) +
+          (0.0000001741602467*r^24)/gamma(13) -
+          (0.000001445516692*r^22)/gamma(12) +
+          (0.00001099787122*r^20)/gamma(11) -
+          (0.00007606790645*r^18)/gamma(10) +
+          (0.0004735183426*r^16)/gamma(9) -
+          (0.002620110621*r^14)/gamma(8) + (0.01268558505*r^12)/gamma(7)
+          - (0.05264469154*r^10)/gamma(6) + (0.1820612094*r^8)/gamma(5)
+          - (0.5036980256*r^6)/gamma(4) + (1.045163746*r^4)/gamma(3) -
+          (1.445796491*r^2)/gamma(2) + 1.0/gamma(1))"
+          style="vertical-align:-51%"
+          src="BesselMembrana_images/math51.png" height="69"
+          width="4644"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S18">Haz click en el gráfico para ver la
+        animación</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">plot(plot::Cylindrical([r,
+          `&amp;theta;`, Modo(0,1)], r = 0..1, `&amp;theta;` = 0..2*PI
+          ,t=0..2*PI))<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img style=" width: 454px; height: 302px;"
+          alt="MuPAD graphics" src="BesselMembrana_images/Tambor01.gif"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S22">Modo (0,2) </span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S18">Pasamos la película 100 veces más
+        lento</span></p>
+    <p class="P1">&nbsp;</p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Modo(0,2):=subs(U,[n=0,`&amp;lambda;`=Ceros[2]^2,t=t/100])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(0)*cos(0.7084999892*t)*((105860.9102*r^60)/gamma(31)
+          - (179298.651*r^58)/gamma(30) + (293558.8403*r^56)/gamma(29) -
+          (464059.1477*r^54)/gamma(28) + (707387.279*r^52)/gamma(27) -
+          (1038366.664*r^50)/gamma(26) + (1465584.587*r^48)/gamma(25) -
+          (1985830.945*r^46)/gamma(24) + (2578637.258*r^44)/gamma(23) -
+          (3202824.025*r^42)/gamma(22) + (3797279.072*r^40)/gamma(21) -
+          (4287682.856*r^38)/gamma(20) + (4599349.359*r^36)/gamma(19) -
+          (4674003.654*r^34)/gamma(18) + (4485988.049*r^32)/gamma(17) -
+          (4052268.73*r^30)/gamma(16) + (3431702.576*r^28)/gamma(15) -
+          (2712425.507*r^26)/gamma(14) + (1990771.045*r^24)/gamma(13) -
+          (1348722.817*r^22)/gamma(12) + (837597.8105*r^20)/gamma(11) -
+          (472885.1508*r^18)/gamma(10) + (240280.3908*r^16)/gamma(9) -
+          (108524.6665*r^14)/gamma(8) + (42889.0714*r^12)/gamma(7) -
+          (14528.40832*r^10)/gamma(6) + (4101.1739*r^8)/gamma(5) -
+          (926.1649032*r^6)/gamma(4) + (156.8663233*r^4)/gamma(3) -
+          (17.71249973*r^2)/gamma(2) + 1.0/gamma(1))"
+          style="vertical-align:-51%"
+          src="BesselMembrana_images/math52.png" height="69"
+          width="3622"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">plot(plot::Cylindrical([r,
+          `&amp;theta;`, Modo(0,2)], r = 0..1, `&amp;theta;` = 0..2*PI
+          ,t=0..8*PI))<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img style=" width: 454px; height: 302px;"
+          alt="MuPAD graphics" src="BesselMembrana_images/Tambor02.gif"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S22">Modo (1,1)</span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S20">Tenemos que recalcular los ceros</span><span
+        class="S22"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J1:=subs(J,n=1):</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=numeric::solve(J1=0,x)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="{-24.53500513, -22.76876618, -19.61585782,
+          -16.47063005, -13.32369194, -10.17346814, -7.01558667,
+          -3.83170597, 0.0, 3.83170597, 7.01558667, 10.17346814,
+          13.32369194, 16.47063005, 19.61585782, 22.76876618,
+          24.53500513, - 26.47664121 + (- 20.66620442*I), - 26.60736996
+          + (- 10.06884316*I), - 25.69498089 + (- 4.602091623*I), -
+          26.78693245 + (- 16.72461821*I), - 25.04322032 + (-
+          2.217209518*I), - 18.67701931 + (- 46.25652703*I), -
+          22.43499385 + (- 37.08547302*I), 22.43499385 + 37.08547302*I,
+          18.67701931 + 46.25652703*I, 25.04322032 + 2.217209518*I,
+          26.78693245 + 16.72461821*I, 25.69498089 + 4.602091623*I,
+          26.60736996 + 10.06884316*I, 26.47664121 + 20.66620442*I,
+          25.78138841 + 25.17953812*I, 26.80934956 + 13.22075948*I, -
+          26.78693245 + 16.72461821*I, 24.53869016 + 30.49604451*I,
+          26.22518248 + 7.210067175*I, - 25.04322032 + 2.217209518*I, -
+          25.69498089 + 4.602091623*I, - 26.60736996 + 10.06884316*I,
+          24.53869016 + (- 30.49604451*I), - 26.47664121 +
+          20.66620442*I, 18.67701931 + (- 46.25652703*I), - 22.43499385
+          + 37.08547302*I, 26.22518248 + (- 7.210067175*I), -
+          25.78138841 + 25.17953812*I, - 26.80934956 + 13.22075948*I,
+          26.80934956 + (- 13.22075948*I), 25.78138841 + (-
+          25.17953812*I), - 26.22518248 + 7.210067175*I, 22.43499385 +
+          (- 37.08547302*I), - 18.67701931 + 46.25652703*I, 26.47664121
+          + (- 20.66620442*I), - 24.53869016 + 30.49604451*I,
+          26.60736996 + (- 10.06884316*I), 25.69498089 + (-
+          4.602091623*I), 25.04322032 + (- 2.217209518*I), - 26.22518248
+          + (- 7.210067175*I), - 24.53869016 + (- 30.49604451*I),
+          26.78693245 + (- 16.72461821*I), - 26.80934956 + (-
+          13.22075948*I), - 25.78138841 + (- 25.17953812*I)}"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math53.png" height="39"
+          width="9554"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=sort(coerce(select(Ceros,
+          testtype, Type::Positive),DOM_LIST))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="[3.83170597, 7.01558667, 10.17346814,
+          13.32369194, 16.47063005, 19.61585782, 22.76876618,
+          24.53500513]" style="vertical-align:-38%"
+          src="BesselMembrana_images/math54.png" height="39" width="658"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Modo(1,1):=subs(U,[n=1,`&amp;lambda;`=Ceros[1]^2])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(`&amp;theta;`)*cos(14.68197064*t)*((6.315865968*10^(-16)*r^61)/gamma(32)
+          - (5.162140251*10^(-15)*r^59)/gamma(31) +
+          (4.078527901*10^(-14)*r^57)/gamma(30) -
+          (3.111265756*10^(-13)*r^55)/gamma(29) +
+          (2.288634883*10^(-12)*r^53)/gamma(28) -
+          (1.621158587*10^(-11)*r^51)/gamma(27) +
+          (0.0000000001104183237*r^49)/gamma(26) -
+          (0.0000000007219847619*r^47)/gamma(25) +
+          (0.000000004524092829*r^45)/gamma(24) -
+          (0.00000002711626243*r^43)/gamma(23) +
+          (0.0000001551403486*r^41)/gamma(22) -
+          (0.0000008453380131*r^39)/gamma(21) +
+          (0.000004375821922*r^37)/gamma(20) -
+          (0.00002145891625*r^35)/gamma(19) +
+          (0.00009938763267*r^33)/gamma(18) -
+          (0.0004332394231*r^31)/gamma(17) +
+          (0.001770495666*r^29)/gamma(16) -
+          (0.006753027894*r^27)/gamma(15) +
+          (0.02391759656*r^25)/gamma(14) -
+          (0.07819417861*r^23)/gamma(13) + (0.2343380151*r^21)/gamma(12)
+          - (0.6384374982*r^19)/gamma(11) + (1.565440396*r^17)/gamma(10)
+          - (3.411946114*r^15)/gamma(9) + (6.506925638*r^13)/gamma(8) -
+          (10.63659771*r^11)/gamma(7) + (14.48933249*r^9)/gamma(6) -
+          (15.79006834*r^7)/gamma(5) + (12.90568035*r^5)/gamma(4) -
+          (7.03212432*r^3)/gamma(3) + (1.915852985*r)/gamma(2))"
+          style="vertical-align:-51%"
+          src="BesselMembrana_images/math55.png" height="69"
+          width="4515"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">plot(plot::Cylindrical([r,
+          `&amp;theta;`, Modo(1,1)], r = 0..1, `&amp;theta;` = 0..2*PI
+          ,t=0..2*PI))<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img style=" width: 454px; height: 302px;"
+          alt="MuPAD graphics" src="BesselMembrana_images/Tambor11.gif"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S22">Modo (2,3)</span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S20">Tenemos que recalcular los ceros</span><span
+        class="S22"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J2:=subs(J,n=2):</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=numeric::solve(J2=0,x)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="{-21.11697331, -17.9598195, -14.79595178,
+          -11.61984117, -8.41724414, -5.135622302, 0.0, 5.135622302,
+          8.41724414, 11.61984117, 14.79595178, 17.9598195, 21.11697331,
+          - 25.54712551 + (- 2.62549795*I), - 26.17986993 + (-
+          5.049040961*I), - 27.17533391 + (- 17.31381243*I), -
+          18.85438697 + (- 47.11071414*I), - 24.56980492 + (-
+          0.2705002565*I), - 22.6735264 + (- 37.86404214*I), 22.6735264
+          + 37.86404214*I, 24.56980492 + 0.2705002565*I, 18.85438697 +
+          47.11071414*I, 27.17533391 + 17.31381243*I, 26.17986993 +
+          5.049040961*I, 25.54712551 + 2.62549795*I, 26.83485829 +
+          21.29550893*I, 27.04799422 + 10.58428671*I, 26.10569658 +
+          25.85232397*I, - 27.17533391 + 17.31381243*I, 27.22503915 +
+          13.77221372*I, 24.82398538 + 31.21741271*I, - 24.56980492 +
+          0.2705002565*I, 26.68876583 + 7.690788519*I, 24.82398538 + (-
+          31.21741271*I), - 26.17986993 + 5.049040961*I, - 27.04799422 +
+          10.58428671*I, - 26.83485829 + 21.29550893*I, 18.85438697 + (-
+          47.11071414*I), - 25.54712551 + 2.62549795*I, 26.68876583 + (-
+          7.690788519*I), - 22.6735264 + 37.86404214*I, 27.22503915 + (-
+          13.77221372*I), - 26.10569658 + 25.85232397*I, 26.10569658 +
+          (- 25.85232397*I), - 27.22503915 + 13.77221372*I, 22.6735264 +
+          (- 37.86404214*I), - 26.68876583 + 7.690788519*I, 25.54712551
+          + (- 2.62549795*I), - 18.85438697 + 47.11071414*I, 26.83485829
+          + (- 21.29550893*I), 27.04799422 + (- 10.58428671*I),
+          26.17986993 + (- 5.049040961*I), - 24.82398538 +
+          31.21741271*I, - 26.68876583 + (- 7.690788519*I), 24.56980492
+          + (- 0.2705002565*I), - 24.82398538 + (- 31.21741271*I), -
+          27.22503915 + (- 13.77221372*I), 27.17533391 + (-
+          17.31381243*I), - 26.10569658 + (- 25.85232397*I), -
+          27.04799422 + (- 10.58428671*I), - 26.83485829 + (-
+          21.29550893*I)}" style="vertical-align:-38%"
+          src="BesselMembrana_images/math56.png" height="39"
+          width="9900"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=sort(coerce(select(Ceros,
+          testtype, Type::Positive),DOM_LIST))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="[5.135622302, 8.41724414, 11.61984117,
+          14.79595178, 17.9598195, 21.11697331]"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math57.png" height="39" width="491"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P0"><span class="S18">Pasamos la película 100 veces más
+        lento</span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Modo(2,3):=subs(U,[n=2,`&amp;lambda;`=Ceros[3]^2],t=t/100)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(1.350207089*t)*cos(2*`&amp;theta;`)*((9.013471492*10^14*r^62)/gamma(33)
+          - (8.010745819*10^14*r^60)/gamma(32) +
+          (6.882251788*10^14*r^58)/gamma(31) -
+          (5.708844271*10^14*r^56)/gamma(30) +
+          (4.566374939*10^14*r^54)/gamma(29) -
+          (3.517260409*10^14*r^52)/gamma(28) +
+          (2.60497848*10^14*r^50)/gamma(27) -
+          (1.852145024*10^14*r^48)/gamma(26) +
+          (1.262008944*10^14*r^46)/gamma(25) -
+          (8.225166939*10^13*r^44)/gamma(24) +
+          (5.117096693*10^13*r^42)/gamma(23) -
+          (3.031888507*10^13*r^40)/gamma(22) +
+          (1.70657915*10^13*r^38)/gamma(21) -
+          (9.10035948*10^12*r^36)/gamma(20) +
+          (4.58318172*10^12*r^34)/gamma(19) -
+          (2.172434381*10^12*r^32)/gamma(18) +
+          (9.653783034*10^11*r^30)/gamma(17) -
+          (4.003918024*10^11*r^28)/gamma(16) +
+          (1.542013362*10^11*r^26)/gamma(15) -
+          (54818732633.0*r^24)/gamma(14) +
+          (17864105877.0*r^22)/gamma(13) - (5292256575.0*r^20)/gamma(12)
+          + (1411051966.0*r^18)/gamma(11) - (334420277.4*r^16)/gamma(10)
+          + (69350604.4*r^14)/gamma(9) - (12327105.37*r^12)/gamma(8) +
+          (1825957.733*r^10)/gamma(7) - (216376.6134*r^8)/gamma(6) +
+          (19230.5268*r^6)/gamma(5) - (1139.411989*r^4)/gamma(4) +
+          (33.75517722*r^2)/gamma(3))" style="vertical-align:-51%"
+          src="BesselMembrana_images/math58.png" height="69"
+          width="4303"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">plot(plot::Cylindrical([r,
+          `&amp;theta;`, Modo(2,3)], r = 0..1, `&amp;theta;` = 0..2*PI
+          ,t=0..2*PI))<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img style=" width: 454px; height: 302px;"
+          alt="MuPAD graphics" src="BesselMembrana_images/Tambor23.gif"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S22">Modo (4,3)</span></p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1"><span class="S20">Tenemos que recalcular los ceros</span><span
+        class="S22"> </span></p>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">J4:=subs(J,n=4):</span></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=numeric::solve(J4=0,x)</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="{-24.00790486, -20.82693386, -17.61596605,
+          -14.37253667, -11.06470949, -7.588342435, 0.0, 7.588342435,
+          11.06470949, 14.37253667, 17.61596605, 20.82693386,
+          24.00790487, - 27.94394787 + (- 18.4582641*I), - 27.60670244 +
+          (- 8.622014844*I), - 25.87853394 + (- 1.143379824*I), -
+          19.20506998 + (- 48.77792864*I), - 23.14522412 + (-
+          39.38189627*I), - 25.38825455 + (- 32.62236214*I), 25.38825455
+          + 32.62236214*I, 23.14522412 + 39.38189627*I, 19.20506998 +
+          48.77792864*I, 25.87853394 + 1.143379824*I, 27.60670244 +
+          8.622014844*I, 27.94394787 + 18.4582641*I, 27.5436084 +
+          22.51894397*I, 27.14008194 + 5.914037327*I, 27.92029188 +
+          11.58370211*I, - 27.60670244 + 8.622014844*I, 26.74724051 +
+          27.16145178*I, 26.54541567 + 3.427794202*I, - 27.94394787 +
+          18.4582641*I, - 25.38825455 + 32.62236214*I, - 25.87853394 +
+          1.143379824*I, 28.04781136 + 14.84241414*I, 19.20506998 + (-
+          48.77792864*I), - 27.5436084 + 22.51894397*I, - 27.92029188 +
+          11.58370211*I, - 27.14008194 + 5.914037327*I, - 23.14522412 +
+          39.38189627*I, 28.04781136 + (- 14.84241414*I), 26.54541567 +
+          (- 3.427794202*I), 26.74724051 + (- 27.16145178*I), -
+          26.74724051 + 27.16145178*I, - 26.54541567 + 3.427794202*I, -
+          28.04781136 + 14.84241414*I, 23.14522412 + (- 39.38189627*I),
+          27.14008194 + (- 5.914037327*I), 27.92029188 + (-
+          11.58370211*I), 27.5436084 + (- 22.51894397*I), - 19.20506998
+          + 48.77792864*I, - 28.04781136 + (- 14.84241414*I),
+          25.87853394 + (- 1.143379824*I), 25.38825455 + (-
+          32.62236214*I), 27.94394787 + (- 18.4582641*I), - 26.54541567
+          + (- 3.427794202*I), - 26.74724051 + (- 27.16145178*I),
+          27.60670244 + (- 8.622014844*I), - 27.92029188 + (-
+          11.58370211*I), - 27.14008194 + (- 5.914037327*I), -
+          27.5436084 + (- 22.51894397*I)}" style="vertical-align:-38%"
+          src="BesselMembrana_images/math59.png" height="39"
+          width="9896"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Ceros:=sort(coerce(select(Ceros,
+          testtype, Type::Positive),DOM_LIST))</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img alt="[7.588342435, 11.06470949, 14.37253667,
+          17.61596605, 20.82693386, 24.00790487]"
+          style="vertical-align:-38%"
+          src="BesselMembrana_images/math60.png" height="39" width="507"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">Modo(4,3):=subs(U,[n=4,`&amp;lambda;`=Ceros[3]^2,t=t/100])</span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img
+          alt="cos(1.350207089*t)*cos(4*`&amp;theta;`)*((3.042513276*10^16*r^64)/gamma(35)
+          - (2.704041448*10^16*r^62)/gamma(34) +
+          (2.323116288*10^16*r^60)/gamma(33) -
+          (1.927030501*10^16*r^58)/gamma(32) +
+          (1.541387953*10^16*r^56)/gamma(31) -
+          (1.187257484*10^16*r^54)/gamma(30) +
+          (8.793151023*10^15*r^52)/gamma(29) -
+          (6.251948351*10^15*r^50)/gamma(28) +
+          (4.259933555*10^15*r^48)/gamma(27) -
+          (2.776419677*10^15*r^46)/gamma(26) +
+          (1.727285057*10^15*r^44)/gamma(25) -
+          (1.023419339*10^15*r^42)/gamma(24) +
+          (5.760588164*10^14*r^40)/gamma(23) -
+          (3.07184247*10^14*r^38)/gamma(22) +
+          (1.547061112*10^14*r^36)/gamma(21) -
+          (7.333090751*10^13*r^34)/gamma(20) +
+          (3.258651571*10^13*r^32)/gamma(19) -
+          (1.351529625*10^13*r^30)/gamma(18) +
+          (5.205093432*10^12*r^28)/gamma(17) -
+          (1.850416035*10^12*r^26)/gamma(16) +
+          (6.03006059*10^11*r^24)/gamma(15) -
+          (1.786410586*10^11*r^22)/gamma(14) +
+          (47630309188.0*r^20)/gamma(13) -
+          (11288415733.0*r^18)/gamma(12) + (2340941942.0*r^16)/gamma(11)
+          - (416103626.4*r^14)/gamma(10) + (61635526.86*r^12)/gamma(9) -
+          (7303830.931*r^10)/gamma(8) + (649129.8402*r^8)/gamma(7) -
+          (38461.05361*r^6)/gamma(6) + (1139.411989*r^4)/gamma(5))"
+          style="vertical-align:-51%"
+          src="BesselMembrana_images/math61.png" height="69"
+          width="4418"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1"><span class="S6">plot(plot::Cylindrical([r,
+          `&amp;theta;`, Modo(4,3)], r = 0..1, `&amp;theta;` = 0..2*PI
+          ,t=0..2*PI))<br>
+        </span></p>
+    </div>
+    <div class="Csep3out"></div>
+    <div class="C2">
+      <p class="P1"><img style=" width: 454px; height: 302px;"
+          alt="MuPAD graphics" src="BesselMembrana_images/Tambor43.gif"></p>
+    </div>
+    <div class="Csep3end"></div>
+    <div class="Csep3in"></div>
+    <div class="C2">
+      <p class="P1">&nbsp;</p>
+    </div>
+    <div class="Csep3end"></div>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P1">&nbsp;</p>
+    <p class="P0">&nbsp;</p>
+  </body>
+</html>
