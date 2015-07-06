@@ -1,0 +1,184 @@
+%\documentclass{article}
+%\documentclass[hyperref={colorlinks=true}]{beamer}
+\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+
+\usecolortheme{crane}
+\usetheme{Darmstadt}
+\usefonttheme{structuresmallcapsserif}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+\usepackage{empheq}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{amssymb,amsmath}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{ esint }
+%\usepackage{pst-all}
+%\usepackage{pstricks-add}
+\usepackage{array}
+%\usepackage[T1]{fontenc}
+%\usepackage{animate}
+%\usepackage{media9}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{ wasysym }
+\usepackage{sagetex}
+\usepackage{yfonts,mathrsfs,eufrak}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%Configuracion listing
+\lstdefinelanguage{Sage}[]{Python}
+{morekeywords={False,sage,True},sensitive=true}
+\lstset{
+frame=none,
+showtabs=False,
+showspaces=False,
+showstringspaces=False,
+commentstyle={\ttfamily\color{dgreencolor}},
+keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+language=Sage,
+basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+aboveskip=.3em,
+belowskip=0.1em,
+numbers=none,
+numberstyle=\footnotesize
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+\newcommand{\com}{\mathbb{C}}
+\newcommand{\dis}{\mathbb{D}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\oo}{\mathcal{O}}
+\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\v}[1]{\overrightarrow{#1}}
+\renewcommand{\b}[1]{\boldsymbol{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\newlength\mytemplen
+\newsavebox\mytempbox
+\makeatletter
+\newcommand\mybluebox{%
+\@ifnextchar[%]
+{\@mybluebox}%
+{\@mybluebox[0pt]}}
+\def\@mybluebox[#1]{%
+\@ifnextchar[%]
+{\@@mybluebox[#1]}%
+{\@@mybluebox[#1][0pt]}}
+\def\@@mybluebox[#1][#2]#3{
+\sbox\mytempbox{#3}%
+\mytemplen\ht\mytempbox
+\advance\mytemplen #1\relax
+\ht\mytempbox\mytemplen
+\mytemplen\dp\mytempbox
+\advance\mytemplen #2\relax
+\dp\mytempbox\mytemplen
+\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+\makeatother
+\DeclareDocumentCommand\boxedeq{ m g }{%
+{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+\IfNoValueF {#2} {\label{#2}}%
+#1
+\end{empheq}
+}%
+}
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\sen}{sen}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}[teorema]{Corolario}
+\newtheorem{proposicion}[teorema]{Proposici\'on}
+\newtheorem{definicion}[teorema]{Definici\'on}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Para escibir en clase articulo o similar
+% \usepackage{color}
+% \newcommand{\nl}{ }
+% \renewenvironment{frame}[1]{}{}
+% \newcommand{\qed}{$\square$}
+% %\newcommand{\defverbatim}{\def{#1}}
+% \newenvironment{block}[1]{\textbf{#1}}{}
+% \title{Ecuaciones lineales de segundo orden}
+% \author{Fernando Mazzone}
+%
+%%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
+\newcommand{\nl}{\onslide<+-> }
+
+\title[Cálculo de variaciones] % (optional, nur bei langen Titeln nötig)
+{%
+Problemas del cálculo de variaciones
+}
+
+
+
+\author[] % (optional, nur bei vielen Autoren)
+{Fernando Mazzone}
+
+\institute[Depto de Matemática] % (optional, aber oft nötig)
+{
+ Dpto de Matemática\\
+Facultad de Ciencias Exactas Físico-Químicas y Naturales\\
+Universidad Nacional de Río Cuarto
+ Dpto de Matemática\\
+Facultad de Ciencias Exactas y Naturales\\
+Universidad Nacional de La Pampa\\
+CONICET}
+
+
+\subject{Cálculo de Variaciones}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\begin{frame}
+  \maketitle
+  \begin{center}
+   \includegraphics[scale=0.2]{imagenes/unrc.jpg}
+   \end{center}
+\end{frame}
+\begin{frame}
+    \frametitle{Índice}
+\tableofcontents
+
+\end{frame}
+
+\section{Cálculo de variacioes y mecánica}
+\begin{frame}
+
+
+\textbf{Sistema mecánico:} $n$-puntos masa en un espacio euclideano tridimensional. Supuesto un sistema de coordenadas cartesiano, sean $\b{x}_1,\b{x}_2,\ldots,\b{x}_n\in\rr^3$ las coordenadas de los puntos masa, $\b{x}_i=(x_{i,1},x_{i,2},x_{i,3})$, $i=1,\ldots,n$. Vamos a poner $\b{x}= (\b{x}_1,\b{x}_2,\ldots,\b{x}_n)\in\rr^{3n}$.
+
+ 
+
+
+
+\end{frame}
+
+
+\end{document}
