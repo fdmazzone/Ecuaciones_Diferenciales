@@ -1,1 +1,0 @@
-jobname="Uni_Simetrias"
