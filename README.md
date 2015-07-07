@@ -1,4 +1,7 @@
-Ecuaciones_Diferenciales
+Ecuaciones Diferenciales
 ========================
 
-Materiales sobre ecuaciones diferenciales. Autor: Fernando Mazzone
+Materiales sobre ecuaciones diferenciales y materias relacionadas. 
+
+
+por Fernando Mazzone
