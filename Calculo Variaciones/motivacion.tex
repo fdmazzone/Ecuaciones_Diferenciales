@@ -176,8 +176,8 @@ CONICET}
 
 \textbf{Fuerzas:}  Supongamos que actúan fuerzas $\b{f}_i=\b{f}_i(t,\b{x}(t),\b{\dot{x}}(t))$ sobre cada masa $m_i$.
 
-\begin{block}{Leyes de movimiento de Newton} Suponiendo que el sistema satisface la segunda Ley de Newton 
-\[m_i\b{\ddot{x}}_i=\b{f}_i,\quad i=1,\ldots ,n.\] 
+\begin{block}{Leyes de movimiento de Newton} Suponiendo que el sistema satisface la \href{https://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{segunda ley de Newton}. 
+\boxedeq{m_i\b{\ddot{x}}_i=\b{f}_i,\quad i=1,\ldots ,n.}{eq:mov_newton}
 \end{block}
 
 
@@ -185,13 +185,31 @@ CONICET}
 
 \begin{frame}{Sistemas conservativos}
 
-\begin{block}{Definición} El sistema se llama conservativo si existe una función $U=U(\b{r},\b{\dot{r}})$, con  $U:\rr^{3n}\times \rr^{3n}\to\rr$ tal que
-\[\b{f}_i=\frac{\partial U}{\partial \b{x}_i},\quad i=1,\ldots,n.\]
-Las derivadas de la expresión vectorial de la derecha hay que entenderlas como que presuponen las tres identidades escalares 
-\[f_{i,j}=\frac{\partial U}{\partial x_{i,j}},\quad i=1,\ldots,n; j=1,2,3.\]
+\begin{block}{Definición} El sistema se llama conservativo si existe una función $U=U(\b{x},\b{y})$, con  $U:\rr^{3n}\times \rr^{3n}\to\rr$ tal que
+\boxedeq{\b{f}_i(\b{x},\b{\dot{x}})=-\left.\frac{\partial U}{\partial \b{x}_i}\right|_{(\b{x},\b{y})=(\b{x},\b{\dot{x}})},\quad i=1,\ldots,n.}{eq:conservativo}
+El signo menos en el segundo miembro es sólo una convención. 
+
+Las derivadas del miembro de  la derecha en \eqref{eq:conservativo} hay que entenderlas como que presuponen las tres identidades escalares 
+\[f_{i,j}(\b{x},\b{\dot{x}})=\left.\frac{\partial U}{\partial x_{i,j}}\right|_{(\b{x},\b{y})=(\b{x},\b{\dot{x}})},\quad i=1,\ldots,n; j=1,2,3.\]
 
 \end{block}
 
 \end{frame}
+
+
+
+\begin{frame}{Ecuaciones de Euler-Lagrange}
+En un sistema conservativo se define la energía cinética $T:\rr^{3n}\to\rr$ por
+\[T(\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|}{2},\quad \b{y}=(\b{y}_1,\ldots,\b{y}_n)\in\rr^{3n}\]
+y la energía potencial por $U$. 
+
+
+
+Vamos a definir la función de Lagrange o Lagrangiano por 
+\boxedeq{L(t,\b{x},\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|}{2} - U(\b{x},\b{y})}{eq:energia_cinetica}
+
+\href{https://es.wikipedia.org/wiki/Ecuaciones_de_Euler-Lagrange}{Ecuaciones de Euler-Lagrange}
+\end{frame}
+
 
 \end{document}
