@@ -129,9 +129,9 @@ numberstyle=\footnotesize
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
 
-\title[Cálculo de variaciones] % (optional, nur bei langen Titeln nötig)
+\title[Método directo] % (optional, nur bei langen Titeln nötig)
 {%
-Problemas del cálculo de variaciones
+Método directo del cálculo de variaciones
 }
 
 
@@ -163,51 +163,24 @@ CONICET}
 
 \end{frame}
 
-\section{Ejemplos, problema de contorno}
-\begin{frame}{Ecuaciones escalares}
-   Las ecuaciones escalares de segundo orden
-\[u''+f(u)=h(t),\]
-son siempre conservativas, si $f:\rr\to\rr$ es continua, pues $f$ tiene la primitiva
-\[F(u)=\int_0^uf(s)ds\] 
-Así tenemos el potencial
-\[U(t,u)=F(u)-uh(t).\]
-\end{frame}
-
-
-
-
-
-\begin{frame}{Problema de Dirichlet ecuación lineal  no resonante}
-
-\[\left\{ \begin{array}{l}
-            u''(t)+\frac12 u=\sen(t),\quad 0<t<\pi\\
-            u(0)=u(\pi)=0
-          \end{array}
-          \right.
-\]
-
-Por medios elementales hallamos la solución general de la ecuación diferencial. Usamos el método de coeficientes indeterminados. Proponemos 
-\[u(t)=A\cos(t)+B\sen(t).\]
-reemplazamos en la ecuación y hallamos
-\[\fbox{A=0}, \fbox{B=-2}\]
+\section{Resultado principal}
+\begin{frame}{Problema minimización}
+\begin{block}{Problema minimización}
+Dado un espacio de Banach $X$ un subconjunto cerrado y convexo $C\subset X$ y  una función $I:X\to (-\infty,+\infty]$ hallar $u_0\in C$ tal que
+\boxedeq{I(u_0)=\min_{u\in C}I(u)}{eq:min_prin}
+\end{block}
 
 
 \end{frame}
 
 
+\begin{frame}{Funciones inferiormente  semicontinuas}
+\begin{block}{Definiciones} Sea $X$ un espacio topológico  subconjunto cerrado y convcexo $C\subset X$ y  una función $I:X\to (-\infty,+\infty]$ hallar $u_0\in C$ tal que
+\boxedeq{I(u_0)=\min_{u\in C}I(u)}{eq:min_prin}
+\end{block}
 
 
-
-\begin{frame}{Problema de Dirichlet ecuación lineal  no resonante}
-La solución general es la solución particular más una general del homogéneo
-\[u=c_1\cos\left(\frac{t}{\sqrt{2}}\right)+c_2\sen\left(\frac{t}{\sqrt{2}}\right)-2\sen(t).\]
-La condición de contorno $ u(0)=u(\pi)=0$ implica $c_1=c_2=0$. El problema tiene una única solución
-
-\[\boxed{u=-2\sen(t).}\]
-
-El lagrangiano es
-
-\[L(t,x,y)=\frac{y^2}{2}-\frac{x^2}{4}+\sen(t) x.\]
 \end{frame}
+
 
 \end{document}
