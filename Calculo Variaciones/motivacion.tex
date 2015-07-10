@@ -172,11 +172,11 @@ CONICET}
 \begin{frame}{Ecuaciones de Newton}
 
 
-\textbf{Sistema mecánico:} $n$-puntos masa en un espacio euclideano tridimensional. Supuesto un sistema de coordenadas cartesiano, sean $\b{x}_1,\b{x}_2,\ldots,\b{x}_n\in\rr^3$ las coordenadas de los puntos masa, $\b{x}_i=(x_{i,1},x_{i,2},x_{i,3})$, $i=1,\ldots,n$. Vamos a poner $\b{x}= (\b{x}_1,\b{x}_2,\ldots,\b{x}_n)\in\rr^{3n}$.
+\onslide<+->\textbf{Sistema mecánico:} $n$-puntos masa en un espacio euclideano tridimensional. Supuesto un sistema de coordenadas cartesiano, sean $\b{x}_1,\b{x}_2,\ldots,\b{x}_n\in\rr^3$ las coordenadas de los puntos masa, $\b{x}_i=(x_{i,1},x_{i,2},x_{i,3})$, $i=1,\ldots,n$. Vamos a poner $\b{x}= (\b{x}_1,\b{x}_2,\ldots,\b{x}_n)\in\rr^{3n}$. Las variables $\b{x}_i$ dependen del tiempo $t$. A la función $t\mapsto \b{x}(t)$ la denominamos un movimiento.
 
-\textbf{Fuerzas:}  Supongamos que actúan fuerzas $\b{f}_i=\b{f}_i(t,\b{x}(t),\b{\dot{x}}(t))$ sobre cada masa $m_i$.
+\onslide<+->\textbf{Fuerzas:}  Supongamos que actúan fuerzas $\b{f}_i=\b{f}_i(t,\b{x}(t),\b{\dot{x}}(t))$ sobre cada masa $m_i$.
 
-\begin{block}{Leyes de movimiento de Newton} Suponiendo que el sistema satisface la \href{https://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{segunda ley de Newton}. 
+\onslide<+->\begin{block}{Leyes de movimiento de Newton} Suponiendo que el sistema satisface la \href{https://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{segunda ley de Newton}. 
 \boxedeq{m_i\b{\ddot{x}}_i=\b{f}_i,\quad i=1,\ldots ,n.}{eq:mov_newton}
 \end{block}
 
@@ -198,7 +198,7 @@ Las derivadas del miembro de  la derecha en \eqref{eq:conservativo} hay que ente
 
 
 
-\begin{frame}{Ecuaciones de Euler-Lagrange}
+\begin{frame}{Lagrangiano}
 En un sistema conservativo se define la energía cinética $T:\rr^{3n}\to\rr$ por
 \[T(\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|}{2},\quad \b{y}=(\b{y}_1,\ldots,\b{y}_n)\in\rr^{3n}\]
 y la energía potencial por $U$. 
@@ -206,9 +206,47 @@ y la energía potencial por $U$.
 
 
 Vamos a definir la función de Lagrange o Lagrangiano por 
-\boxedeq{L(t,\b{x},\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|}{2} - U(\b{x},\b{y})}{eq:energia_cinetica}
+\boxedeq{L(t,\b{x},\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|^2}{2} - U(\b{x},\b{y})}{eq:energia_cinetica}
 
-\href{https://es.wikipedia.org/wiki/Ecuaciones_de_Euler-Lagrange}{Ecuaciones de Euler-Lagrange}
+
+\end{frame}
+
+
+
+\begin{frame}{Ecuaciones de Euler-Lagrange}
+
+Las ecuaciones de Newton \eqref{eq:mov_newton} ahora se pueden escribir
+\[\frac{d}{dt}\left(\frac{\partial L}{\partial \b{y}_i }\right)=\frac{\partial L}{\partial \b{x}_i },\quad i=1,\ldots,n.\]
+O más sintéticamente
+\boxedeq{\frac{d}{dt}\left(\frac{\partial L}{\partial \b{y} }\right)=\frac{\partial L}{\partial \b{x} }}{eq:EqEuler-Lagr}
+ Estas ecuaciones se denominan 
+\href{https://es.wikipedia.org/wiki/Ecuaciones_de_Euler-Lagrange}{ecuaciones de Euler-Lagrange}
+\end{frame}
+
+\begin{frame}{Ejemplo}
+Consideremos la \href{https://es.wikipedia.org/wiki/Resorte}{ecuación del resorte} u
+ \href{https://es.wikipedia.org/wiki/Oscilador_arm\%C3\%B3nico}{oscilador armónico}
+\[\ddot{x}(t)=-\omega^2 x(t).\]
+En estas ecuaciones hemos dividido por la masa. Aquí el movimiento se realiza sobre una línea, de modo que un eje de coordenadas es suficiente para describir el movimiento $x(t)\in\rr$. El sistema es conservativo, pues
+\[f=-\omega^2 x=-\frac{dU}{dx},\quad\text{donde } U=\omega^2\frac{x^2}{2}.\]
+El lagrangiano es
+\[L(t,x,y)=\frac{y^2}{2}-\omega^2\frac{x^2}{2}.\]
+\end{frame}
+
+\begin{frame}{Integral de acción, principio de Hamilton}
+\begin{block}{Definición}
+La integral de acción depende sobre los movimientos $\b{x}(t)$, para $t$ en  un intervalo $[a,b]$,  y se define por
+\boxedeq{I(\b{x})=\int_a^bL(t,\b{x}(t),\b{\dot{x}}(t))dt}{eq:integral_accion} 
+\end{block}
+
+\begin{block}{\href{https://es.wikipedia.org/wiki/Principio_de_m\%C3\%ADnima_acci\%C3\%B3n}{Principio de Mínima Acción de Hamilton}} Las soluciones de \eqref{eq:EqEuler-Lagr}
+son puntos críticos  de la integral de acción. 
+\end{block}
+\end{frame}
+
+\begin{frame}{Integral de acción, principio de Hamilton}
+\textbf{Dem.} Como esta charla pretende dar una motivación para emprender el estudio de  
+
 \end{frame}
 
 
