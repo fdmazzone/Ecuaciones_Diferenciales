@@ -186,7 +186,7 @@ CONICET}
 \begin{frame}{Sistemas conservativos}
 
 \begin{block}{Definición} El sistema se llama conservativo si existe una función $U=U(\b{x},\b{y})$, con  $U:\rr^{3n}\times \rr^{3n}\to\rr$ tal que
-\boxedeq{\b{f}_i(\b{x},\b{\dot{x}})=-\left.\frac{\partial U}{\partial \b{x}_i}\right|_{(\b{x},\b{y})=(\b{x},\b{\dot{x}})},\quad i=1,\ldots,n.}{eq:conservativo}
+\boxedeq{\b{f}_i=\b{f}_i(\b{x},\b{\dot{x}})=-\left.\frac{\partial U}{\partial \b{x}_i}\right|_{(\b{x},\b{y})=(\b{x},\b{\dot{x}})},\quad i=1,\ldots,n.}{eq:conservativo}
 El signo menos en el segundo miembro es sólo una convención. 
 
 Las derivadas del miembro de  la derecha en \eqref{eq:conservativo} hay que entenderlas como que presuponen las tres identidades escalares 
@@ -200,8 +200,10 @@ Las derivadas del miembro de  la derecha en \eqref{eq:conservativo} hay que ente
 
 \begin{frame}{Lagrangiano}
 En un sistema conservativo se define la energía cinética $T:\rr^{3n}\to\rr$ por
-\[T(\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|}{2},\quad \b{y}=(\b{y}_1,\ldots,\b{y}_n)\in\rr^{3n}\]
-y la energía potencial por $U$. 
+\[T(\b{y})=\sum_{i=1}^nm_i\frac{|\b{y}_i|^2}{2},\quad \b{y}=(\b{y}_1,\ldots,\b{y}_n)\in\rr^{3n}\]
+La energía potencial por $U$ y la energìa total
+
+\[E=T+U.\]
 
 
 
@@ -222,7 +224,7 @@ O más sintéticamente
  Estas ecuaciones se denominan 
 \href{https://es.wikipedia.org/wiki/Ecuaciones_de_Euler-Lagrange}{ecuaciones de Euler-Lagrange}
 
-\textbf{Ejercicio} Definimos la energía total del sistema por $E=T+U$. Demostrar que si $\b{x}(t)$ resuelve \eqref{eq:mov_newton} entonces $E(\b{x}(t),\b{\dot{x}}(t))$ no depende de $t$, i.e. la energía total del sistema se conserva.  
+\textbf{Ejercicio} Demostrar que si $\b{x}(t)$ resuelve \eqref{eq:mov_newton} entonces $E(\b{x}(t),\b{\dot{x}}(t))$ no depende de $t$, i.e. la energía total del sistema se conserva.  
 
 \end{frame}
 
@@ -239,11 +241,16 @@ El lagrangiano es
 
 \section{Problemas de contorno}
 \begin{frame}{Problemas de contorno}
-La ecuación \eqref{eq:EqEuler-Lagr} no caracteriza una única solución, hace falta introducir condiciones adicionales. Estamos interesados en considerar  problemas de contorno. Hay de distinto tipo, aquí algunos ejemplos. Supongamos $\b{x}_0,\b{x}_1\in\rr^n$,
+La ecuación \eqref{eq:EqEuler-Lagr} no caracteriza una única solución, hace falta introducir condiciones adicionales. Hay de distinto tipo, aquí algunos ejemplos. Supongamos $\b{x}_0,\b{x}_1\in\rr^n$,
 
 \begin{description}
+
+\item[\href{https://en.wikipedia.org/wiki/Initial_value_problem}{Condición inicial}] $\b{x}(a)=\b{x}_0$ y $\b{\dot{x}}(a)=\b{x}_1$. 
+
 \item[\href{https://es.wikipedia.org/wiki/Condici\%C3\%B3n_de_frontera_de_Dirichlet}{Dirichlet}] $\b{x}(a)=\b{x}_0$ y $\b{x}(b)=\b{x}_1$. 
+
 \item[\href{https://es.wikipedia.org/wiki/Condici\%C3\%B3n_de_frontera_de_Neumann}{Neumann}] $\b{\dot{x}}(a)=\b{x}_0$ y $\b{\dot{x}}(b)=\b{x}_1$. 
+
 \item[\href{https://es.wikipedia.org/wiki/Condici\%C3\%B3n_de_frontera_de_Robin}{Robin} (Mixta)] dados $\alpha$,$\beta$,$\gamma$ y $\delta$ en $\rr$, con $\alpha^2+\beta^2\neq 0$ y $\gamma^2+\delta^2\neq 0$,
 \[\begin{array}{cc}
 \alpha\b{x}(a)+\beta\b{\dot{x}}(a)&=\b{x}_0\\
@@ -252,7 +259,7 @@ La ecuación \eqref{eq:EqEuler-Lagr} no caracteriza una única solución, hace f
 \]
 \item[Periódicas] $\b{x}(a)=\b{x}(b)$ y $\b{\dot{x}}(a)=\b{\dot{x}}(b)$.
 \end{description}
-
+Las cuatro últimas condiciones se denominan \href{https://es.wikipedia.org/wiki/Problema_de_condici\%C3\%B3n_de_frontera}{condiciones de contorno}.
 \end{frame}
 
 \section{Principio de mínima acción de Hamilton}
@@ -318,7 +325,7 @@ entonces $\b{f}=0$, c.t.p.
 Aplicando el Teorema concluímos que 
 \[ \forall \b{r}: DI(\b{x})\cdot \b{r}=0 \Leftrightarrow \frac{d}{dt} D_{\b{y}}L(t,\b{x},\b{\dot{x}})=D_{\b{x}}L(t,\b{x},\b{\dot{x}}),\, \text{c.t.p. } t\in[a,b] .\] \qed
 
-Detalle pendiente: por qué se puede intercambiar los límtes con las intergales?
+Detalle pendiente: por qué se puede intercambiar los límtes con las integrales?
 \end{frame}
 
 
