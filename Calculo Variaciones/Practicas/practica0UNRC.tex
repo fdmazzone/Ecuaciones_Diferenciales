@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[utf8x]{inputenc}
+%\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabularx}
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\C}[1]{\overline{#1}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand\eme {\mbox{\tiny\sc M}}
+\newcommand\bfm {\mbox{\tiny\sc BFM}}
+\newcommand\btuk {\mbox{\tiny\sc BT}}
+\newcommand\rice {\mbox{\tiny\sc R}}
+\newcommand\pc {\mbox{\tiny\sc PC}}
+\newcommand\gasser {\mbox{\tiny\sc G}}
+\newcommand\hall {\mbox{\tiny\sc H}}
+\newcommand\h {\widehat{h}_n}
+\newcommand\ta {\widehat{\tau}_n}
+\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+\newcommand{\seno}{\hbox{sen}}
+
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1cm}
+%
+\setlength{\extrarowheight}{5mm}
+%
+
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{imagenes/unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Segundo Cuatrimestre de 2015\par
+        Cálculo Variaciones \par
+        Práctica 2: Funciones variación acotada y absolutamente continuas.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+
+
+\begin{ejercicio} Investigar en algunos de las temas expuestos durante las clases teóricas y elaborar un breve documento (máximo 2 páginas, tamaño de letra 12pt e  interlineado simple) ampliando este tema.
+\end{ejercicio}
+
+\begin{ejercicio} Demostrar que entre dos polígonos regulares con el mismo perímetro el de mayor área es el de mayor número de lados.
+\end{ejercicio}
+
+\begin{ejercicio} Demostrar la Ley de Snell de la refracción.
+ \end{ejercicio}
+
+ \begin{ejercicio} Computar la resistencia al movimiento $I(u)$ para una semiesfera y un cono que se desplazan en la dirección  perpendicular a la base plana.  Observar que la resistencia del cono tiende a cero si se fija la base y la altura tiende a infinito.
+   \end{ejercicio}
+
+ \begin{ejercicio} A partir de las ecuaciones de Euler-Lagrange deducir la ecuación diferencial ordinaria no lineal de segundo orden que satisface la braquistócrona. Asistirse si se desea con un sistema de álgebra computacional (SAC), como por ejemplo SymPy, SAGE, Mupad, etc.   Observar que la ecuación resultante es de la forma
+  \[F(y(x),y'(x),y''(x)),\]
+ con $F$ independiente de $x$. Utilizar la técnica vista en ecuaciones ordinarias para reducir este tipo de ecuaciones a una de primer orden.
+ \end{ejercicio}
+
+\begin{ejercicio} Completar los detalles que quedaron pendientes en la clase teórica sobre las geodésicas sobre esferas.
+\end{ejercicio}
+
+ \begin{ejercicio} Un partícula se mueve sometida sólo a la acción de la gravedad  sobre un paraboloide cuyo eje de simetría es perpendicular al piso. La ecuación del paraboloide, en algún sistema de coordenadas, es  $x^2+y^2=ax$, $a\in\rr$. Hallar las ecuaciones de movimiento utilizando la formulación de Lagrange de los multiplicadores.
+\end{ejercicio}
+
+
+
+\end{document}

@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[utf8x]{inputenc}
+%\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabularx}
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\C}[1]{\overline{#1}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand\eme {\mbox{\tiny\sc M}}
+\newcommand\bfm {\mbox{\tiny\sc BFM}}
+\newcommand\btuk {\mbox{\tiny\sc BT}}
+\newcommand\rice {\mbox{\tiny\sc R}}
+\newcommand\pc {\mbox{\tiny\sc PC}}
+\newcommand\gasser {\mbox{\tiny\sc G}}
+\newcommand\hall {\mbox{\tiny\sc H}}
+\newcommand\h {\widehat{h}_n}
+\newcommand\ta {\widehat{\tau}_n}
+\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+\newcommand{\seno}{\hbox{sen}}
+
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1cm}
+%
+\setlength{\extrarowheight}{5mm}
+%
+
+\setlength{\extrarowheight}{-5mm}
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{imagenes/unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Segundo Cuatrimestre de 2015\par
+        Cálculo Variaciones \par
+        Práctica 2: Funciones absolutamente continuas y de variación acotada.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+
+
+\begin{ejercicio} Supongamos que $f$ y $f$ son de variación acotada sobre $[a,b]$ y $a,b\in\rr$. Entonces $af+bg$ y $fg$ son de variación acotada en $[a,b]$. Si $g\geq \epsilon$ en $[a,b]$ para algún $\epsilon>0$ entonces $f/g$ es de variación acotada. ¿Se puede reemplazar  $g\geq \epsilon$ por  $g> 0$?
+\end{ejercicio}
+
+\begin{ejercicio} Demostrar que si $V_a^bf<\infty$ entonces
+ \[V_a^bf=V_a^{b+}f + V_a^{b-}f\quad\hbox{y}\quad f(b)-f(a)=V_a^{b+}f -V_a^{b-}f\ .\]
+\end{ejercicio}
+
+\begin{ejercicio} Se define $f:[0,1]\to\rr$ de la siguiente forma:
+ \[f(0)=0,\quad f\left(\frac{1}{2n+1}\right)=0\quad\text{y}\quad f\left(\frac{1}{2n}\right)=\frac{1}{2n},\quad n\in\nn,\]
+ y en cada intervalo de la forma $[\frac{1}{n+1}, \frac{1}{n}]$ la función $f$ es lineal. Demostrar que $f$ no es de variación acotada.
+\end{ejercicio}
+
+\begin{ejercicio} Demostrar que
+\[f(x)=\left\{\begin{array}{ll}
+        x^2\cos\left(\frac{\pi}{x}\right) &\text{si } x\in [0,1]\\
+        0                                 &\text{si } x=0,
+       \end{array}
+       \right.
+\]
+es de variación acotada.
+\end{ejercicio}
+
+\begin{ejercicio} Supongamos que la sucesión de funciones $f_n:[a,b]\to\rr$ converge puntualmente a $f$ cuando $n\to\infty$. Demostrar que
+\[V_a^bf\leq \liminf_{n\to\infty}V_a^bf_n.\]
+Demostrar que no vale en general la igualdad en desigualdad anterior. Para ello considerar la sucesión $f_n:[0,1]\to\rr$ definida por
+\[f(x)=\left\{\begin{array}{ll}
+        0               &\text{si } x=0\\
+        1                &\text{si } x\in\left(0,\frac{1}{n}\right]\\
+        0                             &\text{si } x\in\left(\frac{1}{n}, 1\right]\\
+       \end{array}
+       \right.
+\]
+
+
+\end{ejercicio}
+
+\begin{ejercicio} Computar las derivadas de Dini $D^+$ y $D^-$ para la función del primer ejercicio.
+ \end{ejercicio}
+
+ \begin{ejercicio}Si $f$ tiene un máximo en $c\in (a,b)$ entonces $D^-f(c)\geq 0$.
+   \end{ejercicio}
+
+   \begin{ejercicio} Supongamos  $f:[a,b]\to\rr$ absolutamente continua. Entonces $f$ es Lipschitz en $[a,b]$ si y sólo si $f'\in L^{\infty}([a,b])$.
+
+   \end{ejercicio}
+
+   \begin{ejercicio} Demostrar que la función de Cantor es continua pero no absolutamente continua.
+
+   \end{ejercicio}
+
+
+\begin{ejercicio} Demostrar que si $f,g:[a,b]\to\rr$ son absolutamente continuas en $[a,b]$ entonces vale la fórmula integral por partes
+ \[\int_a^bfg'dx=fg\Big|_a^b-\int_a^bf'gdx.\]
+\end{ejercicio}
+
+
+
+
+
+
+\end{document}
