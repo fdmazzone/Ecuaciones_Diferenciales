@@ -97,16 +97,62 @@ Justificar que  $H\notin W^{1,p} $ para $1\leq p \leq \infty$.
 
 
 
-\begin{ejercicio}
-Sea $G$ funci\'on de Lipschitz  tal que $G(0)=0$ y sea $u \in W^{1,p}$. Entonces
-$G\circ u \in W^{1,p}$ y $\dot{(G\circ u)}(\dot{G}\circ u)\dot {u}$.
-\end{ejercicio}
 
 \begin{ejercicio} Considerar la función $u:\mathbb{R}\to\mathbb{R}$ dada por
 \[u(x)=\frac{1}{(1+x^2)^{\alpha/2} \ln(2+x^2) }.\]
 Demostrar que $u\in W^{1,p}(\rr)$ si $p\geq 1/\alpha$ y que $u\notin  L^{p}(\rr)$ si $1\leq p <1/\alpha$.
 
 \end{ejercicio}
+
+\begin{ejercicio} \textbf{(Espacios de Lebesgue y Sobolev de funciones con valores vectoriales)} Sea $I$ un intervalo abierto de $\rr$.
+\begin{enumerate}
+ \item Denotamos los espacios de Lebegue de funciones con valores en $\rr^n$ por
+ \[ L^p(I,\rr^n):=\left\{u:I\to\rr^n\big| |u(t)|\in L^p(I)\right\},\]
+ donde $ L^p(I)$ denota el espacio de Lebesgue escalar usual y $|\cdot|:\rr^n\to\rr_+$ la norma euclidea sobre $\rr^n$. Demostrar que $L^p(I,\rr^n)$ es un espacio de Banach con norma
+ \[\|u\|_{L^p(I,\rr^n)}=\|\, |u| \,\|_{L^p(I)}.\]
+ \item Si $u:I\to \rr^n$ pongamos $u=(u_1,\ldots,u_n)$ con $u_i:I\to\rr$, $i=1,\ldots,n$. Demostrar que $u\in L^p(I,\rr^n)\Leftrightarrow u_i\in L^p(I)$, $i=1,\ldots,n$.
+ \item $L^p(I,\rr^n)\cong L^p(I)\times\cdots\times L^p(I)$, donde $\cong $ siginifica que existe un isomorfismo homeomorfo entre los espacios.
+ \item  $L^p(I,\rr^n)$ es reflexivo cuando $1<p<\infty$.
+
+\item Denotamos por $C_c^1(I,\rr^n)$ al conjunto (espacio vectorial) de todas las funciones test $\varphi$  continuamente diferenciables y de soporte compacto en $I$.  Para $1\leq p\leq \infty$, vamos a definir el espacio de Sobolev de funciones con valores en $\rr^n$, denotado por $W^{1,p}(I,\rr^n)$ por analogía con el caso escalar, es decir
+
+\[
+\begin{split}
+W^{1,p}(I,\rr^n):=\bigg\{ u\in L^p(I,\rr^n) &\bigg| \exists v\in  L^p(I,\rr^n) \forall\varphi \in C_c^1(I,\rr^n)  : \\
+&\int_I u\cdot \varphi' dt=-  \int_I v\cdot \varphi dt \bigg\},
+\end{split}
+\]
+
+donde $a\cdot b$ denota el producto escalar entre vectores $a,b\in\rr^n$. El espacio $W^{1,p}(I,\rr^n)$ es Banach. Justificar esta afirmación.
+\end{enumerate}
+\end{ejercicio}
+
+
+\begin{ejercicio} \textbf{(Espacios de Sobolev de Funciones Periódicas)} Sea $T>0$ y $C_T^1$ el espacio de las funciones continuas y con derivada continua sobre $[0,T]$
+que además son $T$-periódicas, esto es $\varphi(0)=\varphi(T)=0$. Definimos el espacio de Sobolev de funciones $T$ periódicas como
+\[
+\begin{split}
+W^{1,p}_T(I):=\bigg\{ u\in L^p(I) \bigg| \exists v\in  L^p(I) \forall\varphi \in C_T^1(I)  : \int_I u\cdot \varphi' dt=-  \int_I v\cdot \varphi dt \bigg\},
+\end{split}
+\]
+Demostrar que
+ \[
+W^{1,p}_T(I)=\bigg\{ u\in L^p(I) \bigg| u \text{ es absolutamente continua, }  u'\in L^p(I), u(0)=u(T)
+ \bigg\}.
+\]
+Generalizar a funciones con valores vectoriales.
+
+\end{ejercicio}
+
+\begin{ejercicio}  \textbf{(Desigualdad de Poincaré-Wiertinger)} Sea $I$ el intervalo acotado $(a,b)$.  Para $u:I\to\rr$ definimos el promedio
+\[\overline{u}:=\frac{1}{b-a}\int_a^bu(t)dt.\]
+Demostrar la desigualdad de Wirtinger, esto es que existe una contante $C>0$ tal que para toda  $u\in W^{1,p}(I)$, $1\leq p\leq \infty$ se satisface que
+\[\|u-\overline{u}\|_{L^{\infty}}\leq C\|u'\|_{L^p}.\]
+Generalizar a funciones con valores vetoriales.
+\emph{Ayuda: } Notar que  por el teorema del valor medio para integrales debe existir $x_0\in I$ tal que $\overline{u}=u(x_0)$.
+
+\end{ejercicio}
+
 
 
 \begin{ejercicio} Sea $\{u_n\}_{n\in\nn}$ una sucesión acotada de $W^{1,p}(I)$ con $1<p\leq \infty$.
@@ -123,7 +169,7 @@ Demostrar que $u\in W^{1,p}(\rr)$ si $p\geq 1/\alpha$ y que $u\notin  L^{p}(\rr)
   \item No exixte subsucesión que converge en la topología fuerte en  $L^q(\rr)$ para ningun  $1\leq q\leq \infty$.
    \item $ u'_{n} \rightharpoonup 0$ debilmente en $W^{1,p}(\rr)$.
  \end{enumerate}
-
+\end{ejercicio}
 
 \begin{ejercicio} Sea $1\leq p<\infty$ y $u\in W^{1,p}(\rr)$. Escribamos
 \[D_hu(x)=\frac{u(x+h)-u(x)}{h},\quad\text{para } h\neq 0, x\in\rr.\]
@@ -135,7 +181,8 @@ Usar el hecho que $C_c^1(\rr)$ es denso en $W^{1,p}(\rr)$ para demostrar que $D_
 
 
 
-\end{ejercicio}
+
+
 
 
 
