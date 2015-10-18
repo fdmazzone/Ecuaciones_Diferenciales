@@ -83,11 +83,54 @@ Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
 \renewcommand{\theenumi}{\alph{enumi}}
 
 
-\begin{ejercicio} Sea $E$ un espacio de Banach 
-y $I:E\to (-\infty,\infty]$ una función convexa y acotada por superiormente  en 
-un entorno del punto $a\in E$.  Entonces  $I$ es continua en $a$. 
+\begin{ejercicio} Sea $X$ un espacio de Banach
+e $I:X\to (-\infty,\infty]$ una función convexa y acotada por superiormente  en
+un entorno del punto $a\in X$.  Entonces  $I$ es continua en $a$.
+\end{ejercicio}
+\begin{ejercicio} Sea $X$ un espacio de Banach. Una funcional $I:X\to (-\infty,\infty]$ se llama \emph{estrictamente convexa} si
+\[I(\lambda x+(1-\lambda)y)\leq \lambda I(x)+(1-\lambda)I(y),\quad\forall\lambda\in(0,1)\forall x,y\in X.\]
+Demostrar que una función extrictamente convexa alcanza a lo sumo un punto mínimo.
 
 \end{ejercicio}
 
+\begin{ejercicio}
+Sea $X$ un espacio de Banach
+e $I:X\to (-\infty,\infty]$ una función convexa  y semicontinua inferiormente en la topología fuerte. Entonces $I$ es coercitiva ($I(u)\to\infty$ cuando $\|u\|\to\infty$) si y sólo si existen $\alpha>0$ y $\beta\geq 0$ tales que
+\[I(u)\geq \alpha \|u\|-\beta.\]
+\end{ejercicio}
+
+\begin{ejercicio} Sea $X$ un espacio de topológico.
+\begin{enumerate}
+ \item  Si $I_1,I_2:X\to (-\infty,\infty]$ son convexas, o s.c.i., o s.s.c.i. y $\alpha\geq 0$ entonces $I_1+I_2$ y $\alpha I_1$ son convexas, o s.c.i., o s.s.c.i. respectivamente.
+ \item Si $\{I_{\lambda}\}_{\lambda\in\Lambda}$ es un familía, posiblemente infinita, de funciones convexas, o s.c.i, o s.s.c.i. entonces
+ \[\sup_{\lambda\in\Lambda}I_{\lambda}, \]
+es convexa, o s.c.i., o s.s.c.i. respectivamente.
+
+\end{enumerate}
+
+\end{ejercicio}
+
+
+
+\begin{ejercicio} Sea $X$ un espacio topológico. Una función $I:X\to (-\infty,\infty]$  es s.c.i si y sólo si $\{u\in X|I(u)\leq \alpha\}$ es cerrado para todo $\alpha\in\rr$.
+
+\end{ejercicio}
+
+\begin{ejercicio} Si $I:X\to (-\infty,\infty]$  es convexa, entonces $\{u\in X|I(u)\leq \alpha\}$ es convexo para todo $\alpha\in\rr$. Demostrar con un ejemplo que el recíproco no es en general cierto.
+
+\end{ejercicio}
+
+\begin{ejercicio}  Si $I:X\to (-\infty,\infty]$  es convexa, o si es  s.c.i.,  entonces el conjunto donde $I$ alcanza un mínimo es convexo, respectivamente cerrado, para todo $\alpha\in\rr$.
+ \end{ejercicio}
+
+\begin{ejercicio}   Si $I:X\to (-\infty,\infty]$  es convexa, entonces un mínimo local es mínimo global.
+
+\end{ejercicio}
+
+
+\begin{ejercicio} Sean $X,Y$ espacios de Banach y $F:X\to Y$ una función. Se dice que $F$ es \emph{diferenciable según Fréchet} en $u\in X$ si existe un operador lineal acotado $dF(u):X\to Y$ tal que
+\[\lim_{\|v\|_X\to 0}\frac{\|F(u+v)-F(u)-dF(u)(v)\|_Y}{\|v\|_X}=0.\]
+Demostrar que si $F:X\to\rr$ es diferenciable Fréchet entonces es diferenciable G\^ateaux. Demostrar, con un ejemplo de una  $F:\rr^2\to\rr$, que el recíproco no es cierto.
+\end{ejercicio}
 
 \end{document}
