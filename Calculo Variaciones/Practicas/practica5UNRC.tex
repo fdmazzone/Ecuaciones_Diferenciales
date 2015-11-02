@@ -82,7 +82,65 @@ Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
 \end{tabular}
 \renewcommand{\theenumi}{\alph{enumi}}
 
+\begin{ejercicio} Sea $F:[a,b]\times \rr^n\to\rr$ una función tal que $F(\cdot,z)$ es medible para todo $z\in\rr^n$ y que $F(x,\cdot)$ es continuamente diferenciable para casi todo $x\in [a,b]$. Además supongamos que existe $a:[0,+\infty)\to [0,+\infty)$ continua y $0\leq b\in  L^1([a,b],\rr)$ tal que
+\[|F(x,z)|+|D_{z}F(x,z)|\leq a(|z|)b(x).\]
+Demostrar que para $1< p<\infty$ la integral de acción
+\[I(u)=\int_a^b\frac{|u'(x)|^p}{p}+F(x,u(x))dx\]
+satisface:
+\begin{enumerate}
+ \item $I$ es d.s.s.c.i. \emph{Ayuda:}   la intregral es suma de una funcional convexa y continua en la norma, y en el otro sumando se puede usar que $u_n\rightharpoonup u$ en $W^{1,p}((a,b),\rr^n)$ implica $u_n\to u$ uniformemente cuando $1<p$.
 
-\begin{ejercicio} 
+ \item Demostrar que $I$ es diferenciable G\^ateaux y expresar la diferencial de $I$.
+
+ \item Supongamos que $I$ tiene un punto crítico $u$ sobre
+ \[\{u\in W^{1,p}((a,b),\rr^n)| u(a)=\alpha, u(b)=\beta\},\]
+ con $1<p$. Demostrar que $u$ satisface las ecuaciones de  Euler-Lagrange, que en este caso son
+ \begin{equation}\label{ProbPrin}
+    \left\{%
+\begin{array}{ll}
+   \frac{d}{dx}\big(|u(x)|^{p-2}u(x)\big)= D_zF(x,u(t)) \quad \hbox{a.e.}\ x \in (a,b)\\
+    u(a)=\alpha\text{ y } u(b)=\beta\\
+\end{array}%
+\right.
+\end{equation}
+
+ \end{enumerate}
+
+
 \end{ejercicio}
+
+
+
+
+\begin{ejercicio} Supongamos que $L:(a,b)\times\rr^n\times\rr^n\to\rr$ satisface
+\begin{enumerate}
+ \item $L(x,u,p)$, $L_p(x,u,p)$ son continuas.
+ \item $L(x,u,p)$ convexa respecto a $p$.
+ \item \[L(x,u,p)\geq \theta(p)+a(x),\]
+ donde $a\in L^1([a,b],\rr)$ y $\theta$ es super lineal. Demostrar que existe un mínimo de la integral de acción sobre el conjunto $\{u\in W^{1,1}((a,b),\rr^n)| u(a)=\alpha, u(b)=\beta\}$
+\end{enumerate}
+
+
+\end{ejercicio}
+
+
+
+\begin{ejercicio} Encontrar condiciones suficientes sobre $V:(a,b)\to\rr$ para que
+\[I(u)=\int_a^b\frac{|p|^2}{2}+V(x)dx\]
+satisfaga el Teorema de existencia de Tonelli de modo que el problema
+\[\min\left\{I(u)\bigg| u\in W^{1,1}((a,b),\rr), u(a)=\alpha, u(b)=\beta\right\}\]
+tenga solución. Encontrar condiciones  sobre $V$ que garanticen que $I$ es diferenciable G\^ateaux y hallar las ecuaciones de Euler-Lagrange que satisface un mínimo.
+
+\end{ejercicio}
+
+\begin{ejercicio} Demostrar la siguiente afirmación. $L:(a,b)\times\rr^n\times\rr^n\to\rr$ es cuasiconvexa si y solo si para $(x_0,u_0)\in [a,b]\times\rr^n$ fijos la funcional
+\[\int_a^bL(t_0,u_0,\phi'(x))dx,\]
+alcanza un mínimo en $u$ sobre el conjunto
+\[\left\{\phi\in W^{1,\infty}((a,b),\rr^n)| \phi(a)=\alpha, \phi(b)=\beta\right\},\]
+si y solo si $u$ es la recta que une $\alpha$ con $\beta$. Una de las implicaciones fue demostrada durante las clases teóricas.
+
+\end{ejercicio}
+
+
+
 \end{document}
