@@ -112,12 +112,15 @@ satisface:
 
 
 
-\begin{ejercicio} Supongamos que $L:(a,b)\times\rr^n\times\rr^n\to\rr$ satisface
+\begin{ejercicio}\label{eq: gener_tonelli1} Supongamos que $L:(a,b)\times\rr^n\times\rr^n\to\rr$ satisface
 \begin{enumerate}
  \item $L(x,u,p)$, $L_p(x,u,p)$ son continuas.
  \item $L(x,u,p)$ convexa respecto a $p$.
  \item \[L(x,u,p)\geq \theta(p)+a(x),\]
- donde $a\in L^1([a,b],\rr)$ y $\theta$ es super lineal. Demostrar que existe un mínimo de la integral de acción sobre el conjunto $\{u\in W^{1,1}((a,b),\rr^n)| u(a)=\alpha, u(b)=\beta\}$
+ donde $a\in L^1([a,b],\rr)$ y $\theta$ es superlineal.
+
+
+ Demostrar que existe un mínimo de la integral de acción sobre el conjunto $\{u\in W^{1,1}((a,b),\rr^n)| u(a)=\alpha, u(b)=\beta\}$
 \end{enumerate}
 
 
@@ -138,6 +141,24 @@ tenga solución. Encontrar condiciones  sobre $V$ que garanticen que $I$ es dife
 alcanza un mínimo en $u$ sobre el conjunto
 \[\left\{\phi\in W^{1,\infty}((a,b),\rr^n)| \phi(a)=\alpha, \phi(b)=\beta\right\},\]
 si y solo si $u$ es la recta que une $\alpha$ con $\beta$. Una de las implicaciones fue demostrada durante las clases teóricas.
+
+\end{ejercicio}
+
+\begin{ejercicio} Generalizar, una vez más el teorema de existencia de Tonelli, de la siguiente forma.  Supongamos que $L:(a,b)\times\rr^n\times\rr^n\to\rr$ satisface las hipótesis del ejercicio \ref{eq: gener_tonelli1}, excepto el item c) que es modificado como sigue
+\begin{enumerate}
+ \item[c')] \[L(x,u,p)\geq \theta(p)+b|u|+a(x),\]
+ donde $a\in L^1([a,b],\rr)$, $b\in\rr$  y $\theta$ es superlineal.
+
+ Demostrar que bajo la suposiciones anteriores, aún existe un mínimo de la integral de acción sobre el conjunto $\{u\in W^{1,1}((a,b),\rr^n)| u(a)=\alpha, u(b)=\beta\}$
+\end{enumerate}
+
+
+\end{ejercicio}
+
+
+\begin{ejercicio} Demostrar que el problema
+
+\[\min\left\{\int_0^1a(x)|u'|^pdx
 
 \end{ejercicio}
 
