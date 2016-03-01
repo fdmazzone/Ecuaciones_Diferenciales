@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabularx}
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\C}[1]{\overline{#1}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand\eme {\mbox{\tiny\sc M}}
+\newcommand\bfm {\mbox{\tiny\sc BFM}}
+\newcommand\btuk {\mbox{\tiny\sc BT}}
+\newcommand\rice {\mbox{\tiny\sc R}}
+\newcommand\pc {\mbox{\tiny\sc PC}}
+\newcommand\gasser {\mbox{\tiny\sc G}}
+\newcommand\hall {\mbox{\tiny\sc H}}
+\newcommand\h {\widehat{h}_n}
+\newcommand\ta {\widehat{\tau}_n}
+\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+\newcommand{\seno}{\hbox{sen}}
+
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, Físico-Químicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Primer Cuatrimestre de 2015\par
+        Ecuaciones Diferenciales (1913) \par
+        Práctica 2: Ecuaciones de Primer Orden.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+
+
+Los ejercicios marcados con * deben ser resueltos manualmente y con \texttt{SymPy}.
+
+\begin{ejercicio} De \cite[Pag. 49-51]{simmons_esp} ejercicios 1(a)*,1(c)*,1(h)*, 2*, 3, 4, 5(a)  y 8.
+\end{ejercicio}
+
+
+
+\begin{ejercicio} De \cite[Pag. 54-55, ]{simmons_esp}  ejercicios 1*,3*,5*,7*,22.
+\end{ejercicio}
+
+
+\begin{ejercicio} De \cite[Pag. 61-62]{simmons_esp} ejercicios 1, 2(a)*, 2(c)*, 2(h)* y 3. 
+\end{ejercicio}
+ 
+ 
+\begin{ejercicio} De \cite[Pag. 63-65]{simmons_esp} ejercicios 1, 2(a)*, 2(c)*, 2(h)* y 3.
+\end{ejercicio}
+
+
+\begin{ejercicio} De \cite[Pag. 68]{simmons_esp} ejercicios 4 .
+\end{ejercicio}
+
+\begin{ejercicio} De \cite[Pag. 74 ]{simmons_esp} ejercicio 6. 
+\end{ejercicio}
+
+\begin{ejercicio} Resolver los siguientes problemas de valores iniciales asociados a  ecuaciones diferenciales en derivadas parciales lineales de primer orden. 
+
+\begin{tabular}{cc} 
+\[\left.\begin{array}{ll} xu_x+u_y&=x^2\\u(x,0)&=x
+    \end{array}\right\},\quad
+\]
+&
+\[\left.\begin{array}{ll} yu_x-xu_y&=0\\u(0,y)&=y^2
+    \end{array}\right\}
+\]
+\end{tabular}
+
+
+\end{ejercicio}
+\bibliographystyle{plain}
+\bibliography{biblio}
+\end{document}

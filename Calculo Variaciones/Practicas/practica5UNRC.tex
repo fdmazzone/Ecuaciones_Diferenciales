@@ -156,12 +156,17 @@ si y solo si $u$ es la recta que une $\alpha$ con $\beta$. Una de las implicacio
 \end{ejercicio}
 
 
-\begin{ejercicio} Demostrar que el problema
-
-\[\min\left\{\int_0^1a(x)|u'|^pdx
+\begin{ejercicio} Sea $1<p<\infty$ y $\alpha:[0,1]\to (0,+\infty)$ una función en $ L^{infty}([0,1])$  tal que existe $s<1/(1-p)$ tal que $\alpha^s\in L^{1}([0,1])$. Demostrar que el problema
+\[\min\left\{\int_0^1\alpha(x)|u'|^pdx\bigg|u\in W^{1,p}([0,1],\rr), u(0)=a,u(1)=b\right\}.\]
+tiene una única solución. Demostrar que se satisfacen las ecuaciones de Euler-Lagrange, resolverlas para expresar las soluciones del problema como
+\[u(x)=a+(b-a)\left(\int_0^1\alpha^\frac{1}{1-p}(t)dt\right)^{-1}\left(\int_0^x\alpha^\frac{1}{1-p}(t)dt\right)\]
 
 \end{ejercicio}
 
 
+\begin{ejercicio} Demostrar que el problema
+ \[\min\left\{\int_0^1(1-|u'(x)|^2)^2+udx\bigg|u\in W^{1,1}([0,1],\rr), u(0)=a,u(1)=b\right\}.\]
+ tiene solución única.
+\end{ejercicio}
 
 \end{document}
