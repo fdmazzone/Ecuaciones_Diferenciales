@@ -314,23 +314,23 @@ es muy conocido pues modeliza el movimiento de un péndulo.
 
 Muy a menudo hablaremos de resolver una ecuación, pero es oportuno discutir que queremos significar con esto.
 
-\begin{deficion}[Resolver una ecuación] Es expresar la solución como combinaciones algebraicas y composiciones de funciones que consideramos elementales.
-\end{deficion}
+\begin{definicion}[Resolver una ecuación] Es expresar la solución como combinaciones algebraicas y composiciones de funciones que consideramos elementales.
+\end{definicion}
 
-Por supuesto que esta definición contiene una vaga apelación a ciertas ''funciones elementales``. El universo de funciones que se considera elemental es una cuestión política, no matemática. En un principio, consideraremos elementales a las potencias, exponenciales, logarítmos, trigonométricas y trigonométricas inversas. No obstante esta lista se puede expandir con muchas funciones especiales.  Las operaciones permitidas para combinar estas funciones
+Esta definición contiene una vaga apelación a ciertas ``funciones elementales''. El universo de funciones que se considera elemental es una cuestión política, no matemática. En  principio, consideraremos elementales a las potencias, exponenciales, logarítmos, trigonométricas y trigonométricas inversas. No obstante esta lista se puede expandir con muchas funciones especiales.  Las operaciones permitidas para combinar estas funciones
 también están sujetas a convenciones. Por ejemplo, admitiremos como válida una expresión que contenga una integral, al menos en el caso que no sea claro como resolver esta integral.
 
- Casi todo este curso trata con la discusión de métodos para resolver ecuaciones.
+ Casi todo este curso trata con la discusión de métodos para resolver ecuaciones.  Sin embargo resolver ecuaciones no es quizás el problema principal relacionado con las ecuaciones diferenciales. No importa tanto lograr una expresión formal de la solución, como, por ejemplo, conocer las propiedades que poseen las soluciones. Al fin y al cabo, uno conoce una función a través de sus propiedades.
  
 
 
 
 
-{Algunos conceptos relacionados con ecuaciones diferenciales}
- 
-  \textbf{Solución general} Comunmente una ecuación presenta infinitas soluciones. Una solución general  es una expresión para las soluciones que
-contiene parámetros. Cada elección de estos parámetros determina una solución distinta. Por ejemplo \eqref{SolGencaidaLibre2} es la solución general de \eqref{caidaLibre2}.
 
+\begin{definicion}[Solución general] Comunmente una ecuación presenta infinitas soluciones. Una solución general  es una expresión que representa todas las soluciones. En general una solución general contiene parámetros. Cada elección de estos parámetros determina una solución distinta.
+ \end{definicion}
+
+ Por ejemplo \eqref{SolGencaidaLibre2} es la solución general de \eqref{caidaLibre2}.
   La afirmación anterior requiere una demostración puesto que sólo hemos mostrado que \eqref{SolGencaidaLibre2} es solución, pero no
 que toda solución se expresa con \eqref{SolGencaidaLibre2}. Para demostrar la afirmación, hay que multiplicar ambos miembros de \eqref{caidaLibre2} 
 por $e^{\frac{c}{m}t}$ y luego integrar respecto a $t$ 
@@ -341,14 +341,15 @@ por $e^{\frac{c}{m}t}$ y luego integrar respecto a $t$
 
 
 
-{Algunos conceptos relacionados con ecuaciones diferenciales}
-\textbf{Ejemplo} En algunas ocasiones sólo podemos dejar una relación implícita entre las variable dependientes e independientes. Por ejemplo
+
+\begin{ejemplo} En algunas ocasiones sólo podemos dejar una relación implícita entre las variable dependientes e independientes. Por ejemplo
 \begin{equation}\label{solImpl}x=e^y+y+C\quad\text{ para } C\in\rr\end{equation}
 es solución general de
 \[y'(e^y+1)=1.\]
 Vamos a chequear sólo que \eqref{solImpl} es solución, dejando la justificación que toda solución tiene esa forma para más adelante. Derivando \eqref{solImpl}
 \[ 1=e^yy'+y'\]
 Luego $y'=1/(1+e^{y})$. Reemplazando esta relación  en la ecuación diferencial corroboramos que es solución.
+\end{ejemplo}
 
 
 
