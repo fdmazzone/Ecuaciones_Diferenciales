@@ -384,6 +384,7 @@ Obtenemos la ecuación
 Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, aún aquellas expresiones que parece muy evidente como se simplifican . El lector debe tener en cuenta que en ningún momento uno le dijo a \texttt{SymPy} que tipo de ente estaba manipulando en expresiones del tipo \texttt{x\_n=acos(x)}. Le pudo parecer natural que eran números reales, puesto es eso lo que matemáticamente son para nosotros, no obstante esta información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el habría de entender que \texttt{x} es real? Si al fin y al cabo \texttt{x\_n=acos(x)} tiene sentido si \texttt{x} es complejo y aún si es una matríz. Muchas veces las operaciones que se simplifican en un campo no lo pueden hacer en otro. El comando  \texttt{symbols} tiene la opción de informar a \texttt{SymPy} que tipo de ente representa \texttt{x} de la siguiente forma
 \texttt{x=symbols('x',real=True)}. Usandoló de esta forma se consiguen mejores resultados en las simplificaciones.
 
+
 \subsection{Cambio de variable general $\hat{x}=\hat{x}(x,y)$, $\hat{y}=\hat{y}(x,y)$}
 \begin{enumerate}
   \item Calculamos $d\hat{y}/d\hat{x}$ en las variables $x,y$
@@ -396,14 +397,20 @@ Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, aún aquellas expresion
 
 
 
-
-
 \begin{ejemplo} Transformar a polares:
   \[\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.\]
 \end{ejemplo}
 
+\begin{ejemplo} Transformar a polares
+ \[
+  \frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.
+ \]
+\end{ejemplo}
+ 
+Dado que el cálculo es extenso lo haremos con \texttt{SymPy}, el procedimiento seguido ilustra como hacerlo a mano. Es ilustrativo hacer esto último para apreciar la utilidad de usar un sistema de álgebra computacional (SAC) como \texttt{SymPy}.
 
-Dado que el cálculo es extenso lo haremos sólo con \texttt{SymPy}
+
+
 \begin{lstlisting}
 from sympy import *
 x=symbols('x')
@@ -413,13 +420,9 @@ theta=atan(y/x)
 Expr2=r.diff(x)/theta.diff(x)
 \end{lstlisting}
 
-
-
-\[
-\frac{dr}{d\theta}=\frac{\frac{dr}{dx}}{\frac{d\theta}{dx}}=
- \frac{\left(x + y{\left (x \right )} \frac{d}{d x} y{\left (x \right )}\right) \sqrt{x^{2} + y^{2}{\left (x \right )}}}{x \frac{d}{d x} y{\left (x \right )} - y{\left (x \right )}}
-\]
-
+Obtenemos la siguiente expresión 
+\[\frac{dr}{d\theta}=\frac{\frac{dr}{dx}}{\frac{d\theta}{dx}}=\frac{\left(1 + \frac{1}{x^{2}} y^{2}{\left (x \right )}\right) \left(x + y{\left (x \right )} \frac{d}{d x} y{\left (x \right )}\right)}{\sqrt{x^{2} + y^{2}{\left (x \right )}} \left(\frac{1}{x} \frac{d}{d x} y{\left (x \right )} - \frac{1}{x^{2}} y{\left (x \right )}\right)}.\]
+Ahora sustituímos $y'(x)$ usando la ecuación diferencial, redefinimos $r,\theta$ fundamentalmente para limpiar el valor que tenían asignado en el código previo, que era una expresión de $x,y$, y finalmente sustituímos $x$e $y$ por su expresión en polares. 
 
 \begin{lstlisting}
 Expr3=Expr2.subs(y.diff(x),(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
@@ -428,8 +431,7 @@ Expr4=Expr3.subs([(y,r*sin(theta)),(x,r*cos(theta))])
 Expr5=simplify(Expr4)
 \end{lstlisting}
  Encontramos que en polares la ecuación es mucho más simple
-
- \[\boxed{\frac{dr}{d\theta}=-r^3+r}\]
+\[\frac{dr}{d\theta}=-r^3+r.\]
 
  Quizás  usar la notación como  forma diferencial sea más efectivo. Como $r$ y $\theta$ son funciones de $x$ e $y$, ellas son 0-formas. Usando las reglas de la diferencial, hay que reemplazar
 \[
@@ -438,8 +440,10 @@ x=r\cos\theta; &dx=\cos\theta dr-\sen\theta r d\theta\\
  y= r\sen\theta; & dy=\sen\theta dr+\cos\theta r d\theta\\
 \end{array}
 \]
+
  en la 1-forma:
 \[(y^3+x^2y-x-y)dx-(x^3+xy^2-x+y)dy\]
+
 
 
  Encontramos a  \texttt{SAGE} más cómodo para operar con formas diferenciales que \texttt{SymPy}
@@ -456,8 +460,8 @@ sage: w[1].simplify_full() #coeficiente de  d\theta
 La forma obtenida es $rdr+(r^4-r^2)d\theta$.
 
 
-
 \section{Grupos}
+
 
 \subsection{Definición y ejemplos}
 \begin{definicion}[Grupo]
@@ -482,12 +486,19 @@ Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href
  \end{ejemplo}
 
  \begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$.
-Para un triángulo equilatero:
+\end{ejemplo}
+
+
+\begin{ejemplo} Sea $X=\{x_1,\ldots,x_n\}$ un conjunto de $n$ elementos y $S_n$ definido por
+\[S_n=\{\sigma|\sigma:X\to X\hbox{ y }\sigma \hbox{ es biyectiva }\}\]
+Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href{http://es.wikipedia.org/wiki/Grupo_simétrico}{\emph{grupo simétrico}}.
+\end{ejemplo}
+
+\begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$.Para un triángulo equilatero:
 \begin{center}
 \includegraphics[scale=.4]{imagenes/SimTria.jpg}
 \end{center}
- \end{ejemplo}
-
+\end{ejemplo}
 
 
 
@@ -495,10 +506,12 @@ Para un triángulo equilatero:
 
 \href{http://www.gap-system.org/}{GAP - Groups, Algorithms, Programming} Lenguaje de programación para algebra discreta
 
-\href{http://www.sagemath.org/}{SAGE:}  <<Es un sistema de software de matemáticas libre de código abierto bajo la licencia GPL. Se basa en  muchos paquetes de código abierto existentes: NumPy, SciPy, matplotlib, SymPy, Maxima, GAP, FLINT, R y muchos más. Acceda a su poder combinado a través de un lenguaje común, basado en Python
-Misión: Creación de una alternativa libre de código abierto viable a Magma, Maple, Mathematica y Matlab.>>
+\href{http://www.sagemath.org/}{SAGE:}  <<Es un sistema de software de matemáticas libre de código abierto bajo la licencia GPL. Se basa en  muchos paquetes de código abierto existentes: NumPy, SciPy, matplotlib, SymPy, Maxima, GAP, FLINT, R y muchos más. Acceda a su poder combinado a través de un lenguaje común, basado en Python. Misión: Creación de una alternativa libre de código abierto viable a Magma, Maple, Mathematica y Matlab.>>
 
 
+\begin{ejemplo} Grupos con Sage.
+ 
+\end{ejemplo}
 
 \begin{lstlisting}
 sage: G=SymmetricGroup(5)
