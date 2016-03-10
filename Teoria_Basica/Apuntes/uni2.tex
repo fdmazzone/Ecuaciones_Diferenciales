@@ -30,6 +30,7 @@
 \usepackage{url}
 \usepackage{theorem}
 \usepackage{boiboites}
+\usepackage{wrapfig}
 
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -67,7 +68,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+\newenvironment{demo}{\noindent\emph{Dem.}}{\qed}
 
 \newcommand{\com}{\mathbb{C}}
 \newcommand{\dis}{\mathbb{D}}
@@ -150,8 +151,14 @@ titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 
 
 
-        {\theorembodyfont{\normalfont}
-\newtheorem{ejemplo}{Ejemplo}}
+%         {\theorembodyfont{\normalfont}
+% \newtheorem{ejemplo}{Ejemplo}}
+
+\newcounter{ejemplo_cont}
+\setcounter{ejemplo_cont}{1}
+
+\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -254,61 +261,48 @@ La ecuación \eqref{cambio_hom} queda
  \end{definicion}
  
  Esta definición obviamente carece de rigor pues el miembro de la derecha en \eqref{eq:formas} contiene las expresiones indefinidas $dx_j$. 
-La diferencial puede ser definida con toda corrección, es un ejemplo de \href{https://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}, en particular  es una 1-forma. No definiremos estos conceptos aquí, dado que implicaría alejarnos de nuestro principal objeto de estudio. El uso que haremos de las formas diferenciales es muy elemental, podríamos evitar por completo su uso al costo de usar una notación ligeramente menos compacta. 
+La diferencial puede ser definida con toda corrección, es un ejemplo de \href{https://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}, en particular  es una 1-forma. En la unidad que sigue hablaremos un poco más del concepto de forma diferencial. El uso que haremos de las formas diferenciales es muy elemental, podríamos evitar por completo su uso al costo de usar una notación ligeramente menos compacta y simétrica.
 
- Es costumbre escribir una ecuación diferencial $y'=-M(x,y)/N(x,y)$ como una 1-forma diferencial,  de la siguiente forma  
-\begin{equation}\label{eq:ecua_forma} M(x,y)dx+N(x,y)dy=0.
- \end{equation}
-
-
+ Es costumbre escribir una ecuación diferencial  como la 1-forma diferencial
+\boxedeq{M(x,y)dx+N(x,y)dy=0}{eq:ecua_forma}
+Que corresponde a la ecuación, escrita de la manera tradicional, $y'=-M(x,y)/N(x,y)$.
 
 
 
-{Ecuaciones exactas}
- Dada $f:\rr\times\rr\to\rr$ la familia paramétrica de curvas
-\[f(x,y)=c\]
-satisface a ecuación diferencial
+ Dada $f:\rr\times\rr\to\rr$, satisfaciendo las condiciones del \href{https://es.wikipedia.org/wiki/Teorema_de_la_funci%C3%B3n_impl%C3%ADcita}{Teorema de la Función Implícita}, la expresión
+\boxedeq{f(x,y)=c}{eq:ecua_impli}
+define una  familia paramétrica de curvas, con parámetro $c$. Derivanda la expresión podemos representar esta familia como soluciones de la EDO
 
 \[
  \frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}y'=0\Longleftrightarrow \frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy=0
  \Longleftrightarrow df=0.
 \]
- El recíproco es tambien cierto, esto es una ecuación que se puede expresar como $df=0$  tiene soluciones dadas por la familia paramétrica de arriba. 
-
- Para que una ecuación cualquiera
-\[M(x,y)dx+N(x,y)dy=0\]
-Se pueda expresar como $df=0$ se debe cumplir que debe existir $f(x,y)$ tal que $M=\partial f/\partial x$ y $N=\partial f/\partial y$.
-
-
-{Ecuaciones exactas}\label{camposconservativos}
+ Esto nos sugiere la idea de que, dada una ecuación diferencial cualquiera, indaguemos si se puede escribir, o puede ser transformada de alguna manera en, una ecuación de la forma $df=0$.  Para que la ecuación \eqref{eq:ecua_forma}, se pueda expresar como $df=0$ se debe cumplir que  $M=\partial f/\partial x$ y $N=\partial f/\partial y$.
  Vale decir el campo vectorial $(x,y)\mapsto (M(x,y),N(x,y))$ es un \href{http://es.wikipedia.org/wiki/Fuerza_conservativa}{campo 
-gradiente o conservativo} con potencial $f$. No todo campo es un campo gradiente, recordemos
+gradiente o conservativo}, con potencial $f$.
 
- {Caracterización de campos conservativos}Sea $\mathcal{O}$ abierto de $\rr^n$ y simplemente conexo. Son equivalentes
+No todo campo es un campo gradiente, recordemos el siguiente teorema de Cálculo III
+
+ \begin{teorema}[Caracterización de campos conservativos]\label{teo:campo_cons} Sea $\mathcal{O}$ un conjunto abierto y simplemente conexo de $\rr^n$. Son equivalentes
  \begin{enumerate}
-  \item El campo $F:\mathcal{O}\to\rr^n$ es un gradiente.
-  \item Si $C$ es un camino cerrado entonces
-  \[\varointctrclockwise_C F\cdot d x=0.\]
-  \item\label{item1} \[\frac{\partial F^i}{\partial x_j}=\frac{\partial F^j}{\partial x_i},\quad\text{ para }i,j=1,\ldots,n\]. 
+  \item\label{item:cons1} El campo $F:\mathcal{O}\to\rr^n$ es un gradiente.
+  \item\label{item:cons2} Si $C$ es cualquier camino cerrado entonces
+  \[\ointctrclockwise_C F\cdot d x=0.\]
+  \item\label{item:cons3} \[\frac{\partial F^i}{\partial x_j}=\frac{\partial F^j}{\partial x_i},\quad\text{ para }i,j=1,\ldots,n\]
  \end{enumerate}
 
+\end{teorema}
+
+Pensando al campo $F$ como un campo de  fuerzas sobre el espacio euclideo tridimensional,  el ítem \ref{item:cons2} expresa que el trabajo realizado por la fuerza a lo largo de un camino cerrado es cero. El ítem \ref{item:cons3} afirma que $\nabla\times F=0$, la fuerza es irrotacional.
 
 
-
-
-{Ecuaciones exactas}
-El item \ref{item1}  es particularmente simple de chequear. Una vez establecido con un campo es conservativo tendremos el problema de hallar el potencial $f$. 
+El item \ref{item:cons3}  es simple de chequear. Una vez establecido que un campo es conservativo tendremos el problema de hallar el potencial $f$.
 Ilustremos esto con el campo $(x,y)\mapsto (M(x,y),N(x,y))$. Supongamos que $\mathcal{O}$ es abierto de $\rr^2$ y
 \[\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x},\quad\text{ para } (x,y)\in \mathcal{O}.\] 
 En primer lugar debemos tener un campo escalar $f$ tal que
 \[M=\frac{\partial f}{\partial x}\Rightarrow f=\int Mdx +C(y).\]
 Ahora como $f_y=N$
-\[N=\frac{\partial f}{\partial y}=\frac{\partial}{\partial y}\int Mdx +C'(y).\]
-
-
-
-{Ecuaciones exactas}
-\[C'(y)=N-\frac{\partial}{\partial y}\int Mdx .\]
+\[N=\frac{\partial f}{\partial y}=\frac{\partial}{\partial y}\int Mdx +C'(y)\Rightarrow C'(y)=N-\frac{\partial}{\partial y}\int Mdx .\]
  Para que esta ecuación tenga solución $N-\frac{\partial}{\partial y}\int Mdx$ debe ser sólo función de $y$. Pero la condición necesaria y suficiente para ello es 
 \[\begin{split}0&=\frac{\partial}{\partial x}\left(N-\frac{\partial}{\partial y}\int Mdx\right)\\
 &= \der{N}{x}-\frac{\partial^2}{\partial x\partial y}\int Mdx\\
@@ -317,26 +311,20 @@ Ahora como $f_y=N$
    \end{split}
 \]
 
-
-{Ecuaciones exactas}
  Pero estamos bajo ese supuesto, entonces
-\boxedeq{C(y)=\int\left( N-\frac{\partial}{\partial y}\int Mdx \right)dy.}
+\boxedeq{f= \int Mdx + \int\left( N-\frac{\partial}{\partial y}\int Mdx \right)dy.}
 
-\textbf{Ejemplo} Resolver $e^ydx+(xe^y+2y)dy=0$. 
+\begin{ejemplo} Resolver $e^ydx+(xe^y+2y)dy=0$.
+ \end{ejemplo}
 
-\textbf{Solución} Aquí
-\[M=e^y\quad\text{ y }N=xe^y+2y.\]
+
+\noindent\textbf{Solución:} Aquí
+\[M=e^y\quad\text{ y }\quad N=xe^y+2y.\]
 Así
 \[\der{M}{y}=e^y=\der{N}{x}.\]
 La ecuación es exacta. El potencial $f$ debe cumplir
-\[f=\int e^ydx=xe^y+C(y)\]
-
-
-
-
-
-{Ecuaciones exactas}
-y
+\[f=\int e^ydx=xe^y+C(y).\]
+Luego
 \[C(y)=\int\left( xe^y+2y -\frac{\partial}{\partial y} xe^y\right)dy= y^2\]
 Tener en cuenta que la función potencial $f$ no es única, queda deerminada hasta una constante aditiva de integración que podemos elegir a gusto ya que 
 debemos encontrar sólo un potencial. Entonces podemos tomar
@@ -351,117 +339,80 @@ Como no sabemos despejar $\boxed{y}$ de aquí dejamos indicada de esta manera la
 {Factores integrantes}
  Las ecuaciones exactas son raras, no obstante tenemos un recurso para llevar algunas ecuaciones no exactas a una equivalente y exacta.
 
- Supongamos que la ecuación
-\[Mdx+Ndy=0\]
-no es  exacta. La idea es econtrar una función $\mu(x,y)$ llamada 
-\href{http://es.wikipedia.org/wiki/Ecuación_diferencial_exacta\#Factor_integrante.}{factor integrante} que haga que la ecuación
-\[\mu\left(Mdx+Ndy\right)=0\]
-si lo sea. Para ello se debe cumplir que
+ Supongamos que la ecuación  \eqref{eq:ecua_forma} no es  exacta. La idea es encontrar una función $\mu(x,y)$ llamada
+\href{http://es.wikipedia.org/wiki/Ecuación_diferencial_exacta\#Factor_integrante.}{factor integrante} que haga exacta la ecuación
+\[\mu\left(Mdx+Ndy\right)=0.\]
+ Para ello se debe cumplir que
 \begin{equation}\label{carac_factor}
   \der{\mu M}{y}=\der{\mu N}{x}\Longleftrightarrow \boxed{ \mu\der{M}{y}+\der{\mu}{y}M=\der{N}{x}\mu+N\der{\mu}{x}}.
 \end{equation}
- 
 
- 
- 
-{Factores integrantes}
- {Observación}
-  Toda ecuación
-  \begin{equation}\label{ec_no_exa}Mdx+Ndy=0
-   \end{equation}
-  que tiene una solución general que se escribe
-  \begin{equation}\label{sol_ec_no_exa}
-   f(x,y)=c,  
-  \end{equation}
-  tiene, en teoría, un factor integrante. 
- 
+\begin{proposicion}[Existencia de factores integrantes] Toda ecuación de primer orden \eqref{eq:ecua_forma}, con $N\neq 0$,  que tiene una solución general que se escribe como en \eqref{eq:ecua_impli}, con $\partial f/\partial x$  tiene un factor integrante.
+\end{proposicion}
+\noindent\textit{Comentario:} La suposición $N\neq 0 \neq\der{f}{y}$,  es razonable pues $N=0$ imlpicaría que no podemos despejar $y'$ de \eqref{eq:ecua_forma}  y $\partial f/\partial y$ contradice las hipótesis del Teorema de la Función Implícita, herramienta necesaria para suponer que $y$ es función de $x$
 
- 
- 
- 
-
-
-{Factores integrantes}
-Si derivamos \eqref{sol_ec_no_exa}
+\begin{demo} Si derivamos \eqref{eq:ecua_impli} conseguimos
 \[\der{f}{x}dx+\der{f}{y}dy=0.\]
-De esta ecuación y \eqref{ec_no_exa} vemos que
+De esta ecuación y \eqref{eq:ecua_forma}  vemos que
 \[-\frac{M}{N}=y'=-\frac{\partial f /\partial x}{\partial f/\partial y}\Longrightarrow \frac{ \partial f /\partial x}{M}=\frac{ \partial f/\partial y}{N}=:\mu(x,y)\]
-Aquí hemos asumido $N\neq 0 \neq\der{f}{y}$. De la igualdad de arrriba se deduce que existe $\mu(x,y)$ con
+ De la igualdad de arrriba se deduce que
 \[\der{f}{x}=\mu M\quad\text{ y }\quad \der{f}{y}=\mu N.\]
 Es decir $\mu$ es factor integrante.
+\end{demo}
 
+La proposición anterior nos dice que, mientras la ecuación sea resoluble, siempre  existe un factor integrante. Pero no ayuda a hallarlo dado que parte de la solución que es lo que queremos hallar. Otra alternativa es resolver la ecuación \eqref{carac_factor} que es una ecuación en derivadas parciales para $\mu$, que normalmente es más dificil que resolver  la original. Así, mientras que el método es siempre aplicable, en la práctica es útil en situaciones específicas.
 
-{Factores integrantes}
-La observación nos dice que parece razonable que siempre exista un factor integrante, pero no ayuda a hallarlo puesto que deberíamos conocer la solución general de la ecuación
-para hacerlo. O deberíamos resolver la ecuación \eqref{carac_factor} que es una ecuación en derivadas parciales para $\mu$.
-
-Hay que señalar que sólo necesitamos una solución de \eqref{carac_factor} y no su solución general. En la práctica se suele proceder a hacer alguna suposición
-sobre $\mu$ que simplifique la expresión (\href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}). Es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuaciones 
-\eqref{carac_factor} se escriben
+Hay que señalar que sólo necesitamos una solución de \eqref{carac_factor} y no su solución general. En la práctica se suele hacer alguna suposición
+sobre $\mu$ que simplifique la expresión. Es decir proponer alguna forma específica para $\mu$ que haga la ecuación \eqref{carac_factor} más sencilla de resolver. Por supuesto, a priori el factor integrante, si bien existe, no tiene ninguna forma predeterminada. Lo que hacemos es lo que en lenguaje culto se conoce como \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}, y en lenguaje coloquial, que aquí es más significativo, estamos haciendo un lance o tratando de adivinar $\mu$, sin mucho más criterio que buscarlo entre equellas funciones con una forma (simple) predeterminada. Por ejemplo, es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuación
+\eqref{carac_factor} se escribe
 
 \[\mu\der{M}{y}=\mu\der{N}{x}+N\mu'(x) \Longrightarrow\boxed{\frac{\mu'}{\mu}=\frac{\partial M/\partial y-\partial N/\partial x}{N}}\]
+Este \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz} no siempre funcionará, para que lo haga,  la función en el segundo miembro $(\partial M/\partial y-\partial N\partial x)N$
+debe depender sólo de $x$. Si eso ocurre
+\boxedeq{\mu(x)=e^{\int \frac{\partial M/\partial y-\partial N/\partial x}{N}dx}.}{eq:factor_int}
+es un factor integrante. Recordar que sólo necesitamos hallar uno, por ese motivo omitivos constantes de integración.
 
-
-
-{Factores integrantes}
-Para que esto funcione la función 
-
-\[\frac{\partial M/\partial y-\partial N/\partial x}{N}\]
-
-\emph{debe depender sólo de $x$}. Si eso ocurre y llamamos $h(x)$ a esa función vamos a tener que
-\[\mu(x)=e^{\int h(x)dx}\]
-es un factor integrante. Recordar que sólo necesitamos hallar uno, por ese motivo no consideramos constantes de integración. 
-
-
-{Factores integrantes}
 De manera similar, si la función
-\[\frac{\partial M/\partial y-\partial N/\partial x}{-M}\]
-depende sólo de $y$ y llamamos $h(y)$ a esa función tenemos que
-\[\mu(y)=e^{\int h(y)dy}\]
-es un factor integrante, que en este caso sólo depende de $y$.
+\[\frac{\partial N/\partial x-\partial M/\partial y}{M}\]
+depende sólo de $y$ tenemos que
+\[\mu(y)=e^{\int \frac{\partial N/\partial x-\partial M/\partial y}{M}dy}\]
+es un factor integrante que, en este caso, sólo depende de $y$.
+
+\begin{ejemplo} $ydx+(x^2y-x)dy=0$.
+ \end{ejemplo}
 
 
-{Factores integrantes}
-\textbf{Ejemplo 1} $ydx+(x^2y-x)dy=0$.
 Primero chequeemos la posible exactitud.
 \[\der{M}{y}=1\text{ y } \der{N}{x}=2xy-1\Longrightarrow\text{no exacta}.\]
 Ahora 
-\[\frac{\partial M/\partial y-\partial N/\partial x}{N}=\frac{2-2xy}{x(xy-1)}=-\frac{2}{x}=:h(x).\]
+\[\frac{\partial M/\partial y-\partial N/\partial x}{N}=\frac{2-2xy}{x(xy-1)}=-\frac{2}{x}.\]
 El factor integrante es
-\[\mu(x)=e^{\int h(x)dx}=e^{-2\ln |x|}=\frac{1}{x^2}.\]
+\[\mu(x)=e^{-2\ln |x|}=\frac{1}{x^2}.\]
 
 
 
 
-{Exactitud, Otras Técnicas}
+ \section{Otras Técnicas relacionadas con exactitud}
 
-Veamos otra forma de trabajar para transformar ecuaciones no exactas en exactas. Aunque esta forma no es metódica, sino  que depende de la habilidad 
-de quien la lleva adelante. Consiste en explotar la similitud de la ecuación diferencial con alguna expresión exacta conocida. Ilustremos esto con el ejemplo anterior 
-$ydx+(x^2y-x)dy=0$. La ecuación equivale a
+Veamos otra forma de trabajar para transformar ecuaciones no exactas en exactas. Esta forma no es metódica, sino  que depende de la habilidad
+de quien la lleva adelante en encontrar la similitud de la ecuación diferencial con alguna expresión exacta conocida. Ilustremos esto con el ejemplo  anterior
+$ydx+(x^2y-x)dy=0$. Escrita de este modo no se advina ninguna similitud. Pero si la escribimos
 \[x^2ydy-(xdy-ydx)=0.\]
-Ahora podemos notar que 
+Recordando  que
 \[d\left(\frac{y}{x}\right)=\frac{xdy-ydx}{x^2}.\]
 Lo que sugiere dividir por $x^2$ la ecuación.
-
-
-
-{Exactitud, Otras Técnicas}
-
 \[0=ydy-\frac{xdy-ydx}{x^2}=d\left(\frac{y^2}{2}\right)-d\left(\frac{y}{x}\right)=d\left(\frac{y^2}{2}-\frac{y}{x}\right).\]
 La solución general es pues
 \[\frac{y^2}{2}-\frac{y}{x}=c.\]
 
 
-
-{Exactitud, Otras Técnicas}
-
-Otras fórmulas para tener en cuenta que son exactas
+Se obtienen otras formas diferenciales exactas derivando expresiones sencillas
 %\begin{equation}
  \begin{align}
   d\left(\frac{x}{y}\right)&=\frac{ydx-xdy}{y^2}\quad\text{nada nuevo} \\
   d(xy)&=ydx+xdy\\
   d(x^2+y^2)&=2(xdx+ydy)\label{eq:exacta_mod2}\\
-  d\left( \arctan\left(\frac{y}{x} \right) \right)&=\frac{ydx-xdy}{x^2+y^2}\quad\text{falla caracterización pag \ref{camposconservativos}!!!!}\nonumber\\
+  d\left( \arctan\left(\frac{y}{x} \right) \right)&=\frac{ydx-xdy}{x^2+y^2}\quad\text{falla caracterización pag \eqref{teo:campo_cons}!!! Qué ocurre?}\nonumber\\
   d\left( \ln\left(\frac{y}{x} \right) \right)&=\frac{ydx-xdy}{xy}
   \end{align}
 %\end{equation}
@@ -469,20 +420,19 @@ Otras fórmulas para tener en cuenta que son exactas
 
 
 
-{Ejemplo, óptica}
-\begin{tabular}{m{5cm} m{4.5cm} }
-\includegraphics[scale=.4]{imagenes/espejo.png} & \textbf{Problema} Hallar la forma del espejo curvo tal que el reflejo de todo haz de luz que viaja paralelo al eje $x$ con dirección
-negativa repecto a este eje pasa por el $(0,0)$. \\
-\end{tabular}
- \textbf{Ejercicio} Dejamos como ejercicio demostrar que un haz de luz que se refleja sobre un espejo lo hace de tal manera que los ángulos que se forman con los rayos 
+\begin{ejemplo} \textit{Espejos, antenas parabólicos.} Hallar la forma del espejo curvo tal que el reflejo de todo haz de luz que viaja paralelo al eje $x$ con dirección
+negativa repecto a este eje pasa por el $(0,0)$.
+\end{ejemplo}
+
+\noindent\textbf{Ejercicio.} Dejamos como ejercicio demostrar que un haz de luz que se refleja sobre un espejo lo hace de tal manera que los ángulos que se forman con los rayos
 de incidencia y refracción y la tangente al espejo en el punto de incidencia son iguales ( $\beta=\alpha$ en el dibujo). Para resolver esto hay que usar el principio
 de mínimo tiempo de Fermat
-
-
-
-
-
-{Ejemplo, óptica}
+\begin{wrapfigure}[10]{l}{5cm}
+ \begin{center}
+ \includegraphics[scale=.4]{imagenes/espejo.png}
+\end{center}
+\caption{Reflejo en un espejo curvo}
+\end{wrapfigure}
  \textbf{Solución.} Sea $(x,y)$ el punto de incidencia. Apelando a la geometría elemental, $\phi=\beta$ y $\theta=\alpha+\phi=2\beta$. Como $\tan\theta=\frac{y}{x}$
   y como
   \[\tan\theta =\tan 2\beta=\frac{2\tan\beta}{1-\tan^2\beta},\]
@@ -491,10 +441,13 @@ deducimos que
 Despejando
 \[\frac{dy}{dx} =\frac{-x\pm\sqrt{x^2+y^2}}{y}.\]
 
-
-
-
-{Ejemplo, óptica}
+Que es la familia de todas las parábolas con eje de simetría $x$, positivamente orientadas y con foco en $(0,0)$.
+ \begin{wrapfigure}[11]{r}{5cm}
+ \begin{center}
+ \includegraphics[scale=.1]{imagenes/antena.jpg}
+ \end{center}
+\caption{Antena parabólica}
+\end{wrapfigure}
 Podemos escribir la ecuación de este otro modo
 \[xdx+ydy=\pm\sqrt{x^2+y^2}dx.\]
 Tomando en cuenta \eqref{eq:exacta_mod2}
@@ -503,63 +456,46 @@ Si $r=x^2+y^2$
 \[dx=\pm\frac{dr}{2\sqrt{r}}=\pm d\sqrt{r}=\pm d\sqrt{x^2+y^2}\]
 Las solución general es
 \[\pm\sqrt{x^2+y^2}=x+c.\]
- 
-
-
-
-
-
-{Ejemplo, óptica}
- \begin{tabular}{m{4cm} m{5cm}}
- \includegraphics[scale=.15]{imagenes/antena.jpg} & Elevando al cuadrado ambos miembros
+Elevando al cuadrado ambos miembros
 \[y^2=2xc+c^2=2c\left(x+\frac{c}{2}\right)\]
-Que es la familia de todas las parábolas con eje de simetría $x$, positivamente orientadas y con foco en $(0,0)$. \\
- \end{tabular}
- 
-\section[Lineales]{Ecuaciones Lineales}
-
-{Ecuaciones Lineales}
-Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal} a una ecuación que es lineal
+\section{Ecuaciones Lineales}
+\begin{definicion}[Ecuación lineal] Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal} a una ecuación que es lineal
 respecto a   la/s variables
-dependientes. La ecuación puede ser no lineal repecto a la variable independiente. 
-La siguiente es la ecuación diferencial lineal general de primer orden
-\begin{equation}\label{eq:lineal}y'+p(x)y=q(x).
-\end{equation}
+dependientes. La siguiente es la ecuación diferencial lineal general de primer orden
+%\begin{equation}\label{eq:lineal}y'+p(x)y=q(x).
+\boxedeq{y'+p(x)y=q(x)}{eq:lineal}
+%\end{equation}
 y la  de segundo orden
-\[y''+p(x)y'+q(x)y=r(x).\]
-Es costumbre introducir los operadores  $L_1[y]=y'+py$  y $ L_2[y]=y''+py'+qy$. 
-Haciendo más precisa la definición, los operadores $L_1$ y $L_2$ son lineales, es decir, por ejemplo, $L_1[y_1+y_2]=L_1[y_1]+L_1[y_2]$. 
+\boxedeq{y''+p(x)y'+q(x)y=r(x).}{eq:lineal_orden2}
+Aquí $p,q$ y $r$ son funciones de $x$ usualmente definidas sobre un intervalo abierto de $\rr$.
+\end{definicion}
+La ecuación puede ser no lineal repecto a la variable independiente.
+
+Es costumbre introducir los operadores  diferenciales $L_1[y]=y'+py$  y $ L_2[y]=y''+py'+qy$.
+Para una ecuación lineal, los operadores $L_1$ y $L_2$ son lineales. Es decir, $L_1[y_1+y_2]=L_1[y_1]+L_1[y_2]$.
 
 
-{Ecuaciones Lineales}
- Vamos a resolver la ecuación lineal de primer orden \eqref{eq:lineal}. Esto es sencillo pues la ecuación equivalente
+ Vamos a resolver la ecuación lineal de primer orden \eqref{eq:lineal}. Esto es sencillo pues la forma diferencial asociada
  \begin{equation}\label{eq:lineal2}dy+(p(x)y-q(x))dx=0
   \end{equation}
-tiene un factor integrante. En efecto como $M=p(x)y-q(x)$ y $N=1$. 
+tiene un factor integrante que depende sólo de $x$. En efecto como $M=p(x)y-q(x)$ y $N=1$.
  \[\frac{\mu'}{\mu}=\frac{\partial M/\partial y-\partial N/\partial x}{N}=p(x).\]
  Entonces $\mu(x)=e^{\int pdx}$ es factor integrante. Luego si multiplicamos por $\mu$ en \eqref{eq:lineal2},  la expresión  es exacta. 
  \[e^{\int pdx}dy+p(x)e^{\int pdx}ydx=q(x)e^{\int pdx}dx.\]
-
-
-{Ecuaciones Lineales}
 Podemos identificar rápidamente, sin necesidad de hacer cálculos, el correspondiente potencial.
  \[d\left(e^{\int pdx}y\right)=d\left(\int q(x)e^{\int p} dx \right).\]
 Integrando
 \[e^{\int pdx}y=\int e^{\int pdx}q(x)dx+C.
  \]
- O
+Entonces
  \boxedeq{y=e^{-\int pdx}\left\{\int e^{\int pdx}q(x)dx+C\right\} }{SolGenLin}
  
- 
- 
- 
+
+\begin{ejemplo} Resolver $y'+y/x=3x$.
+ \end{ejemplo}
 
 
-
-{Ecuaciones Lineales}
-\textbf{Ejemplo} Resolver $y'+y/x=3x$. 
-
-\textbf{Solución.} En la práctica, para evitar recordar fórmulas, se suele repetir el procedimiento que llevo a la fórmula \eqref{SolGenLin}, ahora, dado la cercanía
+\noindent\textbf{Solución.} En la práctica, para evitar recordar fórmulas, se suele repetir el procedimiento que llevo a la fórmula \eqref{SolGenLin}, ahora, dado la cercanía
 de su derivación, vamos a usarla  de manera directa. La solución general es
 
 \[\begin{split} y(x)&=e^{-\int\frac{1}{x}dx}\left\{\int e^{\int\frac{1}{x}dx}3xdx+C\right\}\\
@@ -573,7 +509,7 @@ de su derivación, vamos a usarla  de manera directa. La solución general es
 
 
 \section{Reducción de orden}
-{Caso $F(x,y',y'')=0$}
+
 Algunas ecuaciones de segundo orden
 \boxedeq{F(x,y,y',y'')=0}{Gen2Or}
 se pueden reducir a una de primer orden. Por ejemplo si $F$ no depende de $y$. Es decir la ecuación es
@@ -581,23 +517,17 @@ se pueden reducir a una de primer orden. Por ejemplo si $F$ no depende de $y$. E
 Aquí introducimos la nueva variable dependiente $\boxed{p=y'}$, que resuelve
 \[F(x,p,p')=0.\]
 Que es una ecuación de primer orden. Supuesto que la podemos resolver y encontrar una solución general para  $p$, tendremos
- 
-
-
-
-{Caso $F(x,y',y'')=0$}
- 
-\boxedeq{y=\int pdx+C}
+ \boxedeq{y=\int pdx+C}
 Es la solución general de la ecuación de segundo orden.
 
 
-
-{Caso $F(y,y',y'')=0$}\label{reduc_orden}
-Si la ecuación general de segundo orden \eqref{Gen2Or} no depende de $x$, entonces nuevamente $\boxed{p=y'}$ como nueva variable depeniente
-pero también usamos $\boxed{y}$ como nueva variable independiente. Como
+Si la ecuación general de segundo orden \eqref{Gen2Or} no depende de $x$, es decir tenemos
+\boxedeq{F(y,y',y'')=0}
+entonces nuevamente usaremos $\boxed{p=y'}$ como nueva variable depeniente
+pero también  $\boxed{y}$ como nueva variable independiente. Como
 \[y''=p'=\frac{dp}{dx}=\frac{dp}{dy}\frac{dy}{dx}=\frac{dp}{dy}p\]
-La ecuación se reduce ala ecuación de primer orden
-\boxedeq{F\left(y,p,\frac{dp}{dy}\right)=0}{RedOrdSinInd}
+La ecuación se reduce a la siguiente ecuación de primer orden
+\boxedeq{F\left(y,p,\frac{dp}{dy}p\right)=0}{RedOrdSinInd}
 
 
 
@@ -605,12 +535,12 @@ La ecuación se reduce ala ecuación de primer orden
 
 
 
-[fragile]{\texttt{SymPy}: Clasificación de EDO}
+\begin{codigo}[Clasificación de EDO]
 \textbf{Sintaxis:} \verb+classify_ode(Eq)+
 
-Donde
-\verb+Eq+: es la ecuación.
+\verb+Eq+:  ecuación.
 
+\end{codigo}
 El output son los métodos que se le pueden aplicar
 \begin{lstlisting}
 from sympy import *
@@ -618,6 +548,7 @@ x=symbols('x')
 y=Function('y')(x)
 classify_ode(y.diff()+y)
 \end{lstlisting}
+\noindent\textbf{Resultado:}
 
 \verb+('separable', '1st_exact','1st_linear',+
 
@@ -630,15 +561,6 @@ classify_ode(y.diff()+y)
 
 \verb+'1st_linear_Integral','almost_linear_Integral')+
 
-
-
-[fragile]{\texttt{SymPy}: Clasificación de EDO}
-\textbf{Sintaxis:} \verb+classify_ode(Eq)+
-
-Donde
-\verb+Eq+: es la ecuación.
-
-El output son los métodos que se le pueden aplicar
 \begin{lstlisting}
 Ecuacion=Eq((x**2*y-x)*sin((y.diff(x,1)))**3\
 +y**5+x**3*sin(y),0)
@@ -647,16 +569,12 @@ classify_ode(Ecuacion)
 
 El único método que puede aplicar \texttt{SymPy} a la ecuación 
 
-%\[\sage{Ecuacion}\]
-
-Es \verb+('lie_group',)+
+\[(x^ 2y-x)\sen^ 3(y')+y^ 5+x^3\sen(y)=0,\]
+es \verb+('lie_group',)+
 \begin{lstlisting}
 dsolve(Ecuacion,y)
 \end{lstlisting}
-Piensa, piensa   pero no llega a nada.
-
-
-[fragile]{\texttt{SymPy: dsolve} }
+ \noindent\textbf{Resultado:} Piensa, piensa   pero no llega a nada.
 
 \begin{lstlisting}
 >>>Ecuacion=Eq(y.diff()+(-x+sqrt(x**2+y**2))/y,0)
@@ -672,7 +590,8 @@ Piensa, piensa   pero no llega a nada.
 \begin{lstlisting}
 >>>dsolve(Ecuacion,y,hint='lie_group')
 \end{lstlisting}
-Piensa rato largo y:
+
+ \noindent\textbf{Resultado:} Piensa rato largo y:
 \begin{lstlisting}
 The given ODE (-x + sqrt(x**2 + y(x)**2))/y(x) + Derivative(y(x), x) 
 cannot be solved by the lie group method
@@ -687,23 +606,22 @@ cannot be solved by the lie group method
 
 
 
-\section[Ejemplos]{Ejemplos}
+\section{Ejemplos}
 
 
-{Velocidad de escape}\label{pag:vel_esc}
+\subsection{Velocidad de escape}\label{pag:vel_esc}
 
-\begin{tabular}{m{4cm} m{5cm}}
- \includegraphics[scale=.075]{imagenes/tiro_vertical.jpg}&\textbf{Problema.} Que velocidad hay que imprimirle a un proyectil que es lanzado verticalmente desde la superficie de la Tierra si nuestra pretensión
+
+
+\begin{problema}[Velocidad de escape] Que velocidad hay que imprimirle a un proyectil que es lanzado verticalmente desde la superficie de la Tierra si nuestra pretensión
 es que el proyectil se escape al infinito. La velocidad más chica con esta cualidad se llama 
-\href{http://es.wikipedia.org/wiki/Velocidad_de_escape}{velocidad de escape}.\\
-\end{tabular}
- 
+\href{http://es.wikipedia.org/wiki/Velocidad_de_escape}{velocidad de escape}.
+\end{problema}
 
-
-
-
-{Velocidad de escape}
-\textbf{Solución.} Para resolver este problema hay que tomar en consideración la 
+\begin{wrapfigure}[11]{r}{5cm}
+\includegraphics[scale=.075]{imagenes/tiro_vertical.jpg}
+\end{wrapfigure}
+ \noindent\textbf{Solución.} Para resolver este problema hay que tomar en consideración la
 \href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley de gravitación universal} de Newton. En la parte que nos interesa, esta Ley afirma
 que el módulo de la fuerza de gravedad que se ejercen entre si dos cuerpos de masa $m_1$ y $m_2$ separados una distancia $r$ es proporcional al producto de las masas  
 e inversamente proporcional al cuadrado de las distancia que los separa. Vale decir
@@ -713,159 +631,131 @@ Cuando los cuerpos no son puntos masa, sino cuerpos extendidos en el espacio, la
 
 
 
-{Velocidad de escape}
 Hay que aclarar que usando el \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica} podemos resolver
-el problema de una manera más simple. Incluso podemos ver que la suposición de que el tiro es vertical no es necesaria, es decir la velocidad e escape es la misma aunque
-el tiro sea oblicuo. Discutiremos esa solución durante la clase. Lamentablemente (o no)  esta solución no usa ecuaciones diferenciales.
+el problema de una manera más simple. Incluso podemos ver que la suposición de que el tiro es vertical no es necesaria, es decir la velocidad de escape es la misma aunque
+el tiro sea oblicuo. Discutiremos esa solución durante la clase. Lamentablemente,  esta solución no usa ecuaciones diferenciales.
 Vamos a dar una solución, quizás un poco más complicada, pero que invoca las técnicas 
 discutidas.
 
  
-
-
-
-{Velocidad de escape}
- 
-
 Supondremos a la Tierra una esfera de radio $R$, masa $M$ y su centro de masa en el centro de la esfera.   Al proyectil lo supondremos un punto masa 
 con masa $m$ y su posición en el momento $t$, denotada $x=x(t)$, la mediremos sobre un eje vertical con origen en la superficie de la Tierra.  Todo como está indicado en la página \ref{pag:vel_esc}. 
-Luego la distancia Tierra-proyectil será igual a $R+x$ donde $x$ es la posición del proyectil
-
-
-
-
-{Velocidad de escape}
-Utilizaremos la \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda ley de Newton}, $F=ma$. Nos queda
+Luego la distancia Tierra-proyectil será igual a $R+x$ donde $x$ es la posición del proyectil. Utilizando la \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda ley de Newton}, $F=ma$, obtenemos
 \[mx''(t)=-\frac{GMm}{(R+x)^2}.\]
 Es una ecuación de la forma
 \[F(t,x,x',x'')=0.\]
 Con variable dependiente $x$ e independiente $t$. Pero, en realidad no depende de $t$ y por consiguiente, como vimos, se puede convertir en una ecuación de primer orden
 tomando como nuevas variables: 1) independiente $x$ 2) dependiente $v=x'$. En estas variables
 \[\frac{d^2x}{dt^2}=\frac{dv}{dt}=\frac{dv}{dx}\frac{dx}{dt}=v\frac{dv}{dx}.\]
-
-
-
-
-{Velocidad de escape}
-Y la ecuación se convierte en
+La ecuación se convierte en
 \[v\frac{dv}{dx}=-\frac{GM}{(R+x)^2}\Longrightarrow vdv+\frac{GM}{(R+x)^2}dx=0.\]
 Que es una ecuación en variables separables y también es exacta. Usaremos la técnica discutida para 
-ecuaciones exactas. 
-
-Siempre las ecuaciones en variables separables son exactas pues se escriben de la forma
-\[M(x)dx+N(y)dy=0\]
-Tienen potencial
-\[f=\int M(x)dx +\int N(y)dy\]
-
-
-
-
-{Velocidad de escape}
-Aplicando esto a nuestra ecuación
+ecuaciones exactas \footnote{Siempre las ecuaciones en variables separables son exactas pues se escriben de la forma
+\[M(x)dx+N(y)dy=0,\]
+por consiguiente tienen potencial
+\[f=\int M(x)dx +\int N(y)dy\]}, los que nos indica que la solución general se expresa de la siguiente forma
 \begin{equation}\label{energia}
  \frac{v^2}{2}-\frac{GM}{(R+x)}=E=\text{cte}.
 \end{equation}
-  La igualdad anterior es precisamente 
- consecuencia directa del \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica}.
-Sea $v_0$ la velocidad inicial para $t=0$. como $E$ es constante y $x=0$ en $t=0$ debe ser 
 
+\begin{wrapfigure}[12]{r}{5cm}
+\begin{center}
+ \includegraphics[scale=.3]{imagenes/velocidad_escape.jpg}
+\end{center}
+\caption{Remera nerd}\label{fig:vel_escape}
+\end{wrapfigure}
+La igualdad anterior es precisamente  consecuencia directa del \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica}, lo hemos vuelto a deducir como consecuencia de que la ecuación era exacta.  Sea $v_0$ la velocidad inicial para $t=0$. Como $E$ es constante y $x=0$ en $t=0$ debemos tener
 \begin{equation}\label{energia_cero}
  E=\frac{v_0^2}{2}-GM/R
 \end{equation}
-
 Como $v^2\geq 0$ y por \eqref{energia} y \eqref{energia_cero}.
-\[-\frac{GM}{(R+x)}\leq\frac{v^2}{2}-\frac{GM}{(R+x)}=\frac{v_0}{2}-GM/R\]
- 
-
-
-
-{Velocidad de escape}
- 
-<+-> Queremos encontrar $v_0$ tal que $x\to\infty$. Luego tiene sentido tomar límite cuando $x\to\infty$ en la expresión anterior 
+\[-\frac{GM}{(R+x)}\leq\frac{v^2}{2}-\frac{GM}{(R+x)}=\frac{v_0}{2}-\frac{GM}{R}\]
+Queremos encontrar $v_0$ tal que $x\to\infty$. Luego tiene sentido tomar límite cuando $x\to\infty$ en la expresión anterior y concluimos
 \[0\leq \frac{v_0^2}{2}-GM/R\]
-<+-> De esto deducimos 
+De aquí deducimos que el valor mínimo de velocidad de escape es el impreso en la remera de la figura \ref{fig:vel_escape}.
 
-\begin{center}
- \includegraphics[scale=.4]{imagenes/velocidad_escape.jpg}
-\end{center}
-
-
-
-
-{Curvas de persecución}
+\subsection{Curvas de persecución}
  
-\textbf{Problema} Supongamos que un conejo se mueve sobre una 
+\begin{problema}[Curvas de persecución] Supongamos que un conejo se mueve sobre una
 línea recta con rapidez uniforme $a$ y de un punto por fuera de la recta parte un perro que lo 
-persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro
- 
-% \begin{center}
-% \animategraphics[controls, scale=.4]{15}{pursuit/pursuit-}{0}{40}
-% \end{center}
+persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro.
+\end{problema}
 
  
- 
- 
 
-
-{Curvas de persecución}
- \begin{tabular}{m{4.5cm} m{5cm}}
+\begin{wrapfigure}{r}{5cm}
+\begin{center}
+ \includegraphics[scale=.4]{imagenes/persecucion.jpg}
+\end{center}
+\caption{Curva persecución}\label{fig:curva_per}
+\end{wrapfigure}
 Supongamos que el perro parte del punto $(c,0)$, el conejo de $(0,0 )$ y la recta sobre la cual se mueve el conejo en dirección positiva  es el eje $y$. 
-Vamos a suponer que la trayectoria del perro sigue la trayectoria tal que 
-la tangente a su movimiento en un momento dado intersecta a la posición del conejo correspondiente a ese momento.
-& \includegraphics[scale=.4]{imagenes/persecucion.jpg}
-\end{tabular}
+Vamos a suponer que la trayectoria del perro sigue la trayectoria donde
+la tangente a su movimiento, en un momento dado, intersecta a la posición del conejo correspondiente a ese momento.
 
 
-
-{Curvas de persecución}
 Pasado un tiempo $t$, el conejo estará en el punto $(0,at)$ y el perro en un punto de su trayectoria que forma un arco de
  longitud $s=bt$ hasta el $(c,0)$. Ese punto, donde está el perro, lo denotaremos $(x,y)$. Como hemos supuesto que la tangente a la trayectoria del perro en $(x,y)$ pasa 
  por la posición del conejo $(0,at)$ se debe cumplir que
  \begin{equation}\label{eq:persec}\frac{dy}{dx}=\frac{y-at}{x}\Longrightarrow xy'-y=-at.\end{equation}
- En esta ecuación hay tres variables, $t$ , $x$ e $y$. No es muy claro cuales estamos usando como independiente y cuales depenientes. 
- Generalmente el tiempo $t$ es una variable  indepeniente, pero en la expresión de arriba aparece la derivada de $y$ respecto a $x$. 
-
-
-{Curvas de persecución}
-  Pareciese como 
- que estamos considerando   $y$ tanto función de $t$ como de $x$. La intuición nos dice que $y$ la puedo pensar tanto como función de una u otra.
- 
- Tratemos de elinar $t$ de esa ecuación, de modo de tener una ecuación, una variable dependiente y una independiente, como el Dios de la matemática manda.
- 
-  No es razonable pensar que lograremos tener menos variables sin pagar algún precio, pues, como dice el dicho, 
- \href{http://es.answers.yahoo.com/question/index?qid=20081023132736AABMX0}{``Cuando la limosna es grande hasta el santo desconfía'' }. 
-
-
-{Curvas de persecución}
+ En esta ecuación hay tres variables, $t$ , $x$ e $y$. No hemos definido cuales son independiente y cuales depenientes.   Generalmente el tiempo $t$ se considera  variable  indepeniente, pero en la expresión de arriba aparece la derivada de $y$ respecto a $x$.
+ Claramente deberíamos eliminar una de las variables. Conviene eliminar $t$, dado que al no aparecer en la derivación no tendremos que hacer un cambio de variables allí, donde siempre es un poco más engorroso.   Por otra parte, la intuición del problema, nos dice que  a cada $t$ corresponde uno, y sólo un, $x$\footnote{De lo contrario el perro no se hubiera movido en la dirección horizontal entre dos moementos, lo que es absurdo}, lo que indica que $t$ es función de $x$ y por consiguiente es de esperar poder escribir la ecuación \eqref{eq:persec} en términos de $x$ e $y$.   Tener en cuenta que no es  razonable en matemática, como en la política,  pensar que lograremos tener un beneficio (menos variables) sin pagar algún precio, pues, como dice el dicho,
+ ``Cuando la limosna es grande hasta el santo desconfía'' .
  En este caso, el costo que pagaremos 
  es incrementar el orden de la ecuación. 
  Como hemos dado algunas técnicas de  resolver ecuaciones de orden dos quizás estemos en condiciones de pagar este precio.
  
-Para eliminar $t$ de la ecuación derivamos $\eqref{eq:persec}$ respecto a $x$. Queda
+Para eliminar $t$ de la ecuación derivamos $\eqref{eq:persec}$ respecto a $x$, obtenemos
 \[xy''=-a\frac{dt}{dx}.\]
 Como $ds/dt=b$ 
 \[\frac{dt}{dx}=\frac{dt}{ds}\frac{ds}{dx}=-\frac{\sqrt{1+y'(x)^2}}{b}.\]
-El signo menos aparece porque $s$ es decreciente con $x$ pues $s=\int_x^c\sqrt{1+y'^2}dx$.
- 
-
-
-{Curvas de persecución}
+Hemos usado la relación $s=\int_x^c\sqrt{1+y'^2}dx$.
  Entonces 
  \boxedeq{xy''=\frac{a\sqrt{1+y'(x)^2}}{b}.}
- 
+
 Que es una ecuación que no contiene $y$. De modo que usando $p=y'$ como variable dependiente reducimos el orden de la ecuación. Nos queda
 \[\frac{dp}{\sqrt{1+p^2}}=\frac{a}{b}\frac{dx}{x}.\]
 Que es una ecuación en variable separables. Tomando la integral definida entre $c$ y $x$, y considerando que si $x=c$ entonces $p=0$, tenemos
 \[\ln\left(p+\sqrt{1+p^2}\right)=\ln\left( \frac{x}{c}\right)^{\tfrac{a}{b}}.\]
- 
- 
+ Si despejamos $p$ conseguimos
+ \boxedeq{p=\frac{dy}{dx}=\frac{1}{2}\left[\left(\frac{x}{c}\right)^{a/b}-\left(\frac{c}{x}\right)^{a/b}\right].}
+Para hhalar $y$ hay que recordar que $y'=p$ e $y(1)=0$.
 
+Usemos \texttt{SymPy} para completar este cálculo y hacer los gráficos. El siguiente código evalúa la integral, halla la constante de integración para que $y(1)=0$ y grafica.
 
-{Curvas de persecución}
+\begin{lstlisting}
+from sympy import *
+x=symbols('x',real=True)
+a=Rational(2)
+b=Rational(1)
+c=Rational(1)
+y=integrate((x/c)**(a/b)-(c/x)**(a/b),x)
+C=symbols('C')
+C=solve(y.subs(x,1)+C,C)[0]
+plot(y+C,(x,0.001,1))
+\end{lstlisting}
 
-Si despejamos $p$ queda
+Los resultados son:
 
-\boxedeq{p=\frac{dy}{dx}=\frac{1}{2}\left[\left(\frac{x}{c}\right)^{a/b}-\left(\frac{c}{x}\right)^{a/b}\right].}
+\begin{tabular}{m{5cm} m{5cm}}
+\begin{center}
+\includegraphics[scale=.3]{imagenes/perse_a_1_b_2.png}
+
+$a<b$
+\end{center}
+&
+\begin{center}
+\includegraphics[scale=.3]{imagenes/perse_a_1_b_1.png}
+
+$a=b$
+\end{center}
+\end{tabular}
+\begin{center}
+\includegraphics[scale=.3]{imagenes/perse_a_2_b_1.png}
+
+$a>b$
+\end{center}
+
 
 Vamos a dejar que la continuidad del análisis como ejercicio.
  
