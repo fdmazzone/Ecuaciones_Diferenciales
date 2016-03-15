@@ -485,16 +485,7 @@ Sean $G$ un conjunto y $\alpha$ una función tal que   $\alpha:G\times G\to G$. 
 Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href{http://es.wikipedia.org/wiki/Grupo_simétrico}{\emph{grupo simétrico}}.
  \end{ejemplo}
 
- \begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$.
-\end{ejemplo}
-
-
-\begin{ejemplo} Sea $X=\{x_1,\ldots,x_n\}$ un conjunto de $n$ elementos y $S_n$ definido por
-\[S_n=\{\sigma|\sigma:X\to X\hbox{ y }\sigma \hbox{ es biyectiva }\}\]
-Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href{http://es.wikipedia.org/wiki/Grupo_simétrico}{\emph{grupo simétrico}}.
-\end{ejemplo}
-
-\begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$.Para un triángulo equilatero:
+\begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$. Para un triángulo equilatero:
 \begin{center}
 \includegraphics[scale=.4]{imagenes/SimTria.jpg}
 \end{center}
@@ -560,52 +551,43 @@ El conjunto  $\mathscr{T}$ tiene una estructura de grupo con la operación de co
 
 \subsection{Grupos de Lie uniparamétricos}
 
-Sea $\mathscr{T}$ el grupo de cambios de variables. Supongamos dado un homomorfismo de grupos $\Gamma:(\rr,+)\to (\mathscr{T},\circ)$.  
+\begin{definicion}[Grupos de Lie uniparamétricos]
+Sea $\mathscr{T}$ el grupo de cambios de variables de $\rr^2$. Supongamos dado un homomorfismo de grupos $\Gamma:(\rr,+)\to (\mathscr{T},\circ)$.  Para $\epsilon\in\rr$ escribiremos $\Gamma_{\epsilon}=\Gamma(\epsilon)$.  Si $\Gamma_{\epsilon}(x,y)$ es diferenciable, con inversa diferenciable, respecto a $(x,y)$ y analítica respecto a $\epsilon$ diremos que $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico de simetrías}}.
+\end{definicion}
 
-\textbf{Notación:}
+
+ Si $(x,y)\in\rr^2$ escribimos
+  \boxedeq{(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y).}{eq:not_sim}
+ Notar que $\hat{x}$, $\hat{y}$ son funciones de $x,y$ y $\epsilon$.
+
+
+
+\begin{boite}[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+  titleboxcolor = black]{Propiedades de grupos de Lie uniparamétricos}
 \begin{enumerate}
-\item Para $\epsilon\in\rr$ escribiremos $\Gamma_{\epsilon}=\Gamma(\epsilon)$
-\item<+> Si $(x,y)\in\rr^2$ escribimos $(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)$. Notar que $\hat{x}$, $\hat{y}$ son funciones de $x,y$ y $\epsilon$.
-\end{enumerate}
- Si $\Gamma_{\epsilon}(x,y)$ es diferenciable, con inversa diferenciable, respecto a $(x,y)$ y analítica respecto a $\epsilon$ diremos que $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico de simetrías}}.
-
-
-
-
-
-
-
-
-
-
-{Grupos de Lie uniparamétricos}
-{Propiedades de $\Gamma_{\epsilon}$}
-\begin{enumerate}
-\item$\Gamma_{\epsilon}$ es biyectiva y diferenciable sobre su dominio de definición.
+\item$\Gamma_{\epsilon}:\Omega_1\to\Omega_2$ es un difeomorfismo, con $\Omega_i$, $i=1,2$, abiertos de $\rr^2$.
  \item $\Gamma_{\epsilon_1}\circ \Gamma_{\epsilon_2}=\Gamma_{\epsilon_1+\epsilon_2}$.
 
 \item $\Gamma_0=I$.
 
 \item $\left(\Gamma_{\epsilon}\right)^{-1}=\Gamma_{-\epsilon}$
 
-\item Si $\Gamma_{\epsilon}(x,y)=(\hat{x},\hat{y})$, entonces  $\hat{x}(x,y,\epsilon)$ y $\hat{y}(x,y,\epsilon)$ son  diferenciables respecto $(x,y)$ y se desarrollan en serie de potencias respecto a $\epsilon$. Es decir para todo $\epsilon_0\in\rr$
+\item Las funciones  $\hat{x}(x,y,\epsilon)$ y $\hat{y}(x,y,\epsilon)$  se desarrollan en serie de potencias respecto a $\epsilon$. Es decir para todo $\epsilon_0\in\rr$ existen coeficientes $a_j$ y$b_j$, $j=0,1,\ldots$, y $r>0$ tal que
 \[
 \begin{array}{cc}
 \hat{x}(x,y,\epsilon)&=a_0(x,y)+a_1(x,y)(\epsilon- \epsilon_0)+\cdots\\
 \hat{y}(x,y,\epsilon)&=b_0(x,y)+b_1(x,y)(\epsilon- \epsilon_0)+\cdots\\
 \end{array}
 \]
-
+para $|\epsilon-\epsilon_0|<r$.
 \end{enumerate}
 
 
+\end{boite}
 
 
 
-
-
-{Ejemplos grupos de Lie uniparamétricos}
-\textbf{Ejercicio:} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
+\begin{ejemplo} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
 \begin{enumerate}
 \item $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y $\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)$.
 \item $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$
@@ -616,64 +598,49 @@ Sea $\mathscr{T}$ el grupo de cambios de variables. Supongamos dado un homomorfi
 \end{pmatrix}
 $
 \end{enumerate}
+\end{ejemplo}
 
 
-
-[fragile]{Ejemplos grupos de Lie uniparamétricos}
-Podemos usar \texttt{SymPy} para la tarea
+Podemos usar \texttt{SymPy} para la tarea con este breve código
 \begin{lstlisting}
-from sympy import *
-T=lambda x,y,epsilon:  Matrix([x+epsilon,y])
-x,y,epsilon1,epsilon2=\
-symbols('x,y,epsilon1,epsilon2')
-PropGrupo=T(T(x,y,epsilon1)[0],\
-T(x,y,epsilon1)[1],epsilon2)-\
-T(x,y,epsilon1+epsilon2)
+>>> from sympy import *
+>>> T=lambda x,y,epsilon:  Matrix([x+epsilon,y])
+>>> x,y,epsilon1,epsilon2=symbols('x,y,epsilon1,epsilon2')
+>>> x_copete=T(x,y,epsilon1)[0]
+>>> y_copete=T(x,y,epsilon1)[1]
+>>> PropGrupo=T(x_copete,y_copete,epsilon2)-T(x,y,epsilon1+epsilon2)
+>>> PropGrupo
+Matrix([
+[0],
+[0]])
 \end{lstlisting}
 
-El resultado es ${PropGrupo}$.
 
-
-[fragile]{Ejemplos grupos de Lie uniparamétricos}
 El mismo ejemplo lo podemos desarrollar usando expresiones en lugar del operador \texttt{lambda}.
 \begin{lstlisting}
-from sympy import *
-x,y,epsilon,epsilon1,epsilon2=\
-symbols('x,y,epsilon,epsilon1,epsilon2')
-T=Matrix([x+epsilon,y])
-PropGrupo=T.subs([(\
-x,T.subs(epsilon,epsilon1)[0]),\
-(1,T.subs(epsilon,epsilon1)[1]),\
-(epsilon,epsilon2)\
-])\
--T.subs(epsilon,epsilon1+epsilon2)
-
+>>> from sympy import *
+>>> x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
+>>> T=Matrix([x+epsilon,y])
+>>> x_copete=T.subs(epsilon,epsilon1)[0]
+>>> y_copete=T.subs(epsilon,epsilon1)[1]
+>>> PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])-T.subs(epsilon,epsilon1+epsilon2)
+>>> PropGrupo
+Matrix([
+[0],
+[0]])
 \end{lstlisting}
 
-El resultado es ${PropGrupo}$.
 
-
-
-
-{Grupo de simetrías de una ecuación}
-
-{Definición}
+\begin{definicion}[Grupo de simetrías de una ecuación]
  Consideremos una ecuación
 \boxedeq{y'=f(x,y).}{eq:principi}
-Una transformación $\Gamma\in \mathscr{T}$ se denomina una simetría de la ecuación si el cambio de variables dado por $(\hat{x},\hat{y})=\Gamma(x,y)$ deja invariante  la ecuación. 
+Una transformación $\Gamma\in \mathscr{T}$ se denomina una \emph{simetría} de la ecuación si el cambio de variables dado por $(\hat{x},\hat{y})=\Gamma(x,y)$ deja invariante  la ecuación.   El conjunto de todas las simetría de una ecuación es un subgrupo de  $( \mathscr{T},\circ)$. Lo llamaremos \emph{grupo de simetrías} de la ecuación.
 
- El conjunto de todas las simetría de una ecuación es un subgrupo de  $( \mathscr{T},\circ)$. Lo llamaremos \emph{grupo de simetrías} de la ecuación.
-
- 
+\end{definicion}
 
 
 
-
-
-
-
-{Grupo de simetrías de una ecuación}
-
+\subsection{Grupos de simetrìas de EDO}
  De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
  \boxedeq{\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}=f(\hat{x},\hat{y})}{eq:cond_sim}
 
@@ -683,46 +650,26 @@ Una transformación $\Gamma\in \mathscr{T}$ se denomina una simetría de la ecua
 
 
 
-{Ejemplos simetrías ecuaciones }
-Consideremos la ecuación
-\boxedeq{y'=0}{eq:trivial}
-
+ \begin{ejemplo} Consideremos la ecuación
+   \begin{equation}\label{eq:trivial}y'=0.
+    \end{equation}
 La condición de simetría se reduce a 
-
 \[
 \frac{\frac{\partial\hat{y}}{\partial x}}{\frac{\partial\hat{x}}{\partial x}}=0
 \]
-
-Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ es independiente de $x$. La forma general de una simetría es
-\boxedeq{\hat{x}=\hat{x}(x,y)\quad \hat{y}=\hat{y}(y).}{}
-
-
+Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ es independiente de $x$. La forma general de una simetría es PUES
+\[\hat{x}=\hat{x}(x,y)\quad \hat{y}=\hat{y}(y).\]
+\end{ejemplo}
 
 
-
-{Ejemplos simetrías ecuaciones }
-
-
- \begin{tabular}{m{5cm}m{5cm}}
+\begin{wrapfigure}[13]{r}{5.5cm}
+   \includegraphics[scale=.3]{imagenes/sol_trivial.png}
+ \end{wrapfigure}
  Hay muchas simetrías. Las traslaciones en cualquier dirección $(x,y)\mapsto (x+\alpha ,y+\beta)$ ($\alpha,\beta\in\rr$). Cambios de escala en ambos ejes  $(x,y)\mapsto (e^{\epsilon}x,y)$, $(x,y)\mapsto (x,e^{\epsilon}y)$. Reflexiones respecto ambos ejes  $(x,y)\mapsto (-x,y)$, $(x,y)\mapsto (x,-y)$.  Observar que el gráfico de las soluciones posee las mismas simetrías, pues en general \emph{las simetrías de una ecuación llevan soluciones en soluciones}.
-& 
-\includegraphics[scale=.3]{imagenes/sol_trivial.png}\\
-\end{tabular}
 
-
-
-{Simetrías triviales}
- De todas las simetrías encontradas $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$, $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y  $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ se llaman \emph{triviales} pues llevan una curva solución en si misma.
-
- Cualquier cambio de la forma $\hat{x}=\hat{x}(x,y)\quad \hat{y}=y$ es trivial.
-
- \fbox{\begin{minipage}{\linewidth}\emph{Estamos interesados en hallar grupos de Lie uniparamétricos de simetrías no triviales.}
+ De todas las simetrías encontradas $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$, $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y  $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ se llaman \emph{triviales} pues llevan una curva solución en si misma.  Cualquier cambio de la forma $\hat{x}=\hat{x}(x,y)\quad \hat{y}=y$ es trivial.  \fbox{\begin{minipage}{\textwidth}\emph{Estamos interesados en hallar grupos de Lie uniparamétricos de simetrías no triviales.}
     \end{minipage}
   }
-
-
-
-{Simetrías triviales}
 
 
  Las reflexiones $\Gamma(x,y)=(-x,y)$  no pertenecen a tal tipo de  grupo. Para demostrar esto supongamos que  $\Gamma$ es alguna instancia de un tal grupo $\Gamma{\epsilon}$, supongamos por ejemplo que $\Gamma=\Gamma{\epsilon_0}$.  Consideramos el jacobiano de la transformación:
@@ -740,23 +687,17 @@ Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ e
 
 
 
- {Ejemplo de Simetrías}
- \textbf{Ejemplo: hallar simetrías de }
+ \begin{ejemplo} Hallar simetrías de
 \[\frac{dy}{dx}=f(x).\]
-
-De acuerdo con \eqref{eq:subsder} se debe cumplir que 
+\end{ejemplo}
+De acuerdo con \eqref{eq:subsder} se debe cumplir que
  \[\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x)}=f(\hat{x})\]
-
 La forma de la ecuación sugiere el  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}
    \[\boxed{\hat{x}=x},\quad \frac{\partial\hat{y}}{\partial x}=\frac{\partial\hat{x}}{\partial y}=0,\quad
    \frac{\partial\hat{y}}{\partial y}=\frac{\partial\hat{x}}{\partial x}. \]
  Luego 
 \[\frac{\partial\hat{y}}{\partial y}=1\Rightarrow \boxed{\hat{y}=y+\epsilon} \]
-con $\epsilon$ constante arbitraria.
-
-
-{Ejemplo de Simetrías}
-Hallamos que 
+con $\epsilon$ constante arbitraria. Hallamos que
 \[\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)\]
 es un grupo de Lie uniparamétrico de simetrías. De manera similar
 \[\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)\]
@@ -765,8 +706,6 @@ es un grupo uniparamétrico de simetrías para
 Geométricamente en el primer caso todas las soluciones se obtienen trasladando una cualquiera verticalmente y en el segundo caso horizontalmente.
 
 
-
-{Ejemplo de Simetrías}
 
 \begin{tabular}{cc}
 \includegraphics[scale=.3]{imagenes/sol_paralelas.png} &\hspace{-1.5cm}\includegraphics[scale=.3]{imagenes/sol_paralelas2.png} \\
@@ -777,10 +716,11 @@ Soluciones de $y'=x^3-x$ &\hspace{-1.5cm}Soluciones de $y'=y^3-y$
 
 
 
-{Ejemplo de Simetrías}
-\textbf{Demostrar que las rotaciones alrededor del origen es un grupo de Lie uniparamétrico de simetrías de}
+\begin{ejemplo}
+ Demostrar que las rotaciones alrededor del origen es un grupo de Lie uniparamétrico de simetrías de
  \[\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.\]
-Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrededor del origen. Era un ejercicio demostrar que  $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un grupo uniparamétrico de simetrías. Se tiene la representación matricial
+\end{ejemplo}
+Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrededor del origen. Es un ejercicio demostrar que  $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un grupo uniparamétrico de simetrías. Se tiene la representación matricial
 \[
 \Gamma_{\epsilon}(x,y)= \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
@@ -798,12 +738,7 @@ Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrede
 \]
 
 
-
-
-
-
-[fragile]{Ejemplo de Simetrías}
- Para el cálculo recurrimos a \texttt{SymPy} (usamos $x_n$ en lugar de $\hat{x}$)
+Para el cálculo recurrimos a \texttt{SymPy} (usamos \texttt{x\_n} en lugar de $\hat{x}$)
 \begin{lstlisting}
 from sympy import *
 x,theta=symbols('x,theta')
@@ -820,35 +755,16 @@ Expr5=simplify(Expr4)
 \end{lstlisting}
 
 
-[fragile]{Ejemplo de Simetrías}
-Tiene problemas para simplificar, lo tenemos que ayudar
-\begin{lstlisting}
 
-Expr6=Expr5.subs(sin(2*theta + pi/4),\
-sin(2*theta)*sqrt(2)+cos(2*theta)*sqrt(2))
-Expr7=Expr6.subs(cos(2*theta),\
-1+(cos(theta))**2   )
-Expr8=Expr7.subs(cos(2*theta),\
-1+(cos(theta))**2)
-Expr9=Expr8.subs(sin(2*theta),\
-1-(cos(theta))**2)
-\end{lstlisting}
+\begin{wrapfigure}[15]{r}{5.5cm}
+ \includegraphics[scale=.4]{imagenes/sol_rotadas.png}
+\end{wrapfigure}
 La ecuación resultante es \emph{la misma}
-\boxedeq{\frac{dy_n}{dx_n}={simplify(Expr9)}.}{}
-
-
-{Ejemplo de Simetrías}
+\[\frac{dy_n}{dx_n}=\frac{x_{n}^{2} y_{n} - x_{n} + y_{n}^{3} - y_{n}}{x_{n}^{3} + x_{n} y_{n}^{2}
+    - x_{n} + y_{n}}.\]
 A la misma conclusión arribábamos si recordabamos que en en coordenadas polares la ecuación se escribe
 \[\frac{dr}{d\theta}=r-r^3,\]
-y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (r,\theta+\epsilon)$. 
-
-\begin{tabular}{m{6cm} m{4cm}}
-\includegraphics[scale=.4]{imagenes/sol_rotadas.png}&
- Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
-
-  \\
-\end{tabular} 
-
+y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (r,\theta+\epsilon)$. Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
 
 
 
@@ -872,41 +788,35 @@ se resuelve simplemente integrando.
 
 
 
-\section[Órbitas]{Órbitas, tangentes y curvas invariantes}
-{Órbitas}
+\section{Órbitas, tangentes y curvas invariantes}
 
-{Definición}
-Dado un grupo uniparamétrico de simetrías $G=\{\Gamma_{\epsilon}|\epsilon\in\rr\}$, y $(x_0,y_0)\in\rr^2$ llamamos \emph{órbita $(x_0,y_0)$ bajo la acción de  $G$} (simplemente órbita si es claro quien es $G$) a la curva
+
+\begin{definicion}[Órbitas] Dado un grupo uniparamétrico de simetrías $G=\{\Gamma_{\epsilon}|\epsilon\in\rr\}$, y $(x_0,y_0)\in\rr^2$ llamamos \emph{órbita $(x_0,y_0)$ bajo la acción de  $G$} (simplemente órbita si es claro quien es $G$) a la curva
 \[\{\Gamma_{\epsilon}(x_0,y_0)|\epsilon\in\rr\} \]
+\end{definicion}
 
-
-
-\begin{tabular}{m{5cm} m{4cm}}
-\includegraphics[scale=.3]{imagenes/sol_trivialB.png} &
-Si $G$ es un grupo de simetrías no trivial, entonces es de esperar que la órbita de  $(x_0,y_0)$ cruza transversalmente las curvas solución. La órbita se usará como una nueva coordenada.   
-\end{tabular}
-
-{Órbitas}
+\begin{wrapfigure}[15]{r}{5.5cm}
+\includegraphics[scale=.3]{imagenes/sol_trivialB.png}
+\end{wrapfigure}
+Si $G$ es un grupo de simetrías no trivial, entonces es de esperar que la órbita de  $(x_0,y_0)$ cruce transversalmente las curvas solución. La órbita se usará como una nueva coordenada.
  La órbita atraves de $(x,y)$ es el conjunto de puntos de coordenadas
 \begin{equation}\label{eq:orb} (\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon))=\Gamma_{\epsilon}(x,y),
 \end{equation}
 donde
 \[(\hat{x}(x,y,0),\hat{y}(x,y,0))=(x,y).\]
+Las ecuaciones \eqref{eq:orb} son ecuaciones parámetricas (parámetro $\epsilon$) de una  curva en el plano.
 
-\eqref{eq:orb} son ecuaciones parámetricas (parámetro $\epsilon$) de una  curva en el plano.
-
- {Puntos invariantes}
+\begin{definicion}[Puntos invariantes]
 Un punto $(x,y)$ se llama invariante si su órbita se reduce a $\{(x,y)\}$, vale decir
 \[(x,y)=\Gamma_{\epsilon}(x,y),\quad\forall \epsilon>0\]
+\end{definicion}
 
 
 
 
 
 
-
- {Órbitas}
- \textbf{Ejemplo:} La órbita de $(x,y)$ bajo la acción del grupo  de Lie uniparamétrico 
+\begin{ejemplo} La órbita de $(x,y)$ bajo la acción del grupo  de Lie uniparamétrico
 \[
 \Gamma_{\epsilon}(x,y)= \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
@@ -914,20 +824,16 @@ Un punto $(x,y)$ se llama invariante si su órbita se reduce a $\{(x,y)\}$, vale
 \end{pmatrix} \begin{pmatrix} x\\ y
 \end{pmatrix}
 \]
-
 Son circunsferencias con centro en el origen. El punto $(0,0)$ es invariante.
 
+\end{ejemplo}
 
 
-
- {Campo vectorial de tangentes}
-
-{Definición}
+\begin{definicion}[Campo vectorial de tangentes]
  Dado un grupo de Lie uniparamétrico $(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon))=\Gamma_{\epsilon}(x,y)$  definimos el campo vectorial
-\[(\xi(\hat{x},\hat{y}),\eta(\hat{x}, \hat{y}))=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right)\]
-
+\[(\xi(\hat{x},\hat{y}),\eta(\hat{x}, \hat{y}))=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right).\]
  $\xi$ y $\eta$ se llaman \emph{símbolos infinitesimales}.
-
+\end{definicion}
 
  Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ :
 \[

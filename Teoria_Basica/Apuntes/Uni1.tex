@@ -887,10 +887,12 @@ De esto deducimos la ecuación del \href{http://es.wikipedia.org/wiki/Péndulo}{
 queremos diseñar el tobogán óptimo entre los dos,
 esto es el tobogán que nos lleve de $A$ hasta $B$ en el menor tiempo. La curva solución a este problema se llama curva 
 \href{http://es.wikipedia.org/wiki/Curva_braquistócrona}{braquistócrona} (braquistos - el más corto, cronos - tiempo). 
-\end{problema} \marginpar{\vspace{-30mm}
- \includegraphics[scale=.07]{imagenes/braquis.jpg}
-}
-% \begin{center}
+\end{problema}
+
+
+\begin{center}
+\animategraphics[controls,scale=.5]{15}{/home/fernando/Git_Hub/Materiales_Ecuaciones_Diferenciales/Teoria_Basica/braquis/braquis-}{0}{105}
+\end{center}
 
 
  Este problema fue resuelto por primera vez por Johann Bernoulli y es unos de los problemas precursores de la rama de las matemáticas que se denomina
@@ -980,9 +982,16 @@ from sympy.plotting import *
 plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
 \end{lstlisting}
 
+% \begin{figure}[h]
+% \begin{center}
+% \includegraphics[scale=.3]{imagenes/cicloide.png}
+% \end{center}\caption{Cicloide}\label{fig:cicloide}
+% \end{figure}
+
+
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=.3]{imagenes/cicloide.png}
+\animategraphics[controls,scale=.5]{15}{/home/fernando/Git_Hub/Materiales_Ecuaciones_Diferenciales/Teoria_Basica/cicloide/cicloide-}{0}{31}
 \end{center}\caption{Cicloide}\label{fig:cicloide}
 \end{figure}
 
@@ -1055,6 +1064,10 @@ Vemos que
 Que es una expresión independiente de $\theta_0$. En consecuencia el tiempo $T$ que demanda  el cuerpo para llegar $\theta=\pi$ es siempre el mismo no importa
 desde donde se deje caer.
 
-
+\begin{figure}[h]
+\begin{center}
+\animategraphics[controls,scale=.5]{15}{/home/fernando/Git_Hub/Materiales_Ecuaciones_Diferenciales/Teoria_Basica/tautocrona/tauto-}{0}{79}
+\end{center}\caption{Tautócrona}\label{fig:tautocrona}
+\end{figure}
 
 \end{document}
