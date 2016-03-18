@@ -681,11 +681,20 @@ línea recta con rapidez uniforme $a$ y de un punto por fuera de la recta parte 
 persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro.
 \end{problema}
 
- 
-
-\begin{wrapfigure}{r}{5cm}
+\begin{figure}[h]
 \begin{center}
- \includegraphics[scale=.4]{imagenes/persecucion.jpg}
+\animategraphics[controls, scale=.4]{15}{/home/fernando/Git_Hub/Materiales_Ecuaciones_Diferenciales/Teoria_Basica/pursuit/pursuit-}{0}{40}
+ \caption{\small Persecución en un pentágono estrellado.
+\href{https://www.sciencenews.org/article/art-pursuit-3}{Art of Pursuit},
+Ivars Peterson
+}
+\end{center}
+\end{figure}
+
+\begin{wrapfigure}[12]{r}{5cm}
+\begin{center}
+\vspace{-1cm}
+ \includegraphics[scale=.3]{imagenes/persecucion.jpg}
 \end{center}
 \caption{Curva persecución}\label{fig:curva_per}
 \end{wrapfigure}
@@ -773,79 +782,52 @@ Lo anterior constituye un ejemplo de lo que se conoce como \href{https://en.wiki
 
 \section{Oscilador armónico}\label{resortito}
 
-\begin{tabular}{m{6cm} m{2cm}}
- Un \href{http://es.wikipedia.org/wiki/Oscilador_armónico}{oscilador armónico} es el más simple de los sistemas físicos vibratorios. Podemos definirlo como un sistema
+
+
+\begin{wrapfigure}[12]{r}{5cm}
+\begin{center}
+\includegraphics[scale=.15]{imagenes/Hooke.JPG}\\
+\caption{Robert Hooke}
+\end{center}
+\end{wrapfigure}
+Un \href{http://es.wikipedia.org/wiki/Oscilador_armónico}{oscilador armónico} es el más simple de los sistemas físicos vibratorios. Podemos definirlo como un sistema
 elástico que obedece a la \href{http://es.wikipedia.org/wiki/Ley_de_Hooke}{Ley de elasticidad de Hooke}, en honor a su descubridor 
-\href{http://es.wikipedia.org/wiki/Robert_Hooke}{Robert Hooke} & \includegraphics[scale=.15]{imagenes/Hooke.JPG}\\
-\end{tabular}
+\href{http://es.wikipedia.org/wiki/Robert_Hooke}{Robert Hooke}.
 
- 
-
-
-{Oscilador armónico}\label{resortito}
-
-% \begin{center}
-% \animategraphics[controls, scale=.4]{15}{resorte/resorte-}{0}{47}
-% \end{center}
- 
-
-
-{Oscilador armónico}
-Suele citarse al \href{http://es.wikipedia.org/wiki/Resorte}{resorte} como un ejemplo familiar de oscilador armónico.
-
-Esto debido a que, cuando las oscilaciones de un resorte son
-pequeñas,  se satisface aproximadamente la Ley de elasticidad de  Hooke.
-
-Esta ley  afirma que la fuerza que ejerce un resorte sobre una masa $m$ conectada a él por uno 
+Suele citarse al \href{http://es.wikipedia.org/wiki/Resorte}{resorte} como un ejemplo familiar de oscilador armónico. Esto debido a que, cuando las oscilaciones de un resorte son
+pequeñas,  se satisface aproximadamente la Ley de elasticidad de  Hooke. Esta ley  afirma que la fuerza que ejerce un resorte sobre una masa $m$ conectada a él por uno
 de sus extremos es proporcional en magnitud al desplazamiento
-del resorte desde la posición de equilibrio.
+del resorte desde la posición de equilibrio. Además la fuerza de elasticidad actúa en sentido opuesto al desplazamiento.
 
-Además la fuerza de elasticidad actúa en sentido opuesto al desplazamiento
- 
+\begin{figure}[h]
+ \begin{center}
+  \animategraphics[controls, scale=.4]{15}{/home/fernando/Git_Hub/Materiales_Ecuaciones_Diferenciales/Teoria_Basica/resorte/resorte-}{0}{47}
+ \caption{Resorte}\label{fig:resortito}
+ \end{center}
+ \end{figure}
 
-
-
-{Oscilador armónico}
  Supongamos que tenemos un resorte, en unos de sus extremos fijado en una pared y unido a una masa $m$ por el otro extremo. Supongamos que no actúa otra fuerza 
- sobre la masa. Ver la animación de pag. \ref{resortito}.  Pongamos un eje de coordenadas en la dirección del movimiento, con origen en la posición de equilibrio 
+ sobre la masa. Ver la animación de la figura \ref{fig:resortito}.  Pongamos un eje de coordenadas en la dirección del movimiento, con origen en la posición de equilibrio
  del resorte. Esta posición es el punto donde el resorte no ejerce fuerza. Supongamos que la dirección positiva es la dirección donde el resorte se expande. Denotemos 
- por $x(t)$ la posición de la masa en el momento $t$.  
-
-
-{Oscilador armónico}
-  Entonces según la Segunda Ley de Newton y la Ley de Elasticidad de Hooke, tenemos que
+ por $x(t)$ la posición de la masa en el momento $t$.    Entonces según la Segunda Ley de Newton y la Ley de Elasticidad de Hooke, tenemos que
  
  \boxedeq{mx''(t)=-kx(t).}{eq:resorte}
  
 La constante de proporcionalidad $k$ se llama \href{http://es.wikipedia.org/wiki/Rigidez}{constante elástica}. La ecuación \eqref{eq:resorte} se denomina la
 ecuación del oscilador armónico o ecuación del resorte.
 
-
-
-{Oscilador armónico}
-
-La ecuación del oscilador armónico se escribe $0=f(t,x,x',x'')$, donde en $f(t,x,y,z)=kx+mz$ es independiente de $t$. Podemos intentar usar $x$ como variable 
-independiente y $z=x'$ como dependiente. Como vimos en la página \ref{reduc_orden} $x''(t)=dz/dt=dz/dx z$. Así la ecuación queda
+La ecuación del oscilador armónico se escribe $0=f(t,x,x',x'')$, donde \linebreak $f(t,x,y,z)=kx+mz$ es independiente de $t$. Podemos intentar usar $x$ como variable
+independiente y $z=x'$ como dependiente. Como vimos  $x''(t)=dz/dt=dz/dx z$. Así la ecuación queda
 \[\begin{split}
    m\frac{dz}{dx}z=-kx &\Longrightarrow mzdz=-kxdx\Longrightarrow m\frac{z^2}{2}=-k\frac{x^2}{2}+C_1\\
    &\Longrightarrow z=\pm\sqrt{-\frac{k}{m}x^2+C_1}\\
    &\Longrightarrow x'(t)=\pm\sqrt{-\frac{k}{m}x^2+C_1}.\\
   \end{split}
 \]
-
-
-
-
-
-{Oscilador armónico}
 Debe ser $C_1\geq 0$ de lo contrario el dominio de la función sería vacío. Nos queda una nueva ecuación para $x'$.
 Esta ecuación es en variables separables
 \[ \frac{dx}{\sqrt{-\frac{k}{m}x^2+C_1}}=dt.   
 \]
-
-
-
-{Oscilador armónico}
  Integrando
 \[\begin{split}
    t+C_2 
@@ -855,16 +837,12 @@ Esta ecuación es en variables separables
    &=\sqrt{\frac{m}{k}}\arcsen u.
   \end{split}
 \]
-
-
-{Oscilador armónico}
 Entonces
 \[\begin{split}
     x=\frac{C_1m}{k}u &=\frac{C_1m}{k}\sen \left(\sqrt{\frac{k}{m}}(t+C_2)\right)\\
     &=\boxed{C_3\sen \sqrt{\frac{k}{m}}t+C_4\cos \sqrt{\frac{k}{m}}t}.
   \end{split}
  \]
-
 Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimiento es oscilatorio con frecuencia
 \[\boxed{f=\sqrt{\frac{k}{m}} }.\]
 En particular, no importan las condiciones iniciales, la frecuencia es siempre la misma. 
@@ -874,86 +852,55 @@ En particular, no importan las condiciones iniciales, la frecuencia es siempre l
 
 
 
-{EDP, método características}
+\section{EDP, método características}
 
-<+->Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden. 
+Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden.  Vamos a exponer este punto a través del \href{https://en.wikipedia.org/wiki/Method_of_characteristics}{método de características}.
 
-<+->Para tener un problema bien planteado con una ecuación en derivadas parciales no es suficiente conocer el valor de la función en un punto (como en una EDO de primer orden). En cambio una condición típica es dar el valor de la función a lo largo de una recta. 
+Para tener un problema bien planteado con  ecuaciones en derivadas parciales no es suficiente conocer el valor de la función en un punto (como en una EDO de primer orden). Una condición típica extra, para lograr este propósito,  es consignar el valor de la función a lo largo de una curva, que por simplicidad asumiremos que es una recta .
 
-<+-> Por ejemplo
-
+\begin{ejemplo}
 \begin{equation}\label{eq:EDP_gral_1orden}
   \left.\begin{array}{l}
   a(x,y)u_x+b(x,y)u_y=c(x,y,u)\\
   u(x,0)=f(x)\\
 \end{array}\right\}
 \end{equation}
-Aquí $x,y$ son variables independientes y $u$ dependiente.
+Aquí $x,y$ son variables independientes y $u$ dependiente. La primera línea es la ecución diferencial, que incluye derivadas parciales de la incognita y la segunda línea podemos denominarla condición inicial (pensando que la variable $y$ representa tiempo).
+\end{ejemplo}
 
-
- 
-
-
-
-{EDP, método características}
-
-<+-> El método de características consiste en encotrar $u$ a lo largo de las soluciones de la ecuación
+El método de características consiste en encotrar $u$ a lo largo de las soluciones de la EDO
 
 \boxedeq{\frac{dy}{dx}=\frac{b(x,y)}{a(x,y)}}{eq:ecua_caract}
 
-<+-> Una solución de esta ecuación es normalmente una curva en el plano  $x,y$. La idea es que las soluciones de \eqref{eq:ecua_caract} forman un flia uniparamétrica
- de curvas que llena una gran parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$ 
+Una solución de esta ecuación es normalmente una curva en el plano  $x,y$. La idea es que las soluciones de \eqref{eq:ecua_caract} forman un flia uniparamétrica
+ de curvas que llena una gran parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$. Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los roles de $x$ e $y$.
 
-<+-> Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los papales de $x$ e $y$.
-
-
-{EDP, método características}
-
-
-<+-> Supongamos $y(x)$ solución de \eqref{eq:ecua_caract}, entonces pongamos por abuso de notación $u(x)=u(x,y(x))$. Se tiene que
+Supongamos $y(x)$ solución de \eqref{eq:ecua_caract}, entonces pongamos por abuso de notación $u(x)=u(x,y(x))$. Se tiene que
 
 \boxedeq{\frac{du}{dx}=u_x+u_yy'=u_x+u_y\frac{b}{a}=\frac{c(x,y(x),u(x))}{a(x,y)}}{eq:ecua_caract2}
 Que es otra ecuación ordinaria. Podemos escribir  \eqref{eq:ecua_caract} y \eqref{eq:ecua_caract2} en una ecuación más simétrica
 \boxedeq{\frac{du}{c}=\frac{dx}{a}=\frac{dy}{b}}{eq:caract}
 
-
- 
- 
-
-{EDP, método características}
+Estas ecuaciones se llaman \emph{ecuaciones características}. Las soluciones de estas ecuaciones son un familia de curvas que suele llenar un conjunto abierto de  $\mathbb{R}^3$.  La gráfica de la solución se obtiene eligiendo entre estas curvas las que pasan por los puntos de la gráfica de $u$ especificados en la condición inicial, es decir $(x,0,f(x))$. Esto, en los casos favorables, forma una superficie que es la gráfica de la solución. La proyección de estas curvas en el plano $x,y$ se denominan \emph{caracterísitcas}. Son la familia de soluciones de $y'=b/a$.
 
 
-Estas ecuaciones se llaman \emph{ecuaciones características}. Las soluciones de estas ecuaciones son un familia de curvas que suele llenar un conjunto abierto de  $\mathbb{R}^3$. 
-
- La gráfica de la solución se obtine eligiendo de estas curvas las que pasan por $(x,0,f(x))$. Esto, en los casos favorables, forma una superficie que es la gráfica de la solución. La proyección de estas curvas en el plano $x,y$ se denominan \emph{caracterísitcas}. Son la familia de soluciones de $y'=b/a$.
-
-
-
-{EDP, método características}
-
-\textbf{Ejemplo:} Resolver
+\begin{ejemplo} Resolver
 \begin{equation}\label{eq:EDP_gral_1orden}
   \left.\begin{array}{l}
   u_x+u_y=yu\\
   u(x,0)=f(x)\\
 \end{array}\right\}
 \end{equation}
+\end{ejemplo}
 En este caso
 \[\frac{dy}{dx}=\frac{b}{a}\Rightarrow y'=1\Rightarrow y(x)=x+\mu,\quad\mu=\hbox{cte}.\]
 Entonces
 \[\frac{du}{dx}=\frac{c}{a}\Rightarrow u'=yu=(x+\mu)u\Rightarrow \ln|u|=\frac{x^2}{2}+\mu x+C(\mu).\]
 Notar que la nueva constante de integración $C(\mu)$ debe depender de la primera $\mu$. Entonces
 \[u=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{C(y-x)}.\]
-
-
-
-{EDP, método características}
-
 Ahora
-\[u(x,0)=f(x)\Rightarrow f(x)=\pm e^{\frac{x^2}{2}}e^{(-x^2}e^{C(-x)}\Rightarrow C(\mu)=\frac{\mu^2}{2}+\ln|f(-\mu)|.\]
-
+\[u(x,0)=f(x)\Rightarrow f(x)=\pm e^{\frac{x^2}{2}}e^{-x^2}e^{C(-x)}\Rightarrow C(\mu)=\frac{\mu^2}{2}+\ln|f(-\mu)|.\]
 Entonces
-
 \[u(x,y)=\pm e^{\frac{x^2}{2}}e^{(y-x)x}e^{\frac{(y-x)^2}{2}+\ln|f(x-y)|        }
 =e^{\frac{y^2}{2}}f(x-y).\]
 
