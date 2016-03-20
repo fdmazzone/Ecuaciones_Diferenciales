@@ -288,7 +288,7 @@ Que es lo que tenía que ser.
 
 
 
-\subsection{Cómputos de cambiamos variables}
+\subsection{Cómputos de cambios de variables}
 Vamos a estudiar en primer lugar como computar cambios de variables, item que suele ofrecer cierta resistencia al estudiante, a pesar de que es sencillo. Empezaremos por casos más sencillos hasta ir a la situación más general.
 
 \subsubsection{Cambio de la variable dependiente manteniendo la independiente}
@@ -385,7 +385,7 @@ Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, aún aquellas expresion
 \texttt{x=symbols('x',real=True)}. Usandoló de esta forma se consiguen mejores resultados en las simplificaciones.
 
 
-\subsection{Cambio de variable general $\hat{x}=\hat{x}(x,y)$, $\hat{y}=\hat{y}(x,y)$}
+\subsubsection{Cambio de variable general $\hat{x}=\hat{x}(x,y)$, $\hat{y}=\hat{y}(x,y)$}
 \begin{enumerate}
   \item Calculamos $d\hat{y}/d\hat{x}$ en las variables $x,y$
     \boxedeq{
@@ -835,18 +835,17 @@ Son circunsferencias con centro en el origen. El punto $(0,0)$ es invariante.
  $\xi$ y $\eta$ se llaman \emph{símbolos infinitesimales}.
 \end{definicion}
 
- Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ :
-\[
-\begin{array}{cc}
-\hat{x}&=x+\epsilon\xi(x,y)+O(\epsilon^2)\\
-\hat{y}&=y+\epsilon\eta(x,y)+O(\epsilon^2)\\
-\end{array}
-\]
- En un punto invariante \fbox{$\xi(x,y)=\eta(x,y)=0$}.
 
 
 
-[fragile]{Campo vectorial de tangentes}
+
+\begin{ejemplo}
+Campo vectorial de infitesimales para las rotaciones. 
+\end{ejemplo}
+
+
+
+
 \begin{lstlisting}
 x,y,epsilon = var('x,y,epsilon')
 x_n=cos(epsilon)*x-sin(epsilon)*y
@@ -862,40 +861,48 @@ p+= plot_vector_field((xi,eta),(x,-1,1),\
 \end{lstlisting}
 
 
+\begin{figure}[h]
+ \begin{center}
+  \includegraphics[scale=.3]{imagenes/CampoVectorial.png}
+ \end{center}
+\caption{Campo vectorial de infinitesimales $(\xi,\eta)$ por Sage}
+\end{figure}
 
 
-[fragile]{Campo vectorial de tangentes}
-plot[scale=.5]{p}
 
 
 
+ Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ :
+\[
+\begin{array}{cc}
+\hat{x}&=x+\epsilon\xi(x,y)+O(\epsilon^2)\\
+\hat{y}&=y+\epsilon\eta(x,y)+O(\epsilon^2)\\
+\end{array}
+\]
+ En un punto invariante \fbox{$\xi(x,y)=\eta(x,y)=0$}.
 
-{Curvas invariantes}
-{Definición}
+
+\begin{definicion}[Curvas invariantes]
 Una curva plana $C$ se dice invariante por un grupo uniparamétrico de simetrías de Lie si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es paralela a $(\xi(x,y),\eta(x,y))$. Si $C$ es el gráfico de una función $x\mapsto y(x)$, como $(1,y'(x))$ es un vector tangente a la gráfica, la condición que $C$ es invariante se escribe
-\boxedeq{Q(x,y,y')\overset{\hbox{\small def}}{=}\eta(x,y)-y'\xi(x,y)\equiv 0}{eq:inv}
+\boxedeq{Q(x,y,y')=\eta(x,y)-y'\xi(x,y)\equiv 0}{eq:inv}
 Esta se llama \emph{ecuación característica}.
+\end{definicion}
 
 
 
 
 
 
-{Curvas invariantes}
- {Soluciones invariantes}
+
 Si $\Gamma_{\epsilon}$ es un grupo de Lie de simetrías de $y'=f(x,y)$ entonces una solución $y(x)$ es una curva invariantes si y sólo si
 \boxedeq{\overline{Q}(x,y)=\eta(x,y)-f(x,y)\xi(x,y)\equiv 0}{eq:sol_inv}
-
-Se llaman \emph{ecuación característica reducida}.
-
-
- \emph{Nos conviene tener soluciones no invariantes}
+Se llama \emph{ecuación característica reducida}.
+\emph{Conviene tener soluciones no invariantes}
 
 
 
 
-{Ejemplos}
-\textbf{Ejemplo:} La EDO
+\begin{ejemplo} La EDO
 \[y'=y\]
 Tiene simetrías de escala
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,e^{\epsilon}y).\]
