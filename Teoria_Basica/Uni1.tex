@@ -826,10 +826,15 @@ al cuerpo de la guía.  En el caso del tobogán la gravedad trata de apartar al 
 \subsubsection{Cuerpos cayendo por guías}
 Analicemos más en detalle el movimiento de un cuerpo cayendo a lo largo de una guía estando además influído  por la acción de la gravedad. Supondremos el movimiento en las proximidades de la superficie de la Tierra y por ello, supondremos que la fuerza de la gravedad es la constante $mg$. 
 
-\begin{tabular}{m{5cm} m{4.5cm}}
- \includegraphics[scale=.07]{imagenes/caida_guia.jpg} & Supongamos que la guía esta
+
+\begin{wrapfigure}[6]{l}{5cm}
+ \begin{center}
+ \includegraphics[scale=.06]{imagenes/caida_guia.jpg}
+ \end{center}
+ \end{wrapfigure}
+ Supongamos que la guía esta
 confinada a un plano. Introducimos un sistema de coordenadas ortogonales en dicho plano, con el suelo paralelo al eje $x$
-\end{tabular}
+
 
 El elemento longitud de arco $s$ de una curva que es el gráfico de una función $y(x)$ para $x$ en $[x_0,x_1]$ viene dado por 
 \[s=\int_{x_0}^{x_1}\sqrt{1+y'(x)^2}dx\]
@@ -855,11 +860,16 @@ Esto nos permite escribir la rapidez en función de la altura repecto al piso.
 \begin{ejemplo}[Péndulo]
 \end{ejemplo}
 
-\noindent\begin{tabular}{m{6cm} m{5.5cm}}
+
+\begin{wrapfigure}[9]{R}{5cm}
+  \begin{center}
+  \includegraphics[scale=.07]{imagenes/pendulo.jpg}
+ \end{center}
+\end{wrapfigure}
   Se trata de una masa puntual $m$ suspendida de un punto por medio de una barra de longitud $l$
  a la que suponemos sin masa. Equivale al movimiento sobre una guía circular.  Usaremos el ángulo $\alpha$ marcado en la figura, como variable dependiente.
- & \includegraphics[scale=.07]{imagenes/pendulo.jpg} \\
-\end{tabular}
+
+
 
 Supondremos que el origen del sistema de de coordenadas está sobre el punto de amarre de la barra. Entonces de \eqref{cons_ener} con $t_1=t$ deducimos 
 \[\begin{split}\frac{m|v(t)|^2}{2}-\frac{m|v(t_0)|^2}{2}&=-mg\left(y(t)-y(t_0)\right)\\
@@ -916,11 +926,15 @@ como la densidad.
  Si la luz se mueve dentro de un medio homogéneo, el camino que sigue es la línea recta. Esto ya no es más así cuando la luz cambia de medio de propagación. Por ejemplo
 cuando pasa del aire al vidrio. 
 
-
-\begin{tabular}{m{4cm} m{7.5cm}}
- \includegraphics[scale=.07]{imagenes/refraccion.jpg} & Supongamos que la luz une los puntos $A$ y $B$ del plano y en el camino atravieza de un medio a otro, siendo la velocidad
+\begin{wrapfigure}[9]{R}{5cm}
+\hspace{-1cm}
+\begin{center}
+    \includegraphics[scale=.07]{imagenes/refraccion.jpg}
+  \end{center}
+\end{wrapfigure}
+ Supongamos que la luz une los puntos $A$ y $B$ del plano y en el camino atravieza de un medio a otro, siendo la velocidad
  de la luz en cada uno de ellos $v_1$ y $v_2$.  Supongamos que $A=(a,0)$ y $B=(c,b)$ y el eje $x$ es la frontera entre los medios.
- \end{tabular}
+
 Como sabemos que mientras se mueva en un medio homogéneo la luz sigue en línea recta,
 el tiempo que emplea la luz para ir $A$ a $B$ es
  \[t=\frac{\sqrt{a^{2} + x^{2}}}{v_{1}} + \frac{\sqrt{{\left(c - x\right)}^{2} + b^{2}}}{v_{2}}\]

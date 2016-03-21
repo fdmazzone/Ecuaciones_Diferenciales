@@ -903,33 +903,30 @@ Se llama \emph{ecuación característica reducida}.
 
 
 \begin{ejemplo} La EDO
-\[y'=y\]
-Tiene simetrías de escala
-\[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,e^{\epsilon}y).\]
+\begin{equation}\label{eq:eq_simple}y'=y
+ \end{equation}
+tiene simetrías de escala
+\[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,e^{\epsilon}y).
+ \]
 Luego 
 \[(\xi,\eta)=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right)=(0,y)\]
 Cualquier punto en el conjunto $\{(x,0)|x\in\rr\}$  es invariante. La ecuación característica reducida es.
 \[\overline{Q}(x,y)=0\Rightarrow y=0\]
 Esta formada enteramente por puntos invariantes.
+\end{ejemplo}
 
 
 
-
-{Ejemplos}
-
-\textbf{Ejercicio:} demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
-\[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{(e^{\epsilon}-1)x}y).\]
+\begin{ejemplo} Demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
+\[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{(e^{\epsilon}-1)x}y),\]
+para la ecuación \eqref{eq:eq_simple}.
 Para este grupo tenemos
 \[(\xi,\eta)=(x,xy)\]
 Todo punto en $x=0$ es invariante. La ecuación característica reducida es
 \[\overline{Q}(x,y)=0\Rightarrow xy-xy=0\]
 De modo que estas simetrías actuan trivialmente sobre las soluciones. Llevan una solución en si misma. Chequeemos esta afirmación de manera directa. 
+\end{ejemplo}
 
-
-
-
-
-{Ejemplos}
 Buscamos el cambio de variables inverso
 \[
 \left.
@@ -949,12 +946,7 @@ Buscamos el cambio de variables inverso
 
 Las soluciones son $y=ke^x$, sustituímos en esta expresión, luego de unas operaciones, llegamos a $\hat{y}=ke^{\hat{x}}$.
 
-
-
-
-{Ejemplos}
-
-\textbf{Ejemplo.} La ecuación de Riccati
+\begin{ejemplo} La ecuación de Riccati
 \[y'=xy^2-\frac{2y}{x}-\frac{1}{x^3},\quad x\neq 0\] 
  Tiene el grupo de Lie de simetrías
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{-2\epsilon}y).\]
@@ -965,7 +957,7 @@ La característica reducida
 Tenemos dos soluciones invariantes
 \[y=\pm\frac{1}{x^2}.\] 
 
-
+\end{ejemplo}
 
 
 {Infinitesimales$\to$Simetrías}
