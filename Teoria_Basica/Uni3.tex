@@ -164,7 +164,7 @@ titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 
 
 \title{Teoría de Lie y ecuaciones diferenciales}
-
+\date{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -172,9 +172,9 @@ titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 \begin{document}
 
   \maketitle
-  \begin{center}
-   \includegraphics[scale=0.2]{imagenes/unrc.jpg}
-   \end{center}
+%   \begin{center}
+%    \includegraphics[scale=0.2]{imagenes/unrc.jpg}
+%    \end{center}
 
 \tableofcontents
 
@@ -640,7 +640,7 @@ Una transformación $\Gamma\in \mathscr{T}$ se denomina una \emph{simetría} de 
 
 
 
-\subsection{Grupos de simetrìas de EDO}
+\subsection{Grupos de simetrías de EDO}
  De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
  \boxedeq{\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}=f(\hat{x},\hat{y})}{eq:cond_sim}
 
@@ -1233,7 +1233,7 @@ Las coordenadas canónicas nos dan otra manera de encontrar simetrías a partir 
 
 
 \section{Resolviendo EDO con grupos de Lie de simetrías}
-
+\subsection{Método de solución}
 Finalmente, toda la teoría expuesta no permiten elaborar un método que puede resolver una ecuación dada supuesto que conocemos un grupo de Lie de simetrías de ella.  Supongamos dado  un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
 \boxedeq{y'=f(x,y)}{eq:eq_princi}
  Supongamos  que las simetrías son no triviales. Según \eqref{eq:sol_inv} debemos tener
@@ -1258,27 +1258,23 @@ Por los resultados de la sección \ref{pag_ejem_canon1}:
 \[(r,s)=(x^2y,\ln|x|)\]
 son canónicas. Según \eqref{eq:prin_en_canon} la ecuación en $(r,s)$ es:
 \[\frac{dr}{ds}=\frac{\frac{1}{x}}{2xy+x^2\left(  xy^2-\frac{2y}{x}-\frac{1}{x^3}     \right)}=\frac{1}{x^4y^2-1}=\frac{1}{r^2-1}\]
+\begin{wrapfigure}[15]{r}{7cm}
+\begin{center}
+\includegraphics[scale=.3]{imagenes/SolGrup.png}
+\caption{Soluciones de  $y'=xy^2-\frac{2y}{x}-\frac{1}{x^3}$}\label{fig:sol_met_lie}
+\end{center}
+\end{wrapfigure}
 Como sabíamos que debía suceder el resultado del segundo miembro no depende sólo de $r$. Integrando
 \[s=\frac12\ln\left( \frac{r-1}{r+1}  \right)+C.\]
 Sustituyendo
 \[\ln|x|=\frac12\ln\left( \frac{x^2y-1}{x²y+1}  \right)+C.\]
 Despejando
-\boxedeq{y =-\frac{x^2 + C}{x^2(x^2 - C)}}{eq:sol_ejem}
-
+\begin{equation}\label{eq:sol_ejem}y =-\frac{x^2 + C}{x^2(x^2 - C)}\end{equation}
 La ecuación característica reducida \eqref{eq:sol_inv} es para la ecuación de este ejemplo:
-
 \[0=\overline{Q}=-2y- \left(xy^2-\frac{2y}{x}-\frac{1}{x^3}  \right)x=-x^2y^2+\frac{1}{x^2}\]
 Cuyas soluciones son
 \[y=\pm\frac{1}{x^2}.\]
-Que además son solución de la ecuación diferencial. La curva $y=-1/x^2$ se obtiene de \eqref{eq:sol_ejem} con $C=0$. La  curva $y=-1/x^2$
-
-
-
-\begin{tabular}{m{0.3\linewidth} >{\centering\arraybackslash}m{0.7\linewidth} }
-Las curvas azules y naranjas se corresponden con las gráficas de \eqref{eq:sol_ejem} con $c>0$ y $c<0$ respectivamente. La verde es la de $y=1/x^2$ y la roja de $y=-1/x^2$.
-&
-\includegraphics[scale=.4]{imagenes/SolGrup.png}
-\end{tabular}
+Que además son solución de la ecuación diferencial. La curva $y=-1/x^2$ se obtiene de \eqref{eq:sol_ejem} con $C=0$. La  curva $y=-1/x^2$. En la figura \ref{fig:sol_met_lie} graficamos las distintas soluciones.Las curvas azules y naranjas se corresponden con las gráficas de \eqref{eq:sol_ejem} con $c>0$ y $c<0$ respectivamente. La verde es la de $y=1/x^2$ y la roja de $y=-1/x^2$.
 
 
 
@@ -1287,33 +1283,29 @@ Las curvas azules y naranjas se corresponden con las gráficas de \eqref{eq:sol_
 
 
 
-\textbf{Ejemplo:} Resolver
+
+\begin{ejemplo} Resolver
 \[y'=\frac{y+1}{x}+\frac{y^2}{x^3},\quad x\neq 0,\]
 sabiendo que la ecuación es invariante para el grupo de simetrías
-\[(\hat{x},\hat{y})=(\frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}   ).\]
-Ya hemos computado las coordenadas canónicas en página \ref{pag:can_ejem_p}:
+\[(\hat{x},\hat{y})=\left(\frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}   \right).\]
+\end{ejemplo}
+Ya hemos computado las coordenadas canónicas en la subsección \ref{pag:can_ejem_p}:
 \[(r,s)=\left(\frac{y}{x},\frac{1}{x}\right).\]
 Por \eqref{eq:prin_en_canon} la ecuación se escribe
 \[\frac{dr}{ds}=\frac{-\frac{1}{x^2} }{-\frac{y}{x^2}+\frac{1}{x}\left(
-\frac{y+1}{x}+\frac{y^2}{x^3}\right)}=\frac{1}{1+r^2}\]
-
-
-
-
-
-{Resolviendo EDO con grupos de Lie de simetrías}
-Cuya solución es 
+\frac{y+1}{x}+\frac{y^2}{x^3}\right)}=\frac{1}{1+r^2},\]
+cuya solución es
 \[s=\arctan(r)+C\Rightarrow y=-x\tan\left(\frac{1}{x}+C\right).\]
 
 
 
-{Ecuaciones homogéneas}
-\textbf{Ejemplo:} Resolver la ecuación 
+\subsection{Ecuaciones homogéneas}
+\begin{ejemplo} En este ejemplo deduciremos nuevamente el método de solución de ecuaciones homogéneas apelando a las simetrías. Es decir, queremos resolver la ecuación
 \boxedeq{y'=F\left(\frac{y}{x}\right).}{eq:homogenea}
+\end{ejemplo}
 Aquí tenemos el Grupo de Lie de simetrías de cambio de escalas
 \[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{\epsilon}y).\] 
-
-Por los resultados de páginas \ref{pag_ejem_canon1} y \ref{pag_ejem_canon2}, $(r,s)=(y/x,\ln|x|)$ son canónicas y la ecuación se escribe
+Por los resultados de la subsección \ref{pag_ejem_canon1}, $(r,s)=(y/x,\ln|x|)$ son canónicas y la ecuación se escribe
 \[\frac{ds}{dr}=\frac{\frac{1}{x}}{-\frac{y}{x^2}+\frac{F\left(\frac{y}{x}\right)}{x}}=\frac{1}{F(r)-r}.\]
 La solución general es 
 \[\ln|x|=\int^{y/x}\frac{dr}{F(r)-r}+c.\]
@@ -1321,7 +1313,7 @@ La solución general es
 
 
 
-{Método de Lie y \texttt{SymPy}}
+\subsection{Método de Lie y \texttt{SymPy}}
 \text{SymPy} Incorpora distintas estrategías para resolver ecuaciones por el método de Lie. Hay mucho por indagar al respecto, pero sólo vamos a mencionar una función para calcular los infinitesimales $(\xi,\eta)$.  Aprovechamos para mostrar como luce una consola de \texttt{ipython}, otra manera de usar \texttt{Python} y \texttt{SymPy}.
 
 \includegraphics[scale=.45]{imagenes/ipython.png}
