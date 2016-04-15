@@ -347,7 +347,10 @@ Como no sabemos despejar $\boxed{y}$ de aquí dejamos indicada de esta manera la
   \der{\mu M}{y}=\der{\mu N}{x}\Longleftrightarrow \boxed{ \mu\der{M}{y}+\der{\mu}{y}M=\der{N}{x}\mu+N\der{\mu}{x}}.
 \end{equation}
 
-\begin{proposicion}[Existencia de factores integrantes] Toda ecuación de primer orden \eqref{eq:ecua_forma}, con $N\neq 0$,  que tiene una solución general que se escribe como en \eqref{eq:ecua_impli}, con $\partial f/\partial x$  tiene un factor integrante.
+\begin{proposicion}[Existencia de factores integrantes] Toda ecuación de primer 
+ orden \eqref{eq:ecua_forma}, con $N\neq 0$,  que tiene una solución general 
+que se escribe como en \eqref{eq:ecua_impli}, con $\partial f/\partial y\neq 0 
+$  tiene un factor integrante.
 \end{proposicion}
 \noindent\textit{Comentario:} La suposición $N\neq 0 \neq\der{f}{y}$,  es razonable pues $N=0$ imlpicaría que no podemos despejar $y'$ de \eqref{eq:ecua_forma}  y $\partial f/\partial y$ contradice las hipótesis del Teorema de la Función Implícita, herramienta necesaria para suponer que $y$ es función de $x$
 
@@ -367,7 +370,9 @@ sobre $\mu$ que simplifique la expresión. Es decir proponer alguna forma espec�
 \eqref{carac_factor} se escribe
 
 \[\mu\der{M}{y}=\mu\der{N}{x}+N\mu'(x) \Longrightarrow\boxed{\frac{\mu'}{\mu}=\frac{\partial M/\partial y-\partial N/\partial x}{N}}\]
-Este \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz} no siempre funcionará, para que lo haga,  la función en el segundo miembro $(\partial M/\partial y-\partial N\partial x)N$
+Este \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz} no siempre funcionará, 
+para que lo haga,  la función en el segundo miembro $(\partial M/\partial 
+y-\partial N\partial x)/N$
 debe depender sólo de $x$. Si eso ocurre
 \boxedeq{\mu(x)=e^{\int \frac{\partial M/\partial y-\partial N/\partial x}{N}dx}.}{eq:factor_int}
 es un factor integrante. Recordar que sólo necesitamos hallar uno, por ese motivo omitivos constantes de integración.
@@ -441,7 +446,6 @@ deducimos que
 Despejando
 \[\frac{dy}{dx} =\frac{-x\pm\sqrt{x^2+y^2}}{y}.\]
 
-Que es la familia de todas las parábolas con eje de simetría $x$, positivamente orientadas y con foco en $(0,0)$.
  \begin{wrapfigure}[11]{r}{5cm}
  \begin{center}
  \includegraphics[scale=.1]{imagenes/antena.jpg}
@@ -458,6 +462,9 @@ Las solución general es
 \[\pm\sqrt{x^2+y^2}=x+c.\]
 Elevando al cuadrado ambos miembros
 \[y^2=2xc+c^2=2c\left(x+\frac{c}{2}\right)\]
+Que es la familia de todas las parábolas con eje de simetría $x$, positivamente 
+orientadas y con foco en $(0,0)$.
+
 \section{Ecuaciones Lineales}
 \begin{definicion}[Ecuación lineal] Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal} a una ecuación que es lineal
 respecto a   la/s variables

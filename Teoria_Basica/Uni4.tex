@@ -731,284 +731,267 @@ entonces la linealidad de $L$ implica que, si $y_i$
 resuelve $L[y_i]=r_i$, $y=y_1+\cdots +y_n$ resuelve la ecuación deseada.
 
 
-%
-% %\subsection[MVP]{Método de variación de los parámetros}
-% {Método variación de los parámetros}
-% Queremos resolver la ecuación
-% \begin{equation}\label{eq:2orden_gen}
-% y''(x)+p(x)y'(x)+q(x)y(x)=r(x).
-% \end{equation}
-% Supongamos que contamos con un par de soluciones $y_1$, $y_2$ linealmente independientes de la ecuación homogénea asociada
-% \begin{equation}\label{eq:hom_asoc}
-% y''(x)+p(x)y'(x)+q(x)y(x)=0.
-% \end{equation}
-% El método de \href{http://en.wikipedia.org/wiki/Variation_of_parameters}{variacion de los parámetros} consiste en proponer una solución de la forma
-% \boxedeq{y(x)=c_1(x)y_1(x)+c_2(x)y_2(x).}{eq:var_param0}
-%
-% {Método variación de los parámetros}
-% Hay dos funciones incognitas $c_1$ y $c_2$, pero sólo una ecuación. Tendremos por esto libertad de introducir otra condición que consideremos conveniente.
-% Tenemos
-% \[
-% y'=c_1'y_1+c_1y_1'+c_2'y_2+c_2y_2'.
-% \]
-% Pidamos que
-% \begin{equation}\label{eq:var_param1}
-% c_1'y_1+c_2'y_2=0.
-% \end{equation}
-% Supuesta esta igualad
-% \[ y'= c_1y_1'+c_2y_2'.\]
-% Derivando
-% \[ y''= c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''.\]
-%
-% {Método variación de los parámetros}
-% Entonces
-% \[
-% \begin{split}
-% r(x)&=y''+py'+qy\\
-% &=c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''+p(c_1y_1'+c_2y_2')+q(c_1y_1+c_2y_2)\\
-% &=c_1(y_1''+py_1'+qy_1)+c_2(y_2''+py_2'+qy_2)+c_1'y_1'+c_2y_2'\\
-% &=c_1'y_1'+c_2'y_2'
-% \end{split}
-% \]
-% Esta ecuación junto a \eqref{eq:var_param1} nos dan el sistema
-% \boxedeq{
-% \left\{\begin{array}{c c}
-% c_1'y_1+c_2'y_2&=0\\
-% c_1'y_1'+c_2'y_2'&=r
-% \end{array}
-% \right.
-% }{eq:var_param_sis}
-% Las incognitas son $c_1'$ y $c_2'$. El determinante de la matriz de coeficientes es precisamente el Wronskiano $W$ de las soluciones $y_1$ e $y_2$, por la suposición
-% de independencia $W\neq 0$ y por lo tanto el sistema tiene solución única.
-%
-% {Método variación de los parámetros}
-% Se tiene
-% \[c_1'=-\frac{\det\begin{pmatrix}
-% 0 & y_2\\
-% r & y_2'
-% \end{pmatrix}
-% }{W}=-\frac{ry_2}{W}
-% \]
-% y
-% \[c_2'=-\frac{\det\begin{pmatrix}
-% y_1 & 0\\
-% y_1' & r
-% \end{pmatrix}
-% }{W}=\frac{ry_1}{W}
-% \]
-%
-% {Método variación de los parámetros}
-% En consecuencia
-% \boxedeq{c_1=-\int\frac{ry_2}{W}dx}{eq:c1}
-% y
-% \boxedeq{c_2=\int\frac{ry_1}{W}}{eq:c2}
-% Usando estas fórmulas y \eqref{eq:var_param0} obtenemos una solución particular del sistema. La solución general es la suma de la particular más
-% una solución general del homogéneo. Esta última solución general se escribe como una combinación lineal genérica entre $y_1$ e $y_2$.
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: x=var('x')
-% sage: y1=sin(x)
-% sage: y2= cos(x)
-% sage: W=y1*y2.diff()-y1.diff()*y2
-% sage: W.simplify_full() #chequeamos independencia
-% -1
-% sage: r=csc(x)
-% sage: y=(r*y1/W).integral(x)*y2-(r*y2/W).integral(x)*y1 #formula
-% sage: y
-% -x*cos(x) + log(sin(x))*sin(x)
-% sage: c1,c2=var('c1,c2')
-% sage: z=y+c1*y1+c2*y2 #solucion general
-% sage: (z.diff(x,2)+z-r).simplify_trig()
-% 0
-% sage: #resolvemos pvi
-% sage: C=solve([z(x=pi/2)==0,z.diff(x).subs(x=pi/2)==1],[c1,c2])
-% sage: C
-% [[c1 == 0, c2 == 1/2*pi - 1]]
-% sage: A,B=C[0]
-% sage: y=z.subs_expr(A,B)
-% sage: y
-% 1/2*(pi - 2)*cos(x) - x*cos(x) + log(sin(x))*sin(x)
-% sage: y(x=pi/2)
-% 0
-% sage: y.diff()(x=pi/2)
-% 1
-%
-% \end{lstlisting}
-% }
-% {Método variación de los parámetros}
-% \textbf{Ejemlo} Resolver el siguiente pvi $y''+y=\csc x$, $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$. Usaremos \texttt{SAGE} que nos dió mejores resultados para este ejemplo.
-% \lstI
-%
-% \section{Conclusiones}
-% {Conclusiones}
-% \begin{enumerate}
-% \item Si podemos encontrar dos soluciones linealmente independientes de una ecuación lineal homogénea de segundo orden, tenemos la solución general a traves de
-% combinaciones lineales.
-% \item Si tenemos una solución no trivial de una ecuación lineal homogénea de segundo orden podemos hallar otra por el método de reducción de orden.
-% \item Podemos resolver completamente una ecuación lineal homogénea de segundo orden con coeficientes constantes.
-% \item Podemos resolver algunos problemas no homogéneos por el método de coeficientes indeterminados.
-% \item Si conocemos las soluciones del problema homogéneo podemos resolver, en teoría, el no homogéneno para cualquier $r(x)$ por el método de variación
-% de los parámetros
-% \end{enumerate}
-%
-% \section{Aplicaciones}
-% {Aplicaciones. Vibraciones mecánicas }
-% \textbf{Problema:} Estudiar el movimiento de un resorte (cómo el de la unidad anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del resorte,
-% tenemos una fuerza de fricción debida a la resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
-% Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida
-% la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se
-% dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
-%
-% {Aplicaciones. Vibraciones mecánicas }
-% La fuerza elástica del resorte se modeliza con la Ley de Hooke.
-% Para la amortiguación, supongamos que su módulo es proporcional a la velocidad de la masa. La constante de proporcionalidad $c$ se llama coeficiente de
-% \href{http://es.wikipedia.org/wiki/Viscosidad}{viscosidad}. La dirección y sentido de la fuerza amortiguadora es siempre contraria
-% al movimiento. Por el principio de conservación de la energía, vemos que la fuerza de amortiguación siempre realiza un trabajo $W$ negativo, por consiguiente
-% hace perder energía cinética. De la fuerza externa $F$ no sabemos nada en principio. Por todo lo expuesto, si ponemos un sistema
-% de coordenadas con origen en la posición de equilibrio del sistema masa-resorte y si $x(t)$ es la posición de la masa en el momento $t$, la ecuación que gobierna
-% el sistema masa-resorte con amortiguación y forzamiento es
-% \boxedeq{mx''(t)\underbrace{=}_\text{2° Ley Newton}\underbrace{-kx(t)}_
-% \text{Hooke}\underbrace{-cx'(t)}_\text{Amortiguación}+\underbrace{F(t)}_\text{Fuerza externa}}{eq:res_amor_for}
-%
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% Escribamos la ecuación \eqref{eq:res_amor_for} de la siguiente froma
-% \begin{equation}\label{eq:res_amor}
-% \boxed{x''(t)+2\mu x'(t)+\omega^2x=0}\quad \mu:=\frac{c}{2m},\omega:=\sqrt{\frac{k}{m}}.
-% \end{equation}
-% Las raíces de la ecuación característica son
-% \[
-% \boxed{\lambda_{1,2}=-\mu\pm\sqrt{\Delta},\quad \Delta:=\mu^2-\omega^2}
-% \]
-% \textbf{Caso $\Delta>0$.} Aquí la viscocidad es ``grande'' relativa ala rigidez $k$. Se dice que el sistema está sobreamortiguado. En este caso tenemos dos soluciones
-% linealmente independientes y la solución general es de la forma
-% \[x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}\]
-% Notar que $\lambda_1,\lambda_2<0$.
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: lambda1,lambda2=var('lambda1,lambda2')
-% sage: t=var('t')
-% sage: x=c1*e^(lambda1*t)+c2*e^(lambda2*t)
-% sage: x0=var('x0')
-% sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],
-% ....[c1,c2],solution_dict=True)
-% sage: C
-% [{c2: lambda1*x0/(lambda1 - lambda2), c1: -lambda2*x0/(lambda1 - lambda2)}]
-% sage: x=x.subs(C[0])
-% sage: x.show()
-% sage: latex(x)
-% -\frac{\lambda_{2} x_{0} e^{\left(\lambda_{1} t\right)}}{\lambda_{1} - \lambda_{2}} +
-% ...\frac{\lambda_{1} x_{0} e^{\left(\lambda_{2} t\right)}}{\lambda_{1} - \lambda_{2}}
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% Supongamos que el sistema masa-resorte parte del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. Resolvamos este pvi
-% \lstI
-% \boxedeq{
-% x(t)= x_0\left\{ \frac{\lambda_{1}
-% e^{\lambda_{2} t}}{\lambda_{1} - \lambda_{2}}-\frac{\lambda_{2} e^{\lambda_{1} t}}{\lambda_{1} - \lambda_{2}}\right\}
-% }{eq:sol_sub_amor}
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: x=x.subs({lambda1:-1,lambda2:-2,x0:1})
-% sage: x.plot((x,0,10))
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% La masa podría haber pasado por la posición de equilibrio sólo en el pasado, puesto que $x(t)=0$ cuando
-% \[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
-% \lstI
-% \includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
-%
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% \begin{center}
-% \begin{figure}[h]
-% \animategraphics[controls, scale=.4]{15}{res_sobre/res_sobre-}{0}{60}
-% \vspace{.5cm}
-% \caption{Masa-resorte sobreamortiguado}
-% \end{figure}
-% \end{center}
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: c1,c2,mu,t,x0=var('c1,c2,mu,t,x0')
-% sage: x=e^(-mu*t)*(c1+c2*t)
-% sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
-% sage: C
-% [{c2: mu*x0, c1: x0}]
-% sage: x=x.subs(C[0]).subs({mu:.1,x0:1})
-% sage: x.plot((x,0,100))
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% \textbf{Caso $\Delta=0$.} En esta situación se dice que hay amortiguación crítica. Las raíces son iguales $\lambda_1=\lambda_2=-\mu$. Sabemos que
-% \boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
-% \lstI
-% \begin{center}
-% \includegraphics[scale=0.12]{imagenes/crit_amortiguado.png}
-% \end{center}
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: c1,c2,mu,nu,x0,t=var('c1,c2,mu,nu,x0,t')
-% sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
-% sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
-% sage: x=x.subs(C[0]).subs({mu:.1,nu:4,x0:1})
-% sage: x.plot((x,0,100))
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% \textbf{Caso $\Delta<0$.} Caso subamortiguado, $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
-% La solución general viene dada por
-% \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
-% \lstI
-% \begin{center}
-% \includegraphics[scale=.15]{imagenes/subamortiguado.png}
-% \end{center}
-%
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% \begin{figure}[h]
-% \animategraphics[controls, scale=.4]{15}{res_sub/res_sub-}{0}{60}
-% %\includegraphics[scale=.4]{res_sub/res_sub-0.jpg}
-% \vspace{.5cm}
-% \caption{Masa-resorte subamortiguado}
-% \end{figure}
-%
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% Se suele escribir la ecuación \eqref{eq:sol_gen_sub} de otra forma. Expresemos el vector $(c_1,c_2)$ en
-% coordenadas polares.
-% \[
-% c_1=\rho\cos\alpha,\quad c_2=\rho\sen\alpha.
-% \]
-% Entonces
-% \[
-% x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}=\boxed{\rho e^{-\mu t}\cos(\nu t-\alpha)}.
-% \]
-% Llamaremos este régimen \emph{movimiento cuasi-oscilatorio}. Se ejecutan vibraciones que se van amortiguando
-% de \href{http://es.wikipedia.org/wiki/Frecuencia}{frecuencia}
-% \[
-% f=\frac{1}{\text{período}}=\frac{\nu}{2\pi},\quad \nu=\sqrt{\omega^2-\mu^2}=\sqrt{\left(\frac{k}{m}\right)^2-
-% \left(\frac{c}{2m}\right)^2}.
-% \]
-% En lugar de la frecuencia se suele considerar la
-% \href{http://luz.izt.uam.mx/mediawiki/index.php/Frecuencia_angular}{frecuencia angular} que se define como
-% $2\pi f$. La ventaja de esta definición es que la frecuencia ángular de la función de arriba es
-% $\nu$.
-%
-% { Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-% \textbf{Ejercicio:} En cualquiera de las situaciones descriptas, $x(t)\to 0$ y $x'(t)\to 0$, cuando $t\to\infty$.
-% Es decir, la masa se va deteniendo.
-%
-% { Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
-% Vamos a considerar una fuerza externa oscilatoria de frecuencia angular $\omega_0$ y amplitud $F_0$. Tenemos que resolver
-% \boxedeq{x''(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
-% Usaremos el método de coeficientes indeterminados y SAGE. Antes, recordar que si $\omega=\omega_0$ estamos en
-% resonancia. Tendremos que considerar ese caso por separado. Supongamos pues $\omega\neq\omega_0$.
-% El siguiente código se puede encontrar en la carpeta \texttt{scripts} del repositorio
-% \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub} de esta materia. El script se denomina \texttt{osc\_arm\_forz\_noamort.sage}
-%
+\subsection{Método de variación de los parámetros}
+
+Queremos resolver la ecuación
+\begin{equation}\label{eq:2orden_gen}
+y''(x)+p(x)y'(x)+q(x)y(x)=r(x).
+\end{equation}
+Supongamos que contamos con un par de soluciones $y_1$, $y_2$ linealmente independientes de la ecuación homogénea asociada
+\begin{equation}\label{eq:hom_asoc}
+y''(x)+p(x)y'(x)+q(x)y(x)=0.
+\end{equation}
+El método de \href{http://en.wikipedia.org/wiki/Variation_of_parameters}{variacion de los parámetros} consiste en proponer una solución de la forma
+\boxedeq{y(x)=c_1(x)y_1(x)+c_2(x)y_2(x).}{eq:var_param0}
+Hay dos funciones incognitas $c_1$ y $c_2$, pero sólo una ecuación. Tendremos 
+por esto libertad de introducir otra condición que consideremos conveniente.
+Tenemos
+\[
+y'=c_1'y_1+c_1y_1'+c_2'y_2+c_2y_2'.
+\]
+Pidamos que
+\begin{equation}\label{eq:var_param1}
+c_1'y_1+c_2'y_2=0.
+\end{equation}
+Supuesta esta igualad
+\[ y'= c_1y_1'+c_2y_2'.\]
+Derivando
+\[ y''= c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''.\]
+Entonces
+\[
+\begin{split}
+r(x)&=y''+py'+qy\\
+&=c_1'y_1'+c_2'y_2'+c_1y_1''+c_2y_2''+p(c_1y_1'+c_2y_2')+q(c_1y_1+c_2y_2)\\
+&=c_1(y_1''+py_1'+qy_1)+c_2(y_2''+py_2'+qy_2)+c_1'y_1'+c_2y_2'\\
+&=c_1'y_1'+c_2'y_2'
+\end{split}
+\]
+Esta ecuación junto a \eqref{eq:var_param1} nos dan el sistema
+\boxedeq{
+\left\{\begin{array}{c c}
+c_1'y_1+c_2'y_2&=0\\
+c_1'y_1'+c_2'y_2'&=r
+\end{array}
+\right.
+}{eq:var_param_sis}
+Las incognitas son $c_1'$ y $c_2'$. El determinante de la matriz de coeficientes es precisamente el Wronskiano $W$ de las soluciones $y_1$ e $y_2$, por la suposición
+de independencia $W\neq 0$ y por lo tanto el sistema tiene solución única.
+Se tiene
+\[c_1'=-\frac{\det\begin{pmatrix}
+0 & y_2\\
+r & y_2'
+\end{pmatrix}
+}{W}=-\frac{ry_2}{W}
+\]
+y
+\[c_2'=-\frac{\det\begin{pmatrix}
+y_1 & 0\\
+y_1' & r
+\end{pmatrix}
+}{W}=\frac{ry_1}{W}
+\]
+En consecuencia
+\boxedeq{c_1=-\int\frac{ry_2}{W}dx}{eq:c1}
+y
+\boxedeq{c_2=\int\frac{ry_1}{W}}{eq:c2}
+Usando estas fórmulas y \eqref{eq:var_param0} obtenemos una solución particular del sistema. La solución general es la suma de la particular más
+una solución general del homogéneo. Esta última solución general se escribe como una combinación lineal genérica entre $y_1$ e $y_2$.
+
+\begin{ejemplo} Resolver el siguiente pvi $y''+y=\csc x$, 
+$y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$. 
+La ecuación homogénea asociada tiene el par $y_1(x)=\cos(x)$ e $y_1(x)=\sen(x)$ 
+   de soluciones linealmente independientes.   El wronskiano es $W\equiv 1$ y 
+entonces una solución paarticular es
+\[\begin{split}
+  y(x)&=-\int \frac{ry_2}{W}dx y_1 +\int \frac{ry_1}{W}dx y_2\\
+       &=-\int dx \cos(x)+\int \frac{1}{\tan(x)}dx \sen(x)\\
+       &=-x\cos(x) +\ln(\sen(x))\sen(x).
+ \end{split}
+\]
+ 
+ La solución general es
+ \[
+  y(x)=-x\cos(x) +\ln(\sen(x))\sen(x)+c_1\cos(x)+c_2\sen(x).
+  \]
+Las condiciones $y\left(\tfrac{\pi}{2}\right)=0$ y 
+$y'\left(\tfrac{\pi}{2}\right)=1$ nos conducen a $c_2=0$ y $c_1=\frac{\pi}{2}$.
+
+
+
+\end{ejemplo}
+\section{Conclusiones}
+
+\begin{enumerate}
+\item Si podemos encontrar dos soluciones linealmente independientes de una ecuación lineal homogénea de segundo orden, tenemos la solución general a traves de
+combinaciones lineales.
+\item Si tenemos una solución no trivial de una ecuación lineal homogénea de segundo orden podemos hallar otra por el método de reducción de orden.
+\item Podemos resolver completamente una ecuación lineal homogénea de segundo orden con coeficientes constantes.
+\item Podemos resolver algunos problemas no homogéneos por el método de coeficientes indeterminados.
+\item Si conocemos las soluciones del problema homogéneo podemos resolver, en teoría, el no homogéneno para cualquier $r(x)$ por el método de variación
+de los parámetros
+\end{enumerate}
+
+\section{Aplicaciones}
+\subsection{Vibraciones mecánicas }
+\begin{problema} Estudiar el movimiento de un resorte (cómo el de la unidad 
+anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del 
+resorte,
+tenemos una fuerza de fricción debida a la resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
+Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida
+la masa, $F$ sería la fuerza de gravedad. Si la masa estuviese hecha de metal, $F$ podría ser una fuerza provista por un imán. Por la acción de esta fuerza el sistema se
+dice forzado. Por consiguiente el sistema completo, con la acción de las tres fuerzas, se denomina un sistema resorte-masa, amortiguado y forzado.
+\end{problema}
+
+La fuerza elástica del resorte se modeliza con la Ley de Hooke.
+Para la amortiguación, supongamos que el módulo de la fuerza es proporcional a 
+la velocidad de la masa. La constante de proporcionalidad $c$ se llama 
+coeficiente de
+\href{http://es.wikipedia.org/wiki/Viscosidad}{viscosidad}. La dirección y sentido de la fuerza amortiguadora es siempre contraria
+al movimiento. Por el principio de conservación de la energía, vemos que la fuerza de amortiguación siempre realiza un trabajo $W$ negativo, por consiguiente
+hace perder energía cinética. De la fuerza externa $F$ no sabemos nada en principio. Por todo lo expuesto, si ponemos un sistema
+de coordenadas con origen en la posición de equilibrio del sistema masa-resorte y si $x(t)$ es la posición de la masa en el momento $t$, la ecuación que gobierna
+el sistema masa-resorte con amortiguación y forzamiento es
+\boxedeq{mx''(t)\underbrace{=}_\text{2° Ley Newton}\underbrace{-kx(t)}_
+\text{Hooke}\underbrace{-cx'(t)}_\text{Amortiguación}+\underbrace{F(t)}_\text{Fuerza externa}}{eq:res_amor_for}
+
+
+\subsubsection{Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+
+Escribamos la ecuación \eqref{eq:res_amor_for} de la siguiente froma
+\begin{equation}\label{eq:res_amor}
+\boxed{x''(t)+2\mu x'(t)+\omega^2x=0}\quad 
+\mu:=\frac{c}{2m},\omega:=\sqrt{\frac{k}{m}}.
+\end{equation}
+Las raíces de la ecuación característica   son
+\[
+\boxed{\lambda_{1,2}=-\mu\pm\sqrt{\Delta},\quad \Delta:=\mu^2-\omega^2}
+\]
+\textbf{Caso $\Delta>0$.} Aquí la viscocidad es ``grande'' relativa ala rigidez 
+$k$. Se dice que el sistema está sobreamortiguado.
+En este caso tenemos dos soluciones
+linealmente independientes del problema homogéneo y la solución general de 
+este es de la forma
+\[x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}\]
+Notar que $\lambda_1,\lambda_2<0$. Supongamos que el sistema masa-resorte parte 
+del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. Resolvamos este pvi
+
+\begin{lstlisting}
+>>> from sympy import *
+>>> init_printing()
+>>> lambda1,lambda2,t,x0,c1,c2=symbols('lambda1,lambda2,t,x0,c1,c2')
+>>> x=c1*exp(lambda1*t)+c2*exp(lambda2*t)
+>>> C=solve([x.subs(t,0)-x0,x.diff(t).subs(t,0)], [c1,c2])
+>>> C
+\end{lstlisting}
+
+\[\begin{Bmatrix}c_{1} : - \frac{\lambda_{2} x_{0}}{\lambda_{1} - 
+\lambda_{2}}, & c_{2} : \frac{\lambda_{1} x_{0}}{\lambda_{1} - 
+\lambda_{2}}\end{Bmatrix}\]
+
+\begin{lstlisting}
+>>> x=x.subs(C[0])
+\end{lstlisting}
+\boxedeq{
+x(t)= x_0\left\{ \frac{\lambda_{1}
+e^{\lambda_{2} t}}{\lambda_{1} - \lambda_{2}}-\frac{\lambda_{2} e^{\lambda_{1} t}}{\lambda_{1} - \lambda_{2}}\right\}
+}{eq:sol_sub_amor}
+
+
+
+La masa podría haber pasado por la posición de equilibrio sólo en el pasado, puesto que $x(t)=0$ cuando
+\[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
+\begin{lstlisting}
+sage: x=x.subs({lambda1:-1,lambda2:-2,x0:1})
+sage: x.plot((x,0,10))
+\end{lstlisting}
+\includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\begin{center}
+\begin{figure}[h]
+\animategraphics[controls, scale=.4]{15}{res_sobre/res_sobre-}{0}{60}
+\vspace{.5cm}
+\caption{Masa-resorte sobreamortiguado}
+\end{figure}
+\end{center}
+
+
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Caso $\Delta=0$.} En esta situación se dice que hay amortiguación crítica. Las raíces son iguales $\lambda_1=\lambda_2=-\mu$. Sabemos que
+\boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
+\begin{lstlisting}
+sage: c1,c2,mu,t,x0=var('c1,c2,mu,t,x0')
+sage: x=e^(-mu*t)*(c1+c2*t)
+sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
+sage: C
+[{c2: mu*x0, c1: x0}]
+sage: x=x.subs(C[0]).subs({mu:.1,x0:1})
+sage: x.plot((x,0,100))
+\end{lstlisting}
+\begin{center}
+\includegraphics[scale=0.12]{imagenes/crit_amortiguado.png}
+\end{center}
+
+
+
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Caso $\Delta<0$.} Caso subamortiguado, $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
+La solución general viene dada por
+\boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
+\begin{lstlisting}
+sage: c1,c2,mu,nu,x0,t=var('c1,c2,mu,nu,x0,t')
+sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
+sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
+sage: x=x.subs(C[0]).subs({mu:.1,nu:4,x0:1})
+sage: x.plot((x,0,100))
+\end{lstlisting}
+\begin{center}
+\includegraphics[scale=.15]{imagenes/subamortiguado.png}
+\end{center}
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\begin{figure}[h]
+\animategraphics[controls, scale=.4]{15}{res_sub/res_sub-}{0}{60}
+%\includegraphics[scale=.4]{res_sub/res_sub-0.jpg}
+\vspace{.5cm}
+\caption{Masa-resorte subamortiguado}
+\end{figure}
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+Se suele escribir la ecuación \eqref{eq:sol_gen_sub} de otra forma. Expresemos el vector $(c_1,c_2)$ en
+coordenadas polares.
+\[
+c_1=\rho\cos\alpha,\quad c_2=\rho\sen\alpha.
+\]
+Entonces
+\[
+x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}=\boxed{\rho e^{-\mu t}\cos(\nu t-\alpha)}.
+\]
+Llamaremos este régimen \emph{movimiento cuasi-oscilatorio}. Se ejecutan vibraciones que se van amortiguando
+de \href{http://es.wikipedia.org/wiki/Frecuencia}{frecuencia}
+\[
+f=\frac{1}{\text{período}}=\frac{\nu}{2\pi},\quad \nu=\sqrt{\omega^2-\mu^2}=\sqrt{\left(\frac{k}{m}\right)^2-
+\left(\frac{c}{2m}\right)^2}.
+\]
+En lugar de la frecuencia se suele considerar la
+\href{http://luz.izt.uam.mx/mediawiki/index.php/Frecuencia_angular}{frecuencia angular} que se define como
+$2\pi f$. La ventaja de esta definición es que la frecuencia ángular de la función de arriba es
+$\nu$.
+
+{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\textbf{Ejercicio:} En cualquiera de las situaciones descriptas, $x(t)\to 0$ y $x'(t)\to 0$, cuando $t\to\infty$.
+Es decir, la masa se va deteniendo.
+
+{ Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
+Vamos a considerar una fuerza externa oscilatoria de frecuencia angular $\omega_0$ y amplitud $F_0$. Tenemos que resolver
+\boxedeq{x''(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_nohom}
+Usaremos el método de coeficientes indeterminados y SAGE. Antes, recordar que si $\omega=\omega_0$ estamos en
+resonancia. Tendremos que considerar ese caso por separado. Supongamos pues $\omega\neq\omega_0$.
+El siguiente código se puede encontrar en la carpeta \texttt{scripts} del repositorio
+\href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub} de esta materia. El script se denomina \texttt{osc\_arm\_forz\_noamort.sage}
+
 % { Vibraciones no amortiguadas y forzadas ($c=0$, $F\neq 0$) }
 % \lstinputlisting{scripts/osc_arm_forz_noamort.sage}
 % Notar que el determinante del sistema de ecuaciones algebraicas es $-(\omega-\omega_0)^2$. Luego la matriz
