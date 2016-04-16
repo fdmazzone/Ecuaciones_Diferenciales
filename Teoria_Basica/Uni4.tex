@@ -897,49 +897,48 @@ e^{\lambda_{2} t}}{\lambda_{1} - \lambda_{2}}-\frac{\lambda_{2} e^{\lambda_{1} t
 }{eq:sol_sub_amor}
 
 
-
-La masa podría haber pasado por la posición de equilibrio sólo en el pasado, puesto que $x(t)=0$ cuando
-\[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 \begin{lstlisting}
-sage: x=x.subs({lambda1:-1,lambda2:-2,x0:1})
-sage: x.plot((x,0,10))
+>>> x=x.subs({lambda1:-1,lambda2:-2,x0:1})
+>>> plot(x,(t,0,10))
 \end{lstlisting}
-\includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
 
-{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-\begin{center}
+
 \begin{figure}[h]
+\begin{center}
+\includegraphics[scale=.2]{imagenes/sobreamortiguado.png}
+\caption{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }\label{fig:VibrAmorNoFor}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\begin{center}
 \animategraphics[controls, scale=.4]{15}{res_sobre/res_sobre-}{0}{60}
 \vspace{.5cm}
-\caption{Masa-resorte sobreamortiguado}
+\caption{Masa-resorte sobreamortiguado}\label{ani:VibrAmorNoFor}
+\end{center}
 \end{figure}
-\end{center}
+
+Como se observa en la gráfica \ref{fig:VibrAmorNoFor} y la animación \ref{ani:VibrAmorNoFor}
+la masa ejecuta una oscilación, lo cual le demanda un tiempo infinito. Podría 
+haber pasado por la posición de equilibrio sólo en el pasado, 
+puesto que $x(t)=0$ cuando
+\[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 
 
-
-{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-\textbf{Caso $\Delta=0$.} En esta situación se dice que hay amortiguación crítica. Las raíces son iguales $\lambda_1=\lambda_2=-\mu$. Sabemos que
+\noindent\textbf{Caso $\Delta=0$.} En esta situación se dice que hay amortiguación crítica. Las raíces son iguales $\lambda_1=\lambda_2=-\mu$. Sabemos que
 \boxedeq{x_1(t)=c_1e^{-\mu t}+c_2te^{-\mu t}=e^{-\mu t}\{c_1+c_2t\}}{eq:sol_gen_crit}
-\begin{lstlisting}
-sage: c1,c2,mu,t,x0=var('c1,c2,mu,t,x0')
-sage: x=e^(-mu*t)*(c1+c2*t)
-sage: C=solve([x(t=0)==x0,x.diff(t).subs(t=0)==0],[c1,c2],solution_dict=True)
-sage: C
-[{c2: mu*x0, c1: x0}]
-sage: x=x.subs(C[0]).subs({mu:.1,x0:1})
-sage: x.plot((x,0,100))
-\end{lstlisting}
-\begin{center}
-\includegraphics[scale=0.12]{imagenes/crit_amortiguado.png}
-\end{center}
+Nuevamente la solución puede pasar a lo sumo una vez por la posición de equilibrio, siempre y cuando
+$C_2\neq 0$. El compportamiento cualitativo de la solución es muy parecido al caso anterior.
 
 
-
-
-{ Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
-\textbf{Caso $\Delta<0$.} Caso subamortiguado, $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
+\noindent\textbf{Caso $\Delta<0$, caso subamortiguado.} $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
 La solución general viene dada por
 \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
+Está función tiene por gráfica una onda sinusoidal modulada por una función exponencial 
+decreciente.
+
 \begin{lstlisting}
 sage: c1,c2,mu,nu,x0,t=var('c1,c2,mu,nu,x0,t')
 sage: x=e^(-mu*t)*(c1*cos(nu*t)+c2*sin(nu*t))
