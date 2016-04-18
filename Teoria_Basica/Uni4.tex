@@ -1218,25 +1218,24 @@ trátese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por
 
 \subsection{Un poco de mecánica celeste}
 
-Vamos a considerar ahora el problema del movimiento de un planeta, digamos la Tierra, de masa $m_{\earth}$ alrededor del sol de masa $m_{\sun}$. Como
+Vamos a considerar ahora el problema del movimiento de un planeta, digamos la Tierra, de masa $m_{\earth}$ alrededor del sol, de masa $m_{\sun}$. Como
 $m_{\sun}\gg m_{\earth}$ vamos a ignorar la fuerza que actúa sobre el Sol debido a la atracción gravitatoria de la Tierra. Esta suposición, aunque falsa, la hacemos
-por simplicidad. No obstante, con sólo un poco de trabajo, el caso más general se reduce al tratado aquí. Ver el trabajo final de la Lic. Matemática de Leopoldo Buri,
+por simplicidad. No obstante, con sólo un poco de trabajo, el caso más general se reduce al tratado aquí. Ver el \href{https://drive.google.com/file/d/0B80iJ0HgObRRbUtUQ2hFQ0FlTG8/view}{trabajo final} de la Lic. Matemática de Leopoldo Buri,
 para una deducción más cuidadosa. Vamos a suponer además que el movimiento del planeta se retringe a un plano. Esta afirmación es cierta y aunque su demostración
 es sencilla no la desarrollaremos aquí.
 Supongamos un sistema de coordenadas cartesianas sobre el plano en que se realiza el movimiento orbital del planeta. Asumimos el Sol en el origen de coordenadas y en
 reposo. Como no actúa fuerza sobre él, permanecerá en esa situación. Vamos a suponer que la posición de la Tierra es $\v{r}$.
 
-{Un poco de mecánica celeste}
 Los dos ingredientes básicos para derivar la leyes de movimiento del planeta son la
 \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda Ley de Newton} y la
 \href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley Gravitación Universal}. Ya hemos considerado ambas con anterioridad.
 Según la Ley de Gravitación Universal, la magnitud de la fuerza de gravedad es proporcional a $\frac{m_{\earth}m_{\sun}}{d^2}$, donde $d$ es la distancia tierra-sol.
 A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los dos astros y
-el sentido es tal que la fuerza atrae los cuerpos. Vale decir, la dirección y sentido de la
+el sentido es tal que la fuerza es atractiva entre los cuerpos. Vale decir, la dirección y sentido de la
 fuerza de gravedad vienen dados por el versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
 \[Gm_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
 
-{Un poco de mecánica celeste}
+
 Es decir
 \boxedeq{\frac{d^2\v{r}}{dt^2}=-\mu\frac{\v{r}}{r^3}\quad\text{donde } \mu:=Gm_{\sun}}{eq:grav}
 Esta ecuación se conoce como la \href{http://es.wikipedia.org/wiki/Problema_de_los_dos_cuerpos}{ecuación de los dos cuerpos}.
@@ -1245,52 +1244,62 @@ componente de $\v{r}$, se nos presenta aquí un \emph{Sistema de Ecuaciones Difer
 a ver como podemos reducir la ecuación anterior, mediante ingeniosos cambios de
 variables, a ecuaciones diferenciales que sabemos resolver.
 
-{Un poco de mecánica celeste}
+
 Vamos a usar coordenadas polares $(r,\theta)$ y los versores $\v{u}_r:=(\cos\theta,\sen\theta)$ y $\v{u}_{\theta}:=(-\sen\theta, \cos\theta)$. Notar que
 $\v{u}_r \perp \v{u}_{\theta}$ y por consiguiente $\mathcal{B}:=\{\v{u}_r , \v{u}_{\theta}\}$ forma una base del espacio euclideano 2-dimensional. Usaremos este hecho
-para representar distintos vectores como combinación lineal de vectores de la base. Los cálculos, como es ya habitual, se los dejaremos a SAGE, pero esta vez
-usaremos \href{ http://www.sagemath.org/doc/tutorial/sagetex.html}{\textsf{Sage\TeX}} como interfaz de SAGE.
-\textsf{Sage\TeX} permite incrustar código y outputs de SAGE dentro de un archivo \LaTeX .
-Todos los cálculos que realizamos los pueden encontrar en el script \texttt{2cuerpos.sage} dentro de la carpeta scripts en
-el repositorio de \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub}
-que mantiene materiales de este curso. Ver el siguiente enlace
-\href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{https//github.com/fdmazzone/Ecuaciones\_Diferenciales}
+para representar distintos vectores como combinación lineal de vectores de la base. Los cálculos, como es ya habitual, se los dejaremos a SymPy,
 
-{Un poco de mecánica celeste}
+
 Primero declaramos las variables y asignamos los vectores $\v{u}_r$, $\v{u}_{\theta}$ y el vector
 $\v{r}$ al que llamamos \texttt{pos}.
 
 \begin{lstlisting}
- t,mu=var('t,mu')
-x=function('x',t)
-y=function('y',t)
-r=function('r',t)
-theta=function('theta',t)
-u_r=vector([cos(theta),sin(theta)])
-u_theta=vector([-sin(theta),cos(theta)])
-pos=(r*u_r).column()
+>>> from sympy import *
+>>> init_printing()
+>>> var('t,mu')
+>>> x,y,r,theta=symbols('x,y,r,theta',cls=Function)
+>>> u_r=Matrix([cos(theta(t)),sin(theta(t))])
+>>> u_theta=Matrix([-sin(theta(t)),cos(theta(t))])
+>>> pos=r(t)*u_r
 \end{lstlisting}
 
 
 
 Como vamos a necesitar representar vectores en la base $\mathcal{B}=\{\v{u}_r , \v{u}_{\theta}\}$, construímos una matriz
 con los vectores de la base en las columnas.
-
-M=matrix([[cos(theta),-sin(theta)],\
-[sin(theta),cos(theta)]])
-
-
-{Un poco de mecánica celeste}
-Demosle un vistazo a $M$
-\[M:=xxxxxxxxxx.\]
+\begin{lstlisting}
+>>> M=u_r.row_join(u_theta)
+\end{lstlisting}
 Concretamente queremos representar el vector aceleración $\v{a}:=\tfrac{d^2\v{r}}{dt^2}$ en la base $\mathcal{B}$, para ello debemos resolver $MX=\v{a}$, donde $X$ y
-$\v{a}$ los asumimos vectores columna. Con SAGE lo hacemos en un periquete
+$\v{a}$ los asumimos vectores columna. Con SymPy lo hacemos en un periquete
+
+\begin{codigo}[\texttt{linsolve}]
+Resuelve un sistema $Ax=b$
+
+\textbf{Sintaxis} (\href{http://docs.sympy.org/dev/modules/solvers/solveset.html#sympy.solvers.solveset.linsolve}{documentación \texttt{SymPy}})
+
+\texttt{linsolve((A,b), símbolos)}
+
+\texttt{(A,b):} tuple con la matríz y el término independientre del sistema.
+
+\texttt{símbolos:} Muchas veces la solución no es única, en ese caso trata de representar la solución paramétricamente con los símbolos introducidos por \texttt{símbolos}.
+
+\texttt{Retorna: } Un conjunto finito (tipo de datos de SymPy).
+
+\end{codigo}
+
+
 
 \begin{lstlisting}
- sol=M.solve_right(pos.derivative(t,2))
-a1=sol[0].simplify_full()
-a2=sol[1].simplify_full()
+>>> a=symbols('a,b')
+>>> linsolve((M,pos.diff(t,2)),a )
 \end{lstlisting}
+
+\[
+ \left\{\left ( - r{\left (t \right )} \frac{d}{d t} \theta{\left (t \right )}^{2} + \frac{d^{2}}{d t^{2}}  r{\left (t \right )}, \quad r{\left (t \right )} \frac{d^{2}}{d t^{2}}  \theta{\left (t \right )} + 2 \frac{d}{d t} r{\left (t \right )} \frac{d}{d t} \theta{\left (t \right )}\right )\right\}
+\]
+
+
 
 
 
