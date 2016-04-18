@@ -855,7 +855,7 @@ el sistema masa-resorte con amortiguación y forzamiento es
 \text{Hooke}\underbrace{-cx'(t)}_\text{Amortiguación}+\underbrace{F(t)}_\text{Fuerza externa}}{eq:res_amor_for}
 
 
-\subsubsection{Vibraciones amortiguadas no forzadas ($c>0$, $F=0$) }
+\subsubsection{Vibraciones amortiguadas no forzadas ($\b{c>0}$, $\b{F=0}$) }
 
 Escribamos la ecuación \eqref{eq:res_amor_for} de la siguiente froma
 \begin{equation}\label{eq:res_amor}
@@ -1084,293 +1084,362 @@ plot(x,(t,0,200))
 Calculemos el límite $\lim_{\omega_0\to\omega}x(t)$,
 
 \begin{lstlisting}
-sage: limit(x0,omega0=omega)
-1/2*F0*t*sin(omega*t)/omega
+>>> limit(x0,omega0,omega)
 \end{lstlisting}
 
 \[x(t)=\frac{F_{0} t \sin\left(\omega t\right)}{2 \, \omega}
 \]
-El caso $\omega=\omega_0$ es el caso con resonancia, que debemos resolver como fue indicado en la página \ref{eq:forz_res},
-esto es proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código \texttt{SAGE} muestra que la solución es la misma función
+El caso $\omega=\omega_0$ es el caso con resonancia, que debemos resolver, como fue indicado, proponiendo como solución $y(x)=x\left(A\cos x+ B\sen x\right)$. El siguiente código \texttt{SymPy} muestra que la solución es la misma función
 que la obtenida por el proceso de límite de los casos sin resonancia.
-\lstinputlisting{scripts/osc_arm_forz_noamort_res.sage}
+
+\begin{lstlisting}
+>>> var('t,omega,F0,A,B')
+>>> x=t*(A*cos(omega*t)+B*sin(omega*t))
+>>> eq=x.diff(t,2)+omega**2*x-F0*cos(omega*t)
+>>> eqL1=eq.factor().coeff(sin(omega*t))
+>>> eqL2=eq.factor().coeff(cos(omega*t))
+>>> SolAB=solve([eqL1,eqL2],[A,B])
+>>> x=x.subs(SolAB)
+\end{lstlisting}
+
 
 
 Se producen ``vibraciones'' no acotadas.
+\begin{lstlisting}
+>>> plot(x.subs({omega:1,F0:1}),(t,0,100))
+\end{lstlisting}
+
+\begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{imagenes/osc_arm_forz_res.png}
 \end{center}
-Ver la notebook \texttt{batido.sws}. En la wiki \href{http://wiki.sagemath.org/interact/misc\#Hearing_a_trigonometric_identity}{Hearing a trigonometric identity}
+\caption{Resonancia}
+\end{figure}
+En la wiki \href{http://wiki.sagemath.org/interact/misc\#Hearing_a_trigonometric_identity}{Hearing a trigonometric identity}
 se puede escuchar ondas sonoras con los fenómenos de resonancia y batido.
 
-% { Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
-% Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
-% \boxedeq{x''(t)+2\mu x'(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_amort_nohom}
-% \lstinputlisting{scripts/osc_arm_forz_amort.sage}
+\subsubsection{Vibraciones amortiguadas y forzadas ($\b{c>0}$, $\b{F\neq 0}$) }
+Vamos a considerar una fuerza externa oscilatoria de frecuencia $\omega_0$ y amplitud $F_0$. Tenemos que resolver
+\boxedeq{x''(t)+2\mu x'(t)+\omega^2 x(t)=F_0\cos(\omega_0 t).}{eq:ecua_2orden_amort_nohom}
+Proponemos por solución $x(t)=A\cos(\omega_0 t)+B\sen(\omega_0 t)$.
+
+\begin{lstlisting}
+>>> var('t,mu,omega,omega0,F0,A,B')
+>>> x=A*cos(omega0*t)+B*sin(omega0*t)
+>>> eq=x.diff(t,2)+2*mu*x.diff(t)+omega**2*x-F0*cos(omega0*t)
+>>> eqL1=eq.factor().coeff(sin(omega0*t))
+>>> eqL2=eq.factor().coeff(cos(omega0*t))
+>>> Incog=[A,B]
+>>> Ecuas=[eqL1,eqL2]
+>>> M=Matrix([[ecu.coeff(inco) for inco in Incog] for ecu in Ecuas])
+>>> M.det()
+\end{lstlisting}
+
+La matríz $M$ del sistema lineal que satisfacen las incognitas $A$ y $B$ tiene determninante
+\[\det(M)=- 4 \mu^{2} \omega_{0}^{2} - \omega^{4} + 2 \omega^{2} \omega_{0}^{2} - \omega_{0}^{4}.
+\]
+No queda claro si, eventualmente, puede ser singular. Calculando las posibles soluciones para $\omega$ de $\det(M)=0$
+\begin{lstlisting}
+>>> solve(M.det(),omega)
+\end{lstlisting}
+\[\left [ - \sqrt{- 2 i \mu \omega_{0} + \omega_{0}^{2}}, \quad \sqrt{- 2 i \mu \omega_{0} + \omega_{0}^{2}}, \quad - \sqrt{2 i \mu \omega_{0} + \omega_{0}^{2}}, \quad \sqrt{2 i \mu \omega_{0} + \omega_{0}^{2}}\right ]
+\]
+son todas complejas no reales, por consiguiente la matríz es simpre no singular.
+\begin{lstlisting}
+>>> SolAB=solve([eqL1,eqL2],[A,B])
+>>> x.subs(SolAB)
+\end{lstlisting}
+
+\boxedeq{x(t)= \frac{2 F_{0} \mu \omega_{0} \sin{\left (\omega_{0} t \right )}}{4 \mu^{2} \omega_{0}^{2} + \left(\omega^{2} - \omega_{0}^{2}\right)^{2}} + \frac{F_{0} \left(\omega^{2} - \omega_{0}^{2}\right) \cos{\left (\omega_{0} t \right )}}{4 \mu^{2} \omega_{0}^{2} + \left(\omega^{2} - \omega_{0}^{2}\right)^{2}}
+}{eq:SolGennoHom}
+Es un movimiento oscilatorio de frecuencia angular $\omega_0$. Podemos escribir $x(t)=\rho\cos(\omega_0 t-\alpha)$,
+donde $(\rho,\alpha)$ son las coordenadas polares de $(A,B)$. En particular la amplitud de la oscilación viene dada por  $\rho=\sqrt{A^2+B^2}$.
+Recurrimos nuevamente a SymPy para calcular $\rho$.
+
+\begin{lstlisting}
+>>> rho=sqrt(A**2+B**2).subs(SolAB).simplify()
+>>> rho
+\end{lstlisting}
+\[
+\rho(\omega_0)=
+\frac{F_{0}}{\sqrt{(\omega^2-\omega_0^2)^2+4\mu^2\omega_0^2}}
+\]
 %
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: rho=sqrt(A**2+B**2).subs(SolAB[0]).simplify_full()
-% sage: show(rho)
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
-% \boxedeq{x(t)=
-% \frac{2 \, F_{0} \mu \omega_{0} \sin\left(\omega_{0} t\right)}{\omega^{4} + \omega_{0}^{4} + 2 \,
-% {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}} + \frac{{\left(F_{0} \omega^{2} -
-% F_{0} \omega_{0}^{2}\right)} \cos\left(\omega_{0} t\right)}{\omega^{4} +
-% \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}
-% }{eq:SolGennoHom}
-% Es un movimiento oscilatorio de frecuencia angular $\omega_0$. Podemos escribir $x(t)=\rho\cos(\omega_0 t-\alpha)$,
-% donde $(\rho,\alpha)$ son las coordenadas polares de $(A,B)$. En particular $\rho=\sqrt{A^2+B^2}$
-% Recurrimos nuevamente a SAGE
-% \lstI
-% \[
-% \rho(\omega_0)=\frac{F_{0}}{\sqrt{\omega^{4} + \omega_{0}^{4} + 2 \, {\left(2 \, \mu^{2} - \omega^{2}\right)} \omega_{0}^{2}}}=
-% \frac{F_{0}}{\sqrt{(\omega^2-\omega_0^2)^2+4\mu^2\omega_0^2}}
-% \]
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: plot(rho.subs({F0:1, mu:.1,omega:5},(omega0,0,10) )
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
 % \[\alpha=\atan2\left( {{\omega^{2} -
 % \omega_{0}^{2}} } , {2 \, \mu \omega_{0} } \right)
 % \]
-% En una consola de sage entrar \texttt{atan2?} para averiguar que función es $\atan2$.
-% Grafiquemos la función $\rho(\omega_0)$ para $\omega=5$ y $\mu=0.1$.
-% \lstI
-% \begin{center}
-% \includegraphics[scale=.2]{imagenes/rho_graf.png}
-% \end{center}
-%
-% \defverbatim[colored]\lstI{
-% \begin{lstlisting}
-% sage: sol=solve(rho.diff(omega0),omega0)
-% sage: sol
-% [omega0 == -sqrt(-2*mu^2 + omega^2), omega0 == sqrt(-2*mu^2 + omega^2), omega0 == 0]
-% sage: rho.diff(omega0,2).subs(sol[1]).simplify_full().show()
-% \end{lstlisting}
-% }
-% \defverbatim[colored]\lstII{
-% \begin{lstlisting}
-% sage: sol[1].rhs().subs({mu:.1,omega:5})
-% 4.99799959983992
-% \end{lstlisting}
-% }
-% { Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
-% La función tiene un notorio máximo cerca de $\omega_0=5$. Seguramente es debido a la aparición de resonancias. Hallemos el punto de máximo exacto.
-% \lstI
-% Si $2\mu^2<\omega$ tendremos un máximo (en realidad un máximo local) en $\omega_{0} = \sqrt{-2 \, \mu^{2} + \omega^{2}}$. En el ejemplo que graficamos
-% el máximo ocurre en
-% \lstII
-% Vale decir, un oscilador armónico en reposo es más sensible a exitaciones en ciertas frecuencias, aproximadamente la frecuencia
-% natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto es utilizado para diseñar dispositivos que captan ondas sísmicas.
-%
-% { Vibraciones amortiguadas y forzadas ($c>0$, $F\neq 0$) }
-% Hasta aquí hemos encontrado una solución particular del sistema no homogéneo. Para encontrar una solución general deberíamos adicionar a la particular que disponemos
-% una solución general $x_g(t)$ de la ecuación homogénea. La forma de esta solución general es de alguno de los tipos \ref{eq:sol_gen_sub},
-% \ref{eq:sol_gen_crit} o \ref{eq:sol_sub_amor}. Sin embargo no nos importa ahora la fórmula explícita de estas soluciones, sino que nos interesa resaltar que
-% trátese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
-% \emph{transitoria}. En cambio la solución que prevalece en el tiempo dada por \eqref{eq:SolGennoHom} la denominaremos solución \emph{estacionaria}.
-%
-% {Un poco de mecánica celeste}
-% Vamos a considerar ahora el problema del movimiento de un planeta, digamos la Tierra, de masa $m_{\earth}$ alrededor del sol de masa $m_{\sun}$. Como
-% $m_{\sun}\gg m_{\earth}$ vamos a ignorar la fuerza que actúa sobre el Sol debido a la atracción gravitatoria de la Tierra. Esta suposición, aunque falsa, la hacemos
-% por simplicidad. No obstante, con sólo un poco de trabajo, el caso más general se reduce al tratado aquí. Ver el trabajo final de la Lic. Matemática de Leopoldo Buri,
-% para una deducción más cuidadosa. Vamos a suponer además que el movimiento del planeta se retringe a un plano. Esta afirmación es cierta y aunque su demostración
-% es sencilla no la desarrollaremos aquí.
-% Supongamos un sistema de coordenadas cartesianas sobre el plano en que se realiza el movimiento orbital del planeta. Asumimos el Sol en el origen de coordenadas y en
-% reposo. Como no actúa fuerza sobre él, permanecerá en esa situación. Vamos a suponer que la posición de la Tierra es $\v{r}$.
-%
-% {Un poco de mecánica celeste}
-% Los dos ingredientes básicos para derivar la leyes de movimiento del planeta son la
-% \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda Ley de Newton} y la
-% \href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley Gravitación Universal}. Ya hemos considerado ambas con anterioridad.
-% Según la Ley de Gravitación Universal, la magnitud de la fuerza de gravedad es proporcional a $\frac{m_{\earth}m_{\sun}}{d^2}$, donde $d$ es la distancia tierra-sol.
-% A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los dos astros y
-% el sentido es tal que la fuerza atrae los cuerpos. Vale decir, la dirección y sentido de la
-% fuerza de gravedad vienen dados por el versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
-% \[Gm_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
-%
-% {Un poco de mecánica celeste}
-% Es decir
-% \boxedeq{\frac{d^2\v{r}}{dt^2}=-\mu\frac{\v{r}}{r^3}\quad\text{donde } \mu:=Gm_{\sun}}{eq:grav}
-% Esta ecuación se conoce como la \href{http://es.wikipedia.org/wiki/Problema_de_los_dos_cuerpos}{ecuación de los dos cuerpos}.
-% Dado que esta ecuación entraña, a su vez, tres ecuaciones escalares, una por cada
-% componente de $\v{r}$, se nos presenta aquí un \emph{Sistema de Ecuaciones Diferenciales}. No sabemos resolver sistemas de ecuaciones. No obstante vamos
-% a ver como podemos reducir la ecuación anterior, mediante ingeniosos cambios de
-% variables, a ecuaciones diferenciales que sabemos resolver.
-%
-% {Un poco de mecánica celeste}
-% Vamos a usar coordenadas polares $(r,\theta)$ y los versores $\v{u}_r:=(\cos\theta,\sen\theta)$ y $\v{u}_{\theta}:=(-\sen\theta, \cos\theta)$. Notar que
-% $\v{u}_r \perp \v{u}_{\theta}$ y por consiguiente $\mathcal{B}:=\{\v{u}_r , \v{u}_{\theta}\}$ forma una base del espacio euclideano 2-dimensional. Usaremos este hecho
-% para representar distintos vectores como combinación lineal de vectores de la base. Los cálculos, como es ya habitual, se los dejaremos a SAGE, pero esta vez
-% usaremos \href{ http://www.sagemath.org/doc/tutorial/sagetex.html}{\textsf{Sage\TeX}} como interfaz de SAGE.
-% \textsf{Sage\TeX} permite incrustar código y outputs de SAGE dentro de un archivo \LaTeX .
-% Todos los cálculos que realizamos los pueden encontrar en el script \texttt{2cuerpos.sage} dentro de la carpeta scripts en
-% el repositorio de \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub}
-% que mantiene materiales de este curso. Ver el siguiente enlace
-% \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{https//github.com/fdmazzone/Ecuaciones\_Diferenciales}
-%
-% {Un poco de mecánica celeste}
-% Primero declaramos las variables y asignamos los vectores $\v{u}_r$, $\v{u}_{\theta}$ y el vector
-% $\v{r}$ al que llamamos \texttt{pos}.
-%
-% t,mu=var('t,mu')
-% x=function('x',t)
-% y=function('y',t)
-% r=function('r',t)
-% theta=function('theta',t)
-% u_r=vector([cos(theta),sin(theta)])
-% u_theta=vector([-sin(theta),cos(theta)])
-% pos=(r*u_r).column()
-%
-% Como vamos a necesitar representar vectores en la base $\mathcal{B}=\{\v{u}_r , \v{u}_{\theta}\}$, construímos una matriz
-% con los vectores de la base en las columnas.
-%
-% M=matrix([[cos(theta),-sin(theta)],\
-% [sin(theta),cos(theta)]])
-%
-%
-% {Un poco de mecánica celeste}
-% Demosle un vistazo a $M$
-% \[M:=\sage{M}.\]
-% Concretamente queremos representar el vector aceleración $\v{a}:=\tfrac{d^2\v{r}}{dt^2}$ en la base $\mathcal{B}$, para ello debemos resolver $MX=\v{a}$, donde $X$ y
-% $\v{a}$ los asumimos vectores columna. Con SAGE lo hacemos en un periquete
-%
-% sol=M.solve_right(pos.derivative(t,2))
-% a1=sol[0].simplify_full()
-% a2=sol[1].simplify_full()
-%
-% Obtenemos asi las dos componetes de $\v{a}$.
-%
-% {Un poco de mecánica celeste}
-% En la notación de SAGE
-% \[
-% \v{a}=\left(\begin{array}{c}
-% \sage{a1}\\
-% \sage{a2}
-% \end{array}
-% \right)
-% \]
-% En la que nos gusta más
-% \[
-% \v{a}=\left(\begin{array}{c}
-% \ddot{r}-r\dot{\theta}^2 \\
-% r\ddot{\theta}+2\dot{r}\dot{\theta}
-% \end{array}
-% \right)=
-% \left(\begin{array}{c}
-% \ddot{r}-r\dot{\theta}^2 \\
-% \frac{1}{r}\frac{d}{dt} \left( r^2\dot{\theta} \right)
-% \end{array}
-% \right)
-% \]
-%
-% {Un poco de mecánica celeste}
-% El vector aceleración debe ser igual a la fuerza por unidad de masa $-\mu \v{r}/r^3$. Notemos que esta fuerza es
-% \href{http://es.wikipedia.org/wiki/Campo_central}{central}, es decir tiene componente nula
-% respecto al vector $\v{u}_{\theta}$. Por consiguiente se debe satisfacer que
-% \[\frac{1}{r}\frac{d}{dt} \left( r^2\dot{\theta} \right)=0\Longleftrightarrow \exists h\in\mathbb{R}: \boxed{ r^2\dot{\theta}=h}. \]
-% \begin{tabular}{m{5cm} m{5cm}}
-% Hemos derivado la \href{http://es.wikipedia.org/wiki/Leyes_de_Kepler}{Segunda Ley de Kepler}: El radio vector barre áreas iguales en tiempos iguales.
-% &
-% \includegraphics[scale=.3]{imagenes/2leykepler.jpeg}\\
-% \end{tabular}
-%
-% {Un poco de mecánica celeste}
-% En la dirección radial $\v{u}_r$ la componente de la fuerza es $-\mu/r^2$. Es decir se satisface la ecuación
-% \[
-% \ddot{r}-r\dot{\theta}^2=-\frac{\mu}{r^2}
-% \]
-% Notar que esta ecuación entraña dos incognitas $r$ y $\theta$, pero $\dot{\theta}$ puede ser remplazado por $h/r^2$ por la segunda Ley de Kepler.
-% Declaremos la variable $h$ que juega un rol importante y reemplacemos $\dot{\theta}$ en la ecuación
-%
-% h=var('h')
-% ed=(a1[0]).subs_expr(theta.diff(t)==h/r^2)
-% ed+=mu/r^2
-%
-% Resulta
-% \[\sage{ed}\]
-%
-% {Un poco de mecánica celeste}
-% Conseguimos una ecuación no lineal de segundo orden para $r$. De los métodos que hemos visto, ninguno se aplica a esta ecuación.
-% El truco mágico consiste en considerar la nueva variable dependiente $z=1/r$ y la nueva variable independiente
-% $\theta$.
-%
-% z=function('z',theta)
-% r=1/z
-% ed2=r.diff(t,2)+mu/r^2-h^2/r^3
-%
-% Se obtiene
-% \begin{sagecommandline}
-% sage: ed2
-% -h^2*z(theta(t))^3 + mu*z(theta(t))^2 +
-% ...2*D[0](theta)(t)^2*D[0](z)(theta(t))^2/z(theta(t))^3 -
-% ...D[0](theta)(t)^2*D[0, 0](z)(theta(t))/z(theta(t))^2
-% ...- D[0, 0](theta)(t)*D[0](z)(theta(t))/z(theta(t))^2
-% \end{sagecommandline}
-%
-% {Un poco de mecánica celeste}
-% En la ecuación resultante, nuevamente aparece $\dot{\theta}$ y además ahora aparece $\ddot{\theta}$. Tenemos que reemplazar
-% $\dot{\theta}$ por $hz^2$ y $\ddot{\theta}$ por $\tfrac{d}{dt}hz^2$.
-%
-% theta2diff=(h*z^2).diff(t).\
-% subs_expr(theta.diff(t)==h*z^2)
-% ed3=ed2.subs_expr\
-% (theta.diff(t)==h*z^2,theta.diff(t,2)==theta2diff)
-% ed4=(ed3/z^2/h^2).expand()
-%
-% Resulta
-% \[\sage{ed4}\]
-% La ecuación del oscilador armónico. Sabemos resolver esta ecuación y SAGE también!!
-%
-% s=var('s')
-% ed5=ed4.subs_expr(theta==s)
-% sol1=desolve(ed5,z,ivar=s)
-%
-%
-% {Un poco de mecánica celeste}
-% obtenemos
-% \[
-% \sage{sol1}
-% \]
-% Ahora si escribimos $k_1=\rho\cos\omega$ y $k_2=-\rho\sen\omega$ y recordamos que $z=1/r$, deducimos
-% \[r=\frac{1}{\frac{\mu}{h^2}+\rho\sen(s-\omega)}\]
-% Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
-% \boxedeq{r=\frac{p}{1+e\sen(s-\omega)}}{eq:orb_elipse}
-%
-% {Un poco de mecánica celeste}
-% \textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen y excentricidad $e$.
-% Recordemos que la variable $s$ es el ángulo polar.
-% Hagamos algunos gráficos
-%
-% ListaGra=plot([])
-% for e in srange(0,.8,.1):
-%     ListaGra+=polar_plot(1/(1+e*cos(s)),\
-% (s,0,2*pi),rgbcolor=(e,1-e,0))
-%     ListaGra+=polar_plot(1/(1+cos(s)),\
-% (s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))
-% for e in srange(1.2,2,.1):
-%     ListaGra+=polar_plot(1/(1+e*cos(s)),\
-% (s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))
-% gra=ListaGra.show()
-%
-%
-% {Un poco de mecánica celeste}
-% \begin{center}
-% \includegraphics[scale=.5]{imagenes/conicas.png}
-% \end{center}
-%
-% {Un poco de mecánica celeste}
-% Hemos logrado encontrar $r$ como función de $\theta$. No obstante
-% no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav}, para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
-% \v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en un dado momento. Este problema no lo desarrollaremos aquí dado
-% que su solución se aparta del tema de las ecuaciones diferenciales.
-%
+%En una consola de sage entrar \texttt{atan2?} para averiguar que función es $\atan2$.
+Grafiquemos la función $\rho(\omega_0)$ para $\omega=5$ y $\mu=0.1$.
+\begin{lstlisting}
+>>> plot(rho.subs({F0:1, mu:.1,omega:5}),(omega0,0,10))
+\end{lstlisting}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=.3]{imagenes/rho_graf.png}
+\end{center}
+\caption{Gráfico amplitud vs. frecuencia, resorte amortiguado y forzado}
+\end{figure}
+La función tiene un notorio máximo cerca de $\omega_0=5$. Seguramente es debido a la aparición de resonancias. Hallemos el punto de máximo exacto, primero encontremos puntos críticos.
+\begin{lstlisting}
+>>> sol=solve(rho.diff(omega0),omega0)
+>>>sol
+\end{lstlisting}
+\[\left [ 0, \quad - \sqrt{- 2 \mu^{2} + \omega^{2}}, \quad \sqrt{- 2 \mu^{2} + \omega^{2}}, \quad - \sqrt{\tilde{\infty} \sqrt{F_{0}^{2}} - 2 \mu^{2} + \omega^{2}}, \quad \sqrt{\tilde{\infty} \sqrt{F_{0}^{2}} - 2 \mu^{2} + \omega^{2}}\right ]
+\]
+El único lícito, si $2\mu^2<\omega$,  es $\hat{\omega}_0=\sqrt{- 2 \mu^{2} + \omega^{2}}$.  Podemos constatar el caracter,  si es máximo/mínimo o ninguna de estas opciones. Calculando la derivada segunda
+\begin{lstlisting}
+>>> rho.diff(omega0,2).subs(omega0,sol[2])
+\end{lstlisting}
+\[
+\frac{2 \sqrt{\frac{F_{0}^{2}}{4 \mu^{4} + 4 \mu^{2} \left(- 2 \mu^{2} + \omega^{2}\right)}} \left(4 \mu^{2} - 2 \omega^{2}\right)}{4 \mu^{4} + 4 \mu^{2} \left(- 2 \mu^{2} + \omega^{2}\right)}
+\]
+vemos que es claramente negativa. Luego tenemos un máximo local en $\hat{\omega}_0$. Comparando el valor de $\rho(\hat{\omega}_0)$ con los de $\rho(0)$ y $\rho(+\infty)$ determinamos si es máximo global. Un cálculo, que podemos hacer con SymPy, nos muestra que
+\[\lim_{\omega_0\to\infty}\rho(\omega_0)=0<\frac{F_0}{\omega^2}=\rho(0)< \frac12\frac{F_0}{\mu\sqrt{\omega^2-\mu^2}}=\rho(\hat{\omega}_0).\]
+En consecuencia $\hat{\omega}_0$ es máximo absoluto.
+
+
+
+En el ejemplo que graficamos
+el máximo ocurre en
+\begin{lstlisting}
+>>> sol[2].subs({mu:.1,omega:5})
+4.99799959983992
+\end{lstlisting}
+
+Vale decir, un oscilador armónico en reposo es más sensible a excitaciones en ciertas frecuencias, aproximadamente igual a la frecuencia
+natural del resorte cuando el coeficiente de viscocidad $c=2m\mu$ es chico. Esto es utilizado para diseñar dispositivos que captan ondas sísmicas.
+
+
+Hasta aquí hemos encontrado una solución particular del sistema no homogéneo. Para encontrar una solución general deberíamos adicionar a la particular que disponemos
+una solución general $x_g(t)$ de la ecuación homogénea. La forma de esta solución general es de alguno de los tipos \ref{eq:sol_gen_sub},
+\ref{eq:sol_gen_crit} o \ref{eq:sol_sub_amor}. Sin embargo no nos importa ahora la fórmula explícita de estas soluciones, sino que nos interesa resaltar que
+trátese del tipo que se trate, se satisface que $\lim_{t\to\infty}x_g(t)=0$. Por este motivo, vamos a decir que esta parte de la solución es
+\emph{transitoria}. En cambio la solución que prevalece en el tiempo dada por \eqref{eq:SolGennoHom} la denominaremos solución \emph{estacionaria}.
+
+\subsection{Un poco de mecánica celeste}
+
+Vamos a considerar ahora el problema del movimiento de un planeta, digamos la Tierra, de masa $m_{\earth}$ alrededor del sol de masa $m_{\sun}$. Como
+$m_{\sun}\gg m_{\earth}$ vamos a ignorar la fuerza que actúa sobre el Sol debido a la atracción gravitatoria de la Tierra. Esta suposición, aunque falsa, la hacemos
+por simplicidad. No obstante, con sólo un poco de trabajo, el caso más general se reduce al tratado aquí. Ver el trabajo final de la Lic. Matemática de Leopoldo Buri,
+para una deducción más cuidadosa. Vamos a suponer además que el movimiento del planeta se retringe a un plano. Esta afirmación es cierta y aunque su demostración
+es sencilla no la desarrollaremos aquí.
+Supongamos un sistema de coordenadas cartesianas sobre el plano en que se realiza el movimiento orbital del planeta. Asumimos el Sol en el origen de coordenadas y en
+reposo. Como no actúa fuerza sobre él, permanecerá en esa situación. Vamos a suponer que la posición de la Tierra es $\v{r}$.
+
+{Un poco de mecánica celeste}
+Los dos ingredientes básicos para derivar la leyes de movimiento del planeta son la
+\href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda Ley de Newton} y la
+\href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley Gravitación Universal}. Ya hemos considerado ambas con anterioridad.
+Según la Ley de Gravitación Universal, la magnitud de la fuerza de gravedad es proporcional a $\frac{m_{\earth}m_{\sun}}{d^2}$, donde $d$ es la distancia tierra-sol.
+A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los dos astros y
+el sentido es tal que la fuerza atrae los cuerpos. Vale decir, la dirección y sentido de la
+fuerza de gravedad vienen dados por el versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
+\[Gm_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
+
+{Un poco de mecánica celeste}
+Es decir
+\boxedeq{\frac{d^2\v{r}}{dt^2}=-\mu\frac{\v{r}}{r^3}\quad\text{donde } \mu:=Gm_{\sun}}{eq:grav}
+Esta ecuación se conoce como la \href{http://es.wikipedia.org/wiki/Problema_de_los_dos_cuerpos}{ecuación de los dos cuerpos}.
+Dado que esta ecuación entraña, a su vez, tres ecuaciones escalares, una por cada
+componente de $\v{r}$, se nos presenta aquí un \emph{Sistema de Ecuaciones Diferenciales}. No sabemos resolver sistemas de ecuaciones. No obstante vamos
+a ver como podemos reducir la ecuación anterior, mediante ingeniosos cambios de
+variables, a ecuaciones diferenciales que sabemos resolver.
+
+{Un poco de mecánica celeste}
+Vamos a usar coordenadas polares $(r,\theta)$ y los versores $\v{u}_r:=(\cos\theta,\sen\theta)$ y $\v{u}_{\theta}:=(-\sen\theta, \cos\theta)$. Notar que
+$\v{u}_r \perp \v{u}_{\theta}$ y por consiguiente $\mathcal{B}:=\{\v{u}_r , \v{u}_{\theta}\}$ forma una base del espacio euclideano 2-dimensional. Usaremos este hecho
+para representar distintos vectores como combinación lineal de vectores de la base. Los cálculos, como es ya habitual, se los dejaremos a SAGE, pero esta vez
+usaremos \href{ http://www.sagemath.org/doc/tutorial/sagetex.html}{\textsf{Sage\TeX}} como interfaz de SAGE.
+\textsf{Sage\TeX} permite incrustar código y outputs de SAGE dentro de un archivo \LaTeX .
+Todos los cálculos que realizamos los pueden encontrar en el script \texttt{2cuerpos.sage} dentro de la carpeta scripts en
+el repositorio de \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{GitHub}
+que mantiene materiales de este curso. Ver el siguiente enlace
+\href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{https//github.com/fdmazzone/Ecuaciones\_Diferenciales}
+
+{Un poco de mecánica celeste}
+Primero declaramos las variables y asignamos los vectores $\v{u}_r$, $\v{u}_{\theta}$ y el vector
+$\v{r}$ al que llamamos \texttt{pos}.
+
+\begin{lstlisting}
+ t,mu=var('t,mu')
+x=function('x',t)
+y=function('y',t)
+r=function('r',t)
+theta=function('theta',t)
+u_r=vector([cos(theta),sin(theta)])
+u_theta=vector([-sin(theta),cos(theta)])
+pos=(r*u_r).column()
+\end{lstlisting}
+
+
+
+Como vamos a necesitar representar vectores en la base $\mathcal{B}=\{\v{u}_r , \v{u}_{\theta}\}$, construímos una matriz
+con los vectores de la base en las columnas.
+
+M=matrix([[cos(theta),-sin(theta)],\
+[sin(theta),cos(theta)]])
+
+
+{Un poco de mecánica celeste}
+Demosle un vistazo a $M$
+\[M:=xxxxxxxxxx.\]
+Concretamente queremos representar el vector aceleración $\v{a}:=\tfrac{d^2\v{r}}{dt^2}$ en la base $\mathcal{B}$, para ello debemos resolver $MX=\v{a}$, donde $X$ y
+$\v{a}$ los asumimos vectores columna. Con SAGE lo hacemos en un periquete
+
+\begin{lstlisting}
+ sol=M.solve_right(pos.derivative(t,2))
+a1=sol[0].simplify_full()
+a2=sol[1].simplify_full()
+\end{lstlisting}
+
+
+
+Obtenemos asi las dos componetes de $\v{a}$.
+
+{Un poco de mecánica celeste}
+En la notación de SAGE
+\[
+\v{a}=\left(\begin{array}{c}
+{a1??}\\
+{a2???}
+\end{array}
+\right)
+\]
+En la que nos gusta más
+\[
+\v{a}=\left(\begin{array}{c}
+\ddot{r}-r\dot{\theta}^2 \\
+r\ddot{\theta}+2\dot{r}\dot{\theta}
+\end{array}
+\right)=
+\left(\begin{array}{c}
+\ddot{r}-r\dot{\theta}^2 \\
+\frac{1}{r}\frac{d}{dt} \left( r^2\dot{\theta} \right)
+\end{array}
+\right)
+\]
+
+{Un poco de mecánica celeste}
+El vector aceleración debe ser igual a la fuerza por unidad de masa $-\mu \v{r}/r^3$. Notemos que esta fuerza es
+\href{http://es.wikipedia.org/wiki/Campo_central}{central}, es decir tiene componente nula
+respecto al vector $\v{u}_{\theta}$. Por consiguiente se debe satisfacer que
+\[\frac{1}{r}\frac{d}{dt} \left( r^2\dot{\theta} \right)=0\Longleftrightarrow \exists h\in\mathbb{R}: \boxed{ r^2\dot{\theta}=h}. \]
+\begin{tabular}{m{5cm} m{5cm}}
+Hemos derivado la \href{http://es.wikipedia.org/wiki/Leyes_de_Kepler}{Segunda Ley de Kepler}: El radio vector barre áreas iguales en tiempos iguales.
+&
+\includegraphics[scale=.3]{imagenes/2leykepler.jpeg}\\
+\end{tabular}
+
+{Un poco de mecánica celeste}
+En la dirección radial $\v{u}_r$ la componente de la fuerza es $-\mu/r^2$. Es decir se satisface la ecuación
+\[
+\ddot{r}-r\dot{\theta}^2=-\frac{\mu}{r^2}
+\]
+Notar que esta ecuación entraña dos incognitas $r$ y $\theta$, pero $\dot{\theta}$ puede ser remplazado por $h/r^2$ por la segunda Ley de Kepler.
+Declaremos la variable $h$ que juega un rol importante y reemplacemos $\dot{\theta}$ en la ecuación
+
+\begin{lstlisting}
+ h=var('h')
+ed=(a1[0]).subs_expr(theta.diff(t)==h/r^2)
+ed+=mu/r^2
+\end{lstlisting}
+
+
+
+Resulta
+\[??????????\]
+
+{Un poco de mecánica celeste}
+Conseguimos una ecuación no lineal de segundo orden para $r$. De los métodos que hemos visto, ninguno se aplica a esta ecuación.
+El truco mágico consiste en considerar la nueva variable dependiente $z=1/r$ y la nueva variable independiente
+$\theta$.
+
+\begin{lstlisting}
+ z=function('z',theta)
+r=1/z
+ed2=r.diff(t,2)+mu/r^2-h^2/r^3
+\end{lstlisting}
+
+
+
+Se obtiene
+\begin{lstlisting}
+ sage: ed2
+-h^2*z(theta(t))^3 + mu*z(theta(t))^2 +
+...2*D[0](theta)(t)^2*D[0](z)(theta(t))^2/z(theta(t))^3 -
+...D[0](theta)(t)^2*D[0, 0](z)(theta(t))/z(theta(t))^2
+...- D[0, 0](theta)(t)*D[0](z)(theta(t))/z(theta(t))^2
+\end{lstlisting}
+
+
+
+
+{Un poco de mecánica celeste}
+En la ecuación resultante, nuevamente aparece $\dot{\theta}$ y además ahora aparece $\ddot{\theta}$. Tenemos que reemplazar
+$\dot{\theta}$ por $hz^2$ y $\ddot{\theta}$ por $\tfrac{d}{dt}hz^2$.
+\begin{lstlisting}
+ theta2diff=(h*z^2).diff(t).\
+subs_expr(theta.diff(t)==h*z^2)
+ed3=ed2.subs_expr\
+(theta.diff(t)==h*z^2,theta.diff(t,2)==theta2diff)
+ed4=(ed3/z^2/h^2).expand()
+\end{lstlisting}
+
+
+
+Resulta
+\[{ed4}??????\]
+La ecuación del oscilador armónico. Sabemos resolver esta ecuación y SAGE también!!
+\begin{lstlisting}
+ s=var('s')
+ed5=ed4.subs_expr(theta==s)
+sol1=desolve(ed5,z,ivar=s)
+\end{lstlisting}
+
+
+
+
+{Un poco de mecánica celeste}
+obtenemos
+\[
+{sol1}???????????
+\]
+Ahora si escribimos $k_1=\rho\cos\omega$ y $k_2=-\rho\sen\omega$ y recordamos que $z=1/r$, deducimos
+\[r=\frac{1}{\frac{\mu}{h^2}+\rho\sen(s-\omega)}\]
+Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
+\boxedeq{r=\frac{p}{1+e\sen(s-\omega)}}{eq:orb_elipse}
+
+{Un poco de mecánica celeste}
+\textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen y excentricidad $e$.
+Recordemos que la variable $s$ es el ángulo polar.
+Hagamos algunos gráficos
+\begin{lstlisting}
+ ListaGra=plot([])
+for e in srange(0,.8,.1):
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,0,2*pi),rgbcolor=(e,1-e,0))
+    ListaGra+=polar_plot(1/(1+cos(s)),\
+(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))
+for e in srange(1.2,2,.1):
+    ListaGra+=polar_plot(1/(1+e*cos(s)),\
+(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))
+gra=ListaGra.show()
+\end{lstlisting}
+
+
+
+
+{Un poco de mecánica celeste}
+\begin{center}
+\includegraphics[scale=.5]{imagenes/conicas.png}
+\end{center}
+
+{Un poco de mecánica celeste}
+Hemos logrado encontrar $r$ como función de $\theta$. No obstante
+no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav}, para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
+\v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en un dado momento. Este problema no lo desarrollaremos aquí dado
+que su solución se aparta del tema de las ecuaciones diferenciales.
+
 
 
 
