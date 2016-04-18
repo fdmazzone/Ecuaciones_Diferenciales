@@ -23,7 +23,7 @@
 \usepackage{xparse}
 \usepackage{listings}
 \usepackage{ wasysym }
-\usepackage{sagetex}
+%\usepackage{sagetex}
 \usepackage{yfonts,mathrsfs,eufrak}
 \usepackage{hyperref}
 \usepackage{color}
@@ -149,10 +149,10 @@ titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
 \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
 titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 
+\newcounter{ejemplo_cont}
+\setcounter{ejemplo_cont}{1}
 
-
-        {\theorembodyfont{\normalfont}
-\newtheorem{ejemplo}{Ejemplo}}
+\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
