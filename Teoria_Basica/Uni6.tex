@@ -1004,30 +1004,24 @@ Estas dos soluciones son linealmente independientes. Para justificar esta afirma
 Resolvamos el ejemplo con SymPy.
 
 \begin{lstlisting}
-""" Para evitar el problema que 1/2 queda cero se puede usar
-from __future__ import division
-El problema que todos los nros quedan flotantes
-"""
 orden=5
-Lista=['a%s'%i for i in range(orden)]
-a=symbols(Lista)
+a=symbols('a0:%s' %orden)
 x,m=symbols('x,m')
 y=x**m*sum([a[i]*x**i for i in range(orden)])
 Ecua=y.diff(x,2)+(1/(2*x)+1)*y.diff(x,1)-(1/(2*x**2))*y
-"""
- Dividimos por m-2 asi todos los exponentes son enteros positivos
-"""
+#Dividimos por m-2 asi todos los exponentes son enteros positivos
 Ecua=Ecua/x**(m-2)
 Ecua=Ecua.expand()
 Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
 for ec in Ecuaciones:
 ...     ec
 ...
-a0*m**2 - 0.5*a0*m - a0/2
-a0*m + a1*m**2 + 1.5*a1*m
-a1*m + a1 + a2*m**2 + 3.5*a2*m + 2.5*a2
-a2*m + 2*a2 + a3*m**2 + 5.5*a3*m + 7.0*a3
-a3*m + 3*a3 + a4*m**2 + 7.5*a4*m + 13.5*a4
+a0*m**2 - a0*m/2 - a0/2
+a0*m + a1*m**2 + 3*a1*m/2
+a1*m + a1 + a2*m**2 + 7*a2*m/2 + 5*a2/2
+a2*m + 2*a2 + a3*m**2 + 11*a3*m/2 + 7*a3
+a3*m + 3*a3 + a4*m**2 + 15*a4*m/2 + 27*a4/2
+
 \end{lstlisting}
 
 Con esta parte del script hemos generado la lista de las 5 primeras ecuaciones.
