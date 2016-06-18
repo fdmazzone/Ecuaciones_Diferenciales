@@ -3,156 +3,171 @@
 %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\usepackage{pgfpages}
-%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border srhrink=5mm]
 \usepackage{empheq}
 \usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
+%\usepackage[utf8x]{inputenc}
 \usepackage{times}
-\usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath}
+%\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
 \usepackage{enumerate}
 \usepackage{verbatim}
 \usepackage{ esint }
-\usepackage{pdfsync}
 %\usepackage{pst-all}
 %\usepackage{pstricks-add}
 \usepackage{array}
 %\usepackage[T1]{fontenc}
 \usepackage{animate}
 %\usepackage{media9}
-%\usepackage{movie15}
 \usepackage{xparse}
 \usepackage{listings}
 \usepackage{ wasysym }
 %\usepackage{sagetex}
+\usepackage{yfonts,mathrsfs,eufrak}
 \usepackage{hyperref}
-\usepackage{tabularx}
-\usepackage{xcolor}
-\usepackage{adjustbox}
-\usepackage[spanish]{varioref}
+\usepackage{color}
+\usepackage{url}
+\usepackage{theorem}
+\usepackage{boiboites}
+\usepackage{wrapfig}
+\usepackage{ esint }
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
 
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Python,                 % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  belowskip=-0.5cm
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
+\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
 
+\newcommand{\com}{\mathbb{C}}
+\newcommand{\dis}{\mathbb{D}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\oo}{\mathcal{O}}
+%\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\v}[1]{\overrightarrow{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+%\newcommand{\defverbatim}{\def{#1}}
+\renewcommand{\b}[1]{\boldsymbol{#1}}
+\renewenvironment{frame}[1]{}{}
+%\newcommand{\end{proof}}{$\square$}
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\sen}{sen}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{myblue}{rgb}{.8, .8, 1}
 \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
 \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
 \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
 \definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\definecolor{color_teor}{HTML}{FFFDA2}
-\definecolor{color_ejer}{HTML}{F6BFBF}
-\definecolor{color_cor}{HTML}{49E6D8}
-\definecolor{color_lem}{HTML}{C6F6AB}
-\definecolor{color_defi}{HTML}{EDA07C}
 \newcommand{\dblue}{\color{dbluecolor}\bf}
 \newcommand{\dred}{\color{dredcolor}\bf}
 \newcommand{\dblack}{\color{dblackcolor}\bf}
 
-%%%%%%%%%%%%%%%%%%%Teoremas, definiciones , etc
 
-\newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
-\newenvironment{colbox}[2]{%
-    \begin{adjustbox}{minipage={\linewidth},margin=1ex,bgcolor=#1,env=center}
-        #2}{%
-    \end{adjustbox}%
-}
-
-\newcounter{defi_cont}
-\newenvironment{definicion}[1]{\begin{colbox}{color_defi}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
-
-\newcounter{teor_cont}
-\newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
-
-\newcounter{cor_cont}
-\newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\refstepcounter{cor_cont}\textbf{Corolario \arabic{cor_cont}.} #1}}{\end{colbox}}
-
-\newcounter{lem_cont}
-\newenvironment{lema}[1]{\begin{colbox}{color_lem}{\refstepcounter{lem_cont}\textbf{Lema \arabic{lem_cont}.} #1}}{\end{colbox}}
-
-\newcounter{ejem_cont}
-\newenvironment{ejemplo}[1]{\refstepcounter{ejem_cont}\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{}
-
-\newcounter{ejer_cont}
-\newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\refstepcounter{ejer_cont}\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\end{colbox}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
-
-\newcommand{\com}{\mathbb{R}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-\renewcommand{\emph}[1]{\textcolor[rgb]{0,0,1}{#1}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-\DeclareMathOperator{\mcd}{mcd}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Formulas en cajas 
+%%%%%%%%%%Definimos una caja con color
 \newlength\mytemplen
 \newsavebox\mytempbox
 \makeatletter
 \newcommand\mybluebox{%
-    \@ifnextchar[%]
-       {\@mybluebox}%
-       {\@mybluebox[0pt]}}
-
+\@ifnextchar[%]
+{\@mybluebox}%
+{\@mybluebox[0pt]}}
 \def\@mybluebox[#1]{%
-    \@ifnextchar[%]
-       {\@@mybluebox[#1]}%
-       {\@@mybluebox[#1][0pt]}}
-
+\@ifnextchar[%]
+{\@@mybluebox[#1]}%
+{\@@mybluebox[#1][0pt]}}
 \def\@@mybluebox[#1][#2]#3{
-    \sbox\mytempbox{#3}%
-    \mytemplen\ht\mytempbox
-    \advance\mytemplen #1\relax
-    \ht\mytempbox\mytemplen
-    \mytemplen\dp\mytempbox
-    \advance\mytemplen #2\relax
-    \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-
+\sbox\mytempbox{#3}%
+\mytemplen\ht\mytempbox
+\advance\mytemplen #1\relax
+\ht\mytempbox\mytemplen
+\mytemplen\dp\mytempbox
+\advance\mytemplen #2\relax
+\dp\mytempbox\mytemplen
+\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 \makeatother
 \DeclareDocumentCommand\boxedeq{ m g }{%
-    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-        \IfNoValueF {#2} {\label{#2}}%
-       #1
-       \end{empheq}
-    }%
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\lstdefinelanguage{SymPy}[]{Python}
-{morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand},sensitive=true}
-\lstset{
-frame=none,
-showtabs=False,
-showspaces=False,
-showstringspaces=False,
-commentstyle={\ttfamily\color{dgreencolor}},
-keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-language=SymPy,
-basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-aboveskip=.3em,
-belowskip=0.1em,
-numbers=none,
-numberstyle=\footnotesize
+{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+\IfNoValueF {#2} {\label{#2}}%
+#1
+\end{empheq}
+}%
 }
 
 
+%%%%%%%%%%%%%%%%%%
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
+
+\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 
 
 
 
+\newcounter{ejemplo_cont}
+\setcounter{ejemplo_cont}{1}
+
+\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Para escibir en clase articulo o similar
+
+
+
+
+
+
+\title{Métodos de desarrollo en serie de potencias y en serie de Frobenius}
+\date{}
 
 \begin{document}
 
@@ -1250,12 +1265,12 @@ Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula 
 Lamentablemente, SymPy (al menos la versión 7.4.1) produce un error si intentamos graficar la función $\Gamma$. Aparentemente la presencia de polos es el problema. Sage parece no tener este problema. 
 
 
-\begin{sagecommandline}
- sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
-\end{sagecommandline}
+%\begin{sagecommandline}
+ %sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
+%\end{sagecommandline}
 
 \begin{figure}[h]
-\sageplot[scale=.5]{graf}
+%\sageplot[scale=.5]{graf}
 \caption{La función gamma $\Gamma$}
 \end{figure}
 Ahora estamos en condiciones de definir la función de Bessel de primera espacie que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
@@ -1511,7 +1526,8 @@ Restaría considerar el caso $m=m_2$ cuando $m_1-m_2$ no es entero. Pero la demo
 
 \subsection{Funciones de Bessel  de segunda especie}
 
-En la subsección \ref{sec:bessel_1} discutimos sobre soluciones de la ecuación de Bessel de orden $p\geq 0$. Obtuvimos la solución en serie de Frobenius asociada a la solución de la ecuación indicial $m=p$ \eqref{eq:sol_ec_ind}, dada en la Definición \ref{def:bessel_primera}. Esta solución es llamada función de Bessel de primera especie y es denotada por $J_p$. Es bueno decir que esta función es continua en $0$ y $J_p(0)=0$. Para la segunda solución de la ecuación indicial $m=-p$, hemos dicho también que para $p\neq 0,\frac12,1,\frac32,\ldots$ hay otra solución linealmente independiente de $J_p$. Esta solución se denomina también función de Bessel de primera especie, se denota $J_{-p}$ y es una función no acotada en $0$.  Según lo que hemos expresado en la Subsección \ref{eq:sec_teor_fund_frob}, aún en el caso $p=0,\frac12,1,\frac32,\ldots$ tenemos esperanzas de encontrar una solución en serie de Frobenius o al menos una solución de la forma \eqref{eq:des_enter}. Este tipo de soluciones es lo que discutiremos en esta subsección. 
+En la subsección \ref{sec:bessel_1} discutimos sobre soluciones de la ecuación de Bessel de orden $p\geq 0$. Obtuvimos la solución en serie de Frobenius asociada a la solución de la ecuación indicial $m=p$ \eqref{eq:sol_ec_ind}, dada en la Definición \ref{def:bessel_primera}. Esta solución es llamada función de Bessel de primera especie y es denotada por $J_p$. Es bueno decir que esta función es continua en $0$ y $J_p(0)=0$. Para la segunda solución de la ecuación indicial $m=-p$, hemos dicho también que para $p\neq 0,\frac12,1,\frac32,\ldots$ hay otra solución linealmente independiente de $J_p$. Esta solución se denomina también función de Bessel de primera especie, se denota $J_{-p}$ y es una función no acotada en $0$.  Según lo que hemos expresado en la Subsección \ref{eq:sec_teor_fund_frob}, aún en el caso $p=0,\frac12,1,\frac32,\ldots$ tenemos esperanzas de encontrar una solución en serie de Frobenius o al menos una solución de la forma \eqref{eq:des_enter}. Este tipo de 
+soluciones es lo que discutiremos en esta subsección. 
 
 Empecemos suponiendo $p$ entero positivo. A partir de \eqref{eq:recu_-p} sabemos que la fórmula de recurrencia para $m=-p$ es
 \boxedeq{n(2p-n) a_{n} = a_{n-2},\quad n\geq 2}{eq:rel_recu_-p}

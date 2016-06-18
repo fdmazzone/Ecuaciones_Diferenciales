@@ -52,7 +52,7 @@
   keywordstyle=\color{blue},       % keyword style
   language=Python,                 % the language of the code
   otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
@@ -62,7 +62,8 @@
   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
   stringstyle=\color{mymauve},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  belowskip=-0.5cm
 }
 
 
@@ -188,7 +189,7 @@ titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 Francis Collins
 \end{flushright}
 
- 
+
 
 
 \begin{definicion}[Ecuación lineal general de segundo orden]
@@ -263,7 +264,6 @@ termina siendo sólo combinación lineal de la función $y_2$ y por ende siendo ese
 \begin{definicion}[Independencia lineal]
  Un conjunto finito de funciones $\{y_1,\ldots,y_n\}$ se dirá linealmente independiente sobre un conjunto $I$,
 si la única solución de $c_1y_1(t)+\cdots+c_ny_n(t)=0$, para $t\in I$, es $c_1=c_2=\cdots=c_n=0$.
-
 \end{definicion}
 
 
@@ -743,7 +743,7 @@ y''(x)+p(x)y'(x)+q(x)y(x)=0.
 \end{equation}
 El método de \href{http://en.wikipedia.org/wiki/Variation_of_parameters}{variacion de los parámetros} consiste en proponer una solución de la forma
 \boxedeq{y(x)=c_1(x)y_1(x)+c_2(x)y_2(x).}{eq:var_param0}
-Hay dos funciones incognitas $c_1$ y $c_2$, pero sólo una ecuación. Tendremos 
+Hay dos funciones incognitas $c_1$ y $c_2$, pero sólo una ecuación. Tendremos
 por esto libertad de introducir otra condición que consideremos conveniente.
 Tenemos
 \[
@@ -797,10 +797,10 @@ y
 Usando estas fórmulas y \eqref{eq:var_param0} obtenemos una solución particular del sistema. La solución general es la suma de la particular más
 una solución general del homogéneo. Esta última solución general se escribe como una combinación lineal genérica entre $y_1$ e $y_2$.
 
-\begin{ejemplo} Resolver el siguiente pvi $y''+y=\csc x$, 
-$y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$. 
-La ecuación homogénea asociada tiene el par $y_1(x)=\cos(x)$ e $y_1(x)=\sen(x)$ 
-   de soluciones linealmente independientes.   El wronskiano es $W\equiv 1$ y 
+\begin{ejemplo} Resolver el siguiente pvi $y''+y=\csc x$,
+$y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$.
+La ecuación homogénea asociada tiene el par $y_1(x)=\cos(x)$ e $y_1(x)=\sen(x)$
+   de soluciones linealmente independientes.   El wronskiano es $W\equiv 1$ y
 entonces una solución paarticular es
 \[\begin{split}
   y(x)&=-\int \frac{ry_2}{W}dx y_1 +\int \frac{ry_1}{W}dx y_2\\
@@ -808,12 +808,12 @@ entonces una solución paarticular es
        &=-x\cos(x) +\ln(\sen(x))\sen(x).
  \end{split}
 \]
- 
+
  La solución general es
  \[
   y(x)=-x\cos(x) +\ln(\sen(x))\sen(x)+c_1\cos(x)+c_2\sen(x).
   \]
-Las condiciones $y\left(\tfrac{\pi}{2}\right)=0$ y 
+Las condiciones $y\left(\tfrac{\pi}{2}\right)=0$ y
 $y'\left(\tfrac{\pi}{2}\right)=1$ nos conducen a $c_2=0$ y $c_1=\frac{\pi}{2}$.
 
 
@@ -833,8 +833,8 @@ de los parámetros
 
 \section{Aplicaciones}
 \subsection{Vibraciones mecánicas }
-\begin{problema} Estudiar el movimiento de un resorte (cómo el de la unidad 
-anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del 
+\begin{problema} Estudiar el movimiento de un resorte (cómo el de la unidad
+anterior) pero suponer que además de actuar sobre la masa la fuerza elástica del
 resorte,
 tenemos una fuerza de fricción debida a la resistencia del medio. Por la acción de esta fuerza, se dice que es un sistema resorte-masa amortiguado.
 Además suponemos que hay otra fuerza $F$ externa y que sólo depende de $t$. Por ejemplo si el resorte se colocase verticalmente y se dejase suspendida
@@ -843,8 +843,8 @@ dice forzado. Por consiguiente el sistema completo, con la acción de las tres fu
 \end{problema}
 
 La fuerza elástica del resorte se modeliza con la Ley de Hooke.
-Para la amortiguación, supongamos que el módulo de la fuerza es proporcional a 
-la velocidad de la masa. La constante de proporcionalidad $c$ se llama 
+Para la amortiguación, supongamos que el módulo de la fuerza es proporcional a
+la velocidad de la masa. La constante de proporcionalidad $c$ se llama
 coeficiente de
 \href{http://es.wikipedia.org/wiki/Viscosidad}{viscosidad}. La dirección y sentido de la fuerza amortiguadora es siempre contraria
 al movimiento. Por el principio de conservación de la energía, vemos que la fuerza de amortiguación siempre realiza un trabajo $W$ negativo, por consiguiente
@@ -859,20 +859,20 @@ el sistema masa-resorte con amortiguación y forzamiento es
 
 Escribamos la ecuación \eqref{eq:res_amor_for} de la siguiente froma
 \begin{equation}\label{eq:res_amor}
-\boxed{x''(t)+2\mu x'(t)+\omega^2x=0}\quad 
+\boxed{x''(t)+2\mu x'(t)+\omega^2x=0}\quad
 \mu:=\frac{c}{2m},\omega:=\sqrt{\frac{k}{m}}.
 \end{equation}
 Las raíces de la ecuación característica   son
 \[
 \boxed{\lambda_{1,2}=-\mu\pm\sqrt{\Delta},\quad \Delta:=\mu^2-\omega^2}
 \]
-\textbf{Caso $\Delta>0$.} Aquí la viscocidad es ``grande'' relativa ala rigidez 
+\textbf{Caso $\Delta>0$.} Aquí la viscocidad es ``grande'' relativa ala rigidez
 $k$. Se dice que el sistema está sobreamortiguado.
 En este caso tenemos dos soluciones
-linealmente independientes del problema homogéneo y la solución general de 
+linealmente independientes del problema homogéneo y la solución general de
 este es de la forma
 \[x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}\]
-Notar que $\lambda_1,\lambda_2<0$. Supongamos que el sistema masa-resorte parte 
+Notar que $\lambda_1,\lambda_2<0$. Supongamos que el sistema masa-resorte parte
 del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. Resolvamos este pvi
 
 \begin{lstlisting}
@@ -884,8 +884,8 @@ del resposo $x'(0)=0$ y de una posición indeterminada $x_0$. Resolvamos este pvi
 >>> C
 \end{lstlisting}
 
-\[\begin{Bmatrix}c_{1} : - \frac{\lambda_{2} x_{0}}{\lambda_{1} - 
-\lambda_{2}}, & c_{2} : \frac{\lambda_{1} x_{0}}{\lambda_{1} - 
+\[\begin{Bmatrix}c_{1} : - \frac{\lambda_{2} x_{0}}{\lambda_{1} -
+\lambda_{2}}, & c_{2} : \frac{\lambda_{1} x_{0}}{\lambda_{1} -
 \lambda_{2}}\end{Bmatrix}\]
 
 \begin{lstlisting}
@@ -921,8 +921,8 @@ e^{\lambda_{2} t}}{\lambda_{1} - \lambda_{2}}-\frac{\lambda_{2} e^{\lambda_{1} t
 \end{figure}
 
 Como se observa en la gráfica \ref{fig:VibrAmorNoFor} y la animación \ref{ani:VibrAmorNoFor}
-la masa ejecuta una oscilación, lo cual le demanda un tiempo infinito. Podría 
-haber pasado por la posición de equilibrio sólo en el pasado, 
+la masa ejecuta una oscilación, lo cual le demanda un tiempo infinito. Podría
+haber pasado por la posición de equilibrio sólo en el pasado,
 puesto que $x(t)=0$ cuando
 \[\boxed{t=\frac{1}{\lambda_1-\lambda_2}\ln\frac{\lambda_1}{\lambda_2}<0}\]
 
@@ -936,7 +936,7 @@ $C_2\neq 0$. El compportamiento cualitativo de la solución es muy parecido al ca
 \noindent\textbf{Caso $\Delta<0$, caso subamortiguado.} $\lambda_{1,2}=-\mu\pm\nu i$ con $\nu=\sqrt{|\Delta|}=\sqrt{|\omega^2-\mu^2|}$.
 La solución general viene dada por
 \boxedeq{x(t)=e^{-\mu t}\left\{ c_1\cos \nu t+c_2\sen \nu t \right\}}{eq:sol_gen_sub}
-Está función tiene por gráfica una onda sinusoidal modulada por una función exponencial 
+Está función tiene por gráfica una onda sinusoidal modulada por una función exponencial
 decreciente.
 
 \begin{lstlisting}
@@ -965,7 +965,7 @@ coordenadas polares.
 \[
 c_1=\rho\cos\alpha,\quad c_2=\rho\sen\alpha.
 \]
-Entonces usando las 
+Entonces usando las
 \href{https://es.wikipedia.org/wiki/Identidades_trigonom%C3%A9tricas}{fórmulas de adición}
 de las funciones trigonométricas
 \[
@@ -1014,7 +1014,7 @@ La matríz de coeficientes del sistema de ecuaciones para $A$ y $B$ es
 claramente es una matríz no singular, cuando $\omega\neq \omega_0$, y por consiguiente  en no resonancia
 tiene una solución
 \begin{lstlisting}
->>> SolAB=solve([eqL1,eqL2],[A,B])    
+>>> SolAB=solve([eqL1,eqL2],[A,B])
 >>> x=x.subs(SolAB)
 >>> x
 \end{lstlisting}
@@ -1291,30 +1291,17 @@ Resuelve un sistema $Ax=b$
 
 
 \begin{lstlisting}
->>> a=symbols('a,b')
->>> linsolve((M,pos.diff(t,2)),a )
+>>> alpha=symbols('alpha')
+>>> a=linsolve((M,pos.diff(t,2)),alpha )
+>>> a=list(a) #convertimos de finite set a list
+>>> a=a[0] #es una lista de tuples, sacamos el tuple
+>>> a
 \end{lstlisting}
 
 \[
  \left\{\left ( - r{\left (t \right )} \frac{d}{d t} \theta{\left (t \right )}^{2} + \frac{d^{2}}{d t^{2}}  r{\left (t \right )}, \quad r{\left (t \right )} \frac{d^{2}}{d t^{2}}  \theta{\left (t \right )} + 2 \frac{d}{d t} r{\left (t \right )} \frac{d}{d t} \theta{\left (t \right )}\right )\right\}
 \]
-
-
-
-
-
 Obtenemos asi las dos componetes de $\v{a}$.
-
-{Un poco de mecánica celeste}
-En la notación de SAGE
-\[
-\v{a}=\left(\begin{array}{c}
-{a1??}\\
-{a2???}
-\end{array}
-\right)
-\]
-En la que nos gusta más
 \[
 \v{a}=\left(\begin{array}{c}
 \ddot{r}-r\dot{\theta}^2 \\
@@ -1328,18 +1315,22 @@ r\ddot{\theta}+2\dot{r}\dot{\theta}
 \right)
 \]
 
-{Un poco de mecánica celeste}
+
 El vector aceleración debe ser igual a la fuerza por unidad de masa $-\mu \v{r}/r^3$. Notemos que esta fuerza es
 \href{http://es.wikipedia.org/wiki/Campo_central}{central}, es decir tiene componente nula
 respecto al vector $\v{u}_{\theta}$. Por consiguiente se debe satisfacer que
 \[\frac{1}{r}\frac{d}{dt} \left( r^2\dot{\theta} \right)=0\Longleftrightarrow \exists h\in\mathbb{R}: \boxed{ r^2\dot{\theta}=h}. \]
-\begin{tabular}{m{5cm} m{5cm}}
-Hemos derivado la \href{http://es.wikipedia.org/wiki/Leyes_de_Kepler}{Segunda Ley de Kepler}: El radio vector barre áreas iguales en tiempos iguales.
-&
-\includegraphics[scale=.3]{imagenes/2leykepler.jpeg}\\
-\end{tabular}
 
-{Un poco de mecánica celeste}
+
+
+
+\begin{wrapfigure}[12]{l}{5cm}
+\includegraphics[scale=.3]{imagenes/2leykepler.jpeg}\\
+\end{wrapfigure}
+Hemos derivado la \href{http://es.wikipedia.org/wiki/Leyes_de_Kepler}{Segunda Ley de Kepler}: El radio vector barre áreas iguales en tiempos iguales.
+
+
+
 En la dirección radial $\v{u}_r$ la componente de la fuerza es $-\mu/r^2$. Es decir se satisface la ecuación
 \[
 \ddot{r}-r\dot{\theta}^2=-\frac{\mu}{r^2}
@@ -1348,109 +1339,484 @@ Notar que esta ecuación entraña dos incognitas $r$ y $\theta$, pero $\dot{\theta
 Declaremos la variable $h$ que juega un rol importante y reemplacemos $\dot{\theta}$ en la ecuación
 
 \begin{lstlisting}
- h=var('h')
-ed=(a1[0]).subs_expr(theta.diff(t)==h/r^2)
-ed+=mu/r^2
+>>> var('h')
+>>> ed=(a[0]).subs((theta(t)).diff(t),h/r(t)**2)
+>>> ed+=mu/r(t)**2
 \end{lstlisting}
-
-
-
 Resulta
-\[??????????\]
-
-{Un poco de mecánica celeste}
+\[- \frac{h^{2}}{r^{3}{\left (t \right )}} + \frac{\mu}{r^{2}{\left (t \right )}} + \frac{d^{2}}{d t^{2}}  r{\left (t \right )}=0.
+\]
 Conseguimos una ecuación no lineal de segundo orden para $r$. De los métodos que hemos visto, ninguno se aplica a esta ecuación.
 El truco mágico consiste en considerar la nueva variable dependiente $z=1/r$ y la nueva variable independiente
 $\theta$.
 
 \begin{lstlisting}
- z=function('z',theta)
-r=1/z
-ed2=r.diff(t,2)+mu/r^2-h^2/r^3
+>>> z=Function('z')(theta(t))
+>>> r=1/z
+>>> ed2=r.diff(t,2)+mu/r**2-h**2/r**3
+>>> ed2
 \end{lstlisting}
-
-
-
 Se obtiene
-\begin{lstlisting}
- sage: ed2
--h^2*z(theta(t))^3 + mu*z(theta(t))^2 +
-...2*D[0](theta)(t)^2*D[0](z)(theta(t))^2/z(theta(t))^3 -
-...D[0](theta)(t)^2*D[0, 0](z)(theta(t))/z(theta(t))^2
-...- D[0, 0](theta)(t)*D[0](z)(theta(t))/z(theta(t))^2
-\end{lstlisting}
-
-
-
-
-{Un poco de mecánica celeste}
-En la ecuación resultante, nuevamente aparece $\dot{\theta}$ y además ahora aparece $\ddot{\theta}$. Tenemos que reemplazar
-$\dot{\theta}$ por $hz^2$ y $\ddot{\theta}$ por $\tfrac{d}{dt}hz^2$.
-\begin{lstlisting}
- theta2diff=(h*z^2).diff(t).\
-subs_expr(theta.diff(t)==h*z^2)
-ed3=ed2.subs_expr\
-(theta.diff(t)==h*z^2,theta.diff(t,2)==theta2diff)
-ed4=(ed3/z^2/h^2).expand()
-\end{lstlisting}
-
-
-
-Resulta
-\[{ed4}??????\]
-La ecuación del oscilador armónico. Sabemos resolver esta ecuación y SAGE también!!
-\begin{lstlisting}
- s=var('s')
-ed5=ed4.subs_expr(theta==s)
-sol1=desolve(ed5,z,ivar=s)
-\end{lstlisting}
-
-
-
-
-{Un poco de mecánica celeste}
-obtenemos
 \[
-{sol1}???????????
+\begin{split}
+ 0&=- h^{2} z^{3}{\left (\theta{\left (t \right )} \right )} + \mu z^{2}{\left (\theta{\left (t \right )} \right )} + \frac{1}{z^{2}{\left (\theta{\left (t \right )} \right )}} \left(- \frac{d}{d t} \theta{\left (t \right )}^{2} \frac{d^{2}}{d \theta{\left (t \right )}^{2}}  z{\left (\theta{\left (t \right )} \right )}\right.\\
+ &\quad\left.- \frac{d^{2}}{d t^{2}}  \theta{\left (t \right )} \left. \frac{d}{d \xi_{1}} z{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\theta{\left (t \right )} }}+ \frac{2 \frac{d}{d t} \theta{\left (t \right )}^{2}}{z{\left (\theta{\left (t \right )} \right )}} \left. \frac{d}{d \xi_{1}} z{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\theta{\left (t \right )} }}^{2}\right)
+\end{split}
 \]
-Ahora si escribimos $k_1=\rho\cos\omega$ y $k_2=-\rho\sen\omega$ y recordamos que $z=1/r$, deducimos
-\[r=\frac{1}{\frac{\mu}{h^2}+\rho\sen(s-\omega)}\]
-Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
-\boxedeq{r=\frac{p}{1+e\sen(s-\omega)}}{eq:orb_elipse}
-
-{Un poco de mecánica celeste}
-\textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen y excentricidad $e$.
-Recordemos que la variable $s$ es el ángulo polar.
-Hagamos algunos gráficos
+En la complicada ecuación resultante nuevamente aparece $\theta'$ y además ahora aparece $\theta''$. Tenemos que reemplazar
+$\theta'$ por $hz^2$ y $\theta'$ por $\tfrac{d}{dt}hz^2$.
 \begin{lstlisting}
- ListaGra=plot([])
-for e in srange(0,.8,.1):
-    ListaGra+=polar_plot(1/(1+e*cos(s)),\
-(s,0,2*pi),rgbcolor=(e,1-e,0))
-    ListaGra+=polar_plot(1/(1+cos(s)),\
-(s,-3*pi/4,3/4*pi),rgbcolor=(e,1-e,0))
-for e in srange(1.2,2,.1):
-    ListaGra+=polar_plot(1/(1+e*cos(s)),\
-(s,-0.65*pi,0.65*pi),rgbcolor=(0,2-e,e-1))
-gra=ListaGra.show()
+>>> theta2diff=(h*z**2).diff(t).subs(theta(t).diff(t),h*z**2)
+>>> ed3=ed2.subs({theta(t).diff(t):h*z**2,theta(t).diff(t,2):theta2diff})
+>>> ed4=(ed3/z**2/h**2).expand()
+>>> ed4
+\end{lstlisting}
+Resulta
+\[- z{\left (\theta{\left (t \right )} \right )} - \frac{d^{2}}{d \theta{\left (t \right )}^{2}}  z{\left (\theta{\left (t \right )} \right )} + \frac{\mu}{h^{2}}=0.
+\]
+La ecuación del oscilador armónico. Sabemos resolver esta ecuación y S también!!
+\begin{lstlisting}
+>>> var('theta')
+>>> z=Function('z')(theta)
+>>> ed5=ed4.subs(theta(t),theta)
+>>> dsolve(ed5,z).simplify()
+\end{lstlisting}
+Obtenemos
+\[
+z{\left (\theta \right )} = C_{1} \sin{\left (\theta \right )} + C_{2} \cos{\left (\theta \right )} + \frac{\mu}{h^{2}}.
+\]
+Ahora si escribimos $C_1=\rho\cos\omega$ y $C_2=-\rho\sen\omega$ y recordamos que $z=1/r$, deducimos
+\[r=\frac{1}{\frac{\mu}{h^2}+\rho\sen(\theta-\omega)}\]
+Llamando $p=\tfrac{h^2}{\mu}$ y $e=\tfrac{\rho h^2}{\mu}$
+\boxedeq{r=\frac{p}{1+e\sen(\theta-\omega)}}{eq:orb_elipse}
+
+\noindent\textbf{Ejercicio:} La ecuación \eqref{eq:orb_elipse} es la ecuación de una cónica con foco en el origen y excentricidad $e$.
+Recordemos que la variable $\theta$ es el ángulo polar. Hagamos algunos gráficos para distintas excentricidades.
+\begin{lstlisting}
+from sympy.plotting import plot_parametric
+""" Gráfico de excentricidades menores a uno  """
+cant=20
+e_s=[.04*j for j in range(cant)]
+e=e_s[0]
+p=plot_parametric(1/(1+e*cos(theta))*cos(theta),\
+                  1/(1+e*cos(theta))*sin(theta),\
+                  (theta,0,6.28),show=False)
+
+
+for e in e_s[1:]:
+    p1=plot_parametric(1/(1+e*cos(theta))*cos(theta),\
+                       1/(1+e*cos(theta))*sin(theta),\
+                       (theta,0,6.28),show=False)
+    p.append(p1[0])
+
+""" Gráfico de excentricidades mayores a uno  """
+e_s=[.04*j+1 for j in range(1,cant)]
+for e in e_s:
+    p1=plot_parametric(1/(1+e*cos(theta))*cos(theta),\
+                       1/(1+e*cos(theta))*sin(theta),\
+                       (theta,-pi*2/3,pi*2/3),show=False,line_color=(0,1,0))
+    p.append(p1[0])
+
+p.show()
 \end{lstlisting}
 
-
-
-
-{Un poco de mecánica celeste}
 \begin{center}
 \includegraphics[scale=.5]{imagenes/conicas.png}
 \end{center}
 
-{Un poco de mecánica celeste}
+
 Hemos logrado encontrar $r$ como función de $\theta$. No obstante
 no hemos logrado resolver aún el problema de los dos cuerpos \eqref{eq:grav}, para ello deberíamos encontrar $\v{r}(t)$, es decir poner a $
 \v{r}$ como función de $t$. Esto nos serviría para decir que punto de la órbita ocupa el planeta en un dado momento. Este problema no lo desarrollaremos aquí dado
 que su solución se aparta del tema de las ecuaciones diferenciales.
 
 
+\section{Ecuaciones lineales de orden superior}
 
 
+\begin{definicion}[Ecuación lineal general de orden $n$]
+Es una ecuación de la forma
+\boxedeq{y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=r(x)}{eq:ecua_lin_gen_orden_n}
+donde $p_i,r$, $i=0,\ldots,n-1$ son funciones definidas en un intervalo $I$
+\end{definicion}
+
+
+Los resultados y técnicas que hemos desarollado para ecuaciones de orden $2$ se aplican con cambios previsibles a ecuaciones de mayor orden. Exponemos de manera sumaria
+estos resultados.
+
+\subsection{Existencia y unicidad de soluciones}
+
+\begin{teorema}[Teorema de existencia y unicidad de soluciones]
+ Supongamos $p_i,r$, $i=0,\ldots,n-1$ continuas sobre $I$. Sean $x_0\in I$ e $y_0,y_1,\ldots y_{n-1}\in\rr$ dados. Entonces existe una única solución del PVI
+ \[\left\{
+ \begin{array}{l l l}
+   y^{(n)}(x)+&p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=r(x),x\in I\\
+   y(x_0)&=y_0&\\
+   y'(x_0)&=y_1&\\
+   &\vdots\\
+  y^{(n-1)}(x_0)&=y_{n-1}&\\
+  \end{array}\right.
+\]
+
+\end{teorema}
+
+
+\subsection{Estructura del conjunto de soluciones}
+
+\begin{teorema}[Estructura conjunto de soluciones ecuaciones homogéneas]
+Supongamos $y_1,y_2,\ldots,y_n$ soluciones linealmente independientes de
+\[y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=0.\]
+Entonces
+\[y=c_1y_1+\cdots+c_ny_n,\quad c_i\in\rr, i=1,\ldots,n,\]
+es solución general. Vale decir, el conjunto de soluciones es un espacio vectorial $n$-dimensional.
+\end{teorema}
+
+
+
+\begin{teorema}[Estructura conjunto de soluciones ecuaciones no homogéneas]
+Una solución general de la ecuación no homogénea
+\[y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=r(x),\]
+es la suma de una solución particular de esta ecuación más una solución general de la ecuación homogénea asociada.
+\end{teorema}
+
+
+
+
+
+
+\begin{teorema}[Fórmula Abel]
+Si $y_1,y_2,\ldots,y_n$ son soluciONES de la ecuación  homogénea
+\boxedeq{y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=0,}{eq:lin_hom_orden_n}
+Entonces el Wronskiano satisface
+\boxedeq{W(y_1,\ldots,y_n)(x)=W(y_1,\ldots,y_n)(x_0)e^{-\int_{x_0}^xp_{n-1}(t)dt}.}{eq:formu_abel}
+En particular  $\{y_1,y_2,\ldots,y_n\}$ son linalmente independientes si y solo si $W(x)\neq 0$ para todo $x\in I$.
+\end{teorema}
+
+\textbf{Dem.} Las demostraciones de los resultados anteriores es tan similar a su análogo de orden 2 que no vale la pena invertir tiempo en ellas. La demostración de la fórmula de Abel, si nos parece lo suficientemente interesante para dejarla como \textbf{ejercicio}.
+
+
+
+\subsection{Ecuaciones homogéneas con coeficientes constantes}
+Las ecuaciones lineales de orden $n$, homogeneas con coeficientes constantes  se resuelven por métodos análogos a los considerados para ecuaciones de segundo orden. Se propone $y(x)=e^{rx}$ como solución. Reemplazando esta función
+en \eqref{eq:lin_hom_orden_n} vemos que $y$ sería solución si y solo si $r$ es solución de la ecuación característica
+\boxedeq{r^n+p_{n-1}r^{n-1}+\cdots+p_1r+p_0=0.}{eq:ecua_carac}
+Ahora se presentan diversos casos.
+
+
+
+\subsubsection{Raices reales distintas.} Si la ecuación característica \eqref{eq:ecua_carac} tiene $n$ raíces $r_1,\ldots,r_n$ reales y distintas entonces
+$y_1(x)=e^{r_1x},\ldots,y_n(x)=e^{r_nx}$ son soluciones linealmente independientes y por ende
+\[\boxed{y(x)=c_1e^{r_1x}+\cdots+c_ne^{r_nx}}\]
+es solución general.
+
+Dejamos como ejercicio la demostración de la independencia lineal. En lugar de usar el Wronskiano, se puede utilizar  la siguiente idea basada en métodos operacionales. Denotemos por $D$  el operador diferenciación, esto es $D$ es sencillamente la función  definida sobre el conjunto de funciones diferenciables sobre un intervalo abierto y que actúa derivando, esto es $Dy=y'(x)$. Dado un polinomio $p(X)=p_nX^n+p_{n-1}X^{n-1}+\cdots+p_1X+p_0$, $p_i\in\rr$, $i=0,\ldots,n$, denotamos por  $p(D)$ el operador definido por
+\[p(D)y=p_ny^{(n)}+p_{n-1}y^{(n-1)}+\cdots+p_1y'+p_0y.\]
+Diremos que $p(D)$ es un \emph{operador diferencial polinomial}.
+
+\noindent\textbf{Ejercicio 1} Dado que dos polinomios se pueden sumar y multiplicar, resultando estas operaciones en un nuevo polinomio, es posible hacer lo propio con operadores diferenciales polinomiales. Demostrar que el producto de dos de tales operadores  $p(D)$ y $q(D)$ es conmutativo. Esta propiedad es lo mismo que afirmar que el producto de polinomios es conmutativo. Analizar que ocurriría si permitiésemos que los coeficientes $p_i$ fuesen funciones de $x$, $p_i=p_i(x)$.
+
+
+\noindent\textbf{Ejercicio 2} Supongamos ahora que $r_1,\ldots,r_n$ son números reales distintos y que
+\[y=c_1e^{r_1x}+c_2e^{r_2x}+\cdots+c_ne^{r_nx}.\]
+Considerar el operador diferencial
+\[p(D)=(D-r_1)\cdots(D-r_{i-1})(D-r_{i+1})\cdots(D-r_n).\]
+Demostrar que
+\[p(D)y=(r_i-r_1)\cdots(r_i-r_{i-1})(r_i-r_{i+1})\cdots(r_i-r_n)e^{r_ix}.\]
+Deducir de esto la independencia lineal de $\{e^{r_1x},\ldots,e^{r_nx}\}$.
+
+
+
+\subsubsection{Raices reales repetidas.}
+Supongamos que la ecuación característica \eqref{eq:ecua_carac} tiene  raíces reales repetidas. Sean $r_1,\ldots,r_k$ las raices distintas y $m_j$ la multiplicidad de la raíz $r_j$. Por cada raíz $r_j$ considerar las $m_j$  funciones
+
+\[\mathcal{B}_j:=\{y_j^0(x)=e^{r_jx}, y_j^1(x)=xe^{r_jx},\ldots y_j^{m_j-1}(x)=x^{m_j-1}e^{r_jx}\}.\]
+
+ \noindent\textbf{Ejercicio 3} Demostrar que $\mathcal{B}:=\mathcal{B}_1\cup\cdots\cup \mathcal{B}_k$ forma
+ un conjunto de  $n$  soluciones linealmente independientes.
+
+\subsubsection{Raices complejas.}
+Supongamos que la ecuación característica \eqref{eq:ecua_carac} tiene  raíces complejas. Como la ecuación característica tiene coeficientes reales, las raices aparecen de a pares conjugados $\mu\pm\nu i$. Si las raices son simples por cada uno de estos pares hay que considerar las soluciones
+\[e^{\mu x}\cos x\quad\text{y}\quad e^{\mu x}\sen x.\]
+Si son múltiples con multiplicidad $k$ hay que considerar las $2k$ soluciones
+\[x^0e^{\mu x}\cos x,\ldots, x^{k-1}e^{\mu x}\cos x\quad\text{y}\quad x^0e^{\mu x}\sen x,\ldots x^{k-1}e^{\mu x}\sen x .\]
+Dejamos los detalles que es necesario completar como trabajo práctico.
+
+
+
+
+\subsection{Aplicación: osciladores armónicos acoplados}
+Supongamos dos masas $m_1$ y $m_2$ sujetas a dos puntos fijos por sendos resortes y, a su vez, unidas entre si por un tercer resorte.
+\begin{center}
+\animategraphics[controls, scale=.4]{15}{osciladores_acoplados/osci-}{0}{751}
+ \end{center}
+
+Vamos a medir la posición de las masas desde origenes distintos situados en los respectivos puntos de equilibrio. Por consiguiente las posiciones $x$ e $y$ de las masas representan también su desplazamiento desde el equilibrio.  Utilizando la segunda ley de Newton, la Ley de Elasticidad de Hooke  y tomando en consideración que el resorte central está desplazado desde su estado de equilibrio en una cantidad igual a $y-x$, vemos que se debe satisfacer que
+% \[\left\{ \begin{array}{l l}
+%              m_1x''(t)=-k_1x +k_3(y-x)\\
+%              m_2y''(t)=-k_3(y-x)-k_2y
+%             \end{array} \right.
+% \]
+\begin{subequations}
+\label{eq:tot}
+\begin{empheq}[left=\empheqlbrace]{align}
+             m_1x''(t)=-k_1x +k_3(y-x)\label{eq:sis1}\\
+             m_2y''(t)=-k_3(y-x)-k_2y\label{eq:sis2}
+\end{empheq}
+\end{subequations}
+
+\begin{center}
+  \includegraphics[scale=.4]{imagenes/osci_aco.png}
+\end{center}
+
+
+Se nos presentó un sistema de ecuaciones de segundo orden. Vamos a poder convertirlo en una ecuación pagando el precio de incrementar el orden. El procedimiento es derivar \eqref{eq:sis1} (obviamente es lo mismo empezar por \eqref{eq:sis2}) dos veces respecto a $t$. En el resultado sustituímos $y''$ por su igual según \eqref{eq:sis2}. El resultado es una ecuación que todavía tiene la variable $y$, pero podemos usar \eqref{eq:sis1} para sustituir $y$ por una expresión que sólo tiene $x$ y sus derivadas. Todo esto lo haremos con SymPy.
+
+
+
+\begin{lstlisting}
+>>> from sympy import *
+>>> init_printing()
+>>> var('x,y,t,m1,m2,k1,k2,k3')
+>>> x,y=symbols('x,y',cls=Function)
+>>> eq1=m1*x(t).diff(t,2)+k1*x(t)-k3*(y(t)-x(t))
+>>> eq2=m2*y(t).diff(t,2)+k2*y(t)+k3*(y(t)-x(t))
+>>> sust1,=solve(eq2,y(t).diff(t,2))
+>>> sust2,=solve(eq1,y(t))
+>>> eq3=eq1.diff(t,2).subs({y(t).diff(t,2):sust1, y(t):sust2})
+>>> eq3.expand().collect(x(t))
+\end{lstlisting}
+ Obtenemos la ecuación de cuarto orden
+\[
+\begin{split}
+ m_{1} \frac{d^{4}}{d t^{4}} & x{\left (t \right )} + \left(\frac{k_{1} k_{2}}{m_{2}} + \frac{k_{1} k_{3}}{m_{2}} + \frac{k_{2} k_{3}}{m_{2}}\right) x{\left (t \right )}\\ &+ \left(k_{1} + \frac{k_{2} m_{1}}{m_{2}} + \frac{k_{3} m_{1}}{m_{2}} + k_{3}\right) \frac{d^{2}}{d t^{2}}  x{\left (t \right )}=0.
+\end{split}
+\]
+ Vamos a suponer todos los parámetros igual a 1. Encontremos y resolvamos la ecuación característica
+ \begin{lstlisting}
+>>> eq4=eq3.subs({m1:1,m2:1,k1:1,k2:1,k3:1})
+>>> eq4
+\end{lstlisting}
+\[3 x{\left (t \right )} + 4 \frac{d^{2}}{d t^{2}}  x{\left (t \right )} + \frac{d^{4}}{d t^{4}}  x{\left (t \right )}=0.\]
+
+
+
+
+
+\begin{lstlisting}
+>>> r=var('r')
+>>> z=exp(r*t)
+>>> eq5=eq4.subs({x(t):z,x(t).diff(t,4):z.diff(t,4),x(t).diff(t,2):z.diff(t,2)})/z
+>>> eq5.expand()
+\end{lstlisting}
+Las soluciones de la ecuación característica son ${sol}$.
+\begin{lstlisting}
+>>> sol=solve(eq5,r)
+\end{lstlisting}
+
+Según lo que hemos dicho antes, la solución general será
+\boxedeq{ x(t)=A\cos(t)+B\sen(t)+C\cos(\sqrt(3)t) +D\sen(\sqrt(3)t)}{eq:sol_gen_arm_aco}
+
+La solución es una superposición de ondas con frecuencias \href{http://es.wikipedia.org/wiki/Conmensurabilidad_(matemática)}{inconmensurables}. Decimos que dos magnitudes no nulas son inconmensurables cuando su cociente es irracional.
+
+¿Tendra el sistema de osciladores acoplados soluciones periódicas? Notar que una superposición de funciones periódicas no necesariamente es periódica.   La pregunta nos lleva a una pregunta más general. Si $f,g:\rr\to\rr$ son funciones periódicas de período $T_1$ y $T_2$, será $f+g$ períodica. La respuesta es el teorema de abajo.
+
+\begin{teorema}  Si $f,g:\rr\to\rr$ son funciones no constantes, periódicas y continuas de período $T_1$ y $T_2$, la función $f+g$ será períodica si y sólo si $T_1$ y $T_2$ son conmensurables.
+\end{teorema}
+
+\begin{proof} La demostración descansa sobre varios hechos, que poco tienen que ver con las ecuaciones diferenciales. Pero, el teorema nos parece tan interesante, que vamos a dar algunos detalles y otros los dejaremos como ejercicio.
+ \end{proof}
+
+
+\noindent \textbf{Ejercicio} Sea $F:\rr\to\rr$ una función períodica y sea $\mathfrak{P}$ el conjunto de todos los períodos. Entonces
+\begin{enumerate}
+ \item $\mathfrak{P}$ es un subgrupo aditivo  de $\rr$. Si $F$ es continua $\mathfrak{P}$ es cerrado.
+ \item Si $\mathfrak{P}$ es cualquier subgrupo aditivo propio y cerrado de $\rr$  entonces  $\mathfrak{P}$ es un grupo ciclico, es decir existe $a>0$ con $\mathfrak{P}=a\mathbb{Z}$.  Como corolario, si $\mathfrak{P}$ es cualquier subgrupo  aditivo cerrado propio  y $T_1,T_2\in \mathfrak{P}$ entonces $T_1$ y $T_2$ son conmensurables. \emph{Ayuda:} Considerar
+\[a:=\inf\{x\in \mathfrak{P}:x>0\}\]
+Entonces si $a>0$,  $\mathfrak{P}=a\mathbb{Z}$ y si $a=0$,  $\mathfrak{P}=\rr$.
+
+¿Qué ocurrirá si no suponemos $\mathfrak{P}$ cerrado?
+
+ \item Demostrar el Teorema. \emph{Ayuda:} Supongamos  que $f+g$ tiene período $T>0$. Entonces:
+\[F(x):=f(x+T)-f(x)=g(x)-g(x+T).\]
+La función $F$ tendrá períodos $T_1$ y $T_2$.
+ \end{enumerate}
+
+Retornando al oscilador armónico y a su solución general \eqref{eq:sol_gen_arm_aco}, el ejercicio anterior nos dice  que la solución no será periódica, a menos que $A=B=0$ o $C=D=0$. Estos casos especiales de soluciones se denominan \href{http://es.wikipedia.org/wiki/Modo_normal}{modos normales}.  Usemos SymPy para encontrar y graficar algunos modos normales. Gráficaremos las soluciones sobre el espacio de configuraciones. Esto es decir que graficaremos las curvas $t\mapsto (x(t),y(t))$ en $\rr^2$.
+
+\noindent\textbf{Primer modo normal}
+\begin{lstlisting}
+>>> var('A,B,C,D')
+>>> x=A*cos(t)+B*sin(t)+C*cos(sqrt(3)*t)+D*sin(sqrt(3)*t)
+>>> x1=x.subs({A:1,B:0,C:0,D:0})
+>>> y1=x1.diff(t,2)+2*x1
+>>> from sympy.plotting import *
+>>> plot_parametric(x1,y1,(t,0,10*pi))
+\end{lstlisting}
+
+\begin{wrapfigure}[4]{l}{5cm}
+  \begin{center}
+   \vspace{-.5cm}\includegraphics[scale=.2]{imagenes/modo_normal1.png}
+ \end{center}
+\end{wrapfigure}
+ Los desplazamientos de las dos masas estan sobre la recta $y=x$, vale decir las masas se mueven perfectamente en fase.
+
+
+ \begin{center}
+   \animategraphics[controls, scale=.4]{15}{osciladores_acoplados/primero/modo1-}{0}{9}
+ \end{center}
+
+
+
+
+
+\noindent\textbf{Segundo modo normal}
+
+\begin{lstlisting}
+>>> x1=x.subs({A:0,B:0,C:1,D:0})
+>>> y1=x1.diff(t,2)+2*x1
+>>> plot_parametric(x1,y1,(t,0,10*pi))
+\end{lstlisting}
+
+\begin{wrapfigure}[6]{l}{5cm}
+  \begin{center}
+   \vspace{-.5cm}\includegraphics[scale=.2]{imagenes/modo_normal2.png}
+ \end{center}
+\end{wrapfigure}
+Los desplazamientos de las dos masas estan sobre la recta $y=-x$, vale decir las masas se mueven perfectamente fuera de fase. Cuando una alcanza el desplazamiento negativo menor la otra alcanza el mayor positivo.
+
+
+ \begin{center}
+    \animategraphics[controls, scale=.4]{15}{osciladores_acoplados/segundo/modo2-}{0}{9}
+ \end{center}
+
+
+
+\noindent\textbf{Fuera de un modo normal}
+\begin{lstlisting}
+>>> x1=x.subs({A:1,B:0,C:1,D:0})
+>>> y1=x1.diff(t,2)+2*x1
+>>> plot_parametric(x1,y1,(t,0,10*pi))
+\end{lstlisting}
+\begin{wrapfigure}[6]{r}{5cm}
+  \begin{center}
+   \vspace{-.5cm}\includegraphics[scale=.2]{imagenes/lissajous.png}
+   \caption{Curva de Lissajous}
+ \end{center}
+\end{wrapfigure}
+
+Se obtienen gráficas  bonitas llamadas \href{http://es.wikipedia.org/wiki/Curva_de_Lissajous}{Curvas de Lissajous}, que fuera de los modos normales llenan densamente un cuadrado del plano.
+
+
+
+
+
+
+
+
+
+
+\section{Métodos Operacionales}
+
+
+El denominado \href{http://en.wikipedia.org/wiki/Operational_calculus}{Método Operacional} es una técnica iniciada por el ingeniero eléctrico  \href{http://es.wikipedia.org/wiki/Oliver_Heaviside}{Oliver Heavside} (1850-1925).
+
+\begin{wrapfigure}[13]{r}{5cm}
+  \begin{center}
+\includegraphics[scale=.8]{imagenes/Heaviside.jpg}
+ \end{center}
+ \caption{Oliver Heavside}
+\end{wrapfigure}
+Hemos mencionado que una ecuación lineal de orden $n$ con coeficientes constantes y  no homogénea se puede pensar como
+\boxedeq{p(D)y=r(x),}{eq:lin_oper}
+donde $p(D)=D^n+p_{n-1}D^{n-1}+\cdots+p_1D+ p_0$ es un operador diferencial polinomial.
+
+
+
+
+La idea central del método es proceder desde una manera puramente formal, para afirmar que si $y$ resuelve
+\eqref{eq:lin_oper} entonces
+\boxedeq{y=\frac{1}{p(D)}r(x),}{eq:oper_inv}
+Esto no parece más que un juego de símbolos del que no se puede desprender nada interesante. Vamos a ver que no es ese el caso.
+
+El símbolo $1/p(D)$ debería ser interpretado como el operador inverso de $p(D)$. Por ejemplo, supongamos que $p(D)=D$. entonces $p(D)y=y'$. En este caso $1/p(D)$ puede ser definido como
+
+\boxedeq{\frac{1}{p(D)}r=\int r(x)dx}{eq:oper_inv_int}
+
+Si tuviesemos $p(D)=D-q$, $q\in\rr$, entonces $p(D)y=y'-qy$. En este caso, teniendo en mente que $y(x)=(1/p(D))r(x)$ debería resolver la ecuación lineal de primer orden $y'-qy=r(x)$, y por la fórmula explícita que obtuvimos para esta solución, es natural definir
+\boxedeq{\frac{1}{p(D)}r=e^{qx}\int e^{-qx}r(x)dx}{eq:oper_inv_lin}
+
+\subsection{Raíces simples}
+Supongamos ahora que $p$ es un polinomio que se factoriza en monomios de primer orden
+\[p(D)=(D-p_0)\cdots(D-p_k).\]
+Siguiendo la línea de razonamiento aneterior
+definimos
+\boxedeq{\frac{1}{p(D)}r=\frac{1}{D-p_0}\left(\frac{1}{D-p_1}\left(\cdots\frac{1}{D-p_k}\left(r  \right)\cdots    \right)  \right)}{eq:oper_inv_fact}
+
+
+\noindent\textbf{Problema.} Resolver  $y''-3y'+2y=xe^x$. Las cuentas las haremos con SymPy. Primero veamos si el polinomio se factoriza
+
+
+
+\begin{lstlisting}
+>>> var('D')
+>>> p=D**2-3*D+2
+>>> p.factor()
+\end{lstlisting}
+
+Vemos que $p(D)=(D-2)(D-1)$. Ahora programemos la fórmula \eqref{eq:oper_inv_lin} y usemosla para resolver la ecuación.
+\begin{lstlisting}
+>>> x=var('x')
+>>> LinInv=lambda r,a: exp(a*x)* integrate(exp(-a*x)*r,x)
+>>> LinInv(LinInv(x*exp(x),1),2)
+\end{lstlisting}
+Deducimos $y=\frac{e^{x}}{2} \left(- x^{2} - 2 x - 2\right)
+$ es solución.
+
+
+
+\subsubsection{Fracciones simples}
+ Otra idea es descomponer $1/p(D)$ en fracciones simples. Suponiendo $p(D)=(D-p_0)\cdots(D-p_k)$, con $p_j$ raíces simples
+\[\frac{1}{(D-p_0)\cdots(D-p_k)}=\left\{\frac{A_0}{(D-p_0)}+\cdots+\frac{A_k}{(D-p_k)}\right\}.\]
+Como cada témino del miembro de la derecha lo tenemos definido, sólo tenemos que sumar cada uno de ellos. Reprocesemos con esta idea el  ejemplo de antes. La función \texttt{apart} de sympy hace descomposiciones en fracciones simples. En el caso del operador $p(D)=(D-2)(D-1)$ obtenemos descomposición en fracciones simples
+\begin{lstlisting}
+>> apart(1/p)
+\end{lstlisting}
+
+\[\frac{1}{p(D)}=-\frac{1}{D-1}+\frac{1}{D-2}.\]
+ Entonces la siguiente expresión debería darnos una solución
+\begin{lstlisting}
+>>> LinInv(x*exp(x),2)-LinInv(x*exp(x),1)
+\end{lstlisting}
+Obviamente obtenemos la misma solución que obtuvimos antes.
+
+\subsection{Series}
+En algunas ocasiones es conveniente desarrollar en serie $1/p(D)$:
+\boxedeq{\frac{1}{p(D)}r(x)=\left(a_0+a_1D+a_2D^2+\cdots \right)r(x).}{eq:des_serie}
+Por ejemplo cuando $r$ es un polinomio, puesto que salvo una cantidad finita, todas las derivadas de orden $k$ de $r$ son cero.
+
+\noindent\textbf{Ejemplo.} Resolver $y'''+2y''+y=x^4+2x+5$.
+Como $r$ es un polinomio de grado 4, desarrollemos en serie $1/p(D)$ hasta ese orden
+
+\begin{lstlisting}
+>>> L=1/(1+2*D**2+D**3)
+>>> L.series(D,0,5)
+\end{lstlisting}
+Obtenemos
+\[\frac{1}{p(D)}=\frac{1}{1+2D^2+D^3}=
+1 - 2 D^{2} - D^{3} + 4 D^{4} + \mathcal{O}\left(D^{5}\right).\]
+Ahora el siguiente código  define el operador diferencial asociado a la expresión anterior
+\begin{lstlisting}
+>>> coeficientes=[Q.diff(D,j).subs(D,0)/factorial(j) for j in range(5)]
+        def Q_op(f):
+	return sum([coeficientes[j]*f.diff(x,j) for j in range(5)])
+\end{lstlisting}
+
+Evaluamos el segundo miembro de  \eqref{eq:des_serie} en $r(x)=x^4+2x+5$.
+\begin{lstlisting}
+>>> Q_op(x**4+2*x+5)
+\end{lstlisting}
+Llegamos a la solución
+\[y=x^{4} - 24 x^{2} - 22 x + 101
+\]
 
 \end{document}
