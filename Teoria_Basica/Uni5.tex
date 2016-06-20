@@ -1,122 +1,120 @@
-\documentclass{article}
-%\documentclass[hyperref={colorlinks=true}]{beamer}
-%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\usepackage{pgfpages}
-%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
-\usepackage{empheq}
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{times}
-\usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath}%,amsthm}
-\usepackage{enumerate}
-\usepackage{verbatim}
-\usepackage{ esint }
-\usepackage{pdfsync}
-\usepackage{theorem}
-\usepackage{pst-all}
-%\usepackage{pstricks-add}
-\usepackage{array}
-%\usepackage[T1]{fontenc}
-\usepackage{animate}
-%\usepackage{media9}
-%\usepackage{movie15}
-\usepackage{xparse}
-\usepackage{listings}
-\usepackage{ wasysym }
-%\usepackage{sagetex}
-\usepackage{hyperref}
-\usepackage[margin=1.5cm]{geometry}
-\usepackage{tabularx}
-
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-\definecolor{myblue}{rgb}{.8, .8, 1}
-\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\newcommand{\dblue}{\color{dbluecolor}\bf}
-\newcommand{\dred}{\color{dredcolor}\bf}
-\newcommand{\dblack}{\color{dblackcolor}\bf}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
-\newcommand{\com}{\mathbb{C}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-%\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-\newlength\mytemplen
-\newsavebox\mytempbox
-\makeatletter
-\newcommand\mybluebox{%
-    \@ifnextchar[%]
-       {\@mybluebox}%
-       {\@mybluebox[0pt]}}
-
-\def\@mybluebox[#1]{%
-    \@ifnextchar[%]
-       {\@@mybluebox[#1]}%
-       {\@@mybluebox[#1][0pt]}}
-
-\def\@@mybluebox[#1][#2]#3{
-    \sbox\mytempbox{#3}%
-    \mytemplen\ht\mytempbox
-    \advance\mytemplen #1\relax
-    \ht\mytempbox\mytemplen
-    \mytemplen\dp\mytempbox
-    \advance\mytemplen #2\relax
-    \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-
-\makeatother
-\DeclareDocumentCommand\boxedeq{ m g }{%
-    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-        \IfNoValueF {#2} {\label{#2}}%
-       #1
-       \end{empheq}
-    }%
-}
-\DeclareMathOperator{\mcd}{mcd}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-\newtheorem{teorema}{Teorema}[section]
-\newtheorem{lema}[teorema]{Lema}
-\newtheorem{corolario}[teorema]{Corolario}
-\newtheorem{proposicion}[teorema]{Proposici\'on}
-\newtheorem{definicion}[teorema]{Definici\'on}
-%\newcounter{ejer}
-{\theorembodyfont{\rmfamily}
-\newtheorem{ejemplo}{Ejemplo}[section]}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-%%%%%%%%%%Para escibir en clase articulo o similar
-% \usepackage{color}
-% \newcommand{\nl}{ }
-% \renewenvironment{frame}[1]{}{}
-% \newcommand{\qed}{$\square$}
-% %\newcommand{\defverbatim}{\def{#1}}
-% \newenvironment{block}[1]{\textbf{#1}}{}
-\title{Ecuaciones lineales de segundo orden}
-\author{Fernando Mazzone}
+% \documentclass{article}
+% %\documentclass[hyperref={colorlinks=true}]{beamer}
+% %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% %\usepackage{pgfpages}
+% %\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+% \usepackage{empheq}
+% \usepackage[spanish]{babel}
+% \usepackage[utf8x]{inputenc}
+% \usepackage{times}
+% \usepackage[T1]{fontenc}
+% \usepackage{amssymb,amsmath}%,amsthm}
+% \usepackage{enumerate}
+% \usepackage{verbatim}
+% \usepackage{ esint }
+% \usepackage{pdfsync}
+% \usepackage{theorem}
+% \usepackage{pst-all}
+% %\usepackage{pstricks-add}
+% \usepackage{array}
+% %\usepackage[T1]{fontenc}
+% \usepackage{animate}
+% %\usepackage{media9}
+% %\usepackage{movie15}
+% \usepackage{xparse}
+% \usepackage{listings}
+% \usepackage{ wasysym }
+% %\usepackage{sagetex}
+% \usepackage{hyperref}
+% \usepackage[margin=1.5cm]{geometry}
+% \usepackage{tabularx}
+% 
+%  
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%Colores
+% \definecolor{myblue}{rgb}{.8, .8, 1}
+% \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+% \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+% \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+% \definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+% \newcommand{\dblue}{\color{dbluecolor}\bf}
+% \newcommand{\dred}{\color{dredcolor}\bf}
+% \newcommand{\dblack}{\color{dblackcolor}\bf}
+% 
+% 
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
+% \newcommand{\com}{\mathbb{C}}
+% \newcommand{\dis}{\mathbb{D}}
+% \newcommand{\rr}{\mathbb{R}}
+% \newcommand{\oo}{\mathcal{O}}
+% %\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+% \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+% \renewcommand{\v}[1]{\overrightarrow{#1}}
+% \renewcommand{\epsilon}{\varepsilon}
+% \newlength\mytemplen
+% \newsavebox\mytempbox
+% \makeatletter
+% \newcommand\mybluebox{%
+%     \@ifnextchar[%]
+%        {\@mybluebox}%
+%        {\@mybluebox[0pt]}}
+% 
+% \def\@mybluebox[#1]{%
+%     \@ifnextchar[%]
+%        {\@@mybluebox[#1]}%
+%        {\@@mybluebox[#1][0pt]}}
+% 
+% \def\@@mybluebox[#1][#2]#3{
+%     \sbox\mytempbox{#3}%
+%     \mytemplen\ht\mytempbox
+%     \advance\mytemplen #1\relax
+%     \ht\mytempbox\mytemplen
+%     \mytemplen\dp\mytempbox
+%     \advance\mytemplen #2\relax
+%     \dp\mytempbox\mytemplen
+%     \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+% 
+% \makeatother
+% \DeclareDocumentCommand\boxedeq{ m g }{%
+%     {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+%         \IfNoValueF {#2} {\label{#2}}%
+%        #1
+%        \end{empheq}
+%     }%
+% }
+% \DeclareMathOperator{\mcd}{mcd}
+% \DeclareMathOperator{\atan2}{atan2}
+% \DeclareMathOperator{\sen}{sen}
+% \newtheorem{teorema}{Teorema}[section]
+% \newtheorem{lema}[teorema]{Lema}
+% \newtheorem{corolario}[teorema]{Corolario}
+% \newtheorem{proposicion}[teorema]{Proposici\'on}
+% \newtheorem{definicion}[teorema]{Definici\'on}
+% %\newcounter{ejer}
+% {\theorembodyfont{\rmfamily}
+% \newtheorem{ejemplo}{Ejemplo}[section]}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% 
+% 
+% 
+% %%%%%%%%%%Para escibir en clase articulo o similar
+% % \usepackage{color}
+% % \newcommand{\nl}{ }
+% % \renewenvironment{frame}[1]{}{}
+% % \newcommand{\qed}{$\square$}
+% % %\newcommand{\defverbatim}{\def{#1}}
+% % \newenvironment{block}[1]{\textbf{#1}}{}
 
 
 
@@ -167,28 +165,33 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%Listing
-\lstdefinelanguage{SymPy}[]{Python}
-{morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand,atan2,sqrt,simplify,positive,cos,sin,Function,coeff },sensitive=true}
-\lstset{
-frame=none,
-showtabs=False,
-showspaces=False,
-showstringspaces=False,
-commentstyle={\ttfamily\color{dgreencolor}},
-keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-language=SymPy,
-basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-aboveskip=.3em,
-belowskip=0.1em,
-numbers=none,
-numberstyle=\footnotesize
-}
+% %%%%%%%%%%%Listing
+% \lstdefinelanguage{SymPy}[]{Python}
+% {morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand,atan2,sqrt,simplify,positive,cos,sin,Function,coeff },sensitive=true}
+% \lstset{
+% frame=none,
+% showtabs=False,
+% showspaces=False,
+% showstringspaces=False,
+% commentstyle={\ttfamily\color{dgreencolor}},
+% keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+% stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+% language=SymPy,
+% basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+% aboveskip=.3em,
+% belowskip=0.1em,
+% numbers=none,
+% numberstyle=\footnotesize
+% }
+% 
+% 
+
+%\begin{document}
 
 
+\chapter{Ecuaciones lineales de segundo orden}
+%\author{Fernando Mazzone}
 
-\begin{document}
 
 \section{Teorema de separación de Sturm}
 \subsection{Motivación}
@@ -290,9 +293,9 @@ y por lo tanto
 \[\boxed{q=- \frac{1}{4} P^{2}{\left (x \right )} + Q{\left (x \right )} - \frac{1}{2} \frac{d}{d x} P{\left (x \right )}}.\]
  
 \begin{ejemplo} Un caso particular de importancia lo constituye la ecuación de Bessel
- \boxedeq{x²y''+xy'+(x²-a²)y=0}{bessel}.
+ \boxedeq{x^2y''+xy'+(x^2-a^2)y=0}{bessel}.
 La ecuación equivale a
-\begin{equation}\label{bessel_normal}\boxed{u''+\left(1+\frac{1-4a²}{4x²}\right)u=0}.
+\begin{equation}\label{bessel_normal}\boxed{u''+\left(1+\frac{1-4a^2}{4x^2}\right)u=0}.
 \end{equation}
 \end{ejemplo}
 
@@ -334,11 +337,12 @@ Por un razonamiento análogo al de la demostración del Teorema \ref{sep_sturm} 
 
 
 
-\begin{corolario} Supongamos que $q(x)\geq (1+\epsilon)/4x²$, para $x>0$. Entonces toda solución de $y''+q(x)y=0$ tiene infinitos ceros en $(0,+\infty)$. Más aún, hay una sucesión de ceros tendiendo a infinito y otra tendiendo a cero.
+\begin{corolario} Supongamos que $q(x)\geq (1+\epsilon)/4x^2$, para $x>0$. Entonces toda solución de 
+$y''+q(x)y=0$ tiene infinitos ceros en $(0,+\infty)$. Más aún, hay una sucesión de ceros tendiendo a infinito y otra tendiendo a cero.
 \end{corolario}
 
 \begin{demo} En la ecuación 
-\begin{equation}\label{eq_osc}\frac{d²z}{dx²}+\frac{1+\epsilon}{4x²}z=0,
+\begin{equation}\label{eq_osc}\frac{d^2z}{dx^2}+\frac{1+\epsilon}{4x^2}z=0,
 \end{equation}
 hagamos el cambio de variable dependiente $z=y\sqrt{x}$. Primero computemos las derivadas
 \[
@@ -346,31 +350,33 @@ hagamos el cambio de variable dependiente $z=y\sqrt{x}$. Primero computemos las 
 \]
 y
 \begin{equation}\label{sus_1}
-\frac{d²z}{dx²}=-\frac{x^{-\frac{3}{2}}}{4}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}
+\frac{d^2z}{dx^2}=-\frac{x^{-\frac{3}{2}}}{4}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}
 \end{equation}
 Sustituyendo \eqref{sus_1} y  $z=y\sqrt{x}$ en \eqref{eq_osc} obtenemos
 \begin{equation}\label{eq_osc2}
-0=\frac{d²z}{dx²}+\frac{1+\epsilon}{4x²}z=-\frac{x^{-\frac{3}{2}}}{4}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}+\frac{1+\epsilon}{4x²}x^{\frac{1}{2}}y=\boxed{\frac{\epsilon}{4}x^{-\frac{3}{2}}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx²}}.
+0=\frac{d^2z}{dx^2}+\frac{1+\epsilon}{4x^2}z=-\frac{x^{-\frac{3}{2}}}{4}y+ 
+x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}+\frac{1+\epsilon}{4x^2}
+x^{\frac{1}{2}}y=\boxed{\frac{\epsilon}{4}x^{-\frac{3}{2}}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}}.
 \end{equation}
 Ahora cambiemos la variable independiente por $t=\ln x$. Entonces
 \begin{equation}\label{sus_2}\frac{dy}{dx}=\frac{dy}{dt}\frac{dt}{dx}=\frac{1}{x}\frac{dy}{dt}=\boxed{
 e^{-t}\frac{dy}{dt}}.
 \end{equation}
 y
-\begin{equation}\label{sus_3}\frac{d²y}{dx²}=\left(\frac{d}{dx}e^{-t}\right)\frac{dy}{dt}+
+\begin{equation}\label{sus_3}\frac{d^2y}{dx^2}=\left(\frac{d}{dx}e^{-t}\right)\frac{dy}{dt}+
 e^{-t}\frac{d}{dx}\left(\frac{dy}{dt}\right)=e^{-t}\left(\frac{-1}{x}\right)\frac{dy}{dt}+
-e^{-t}\frac{d^2y}{dt²}\frac{1}{x}=-e^{-2t}\frac{dy}{dt}+
-e^{-2t}\frac{d^2y}{dt²}=\boxed{e^{-2t}\left(-\frac{dy}{dt}+
-\frac{d^2y}{dt²}\right)}.
+e^{-t}\frac{d^2y}{dt^2}\frac{1}{x}=-e^{-2t}\frac{dy}{dt}+
+e^{-2t}\frac{d^2y}{dt^2}=\boxed{e^{-2t}\left(-\frac{dy}{dt}+
+\frac{d^2y}{dt^2}\right)}.
 \end{equation}
 Sustituyendo \eqref{sus_2} y \eqref{sus_3} y $x=e^t$ en \eqref{eq_osc2}
 \[
 0=\frac{\epsilon}{4}e^{-\frac{3}{2}t}y+e^{-\frac{3}{2}t}\frac{dy}{dt}+e^{-\frac{3}{2}t}\left(-\frac{dy}{dt}+
-\frac{d^2y}{dt²}\right)=\frac{\epsilon}{4}e^{-\frac{3}{2}t}y+e^{-\frac{3}{2}t}\frac{d^2y}{dt²}
+\frac{d^2y}{dt^2}\right)=\frac{\epsilon}{4}e^{-\frac{3}{2}t}y+e^{-\frac{3}{2}t}\frac{d^2y}{dt^2}
 \]
 Dividiendo por $e^{-\frac{3}{2}t}$ vemos que $y$ resuelve la ecuación del oscilador armónico
 \begin{equation}\label{osc_fin}
-\boxed{\frac{\epsilon}{4}y+\frac{d^2y}{dt²}=0}.
+\boxed{\frac{\epsilon}{4}y+\frac{d^2y}{dt^2}=0}.
 \end{equation}
 
 Confirmemos los cálculos con SymPy
@@ -409,7 +415,11 @@ Sea ahora $y$ solución de $y''+q(x)y=0$. Si aplicamos el Teorema de Comparació
 \begin{demo} Vamos a utilizar la ecuación \eqref{bessel_normal} cuyas soluciones $u$ tienen los mismos ceros que las respectivas de \eqref{bessel}. Fijemos una de estas soluciones $u(x)$. Vamos a distiguir tres casos.
 
 \noindent\textbf{Caso $\boldsymbol{a=\frac12}$} En este caso la ecuación se reduce a la ecuación del oscilador armónico $u''+u=0$ y la afirmación es ya conocida.
-\noindent\textbf{Caso $\boldsymbol{a<\frac12}$} En esta situación $1+\frac{1-4a²}{4x²}>1$ en $(0,+\infty)$.  Luego por el Teorema de Comparación de Sturm, entre dos ceros de la solución $z(x)=\sen(x-\alpha)$ de la ecuación $z''+z=0$ tenemos un cero de $u$. Como $\alpha$ es arbitrario, esto implica que $u$ tiene infinitos ceros que distan entre si menos de $\pi$. Ahora como $(1-4a²)/4x²\to 0$, cuando $x\to\infty$, para todo $\epsilon>0$ existe $x_0>0$ tal que   $(1-4a²)/4x<\epsilon$, para $x\geq x_0$. Entonces en $[x_0,+\infty)$  podemos usar el Teorema de comparación de Sturm, con $q_2(x)=1+(1-4a²)/4x²$ y $q_1(x)=1+\epsilon$, $y_2(x)=u(x)$ e $y_1(x)=\sen(\sqrt{1+\epsilon}x-\alpha)$, que es solución de $y''+(1+\epsilon)y=0$. Concluímos que entre dos ceros de $u$ hay siempre uno de $y_1$. Debe ocurrir entonces que  dos ceros sucesivos de $u$ en $[x_0,+\infty)$ distan en más de $\pi/\sqrt{1+\epsilon}$. De lo contrario, si $a$ y $b$ son ceros de $u$ y $b-a< \pi/\sqrt{1+\epsilon}$, 
+\noindent\textbf{Caso $\boldsymbol{a<\frac12}$} En esta situación $1+\frac{1-4a^2}{4x^2}>1$ en $(0,+\infty)$.  Luego por el Teorema de Comparación de Sturm, entre dos ceros de la solución $z(x)=\sen(x-\alpha)$ de la ecuación $z''+z=0$ tenemos un cero de $u$. 
+Como $\alpha$ es arbitrario, esto implica que $u$ tiene infinitos ceros que distan entre si menos de $\pi$. Ahora como $(1-4a^2)/4x^2\to 0$, 
+cuando $x\to\infty$, para todo $\epsilon>0$ existe $x_0>0$ tal que   $(1-4a^2)/4x<\epsilon$, 
+para $x\geq x_0$. Entonces en 
+$[x_0,+\infty)$  podemos usar el Teorema de comparación de Sturm, con $q_2(x)=1+(1-4a^2)/4x^2$ y $q_1(x)=1+\epsilon$, $y_2(x)=u(x)$ e $y_1(x)=\sen(\sqrt{1+\epsilon}x-\alpha)$, que es solución de $y''+(1+\epsilon)y=0$. Concluímos que entre dos ceros de $u$ hay siempre uno de $y_1$. Debe ocurrir entonces que  dos ceros sucesivos de $u$ en $[x_0,+\infty)$ distan en más de $\pi/\sqrt{1+\epsilon}$. De lo contrario, si $a$ y $b$ son ceros de $u$ y $b-a< \pi/\sqrt{1+\epsilon}$, 
 entonces para $\alpha=\sqrt{1+\epsilon}a$,   la función $y_1(x)=\sen(\sqrt{1+\epsilon}x-\alpha)$ satisface $y_1(a)=\sen0=0$. Además el cero de $y_1$ inmediato posterior al cero $a$ es  $a+\pi/\sqrt{1+\epsilon}$ que es mayor que $b$. Por consiguiente entre $(a,a+\pi/\sqrt{1+\epsilon})$ (y de allí en $(a,b)$) $y_1$ no se anula, contradiciendo esto el Teorema de Comparación de Sturm.
 
 \noindent\textbf{Caso $\boldsymbol{a>\frac12}$} Es esencialmente muy similar y queda como \textbf{ejercicio}.
@@ -441,14 +451,19 @@ respectivamente.  Entonces entre ceros consecutivos de $y_0$ hay uno de $y_1$, a
 \end{teorema}
 \begin{demo} Supongamos $a$ y $b$ ceros consecutivos de $y_0$ y que $y_1\neq 0$ en $(a,b)$. Aplicando la identidad de Picone, con $y=y_0$, $z=y_1$, y las ecuaciones \eqref{ecua-div2}, que permiten reemplazar $(p_iy_i')'$ por $-q_iy_i$ en  \eqref{picone}. Obtenemos
 \[\left[\frac{y_0}{y_1}\left(y_1p_0y_0'-y_0p_1y_1' \right) \right]'=
-  (q_1-q_0)y_0^2+(p_0-p_1)y_0'²+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\\
+  (q_1-q_0)y_0^2+(p_0-p_1)y_0'^2+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\\
 \]
 Ahora integramos esta desigualdad entre $a$ y $b$, al ser estos puntos ceros de $y_0$ obtenemos
-\[0=\int_a^b\left[\frac{y_0}{y_1}\left(y_1p_0y_0'-y_0p_1y_1' \right) \right]'dx=
+\[
+\begin{split}
+0 &=\int_a^b\left[\frac{y_0}{y_1}\left(y_1p_0y_0'-y_0p_1y_1' \right) \right]'dx\\
+&=
 \int_a^b\left[
-  (q_1-q_0)y_0^2+(p_0-p_1)y_0'²+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\right]dx\]
+  (q_1-q_0)y_0^2+(p_0-p_1)y_0'^2+p_1\left(y_0'-\frac{y_0}{y_1}y_1'\right)^2\right]dx
+ \end{split}
+ \]
 Como por hipotesis el integrando es una función no negativa, entonces debe ser la función identicamente nula y de allí cada término que lo compone es la función nula. Como $y_i$, $i=1,2$, son no triviales, debemos tener que   $p_0\equiv p_1$, $q_0\equiv q_1$ y que $W(y_0,y_1)=-(y_1y_0'-y_0y_1')=0$, es decir $y_0$ e $y_1$ son linealmente independientes.
 \end{demo}
 
-\end{document}
+%\end{document}
 

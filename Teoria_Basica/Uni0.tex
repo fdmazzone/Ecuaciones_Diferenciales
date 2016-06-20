@@ -1,142 +1,142 @@
-\documentclass{article}
-%\documentclass[hyperref={colorlinks=true}]{beamer}
-%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{empheq}
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{times}
-%\usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath}
-\usepackage{enumerate}
-\usepackage{verbatim}
-\usepackage{ esint }
-%\usepackage{pst-all}
-%\usepackage{pstricks-add}
-\usepackage{array}
-%\usepackage[T1]{fontenc}
-\usepackage{animate}
-%\usepackage{media9}
-\usepackage{xparse}
-\usepackage{listings}
-\usepackage{ wasysym }
-\usepackage{sagetex}
-\usepackage{yfonts,mathrsfs,eufrak}
-\usepackage{hyperref}
-\usepackage{color}
-\usepackage{url}
-
-
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-  language=Python,                 % the language of the code
-  otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
-\newenvironment{block}[1]{\textbf{#1}}{}
-\newcommand{\com}{\mathbb{C}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-%\newcommand{\defverbatim}{\def{#1}}
-\newcommand{\nl}{ }
-\renewenvironment{frame}[1]{}{}
-\newcommand{\qed}{$\square$}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-
-
-% %%%%%%%%%%Definimos una caja con color
-% \newlength\mytemplen
-% \newsavebox\mytempbox
-% \makeatletter
-% \newcommand\mybluebox{%
-% \@ifnextchar[%]
-% {\@mybluebox}%
-% {\@mybluebox[0pt]}}
-% \def\@mybluebox[#1]{%
-% \@ifnextchar[%]
-% {\@@mybluebox[#1]}%
-% {\@@mybluebox[#1][0pt]}}
-% \def\@@mybluebox[#1][#2]#3{
-% \sbox\mytempbox{#3}%
-% \mytemplen\ht\mytempbox
-% \advance\mytemplen #1\relax
-% \ht\mytempbox\mytemplen
-% \mytemplen\dp\mytempbox
-% \advance\mytemplen #2\relax
-% \dp\mytempbox\mytemplen
-% \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-% \makeatother
-% \DeclareDocumentCommand\boxedeq{ m g }{%
-% {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-% \IfNoValueF {#2} {\label{#2}}%
-% #1
-% \end{empheq}
-% }%
+% \documentclass{article}
+% %\documentclass[hyperref={colorlinks=true}]{beamer}
+% %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{empheq}
+% \usepackage[spanish]{babel}
+% \usepackage[utf8x]{inputenc}
+% \usepackage{times}
+% %\usepackage[T1]{fontenc}
+% \usepackage{amssymb,amsmath}
+% \usepackage{enumerate}
+% \usepackage{verbatim}
+% \usepackage{ esint }
+% %\usepackage{pst-all}
+% %\usepackage{pstricks-add}
+% \usepackage{array}
+% %\usepackage[T1]{fontenc}
+% \usepackage{animate}
+% %\usepackage{media9}
+% \usepackage{xparse}
+% \usepackage{listings}
+% \usepackage{ wasysym }
+% \usepackage{sagetex}
+% \usepackage{yfonts,mathrsfs,eufrak}
+% \usepackage{hyperref}
+% \usepackage{color}
+% \usepackage{url}
+% 
+% 
+% \definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+% \definecolor{mymauve}{rgb}{0.58,0,0.82}
+% 
+% \lstset{ %
+%   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+%   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+%   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%   breaklines=true,                 % sets automatic line breaking
+%   captionpos=b,                    % sets the caption-position to bottom
+%   commentstyle=\color{mygreen},    % comment style
+%   deletekeywords={...},            % if you want to delete keywords from the given language
+%   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+%   frame=single,	                   % adds a frame around the code
+%   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+%   keywordstyle=\color{blue},       % keyword style
+%   language=Python,                 % the language of the code
+%   otherkeywords={*,...},           % if you want to add more keywords to the set
+%   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+%   numbersep=5pt,                   % how far the line-numbers are from the code
+%   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+%   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+%   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%   showstringspaces=false,          % underline spaces within strings only
+%   showtabs=false,                  % show tabs within strings adding particular underscores
+%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%   stringstyle=\color{mymauve},     % string literal style
+%   tabsize=2,	                   % sets default tabsize to 2 spaces
+%   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 % }
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+% \newenvironment{block}[1]{\textbf{#1}}{}
+% \newcommand{\com}{\mathbb{C}}
+% \newcommand{\dis}{\mathbb{D}}
+% \newcommand{\rr}{\mathbb{R}}
+% \newcommand{\oo}{\mathcal{O}}
+% \renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+% \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+% \renewcommand{\v}[1]{\overrightarrow{#1}}
+% \renewcommand{\epsilon}{\varepsilon}
+% %\newcommand{\defverbatim}{\def{#1}}
+% \newcommand{\nl}{ }
+% \renewenvironment{frame}[1]{}{}
+% \newcommand{\qed}{$\square$}
+% \DeclareMathOperator{\atan2}{atan2}
+% \DeclareMathOperator{\sen}{sen}
+% 
+% 
+% % %%%%%%%%%%Definimos una caja con color
+% % \newlength\mytemplen
+% % \newsavebox\mytempbox
+% % \makeatletter
+% % \newcommand\mybluebox{%
+% % \@ifnextchar[%]
+% % {\@mybluebox}%
+% % {\@mybluebox[0pt]}}
+% % \def\@mybluebox[#1]{%
+% % \@ifnextchar[%]
+% % {\@@mybluebox[#1]}%
+% % {\@@mybluebox[#1][0pt]}}
+% % \def\@@mybluebox[#1][#2]#3{
+% % \sbox\mytempbox{#3}%
+% % \mytemplen\ht\mytempbox
+% % \advance\mytemplen #1\relax
+% % \ht\mytempbox\mytemplen
+% % \mytemplen\dp\mytempbox
+% % \advance\mytemplen #2\relax
+% % \dp\mytempbox\mytemplen
+% % \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+% % \makeatother
+% % \DeclareDocumentCommand\boxedeq{ m g }{%
+% % {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+% % \IfNoValueF {#2} {\label{#2}}%
+% % #1
+% % \end{empheq}
+% % }%
+% % }
+% 
+% 
+% %%%%%%%%%%%%%%%%%%
+% \newtheorem{teorema}{Teorema}[section]
+% \newtheorem{lema}[teorema]{Lema}
+% \newtheorem{corolario}[teorema]{Corolario}
+% \newtheorem{proposicion}[teorema]{Proposici\'on}
+% \newtheorem{definicion}[teorema]{Definici\'on}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%Para escibir en clase articulo o similar
+% 
+% 
+% 
 
 
-%%%%%%%%%%%%%%%%%%
-\newtheorem{teorema}{Teorema}[section]
-\newtheorem{lema}[teorema]{Lema}
-\newtheorem{corolario}[teorema]{Corolario}
-\newtheorem{proposicion}[teorema]{Proposici\'on}
-\newtheorem{definicion}[teorema]{Definici\'on}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%Para escibir en clase articulo o similar
 
-
-
-
-
-
-\title{Breve introducción a Python y SymPy}
-\author{Fernando Mazzone}
+\chapter{Breve introducci\'on a Python y SymPy}
+%\author{Fernando Mazzone}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{document}
-
-  \maketitle
+% \begin{document}
+% 
+%   \maketitle
 
 
 
@@ -503,12 +503,12 @@ a b c d e f
 \end{lstlisting}
 
 
-
- \bibliographystyle{plain}
- \bibliography{biblio}
-
-
-\end{document}
+% 
+%  \bibliographystyle{plain}
+%  \bibliography{biblio}
+% 
+% 
+% \end{document}
 
 
 

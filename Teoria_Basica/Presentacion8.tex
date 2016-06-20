@@ -1,164 +1,164 @@
-\documentclass{article}
-%\documentclass[hyperref={colorlinks=true}]{beamer}
-%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% \documentclass{article}
+% %\documentclass[hyperref={colorlinks=true}]{beamer}
+% %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% %\usepackage{pgfpages}
+% %\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+% \usepackage{empheq}
+% \usepackage[spanish]{babel}
+% \usepackage[utf8x]{inputenc}
+% \usepackage{times}
+% \usepackage[T1]{fontenc}
+% \usepackage{amssymb,amsmath}
+% \usepackage{enumerate}
+% \usepackage{verbatim}
+% \usepackage{ esint }
+% \usepackage{pdfsync}
+% %\usepackage{pst-all}
+% %\usepackage{pstricks-add}
+% \usepackage{array}
+% %\usepackage[T1]{fontenc}
+% \usepackage{animate}
+% %\usepackage{media9}
+% %\usepackage{movie15}
+% \usepackage{xparse}
+% \usepackage{listings}
+% \usepackage{ wasysym }
+% \usepackage{sagetex}
+% \usepackage{hyperref}
+% \usepackage{tabularx}
+% \usepackage{xcolor}
+% \usepackage{adjustbox}
+% 
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%Colores
+% 
+% \definecolor{myblue}{rgb}{.8, .8, 1}
+% \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+% \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+% \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+% \definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+% \definecolor{color_teor}{HTML}{FFFDA2}
+% \definecolor{color_ejer}{HTML}{F6BFBF}
+% \definecolor{color_cor}{HTML}{49E6D8}
+% \definecolor{color_lem}{HTML}{C6F6AB}
+% \definecolor{color_defi}{HTML}{EDA07C}
+% \newcommand{\dblue}{\color{dbluecolor}\bf}
+% \newcommand{\dred}{\color{dredcolor}\bf}
+% \newcommand{\dblack}{\color{dblackcolor}\bf}
+% 
+% %%%%%%%%%%%%%%%%%%%Teoremas, definiciones , etc
+% 
+% \newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
+% \newenvironment{colbox}[2]{%
+%     \begin{adjustbox}{minipage={\linewidth},margin=1ex,bgcolor=#1,env=center}
+%         #2}{%
+%     \end{adjustbox}%
+% }
+% 
+% \newcounter{defi_cont}
+% \newenvironment{definicion}[1]{\begin{colbox}{color_defi}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
+% 
+% \newcounter{teor_cont}
+% \newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
+% 
+% \newcounter{cor_cont}
+% \newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\refstepcounter{cor_cont}\textbf{Corolario \arabic{cor_cont}.} #1}}{\end{colbox}}
+% 
+% \newcounter{lem_cont}
+% \newenvironment{lema}[1]{\begin{colbox}{color_lem}{\refstepcounter{lem_cont}\textbf{Lema \arabic{lem_cont}.} #1}}{\end{colbox}}
+% 
+% \newcounter{ejem_cont}
+% \newenvironment{ejemplo}[1]{\refstepcounter{ejem_cont}\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{}
+% 
+% \newcounter{ejer_cont}
+% \newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\refstepcounter{ejer_cont}\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\end{colbox}}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
+% 
+% \newcommand{\com}{\mathbb{R}}
+% \newcommand{\dis}{\mathbb{D}}
+% \newcommand{\rr}{\mathbb{R}}
+% \newcommand{\oo}{\mathcal{O}}
+% \renewcommand{\emph}[1]{\textcolor[rgb]{0,0,1}{#1}}
+% \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+% \renewcommand{\v}[1]{\overrightarrow{#1}}
+% \renewcommand{\epsilon}{\varepsilon}
+% \DeclareMathOperator{\mcd}{mcd}
+% \DeclareMathOperator{\atan2}{atan2}
+% \DeclareMathOperator{\sen}{sen}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Formulas en cajas 
+% \newlength\mytemplen
+% \newsavebox\mytempbox
+% \makeatletter
+% \newcommand\mybluebox{%
+%     \@ifnextchar[%]
+%        {\@mybluebox}%
+%        {\@mybluebox[0pt]}}
+% 
+% \def\@mybluebox[#1]{%
+%     \@ifnextchar[%]
+%        {\@@mybluebox[#1]}%
+%        {\@@mybluebox[#1][0pt]}}
+% 
+% \def\@@mybluebox[#1][#2]#3{
+%     \sbox\mytempbox{#3}%
+%     \mytemplen\ht\mytempbox
+%     \advance\mytemplen #1\relax
+%     \ht\mytempbox\mytemplen
+%     \mytemplen\dp\mytempbox
+%     \advance\mytemplen #2\relax
+%     \dp\mytempbox\mytemplen
+%     \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+% 
+% \makeatother
+% \DeclareDocumentCommand\boxedeq{ m g }{%
+%     {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+%         \IfNoValueF {#2} {\label{#2}}%
+%        #1
+%        \end{empheq}
+%     }%
+% }
+% 
+% 
+% 
+% 
+% %%%%%%%%%%%Listing
+% \lstdefinelanguage{SymPy}[]{Python}
+% {morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand,atan2,sqrt,simplify,positive,cos,sin },sensitive=true}
+% \lstset{
+% frame=none,
+% showtabs=False,
+% showspaces=False,
+% showstringspaces=False,
+% commentstyle={\ttfamily\color{dgreencolor}},
+% keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+% stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+% language=SymPy,
+% basicstyle={\fontsize{8pt}{8pt}\ttfamily},
+% aboveskip=.3em,
+% belowskip=0.1em,
+% numbers=none,
+% numberstyle=\footnotesize
+% }
+% 
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\usepackage{pgfpages}
-%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
-\usepackage{empheq}
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{times}
-\usepackage[T1]{fontenc}
-\usepackage{amssymb,amsmath}
-\usepackage{enumerate}
-\usepackage{verbatim}
-\usepackage{ esint }
-\usepackage{pdfsync}
-%\usepackage{pst-all}
-%\usepackage{pstricks-add}
-\usepackage{array}
-%\usepackage[T1]{fontenc}
-\usepackage{animate}
-%\usepackage{media9}
-%\usepackage{movie15}
-\usepackage{xparse}
-\usepackage{listings}
-\usepackage{ wasysym }
-\usepackage{sagetex}
-\usepackage{hyperref}
-\usepackage{tabularx}
-\usepackage{xcolor}
-\usepackage{adjustbox}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-
-\definecolor{myblue}{rgb}{.8, .8, 1}
-\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\definecolor{color_teor}{HTML}{FFFDA2}
-\definecolor{color_ejer}{HTML}{F6BFBF}
-\definecolor{color_cor}{HTML}{49E6D8}
-\definecolor{color_lem}{HTML}{C6F6AB}
-\definecolor{color_defi}{HTML}{EDA07C}
-\newcommand{\dblue}{\color{dbluecolor}\bf}
-\newcommand{\dred}{\color{dredcolor}\bf}
-\newcommand{\dblack}{\color{dblackcolor}\bf}
-
-%%%%%%%%%%%%%%%%%%%Teoremas, definiciones , etc
-
-\newenvironment{demo}{\noindent\emph{Dem.}}{{\hspace*{\fill}$\square$} \newline\vspace{5pt}}
-\newenvironment{colbox}[2]{%
-    \begin{adjustbox}{minipage={\linewidth},margin=1ex,bgcolor=#1,env=center}
-        #2}{%
-    \end{adjustbox}%
-}
-
-\newcounter{defi_cont}
-\newenvironment{definicion}[1]{\begin{colbox}{color_defi}{\refstepcounter{defi_cont}\textbf{Definición \arabic{defi_cont}.} #1}}{\end{colbox}}
-
-\newcounter{teor_cont}
-\newenvironment{teorema}[1]{\refstepcounter{teor_cont}\begin{colbox}{color_teor}{\textbf{Teorema \arabic{teor_cont}.} #1}}{\end{colbox}}
-
-\newcounter{cor_cont}
-\newenvironment{corolario}[1]{\begin{colbox}{color_cor}{\refstepcounter{cor_cont}\textbf{Corolario \arabic{cor_cont}.} #1}}{\end{colbox}}
-
-\newcounter{lem_cont}
-\newenvironment{lema}[1]{\begin{colbox}{color_lem}{\refstepcounter{lem_cont}\textbf{Lema \arabic{lem_cont}.} #1}}{\end{colbox}}
-
-\newcounter{ejem_cont}
-\newenvironment{ejemplo}[1]{\refstepcounter{ejem_cont}\vspace{1ex}\noindent\textbf{Ejemplo \arabic{ejem_cont}.} #1}{}
-
-\newcounter{ejer_cont}
-\newenvironment{ejercicio}[1]{\begin{colbox}{color_ejer}{\refstepcounter{ejer_cont}\textbf{Ejercicio \arabic{ejer_cont}.} #1}}{\end{colbox}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Simbolos
-
-\newcommand{\com}{\mathbb{R}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-\renewcommand{\emph}[1]{\textcolor[rgb]{0,0,1}{#1}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-\DeclareMathOperator{\mcd}{mcd}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Formulas en cajas 
-\newlength\mytemplen
-\newsavebox\mytempbox
-\makeatletter
-\newcommand\mybluebox{%
-    \@ifnextchar[%]
-       {\@mybluebox}%
-       {\@mybluebox[0pt]}}
-
-\def\@mybluebox[#1]{%
-    \@ifnextchar[%]
-       {\@@mybluebox[#1]}%
-       {\@@mybluebox[#1][0pt]}}
-
-\def\@@mybluebox[#1][#2]#3{
-    \sbox\mytempbox{#3}%
-    \mytemplen\ht\mytempbox
-    \advance\mytemplen #1\relax
-    \ht\mytempbox\mytemplen
-    \mytemplen\dp\mytempbox
-    \advance\mytemplen #2\relax
-    \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-
-\makeatother
-\DeclareDocumentCommand\boxedeq{ m g }{%
-    {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-        \IfNoValueF {#2} {\label{#2}}%
-       #1
-       \end{empheq}
-    }%
-}
-
-
-
-
-%%%%%%%%%%%Listing
-\lstdefinelanguage{SymPy}[]{Python}
-{morekeywords={False,sage,True,symbols,sympy,diff,solve,subs,factorial,expand,atan2,sqrt,simplify,positive,cos,sin },sensitive=true}
-\lstset{
-frame=none,
-showtabs=False,
-showspaces=False,
-showstringspaces=False,
-commentstyle={\ttfamily\color{dgreencolor}},
-keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
-stringstyle={\ttfamily\color{dgraycolor}\bfseries},
-language=SymPy,
-basicstyle={\fontsize{8pt}{8pt}\ttfamily},
-aboveskip=.3em,
-belowskip=0.1em,
-numbers=none,
-numberstyle=\footnotesize
-}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-\begin{document}
-\section{Ecuación de la membrana, separación de variables}
+%\begin{document}
+\chapter[Separacion de Variables]{Ecuación de la membrana, separación de variables}
 
 El movimiento de una membrana elástica sujeta a un aro circular viene gobernada por la ecuación de \emph{ondas bidimensional}
 

@@ -1,178 +1,178 @@
-\documentclass{article}
-%\documentclass[hyperref={colorlinks=true}]{beamer}
-%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% \documentclass{article}
+% %\documentclass[hyperref={colorlinks=true}]{beamer}
+% %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{empheq}
+% \usepackage[spanish]{babel}
+% \usepackage[utf8x]{inputenc}
+% \usepackage{times}
+% %\usepackage[T1]{fontenc}
+% %\usepackage[latin1]{inputenc}
+% \usepackage{amssymb,amsmath,amsthm}
+% \usepackage{enumerate}
+% \usepackage{verbatim}
+% \usepackage{ esint }
+% %\usepackage{pst-all}
+% %\usepackage{pstricks-add}
+% \usepackage{array}
+% \usepackage{animate}
+% %\usepackage{media9}
+% \usepackage{xparse}
+% \usepackage{listings}
+% \usepackage{ wasysym }
+% %\usepackage{sagetex}
+% \usepackage{yfonts,mathrsfs,eufrak}
+% \usepackage{hyperref}
+% \usepackage{color}
+% \usepackage{url}
+% \usepackage{theorem}
+% \usepackage{boiboites}
+% \usepackage{wrapfig}
+% \usepackage{ esint }
+% \usepackage{varioref}
+% \definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+% \definecolor{mymauve}{rgb}{0.58,0,0.82}
+% 
+% \lstset{ %
+%   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+%   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+%   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%   breaklines=true,                 % sets automatic line breaking
+%   captionpos=b,                    % sets the caption-position to bottom
+%   commentstyle=\color{mygreen},    % comment style
+%   deletekeywords={...},            % if you want to delete keywords from the given language
+%   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+%   frame=single,	                   % adds a frame around the code
+%   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+%   keywordstyle=\color{blue},       % keyword style
+%   language=Python,                 % the language of the code
+%   otherkeywords={*,...},           % if you want to add more keywords to the set
+%   numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+%   numbersep=5pt,                   % how far the line-numbers are from the code
+%   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+%   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+%   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%   showstringspaces=false,          % underline spaces within strings only
+%   showtabs=false,                  % show tabs within strings adding particular underscores
+%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%   stringstyle=\color{mymauve},     % string literal style
+%   tabsize=2,	                   % sets default tabsize to 2 spaces
+%   title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+%   belowskip=-0.5cm
+% }
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
+% 
+% \newcommand{\com}{\mathbb{C}}
+% \newcommand{\dis}{\mathbb{D}}
+% \newcommand{\rr}{\mathbb{R}}
+% \newcommand{\oo}{\mathcal{O}}
+% %\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
+% \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+% \renewcommand{\v}[1]{\overrightarrow{#1}}
+% \renewcommand{\epsilon}{\varepsilon}
+% %\newcommand{\defverbatim}{\def{#1}}
+% \renewcommand{\b}[1]{\boldsymbol{#1}}
+% \renewenvironment{frame}[1]{}{}
+% %\newcommand{\end{proof}}{$\square$}
+% \DeclareMathOperator{\atan2}{atan2}
+% \DeclareMathOperator{\sen}{sen}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%Colores
+% \definecolor{myblue}{rgb}{.8, .8, 1}
+% \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+% \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+% \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+% \definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+% \newcommand{\dblue}{\color{dbluecolor}\bf}
+% \newcommand{\dred}{\color{dredcolor}\bf}
+% \newcommand{\dblack}{\color{dblackcolor}\bf}
+% 
+% 
+% %%%%%%%%%%Definimos una caja con color
+% \newlength\mytemplen
+% \newsavebox\mytempbox
+% \makeatletter
+% \newcommand\mybluebox{%
+% \@ifnextchar[%]
+% {\@mybluebox}%
+% {\@mybluebox[0pt]}}
+% \def\@mybluebox[#1]{%
+% \@ifnextchar[%]
+% {\@@mybluebox[#1]}%
+% {\@@mybluebox[#1][0pt]}}
+% \def\@@mybluebox[#1][#2]#3{
+% \sbox\mytempbox{#3}%
+% \mytemplen\ht\mytempbox
+% \advance\mytemplen #1\relax
+% \ht\mytempbox\mytemplen
+% \mytemplen\dp\mytempbox
+% \advance\mytemplen #2\relax
+% \dp\mytempbox\mytemplen
+% \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+% \makeatother
+% \DeclareDocumentCommand\boxedeq{ m g }{%
+% {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
+% \IfNoValueF {#2} {\label{#2}}%
+% #1
+% \end{empheq}
+% }%
+% }
+% 
+% 
+% %%%%%%%%%%%%%%%%%%
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
+% 
+% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+% titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
+% 
+% 
+% \newcounter{ejemplo_cont}
+% \setcounter{ejemplo_cont}{1}
+% 
+% \newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%Para escibir en clase articulo o similar
+% 
+% 
+% 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{empheq}
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{times}
-%\usepackage[T1]{fontenc}
-%\usepackage[latin1]{inputenc}
-\usepackage{amssymb,amsmath,amsthm}
-\usepackage{enumerate}
-\usepackage{verbatim}
-\usepackage{ esint }
-%\usepackage{pst-all}
-%\usepackage{pstricks-add}
-\usepackage{array}
-\usepackage{animate}
-%\usepackage{media9}
-\usepackage{xparse}
-\usepackage{listings}
-\usepackage{ wasysym }
-%\usepackage{sagetex}
-\usepackage{yfonts,mathrsfs,eufrak}
-\usepackage{hyperref}
-\usepackage{color}
-\usepackage{url}
-\usepackage{theorem}
-\usepackage{boiboites}
-\usepackage{wrapfig}
-\usepackage{ esint }
-\usepackage{varioref}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
 
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-  language=Python,                 % the language of the code
-  otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-  belowskip=-0.5cm
-}
+\chapter[Series de Potencias y de Frobenius]{Métodos de desarrollo en serie de potencias y en serie de Frobenius}
+%\date{}
 
+%\begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
-
-\newcommand{\com}{\mathbb{C}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-%\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-%\newcommand{\defverbatim}{\def{#1}}
-\renewcommand{\b}[1]{\boldsymbol{#1}}
-\renewenvironment{frame}[1]{}{}
-%\newcommand{\end{proof}}{$\square$}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-\definecolor{myblue}{rgb}{.8, .8, 1}
-\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\newcommand{\dblue}{\color{dbluecolor}\bf}
-\newcommand{\dred}{\color{dredcolor}\bf}
-\newcommand{\dblack}{\color{dblackcolor}\bf}
-
-
-%%%%%%%%%%Definimos una caja con color
-\newlength\mytemplen
-\newsavebox\mytempbox
-\makeatletter
-\newcommand\mybluebox{%
-\@ifnextchar[%]
-{\@mybluebox}%
-{\@mybluebox[0pt]}}
-\def\@mybluebox[#1]{%
-\@ifnextchar[%]
-{\@@mybluebox[#1]}%
-{\@@mybluebox[#1][0pt]}}
-\def\@@mybluebox[#1][#2]#3{
-\sbox\mytempbox{#3}%
-\mytemplen\ht\mytempbox
-\advance\mytemplen #1\relax
-\ht\mytempbox\mytemplen
-\mytemplen\dp\mytempbox
-\advance\mytemplen #2\relax
-\dp\mytempbox\mytemplen
-\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-\makeatother
-\DeclareDocumentCommand\boxedeq{ m g }{%
-{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-\IfNoValueF {#2} {\label{#2}}%
-#1
-\end{empheq}
-}%
-}
-
-
-%%%%%%%%%%%%%%%%%%
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
-
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
-
-
-\newcounter{ejemplo_cont}
-\setcounter{ejemplo_cont}{1}
-
-\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%Para escibir en clase articulo o similar
-
-
-
-
-
-
-\title{Métodos de desarrollo en serie de potencias y en serie de Frobenius}
-\date{}
-
-\begin{document}
-
-\tableofcontents
+%\tableofcontents
 
 
  \section{Series de potencias}
@@ -449,7 +449,7 @@ remplazar $y(x)$ por este desarrollo en  en la ecuación (1) y tratar de resolve
 La solución, es bien sabido, es $y(x)=e^x$,  pero pretendemos reencontrarla por el método expuesto. Escribimos
 \[\begin{split}
    y&=a_0+a_1x+a_2x^2+\cdots+a_nx^n+\cdots\\
-   y'&=a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots
+   y'&=a_1+2a_2x+3a_3x^2+\cdots+(n+1)a_{n+1}x^n+\cdots
   \end{split}
 \]
 La igualdad $y'=y$ implica que
@@ -543,14 +543,14 @@ La función $y(x)$ resuelve el pvi  $(1+x)y'(x)=py$, $y(0)=1$. apliquemos el mé
 Como
 \[\begin{split}
    y&=a_0+a_1x+a_2x^2+\cdots+a_nx^n+\cdots\\
-   y'&=a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots
+   y'&=a_1+2a_2x+3a_3x^2+\cdots+(n+1)a_{n+1}x^n+\cdots
   \end{split}
 \]
 Tenemos
 \[\begin{split}
    py=&pa_0+pa_1x+pa_2x^2+\cdots+pa_nx^n+\cdots\\
-  (1+x)y'=&a_1+2a_2x+3a_3x²+\cdots+(n+1)a_{n+1}x^n+\cdots\\
-          &+a_1x+2a_2x^2+3a_3x³+\cdots+na_{n}x^n+\cdots\\
+  (1+x)y'=&a_1+2a_2x+3a_3x^2+\cdots+(n+1)a_{n+1}x^n+\cdots\\
+          &+a_1x+2a_2x^2+3a_3x^3+\cdots+na_{n}x^n+\cdots\\
 -------&----------------------\\
 0=(1+x)y'-py =& (a_1-pa_0)+(a_1+2a_2-pa_1)x+\cdots +((n+1)a_{n+1}+na_n-pa_n)x^n+\cdots
   \end{split}
@@ -838,10 +838,10 @@ Multiplicando  \eqref{eq:bn_recu} por $r$ y usando \ref{eq:bn_recu_2}
 \[
 \begin{split}
 rb_{n+2}=&\frac{M}{(n+1)(n+2)r^{n-1}} \sum_{k=0}^{n-1}\left(b_k+ (k+1)b_{k+1}\right)r^k\\
-&+\frac{Mr\left(b_n+ (n+1)b_{n+1}\right)}{(n+1)(n+2)}+\frac{Mb_{n+1}r²}{(n+1)(n+2)}\\
+&+\frac{Mr\left(b_n+ (n+1)b_{n+1}\right)}{(n+1)(n+2)}+\frac{Mb_{n+1}r^2}{(n+1)(n+2)}\\
 =&\frac{n(n+1)b_{n+1}-Mb_nr}{(n+1)(n+2)}
 +\frac{Mr\left(b_n+ (n+1)b_{n+1}\right)}{(n+1)(n+2)}\\
-&+\frac{Mb_{n+1}r²}{(n+1)(n+2)}\\
+&+\frac{Mb_{n+1}r^2}{(n+1)(n+2)}\\
 =&\frac{(n(n+1)+Mr(n+1)+Mr^2)}{(n+1)(n+2)}b_{n+1},
 \end{split}
 \]
@@ -1467,7 +1467,10 @@ Empecemos suponiendo $p$ entero positivo. A partir de \eqref{eq:recu_-p} sabemos
 \boxedeq{n(2p-n) a_{n} = a_{n-2},\quad n\geq 2}{eq:rel_recu_-p}
 También recordemos de \eqref{eq:rel_recu_-p_a}  la ecuación
 \[-a_1(2p-1)=0,\]
-que  implica $a_1=0$, puesto que $p$ es entero y por ende $p\neq\frac12$. Como consecuencia de la relación de recurrencia  \eqref{eq:rel_recu_-p} tenemos $a_n=0$ para todo $n$ impar. Para afirmar esto último tomamos en cuenta que al ser $p$ entero  $2p-n\neq 0$ cuando $n$ es impar.   Cuando  $n$ es par y más en concreto $n=2p$ la relación de recurrencia \eqref{eq:rel_recu_-p} toma la forma $a_{n-2}=0$. Ahora si $a_{n-2}=0$ entonces \eqref{eq:rel_recu_-p} implica que $a_{n-4}=a_{n-6}=\cdots a_0=0$. Eligiendo $a_n$ arbitrariamente y al resto de los $a_k$ con $k$ par mayor a $n$ de modo que se satisfaga la relación de recurrencia se llega a una solución en serie de Frobenius. Lamentablemente esta segunda solución es esencialmente la misma  que $J_p$. Esto ya lo hemos discutido en sección \vref{pag:apar_sol}.  De modo que cuando $p$ es entero positivo no tenemos una segunda solución en serie de Frobenius.
+que  implica $a_1=0$, puesto que $p$ es entero y por ende $p\neq\frac12$. Como consecuencia de la relación de recurrencia  \eqref{eq:rel_recu_-p} tenemos $a_n=0$ para todo $n$ impar. Para afirmar esto último tomamos en cuenta que al ser $p$ entero  $2p-n\neq 0$ cuando $n$ es impar.   Cuando  $n$ es par y más en concreto $n=2p$ la relación de recurrencia \eqref{eq:rel_recu_-p} toma la forma $a_{n-2}=0$. Ahora si $a_{n-2}=0$ entonces \eqref{eq:rel_recu_-p} implica que $a_{n-4}=a_{n-6}=\cdots a_0=0$. Eligiendo $a_n$ arbitrariamente y al resto de los $a_k$ con $k$ par mayor a $n$ de modo que se satisfaga la relación de recurrencia se llega a una solución en serie de Frobenius. 
+Lamentablemente esta segunda solución es esencialmente la misma  que $J_p$. Esto ya lo hemos 
+discutido en sección \vref{pag:apar_sol}.  De modo que cuando $p$ 
+es entero positivo no tenemos una segunda solución en serie de Frobenius.
 
 Más adelante volveremos al caso $p$ entero. Ahora consideremos $p=\frac{2k+1}{2}$ con $k$ entero $k\geq 0$.  Reemplazando $p$ en \eqref{eq:rel_recu_-p}  por este valor y reemplazando $n$ por $2k+1$, concluímos $a_{2k-1}=0$. Ahora iterando la relación de recurrencia $a_{2k-3}=\cdots=a_1=0$. La situación es parecida al caso anterior, podemos elegir $a_{2k+1}$ libremente, vamos a elegirlo igual a $0$. Esto anula todos los coeficientes $a_n$ con $n$ impar. Pero la diferencia con el caso anterior es que podemos elegir libremente $a_0$. Llegamos así a la misma solución de la Definición \ref{def:bessel_segunda}. En síntesis \emph{para todo $p$ que no es un entero no negativo, tenemos el par de soluciones linealmente independientes $J_p$ y $J_{-p}$ tales que
 \boxedeq{y=c_1J_p+c_2J_{-p}}{eq:sol_gen_bessel_1}
@@ -1495,4 +1498,4 @@ Esta función es solución de la ecuación de Bessel de orden $n$ y se denomina,
 
 
 
-\end{document}
+%\end{document}
