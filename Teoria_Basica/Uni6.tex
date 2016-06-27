@@ -1074,54 +1074,48 @@ y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
 
 En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SymPy.
 
-
-
-
-
-
 \begin{lstlisting}
-""" Para evitar el problema que 1/2 queda cero se puede usar
-from __future__ import division
-El problema que todos los nros quedan flotantes
-"""
 orden=8
-Lista=['a%s'%i for i in range(orden)]
-a=symbols(Lista)
-x,m,p=symbols('x,m,p')
+a,x,m,p=symbols(['a0:%s' %orden, 'x','m','p'] )
 y=x**m*sum([a[i]*x**i for i in range(orden)])
-Ecua=y.diff(x,2)+1/x*y.diff(x,1)+(1-p**2/x**2)*y
-Ecua=Ecua/x**(m-2)
-Ecua=Ecua.expand()
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
-Sol_Ecua_Ind=solve(Ecuaciones[0],m)
-Sol_Ecua_Ind
-[-p, p]
+EDif=y.diff(x,2)+1/x*y.diff(x,1)+(1-p**2/x**2)*y
+EDif=(EDif/x**(m-2)).simplify()
+ECoef=[EDif.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+SolEInd=solve(ECoef[0],m)
 \end{lstlisting}
+
 Las raíces de la ecuación indicial son
 \boxedeq{m=p\quad\text{y}\quad m=-p}{eq:sol_ec_ind}
 Vamos a trabajar con la raíz $m=p$.
 
 \begin{lstlisting}
-Ecuaciones1=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in Ecuaciones]
-for ec in Ecuaciones1:
+ECoefA=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in ECoef]
+for ec in ECoefA:
 ...     pprint(ec)
-...
-0
-a1*(2*p + 1)
-a0 + 4*a2*p + 4*a2
-a1 + 6*a3*p + 9*a3
-a2 + 8*a4*p + 16*a4
-a3 + 10*a5*p + 25*a5
-a4 + 12*a6*p + 36*a6
-a5 + 14*a7*p + 49*a7
+
 \end{lstlisting}
+
+\[
+\begin{split}
+ 0 & = 0\\
+0&=2 a_{1} p + a_{1}\\
+0&=a_{0} + 4 a_{2} p + 4 a_{2}\\
+0&=a_{1} + 6 a_{3} p + 9 a_{3}\\
+0&=a_{2} + 8 a_{4} p + 16 a_{4}\\
+0&=a_{3} + 10 a_{5} p + 25 a_{5}\\
+0&=a_{4} + 12 a_{6} p + 36 a_{6}\\
+0&=a_{5} + 14 a_{7} p + 49 a_{7}\\
+\end{split}
+\]
+
+
+
 Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$, i.e. que son relaciones de dos términos.  Podemos hacer explícita la relación
 
 \begin{lstlisting}
 for i in range(1,orden):
-...     iter=solve(Ecuaciones1[i],a[i])[0].factor()
-...     print repr(a[i])+'='+repr(iter)
-...
+    iter=solve(ECoefA[i],a[i])[0].factor()
+    print str(a[i])+'='+str(iter)
 a1=0
 a2=-a0/(4*(p + 1))
 a3=-a1/(3*(2*p + 3))
@@ -1135,9 +1129,9 @@ a7=-a5/(7*(2*p + 7))
 
 
 \begin{lstlisting}
-sol=solve(Ecuaciones1,a[1,:])
+sol=solve(ECoefA,a[1:])
 for i in sol:
-...     print repr(i)+'='+repr(sol[i].factor())
+...     print str(i)+'='+str(sol[i].factor())
 ...
 a1=0
 a5=0
@@ -1162,10 +1156,14 @@ Obtenemos la solución
 \boxedeq{y(x)=x^p\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{eq:sol_bessel_1}
 Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
 \begin{lstlisting}
-y1=y.subs(sol)
-pprint(y1)
+y.subs(sol)
 \end{lstlisting}
-y el output confirma \eqref{eq:sol_bessel_1}.
+
+\[
+x^{m} \left(- \frac{a_{0} x^{6}}{384 \left(p + 1\right) \left(p + 2\right) \left(p + 3\right)} + \frac{a_{0} x^{4}}{32 \left(p + 1\right) \left(p + 2\right)
+} - \frac{a_{0} x^{2}}{4 p + 4} + a_{0}\right),
+\]
+el output confirma \eqref{eq:sol_bessel_1}.
 
 \subsubsection{Función Gamma y la función de Bessel de primera especie}
 
@@ -1196,16 +1194,12 @@ Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula 
 
 
 
-Lamentablemente, SymPy (al menos la versión 7.4.1) produce un error si intentamos graficar la función $\Gamma$. Aparentemente la presencia de polos es el problema. Sage parece no tener este problema.
-
-
-%\begin{sagecommandline}
- %sage: graf=plot(gamma(x),(x,-10,10),ymin=-10,ymax=10)
-%\end{sagecommandline}
 
 \begin{figure}[h]
-%\sageplot[scale=.5]{graf}
+\begin{center}
+\includegraphics[scale=.4]{imagenes/gamma.png}
 \caption{La función gamma $\Gamma$}
+\end{center}
 \end{figure}
 Ahora estamos en condiciones de definir la función de Bessel de primera espacie que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
 
@@ -1241,11 +1235,11 @@ p1.show()
 
 Ahora consideremos la solución $m=-p$ de la ecuación indicial.
 \begin{lstlisting}
-Ecuaciones2=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in Ecuaciones]
+ECoefB=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in ECoef]
 for i in range(1,orden):
-...     iter=solve(Ecuaciones2[i],a[i])[0].factor()
-...     print repr(a[i])+'='+repr(iter)
-...
+    iter=solve(ECoefB[i],a[i])[0].factor()
+    print str(a[i])+'='+str(iter)
+
 a1=0
 a2=a0/(4*(p - 1))
 a3=a1/(3*(2*p - 3))
@@ -1342,14 +1336,14 @@ La primera de estas ecuaciones es
 
 Si $m$ resuelve la ecuación indicial entonces $m$ resuelve la ecuación \eqref{eq:recu_gral_frob_2} para $n=0$ y el valor de $a_0$ se puede elegir arbitrariamente.
 
-Supongamos que la ecuación indicial tiene las soluciones $m_2\leq m_1$. Podría ocurrir que las soluciones fueran complejos conjugados, pero no trataremos este caso aquí. Ahora discutamosVeamos  cuando es posible resolver las relaciones de recurrencia \eqref{eq:recu_gral_frob_2}. El único problema que podría ocurrir es que  $f(m+n)=0$ para algún valor de $n=1,2,\ldots$, dado que en ese caso \eqref{eq:recu_gral_frob_2} se reduce a
+Supongamos que la ecuación indicial tiene las soluciones $m_2\leq m_1$. Podría ocurrir que las soluciones fueran complejos conjugados, pero no trataremos este caso aquí. Ahora discutamos cuando es posible resolver las relaciones de recurrencia \eqref{eq:recu_gral_frob_2}. El único problema que podría ocurrir es que  $f(m+n)=0$ para algún valor de $n=1,2,\ldots$, dado que en ese caso \eqref{eq:recu_gral_frob_2} se reduce a
 \begin{equation}\label{eq:ec_enter} 0=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
 q_{n-k}\right].
 \end{equation}
 Esta ecuación no nos dice nada sobre $a_n$ y no podemos esperar que se satisfaga. Sin embargo, cuando $m=m_1$ esta desafortunada situación no se da, de lo contrario  $m_1+n$ sería una raíz de la ecuación indicial distinta que $m_2$ y $m_1$. En consecuencia, \emph{si $m=m_1$ y $a_0\neq 0$ es elegido arbitrariamente las ecuaciones \eqref{eq:recu_gral_frob_2} determinan los coeficientes $a_n$, $n=1,2,\ldots$.}
 
 Cuando $m=m_2$ si puede ocurrir que $f(m_2+n)=0$, esto es así cuando $m_2+n=m_1$ para algún $n=1,2,\ldots$, vale decir cuando $m_1-m_2\in\mathbb{Z}$.  Luego estamos en condiciones de afirmar que \emph{si $m=m_2$, $m_1-m_2\notin \mathbb{Z}$ y $a_0\neq 0$ es elegido arbitrariamente las ecuaciones \eqref{eq:recu_gral_frob_2} determinan los coeficientes $a_n$, $n=1,2,\ldots$.} En esta situación, se demuestra con facilidad que las dos soluciones obtenidas por el método de Frobenius son linealmente independientes. Por ejemplo, si estas soluciones son
-\[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad\text{y}\quad y_2=x^{m_2}\sum_{n=0}^{\infty}n_nx^n,\]
+\[y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n\quad\text{y}\quad y_2=x^{m_2}\sum_{n=0}^{\infty}b_nx^n,\]
 con $a_0\neq 0\neq b_0$ y si suponemos que ellas son linealmente dependientes entonces su cociente $y_1/y_2$ sería una constante $c$  no nula. Pero tomando límite en la expresión $y_1/y_2$ cuando $x\to 0$ vemos que
 \[c=\lim_{x\to 0} \frac{y_1}{y_2}=\lim_{x\to 0} x^{m_1-m_2}\frac{\sum_{n=0}^{\infty}a_nx^n}{ \sum_{n=0}^{\infty}b_nx^n  }=0.\frac{a_0}{b_0}=0.\]
 
