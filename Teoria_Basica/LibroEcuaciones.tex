@@ -1,17 +1,11 @@
-\documentclass{book}
-%\documentclass[hyperref={colorlinks=true}]{beamer}
-%\documentclass[handout,hyperref={colorlinks=true}]{beamer}
-
+\documentclass[oneside]{book}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{empheq}
 \usepackage[spanish]{babel}
-%\usepackage[utf8x]{inputenc}
-\usepackage[utf8]{inputenc}
-\usepackage{times}
-%\usepackage[T1]{fontenc}
-%\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amssymb,amsmath,amsthm}
 \usepackage{enumerate}
 \usepackage{verbatim}
@@ -19,13 +13,10 @@
 %\usepackage{pst-all}
 %\usepackage{pstricks-add}
 \usepackage{array}
-%\usepackage[T1]{fontenc}
 \usepackage{animate}
-%\usepackage{media9}
 \usepackage{xparse}
 \usepackage{listings}
 \usepackage{ wasysym }
-%\usepackage{sagetex}
 \usepackage{yfonts,mathrsfs,eufrak}
 \usepackage{hyperref}
 \usepackage{color}
@@ -35,13 +26,35 @@
 \usepackage{wrapfig}
 \usepackage{ esint }
 \usepackage[spanish]{varioref}
-% \usepackage{xcolor}
-% \usepackage{adjustbox}
+\usepackage{fontspec}
+\usepackage[a4paper,driver=xetex,top=2.5cm, bottom=2.7cm,%
+layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
+\usepackage{pst-barcode}
+\usepackage{fancyhdr}
+\usepackage{marginnote}
+ 
+%%%%%%%%%%%%%%  Configuración página
+
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
 
 
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%Colores
+\definecolor{color1}{rgb}{0.24,0.45,0.42}
+\definecolor{color2}{rgb}{0.44,0.62,0.42}
+\definecolor{color3}{rgb}{0.28, 0.51, .68}
+\definecolor{color4}{rgb}{0.29,0.3,0.57}
+\definecolor{color5}{rgb}{0.7,0.24,0.24}
+\definecolor{color6}{rgb}{0.72,0.4,0.28}
+\definecolor{color7}{rgb}{0.84,0.66,0.21}
+\definecolor{color8}{rgb}{0.3,0.29,0.28}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Configuracion listing
 
 \lstset{ %
   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
@@ -49,7 +62,7 @@
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
   captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
+  commentstyle=\color{color2},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
@@ -57,19 +70,25 @@
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
   language=Python,                 % the language of the code
-  otherkeywords={*,...},           % if you want to add more keywords to the set
+  otherkeywords={symbols,dsolve,solve,Eq, simplify, subs, plot,Function},           % if you want to add more keywords to the set
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  numberstyle=\tiny\color{color3}, % the style that is used for the line-numbers
   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
   showstringspaces=false,          % underline spaces within strings only
   showtabs=false,                  % show tabs within strings adding particular underscores
   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mymauve},     % string literal style
+  stringstyle=\color{color4},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
+
+
+%%%%%%%%%%%%%Configuración de fuente para XeLaTeX
+
+\setsansfont{Roboto Condensed}
+\renewcommand{\familydefault}{\sfdefault}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,27 +99,15 @@
 \newcommand{\dis}{\mathbb{D}}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\oo}{\mathcal{O}}
-%\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
 \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
 \renewcommand{\v}[1]{\overrightarrow{#1}}
 \renewcommand{\epsilon}{\varepsilon}
-%\newcommand{\defverbatim}{\def{#1}}
 \renewcommand{\b}[1]{\boldsymbol{#1}}
 \renewenvironment{frame}[1]{}{}
-%\newcommand{\end{proof}}{$\square$}
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-\definecolor{myblue}{rgb}{.8, .8, 1}
-\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-\newcommand{\dblue}{\color{dbluecolor}\bf}
-\newcommand{\dred}{\color{dredcolor}\bf}
-\newcommand{\dblack}{\color{dblackcolor}\bf}
 
 
 %%%%%%%%%%Definimos una caja con color
@@ -123,7 +130,7 @@
 \mytemplen\dp\mytempbox
 \advance\mytemplen #2\relax
 \dp\mytempbox\mytemplen
-\colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+\colorbox{color1}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 \makeatother
 \DeclareDocumentCommand\boxedeq{ m g }{%
 {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
@@ -135,28 +142,28 @@
 
 
 %%%%%%%%%%%%%%%%%%
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 
-\newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
 titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 
@@ -176,23 +183,29 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 
 \title{Ecuaciones Diferenciales}
-%\subtitle{Una Introducción para Alumnos de Ciencias Exactas con Python}
+%\subtitle{Una Aproximación Teórica y Computacinal }
 \author{Fernando Mazzone}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
+\fontsize{9pt}{10pt}\selectfont
 
+\pagestyle{fancy}
+ 
+ 
  \maketitle
  \tableofcontents
 %   
+\include{prologo}
 \include{Uni0}
-\include{Uni1}
-\include{Uni2}
-\include{Uni3}
-\include{Uni4}
-\include{Uni5}
-\include{Uni6}
-\include{Uni7}
+%\include{Uni1}
+%\include{Uni2}
+%\include{Uni3}
+%\include{Uni4}
+%\include{Uni5}
+%\include{Uni6}
+%\include{Uni7}
+
 \end{document}
