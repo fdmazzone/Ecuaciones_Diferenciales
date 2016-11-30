@@ -5,7 +5,7 @@
 \usepackage{empheq}
 \usepackage[spanish]{babel}
 %\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \usepackage{amssymb,amsmath,amsthm}
 \usepackage{enumerate}
 \usepackage{verbatim}
@@ -24,7 +24,6 @@
 \usepackage{theorem}
 \usepackage{boiboites}
 \usepackage{wrapfig}
-\usepackage{ esint }
 \usepackage[spanish]{varioref}
 \usepackage{fontspec}
 \usepackage[a4paper,driver=xetex,top=2.5cm, bottom=2.7cm,%
@@ -32,7 +31,7 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \usepackage{pst-barcode}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
- 
+ \usepackage{titlesec}
 %%%%%%%%%%%%%%  Configuración página
 
 \fancyfoot{}
@@ -41,7 +40,8 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \fancyhead[RE]{\rightmark}
 
 
-
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
 
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 \definecolor{color1}{rgb}{0.24,0.45,0.42}
@@ -90,6 +90,8 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \setsansfont{Roboto Condensed}
 \renewcommand{\familydefault}{\sfdefault}
 
+%\renewcommand{\section}[1]{\section{#1}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,9 +106,10 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\b}[1]{\boldsymbol{#1}}
 \renewenvironment{frame}[1]{}{}
+
+%\renewcommand{\lim}{displaystyle\lim}
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
-
 
 
 
@@ -190,6 +193,10 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 
 \begin{document}
+
+\renewcommand{\lim}{\mathop{\rm lím}}
+
+
 \fontsize{9pt}{10pt}\selectfont
 
 \pagestyle{fancy}
@@ -200,12 +207,12 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 %   
 \include{prologo}
 \include{Uni0}
-%\include{Uni1}
-%\include{Uni2}
-%\include{Uni3}
-%\include{Uni4}
-%\include{Uni5}
-%\include{Uni6}
-%\include{Uni7}
+\include{Uni1}
+\include{Uni2}
+\include{Uni3}
+\include{Uni4}
+\include{Uni5}
+\include{Uni6}
+\include{Uni7}
 
 \end{document}
