@@ -84,6 +84,7 @@
 *.sagetex.sout
 *.sage~
 *doctest.sage
+*.docx#
 
 #emacs
 *.sage#
