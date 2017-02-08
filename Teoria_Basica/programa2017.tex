@@ -17,7 +17,7 @@
 %\usepackage{animate,movie15}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{tabularx}
+%\usepackage{tabularx}
 \usepackage{url}
 \usepackage{fontspec}
 \setsansfont{Roboto Condensed}
@@ -152,8 +152,8 @@ Topología (1917)\\ \hline
  \item\textbf{  NÓMINA DE TRABAJOS PRÁCTICOS}
 		Hay un trabajo práctico por cada unidad de la materia.
 
-\item\textbf{   HORARIOS DE CLASES:}
-	XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\item\textbf{   HORARIOS DE CLASES:} martes y jueves de 14 a 18.
+
 
  \textbf{  Horario de clases de consultas:}
 	Se convendrá con los alumnos, durante el desarrollo de la materia,
@@ -179,9 +179,9 @@ El asterísco al lado de las referencias citadas más abajo indica la bibliograf
 \begin{description}
  \item[Unidad 0. Python, SymPy, SAGE.] Panorama de instalación, distribuciones y recursos online. Tipos de datos en Python, programación elemental.
 
-\item[Unidad 1. Ecuaciones de Primer Orden.]  Noción de ecuación diferencial y clasificación. Ecuaciones diferenciales ordinarias (EDO).   Problemas de valores iniciales. Familia de curvas y la famila ortogonal. Método de separación de variables. Aplicaciones: dinámica de mezclas, cuerpos en caída a lo largo de guías, curvas braquistócrona y tautócrona. Ecuaciones homogéneas. Ecuaciones exactas. Factores integrantes. Ecuaciones lineales de primer orden. Métodos de reducción de orden. Curvas de persecución. Velocidad de escape. Problema del resorte. Cambios de variables. Usando SymPy para cambiar variables.  Grupos de Lie uniparamétricos. Grupos de simetrías. Generadores infinitesimales. Variables canónicas. Solución de EDO por medio de sus grupos de Lie de simetrías.
+\item[Unidad 1. Ecuaciones de Primer Orden.]  Noción de ecuación diferencial y clasificación. Ecuaciones diferenciales ordinarias (EDO).   Problemas de valores iniciales. Familia de curvas y la famila ortogonal. Método de separación de variables. Aplicaciones: dinámica de mezclas, cuerpos en caída a lo largo de guías, curvas braquistócrona y tautócrona. Ecuaciones homogéneas. Ecuaciones exactas. Factores integrantes. Ecuaciones lineales de primer orden. Métodos de reducción de orden. Curvas de persecución. Velocidad de escape. Problema del resorte. Cambios de variables. Usando SymPy para cambiar variables.  Grupos de Lie uniparamétricos. Grupos de simetrías. Generadores infinitesimales. Variables canónicas. Solución de EDO por medio de sus grupos de Lie de simetrías. \cite{simmons_esp, WilliamE.Boyce496,PeterE.Hydon455,S.V.DuzhinB.D.Chebotarevsky465}
 
-\item[Unidad 2. Teorema de Existencia y Unicidad.] Presentación filosófica: determinismo científico. Funciones Lipschitzianas. Teorema de punto fijo de Banach. Método iterativo de Picard. Teorema de existencia y unicidad para sistemas de EDO de primer orden.
+\item[Unidad 2. Teorema de Existencia y Unicidad.] Presentación filosófica: determinismo científico. Funciones Lipschitzianas. Teorema de punto fijo de Banach. Método iterativo de Picard. Teorema de existencia y unicidad para sistemas de EDO de primer orden.\cite{simmons_esp, WilliamE.Boyce496, VladimirI.Arnold544, JorgeSotomayor513}
 
 \item[Unidad 3. Ecuaciones Lineales de Segundo Orden.] Ecuaciones lineales. Reducción de orden. Ecuaciones homogéneas a coeficientes constantes. El problema no homogéneo. Independencia lineal. Bases de soluciones. Polinomio característico. Ecuaciones no homogéneas. Coeficientes indeterminados y variación de los parámetros. Vibraciones mecánicas. Solución del problema Kepleriano de los dos cuerpos. Osciladores armónicos acoplados.
 
@@ -189,28 +189,32 @@ El asterísco al lado de las referencias citadas más abajo indica la bibliograf
 
 \item[Unidad 5. Desarrollo en serie de potencias.] Repaso de series de potencias. Método de coeficientes indeterminados.  Resolución de problemas de desarrollo en serie con  SymPy.   Ecuaciones lineales de segundo orden: puntos regulares. Puntos singulares regulares. Series de Frobenius. Teoremas fundamentales.
 
-\item[Unidad 6. Sistemas. Sistemas lineales.]  Base de soluciones. Matriz fundamental. Sistemas lineales a coeficientes constantes. Solución del problema homogéneo con formas de Jordan. Problema no homogéneo. Sistemas no-lineales.
+\item[Unidad 6.  Sistemas lineales.]  Base de soluciones. Matriz fundamental. Sistemas lineales a coeficientes constantes. Solución del problema homogéneo con formas de Jordan. Problema no homogéneo. Sistemas no-lineales.
 
 \end{description}
 
 \item\textbf{CRONOGRAMA DE CLASES Y PARCIALES:}
 \begin{table}[h]
-\begin{tabular}{|m{1.3cm}|m{5cm}|m{5cm}|m{4cm}|}\hline
-Semana  & Teóricos & Prácticos & Parciales/ Recuperatorios\\\hline \hline
-1   & Consideraciones generales-Ecuaciones en diferencias   &  Ecuaciones en diferencias &   \\ \hline
-  2 &  Ecuaciones en diferencias escalares & Ecuaciones en diferencias  escalares &   \\ \hline
-  3 &  Ecuaciones en diferencias escalares   &   Ecuaciones en diferencias escalares &   \\ \hline
-  4 & Sistemas de Ecuaciones  &  Sistemas de Ecuaciones  &   \\ \hline
-  5 &   Sistemas de Ecuaciones  &  Sistemas de Ecuaciones   &   \\ \hline
-  6 &  Sistemas de Ecuaciones   &  Sistemas de Ecuaciones  &   \\ \hline
-  7 & Aplicaciones  &Aplicaciones   &   \\ \hline
-  8 & Aplicaciones   & Aplicaciones  &   \\ \hline
-  9 & Ecuaciones no lineales  & Ecuaciones no lineales  &   \\ \hline
-  10 & Ecuaciones no lineales   & Ecuaciones no lineales  &   \\ \hline
-  11 &  Aplicaciones  & Aplicaciones  & Viernes 28/10-Primer Parcial  \\ \hline
-  12  & Procesos de ramificaci\'on y de nacimiento  & Procesos de ramificaci\'on &  Viernes 4/11-Recuperatorio Primer Parcial \\ \hline
-   13 & Procesos de ramificaci\'on y de nacimiento   &   Aplicaciones  &  Lunes 14/11 Segundo Parcial  \\ \hline
-   14 & Procesos de ramificaci\'on y de nacimiento   & Aplicaciones &   Viernes 18/11 Recuperatorio\\ \hline
+\begin{tabular}{|m{0.6cm} |m{5cm}|m{5cm}|m{4.8cm}|}\hline
+Sem.  & Teóricos & Prácticos & Parciales/ Recuperatorios\\\hline \hline
+1   & Python-Sympy\newline Ecuaciones Primer Orden  &  Python-Sympy &   \\ \hline
+  2 &  Ecuaciones Primer Orden  & Ecuaciones Primer Orden  &   \\ \hline
+  3 &  Ecuaciones Primer Orden    &  Ecuaciones Primer Orden &   \\ \hline
+   4 &  Ecuaciones Primer Orden    &  Ecuaciones Primer Orden &   \\ \hline
+  5 & Teorema de Existencia Unicidad  &  Teorema de Existencia Unicidad   &   \\ \hline
+  6 &   Ecuaciones Lineales   &  Ecuaciones Lineales   &   \\ \hline
+  7 &  Ecuaciones Lineales   &  Ecuaciones Lineales &   \\ \hline
+
+  8& Ecuaciones Lineales   &  Ecuaciones Lineales &  Viernes 12/5-Primer Parcial  \\ \hline
+
+  9 & Métodos cualitativos & Métodos cualitativos   &   \\ \hline
+  10 & Serie de Potencias  & Serie de Potencias  &   \\ \hline
+  11 & Serie de Potencias   & Serie de Potencias  &   \\ \hline
+  12 & Sistemas lineales  & Sistemas lineales  &   \\ \hline
+  13 & Sistemas lineales & Sistemas lineales  &  Viernes 16/6-Segundo Parcial \\ \hline
+  14  & Consulta & Consulta &  Lunes 19 Recuperatorio Primer Parcial\newline
+  Miercoles 21 Recuperatorio Segundo Parcial \\ \hline
+
 \end{tabular}
 \end{table}
 
@@ -231,18 +235,9 @@ Semana  & Teóricos & Prácticos & Parciales/ Recuperatorios\\\hline \hline
 
 
 
-
-
-
-
-
-
-
-
-
 %
 %
-%  \bibliographystyle{apalike-url}
-%  \bibliography{ModelosMatematicos,diferencia_ecuaciones}
+  \bibliographystyle{apalike-url}
+  \bibliography{diferenciales_ecuaciones,diferenciales_ecuaciones_sim}
 
 \end{document}
