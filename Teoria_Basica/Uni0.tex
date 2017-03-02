@@ -2,8 +2,6 @@
 \chapter{Breve introducci\'on a Python y SymPy}
 
 
-  Se trata de una masa puntual $m$ suspendida de un punto por medio de una barra de longitud $l$
- a la que suponemos sin masa. Equivale al movimiento sobre una guía circular.  Usaremos el ángulo $\alpha$ marcado en la figura, como variable dependiente.
 
 
 \section{Descripción}
@@ -30,7 +28,7 @@ numpy (cálculos numéricos), matplotlib (gráficos) entre otros.
 En este curso sólo usaremos SymPy.
 \marginpar{
 %\begin{tabular}{b{.7in} b{.7in}}
- \includegraphics[scale=.75]{imagenes/scipy_logo.png}
+ \includegraphics[scale=.5]{imagenes/scipy_logo.png}
 %&\begin{pspicture}(.7in,.7in)
 %       \psbarcode{http://www.scipy.org/}{}{qrcode}
 %   \end{pspicture}\\
@@ -47,7 +45,7 @@ posible para que sea comprensible y fácilmente extensible. SymPy está escrito 
 en Python y no requiere de ninguna biblioteca externa.
 \marginpar{
  % \begin{tabular}{b{.7in} b{.7in}}
-    \includegraphics[scale=.25]{imagenes/sympy_logo.png}
+    \includegraphics[scale=.2]{imagenes/sympy_logo.png}
 % 	&
 % 	  \begin{pspicture}(.7in,.7in)
 % 	    \psbarcode{http://www.sympy.org/}{}{qrcode}
@@ -59,6 +57,17 @@ en Python y no requiere de ninguna biblioteca externa.
 }
 % 
 % 
+
+
+
+\href{http://matplotlib.org/}{Matplotlib} es una biblioteca de trazado de Python 2D que produce cifras de calidad de publicación en una variedad de formatos impresos y entornos interactivos a través de plataformas. Matplotlib se puede utilizar en scripts Python, el shell Python e IPython, el portátil jupyter, servidores de aplicaciones web y cuatro kits de herramientas de interfaz gráfica de usuario.
+\marginpar{
+  \includegraphics[scale=.1]{imagenes/matplotlib.jpg}
+}
+
+
+
+
 
 
 % 
@@ -80,7 +89,7 @@ en Python y no requiere de ninguna biblioteca externa.
 Son muchas las componentes requeridas para poder ejecutar los programas con los que trabajaremos 
 en esta asignatura. Hay que instalar un interprete de python, los módulos que utilizaremos 
 (sympy, matplotlib), es útil utilizar entornos integrados de desarrollo (IDE), que facilitan al usuario
-editores de código fuente (especializados con la sintáxis de python), consolas de comandos 
+editores de código fuente (especializados con la sintáxis de python), consolas de comandos
 mejoradas (ipython, qt, etc). Otro recurso que se dispone son las notebooks, de las cuales 
 hablaremos más adelante. Sería engorroso instalar todas estas componentes, que muchas veces 
 tienen orígenes en desarrolladores diferentes, de manera independiente. Para nuestra fortuna
@@ -156,7 +165,7 @@ Se puede trabajar de dos formas
 \begin{enumerate}
 \item Interactivamente, ingresando sentencias, de a una por vez, en la línea de comandos y obteniendo respuestas.
 
-\item Haciendo un script (programa) donde se guardan todas las sentencias que se desea ejecutar. Posteriormente este script se puede ejecutar, ya sea desde la línea de comandos o en desde un IDE (spyder) oprimiendo un botón de ejecución.
+\item Haciendo un script (programa) donde se guardan todas las sentencias que se desea ejecutar. Posteriormente este script se puede ejecutar, ya sea desde la línea de comandos o desde un IDE (spyder) oprimiendo un botón de ejecución.
 
 \end{enumerate}
 
@@ -168,7 +177,7 @@ Se puede trabajar de dos formas
 
 Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. 
 Las principales características del lenguaje son:
-
+\reversemarginpar\marginpar{\Huge\faBook}
 \begin{itemize}
 \item Interpretado. Es necesario un conjunto de programas, 
 el interprete, que entienda el código python y ejecute las acciones contenidas en él.
@@ -207,6 +216,12 @@ Comentario  largo en un script de Python
 '''
 print "Hola mundo" # Comentario corto
 \end{lstlisting}
+\marginpar{
+\begin{pspicture}(.1in,.1in)
+       \psbarcode[file]{scripts/hello.py}{raw}{qrcode}
+\end{pspicture}
+}
+
 
 El intérprete no tiene en cuenta los comentarios, lo cual es útil si deseamos poner información adicional en nuestro código como, por ejemplo, una explicación sobre el comportamiento de una sección del programa.
 
