@@ -166,11 +166,13 @@ Se puede trabajar de dos formas
 
 \section{Características del Lenguaje}
 
-Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. Las principales características del lenguaje son:
+Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. 
+Las principales características del lenguaje son:
 
 \begin{itemize}
-\item Interpretado. Es necesario un conjutno de programas, el interprete, que entienda el código python y ejecute las acciones contenidas en él.
-\item implementa  tipos dinámicos
+\item Interpretado. Es necesario un conjunto de programas, 
+el interprete, que entienda el código python y ejecute las acciones contenidas en él.
+\item Implementa  tipos dinámicos.
 \item  Multiparadigma, ya que soporta orientación a objetos, programación imperativa y, en menor medida, programación funcional.
 \item Multiplataforma.
 
@@ -230,6 +232,13 @@ Las variables se definen de forma dinámica, lo que significa que no se tiene qu
 
 \subsection{Tipo de datos}
 
+Python implementa diferentes tipos de datos. Para la noción de \emph{tipos de datos} en general 
+ver \cite{wiki:tipo_dato}. A continuación describimos sumariamente algunos de los tipos 
+más comunes presentes en Python. Cuando se utilizan módulos específicos (p. ej. sympy) la 
+diversidad  de tipos de datos se expande, con la incorporación de tipos Con significación
+matemática, p.ej. matrices,  expresiones algebraicas, etc. 
+
+
 \includegraphics[scale=.4]{imagenes/tipo_datos.jpg}
 
 Se clasifican en:
@@ -253,7 +262,7 @@ Se usa el comando \verb~\type~ para averiguar que tipo de dato contiene una vari
 
 
 
-\subsection{Listas y tuples}
+\subsection{Listas y tuplas}
 
 
 \begin{itemize}
@@ -321,7 +330,7 @@ True
 
 \subsection{Diccionarios}
 \begin{itemize}
-\item    Para declarar un diccionario se usan las llaves \verb~\{\}~. Contienen elementos separados por comas, donde cada elemento está formado por un par clave:valor (el símbolo : separa la clave de su valor correspondiente).
+\item    Para declarar un diccionario se usan las llaves \verb~{}~. Contienen elementos separados por comas, donde cada elemento está formado por un par clave:valor (el símbolo : separa la clave de su valor correspondiente).
  \item   Los diccionarios son mutables, es decir, se puede cambiar el contenido de un valor en tiempo de ejecución.
 \item    En cambio, las claves de un diccionario deben ser inmutables. Esto quiere decir, por ejemplo, que no podremos usar ni listas ni diccionarios como claves.
 \item    El valor asociado a una clave puede ser de cualquier tipo de dato, incluso un diccionario.
@@ -471,7 +480,8 @@ a b c d e f
 % 
 % \end{document}
 
-
+\bibliographystyle{apalike-url}
+\bibliography{biblio,diferenciales_ecuaciones,diferenciales_ecuaciones_sim}
 
 
 
