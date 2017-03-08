@@ -38,7 +38,6 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \usepackage{fontawesome}
 
 
-
 \fancyfoot{}
 \fancyhead[RO,LE]{\thepage}
 \fancyhead[LO]{\leftmark}
@@ -49,8 +48,19 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
   {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
 
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
-\definecolor{color1}{rgb}{0.24,0.45,0.42}
-\definecolor{color2}{rgb}{0.44,0.62,0.42}
+%Sugeridos por CEPEIPER
+% \definecolor{color1}{rgb}{0.24,0.45,0.42}
+% \definecolor{color2}{rgb}{0.44,0.62,0.42}
+% \definecolor{color3}{rgb}{0.28, 0.51, .68}
+% \definecolor{color4}{rgb}{0.29,0.3,0.57}
+% \definecolor{color5}{rgb}{0.7,0.24,0.24}
+% \definecolor{color6}{rgb}{0.72,0.4,0.28}
+% \definecolor{color7}{rgb}{0.84,0.66,0.21}
+% \definecolor{color8}{rgb}{0.3,0.29,0.28}
+
+
+\definecolor{color1}{rgb}{0.48,0.89,0.84}
+\definecolor{color2}{rgb}{0.48,0.89,0.84}
 \definecolor{color3}{rgb}{0.28, 0.51, .68}
 \definecolor{color4}{rgb}{0.29,0.3,0.57}
 \definecolor{color5}{rgb}{0.7,0.24,0.24}
@@ -114,7 +124,9 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\b}[1]{\boldsymbol{#1}}
 \renewenvironment{frame}[1]{}{}
-
+\newcommand{\link}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faLink}\normalmarginpar}
+\newcommand{\advertencia}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faBolt}\normalmarginpar}
+\newcommand{\lectura}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faBook}\normalmarginpar}
 %\renewcommand{\lim}{displaystyle\lim}
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
@@ -216,9 +228,10 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
  \maketitle
  \tableofcontents
 %   
-%\include{prologo}
-\include{Uni0}
-%\include{Uni1}
+
+\include{prologo}
+%\include{Uni0}
+\include{Uni1}
 %\include{Uni2}
 %\include{Uni3}
 %\include{Uni4}
