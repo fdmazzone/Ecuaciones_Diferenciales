@@ -23,29 +23,53 @@
 
 
 
- \begin{ejemplo}[\href{http://es.wikipedia.org/wiki/Caída_libre}{Caída libre}] Modelizar matemáticamente el movimiento de un cuerpo de masa $m$ en las proximidades de la superficie
+ \begin{ejemplo}[\href{http://es.wikipedia.org/wiki/Caída_libre}{Caída libre}]\link Modelizar matemáticamente el movimiento de un cuerpo de masa $m$ en las proximidades de la superficie
 terrestre, asumiendo que su movimiento es
 sobre la vertical y que las fuerzas que sobre él actúan son la gravedad y el rozamiento con el aire.
 \end{ejemplo}
 
-\begin{wrapfigure}[10]{l}{5cm}
- \includegraphics[scale=0.07]{imagenes/caida_libre.jpg}  
+\begin{wrapfigure}[20]{l}{6cm}
+  \begin{center}
+  \setlength{\unitlength}{1cm}
+    \begin{picture}(5, 5)(0,1)
+      \put(1,2){\vector(0,1){3.5}}
+      \put(1,2){\vector(0,-1){1}}
+      \put(0,2){\vector(1,0){5}}
+      \multiput(0,2)(.25,0){20}{\line(-1,-1){0.5}}
+      \put(2,4){\circle*{.5}}
+      \put(2,4){\vector(0,-1){1.5}}
+      \put(2.3,3){$F_{\hbox{grav}}=mg\approx 9.8 m/s^2$}
+      \put(2,4){\vector(0,1){1.5}}
+      \put(2.3,5){$F_{\hbox{roz}}=-cv$}
+      \multiput(1,4)(.1,0){10}{\line(1,0){0.05}}
+      \put(0,4){$x(t)$}
+      \put(0,1){$x>0$}
+      \put(0,5){$x<0$}
+
+    \end{picture}\caption{Caída libre}\label{fig:caída}
+  \end{center}
 \end{wrapfigure}
 \noindent $x(t)=$ posición a lo largo de la vertical, relativo a un eje de coordenadas\newline
 $v(t)=\frac{dx}{dt}=$ velocidad\newline
 $F_{grav}=$ fuerza debida a la gravedad $=mg$ donde $g=9.8m/s^2$
-$F_{roz}=$ fuerza de rozamiento, proporcional a la velocidad y de sentido contrario $=-cv$, $c>0$.
+$F_{roz}=$ fuerza de rozamiento, proporcional a la velocidad y de sentido
+contrario $=-cv$, $c>0$.
 
 
 
 
  Usamos la \href{http://es.wikipedia.org/wiki/Leyes_de_Newton}{Segunda Ley de Newton}, esto es la suma de las fuerzas totales que actuan sobre un cuerpo de masa $m$
-es igual al producto de la masa $m$ y la aceleración $a(t)$. Recordemos que la aceleración es la tasa de cambio de la velocidad, es decir la derivada segunda de la posición.   
+es igual al producto de la masa $m$ y la aceleración $a(t)$.
+Recordemos que la aceleración es la tasa de cambio de la velocidad, es decir la derivada 
+segunda de la posición.   
 
   Usando todas las relaciones mencionadas
 
-\[ma(t)=mv'(t)=F_{\hbox{total}}=F_{\hbox{grav}}+F_{\hbox{roz}}=mg-cv\]
-
+\[\begin{split} ma(t)&=mv'(t)=F_{\hbox{total}}\\
+  &=F_{\hbox{grav}}+F_{\hbox{roz}}\\
+  &=mg-cv
+\end{split}
+\]
 vale decir
 \begin{equation}\label{caidaLibre1}
  \boxed{ x''(t)+\frac{c}{m} x'(t)=g.}
@@ -85,6 +109,11 @@ resuelve \eqref{caidaLibre2}, para todo $C\in\rr$. No deberíamos perder tiempo 
 >>>simplify(v.diff(t)+c/m*v)
 g
 \end{lstlisting}
+\marginpar{
+\begin{pspicture}(1in,1in)
+       \psbarcode[file]{scripts/sol_caida.py}{}{qrcode}
+\end{pspicture}
+}
 Notar que las líneas que comienzan con el signo del prompt \verb~>>>~ indican entradas por línea de comandos y las que comienzan sin este signo son las respuestas del interprete.
 
 Rara vez utilizaremos las siguientes funcionalidades de sympy, pero es oportuno decir que
@@ -97,6 +126,11 @@ Rara vez utilizaremos las siguientes funcionalidades de sympy, pero es oportuno 
 >>> Vel
 v(t) == (g*m + exp(c*(C1 - t/m)))/c
 \end{lstlisting}
+\marginpar{
+\begin{pspicture}(1in,1in)
+       \psbarcode[file]{scripts/resu_caida.py}{}{qrcode}
+\end{pspicture}
+}
 
 La solución obtenida es la ya conocida. Es instructivo averiguar que tipo de dato tiene la variable \verb~Vel~
 
@@ -104,7 +138,11 @@ La solución obtenida es la ya conocida. Es instructivo averiguar que tipo de da
 >>> type(Vel)
 <class 'sympy.core.relational.Equality'>
 \end{lstlisting}
-A este tipo de cuestiones hay que prestar atención cuando se trabaja con sympy, pues existe la tendencia a confudir los conceptos matemáticos con los propios del lenguaje. Por ejemplo, matemáticamente una solución es una función. Sin embargo, en este caso, cuando le solicitamos una solución a sympy nos entrega un objeto de tipo  ``relación de igualdad``.
+A este tipo de cuestiones hay que prestar atención cuando se trabaja con sympy, \advertencia
+pues existe la tendencia a confudir los conceptos matemáticos con los propios del lenguaje. 
+Por ejemplo, matemáticamente una solución es una función. Sin embargo, en este caso, 
+cuando le solicitamos una solución a sympy nos entrega un objeto de tipo  
+``relación de igualdad''.
 
 
 
@@ -122,7 +160,11 @@ Ejemplo de este tipo de ecuación es la ecuación de Laplace
 
 \[\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0\]
 
-Puede ocurrir también que dispongamos de varias ecuaciones diferenciales que se deben satisfacer simultaneamente. En estos casos, el conjuntos de ecuaciones se suele escribir como una única ecuación vectorial. Por este motivo, muchas veces, cuando dispongamos de una única ecuación diremos que tenemos una \emph{ecuación  escalar}.
+Puede ocurrir también que dispongamos de varias ecuaciones diferenciales
+que se deben satisfacer simultaneamente. 
+En estos casos, el conjuntos de ecuaciones se suele escribir como una única 
+ecuación vectorial. Por este motivo, en algunas ocasiones cuando dispongamos de una
+única ecuación diremos que tenemos una \emph{ecuación  escalar}.
 
 \begin{definicion}[Sistema de ecuaciones] Es un  conjunto de ecuaciones diferenciales que se deben satisfacer simultaneamente.
  \end{definicion}
@@ -145,7 +187,11 @@ Muy a menudo hablaremos de resolver una ecuación, pero es oportuno discutir que
 Esta definición contiene una vaga apelación a ciertas ``funciones elementales''. El universo de funciones que se considera elemental es una cuestión política, no matemática. En  principio, consideraremos elementales a las potencias, exponenciales, logarítmos, trigonométricas y trigonométricas inversas. No obstante esta lista se puede expandir con muchas funciones especiales.  Las operaciones permitidas para combinar estas funciones
 también están sujetas a convenciones. Por ejemplo, admitiremos como válida una expresión que contenga una integral, al menos en el caso que no sea claro como resolver esta integral.
 
- Casi todo este curso trata con la discusión de métodos para resolver ecuaciones.  Sin embargo resolver ecuaciones no es quizás el problema principal relacionado con las ecuaciones diferenciales. No importa tanto lograr una expresión formal de la solución, como, por ejemplo, conocer las propiedades que poseen las soluciones. Al fin y al cabo, uno conoce una función a través de sus propiedades.
+ Casi todo este curso trata con la discusión de métodos para resolver ecuaciones.  
+ Sin embargo resolver ecuaciones no es quizás el problema principal relacionado 
+ con las ecuaciones diferenciales. No importa tanto lograr una expresión 
+ formal de la solución, como, por ejemplo, conocer las propiedades que poseen las soluciones. 
+ Al fin y al cabo, uno conoce una función a través de sus propiedades.
  
 
 
@@ -180,7 +226,8 @@ Luego $y'=1/(1+e^{y})$. Reemplazando esta relación  en la ecuación diferencial
 
 \section{Definición formal}
 
-\begin{definicion}[Ecuación diferencial] Una ecuación diferencial ordinaria de orden $n$ es una relación de la forma
+\begin{definicion}[Ecuación diferencial]\label{def:eq} Una ecuación diferencial
+ordinaria de orden $n$ es una relación de la forma
 \[\boxed{F(x,y(x),y'(x),\ldots,y^{(n)}(x))=0}.\]
 donde $F:(a,b)\times \Omega\to\rr$, $\Omega$ es abierto de $\rr^{n+1}$ y $(a,b)$ un intervalo de $\rr$.
   \end{definicion}
@@ -189,7 +236,8 @@ donde $F:(a,b)\times \Omega\to\rr$, $\Omega$ es abierto de $\rr^{n+1}$ y $(a,b)$
 
 
 
-\begin{ejemplo} El problema de hallar una primitiva de una función es una ecuación diferencial que, como ya has visto en cursos iniciales de análisis, se relaciona con el concepto de integral. Supongamos $f:(a,b)\subset \rr\to\rr$ una función continua. Consideremos la ecuación diferencial
+\begin{ejemplo} El problema de hallar una primitiva de una función es una ecuación
+diferencial que, como ya se ha visto en cursos iniciales de análisis, se relaciona con el concepto de integral. Supongamos $f:(a,b)\subset \rr\to\rr$ una función continua. Consideremos la ecuación diferencial
 \[y'(x)=f(x).\]
 Sea $x_0\in(a,b)$, integrando respecto a $x$ entre $x_0$ y $x$
 \[y(x)=y(x_0)+\int_{x_0}^xf(t)dt\]
@@ -207,10 +255,47 @@ Ahora deberemos tomar una integral indefinida más
 Ahora quedan dos constantes $C_1$ y $C_2$. 
 \end{ejemplo}
 
+En el caso de un sistema de ecuaciones diferenciales, la forma de describirlo es esencialmente 
+ igual a la de la Definición \ref{def:eq}. La nueva definición contiene a la Definición \ref{def:eq}
+ como caso particular.
+
+ \begin{definicion}[Sistema de ecuación diferenciales]\label{def:sist_eq} 
+ Una sistema de $k$-ecuaciones diferenciales ordinarias de orden $n$ 
+ es una relación de la forma
+\[\boxed{F(x,y(x),y'(x),\ldots,y^{(n)}(x))=0}.\]
+donde $F:(a,b)\times \Omega\to\rr^k$, 
+\[\Omega\subset\underbrace{\rr^k\times\cdots\times\rr^k}_{n+1-\hbox{veces}}\]
+es abierto y $(a,b)$ un intervalo de $\rr$. Notar que el $=$ en la derecha de la ecuación está
+en $\rr^k$ y que tenemos $k$ ecuaciones e incognitas, las $k$ componentes de
+$y=(y_1,\ldots y_k)$.
+  \end{definicion}
+  
+\begin{ejemplo}
+ En el caso del péndulo  $k=2$, $n=1$, mientras que $(a,b)=\rr$, $\Omega=\rr\times\rr$ y
+ $F:\rr^2\times \rr^2\to\rr^2$ viene dada por
+ \[F\left(\begin{pmatrix}
+      x \\ v
+     \end{pmatrix}
+,\begin{pmatrix}
+  \xi \\ \eta 
+  \end{pmatrix}
+  \right)
+  =\begin{pmatrix} \xi-v \\ \eta+\sen(x)  \end{pmatrix}
+\]
+\end{ejemplo}
+Más adelante veremos que toda ecuación, o sistemas de ecuaciones, ordinaria de orden $n$ 
+se puede reducir a un sistema de orden $1$. De modo tal que es más frecuente considerar
+este tipo de sistemas. También es común considerar, se trate ya de ecuaciones 
+escalares o sistemas,
+ ecuaciones donde es posible despejar 
+de manera explícita la derivada de mayor orden. A esta forma la denominaremos 
+\emph{forma explícita} de la ecuación
+
+\[\boxedeq{y^{(n)}(x)=f(x,y(x),y'(x),\ldots,y^{(n-1)}(x))=0}{}.\]
 
 
  \begin{definicion}[Principio de Hadamard]
- Un problema se dice \href{http://es.wikipedia.org/wiki/Problema_bien_definido}{bien planteado} segun Hadamard si satisface que
+ Un problema se dice \link \href{http://es.wikipedia.org/wiki/Problema_bien_definido}{bien planteado} segun Hadamard si satisface que
  \begin{enumerate}
   \item El problema admite solución
   \item La solución es única

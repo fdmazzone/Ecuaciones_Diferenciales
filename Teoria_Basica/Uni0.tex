@@ -173,11 +173,12 @@ Se puede trabajar de dos formas
 
 
 
-\section{Características del Lenguaje}
+\section{Características sobresalientes del lenguaje}
 
-Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. 
+Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. \link
 Las principales características del lenguaje son:
-\reversemarginpar\marginpar{\Huge\faBook}
+
+\normalmarginpar
 \begin{itemize}
 \item Interpretado. Es necesario un conjunto de programas, 
 el interprete, que entienda el código python y ejecute las acciones contenidas en él.
@@ -208,7 +209,8 @@ Hay dos formas de producir comentarios, texto que el interprete  no ejecuta y qu
 La primera, para comentarios largos es utilizanda la notación \linebreak\verb~''' comentario '''~ .
 
 
- La segunda notación utiliza el símbolo \verb~#~, no necesita símbolo de finalización pues se extienden hasta el final de la línea.
+ La segunda notación utiliza el símbolo \verb~#~, no necesita símbolo de finalización 
+ pues se extienden hasta el final de la línea.
 
  \begin{lstlisting}
 '''
@@ -217,8 +219,8 @@ Comentario  largo en un script de Python
 print "Hola mundo" # Comentario corto
 \end{lstlisting}
 \marginpar{
-\begin{pspicture}(.1in,.1in)
-       \psbarcode[file]{scripts/hello.py}{raw}{qrcode}
+\begin{pspicture}(1in,1in)
+       \psbarcode[file]{scripts/hello.py}{}{qrcode}
 \end{pspicture}
 }
 
@@ -235,22 +237,28 @@ x = 1
 x = "texto" # Esto es posible porque los tipos son asignados \
 dinamicamente
 \end{lstlisting}
-
+\marginpar{
+\begin{pspicture}(1in,1in)
+       \psbarcode[file]{scripts/dinamico.py}{}{qrcode}
+\end{pspicture}
+}
 
 
 \subsection{Variables}
 Las variables se definen de forma dinámica, lo que significa que no se tiene que especificar cuál es su tipo de antemano y que una variable puede tomar distintos valores en distintos momentos de un programa, incluso puede tomar
- un tipo diferente al que tenía previamente. Se usa el símbolo = para asignar valores a variables. Es importante distinguir este = (de asignación) con el igual que es utilizado para definir igualdades en sympy, para ecuaciones por ejemplo.
+ un tipo diferente al que tenía previamente. \emph{Se usa el símbolo = para asignar valores a variables.}
+\advertencia Es importante distinguir este = (de asignación) con el igual que es utilizado para definir igualdades en sympy, para ecuaciones por ejemplo.
 
 
 
 
 \subsection{Tipo de datos}
 
-Python implementa diferentes tipos de datos. Para la noción de \emph{tipos de datos} en general 
-ver \cite{wiki:tipo_dato}. A continuación describimos sumariamente algunos de los tipos 
+Python implementa diferentes tipos de datos. Para la noción de \emph{tipos de datos} en 
+general 
+ver \cite{wiki:tipo_dato}\link. A continuación describimos sumariamente algunos de los tipos 
 más comunes presentes en Python. Cuando se utilizan módulos específicos (p. ej. sympy) la 
-diversidad  de tipos de datos se expande, con la incorporación de tipos Con significación
+diversidad  de tipos de datos se expande, con la incorporación de tipos con significación
 matemática, p.ej. matrices,  expresiones algebraicas, etc. 
 
 
@@ -399,8 +407,11 @@ y terminando con el numero indicado menos uno
 \subsection{Funciones}
 \begin{itemize}
 
-  \item  Las funciones se definen con la palabra clave \verb~def~, seguida del nombre de la función y sus parámetros. Otra forma de escribir funciones, aunque menos utilizada, es con la palabra clave \verb~lambda~ (que aparece en lenguajes funcionales como Lisp). Generalemente esta forma es apropiada para funciones que es posible definir en una sola línea.
-
+  \item  Las funciones se definen con la palabra clave \verb~def~, seguida del nombre de
+  la función y sus parámetros. 
+  Otra forma de escribir funciones, aunque menos utilizada, es con la palabra clave \verb~lambda~ (que aparece en lenguajes funcionales como Lisp). Generalemente esta forma es apropiada para funciones que es posible definir en una sola línea.
+  
+  
   \item  El valor devuelto en las funciones con \verb~def~ será el dado con la instrucción \verb~return~.
   \end{itemize}
 
@@ -425,7 +436,8 @@ y terminando con el numero indicado menos uno
 \end{lstlisting}
 
 \subsection{Condicionales}
- Una sentencia condicional (\verb~if condicion~) ejecuta su bloque de código interno sólo si \verb~condicion~ tiene el valor bolleano \verb~True~.  Condiciones adicionales, si las hay, se introducen usando \verb~elif~ seguida de la condición y su bloque de código. Todas las condiciones se evalúan secuencialmente hasta encontrar la primera que sea verdadera, y su bloque de código asociado es el único que se ejecuta. Opcionalmente, puede haber un bloque final (la palabra clave \verb~else~ seguida de un bloque de código) que se ejecuta sólo cuando todas las condiciones fueron falsas.
+ Una sentencia condicional (\verb~if condicion~) ejecuta su bloque de código interno 
+ sólo si \verb~condicion~ tiene el valor booleano \verb~True~.  Condiciones adicionales, si las hay, se introducen usando \verb~elif~ seguida de la condición y su bloque de código. Todas las condiciones se evalúan secuencialmente hasta encontrar la primera que sea verdadera, y su bloque de código asociado es el único que se ejecuta. Opcionalmente, puede haber un bloque final (la palabra clave \verb~else~ seguida de un bloque de código) que se ejecuta sólo cuando todas las condiciones fueron falsas.
 
 
 
@@ -458,7 +470,13 @@ Verdadero y Lenguaje de programacion: Python
 
 
 \subsection{Bucles}
-El bucle \verb~for~ es similar a  otros lenguajes. Recorre un objeto iterable, esto es  una lista o una tupla, y por cada elemento del iterable ejecuta el bloque de código interno. Se define con la palabra clave \verb~for~ seguida de un nombre de variable, seguido de \verb~in,~ seguido del iterable, y finalmente el bloque de código interno. En cada iteración, el elemento siguiente del iterable se asigna al nombre de variable especificado:
+El bucle \verb~for~ es similar a  otros lenguajes. Recorre un objeto \emph{iterable},
+esto es  una lista o una tupla, y por cada elemento del iterable 
+ejecuta el bloque de código interno. 
+Se define con la palabra clave \verb~for~ seguida de un nombre de variable, 
+seguido de \verb~in,~ seguido del iterable, y finalmente el bloque de código interno. 
+En cada iteración, el elemento siguiente del iterable se asigna al nombre de variable 
+especificado:
 
 \begin{lstlisting}
 >>> lista = ["a", "b", "c"]
@@ -477,7 +495,10 @@ a b c d e f
 
 
 
-%El bucle \verb~while~ evalúa una condición y, si es verdadera, ejecuta el bloque de código interno. Continúa evaluando y ejecutando mientras la condición sea verdadera. Se define con la palabra clave }verb~while~ seguida de la condición, y a continuación el bloque de código interno:
+El bucle \verb~while~ evalúa una condición y, si es verdadera, ejecuta el bloque
+de código interno. Continúa evaluando y ejecutando mientras la condición sea verdadera.
+Se define con la palabra clave }verb~while~ seguida de la condición, y a continuación 
+el bloque de código interno:
 \begin{lstlisting}
 >>> numero = 0
 >>> while numero < 10:

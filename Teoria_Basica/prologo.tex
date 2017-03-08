@@ -3,12 +3,193 @@
 \addcontentsline{toc}{chapter}{Prólogo}
 
 
-\begin{itemize}
- \item  \href{https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxlY3VhY2lvbmVzZGlmZXJlbmNpYWxldW5yY3xneDoyZjE0YzJmMDcyODc0ZGQ3}{Programa analítico.}
- \item  \href{https://sites.google.com/site/ecuacionesdiferencialeunrc/ecuaciones-diferenciales-unrc}{Página web} de la materia
- \item  Vamos a hacer uso intensivo de paquetes de matemática basados en \href{https://www.python.org/}{Python}, por ejemplo \href{http://www.scipy.org/}{SciPy},  \href{http://www.scipy.org/}{SymPy} y \href{http://www.sagemath.org/}{SAGE}.
- \item  Requeriremos muchos contenidos de la asignatura Física.
- \item  \begin{tabular}{m{4cm} m{2cm} m{2cm}} Bibliografía principal & \includegraphics[scale=0.05]{imagenes/Tapa_Simmons.jpg} &    \includegraphics[scale=0.13]{imagenes/tapa_hydon.png}          \end{tabular}
 
-\end{itemize}
+\setlength{\unitlength}{1cm}
+%
+%\setlength{\extrarowheight}{5mm}
+%
+
+
+
+
+
+ \textbf{CARRERA:}  Lic en Matemática.
+
+ \textbf{PLAN DE ESTUDIOS:} 2008 versión 1
+
+ \textbf{ASIGNATURA:}  Ecuaciones Diferenciales\quad\textbf{CÓDIGO:} 1913
+
+\textbf{DOCENTES RESPONSABLES:} Fernando Mazzone
+
+\textbf{EQUIPO DOCENTE:} Fernando Mazzone
+
+\textbf{AÑO ACADÉMICO:} 2017
+
+\textbf{REGIMEN DE LA ASIGNATURA:} Cuatrimestral
+
+\textbf{RÉGIMEN DE CORRELATIVIDADES:}
+
+\begin{table}[h]
+\begin{tabular}{|l|l|}\hline
+ Aprobada & Regular\\\hline
+ &
+ Álgebra Lineal Aplicada (2261)\\\hline
+ &
+Topología (1917)\\ \hline
+\end{tabular}
+ \end{table}
+
+
+
+
+
+
+\textbf{CARGA HORARIA TOTAL:}  80 hs.
+
+\hspace{1cm}\textbf{Teóricas:} 40 hs.,      \textbf{Prácticas:}  40 hs..
+
+\textbf{CARÁCTER DE LA ASIGNATURA:} Obligatoria
+\renewcommand{\theenumi}{\Alph{enumi}}
+\renewcommand{\theenumii}{\theenumi .\arabic{enumii}}
+\begin{enumerate}
+ \item \textbf{CONTEXTUALIZACIÓN DE LA ASIGNATURA}
+
+ 	Primer cuatrimestre de cuarto año
+
+ \item \textbf{OBJETIVOS PROPUESTOS}
+      %\begin{description}
+
+          \begin{itemize}
+	    \item  Presentar la teoría de las ecuaciones diferenciales desde un perspectiva rigurosa.
+
+	    \item  Poner en evidencia la retroalimentación entre teoría matemática y modelos físicos. En este sentido se desarrollan aplicaciones a la caída de cuerpos a lo largo de guías (y su relación con la óptica), problema de la braquistócrona, vibraciones de sistemas mecánicos, membranas,  potencial sobre una esfera, movimiento planetario, etc.
+
+	    \item  Integrar la asignatura a otras asignaturas del plan de estudios de la Lic. en Matemática. En este sentido se desarrolla la teoría de Lie de solución de ecuaciones por medios de grupos continuos. No es costumbre que esta teoría se desarrolle en cursos introductorios.
+
+\item  Incorporar el uso de sistemas algebraicos computacionales en la práctica del  alumno. Se utilizaran recursos de código abierto que derivan del lenguaje Python, en particular SymPy y SAGE.
+
+
+       \end{itemize}
+
+
+ % \end{description}
+
+
+
+
+
+ \item\textbf{CONTENIDOS BÁSICOS DEL PROGRAMA A DESARROLLAR}
+    Ecuaciones de primer orden, métodos de solución. Métodos de Lie. Teorema de existencia y unicidad. Ecuaciones lineales de orden superior. Osciladores armónicos.   Método de desarrollo en serie. Método de Frobenius.     Sistemas de Ecuaciones.
+
+ \item\textbf{ FUNDAMENTACIÓN DE LOS CONTENIDOS}
+
+	La gran parte del curso versa sobre temas que ya son estándar en las ecuaciones diferenciales y se consideran básicos en el desarrollo de esta área. No creemos necesario abundar en fundamentos sobre la incorporación de ellos. Si merece fundamentarse aquellos que no son del todo habituales.
+
+	Con frecuencia las leyes de la física o modelos matemáticos de sistemas biológicos, sociales, económicos, etc, se expresan por medio de ecuaciones y particularmente con ecuaciones diferenciales. Con igual frecuencia en nuestras aulas la enseñanza de esta, como de otras  ramas de la matemática, omite la consideración de las relaciones entre los conceptos matemáticos y otras ciencias. A lo sumo se suele presentar alguna aplicación de la teoría como medio de justificar la relevancia de ella. Se hace extensivo al quehacer pedagógico  el postulado formalista que la matemática se valida por si misma y es independiente de cualquier  realidad ajena a ella.
+
+	Nuestro punto de vista es que las relaciones de la teoría matemática con su entorno constituye un ingrediente insoslayable en la enseñanza de la teoría.  Fundamentamos este punto de vista, en que es frecuente que el sistema físico  que es modelizado por cierta teoría, ilumine el entendiemiento de la teoría misma. Por ejemplo, el principio de máximo, que afirma que una solución de la ecuación $\triangle u=0$ en un abierto y acotado $\Omega$ alcanza su máximo en la frontera de $\Omega$, no es evidente de la ecuación en si misma, pero si lo es en gran medida de una de las situaciones físicas que modeliza:  la temperatura en estado estacionario de un cuerpo sobre el cual el calor fluye por difusión. No puede desaprovecharse el recurso de pensar una solución de la ecuación aludida en estos dos sentidos.
+
+	También ocurre el camino inverso, esto es que el desarrollo de la teoría matemática ilumine el entendimiento del sistema físico. Al fin y al cabo, ese es el propósito primario de la modelización matemática. Por ejemplo, para quien escribe no resulta físicamente evidente que un sistema de resortes acoplados tenga esencialmente sólo dos modos normales de vibración, cosa que se demuestra en el actual curso. Por estas consideraciones, entre otras, también estamos convencidos que la demostración matemática rigurosa también constituye un ingrediente insoslayable para el entendimiento de la teoría.
+
+	Se incorpora activamente el uso de sistemas algebraicos computacionales SAC.  Una causa es contar con asistencia para el desarrollo de cálculos que son engorrosos. Pero la causa fundamental de la introducción de SAC es que ponen al alumno en la situación de hacer un programa que implemente procedimientos de la teoría. Esto suele ser una tarea no trivial para el recién iniciado y obliga a desarrollar aptitudes de programación, pero más importante, obliga a repensar la teoría matemática para adaptarla al nuevo contexto.
+
+	En el mismo orden de ideas, esto es poner los conocimientos de la asignatura en diversos contextos,  se buscó una integración con otras materias del plan de  estudios. Por supuesto que hay algunas de ellas que son absolutamente necesarias  para desarrollar la teoría de las ecuaciones diferenciales, pero no es costumbre en los cursos elementales sobre ecuaciones diferenciales recurrir a algunas ramas, por ejemplo teoría de grupos. Sin embargo la teoría de grupos tiene cosas importantes para decir sobre las ecuaciones. Se buscó establecer estas vinculaciones menos tradicionales, por ejemplo se desarrollo una unidad sobre la utilización de grupos de Lie de simetrías para resolver EDO.  Utilizamos un concepto particular de grupo de Lie, para evitar las complicaciones técnicas en la definición de este concepto en general.  La consideración de simetrías es una técnica matemática básica y las simetrías están indisolublemente ligadas al concepto de grupo.
+
+
+ \item\textbf{  ACTIVIDADES A DESARROLLAR}
+
+		  \textbf{ CLASES TEÓRICAS:} Presencial, 4 horas semanales. La metodología que se desarrollará es la exposición por parte del docente de los fundamentos teóricos de los contenidos impartidos. Se incentivará la participación de los alumnos durante la clase, requiriendo que ellos aporten, por ejemplo, demostraciones de determinados hechos o, en general, soluciones a determinadas situaciones problemáticas que plantea el desarrollo teórico de la materia.
+
+		  \textbf{ CLASES PRÁCTICAS:} Presencial 4 horas semanales. Se espera que los alumnos trabajen sobre los ejercicios de la práctica en forma independiente fuera de los horarios de la asignatura. Posteriormente estos ejercicios se discutirán durante la clase,  el profesor tratará de limitar su participación de modo tal de favorecer que los alumnos autogestionen su aprendizaje.
+
+
+		  Internet:  Se utilizaron diversos recursos de internet, que estan compendiados en una \href{http://fdmazzone.github.io/Ecuaciones_Diferenciales/}{página de la asignatura} y en un \href{https://github.com/fdmazzone/Ecuaciones_Diferenciales}{repositorio de Git Hub}.  En la red  hay excelentes recursos, videos, páginas web, wikis  y, en general, distintos materiales multimedia especialmente útiles para visualizar algunos conceptos, métodos, etc.
+
+ \item\textbf{  NÓMINA DE TRABAJOS PRÁCTICOS}
+		Hay un trabajo práctico por cada unidad de la materia.
+
+\item\textbf{   HORARIOS DE CLASES:} martes y jueves de 14 a 18.
+
+
+ \textbf{  Horario de clases de consultas:}
+	Se convendrá con los alumnos, durante el desarrollo de la materia,
+  los horarios de consultas.
+
+
+\item\textbf{   MODALIDAD DE EVALUACIÓN:}
+
+\textbf{Evaluaciones Parciales:}  Se le presentará al alumno una serie de problemas que deberá resolver.
+
+\textbf{Evaluación Final:} Será oral, el alumno deberá desarrollar los ejes conceptuales y fundamentos teóricos de la materia.
+
+\textbf{  Condiciones de regularidad:}
+Aprobar los exámenes parciales o sus respectivos recuperatorios.
+
+\textbf{  Condiciones de promoción:} no se prevé
+
+\item\textbf{ CONTENIDOS:}
+
+\emph{
+El asterísco al lado de las referencias citadas más abajo indica la bibliografía considerada principal. Las citas sin el asterísco corresponden a bibliografía suplementaria.}
+
+\begin{description}
+ \item[Unidad 0. Python, SymPy, SAGE.] Panorama de instalación, distribuciones y recursos online. Tipos de datos en Python, programación elemental.
+
+\item[Unidad 1. Ecuaciones de Primer Orden.]  Noción de ecuación diferencial y clasificación. Ecuaciones diferenciales ordinarias (EDO).   Problemas de valores iniciales. Familia de curvas y la famila ortogonal. Método de separación de variables. Aplicaciones: dinámica de mezclas, cuerpos en caída a lo largo de guías, curvas braquistócrona y tautócrona. Ecuaciones homogéneas. Ecuaciones exactas. Factores integrantes. Ecuaciones lineales de primer orden. Métodos de reducción de orden. Curvas de persecución. Velocidad de escape. Problema del resorte. Cambios de variables. Usando SymPy para cambiar variables.  Grupos de Lie uniparamétricos. Grupos de simetrías. Generadores infinitesimales. Variables canónicas. Solución de EDO por medio de sus grupos de Lie de simetrías. \cite{simmons_esp, WilliamE.Boyce496,PeterE.Hydon455,S.V.DuzhinB.D.Chebotarevsky465}
+
+\item[Unidad 2. Teorema de Existencia y Unicidad.] Presentación filosófica: determinismo científico. Funciones Lipschitzianas. Teorema de punto fijo de Banach. Método iterativo de Picard. Teorema de existencia y unicidad para sistemas de EDO de primer orden.\cite{simmons_esp, WilliamE.Boyce496, VladimirI.Arnold544, JorgeSotomayor513}
+
+\item[Unidad 3. Ecuaciones Lineales de Segundo Orden.] Ecuaciones lineales. Reducción de orden. Ecuaciones homogéneas a coeficientes constantes. El problema no homogéneo. Independencia lineal. Bases de soluciones. Polinomio característico. Ecuaciones no homogéneas. Coeficientes indeterminados y variación de los parámetros. Vibraciones mecánicas. Solución del problema Kepleriano de los dos cuerpos. Osciladores armónicos acoplados. \cite{simmons_esp, WilliamE.Boyce496}
+
+\item[Unidad 4. Métodos cualitativos.] Teoremas de separación y de comparación de Sturn. Aplicaciones, ceros de las funciones de Bessel.\cite{simmons_esp,JorgeSotomayor513}
+
+\item[Unidad 5. Desarrollo en serie de potencias.] Repaso de series de potencias. Método de coeficientes indeterminados.  Resolución de problemas de desarrollo en serie con  SymPy.   Ecuaciones lineales de segundo orden: puntos regulares. Puntos singulares regulares. Series de Frobenius. Teoremas fundamentales.\cite{simmons_esp, WilliamE.Boyce496}
+
+\item[Unidad 6.  Sistemas lineales.]  Base de soluciones. Matriz fundamental. Sistemas lineales a coeficientes constantes. Solución del problema homogéneo con formas de Jordan. Problema no homogéneo. Sistemas no-lineales. \cite{ WilliamE.Boyce496,JorgeSotomayor513}
+
+\end{description}
+
+\item\textbf{CÓDIGO QR}
+Algunos bolques de código Python que expondremos en el texto vienen acompañados de un código QR
+como note al margen. La finalidad es que el alumno pueda leer este código con algún dispositivo
+movil y ejecutar el código dentro del dispositivo
+
+
+\item\textbf{MARGENES}
+El significado de las imágenes en los margenes es el siguiente:
+
+
+\begin{center}
+ \begin{tabular}{|l|l|}\hline
+{\fontsize{26}{26}\selectfont \faLink} &  Enlace de Internet\\ \hline
+{\fontsize{26}{26}\selectfont \faBolt}  & Prestar atención\\ \hline
+ \end{tabular} 
+\end{center}
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%
+  \bibliographystyle{apalike-url}
+  \bibliography{diferenciales_ecuaciones,diferenciales_ecuaciones_sim}
+ 
+ 
+
 
