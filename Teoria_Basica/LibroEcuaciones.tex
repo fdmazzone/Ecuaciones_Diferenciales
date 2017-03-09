@@ -124,9 +124,15 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\b}[1]{\boldsymbol{#1}}
 \renewenvironment{frame}[1]{}{}
-\newcommand{\link}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faLink}\normalmarginpar}
-\newcommand{\advertencia}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faBolt}\normalmarginpar}
-\newcommand{\lectura}{\reversemarginpar\marginnote{\fontsize{32}{32}\selectfont\faBook}\normalmarginpar}
+\newcommand{\link}{\reversemarginpar\marginnote{%\fontsize{24}{24                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       }\selectfont
+\faExternalLink}
+%\normalmarginpar
+}
+\newcommand{\advertencia}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBolt}\normalmarginpar}
+\newcommand{\lectura}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBook}\normalmarginpar}
+\newcommand{\actividad}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faCogs}%
+\normalmarginpar}
+
 %\renewcommand{\lim}{displaystyle\lim}
 \DeclareMathOperator{\atan2}{atan2}
 \DeclareMathOperator{\sen}{sen}
@@ -220,7 +226,7 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 \renewcommand{\limsup}{\mathop{\rm límsup}}
 
 
-\fontsize{9pt}{10pt}\selectfont
+\fontsize{11pt}{11pt}\selectfont
 
 \pagestyle{fancy}
  
@@ -232,7 +238,7 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 \include{prologo}
 %\include{Uni0}
 \include{Uni1}
-%\include{Uni2}
+\include{Uni2}
 %\include{Uni3}
 %\include{Uni4}
 %\include{Uni5}

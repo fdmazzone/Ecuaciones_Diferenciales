@@ -577,6 +577,7 @@ Aconsejamos ampliar este tema de \cite{simmons_esp}. \lectura
 
 
 \section{Separación de variables}
+En esta unidad presentaremos algunos métodos de solución para ecuaciones de primer orden. Empezaremos con el, quizás, más popular de todos, el método de \emph{separación de variables}.
 
 \begin{definicion}[Ecuaciones en variables separadas] Se dice que en una ecuación de primer orden
  \[y'=f(x,y)\]
@@ -585,7 +586,7 @@ Aconsejamos ampliar este tema de \cite{simmons_esp}. \lectura
 
 
 
-Una ecuación  en la que se separan variables se puede resolver siguiendo los siguientes pasos. Como, asumiendo $h(y)\neq 0$,
+Una ecuación  en la que se separan variables se puede resolver siguiendo los siguientes pasos. Asumamos $h(y)\neq 0$. En la práctica hay que chequear cuando $h(y)=0$, es frecuente que así encontremos una solución adicional.
 \[\frac{y'}{h(y)}=g(x),\]
 Si $H$ y $G$ son primitivas de $1/h$ y $g$ respectivamente por la regla de la cadena tenemos
 \[\frac{d}{dx}H(y)=\frac{d}{dx}G(x)\]
@@ -599,15 +600,15 @@ será candidata a solución general. No podemos estar seguros de esta afrirmaci�
 
 \begin{ejemplo} Resolver
 \[y'=\frac{y}{x}.\]
-Es común emplear el método de la siguiente forma
+Como queremos agrupar todos los factores que contienen la variable $y$ en uno de los miembros, debemos ``pasar dividiendo'' $y$. Esto es imposible si $y=0$. Reemplazando $y\equiv 0$ en la ecuación vemos que la resuelve. Así hemos encontrado nuestra primera solución $y\equiv 0$. El resto del método, es común llevarlo adelante de la siguiente forma
 \[\begin{split}
    \frac{dy}{dx}=\frac{y}{x} &\Longrightarrow \frac{dy}{y}=\frac{dx}{x} \Longrightarrow \int \frac{dy}{y}=\int \frac{dx}{x}\\
    &\Longrightarrow\ln|y|=\ln|x|+C \Longrightarrow |y|= k|x|, \hbox{ con }k>0\\
-   &\Longrightarrow y= kx, \hbox{ con }k\in\rr
+   &\Longrightarrow y= kx, \hbox{ con }k\neq 0
   \end{split}
 \]
 \end{ejemplo}
-
+Notar que, al fin y al cabo, la solución general es $y=kx$ con $k\in\rr$. La solución ``díscola'' $y\equiv 0$ también se escribe $y=kx$, cuando $k=0$.
 
 
 
@@ -620,12 +621,20 @@ Es común emplear el método de la siguiente forma
 
 \end{ejemplo}
 
+Sympy contiene un comando que nos dice que metodo es posible aplicar a una ecuaqción dada.
 \begin{lstlisting}
 x=symbols('x')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),y/x)
 tipo=classify_ode(MiEcua,y)
 \end{lstlisting}
+\marginpar{
+\setlength{\unitlength}{1in}
+\begin{pspicture}(1,2)
+      \psbarcode[file]{scripts/class_ode.py}{}{qrcode}
+\end{pspicture}
+}
+
 \textbf{Resultado:}\\
 \begin{verbatim}
 ('separable', '1st_exact', '1st_linear', 
@@ -633,29 +642,27 @@ tipo=classify_ode(MiEcua,y)
 \end{verbatim}
 
 
+\section{Aplicaciones}
 
-
-\section{Galeria de Ejemplos}
-
-Vamos a describir algunos ejemplos. algunos de ellos llevan a problemas matemáticos muy simples. No obstante es oportuno discutirlos por dos motivos, habituarnos a la utilización de la matemática para resolver problemas de otras ciencias y sentar las bases para discutior problemas más relevantes desde una óptica matemática.
+Vamos a describir algunos ejemplos. Algunos de ellos llevan a problemas matemáticos muy simples. No obstante es oportuno discutirlos por dos motivos, habituarnos a la utilización de la matemática para resolver problemas de otras ciencias y sentar las bases para discutir problemas más relevantes desde una óptica matemática.
 
 \subsection{Ley de reproducción normal}
   En muchos ejemplos de biología, química-física, etc, hay magnitudes que crecen(decrecen) siguiendo una ley que denominaremos
-\href{http://es.wikipedia.org/wiki/Crecimiento_exponencial}{Ley de reproducción  normal}. Según esta ley la cantidad de individuos, sustancia, materia,
+\href{http://es.wikipedia.org/wiki/Crecimiento_exponencial}{Ley de reproducción  normal}\link. Según esta ley la cantidad de individuos, sustancia, materia,
 energía, etc, que se agrega o elimina de una población, cuerpo, etc por unidad de tiempo es proporcional a la cantidad de individuos, sustancia, etc que hay presente.   Una población de seres vivos puede reproducirse de esta manera bajo algunas circunstancias
 especiales, por ejemplo si cuenta con fuente ilimitada de alimentos.
 
   Si $P(t)$ es la cantidad de individuos en el momento $t$, la ley de reproducción normal establece
 en este caso la siguiente ecuación diferencial de primer orden
 \[P'(t)=kP(t),\quad\text{ con } k>0.\]
-La solución es hallada con suma facilidad, siendo ella 
+La solución es hallada con suma facilidad, por ejemplo usando separación de variables, siendo ella
 \[\boxed{P(t)=Ce^{kt},\quad C\in\rr.}\]
 La constante  $C$ se puede determinar si tenemos un problema a valores iniciales (pvi), por ejemplo $P(0)=P_0$, siendo $P_0\in\rr$ dado. En ese caso
-$A=P_0$. 
+$C=P_0$.
 
 
 
-  Otro ejemplo de comportamiento similar es la \href{http://es.wikipedia.org/wiki/Radiactividad}{desintegración radiactiva}. Algunos átomos de
+  Otro ejemplo de comportamiento similar es la \href{http://es.wikipedia.org/wiki/Radiactividad}{desintegración radiactiva}\link. Algunos átomos de
 ciertas sustancias, pueden ``desarmarse'' en átomos de otras sustancias. En el proceso suelen emitir radiaciones.  La velocidad de desintegración sigue una ley
 de reproducción normal pero hay que tener en cuenta que la materia radiactiva, es decir la ``población''  en este caso, se pierde. Si $x(t)$ es la masa de materia radiactiva en el momento $t$, evolucionará
 acorde a la ley
@@ -668,7 +675,7 @@ acorde a la ley
 \begin{problema}
 \begin{tabular}{m{5cm} m{4.5cm}}
  Un tanque contiene inicialmente $N$ $\hbox{m}^3$ de $H_2O$ entre los cuales hay disueltos $C$ kg de sal común
- $NaCl$. A través de una boca de entrada y una de salida empieza circular la solución, entrando y saliendo al mismo caudal $q\frac{\hbox{m}^3}{s}$. Se supone que 
+ $NaCl$. A través de una boca de entrada y una de salida empieza circular la solución, entrando y saliendo con el mismo caudal $q\frac{\hbox{m}^3}{s}$. Se supone que
  la solución entrante tiene una concentración conocida $r$. Encontrar la cantidad de sal en el momento $t$. &
   \includegraphics[scale=.1]{imagenes/tanque.jpg} \\
 \end{tabular}
@@ -689,16 +696,16 @@ acorde a la ley
 \subsection{Dinámica del punto}
 
 \subsubsection{Discusión Teórica}
-Vamos a recordar algunas temas de la asignatura física. En particular  el movimiento de un cuerpo de masa $m$ al que podemos suponer puntual. Lo llamaremos punto masa. Denotamos por $x(t)$ su posición, digamos en $\rr^3$. Suponemos
+Vamos a recordar algunas temas de la asignatura física. En particular, el tema del movimiento de un cuerpo de masa $m$,\marginpar{En mecánica newtoniana, un sistema de referencia inercial es un sistema de referencia en el que las leyes del movimiento cumplen las leyes de Newton} al que podemos suponer puntual, dentro del espacio euclideano tridimensional. A un cuerpo de estas características lo llamaremos punto masa. Denotamos por $x(t)\in \rr^3$ su posición en algún marco de referencia cartesiano ortogonal e \href{https://es.wikipedia.org/wiki/Sistema_de_referencia_inercial}{inercial}\link. Suponemos
 que sobre él actúa una fuerza $f$. Recordemos que $x'(t)$ es la velocidad $v(t)$ y que $x''(t)$ es la aceleración $a(t)$.  
-\href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{La segunda ley de Newton} implica que 
+\href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{La segunda ley de Newton}\link implica que
 \begin{equation}\label{2leyR}\boxed{mx''(t)=f}\end{equation}
 
 
 Supongamos que el movimiento del punto masa se realiza entre los momentos $t_0$ y $t_1$. Como has visto en Cálculo III la lóngitud de la curva recorrida 
 $s(t)$ se puede calcular por
 \begin{equation}\label{2ley}s=\int_{t_0}^{t_1}|x'(t)|dt=\int_{t_0}^{t_1}|v(t)|dt.\end{equation}
-A $s$ se lo suele denominar \href{http://es.wikipedia.org/wiki/Longitud_de_arco}{elemento de arco}. Es comun querer utilizar a $s$ como variable independiente en 
+A $s$ se lo suele denominar \href{http://es.wikipedia.org/wiki/Longitud_de_arco}{elemento de arco}\link. Es comun querer utilizar a $s$ como variable independiente en
 lugar de $t$, puesto que algunas fórmulas se simplifican de esta forma. Por ejemplo
 
 \begin{equation}\label{pre_trab} f\cdot v(t)dt=f\cdot\frac{v(t)}{|v(t)|}|v(t)|dt=f_tds,\end{equation}
@@ -718,7 +725,7 @@ Si integramos \eqref{pre_trab} entre $t_0$ y $t_1$ y usamos \eqref{2leyR} obtene
   A la cantidad $\frac{m}{2}|v|^2$ se la denomina \emph{energía cinética} $E_c$ y a $W$ se lo denomina \emph{trabajo}.
 Las relaciones obtenidas dicen que la variación de la energía cinética es igual al trabajo realizado $W=\Delta E_c$ por la fuerza $f$.
 El trabajo realizado depende de la proyección tangencial de la fuerza $f_t$.  Llamaremos a esta relación
-\href{https://es.wikipedia.org/wiki/Conservaci%C3%B3n_de_la_energ%C3%ADa}{Principio de Conservación de la Energía Mecánica.}
+\href{https://es.wikipedia.org/wiki/Conservaci%C3%B3n_de_la_energ%C3%ADa}{Principio de Conservación de la Energía Mecánica.}\link
 
   Vamos a referirnos por \emph{rapidez} al módulo de la velocidad.
 Si uno quiere incrementar o reducir la rapidez final $|v(t_1)|$ entonces deberá tener fuerzas con una componente tangencial no nula. 
@@ -731,7 +738,7 @@ resistencia a la rodadura, etc. Estás fuerzas, actúan sólo en la dirección d
  
 
   Por el contrario hay otras que actúan perpendiculares al movimiento $f_t=0$. Ejemplo de ello son las fuerzas que mantienen a un cuerpo moviéndosé a lo largo
-de una guía. Por ejemplo un niño cayendo por un tobogan. Que el niño no se despegue de la guía (tobogán) se explica por la aparición de una fuerza que se denomina
+de una guía. Por ejemplo un niño cayendo por un tobogán. Que el niño no se despegue de la guía (tobogán) se explica por la aparición de una fuerza que se denomina
 reacción de vínculo que actúa en la dirección perpendicular al movimiento esto es decir a la guía. Está fuerza debe compensar a toda otra fuerza que trata de apartar
 al cuerpo de la guía.  En el caso del tobogán la gravedad trata de apartar al niño de aquel.
 
@@ -740,14 +747,30 @@ al cuerpo de la guía.  En el caso del tobogán la gravedad trata de apartar al 
 
 
 \subsubsection{Cuerpos cayendo por guías}
-Analicemos más en detalle el movimiento de un cuerpo cayendo a lo largo de una guía estando además influído  por la acción de la gravedad. Supondremos el movimiento en las proximidades de la superficie de la Tierra y por ello, supondremos que la fuerza de la gravedad es la constante $mg$. 
+Analicemos más en detalle el movimiento de un cuerpo cayendo a lo largo de una guía estando además influído  por la acción de la gravedad. Supondremos el movimiento en las proximidades de la superficie de la Tierra y por ello, supondremos que la magnitud de la fuerza de la gravedad es la constante $mg$.
 
 
-\begin{wrapfigure}[6]{l}{5cm}
- \begin{center}
- \includegraphics[scale=.06]{imagenes/caida_guia.jpg}
- \end{center}
- \end{wrapfigure}
+
+
+ \begin{wrapfigure}[16]{l}{6cm}
+  \begin{center}
+  \setlength{\unitlength}{1.2cm}
+    \begin{picture}(5, 4)(0,1)
+      \put(1,0.75){\vector(0,1){4.5}}
+      \put(0,1){\vector(1,0){5}}
+      \qbezier(1.3,5)(2,2)(5,1.3)
+      \put(2.6,2.6){\circle*{.3}}
+      \put(2.6,2.6){\vector(0,-1){1.5}}
+      \put(1.3,1.2){$(0,-mg)$}
+      \put(2.6,.75){$x$}
+      \multiput(2.6,2.6)(-.1,0){17}{\line(1,0){0.05}}
+      \put(.75,2.6){$y$}
+      \put(4.17,.97){\line(-1,1){4}}
+      \put(2.67,2.1){$\alpha$}
+      \put(4.08,1.15){$\frac{\pi}{2}+\alpha$}
+    \end{picture}\caption{Caída por una guía}\label{fig:caída}
+  \end{center}
+\end{wrapfigure}
  Supongamos que la guía esta
 confinada a un plano. Introducimos un sistema de coordenadas ortogonales en dicho plano, con el suelo paralelo al eje $x$
 
@@ -755,10 +778,10 @@ confinada a un plano. Introducimos un sistema de coordenadas ortogonales en dich
 El elemento longitud de arco $s$ de una curva que es el gráfico de una función $y(x)$ para $x$ en $[x_0,x_1]$ viene dado por 
 \[s=\int_{x_0}^{x_1}\sqrt{1+y'(x)^2}dx\]
 La fuerza de vínculo de la guía tiene componente tangencial nula,  la gravedad tiene una componente tangencial no nula. 
-Su magnitud es $mg\cos\alpha$ (ver dibujo). Vamos a tratar de expresar $\cos\alpha$  en términos de   $y'(x)$. Vamos a suponer $\cos\alpha>0$ e $y'(x)<0$. 
-Los demás casos quedan como \textbf{ejercicio}.
+Su magnitud es $mg\cos\alpha$ (ver dibujo). Vamos a tratar de expresar $\cos\alpha$  en términos de   $y'(x)$. Supongamos  $\cos\alpha>0$ e $y'(x)<0$.
+Los demás casos quedan como \textbf{ejercicio}.\actividad
 \[ \tan^2\alpha=\frac{\sen^2\alpha}{\cos^2\alpha}=\frac{1-\cos^2\alpha}{\cos^2\alpha}=\frac{1}{\cos^2\alpha}-1\]
-y
+e
 \[y'(x)=\tan \left(\frac{\pi}{2}+\alpha\right)=-\frac{1}{\tan\alpha}\]
 Podemos usar las relaciones anteriores para escribir $\cos\alpha$ en función de $y'(x)$
 \begin{equation}\label{cos_alpha}\cos\alpha=-\frac{y'(x)}{\sqrt{1+y'(x)^2}}\end{equation}
@@ -776,27 +799,40 @@ Esto nos permite escribir la rapidez en función de la altura repecto al piso.
 \begin{ejemplo}[Péndulo]
 \end{ejemplo}
 
-
-\begin{wrapfigure}[9]{R}{5cm}
+ \begin{wrapfigure}[20]{l}{6cm}
   \begin{center}
-  \includegraphics[scale=.07]{imagenes/pendulo.jpg}
- \end{center}
+  \setlength{\unitlength}{1cm}
+    \begin{picture}(5, 6)(0,1)
+      \put(0,6){\vector(1,0){5}}
+      \put(2.5,1){\vector(0,1){6}}
+      \put(5,6){$x$}
+      \put(2.6,7){$y$}
+      \put(2.5,6){\line(-1,-2){2}}
+      \put(0.45,1.9){\circle{.25}}
+      \multiput(.6,1.9)(.1,0){19}{\line(1,0){0.05}}
+      \put(2.6,1.9){$-l\cos\alpha$}
+      \put(2.2,5.2){$\alpha$}
+      \put(1.2,4){$l$}
+
+
+    \end{picture}\caption{Péndulo}\label{fig:caída}
+  \end{center}
 \end{wrapfigure}
+
   Se trata de una masa puntual $m$ suspendida de un punto por medio de una barra de longitud $l$
  a la que suponemos sin masa. Equivale al movimiento sobre una guía circular.  Usaremos el ángulo $\alpha$ marcado en la figura, como variable dependiente.
 
 
 
 Supondremos que el origen del sistema de de coordenadas está sobre el punto de amarre de la barra. Entonces de \eqref{cons_ener} con $t_1=t$ deducimos 
-\[\begin{split}\frac{m|v(t)|^2}{2}-\frac{m|v(t_0)|^2}{2}&=-mg\left(y(t)-y(t_0)\right)\\
+\[\begin{split}\frac{m|v(t)|^2}{2}&-\frac{m|v(t_0)|^2}{2}\\&=-mg\left(y(t)-y(t_0)\right)\\
   &=mg\cos\alpha(t)-mg\cos\alpha(t_0).
    \end{split}
 \]
-
-
-
 Ahora la posición de la masa es $x(t)=l(\sen\alpha,-\cos\alpha)$ luego 
-\[v(t)=l\alpha'(t)(\cos\alpha,\sen\alpha) \Longrightarrow |v(t)|^2=l^2\alpha'(t)^2.\]
+\[v(t)=l\alpha'(t)(\cos\alpha,\sen\alpha).\]
+Tomando módulo
+\[ |v(t)|^2=l^2\alpha'(t)^2.\]
 Entonces
 \[\frac{ml^2\alpha'(t)^2}{2}= mgl\cos\alpha(t)-mgl\cos\alpha(t_0) +\frac{mv(t_0)^2}{2}.\]
 Derivando esta relación
@@ -813,8 +849,28 @@ De esto deducimos la ecuación del \href{http://es.wikipedia.org/wiki/Péndulo}{
 \begin{problema} Dados dos puntos $A$ y $B$ en las proximidades de la superficie terrestre, uno mas abajo respecto al suelo que el otro,
 queremos diseñar el tobogán óptimo entre los dos,
 esto es el tobogán que nos lleve de $A$ hasta $B$ en el menor tiempo. La curva solución a este problema se llama curva 
-\href{http://es.wikipedia.org/wiki/Curva_braquistócrona}{braquistócrona} (braquistos - el más corto, cronos - tiempo). 
-\end{problema}
+\href{http://es.wikipedia.org/wiki/Curva_braquistócrona}{braquistócrona} (braquistos - el más corto, cronos - tiempo).
+\end{problema}\vspace{-1cm}\link
+%
+%  \begin{wrapfigure}[20]{l}{6cm}
+%   \begin{center}
+%   \setlength{\unitlength}{1cm}
+%     \begin{picture}(5, 6)(0,1)
+%       \put(0,6){\vector(1,0){5}}
+%       \put(2.5,1){\vector(0,1){6}}
+%       \put(5,6){$x$}
+%       \put(2.6,7){$y$}
+%       \put(2.5,6){\line(-1,-2){2}}
+%       \put(0.45,1.9){\circle{.25}}
+%       \multiput(.6,1.9)(.1,0){19}{\line(1,0){0.05}}
+%       \put(2.6,1.9){$-l\cos\alpha$}
+%       \put(2.2,5.2){$\alpha$}
+%       \put(1.2,4){$l$}
+%
+%
+%     \end{picture}\caption{Braquistócrona}\label{fig:caída}
+%   \end{center}
+% \end{wrapfigure}
 
 
 \begin{center}
