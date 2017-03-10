@@ -10,7 +10,7 @@
 \usepackage{enumerate}
 \usepackage{verbatim}
 \usepackage{ esint }
-%\usepackage{pst-all}
+\usepackage{pst-all}
 %\usepackage{pstricks-add}
 \usepackage{array}
 \usepackage{animate}
@@ -36,7 +36,11 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \usepackage{natbib}
 \usepackage{chapterbib}
 \usepackage{fontawesome}
-
+\usepackage{xcolor}
+\usepackage{appendix}
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+\usepackage{lipsum}
 
 \fancyfoot{}
 \fancyhead[RO,LE]{\thepage}
@@ -46,6 +50,13 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 
 \titleformat{\section}
   {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+
+\AtBeginEnvironment{subappendices}{%
+\chapter*{Apéndices}
+\addcontentsline{toc}{chapter}{Apéndices}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%Colores
 %Sugeridos por CEPEIPER
@@ -66,7 +77,7 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \definecolor{color5}{rgb}{0.7,0.24,0.24}
 \definecolor{color6}{rgb}{0.72,0.4,0.28}
 \definecolor{color7}{rgb}{0.84,0.66,0.21}
-\definecolor{color8}{rgb}{0.3,0.29,0.28}
+\definecolor{color8}{HTML}{8E87C1}
 
 
 %%%%%%%%%%%%%%%%%%%%%% Configuracion listing
@@ -124,12 +135,15 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\b}[1]{\boldsymbol{#1}}
 \renewenvironment{frame}[1]{}{}
-\newcommand{\link}{\reversemarginpar\marginnote{%\fontsize{24}{24                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       }\selectfont
-\faExternalLink}
-%\normalmarginpar
+\newcommand{\link}{\reversemarginpar\marginnote{%\fontsize{24}{24                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+%}\selectfont
+\faExternalLink} %
+\normalmarginpar
 }
-\newcommand{\advertencia}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBolt}\normalmarginpar}
-\newcommand{\lectura}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBook}\normalmarginpar}
+\newcommand{\advertencia}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBolt}%
+\normalmarginpar}
+\newcommand{\lectura}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faBook}%
+\normalmarginpar}
 \newcommand{\actividad}{\reversemarginpar\marginnote{\fontsize{24}{24}\selectfont\faCogs}%
 \normalmarginpar}
 
@@ -238,7 +252,7 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 \include{prologo}
 %\include{Uni0}
 \include{Uni1}
-\include{Uni2}
+%\include{Uni2}
 %\include{Uni3}
 %\include{Uni4}
 %\include{Uni5}
