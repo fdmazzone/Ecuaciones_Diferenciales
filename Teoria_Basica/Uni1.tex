@@ -521,7 +521,12 @@ f=plot(1/x,(x,-3,3),ylim=(-3,3))
 
 
 
-
+\marginpar{
+\setlength{\unitlength}{1in}
+\begin{pspicture}(1,2)
+      \put(0,-5){\scalebox{0.6}{\psbarcode[file]{scripts/graf_flia.py}{}{qrcode}}}
+\end{pspicture}
+}
 \begin{lstlisting}
 from sympy import *
 x,y=symbols('x,y')
@@ -537,13 +542,9 @@ for r in range(1,10):
     p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
 show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
     p.append(p1[0])
+p.show()
 \end{lstlisting}
-\marginpar{
-\setlength{\unitlength}{1in}
-\begin{pspicture}(1,2)
-      \put(0,1.5){\scalebox{0.6}{\psbarcode[file]{scripts/graf_flia.py}{}{qrcode}}}
-\end{pspicture}
-}
+
 
 \noindent\textbf{Resultado:}
 \begin{figure}[h]
@@ -1080,7 +1081,7 @@ La ecuación \eqref{cambio_hom} queda
 
 
 
-\section[Exactas]{Ecuaciones exactas}
+\section{Ecuaciones exactas}
 
 
 
@@ -1168,11 +1169,11 @@ Como no sabemos despejar $\boxed{y}$ de aquí dejamos indicada de esta manera la
 
 
 \section{Factores integrantes}
-{Factores integrantes}
+
  Las ecuaciones exactas son raras, no obstante tenemos un recurso para llevar algunas ecuaciones no exactas a una equivalente y exacta.
 
  Supongamos que la ecuación  \eqref{eq:ecua_forma} no es  exacta. La idea es encontrar una función $\mu(x,y)$ llamada
-\href{http://es.wikipedia.org/wiki/Ecuación_diferencial_exacta\#Factor_integrante.}{factor integrante} que haga exacta la ecuación
+\href{http://es.wikipedia.org/wiki/Ecuación_diferencial_exacta\#Factor_integrante.}{factor integrante}\link que haga exacta la ecuación
 \[\mu\left(Mdx+Ndy\right)=0.\]
  Para ello se debe cumplir que
 \begin{equation}\label{carac_factor}
@@ -1198,7 +1199,7 @@ Es decir $\mu$ es factor integrante.
 La proposición anterior nos dice que, mientras la ecuación sea resoluble, siempre  existe un factor integrante. Pero no ayuda a hallarlo dado que parte de la solución que es lo que queremos hallar. Otra alternativa es resolver la ecuación \eqref{carac_factor} que es una ecuación en derivadas parciales para $\mu$, que normalmente es más dificil que resolver  la original. Así, mientras que el método es siempre aplicable, en la práctica es útil en situaciones específicas.
 
 Hay que señalar que sólo necesitamos una solución de \eqref{carac_factor} y no su solución general. En la práctica se suele hacer alguna suposición
-sobre $\mu$ que simplifique la expresión. Es decir proponer alguna forma específica para $\mu$ que haga la ecuación \eqref{carac_factor} más sencilla de resolver. Por supuesto, a priori el factor integrante, si bien existe, no tiene ninguna forma predeterminada. Lo que hacemos es lo que en lenguaje culto se conoce como \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}, y en lenguaje coloquial, que aquí es más significativo, estamos haciendo un lance o tratando de adivinar $\mu$, sin mucho más criterio que buscarlo entre equellas funciones con una forma (simple) predeterminada. Por ejemplo, es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuación
+sobre $\mu$ que simplifique la expresión. Es decir proponer alguna forma específica para $\mu$ que haga la ecuación \eqref{carac_factor} más sencilla de resolver. Por supuesto, a priori el factor integrante, si bien existe, no tiene ninguna forma predeterminada. Lo que hacemos es lo que en lenguaje culto se conoce como \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}\link, y en lenguaje coloquial, que aquí es más significativo, estamos haciendo un lance o tratando de adivinar $\mu$, sin mucho más criterio que buscarlo entre equellas funciones con una forma (simple) predeterminada. Por ejemplo, es común suponer que $\mu$ es sólo función de una de las variables. Si por ejemplo asumimos que $\mu=\mu(x)$ las ecuación
 \eqref{carac_factor} se escribe
 
 \[\mu\der{M}{y}=\mu\der{N}{x}+N\mu'(x) \Longrightarrow\boxed{\frac{\mu'}{\mu}=\frac{\partial M/\partial y-\partial N/\partial x}{N}}\]
@@ -1229,61 +1230,63 @@ El factor integrante es
 
 
 
- \section{Otras Técnicas relacionadas con exactitud}
 
-Veamos otra forma de trabajar para transformar ecuaciones no exactas en exactas. Esta forma no es metódica, sino  que depende de la habilidad
-de quien la lleva adelante en encontrar la similitud de la ecuación diferencial con alguna expresión exacta conocida. Ilustremos esto con el ejemplo  anterior
-$ydx+(x^2y-x)dy=0$. Escrita de este modo no se advina ninguna similitud. Pero si la escribimos
-\[x^2ydy-(xdy-ydx)=0.\]
-Recordando  que
-\[d\left(\frac{y}{x}\right)=\frac{xdy-ydx}{x^2}.\]
-Lo que sugiere dividir por $x^2$ la ecuación.
-\[0=ydy-\frac{xdy-ydx}{x^2}=d\left(\frac{y^2}{2}\right)-d\left(\frac{y}{x}\right)=d\left(\frac{y^2}{2}-\frac{y}{x}\right).\]
-La solución general es pues
-\[\frac{y^2}{2}-\frac{y}{x}=c.\]
+\section{Aplicación: antenas y espejos parabólicos}
 
-
-Se obtienen otras formas diferenciales exactas derivando expresiones sencillas
-%\begin{equation}
- \begin{align}
-  d\left(\frac{x}{y}\right)&=\frac{ydx-xdy}{y^2}\quad\text{nada nuevo} \\
-  d(xy)&=ydx+xdy\\
-  d(x^2+y^2)&=2(xdx+ydy)\label{eq:exacta_mod2}\\
-  d\left( \arctan\left(\frac{y}{x} \right) \right)&=\frac{ydx-xdy}{x^2+y^2}\quad\text{falla caracterización pag \eqref{teo:campo_cons}!!! Qué ocurre?}\nonumber\\
-  d\left( \ln\left(\frac{y}{x} \right) \right)&=\frac{ydx-xdy}{xy}
-  \end{align}
-%\end{equation}
-
-
-
-
-\begin{ejemplo} \textit{Espejos, antenas parabólicos.} Hallar la forma del espejo curvo tal que el reflejo de todo haz de luz que viaja paralelo al eje $x$ con dirección
+\begin{ejemplo}
+\textit{Espejos, antenas parabólicos.} Hallar la forma del espejo curvo tal que el reflejo de todo haz de luz que viaja paralelo al eje $x$ con dirección
 negativa repecto a este eje pasa por el $(0,0)$.
 \end{ejemplo}
 
-\noindent\textbf{Ejercicio.} Dejamos como ejercicio demostrar que un haz de luz que se refleja sobre un espejo lo hace de tal manera que los ángulos que se forman con los rayos
+
+\noindent\textbf{Ejercicio.} \actividad Dejamos como ejercicio demostrar que un haz de luz que se refleja sobre un espejo lo hace de tal manera que los ángulos que se forman con los rayos \marginpar{%
+ \includegraphics[scale=.1]{imagenes/antena.jpg}\\
+Antena parabólica
+}
 de incidencia y refracción y la tangente al espejo en el punto de incidencia son iguales ( $\beta=\alpha$ en el dibujo). Para resolver esto hay que usar el principio
-de mínimo tiempo de Fermat
-\begin{wrapfigure}[10]{l}{5cm}
- \begin{center}
- \includegraphics[scale=.4]{imagenes/espejo.png}
-\end{center}
+de mínimo tiempo de Fermat.
+
+\begin{wrapfigure}[12]{L}{8cm}
+\psset{unit=1cm}
+\begin{pspicture}(-0.8,0)(7,4)
+\psline{->}(-0.8,.5)(7,.5)
+\psline{->}(2,0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           )(2,4)
+\rput(6.8,.25){$x$}
+\rput(1.8,3.8){$y$}
+\psline[linestyle=dashed](-.7,.5)(5,4)
+\psbezier(1,.5)(1,1.25)(3,3.7)(7,4)
+\pscircle*(2.9,2.7){.1}
+\psline(2,0.5)(2.9,2.7)
+\psline{->}(2,0.5)(2.3,1.21)
+\psline{->}(2.9,2.7)(7,2.7)
+\psarc{->}(2,0.5){1}{0}{67.75}
+\psarc{-}(2.9,2.7){0.7}{213}{247}
+\rput(2.5,0.8){$\theta$}
+\rput(3.2,2){$\alpha$}
+\rput(0.2,0.7){$\phi$}
+\psline{->}(3,2)(2.9,2)(2.6,2.5)
+\psarc{-}(2.9,2.7){2}{0}{33}
+\rput(4,2.9){$\beta$}
+\end{pspicture}
 \caption{Reflejo en un espejo curvo}
 \end{wrapfigure}
+
+
+
+
+
+
  \textbf{Solución.} Sea $(x,y)$ el punto de incidencia. Apelando a la geometría elemental, $\phi=\beta$ y $\theta=\alpha+\phi=2\beta$. Como $\tan\theta=\frac{y}{x}$
   y como
-  \[\tan\theta =\tan 2\beta=\frac{2\tan\beta}{1-\tan^2\beta},\]
+  \[\begin{split} \tan\theta &=\tan 2\beta\\&=\frac{2\tan\beta}{1-\tan^2\beta},
+    \end{split}
+\]
 deducimos que
 \[\frac{y}{x}=\frac{2 dy/dx}{1-(dy/dx)^2}.\]
 Despejando
 \[\frac{dy}{dx} =\frac{-x\pm\sqrt{x^2+y^2}}{y}.\]
 
- \begin{wrapfigure}[11]{r}{5cm}
- \begin{center}
- \includegraphics[scale=.1]{imagenes/antena.jpg}
- \end{center}
-\caption{Antena parabólica}
-\end{wrapfigure}
+
 Podemos escribir la ecuación de este otro modo
 \[xdx+ydy=\pm\sqrt{x^2+y^2}dx.\]
 Tomando en cuenta \eqref{eq:exacta_mod2}

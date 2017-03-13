@@ -12,3 +12,4 @@ for r in range(1,10):
     p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
 show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
     p.append(p1[0])
+p.show()
