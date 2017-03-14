@@ -1250,7 +1250,8 @@ de mínimo tiempo de Fermat.
 \psset{unit=1cm}
 \begin{pspicture}(-0.8,0)(7,4)
 \psline{->}(-0.8,.5)(7,.5)
-\psline{->}(2,0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           )(2,4)
+\psline{->}(2,0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  )(2,4)
 \rput(6.8,.25){$x$}
 \rput(1.8,3.8){$y$}
 \psline[linestyle=dashed](-.7,.5)(5,4)
@@ -1276,7 +1277,7 @@ de mínimo tiempo de Fermat.
 
 
 
- \textbf{Solución.} Sea $(x,y)$ el punto de incidencia. Apelando a la geometría elemental, $\phi=\beta$ y $\theta=\alpha+\phi=2\beta$. Como $\tan\theta=\frac{y}{x}$
+ \noindent\textbf{Solución.} Sea $(x,y)$ el punto de incidencia. Apelando a la geometría elemental, $\phi=\beta$ y $\theta=\alpha+\phi=2\beta$. Como $\tan\theta=\frac{y}{x}$
   y como
   \[\begin{split} \tan\theta &=\tan 2\beta\\&=\frac{2\tan\beta}{1-\tan^2\beta},
     \end{split}
@@ -1284,13 +1285,22 @@ de mínimo tiempo de Fermat.
 deducimos que
 \[\frac{y}{x}=\frac{2 dy/dx}{1-(dy/dx)^2}.\]
 Despejando
-\[\frac{dy}{dx} =\frac{-x\pm\sqrt{x^2+y^2}}{y}.\]
+\begin{equation}\label{eq:antena}
+ (\pm\sqrt{x^2+y^2}+x)dx+ydy=0
+\end{equation}
+La expresión sugiere introducir coordenadas polares
+\[x=r\cos\theta, \quad y=r\sen\theta.\]
+Atendiendo a \eqref{eq:formas} tenemos:
+\[dx=\cos\theta dr-r\sen\theta d\theta,\quad dy=\sen\theta dr+r\cos\theta d\theta.\]
+Sustituyendo en \eqref{eq:antena}
+
+\[r^{2} \sin{\left (\theta \right )} d\theta + \left(- r \cos{\left (\theta \right )} + r\right) dr=0.\]
+Notar que
+\[\frac{N_{\theta}-M_r}{M}=-\frac{1}{r}\]
+es independiente de $\theta$. Tenemos que $\mu(r)=r^{-1}$ es factor integrante. Multiplicando por $\mu$ llegamos a la ecuación exacta
+\[r\sen\theta d\theta+(-\cos\theta\pm 1)}{r^2}dr=0.\]
 
 
-Podemos escribir la ecuación de este otro modo
-\[xdx+ydy=\pm\sqrt{x^2+y^2}dx.\]
-Tomando en cuenta \eqref{eq:exacta_mod2}
-\[\pm\frac{d(x^2+y^2)}{2\sqrt{x^2+y^2}}=dx.\]
 Si $r=x^2+y^2$
 \[dx=\pm\frac{dr}{2\sqrt{r}}=\pm d\sqrt{r}=\pm d\sqrt{x^2+y^2}\]
 Las solución general es
