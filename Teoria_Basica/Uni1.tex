@@ -678,7 +678,29 @@ acorde a la ley
  Un tanque contiene inicialmente $N$ $\hbox{m}^3$ de $H_2O$ entre los cuales hay disueltos $C$ kg de sal común
  $NaCl$. A través de una boca de entrada y una de salida empieza circular la solución, entrando y saliendo con el mismo caudal $q\frac{\hbox{m}^3}{s}$. Se supone que
  la solución entrante tiene una concentración conocida $r$. Encontrar la cantidad de sal en el momento $t$. &
-  \includegraphics[scale=.1]{imagenes/tanque.jpg} \\
+\scalebox{.6} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-5.26)(8.346,5.246)
+\definecolor{color407b}{rgb}{0.2823529411764706,0.22745098039215686,0.8745098039215686}
+\definecolor{color830b}{rgb}{0.12549019607843137,0.23529411764705882,0.9411764705882353}
+\psbezier[linewidth=0.012,fillstyle=solid,fillcolor=color830b](1.96,2.58)(1.9916879,3.1224957)(5.9146633,3.2288723)(5.96,2.56)(6.0053368,1.8911277)(5.9,-1.74)(5.96,-2.4)(6.02,-3.06)(1.8660278,-2.908184)(1.94,-2.44)(2.013972,-1.971816)(1.9283121,2.0375042)(1.96,2.58)
+\psbezier[linewidth=0.012,fillstyle=gradient,gradlines=2000,gradmidpoint=1.0,fillcolor=color407b](5.06,-1.3)(4.6,-1.18)(4.76,-0.68)(5.08,-0.68)(5.4,-0.68)(6.86,-0.66)(7.6,-0.66)(8.34,-0.66)(8.160402,-3.7864435)(8.14,-3.78)(8.119597,-3.7735565)(7.6556315,-3.938399)(7.52,-3.66)(7.384369,-3.381601)(7.551398,-1.3824744)(7.24,-1.4)(6.928602,-1.4175255)(5.52,-1.42)(5.06,-1.3)
+\psbezier[linewidth=0.012,fillcolor=color407b](1.98,2.5611498)(2.22,2.4229145)(2.8400288,2.32)(3.64,2.3223798)(4.4399714,2.3247597)(5.08,2.3412302)(5.98,2.58)
+\psline[linewidth=0.012cm,fillcolor=color407b](2.0,2.58)(2.0,4.7)
+\psline[linewidth=0.012cm,fillcolor=color407b](5.96,2.62)(5.96,4.72)
+\psbezier[linewidth=0.012,fillcolor=color407b](1.98,4.66)(2.06,4.12)(6.02,4.2)(5.94,4.7)
+\psbezier[linewidth=0.012,fillcolor=color407b](2.06,4.7165217)(2.2734654,5.24)(5.98,5.130435)(5.9411883,4.68)
+\psframe[linewidth=0.012,dimen=outer,fillstyle=solid,fillcolor=color407b](1.96,1.62)(0.9,1.1)
+\psline[linewidth=0.012cm,fillcolor=color407b,linestyle=dashed,dash=0.16cm 0.16cm](1.98,1.6)(2.94,1.58)
+\psline[linewidth=0.012cm,fillcolor=color407b,linestyle=dashed,dash=0.16cm 0.16cm](2.0,1.08)(2.76,1.08)
+\psellipse[linewidth=0.012,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](2.78,1.28)(0.1,0.26)
+\psline[linewidth=0.04cm,fillcolor=color407b,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.82,-3.94)(7.84,-5.24)
+\psline[linewidth=0.04cm,fillcolor=color407b,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,1.38)(0.76,1.34)
+\rput(0.26,1.92){$q$}
+\rput(8.4,-4.66){$q$}
+\end{pspicture} 
+}
+\\
 \end{tabular}
 \end{problema}
 
@@ -1294,29 +1316,26 @@ Atendiendo a \eqref{eq:formas} tenemos:
 \[dx=\cos\theta dr-r\sen\theta d\theta,\quad dy=\sen\theta dr+r\cos\theta d\theta.\]
 Sustituyendo en \eqref{eq:antena}
 
-\[r^{2} \sin{\left (\theta \right )} d\theta + \left(- r \cos{\left (\theta \right )} + r\right) dr=0.\]
+\[\mp r^{2} \sin{\left (\theta \right )} d\theta + \left(\pm r \cos{\left (\theta \right )} + r\right) dr=0.\]
 Notar que
 \[\frac{N_{\theta}-M_r}{M}=-\frac{1}{r}\]
 es independiente de $\theta$. Tenemos que $\mu(r)=r^{-1}$ es factor integrante. Multiplicando por $\mu$ llegamos a la ecuación exacta
-\[r\sen\theta d\theta+(-\cos\theta\pm 1)}{r^2}dr=0.\]
-
-
-Si $r=x^2+y^2$
-\[dx=\pm\frac{dr}{2\sqrt{r}}=\pm d\sqrt{r}=\pm d\sqrt{x^2+y^2}\]
-Las solución general es
-\[\pm\sqrt{x^2+y^2}=x+c.\]
-Elevando al cuadrado ambos miembros
-\[y^2=2xc+c^2=2c\left(x+\frac{c}{2}\right)\]
-Que es la familia de todas las parábolas con eje de simetría $x$, positivamente
-orientadas y con foco en $(0,0)$.
+\[\mp r\sen\theta d\theta+(\pm\cos\theta+ 1)dr=0.\]
+Siguiendo las técnicas expuestas llegamos a la función potencial
+\[\Phi(\theta,r)=\pm r\cos\theta +r.\]
+Convirtiendo nuevamente a coordenadas cartesianas, encontramos que la solución general es
+\[\pm x + \sqrt{x^2+y^2}=c.\]
+Despejando
+\[y^2=\mp 2xc+c^2=2c\left(\mp x+\frac{c}{2}\right)\]
+Que es la familia de todas las parábolas con eje de simetría $x$  y con foco en $(0,0)$. 
+El signo $\mp$ refleja el hecho que el espejo podría mirar hacia un lado u otro. 
 
 \section{Ecuaciones Lineales}
-\begin{definicion}[Ecuación lineal] Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal} a una ecuación que es lineal
+\begin{definicion}[Ecuación lineal] Se llama \href{http://es.wikipedia.org/wiki/Ecuación_diferencial_lineal}{ecuación diferencial lineal}\link
+a una ecuación que es lineal
 respecto a   la/s variables
 dependientes. La siguiente es la ecuación diferencial lineal general de primer orden
-%\begin{equation}\label{eq:lineal}y'+p(x)y=q(x).
 \boxedeq{y'+p(x)y=q(x)}{eq:lineal}
-%\end{equation}
 y la  de segundo orden
 \boxedeq{y''+p(x)y'+q(x)y=r(x).}{eq:lineal_orden2}
 Aquí $p,q$ y $r$ son funciones de $x$ usualmente definidas sobre un intervalo abierto de $\rr$.
@@ -1382,83 +1401,83 @@ La ecuación se reduce a la siguiente ecuación de primer orden
 \boxedeq{F\left(y,p,\frac{dp}{dy}p\right)=0}{RedOrdSinInd}
 
 
+% 
+% \section{\texttt{SymPy}}
+% 
+% 
+% 
+% \begin{codigo}[Clasificación de EDO]
+% \textbf{Sintaxis:} \verb+classify_ode(Eq)+
+% 
+% \verb+Eq+:  ecuación.
+% 
+% \end{codigo}
+% El output son los métodos que se le pueden aplicar
+% \begin{lstlisting}
+% from sympy import *
+% x=symbols('x')
+% y=Function('y')(x)
+% classify_ode(y.diff()+y)
+% \end{lstlisting}
+% \noindent\textbf{Resultado:}
+% 
+% \verb+('separable', '1st_exact','1st_linear',+
+% 
+% \verb+'almost_linear','1st_power_series','lie_group',+
+% 
+% 
+% \verb+'nth_linear_constant_coeff_homogeneous', +
+% 
+% \verb+'separable_Integral', '1st_exact_Integral',  +
+% 
+% \verb+'1st_linear_Integral','almost_linear_Integral')+
+% 
+% \begin{lstlisting}
+% Ecuacion=Eq((x**2*y-x)*sin((y.diff(x,1)))**3\
+% +y**5+x**3*sin(y),0)
+% classify_ode(Ecuacion)
+% \end{lstlisting}
+% 
+% El único método que puede aplicar \texttt{SymPy} a la ecuación
+% 
+% \[(x^ 2y-x)\sen^ 3(y')+y^ 5+x^3\sen(y)=0,\]
+% es \verb+('lie_group',)+
+% \begin{lstlisting}
+% dsolve(Ecuacion,y)
+% \end{lstlisting}
+%  \noindent\textbf{Resultado:} Piensa, piensa   pero no llega a nada.
+% 
+% \begin{lstlisting}
+% >>>Ecuacion=Eq(y.diff()+(-x+sqrt(x**2+y**2))/y,0)
+% >>>classify_ode(Ecuacion)
+% ('1st_homogeneous_coeff_best',
+% '1st_homogeneous_coeff_subs_indep_div_dep',
+% '1st_homogeneous_coeff_subs_dep_div_indep',
+% '1st_power_series', 'lie_group',
+% '1st_homogeneous_coeff_subs_indep_div_dep_Integral',
+% '1st_homogeneous_coeff_subs_dep_div_indep_Integral')
+% \end{lstlisting}
+% 
+% \begin{lstlisting}
+% >>>dsolve(Ecuacion,y,hint='lie_group')
+% \end{lstlisting}
+% 
+%  \noindent\textbf{Resultado:} Piensa rato largo y:
+% \begin{lstlisting}
+% The given ODE (-x + sqrt(x**2 + y(x)**2))/y(x) + Derivative(y(x), x)
+% cannot be solved by the lie group method
+% \end{lstlisting}
+% 
+% 
+% \begin{lstlisting}
+% >>>sol=dsolve(Ecuacion,y,hint='1st_homogeneous_coeff_best')
+% \end{lstlisting}
+% 
+% \[y{\left (x \right )} = C_{1} e^{\int^{\frac{x}{y{\left (x \right )}}} -\frac{u_{2}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2} + \int^{\frac{x}{y{\left (x \right )}}} \frac{\sqrt{u_{2}^{2} + 1}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2}}\]
+% 
 
-\section{\texttt{SymPy}}
 
-
-
-\begin{codigo}[Clasificación de EDO]
-\textbf{Sintaxis:} \verb+classify_ode(Eq)+
-
-\verb+Eq+:  ecuación.
-
-\end{codigo}
-El output son los métodos que se le pueden aplicar
-\begin{lstlisting}
-from sympy import *
-x=symbols('x')
-y=Function('y')(x)
-classify_ode(y.diff()+y)
-\end{lstlisting}
-\noindent\textbf{Resultado:}
-
-\verb+('separable', '1st_exact','1st_linear',+
-
-\verb+'almost_linear','1st_power_series','lie_group',+
-
-
-\verb+'nth_linear_constant_coeff_homogeneous', +
-
-\verb+'separable_Integral', '1st_exact_Integral',  +
-
-\verb+'1st_linear_Integral','almost_linear_Integral')+
-
-\begin{lstlisting}
-Ecuacion=Eq((x**2*y-x)*sin((y.diff(x,1)))**3\
-+y**5+x**3*sin(y),0)
-classify_ode(Ecuacion)
-\end{lstlisting}
-
-El único método que puede aplicar \texttt{SymPy} a la ecuación
-
-\[(x^ 2y-x)\sen^ 3(y')+y^ 5+x^3\sen(y)=0,\]
-es \verb+('lie_group',)+
-\begin{lstlisting}
-dsolve(Ecuacion,y)
-\end{lstlisting}
- \noindent\textbf{Resultado:} Piensa, piensa   pero no llega a nada.
-
-\begin{lstlisting}
->>>Ecuacion=Eq(y.diff()+(-x+sqrt(x**2+y**2))/y,0)
->>>classify_ode(Ecuacion)
-('1st_homogeneous_coeff_best',
-'1st_homogeneous_coeff_subs_indep_div_dep',
-'1st_homogeneous_coeff_subs_dep_div_indep',
-'1st_power_series', 'lie_group',
-'1st_homogeneous_coeff_subs_indep_div_dep_Integral',
-'1st_homogeneous_coeff_subs_dep_div_indep_Integral')
-\end{lstlisting}
-
-\begin{lstlisting}
->>>dsolve(Ecuacion,y,hint='lie_group')
-\end{lstlisting}
-
- \noindent\textbf{Resultado:} Piensa rato largo y:
-\begin{lstlisting}
-The given ODE (-x + sqrt(x**2 + y(x)**2))/y(x) + Derivative(y(x), x)
-cannot be solved by the lie group method
-\end{lstlisting}
-
-
-\begin{lstlisting}
->>>sol=dsolve(Ecuacion,y,hint='1st_homogeneous_coeff_best')
-\end{lstlisting}
-
-\[y{\left (x \right )} = C_{1} e^{\int^{\frac{x}{y{\left (x \right )}}} -\frac{u_{2}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2} + \int^{\frac{x}{y{\left (x \right )}}} \frac{\sqrt{u_{2}^{2} + 1}}{u_{2}^{2} - u_{2} \sqrt{u_{2}^{2} + 1} - 1}\, du_{2}}\]
-
-
-
-\section{Ejemplos}
+\section{Aplicaciones}
 
 
 \subsection{Velocidad de escape}\label{pag:vel_esc}
@@ -1470,20 +1489,44 @@ es que el proyectil se escape al infinito. La velocidad más chica con esta cual
 \href{http://es.wikipedia.org/wiki/Velocidad_de_escape}{velocidad de escape}.
 \end{problema}
 
-\begin{wrapfigure}[11]{r}{5cm}
-\includegraphics[scale=.075]{imagenes/tiro_vertical.jpg}
+
+\begin{wrapfigure}[15]{R}{5cm}
+
+\begin{pspicture}(0,0)(4,4.3)
+\psset{unit=1cm}
+\pscircle[linestyle=none,fillstyle=solid,fillcolor=color8](1.5,1.5){1.5}
+\psline(1.5,1.5)(2,2.91)
+\psline(1.5,1.5)(2.5,4.32)
+\pscircle*(2.5,4.32){.1}
+\rput(1.32,1.55){\rotatebox{70}{\psline[linewidth=.01](0,-.2)(0,.2)
+\psline[linewidth=.01](0,0)(0.6,0)
+\psline[linewidth=.01](0.95,0)(1.5,0)
+\psline[linewidth=.01](1.5,-.2)(1.5,.2)
+\psline[linewidth=.01](1.5,0)(2.1,0)
+\psline[linewidth=.01](2.45,0)(3,0)
+\psline[linewidth=.01](3,-.2)(3,.2)
+}}
+\rput(1.6,2.3){\rotatebox{70}{$R$}}
+\rput(2.1,3.7){\rotatebox{70}{$x$}}
+\rput(.7,1.8){$M$}
+\rput(2.85,4.32){$m$}
+\end{pspicture}
+\caption{Velocidad de Escape}\label{fig:vel_esc}
 \end{wrapfigure}
+
  \noindent\textbf{Solución.} Para resolver este problema hay que tomar en consideración la
-\href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley de gravitación universal} de Newton. En la parte que nos interesa, esta Ley afirma
+\href{http://es.wikipedia.org/wiki/Ley_de_gravitación_universal}{Ley de gravitación universal}\link
+de Newton. En la parte que nos interesa, esta Ley afirma
 que el módulo de la fuerza de gravedad que se ejercen entre si dos cuerpos de masa $m_1$ y $m_2$ separados una distancia $r$ es proporcional al producto de las masas
 e inversamente proporcional al cuadrado de las distancia que los separa. Vale decir
 \[|F|=G\frac{m_1m_2}{r^2},\]
 donde $G$ es la constante de proporcionalidad.
-Cuando los cuerpos no son puntos masa, sino cuerpos extendidos en el espacio, la distancia de separación hay que medirla entre los centros de masa de los cuerpos.
+Cuando los cuerpos no son puntos masa, sino esferas de dendsidad uniforme la distancia de separación hay que medirla entre los centros de masa de los cuerpos.
 
 
 
-Hay que aclarar que usando el \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica} podemos resolver
+Hay que aclarar que usando el 
+\href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica}\link\linebreak podemos resolver
 el problema de una manera más simple. Incluso podemos ver que la suposición de que el tiro es vertical no es necesaria, es decir la velocidad de escape es la misma aunque
 el tiro sea oblicuo. Discutiremos esa solución durante la clase. Lamentablemente,  esta solución no usa ecuaciones diferenciales.
 Vamos a dar una solución, quizás un poco más complicada, pero que invoca las técnicas
@@ -1491,40 +1534,43 @@ discutidas.
 
 
 Supondremos a la Tierra una esfera de radio $R$, masa $M$ y su centro de masa en el centro de la esfera.   Al proyectil lo supondremos un punto masa
-con masa $m$ y su posición en el momento $t$, denotada $x=x(t)$, la mediremos sobre un eje vertical con origen en la superficie de la Tierra.  Todo como está indicado en la página \ref{pag:vel_esc}.
-Luego la distancia Tierra-proyectil será igual a $R+x$ donde $x$ es la posición del proyectil. Utilizando la \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda ley de Newton}, $F=ma$, obtenemos
+con masa $m$ y su posición en el momento $t$, denotada $x=x(t)$, la mediremos sobre un eje vertical con origen en la
+superficie de la Tierra.  Todo como está indicado en la figura \ref{fig:vel_esc}.
+Luego la distancia Tierra-proyectil será igual a $R+x$ donde $x$ es la posición del proyectil. Utilizando la 
+\href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{Segunda ley de Newton},\link
+$F=ma$, obtenemos
 \[mx''(t)=-\frac{GMm}{(R+x)^2}.\]
 Es una ecuación de la forma
-\[F(t,x,x',x'')=0.\]
-Con variable dependiente $x$ e independiente $t$. Pero, en realidad no depende de $t$ y por consiguiente, como vimos, se puede convertir en una ecuación de primer orden
+\[F(x,x',x'')=0.\]
+Con variable dependiente $x$ e independiente $t$. Pero  $F$ no depende de $t$ y por consiguiente, como vimos, se puede convertir en una ecuación de primer orden
 tomando como nuevas variables: 1) independiente $x$ 2) dependiente $v=x'$. En estas variables
 \[\frac{d^2x}{dt^2}=\frac{dv}{dt}=\frac{dv}{dx}\frac{dx}{dt}=v\frac{dv}{dx}.\]
 La ecuación se convierte en
 \[v\frac{dv}{dx}=-\frac{GM}{(R+x)^2}\Longrightarrow vdv+\frac{GM}{(R+x)^2}dx=0.\]
 Que es una ecuación en variables separables y también es exacta. Usaremos la técnica discutida para
-ecuaciones exactas \footnote{Siempre las ecuaciones en variables separables son exactas pues se escriben de la forma
-\[M(x)dx+N(y)dy=0,\]
+ecuaciones exactas \marginpar{Siempre las ecuaciones en variables separables son exactas pues se escriben de la forma
+\[{ \scriptscriptstyle M(x)dx+N(y)dy=0,}\]
 por consiguiente tienen potencial
-\[f=\int M(x)dx +\int N(y)dy\]}, los que nos indica que la solución general se expresa de la siguiente forma
+\[{ \scriptscriptstyle f=\int M(x)dx +\int N(y)dy}\]}, los que nos indica que la solución general se expresa de la siguiente forma
 \begin{equation}\label{energia}
  \frac{v^2}{2}-\frac{GM}{(R+x)}=E=\text{cte}.
 \end{equation}
 
-\begin{wrapfigure}[12]{r}{5cm}
-\begin{center}
- \includegraphics[scale=.3]{imagenes/velocidad_escape.jpg}
-\end{center}
-\caption{Remera nerd}\label{fig:vel_escape}
-\end{wrapfigure}
-La igualdad anterior es precisamente  consecuencia directa del \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica}, lo hemos vuelto a deducir como consecuencia de que la ecuación era exacta.  Sea $v_0$ la velocidad inicial para $t=0$. Como $E$ es constante y $x=0$ en $t=0$ debemos tener
+
+La igualdad anterior es precisamente  consecuencia directa del \href{https://docs.google.com/file/d/0B80iJ0HgObRRWll6MlJFSjFNMGc/edit}{Principio conservación energía mecánica},\link
+La hemos deducido como consecuencia de que la ecuación era exacta. 
+Sea $v_0$ la velocidad inicial para $t=0$. 
+Como $E$ es constante y $x=0$ en $t=0$ debemos tener
 \begin{equation}\label{energia_cero}
  E=\frac{v_0^2}{2}-GM/R
 \end{equation}
 Como $v^2\geq 0$ y por \eqref{energia} y \eqref{energia_cero}.
 \[-\frac{GM}{(R+x)}\leq\frac{v^2}{2}-\frac{GM}{(R+x)}=\frac{v_0}{2}-\frac{GM}{R}\]
-Queremos encontrar $v_0$ tal que $x\to\infty$. Luego tiene sentido tomar límite cuando $x\to\infty$ en la expresión anterior y concluimos
+Queremos encontrar $v_0$ tal que $x\to\infty$. Si tomamos
+límite cuando $x\to\infty$ en la expresión anterior obtenemos
 \[0\leq \frac{v_0^2}{2}-GM/R\]
-De aquí deducimos que el valor mínimo de velocidad de escape es el impreso en la remera de la figura \ref{fig:vel_escape}.
+De aquí deducimos que el valor mínimo de velocidad de escape es 
+$\sqrt(2*GM/R)$.
 
 \subsection{Curvas de persecución}
 
@@ -1532,6 +1578,12 @@ De aquí deducimos que el valor mínimo de velocidad de escape es el impreso en 
 línea recta con rapidez uniforme $a$ y de un punto por fuera de la recta parte un perro que lo
 persigue con rapidez uniforme $b$. Encontrar la trayectoria del perrro.
 \end{problema}
+
+
+
+
+
+
 
 \begin{figure}[h]
 \begin{center}
@@ -1543,30 +1595,69 @@ Ivars Peterson
 \end{center}
 \end{figure}
 
-\begin{wrapfigure}[12]{r}{5cm}
-\begin{center}
-\vspace{-1cm}
- \includegraphics[scale=.3]{imagenes/persecucion.jpg}
-\end{center}
+
+
+\begin{wrapfigure}[15]{R}{5cm}
+
+
+
+\scalebox{.6} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.51)(8.68,4.51)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.8,-4.49)(0.8,4.49)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,-3.49)(8.66,-3.53)
+\psbezier[linewidth=0.04](2.52,2.11)(2.52,1.33)(3.44,-3.49)(7.34,-3.51)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](3.4,-0.77)(0.82,3.09)
+\rput(1.9,3.12){$C=(0,at)$}
+\rput(0.3,4){$y$}
+\rput(8.66,-3.8){$x$}
+\rput(2.2,-0.77){$P=(x,y)$}
+\rput(7.34,-3.8){$(c,0)$}
+\rput(5.4,-1.8){$s$}
+\psdots[dotsize=0.12](3.36,-0.75)
+\psdots[dotsize=0.124](3.34,-0.75)
+\psdots[dotsize=0.154](3.34,-0.73)
+\psbezier[linewidth=0.012](7.34,-3.13)(6.34,-3.15)(4.66,-1.79)(3.92,-0.45)
+\psline[linewidth=0.0139999995cm](4.16,-0.31)(3.64,-0.63)
+\psline[linewidth=0.0139999995cm](7.34,-2.85)(7.34,-3.39)
+\psdots[dotsize=0.012](0.84,3.09)
+\psdots[dotsize=0.012](0.84,3.09)
+\psdots[dotsize=0.042](0.8,3.05)
+\psdots[dotsize=0.103999995](0.82,3.05)
+\psdots[dotsize=0.162](0.84,3.09)
+\end{pspicture} 
+}
 \caption{Curva persecución}\label{fig:curva_per}
 \end{wrapfigure}
-Supongamos que el perro parte del punto $(c,0)$, el conejo de $(0,0 )$ y la recta sobre la cual se mueve el conejo en dirección positiva  es el eje $y$.
-Vamos a suponer que la trayectoria del perro sigue la trayectoria donde
-la tangente a su movimiento, en un momento dado, intersecta a la posición del conejo correspondiente a ese momento.
+
+
+
+Supongamos que el perro parte del punto $(c,0)$, el conejo de $(0,0 )$ y se mueve 
+en línea recta en la dirección positiva  del eje $y$.
+Vamos a suponer que el perro sigue la trayectoria donde
+la tangente a su movimiento, en un momento dado, 
+intersecta a la posición del conejo correspondiente a ese momento.
 
 
 Pasado un tiempo $t$, el conejo estará en el punto $(0,at)$ y el perro en un punto de su trayectoria que forma un arco de
- longitud $s=bt$ hasta el $(c,0)$. Ese punto, donde está el perro, lo denotaremos $(x,y)$. Como hemos supuesto que la tangente a la trayectoria del perro en $(x,y)$ pasa
+ longitud $s=bt$ hasta el punto $(c,0)$. Ese punto, donde está el perro, lo denotaremos $(x,y)$. Como hemos supuesto que la tangente a la trayectoria del perro en $(x,y)$ pasa
  por la posición del conejo $(0,at)$ se debe cumplir que
  \begin{equation}\label{eq:persec}\frac{dy}{dx}=\frac{y-at}{x}\Longrightarrow xy'-y=-at.\end{equation}
- En esta ecuación hay tres variables, $t$ , $x$ e $y$. No hemos definido cuales son independiente y cuales depenientes.   Generalmente el tiempo $t$ se considera  variable  indepeniente, pero en la expresión de arriba aparece la derivada de $y$ respecto a $x$.
- Claramente deberíamos eliminar una de las variables. Conviene eliminar $t$, dado que al no aparecer en la derivación no tendremos que hacer un cambio de variables allí, donde siempre es un poco más engorroso.   Por otra parte, la intuición del problema, nos dice que  a cada $t$ corresponde uno, y sólo un, $x$\footnote{De lo contrario el perro no se hubiera movido en la dirección horizontal entre dos moementos, lo que es absurdo}, lo que indica que $t$ es función de $x$ y por consiguiente es de esperar poder escribir la ecuación \eqref{eq:persec} en términos de $x$ e $y$.   Tener en cuenta que no es  razonable en matemática, como en la política,  pensar que lograremos tener un beneficio (menos variables) sin pagar algún precio, pues, como dice el dicho,
+ En esta ecuación hay tres variables, $t$ , $x$ e $y$. No hemos definido cuales 
+ son independiente y cuales depenientes.   Generalmente el tiempo $t$ se considera  
+ variable  indepeniente, pero en la expresión de arriba aparece la derivada de $y$ 
+ respecto a $x$.
+ Claramente deberíamos eliminar una de las variables. Conviene eliminar $t$, dado que 
+ al no aparecer en la derivación no tendremos que hacer un cambio de variables allí, 
+ donde siempre es un poco más engorroso.   Por otra parte, la intuición del problema, 
+ nos dice que  a cada $t$ corresponde uno, y sólo un, $x$\footnote{De lo contrario el 
+ perro no se hubiera movido en la dirección horizontal entre dos momentos, lo que es absurdo}, lo que indica que $t$ es función de $x$ y por consiguiente es de esperar poder escribir la ecuación \eqref{eq:persec} en términos de $x$ e $y$.   Tener en cuenta que no es  razonable en matemática, como en la política,  pensar que lograremos tener un beneficio (menos variables) sin pagar algún precio, pues, como dice el dicho,
  ``Cuando la limosna es grande hasta el santo desconfía'' .
  En este caso, el costo que pagaremos
  es incrementar el orden de la ecuación.
- Como hemos dado algunas técnicas de  resolver ecuaciones de orden dos quizás estemos en condiciones de pagar este precio.
+ Como hemos dado algunas técnicas de  resolver ecuaciones de orden dos, quizás estemos en condiciones de pagar este precio.
 
-Para eliminar $t$ de la ecuación derivamos $\eqref{eq:persec}$ respecto a $x$, obtenemos
+Para eliminar $t$ de la ecuación \eqref{eq:persec}, derivamos $\eqref{eq:persec}$ respecto a $x$, para obtener
 \[xy''=-a\frac{dt}{dx}.\]
 Como $ds/dt=b$
 \[\frac{dt}{dx}=\frac{dt}{ds}\frac{ds}{dx}=-\frac{\sqrt{1+y'(x)^2}}{b}.\]
@@ -1580,25 +1671,22 @@ Que es una ecuación en variable separables. Tomando la integral definida entre 
 \[\ln\left(p+\sqrt{1+p^2}\right)=\ln\left( \frac{x}{c}\right)^{\tfrac{a}{b}}.\]
  Si despejamos $p$ conseguimos
  \boxedeq{p=\frac{dy}{dx}=\frac{1}{2}\left[\left(\frac{x}{c}\right)^{a/b}-\left(\frac{c}{x}\right)^{a/b}\right].}
-Para hhalar $y$ hay que recordar que $y'=p$ e $y(1)=0$.
+Para hallar $y$ hay que recordar que $y'=p$ e $y(1)=0$.
 
 Usemos \texttt{SymPy} para completar este cálculo y hacer los gráficos. El siguiente código evalúa la integral, halla la constante de integración para que $y(1)=0$ y grafica.
 
-\begin{lstlisting}
-from sympy import *
-x=symbols('x',real=True)
-a=Rational(2)
-b=Rational(1)
-c=Rational(1)
-y=integrate((x/c)**(a/b)-(c/x)**(a/b),x)
-C=symbols('C')
-C=solve(y.subs(x,1)+C,C)[0]
-plot(y+C,(x,0.001,1))
-\end{lstlisting}
+\lstinputlisting[language=Python]{scripts/persecucion.py}
+\marginpar{
+\begin{pspicture}(0,0)(1in,2in)
+      %\rput(0,1){
+      \scalebox{1}{\psbarcode[file]{scripts/persecucion.py}{}{qrcode}}
+      %}
+\end{pspicture}
+}
 
 Los resultados son:
 
-\begin{tabular}{m{5cm} m{5cm}}
+\begin{tabular}{m{4cm} m{4cm} m{4cm}}
 \begin{center}
 \includegraphics[scale=.3]{imagenes/perse_a_1_b_2.png}
 
@@ -1610,24 +1698,22 @@ $a<b$
 
 $a=b$
 \end{center}
-\end{tabular}
+&
 \begin{center}
 \includegraphics[scale=.3]{imagenes/perse_a_2_b_1.png}
 
 $a>b$
 \end{center}
 
+\end{tabular}
 
-\begin{wrapfigure}[10]{r}{6cm}
-\begin{center}
- \includegraphics[scale=.4]{imagenes/persecucion2.jpg}
- \caption{\small Persecución en un pentágono estrellado.
+
+
+Lo anterior constituye un ejemplo de lo que se conoce como\marginpar{
+ \includegraphics[scale=.4]{imagenes/persecucion2.jpg}\\
+Persecución en un pentágono estrellado. Extraído de\\
 \href{https://www.sciencenews.org/article/art-pursuit-3}{Art of Pursuit},
-Ivars Peterson
-}
-\end{center}
-\end{wrapfigure}
-Lo anterior constituye un ejemplo de lo que se conoce como \href{https://en.wikipedia.org/wiki/Pursuit_curve}{curva de persecución}. Este es un tema muy interesante que tiene varias generalizaciones, por ejemplo el \href{https://en.wikipedia.org/wiki/Mice_problem}{problema de los ratones} donde se colocan en cada vértice de un polígono ratones cada uno de los cuales persigue al vecino en sentido antihorario (u horario, da lo mismo). Se consiguen patrones geométricos myu bellos
+} \href{https://en.wikipedia.org/wiki/Pursuit_curve}{curva de persecución}. Este es un tema muy interesante que tiene varias generalizaciones, por ejemplo el \href{https://en.wikipedia.org/wiki/Mice_problem}{problema de los ratones} donde se colocan en cada vértice de un polígono ratones cada uno de los cuales persigue al vecino en sentido antihorario (u horario, da lo mismo). Se consiguen patrones geométricos myu bellos
 
 
 
@@ -1636,17 +1722,16 @@ Lo anterior constituye un ejemplo de lo que se conoce como \href{https://en.wiki
 
 
 
-\begin{wrapfigure}[12]{r}{5cm}
-\begin{center}
-\includegraphics[scale=.15]{imagenes/Hooke.JPG}\\
-\caption{Robert Hooke}
-\end{center}
-\end{wrapfigure}
-Un \href{http://es.wikipedia.org/wiki/Oscilador_armónico}{oscilador armónico} es el más simple de los sistemas físicos vibratorios. Podemos definirlo como un sistema
-elástico que obedece a la \href{http://es.wikipedia.org/wiki/Ley_de_Hooke}{Ley de elasticidad de Hooke}, en honor a su descubridor
-\href{http://es.wikipedia.org/wiki/Robert_Hooke}{Robert Hooke}.
 
-Suele citarse al \href{http://es.wikipedia.org/wiki/Resorte}{resorte} como un ejemplo familiar de oscilador armónico. Esto debido a que, cuando las oscilaciones de un resorte son
+Un \href{http://es.wikipedia.org/wiki/Oscilador_armónico}{oscilador armónico}\link es el más simple de los sistemas físicos vibratorios. Podemos definirlo como un sistema
+elástico que obedece a la \href{http://es.wikipedia.org/wiki/Ley_de_Hooke}{Ley de elasticidad de Hooke}\link, en honor a su descubridor
+\href{http://es.wikipedia.org/wiki/Robert_Hooke}{Robert Hooke (1635-1703)}\link.
+\marginpar{
+\includegraphics[scale=.15]{imagenes/Hooke.JPG}\\
+Robert Hooke
+}
+
+Suele citarse al \href{http://es.wikipedia.org/wiki/Resorte}{resorte}\link como un ejemplo familiar de oscilador armónico. Esto debido a que, cuando las oscilaciones de un resorte son
 pequeñas,  se satisface aproximadamente la Ley de elasticidad de  Hooke. Esta ley  afirma que la fuerza que ejerce un resorte sobre una masa $m$ conectada a él por uno
 de sus extremos es proporcional en magnitud al desplazamiento
 del resorte desde la posición de equilibrio. Además la fuerza de elasticidad actúa en sentido opuesto al desplazamiento.
@@ -1659,13 +1744,13 @@ del resorte desde la posición de equilibrio. Además la fuerza de elasticidad a
  \end{figure}
 
  Supongamos que tenemos un resorte, en unos de sus extremos fijado en una pared y unido a una masa $m$ por el otro extremo. Supongamos que no actúa otra fuerza
- sobre la masa. Ver la animación de la figura \ref{fig:resortito}.  Pongamos un eje de coordenadas en la dirección del movimiento, con origen en la posición de equilibrio
+ sobre la masa mas que la del resorte. Ver la animación de la figura \ref{fig:resortito}.  Pongamos un eje de coordenadas en la dirección del movimiento, con origen en la posición de equilibrio
  del resorte. Esta posición es el punto donde el resorte no ejerce fuerza. Supongamos que la dirección positiva es la dirección donde el resorte se expande. Denotemos
  por $x(t)$ la posición de la masa en el momento $t$.    Entonces según la Segunda Ley de Newton y la Ley de Elasticidad de Hooke, tenemos que
 
  \boxedeq{mx''(t)=-kx(t).}{eq:resorte}
 
-La constante de proporcionalidad $k$ se llama \href{http://es.wikipedia.org/wiki/Rigidez}{constante elástica}. La ecuación \eqref{eq:resorte} se denomina la
+La constante de proporcionalidad $k$ se llama \href{http://es.wikipedia.org/wiki/Rigidez}{constante elástica}\link. La ecuación \eqref{eq:resorte} se denomina la
 ecuación del oscilador armónico o ecuación del resorte.
 
 La ecuación del oscilador armónico se escribe $0=f(t,x,x',x'')$, donde \linebreak $f(t,x,y,z)=kx+mz$ es independiente de $t$. Podemos intentar usar $x$ como variable
@@ -1695,7 +1780,7 @@ Entonces
     &=\boxed{C_3\sen \sqrt{\frac{k}{m}}t+C_4\cos \sqrt{\frac{k}{m}}t}.
   \end{split}
  \]
-Que es la solución general de la ecuación del oscilador armónico. Como vemos el movimiento es oscilatorio con frecuencia
+Que es la solución general\footnote{Esta afirmación se justificará en el capítulo 3}  de la ecuación del oscilador armónico. Como vemos el movimiento es oscilatorio con frecuencia
 \[\boxed{f=\sqrt{\frac{k}{m}} }.\]
 En particular, no importan las condiciones iniciales, la frecuencia es siempre la misma.
 
@@ -1706,18 +1791,18 @@ En particular, no importan las condiciones iniciales, la frecuencia es siempre l
 
 \section{EDP, método características}
 
-Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden.  Vamos a exponer este punto a través del \href{https://en.wikipedia.org/wiki/Method_of_characteristics}{método de características}.
+Saber resolver ecuaciones ordinarias de primer orden nos permite resolver algunas ecuaciones en derivadas parciales de primer orden.  Vamos a exponer este punto a través del \href{https://en.wikipedia.org/wiki/Method_of_characteristics}{método de características}\link.
 
 Para tener un problema bien planteado con  ecuaciones en derivadas parciales no es suficiente conocer el valor de la función en un punto (como en una EDO de primer orden). Una condición típica extra, para lograr este propósito,  es consignar el valor de la función a lo largo de una curva, que por simplicidad asumiremos que es una recta .
 
-\begin{ejemplo}
+\begin{ejemplo} Resolver
 \begin{equation}\label{eq:EDP_gral_1orden}
   \left.\begin{array}{l}
   a(x,y)u_x+b(x,y)u_y=c(x,y,u)\\
   u(x,0)=f(x)\\
 \end{array}\right\}
 \end{equation}
-Aquí $x,y$ son variables independientes y $u$ dependiente. La primera línea es la ecución diferencial, que incluye derivadas parciales de la incognita y la segunda línea podemos denominarla condición inicial (pensando que la variable $y$ representa tiempo).
+Aquí $x,y$ son variables independientes y $u$ dependiente. La primera línea es la ecuación diferencial, que incluye derivadas parciales de la incognita y la segunda línea podemos denominarla condición inicial (pensando que la variable $y$ representa tiempo).
 \end{ejemplo}
 
 El método de características consiste en encotrar $u$ a lo largo de las soluciones de la EDO
@@ -1725,7 +1810,7 @@ El método de características consiste en encotrar $u$ a lo largo de las soluci
 \boxedeq{\frac{dy}{dx}=\frac{b(x,y)}{a(x,y)}}{eq:ecua_caract}
 
 Una solución de esta ecuación es normalmente una curva en el plano  $x,y$. La idea es que las soluciones de \eqref{eq:ecua_caract} forman un flia uniparamétrica
- de curvas que llena una gran parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$. Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los roles de $x$ e $y$.
+ de curvas que llena una parte $\Omega$ del plano $x,y$.  Así terminamos conociendo el valor de $u$ sobre este conjunto $\Omega$. Para que \eqref{eq:ecua_caract} tenga sentido debemos tener $a\neq 0$. De todas formas si $a=0$ podemos invertir los roles de $x$ e $y$.
 
 Supongamos $y(x)$ solución de \eqref{eq:ecua_caract}, entonces pongamos por abuso de notación $u(x)=u(x,y(x))$. Se tiene que
 
@@ -1815,6 +1900,23 @@ desde donde se deje caer.
 \animategraphics[controls,scale=.5]{15}{tautocrona/tauto-}{0}{79}
 \end{center}\caption{Tautócrona}\label{fig:tautocrona}
 \end{figure}
+
+\section{Solución al problema del espejo con Sympy}
+En este apéndice resolvemos el problema usando formas diferenciales
+El submódulo diffgeom de Sympy implementa formas diferenciales. Del
+sub-submodulo sympy.diffgeom.rn  importamos el objeto R2. 
+Para comprender el funcionamiento del código remitimos a la 
+\href{http://docs.sympy.org/latest/modules/diffgeom.html}{documentación de Sympy}\link.
+
+
+
+
+\lstinputlisting[language=Python]{scripts/espejo.py}
+\marginpar{
+\begin{pspicture}(0,0)(1in,2in)
+      \rput(0,1){\scalebox{0.6}{\psbarcode[file]{scripts/espejo.py}{}{qrcode}}}
+\end{pspicture}
+}
 
 \end{subappendices}
 
