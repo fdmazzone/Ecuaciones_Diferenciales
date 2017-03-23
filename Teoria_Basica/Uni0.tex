@@ -111,9 +111,9 @@ Además, se puede acceder a más de 720 paquetes que pueden ser fácilmente inst
     \includegraphics[scale=.3]{imagenes/anaconda.png}
 }
 
- Hay distribuciones específicas para distintos sistemas operativos
 
-\subsection{Windows} La distribución  \href{https://code.google.com/p/pythonxy/}{python(x,y)}  instala el interprete de python y todos los módulos de scipy. Además el entorno de desarrollo integrado (IDE) spyder.
+
+\subsection{Windows} Hay distribuciones específicas para distintos sistemas operativos. La distribución  \href{https://code.google.com/p/pythonxy/}{python(x,y)}  instala el interprete de python y todos los módulos de scipy. Además el entorno de desarrollo integrado (IDE) spyder.
 \marginpar{\includegraphics[scale=.07]{imagenes/windows-logo.png}}
 
 
@@ -206,11 +206,11 @@ el interprete, que entienda el código python y ejecute las acciones contenidas 
 
 Hay dos formas de producir comentarios, texto que el interprete  no ejecuta y que sirve para entender un programa.
 
-La primera, para comentarios largos es utilizanda la notación \linebreak\verb~''' comentario '''~ .
+Para comentarios largos se utilizan las tildes: \linebreak\verb~''' comentario '''~ .
 
 
  La segunda notación utiliza el símbolo \verb~#~, no necesita símbolo de finalización 
- pues se extienden hasta el final de la línea.
+ pues se extiende hasta el final de la línea.
 
  \begin{lstlisting}
 '''
@@ -232,6 +232,15 @@ El intérprete no tiene en cuenta los comentarios, lo cual es útil si deseamos 
 
 
 
+
+
+\subsection{Variables}
+Las variables se definen de forma dinámica, lo que significa que no se tiene que especificar cuál es su tipo de antemano y que una variable puede tomar distintos valores en distintos momentos de un programa, incluso puede tomar
+ un tipo diferente al que tenía previamente. \emph{Se usa el símbolo = para asignar valores a variables.}
+\advertencia Es importante distinguir este = (de asignación) con el igual que es utilizado para definir igualdades en sympy, para ecuaciones por ejemplo.
+
+
+
 \begin{lstlisting}
 x = 1
 x = "texto" # Esto es posible porque los tipos son asignados \
@@ -242,15 +251,6 @@ dinamicamente
        \psbarcode[file]{scripts/dinamico.py}{}{qrcode}
 \end{pspicture}
 }
-
-
-\subsection{Variables}
-Las variables se definen de forma dinámica, lo que significa que no se tiene que especificar cuál es su tipo de antemano y que una variable puede tomar distintos valores en distintos momentos de un programa, incluso puede tomar
- un tipo diferente al que tenía previamente. \emph{Se usa el símbolo = para asignar valores a variables.}
-\advertencia Es importante distinguir este = (de asignación) con el igual que es utilizado para definir igualdades en sympy, para ecuaciones por ejemplo.
-
-
-
 
 \subsection{Tipo de datos}
 
