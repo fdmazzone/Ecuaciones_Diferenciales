@@ -175,7 +175,8 @@ Obtenemos la ecuación
 + \frac{1}{\sqrt{- \cos^{2}{\left (xn \right )} + 1}} \left. \frac{d}{d \xi_{1
 }} y{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\operatorname{acos}{
 \left (\cos{\left (xn \right )} \right )} }}\]
-Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, esto ocurre aún con aquellas expresiones que parece muy evidente como se simplifican. El caso es que la operación de simplificación es por un lado  subjetiva, depende de un supuesto tácito de a que expresión se quiere arribar y por otro algunas expresiones, por ejemplo $\ln\exp(z)$, se simplifican en determinados campos numéricos y en otros no. En el caso del ejemplo $\ln\exp(z)$, la expresión es simplificable si $z\in\rr$, pero no lo es si por ejemplo $z\in\mathbb{C}$. De modo que no puede esperarse que Sympy efectúe esta simplificación a menos que conozca que se trabaja en el campo numérico indicado. Hay que distinguir que supuestos tácitos está haciendo uno y hay que indicarselos a Sympy.    El lector debe tener en cuenta que en ningún momento uno le dijo a \texttt{SymPy} que tipo de ente estaba manipulando en expresiones del tipo \texttt{x\_n=acos(x)}. Puede parecer natural que se trata de números reales, no obstante esta información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el habría de entender que \texttt{x} es real? Si al fin y al cabo \texttt{x\_n=acos(x)} tiene sentido si \texttt{x} es complejo y aún si es una matríz. Muchas veces las operaciones que se simplifican en un campo no lo pueden hacer en otro. El comando  \texttt{symbols} tiene la opción de informar a \texttt{SymPy} que tipo de ente representa \texttt{x} de la siguiente forma
+Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, esto ocurre aún con aquellas expresiones que parece muy evidente como se simplifican. El caso es que la operación de simplificación es por un lado  subjetiva, depende de un supuesto tácito de a que expresión se quiere arribar y por otro algunas expresiones, por ejemplo $\ln\exp(z)$, se simplifican en determinados campos numéricos y en otros no. En el caso del ejemplo $\ln\exp(z)$, la expresión es simplificable si $z\in\rr$, pero no lo es si por ejemplo $z\in\mathbb{C}$. De modo que no puede esperarse que Sympy efectúe esta simplificación a menos que conozca que se trabaja en el campo numérico indicado. Hay que distinguir que supuestos tácitos está haciendo uno y hay que indicarselos a Sympy.    El lector debe tener en cuenta que en ningún momento uno le dijo a \texttt{SymPy} que tipo de ente estaba manipulando en expresiones del tipo \texttt{x\_n=acos(x)}. Puede parecer natural que se trata de números reales, no obstante esta 
+información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el habría de entender que \texttt{x} es real? Si al fin y al cabo \texttt{x\_n=acos(x)} tiene sentido si \texttt{x} es complejo y aún si es una matríz. Muchas veces las operaciones que se simplifican en un campo no lo pueden hacer en otro. El comando  \texttt{symbols} tiene la opción de informar a \texttt{SymPy} que tipo de ente representa \texttt{x} de la siguiente forma
 \texttt{x=symbols('x',real=True)}. De esta forma se consiguen mejores resultados en las simplificaciones.
 
 
@@ -191,7 +192,7 @@ Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, esto ocurre aún con aq
 
 
 
-\begin{ejemplo} Transformar a polares
+\begin{ejemplo}\label{ej:cambio_forma} Transformar a polares
  \[
   \frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.
  \]
@@ -234,25 +235,7 @@ x=r\cos\theta; &dx=\cos\theta dr-\sen\theta r d\theta\\
  en la 1-forma:
 \[(y^3+x^2y-x-y)dx-(x^3+xy^2-x+y)dy\]
 
-Sympy posee un módulo para operar con formas diferenciales que nos permite resolver el ejemplo anterior. Se trata del módulo de geomettría diferencial, donde se pueden definir formas diferenciales 
-y otros entes propios de la geometría diferencial: campos escalares  y 
-vectoriales. No es posible entender completamente este módulo sin introducir conceptos básicos de geometría diferencial, cosa que no haremos pues nos alejaría del propósito del curso. De modo que vamos a discutir superficialmente la solución de este problema.  Es suficiente importar del módulo de geometría diferencial el submodulo R2, que ya nos
-crea las formas diferenciales $dx$, $dy$  (se accede por \texttt{R2.dx}, \texttt{R2.dy}), como 
-así también las formas $dr$ y $d\theta$ (\texttt{R2.dr}, \texttt{R2.dtheta}). Tecnicamente hablando R2 es una variedad diferencial --en este caso el espacio euclideano bidimensional-- con toda la estructura algebraica que lleva consigo.  
-
-En el siguiente código, luego de las sentencias de importanción, cada línea efectúa lo siguiente: 4-define la forma diferencial en coordenadas cartesianas, 5 y 6-calcula el valor de M y N en coordenadas polares --$Md\theta+N dr$--. Sin embargo el resultado, todavía tiene apelaciones a las coordenadas $x$ e $y$. Por este motivo en las líneas 7 y 8 introducimos los símbolos $r$ y $theta$ y en las líneas 9 a 11 sustituímos $x$ e $y$ por $r\cos\theta$ y $r\sen\theta$ respectivamente. Hay que notar que los simbolos que introdujimos $r$ y $\theta$ son diferentes de \texttt{R2.theta} y \texttt{R2.r}, a los que sympy despliega en negritas en la consola de ipython.  Por ese motivo, también sustituímos   \texttt{R2.theta} y \texttt{R2.r} por $\theta$ y $r$ respectivamente.
-
- \lstinputlisting[language=Python]{scripts/sust_formas.py}
-\marginpar{
-\begin{pspicture}(0,-2)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.5}{\psbarcode[file]{scripts/sust_formas.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
-
-La forma obtenida es $-rdr+(-r^4+r^2)d\theta$.
-
+Sympy posee un módulo para operar con formas diferenciales, en un apéndice describimos como utilizarlo para resolver este ejemplo.
 
 \section{Grupos}
 
@@ -288,26 +271,6 @@ Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href
 \end{ejemplo}
 
 
-
-\subsection{Teoría de grupos computacional: GAP}
-
-
-\begin{quote}
- << 
-GAP (Groups, Algorithms, Programming) es un sistema de álgebra discreta computacional, con especial énfasis en la teoría de grupos computacional. GAP proporciona un lenguaje de programación, una biblioteca de miles de funciones implementando algoritmos algebraicos escritos en el lenguaje GAP, así como bibliotecas de datos de objetos algebraicos de gran tamaño [...] GAP se utiliza en la investigación y la enseñanza para estudiar grupos y sus representaciones, anillos, espacios vectoriales, álgebras, estructuras combinatorias, y más. El sistema, incluida la fuente, se distribuye libremente.>>
-\end{quote}
-\begin{flushright}
- \href{https://www.gap-system.org/}{(Página Oficial de GAP)}
-\end{flushright}
-
-Hasta donde sabemos Sympy no implementa objetos de teoría de grupos. Sin embargo existe software libre para estudiar grupos. El más conocido de ellos es GAP. Este sistema provee un lenguaje muy sencillo y transparente. Lamentablemente el estudio de esta herramienta está más allá de los alcances de este documento. Desarrollemos un simple ejemplo.
-
-\begin{ejemplo} En el siguiente ejemplo de sesión con línea de comandos de GAP introducimos sentencias que quedan indicadas en cada línea iniciada con el símbolo de sistema (prompt) \verb~>gap~. Las líneas que no inician con el símbolo de sistema indican la salida correspondiente a la sentencia que antecede dichas líneas. En línea 1 introducimos el grupo simétrico de orden 3 y lo llamamos \texttt{G}. En línea 3 pedimos que nos enumere los elementos de \texttt{G}. En línea 5, introducimos el elemento de \texttt{G} que en notación cíclica se escribe $(1,3,2)$. En líneas 7 y 9 calculamos potencias de \texttt{r}. En 11 definimos como \texttt{H} el subgrupo generado por 
-\texttt{r} y en 13 enumeramos los elementos de \texttt{H}. En 15 averiguamos si \texttt{H} es normal. Siendo este el caso, podemos calcular el grupo cociente en 17 y lo llamos \texttt{K}. Por último averiguamos el orden de \texttt{K} en 19. 
-
- 
-\end{ejemplo}
-\lstinputlisting[language=GAP]{scripts/gap_basico.g}
 
 
 
@@ -1185,6 +1148,50 @@ Que es lo que tenía que ser.
 
 
 \end{ejemplo}
+
+\section{Formas diferenciales en Sympy}
+
+En este apéndice resolveremos el problema planteado en el ejemplo \ref{ej:cambio_forma} usando formas diferenciales y Sympy.  Usaremos el módulo de geometría diferencial, donde se pueden definir formas diferenciales
+y otros entes propios de la geometría diferencial: campos escalares  y
+vectoriales. No es posible entender completamente este módulo sin introducir conceptos básicos de geometría diferencial, cosa que no haremos pues nos alejaría del propósito del curso. De modo que vamos a discutir superficialmente la solución de este problema.  Es suficiente importar del módulo de geometría diferencial el submodulo R2, que ya nos
+crea las formas diferenciales $dx$, $dy$  (se accede por \texttt{R2.dx}, \texttt{R2.dy}), como
+así también las formas $dr$ y $d\theta$ (\texttt{R2.dr}, \texttt{R2.dtheta}). Tecnicamente hablando R2 es una variedad diferencial --en este caso el espacio euclideano bidimensional-- con toda la estructura algebraica que lleva consigo.
+
+En el siguiente código, luego de las sentencias de importanción, cada línea efectúa lo siguiente: 4-define la forma diferencial en coordenadas cartesianas, 5 y 6-calcula el valor de M y N en coordenadas polares --$Md\theta+N dr$--. Sin embargo el resultado, todavía tiene apelaciones a las coordenadas $x$ e $y$. Por este motivo en las líneas 7 y 8 introducimos los símbolos $r$ y $theta$ y en las líneas 9 a 11 sustituímos $x$ e $y$ por $r\cos\theta$ y $r\sen\theta$ respectivamente. Hay que notar que los simbolos que introdujimos $r$ y $\theta$ son diferentes de \texttt{R2.theta} y \texttt{R2.r}, a los que sympy despliega en negritas en la consola de ipython.  Por ese motivo, también sustituímos   \texttt{R2.theta} y \texttt{R2.r} por $\theta$ y $r$ respectivamente.
+
+ \lstinputlisting[language=Python]{scripts/sust_formas.py}
+\marginpar{
+\begin{pspicture}(0,-2)(1in,1in)
+      %\rput(0,1){
+      \scalebox{.5}{\psbarcode[file]{scripts/sust_formas.py}{}{qrcode}}
+      %}
+\end{pspicture}
+}
+
+La forma obtenida es $-rdr+(-r^4+r^2)d\theta$.
+
+
+
+
+\section{Teoría de grupos computacional: GAP}
+
+
+\begin{quote}
+ <<
+GAP (Groups, Algorithms, Programming) es un sistema de álgebra discreta computacional, con especial énfasis en la teoría de grupos computacional. GAP proporciona un lenguaje de programación, una biblioteca de miles de funciones implementando algoritmos algebraicos escritos en el lenguaje GAP, así como bibliotecas de datos de objetos algebraicos de gran tamaño [...] GAP se utiliza en la investigación y la enseñanza para estudiar grupos y sus representaciones, anillos, espacios vectoriales, álgebras, estructuras combinatorias, y más. El sistema, incluida la fuente, se distribuye libremente.>>
+\end{quote}
+\begin{flushright}
+ \href{https://www.gap-system.org/}{(Página Oficial de GAP)}
+\end{flushright}
+
+Hasta donde sabemos Sympy no implementa objetos de teoría de grupos. Sin embargo existe software libre para estudiar grupos. El más conocido de ellos es GAP. Este sistema provee un lenguaje muy sencillo y transparente. Lamentablemente el estudio de esta herramienta está más allá de los alcances de este documento. Desarrollemos un simple ejemplo.
+
+\begin{ejemplo} En el siguiente ejemplo de sesión con línea de comandos de GAP introducimos sentencias que quedan indicadas en cada línea iniciada con el símbolo de sistema (prompt) \verb~>gap~. Las líneas que no inician con el símbolo de sistema indican la salida correspondiente a la sentencia que antecede dichas líneas. En línea 1 introducimos el grupo simétrico de orden 3 y lo llamamos \texttt{G}. En línea 3 pedimos que nos enumere los elementos de \texttt{G}. En línea 5, introducimos el elemento de \texttt{G} que en notación cíclica se escribe $(1,3,2)$. En líneas 7 y 9 calculamos potencias de \texttt{r}. En 11 definimos como \texttt{H} el subgrupo generado por
+\texttt{r} y en 13 enumeramos los elementos de \texttt{H}. En 15 averiguamos si \texttt{H} es normal. Siendo este el caso, podemos calcular el grupo cociente en 17 y lo llamos \texttt{K}. Por último averiguamos el orden de \texttt{K} en 19.
+
+
+\end{ejemplo}
+\lstinputlisting[language=GAP]{scripts/gap_basico.g}
 
 
 
