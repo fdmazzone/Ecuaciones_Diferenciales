@@ -110,6 +110,22 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+\lstdefinelanguage{GAP}{%
+  morekeywords={%
+    Assert,Info,IsBound,QUIT,%
+    TryNextMethod,Unbind,and,break,%
+    continue,do,elif,%
+    else,end,false,fi,for,%
+    function,if,in,local,%
+    mod,not,od,or,%
+    quit,rec,repeat,return,%
+    then,true,until,while,SymmetricGroup,Elements,Subgroup,IsNormal,FactorGroup,>gap%
+  },%
+  sensitive,%
+  morecomment=[l]\#,%
+  morestring=[b]",%
+  morestring=[b]',%
+}[keywords,comments,strings]
 
 %%%%%%%%%%%%%Configuración de fuente para XeLaTeX
 
@@ -252,10 +268,10 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
  \tableofcontents
 %   
 
-\include{prologo}
-\include{Uni0}
-\include{Uni1}
-%\include{Uni2}
+%\include{prologo}
+%\include{Uni0}
+%\include{Uni1}
+\include{Uni2}
 %\include{Uni3}
 %\include{Uni4}
 %\include{Uni5}
