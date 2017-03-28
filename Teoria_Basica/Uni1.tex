@@ -291,7 +291,7 @@ escalares o sistemas,
 de manera explícita la derivada de mayor orden. A esta forma la denominaremos 
 \emph{forma explícita} de la ecuación
 
-\boxedeq{y^{(n)}(x)=f(x,y(x),y'(x),\ldots,y^{(n-1)}(x))=0.}{eq:eq_expl}
+\boxedeq{y^{(n)}(x)=f(x,y(x),y'(x),\ldots,y^{(n-1)}(x)).}{eq:eq_expl}
 
 \section{Problemas bien planteados, condiciones iniciales}
 
@@ -319,7 +319,7 @@ a nuestro problema para que sea bien planteado. Es así que aparecen condiciones
 
 \begin{definicion}[Problemas de valores iniciales (PVI)] Sea $x_0\in(a,b)$, $F:(a,b)\times \Omega\to\rr$ e $y_0,y_0^1,\ldots,y_0^{n-1}\in\rr$. Las siguientes relaciones  se denominan problema de
 valores iniciales
-\begin{equation}
+\begin{equation}\label{eq:pvi}
  \left\{\begin{array}{l l l}
          F(x,y,y',&\ldots,y^{(n)})=0& x\in(a,b)\\
          y(x_0)&=y_0&\\
@@ -328,7 +328,7 @@ valores iniciales
           y^{(n-1)}(x_0)&=y_0^{n-1}&\\
         \end{array}
    \right.
-\end{equation}\label{eq:pvi}
+\end{equation}
 
 \end{definicion}
 
@@ -362,7 +362,7 @@ Bajo esta suposición, si $(x_0,y_0)\in\Omega'$ el problema de valores iniciales
 
 \section{Familias paramétricas de funciones}
 
-Hemos dicho que en el copmún de los casos es de esperar que una
+Hemos dicho que en el común de los casos es de esperar que una
 ecuación tenga asociado un conjunto de soluciones. En esta sección vamos a preguntarnos sobre el problema inverso, dao un conjunto de funciones encontrar una ecuación que lo tenga por solución.
 
 
@@ -595,7 +595,7 @@ Luego
 \[H(y)=G(x)+C,\quad C\in\rr.\]
 Por último, si podemos encontrar la inversa de $H$
 \boxedeq{y(x)=H^{-1}\left(G(x)+C\right).}{eq:var_sep}
-será candidata a solución general. No podemos estar seguros de esta afrirmación, sobre todo porque la deducción de esta fórmula estuvo sujeta a suposiciones, como $h(y)\neq 0$.
+será candidata a solución general. No podemos estar seguros de esta afirmación, sobre todo porque la deducción de esta fórmula estuvo sujeta a suposiciones, como $h(y)\neq 0$.
 
 
 
