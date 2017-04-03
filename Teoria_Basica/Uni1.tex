@@ -720,9 +720,9 @@ acorde a la ley
 
 \subsubsection{Discusión Teórica}
 Vamos a recordar algunas temas de la asignatura física. En particular, el tema del movimiento de un cuerpo de masa $m$,\marginpar{En mecánica newtoniana, un sistema de referencia inercial es un sistema de referencia en el que las leyes del movimiento cumplen las leyes de Newton} al que podemos suponer puntual, dentro del espacio euclideano tridimensional. A un cuerpo de estas características lo llamaremos punto masa. Denotamos por $x(t)\in \rr^3$ su posición en algún marco de referencia cartesiano ortogonal e \href{https://es.wikipedia.org/wiki/Sistema_de_referencia_inercial}{inercial}\link. Suponemos
-que sobre él actúa una fuerza $f$. Recordemos que $x'(t)$ es la velocidad $v(t)$ y que $x''(t)$ es la aceleración $a(t)$.  
+que sobre él actúa una fuerza $F$. Recordemos que $x'(t)$ es la velocidad $v(t)$ y que $x''(t)$ es la aceleración $a(t)$.
 \href{http://es.wikipedia.org/wiki/Leyes_de_Newton\#Segunda_ley_de_Newton_o_ley_de_fuerza}{La segunda ley de Newton}\link implica que
-\begin{equation}\label{2leyR}\boxed{mx''(t)=f}\end{equation}
+\begin{equation}\label{2leyR}\boxed{mx''(t)=F}\end{equation}
 
 
 Supongamos que el movimiento del punto masa se realiza entre los momentos $t_0$ y $t_1$. Como has visto en Cálculo III la lóngitud de la curva recorrida 
@@ -731,23 +731,26 @@ $s(t)$ se puede calcular por
 A $s$ se lo suele denominar \href{http://es.wikipedia.org/wiki/Longitud_de_arco}{elemento de arco}\link. Es comun querer utilizar a $s$ como variable independiente en
 lugar de $t$, puesto que algunas fórmulas se simplifican de esta forma. Por ejemplo
 
-\begin{equation}\label{pre_trab} f\cdot v(t)dt=f\cdot\frac{v(t)}{|v(t)|}|v(t)|dt=f_tds,\end{equation}
-donde $f_t$ denota la proyección de la fuerza $f$ sobre la dirección tangente a la trayectoria.
+\begin{equation}\label{pre_trab} F\cdot v(t)dt=F\cdot\frac{v(t)}{|v(t)|}|v(t)|dt=F_tds,\end{equation}
+donde $F_t$ denota la proyección de la fuerza $F$ sobre la dirección tangente a la trayectoria.
 
 
 
 
 
 Si integramos \eqref{pre_trab} entre $t_0$ y $t_1$ y usamos \eqref{2leyR} obtenemos
-\[\begin{split} W:=\int_{s_0}^{s_1}f_t(x(s))ds&=\int_{t_0}^{t_1} f(x(t))\cdot v(t)dt\\
+\begin{equation}\label{eq:trabajo}\begin{split} W:=\int_{s_0}^{s_1}F_t(x(s))ds&=\int_{t_0}^{t_1} F(x(t))\cdot v(t)dt\\
    & =m \int_{t_0}^{t_1} v'(t)\cdot v(t)dt\\
    &=\frac{m}{2} \int_{t_0}^{t_1} \frac{d|v|^2}{dt}dt\\
-   &=\frac{m}{2}|v(t_1)|^2-\frac{m}{2}|v(t_0)|^2.  \end{split}\]
+   &=\frac{m}{2}|v(t_1)|^2-\frac{m}{2}|v(t_0)|^2.
+\end{split}
+   \end{equation}
+
 
 
   A la cantidad $\frac{m}{2}|v|^2$ se la denomina \emph{energía cinética} $E_c$ y a $W$ se lo denomina \emph{trabajo}.
-Las relaciones obtenidas dicen que la variación de la energía cinética es igual al trabajo realizado $W=\Delta E_c$ por la fuerza $f$.
-El trabajo realizado depende de la proyección tangencial de la fuerza $f_t$.  Llamaremos a esta relación
+Las relaciones obtenidas dicen que la variación de la energía cinética es igual al trabajo realizado $W=\Delta E_c$ por la fuerza $F$.
+El trabajo realizado depende de la proyección tangencial de la fuerza $F_t$.  Llamaremos a esta relación
 \href{https://es.wikipedia.org/wiki/Conservaci%C3%B3n_de_la_energ%C3%ADa}{Principio de Conservación de la Energía Mecánica.}\link
 
   Vamos a referirnos por \emph{rapidez} al módulo de la velocidad.
@@ -760,7 +763,7 @@ resistencia a la rodadura, etc. Estás fuerzas, actúan sólo en la dirección d
 
  
 
-  Por el contrario hay otras que actúan perpendiculares al movimiento $f_t=0$. Ejemplo de ello son las fuerzas que mantienen a un cuerpo moviéndosé a lo largo
+  Por el contrario hay otras que actúan perpendiculares al movimiento $F_t=0$. Ejemplo de ello son las fuerzas que mantienen a un cuerpo moviéndosé a lo largo
 de una guía. Por ejemplo un niño cayendo por un tobogán. Que el niño no se despegue de la guía (tobogán) se explica por la aparición de una fuerza que se denomina
 reacción de vínculo que actúa en la dirección perpendicular al movimiento esto es decir a la guía. Está fuerza debe compensar a toda otra fuerza que trata de apartar
 al cuerpo de la guía.  En el caso del tobogán la gravedad trata de apartar al niño de aquel.
@@ -810,7 +813,7 @@ Podemos usar las relaciones anteriores para escribir $\cos\alpha$ en función de
 \begin{equation}\label{cos_alpha}\cos\alpha=-\frac{y'(x)}{\sqrt{1+y'(x)^2}}\end{equation}
 Entonces
 \begin{equation}\label{cons_ener}
- \begin{split} \frac{m}{2}|v(t_1)|^2-\frac{m}{2}|v(t_0)|^2&=\int_{s_0}^{s_1}f_tds =\int_{x_0}^{x_1}f_t\frac{ds}{dx}dx\\
+ \begin{split} \frac{m}{2}|v(t_1)|^2-\frac{m}{2}|v(t_0)|^2&=\int_{s_0}^{s_1}F_tds =\int_{x_0}^{x_1}F_t\frac{ds}{dx}dx\\
 &= -mg\int_{x_0}^{x_1}\frac{y'(x)}{\sqrt{1+y'(x)^2}}\sqrt{1+y'(x)^2}dx\\
 &=-mg\left(y_1-y_0\right)
     \end{split}\end{equation}
@@ -862,194 +865,6 @@ Derivando esta relación
 \[ml^2\alpha'(t)\alpha''(t)=-mgl\alpha'(t)\sen\alpha(t).\]
 De esto deducimos la ecuación del \href{http://es.wikipedia.org/wiki/Péndulo}{péndulo}
 \[\boxed{\alpha''(t)=-\frac{g}{l}\sen\alpha(t)}.\]
-
-
-\subsection{La braquistócrona}
-
-
-\begin{problema} Dados dos puntos $A$ y $B$ en las proximidades de la superficie terrestre, uno mas abajo respecto al suelo que el otro,
-queremos diseñar el tobogán óptimo entre los dos,
-esto es el tobogán que nos lleve de $A$ hasta $B$ en el menor tiempo. La curva solución a este problema se llama curva 
-\href{http://es.wikipedia.org/wiki/Curva_braquistócrona}{braquistócrona} (braquistos - el más corto, cronos - tiempo).
-\end{problema}\vspace{-1cm}\link
-%
-%  \begin{wrapfigure}[20]{l}{6cm}
-%   \begin{center}
-%   \setlength{\unitlength}{1cm}
-%     \begin{picture}(5, 6)(0,1)
-%       \put(0,6){\vector(1,0){5}}
-%       \put(2.5,1){\vector(0,1){6}}
-%       \put(5,6){$x$}
-%       \put(2.6,7){$y$}
-%       \put(2.5,6){\line(-1,-2){2}}
-%       \put(0.45,1.9){\circle{.25}}
-%       \multiput(.6,1.9)(.1,0){19}{\line(1,0){0.05}}
-%       \put(2.6,1.9){$-l\cos\alpha$}
-%       \put(2.2,5.2){$\alpha$}
-%       \put(1.2,4){$l$}
-%
-%
-%     \end{picture}\caption{Braquistócrona}\label{fig:caída}
-%   \end{center}
-% \end{wrapfigure}
-
-
-\begin{center}
-\animategraphics[controls,scale=.5]{15}{braquis/braquis-}{0}{105}
-\end{center}
-
-
- Este problema fue resuelto por primera vez por Johann Bernoulli y es unos de los problemas precursores de la rama de las matemáticas que se denomina
-\href{http://es.wikipedia.org/wiki/Cálculo_variacional}{cálculo de 
-variaciones}\link. Vamos a dar la solución del problema encontrada por  \marginpar{
-    \includegraphics[scale=.2]{imagenes/Bernoulli.jpg}\\
-    Johann Bernoulli (1667-1748)
-}Johann Bernoulli que es muy elegante y está basada en un resultado de óptica llamado
- el \href{http://es.wikipedia.org/wiki/Principio_de_Fermat}{Principio de Mínimo Tiempo} de \href{http://es.wikipedia.org/wiki/Fermat}{Fermat}\marginpar{
-    \includegraphics[scale=.3]{imagenes/Fermat.jpg}\\
-    Pierre de Fermat (1601-1665)
-}\link.
-
-\link \begin{boite}[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-titleboxcolor = black]{\href{http://es.wikipedia.org/wiki/Principio_de_Fermat}\link {\textbf {Principio de Mínimo Tiempo}} \textbf{de} \href{http://es.wikipedia.org/wiki/Fermat}{\textbf{Fermat}}}
- La luz sigue para ir de un punto a otro el recorrido que minimiza el tiempo.
-\end{boite}
-
-
-
- La primera impresión   es que ese reccorrido debería ser la línea recta. Si embargo esto no es así debido a que la velocidad de la luz cambia
-de acuerdo al \href{http://es.wikipedia.org/wiki/Velocidad_de_la_luz_en_un_medio_material}{medio que atraviesa}\link .
-La velocidad de la luz en el vacío es 299.792,458km/h y en el diamante 124.034,943 km/h. La velocidad de la luz cambia no sólo con la sustancia sino con sus cualidades, 
-como la densidad. 
-
- Si la luz se mueve dentro de un medio homogéneo, el camino que sigue es la línea recta. Esto ya no es más así cuando la luz cambia de medio de propagación. Por ejemplo
-cuando pasa del aire al vidrio. 
-
-\begin{wrapfigure}[12]{R}{5cm}
-
-\begin{pspicture}(0,0)(5,4)
-\psset{unit=1cm}
-\psframe[linestyle=none,fillstyle=solid,fillcolor=color8](0,.3)(5,2)
-\psline(0,2)(5,2)
-\psline(0.5,2)(0.5,4)
-\psline(0.5,3.7)(3.5,2)(4.7,0.3)
-\psline(4.7,0)(4.7,2)
-\psline[linestyle=dashed](3.5,0)(3.5,4)
-\rput(3.75,1.3){$\alpha_2$}
-\psarc{-}(3.5,2){1}{270}{306}
-\rput(3.3,2.3){$\alpha_1$}
-\psarc{-}(3.5,2){0.7}{90}{150}
-\rput(1.1,3.8){$(a,0)$}
-\rput(4.3,0){$(c,b)$}
-\rput(3.3,1.8){$x$}
-\pscircle*(0.5,3.7){.1}
-\pscircle*(4.7,0.3){.1}
-
-\end{pspicture}
-\caption{Refracción de la luz}
-\end{wrapfigure}
- Supongamos que la luz une los puntos $A$ y $B$ del plano y en el camino atravieza de un medio a otro, siendo la velocidad
- de la luz en cada uno de ellos $v_1$ y $v_2$.  Supongamos que $A=(a,0)$ y $B=(c,b)$ y el eje $x$ es la frontera entre los medios.
-
-Como sabemos que mientras se mueva en un medio homogéneo la luz sigue en línea recta,
-el tiempo que emplea la luz para ir $A$ a $B$ es
- \[t=\frac{\sqrt{a^{2} + x^{2}}}{v_{1}} + \frac{\sqrt{{\left(c - x\right)}^{2} + b^{2}}}{v_{2}}\]
-Para determinar la trayectoria es suficiente encontrar $x$, el punto donde la luz choca con la interfaz entre los medios. 
-El principio de Fermat afirma que el tiempo es mínimo de modo que hallaremos un punto crítico de $t$ respecto a $x$. 
-\[ \frac{dt}{dx}=-\frac{c - x}{\sqrt{{\left(c - x\right)}^{2} + b^{2}} v_{2}} +
-\frac{x}{\sqrt{a^{2} + x^{2}} v_{1}}=\frac{\sen\alpha_1}{v_1}-\frac{\sen\alpha_2}{v_2} \]
-Deducimos que en un punto crítico 
-\boxedeq{\frac{\sen\alpha_1}{v_1}=\frac{\sen\alpha_2}{v_2} }{eq:ley_snell1}
-que se denomina \href{http://es.wikipedia.org/wiki/Ley_de_Snell}{Ley de Snell}\link. El punto crítico es mínimo pues $\left.\frac{dt}{dx}\right|_{x=0}=-\tfrac{c}{bv_2}<0$ y
-$\left.\frac{dt}{dx}\right|_{x=c}=\tfrac{c}{\sqrt{c^2+a^2}v_1}>0$.
-
- A la razón entre la velocidad de la luz dentro de un determinado medio y la velocidad de la luz en el vacio se lo denomina
-\href{http://es.wikipedia.org/wiki/Índice_de_refracción}{índice de refracción}\link y se lo denota con la letra $n$. La Ley de Snell se la suele escribir
-\[\boxed{n_1\sen\alpha_1=n_2\sen\alpha_2 }.\]
-Que pasa si la luz atraviesa un medio que va cambiando de manera continua de índice de refracción. Por ejemplo, el índice de refracción en la atmósfera
-va cambiando de manera continua con la altitud respecto a la superficie terrestre, ya que la densidad del aire va cambiando con la altitud. La Ley de
-Snell en este caso es
-\[\boxed{\frac{\sen\alpha}{v}=\text{cte}}\]
-Aquí el ángulo $\alpha$ y la velocidad $v$ cambian respecto a alguna variable/s real/es, por ejemplo la altitud.
-
-
-¿Que tienen en común el recorrido de la luz y la braquistócrona? Bernoulli se dió cuenta que la situación en los dos casos es la misma, ya que en los dos casos
-se trata de minimizar el tiempo del recorrido. De modo que la braquistócrona también tiene que satisfacer la Ley de Snell.
- Ahora supongamos un sistema de coordenadas con origen en el punto $A$, inicial del recorrido.  Además supongamos que el movil  parte
-del reposo. Con estas suposiciones $x(t_0)=0$ y $v(t_0)=0$. Por la conservación de la energía 
-\[\frac{m}{2}|v(t)|^2=-mgy(t)=mg|y(t)|.\]
- Así por la ley de Snell
-\[\frac{\sen\alpha}{|v(t)|}=\frac{\sen\alpha}{\sqrt{2g|y|}}=c=\text{ cte}.\]
-En \eqref{cos_alpha} habíamos expresado el $\cos\alpha$ (en realidad del ángulo opuesto por el vértice, pero es igual) mediante la derivada. Luego
-\[\sen\alpha=\sqrt{1-\cos^2\alpha}=\frac{1}{\sqrt{1+y'(x)^2}}.\]
-Entonces tenemos
-\[\sqrt{2g|y|}\sqrt{1+y'(x)^2}=c=\hbox{ cte}\]
-Despejando llegamos a la ecuación diferencial
-\[\boxed{\sqrt{\frac{y}{c-y}}y'=1}.\]
-Es una ecuación con variables separables. La constante $c$ no tiene el mismo valor que en la ecuación anterior.  
-
-La solución se obtiene resolviendo la integral
-\[x=\int dx=\int \sqrt{\frac{y}{c-y}}dy.\]
-lo que no es tan sencillo. Hacemos el cambio de variables
-\[\sqrt{\frac{y}{c-y}}=\tan\phi\Longrightarrow y=c\sen^2\phi\Longrightarrow dy=2c\sen\phi\cos\phi d\phi.\]
-Luego
-\[x=2c\int\sen^2\phi d\phi=\frac{c}{2}\left(2\phi-\sen 2\phi\right)+C_1.\]
-Como tiene que pasar por $x=0$ e $y=0$ debe ser $C_1=0$.  Tenemos que
- \[\left\{\begin{array}{l l l}
-	      y&=c\sen^2 \phi&=\frac{c}{2}(1-\cos2\phi)\\
-	      x&=\frac{c}{2}(2\phi-\sen2\phi)\ &\\
-          \end{array}\right.
-\]
-Conviene llamar $2\phi=\theta$ y $a=c/2$
- \[\left\{\begin{array}{l l }
-	      y&= a(1-\cos\theta)\\
-	      x&=a(\theta-\sen\theta)\
-          \end{array}\right.
-\]
-Que son la ecuaciones paramétricas de una curva conocida con el nombre de \href{http://es.wikipedia.org/wiki/Cicloide}{cicloide}\link. Podemos usar \texttt{SymPy} para graficar esta curva
-\begin{lstlisting}
-theta=symbols('theta')
-from sympy.plotting import *
-plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
-\end{lstlisting}
-\marginpar{
-\setlength{\unitlength}{1in}
-\begin{pspicture}(1,2)
-      \psbarcode[file]{scripts/cicloide.py}{}{qrcode}
-\end{pspicture}
-}
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=.3]{imagenes/cicloide.png}
-\end{center}\caption{Cicloide}\label{fig:cicloide}
-\end{figure}
-
-
-\begin{figure}[h]
-\begin{center}
-\animategraphics[controls,scale=.5]{15}{cicloide/cicloide-}{0}{31}
-\end{center}\caption{Cicloide}\label{fig:cicloide}
-\end{figure}
-
-
-Si in tentamos resolver las ecuaciones con \texttt{SymPy} el resultado no es muy alentador.
-\marginpar{
-\setlength{\unitlength}{1in}
-\begin{pspicture}(1,2)
-      \put(0,-2){\scalebox{0.6}{\psbarcode[file]{scripts/braquis.py}{}{qrcode}}}
-\end{pspicture}
-}
-\begin{lstlisting}
-x,c=symbols('x,c')
-y=Function('y')(x)
-MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
-f=dsolve(MiEcua,y,hint='separable')
-\end{lstlisting}
-
-\textbf{Resultado:}
-\[
- \begin{cases} - i \sqrt{c} \sqrt{-1 + \frac{1}{c} y{\left (x \right )}} \sqrt{y{\left (x \right )}} - i c \operatorname{acosh}{\left (\frac{1}{\sqrt{c}} \sqrt{y{\left (x \right )}} \right )} & \text{for}\: \left\lvert{\frac{1}{c} y{\left (x \right )}}\right\rvert > 1 \\ \- \frac{\sqrt{c} \sqrt{y{\left (x \right )}}}{\sqrt{1 - \frac{1}{c} y{\left (x \right )}}} + c \operatorname{asin}{\left (\frac{1}{\sqrt{c}} \sqrt{y{\left (x \right )}} \right )} + \frac{y^{\frac{3}{2}}{\left (x \right )}}{\sqrt{c} \sqrt{1 - \frac{1}{c} y{\left (x \right )}}} & \text{otherwise} \end{cases} = C_{1} + x
-\]
 
 
 
@@ -1132,7 +947,7 @@ define una  familia paramétrica de curvas, con parámetro $c$. Derivanda la exp
  \frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}y'=0\Longleftrightarrow \frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy=0
  \Longleftrightarrow df=0.
 \]
- Esto nos sugiere la idea de que, dada una ecuación diferencial cualquiera, indaguemos si se puede escribir o puede ser transformada de alguna manera en una ecuación de la forma $df=0$.  Para que la ecuación \eqref{eq:ecua_forma}, se pueda expresar como $df=0$ se debe cumplir que  $M=\partial f/\partial x$ y $N=\partial f/\partial y$.
+ Esto \marginpar{Si una fuerza $F$ está dada por $(M,N)=\nabla f$ (campo coservativo) reemplazando en \eqref{eq:trabajo} y llamando $U=-f$ obtenemos que $E:=m|v(t)|^2/2+U(x(t))$ es constante. Se dice que $E$ es una magnitud conservada y se la denomina en este caso energía. } nos sugiere la idea de que, dada una ecuación diferencial cualquiera, indaguemos si se puede escribir o puede ser transformada de alguna manera en una ecuación de la forma $df=0$.  Para que la ecuación \eqref{eq:ecua_forma}, se pueda expresar como $df=0$ se debe cumplir que  $M=\partial f/\partial x$ y $N=\partial f/\partial y$.
  Vale decir el campo vectorial $(x,y)\mapsto (M(x,y),N(x,y))$ es un \href{http://es.wikipedia.org/wiki/Fuerza_conservativa}{campo
 gradiente o conservativo}\link, con potencial $f$.
 
@@ -1844,6 +1659,197 @@ Entonces
 
 
 \begin{subappendices}
+
+
+\section{La braquistócrona}
+
+
+\begin{problema} Dados dos puntos $A$ y $B$ en las proximidades de la superficie terrestre, uno mas abajo respecto al suelo que el otro,
+queremos diseñar el tobogán óptimo entre los dos,
+esto es el tobogán que nos lleve de $A$ hasta $B$ en el menor tiempo. La curva solución a este problema se llama curva
+\href{http://es.wikipedia.org/wiki/Curva_braquistócrona}{braquistócrona} (braquistos - el más corto, cronos - tiempo).
+\end{problema}\vspace{-1cm}\link
+%
+%  \begin{wrapfigure}[20]{l}{6cm}
+%   \begin{center}
+%   \setlength{\unitlength}{1cm}
+%     \begin{picture}(5, 6)(0,1)
+%       \put(0,6){\vector(1,0){5}}
+%       \put(2.5,1){\vector(0,1){6}}
+%       \put(5,6){$x$}
+%       \put(2.6,7){$y$}
+%       \put(2.5,6){\line(-1,-2){2}}
+%       \put(0.45,1.9){\circle{.25}}
+%       \multiput(.6,1.9)(.1,0){19}{\line(1,0){0.05}}
+%       \put(2.6,1.9){$-l\cos\alpha$}
+%       \put(2.2,5.2){$\alpha$}
+%       \put(1.2,4){$l$}
+%
+%
+%     \end{picture}\caption{Braquistócrona}\label{fig:caída}
+%   \end{center}
+% \end{wrapfigure}
+
+
+\begin{center}
+\animategraphics[controls,scale=.5]{15}{braquis/braquis-}{0}{105}
+\end{center}
+
+
+ Este problema fue resuelto por primera vez por Johann Bernoulli y es unos de los problemas precursores de la rama de las matemáticas que se denomina
+\href{http://es.wikipedia.org/wiki/Cálculo_variacional}{cálculo de
+variaciones}\link. Vamos a dar la solución del problema encontrada por  \marginpar{
+    \includegraphics[scale=.2]{imagenes/Bernoulli.jpg}\\
+    Johann Bernoulli (1667-1748)
+}Johann Bernoulli que es muy elegante y está basada en un resultado de óptica llamado
+ el \href{http://es.wikipedia.org/wiki/Principio_de_Fermat}{Principio de Mínimo Tiempo} de \href{http://es.wikipedia.org/wiki/Fermat}{Fermat}\marginpar{
+    \includegraphics[scale=.3]{imagenes/Fermat.jpg}\\
+    Pierre de Fermat (1601-1665)
+}\link.
+
+\link \begin{boite}[boxcolor=orange, background=blue!5, titlebackground=blue!20,
+titleboxcolor = black]{\href{http://es.wikipedia.org/wiki/Principio_de_Fermat}\link {\textbf {Principio de Mínimo Tiempo}} \textbf{de} \href{http://es.wikipedia.org/wiki/Fermat}{\textbf{Fermat}}}
+ La luz sigue para ir de un punto a otro el recorrido que minimiza el tiempo.
+\end{boite}
+
+
+
+ La primera impresión   es que ese reccorrido debería ser la línea recta. Si embargo esto no es así debido a que la velocidad de la luz cambia
+de acuerdo al \href{http://es.wikipedia.org/wiki/Velocidad_de_la_luz_en_un_medio_material}{medio que atraviesa}\link .
+La velocidad de la luz en el vacío es 299.792,458km/h y en el diamante 124.034,943 km/h. La velocidad de la luz cambia no sólo con la sustancia sino con sus cualidades,
+como la densidad.
+
+ Si la luz se mueve dentro de un medio homogéneo, el camino que sigue es la línea recta. Esto ya no es más así cuando la luz cambia de medio de propagación. Por ejemplo
+cuando pasa del aire al vidrio.
+
+\begin{wrapfigure}[12]{R}{5cm}
+
+\begin{pspicture}(0,0)(5,4)
+\psset{unit=1cm}
+\psframe[linestyle=none,fillstyle=solid,fillcolor=color8](0,.3)(5,2)
+\psline(0,2)(5,2)
+\psline(0.5,2)(0.5,4)
+\psline(0.5,3.7)(3.5,2)(4.7,0.3)
+\psline(4.7,0)(4.7,2)
+\psline[linestyle=dashed](3.5,0)(3.5,4)
+\rput(3.75,1.3){$\alpha_2$}
+\psarc{-}(3.5,2){1}{270}{306}
+\rput(3.3,2.3){$\alpha_1$}
+\psarc{-}(3.5,2){0.7}{90}{150}
+\rput(1.1,3.8){$(a,0)$}
+\rput(4.3,0){$(c,b)$}
+\rput(3.3,1.8){$x$}
+\pscircle*(0.5,3.7){.1}
+\pscircle*(4.7,0.3){.1}
+
+\end{pspicture}
+\caption{Refracción de la luz}
+\end{wrapfigure}
+ Supongamos que la luz une los puntos $A$ y $B$ del plano y en el camino atravieza de un medio a otro, siendo la velocidad
+ de la luz en cada uno de ellos $v_1$ y $v_2$.  Supongamos que $A=(a,0)$ y $B=(c,b)$ y el eje $x$ es la frontera entre los medios.
+
+Como sabemos que mientras se mueva en un medio homogéneo la luz sigue en línea recta,
+el tiempo que emplea la luz para ir $A$ a $B$ es
+ \[t=\frac{\sqrt{a^{2} + x^{2}}}{v_{1}} + \frac{\sqrt{{\left(c - x\right)}^{2} + b^{2}}}{v_{2}}\]
+Para determinar la trayectoria es suficiente encontrar $x$, el punto donde la luz choca con la interfaz entre los medios.
+El principio de Fermat afirma que el tiempo es mínimo de modo que hallaremos un punto crítico de $t$ respecto a $x$.
+\[ \frac{dt}{dx}=-\frac{c - x}{\sqrt{{\left(c - x\right)}^{2} + b^{2}} v_{2}} +
+\frac{x}{\sqrt{a^{2} + x^{2}} v_{1}}=\frac{\sen\alpha_1}{v_1}-\frac{\sen\alpha_2}{v_2} \]
+Deducimos que en un punto crítico
+\boxedeq{\frac{\sen\alpha_1}{v_1}=\frac{\sen\alpha_2}{v_2} }{eq:ley_snell1}
+que se denomina \href{http://es.wikipedia.org/wiki/Ley_de_Snell}{Ley de Snell}\link. El punto crítico es mínimo pues $\left.\frac{dt}{dx}\right|_{x=0}=-\tfrac{c}{bv_2}<0$ y
+$\left.\frac{dt}{dx}\right|_{x=c}=\tfrac{c}{\sqrt{c^2+a^2}v_1}>0$.
+
+ A la razón entre la velocidad de la luz dentro de un determinado medio y la velocidad de la luz en el vacio se lo denomina
+\href{http://es.wikipedia.org/wiki/Índice_de_refracción}{índice de refracción}\link y se lo denota con la letra $n$. La Ley de Snell se la suele escribir
+\[\boxed{n_1\sen\alpha_1=n_2\sen\alpha_2 }.\]
+Que pasa si la luz atraviesa un medio que va cambiando de manera continua de índice de refracción. Por ejemplo, el índice de refracción en la atmósfera
+va cambiando de manera continua con la altitud respecto a la superficie terrestre, ya que la densidad del aire va cambiando con la altitud. La Ley de
+Snell en este caso es
+\[\boxed{\frac{\sen\alpha}{v}=\text{cte}}\]
+Aquí el ángulo $\alpha$ y la velocidad $v$ cambian respecto a alguna variable/s real/es, por ejemplo la altitud.
+
+
+¿Que tienen en común el recorrido de la luz y la braquistócrona? Bernoulli se dió cuenta que la situación en los dos casos es la misma, ya que en los dos casos
+se trata de minimizar el tiempo del recorrido. De modo que la braquistócrona también tiene que satisfacer la Ley de Snell.
+ Ahora supongamos un sistema de coordenadas con origen en el punto $A$, inicial del recorrido.  Además supongamos que el movil  parte
+del reposo. Con estas suposiciones $x(t_0)=0$ y $v(t_0)=0$. Por la conservación de la energía
+\[\frac{m}{2}|v(t)|^2=-mgy(t)=mg|y(t)|.\]
+ Así por la ley de Snell
+\[\frac{\sen\alpha}{|v(t)|}=\frac{\sen\alpha}{\sqrt{2g|y|}}=c=\text{ cte}.\]
+En \eqref{cos_alpha} habíamos expresado el $\cos\alpha$ (en realidad del ángulo opuesto por el vértice, pero es igual) mediante la derivada. Luego
+\[\sen\alpha=\sqrt{1-\cos^2\alpha}=\frac{1}{\sqrt{1+y'(x)^2}}.\]
+Entonces tenemos
+\[\sqrt{2g|y|}\sqrt{1+y'(x)^2}=c=\hbox{ cte}\]
+Despejando llegamos a la ecuación diferencial
+\[\boxed{\sqrt{\frac{y}{c-y}}y'=1}.\]
+Es una ecuación con variables separables. La constante $c$ no tiene el mismo valor que en la ecuación anterior.
+
+La solución se obtiene resolviendo la integral
+\[x=\int dx=\int \sqrt{\frac{y}{c-y}}dy.\]
+lo que no es tan sencillo. Hacemos el cambio de variables
+\[\sqrt{\frac{y}{c-y}}=\tan\phi\Longrightarrow y=c\sen^2\phi\Longrightarrow dy=2c\sen\phi\cos\phi d\phi.\]
+Luego
+\[x=2c\int\sen^2\phi d\phi=\frac{c}{2}\left(2\phi-\sen 2\phi\right)+C_1.\]
+Como tiene que pasar por $x=0$ e $y=0$ debe ser $C_1=0$.  Tenemos que
+ \[\left\{\begin{array}{l l l}
+	      y&=c\sen^2 \phi&=\frac{c}{2}(1-\cos2\phi)\\
+	      x&=\frac{c}{2}(2\phi-\sen2\phi)\ &\\
+          \end{array}\right.
+\]
+Conviene llamar $2\phi=\theta$ y $a=c/2$
+ \[\left\{\begin{array}{l l }
+	      y&= a(1-\cos\theta)\\
+	      x&=a(\theta-\sen\theta)\
+          \end{array}\right.
+\]
+Que son la ecuaciones paramétricas de una curva conocida con el nombre de \href{http://es.wikipedia.org/wiki/Cicloide}{cicloide}\link. Podemos usar \texttt{SymPy} para graficar esta curva
+\begin{lstlisting}
+theta=symbols('theta')
+from sympy.plotting import *
+plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
+\end{lstlisting}
+\marginpar{
+\setlength{\unitlength}{1in}
+\begin{pspicture}(1,2)
+      \psbarcode[file]{scripts/cicloide.py}{}{qrcode}
+\end{pspicture}
+}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=.3]{imagenes/cicloide.png}
+\end{center}\caption{Cicloide}\label{fig:cicloide}
+\end{figure}
+
+
+\begin{figure}[h]
+\begin{center}
+\animategraphics[controls,scale=.5]{15}{cicloide/cicloide-}{0}{31}
+\end{center}\caption{Cicloide}\label{fig:cicloide}
+\end{figure}
+
+
+Si in tentamos resolver las ecuaciones con \texttt{SymPy} el resultado no es muy alentador.
+\marginpar{
+\setlength{\unitlength}{1in}
+\begin{pspicture}(1,2)
+      \put(0,-2){\scalebox{0.6}{\psbarcode[file]{scripts/braquis.py}{}{qrcode}}}
+\end{pspicture}
+}
+\begin{lstlisting}
+x,c=symbols('x,c')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
+f=dsolve(MiEcua,y,hint='separable')
+\end{lstlisting}
+
+\textbf{Resultado:}
+\[
+ \begin{cases} - i \sqrt{c} \sqrt{-1 + \frac{1}{c} y{\left (x \right )}} \sqrt{y{\left (x \right )}} - i c \operatorname{acosh}{\left (\frac{1}{\sqrt{c}} \sqrt{y{\left (x \right )}} \right )} & \text{for}\: \left\lvert{\frac{1}{c} y{\left (x \right )}}\right\rvert > 1 \\ \- \frac{\sqrt{c} \sqrt{y{\left (x \right )}}}{\sqrt{1 - \frac{1}{c} y{\left (x \right )}}} + c \operatorname{asin}{\left (\frac{1}{\sqrt{c}} \sqrt{y{\left (x \right )}} \right )} + \frac{y^{\frac{3}{2}}{\left (x \right )}}{\sqrt{c} \sqrt{1 - \frac{1}{c} y{\left (x \right )}}} & \text{otherwise} \end{cases} = C_{1} + x
+\]
+
+
+
 \section{La tautócrona}
 
 
