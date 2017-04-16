@@ -244,14 +244,15 @@ Sympy posee un módulo para operar con formas diferenciales, en un apéndice des
 }
  \subsection{Definición y ejemplos}
 \begin{definicion}[Grupo]
-Sean $G$ un conjunto y $\alpha$ una función tal que   $\alpha:G\times G\to G$. En el contexto de grupos es más usual la notación  $\alpha(g_1,g_2)=g_1g_2$. El par $(G,\alpha)$ se llama un grupo si se satisface
+Un \href{https://es.wikipedia.org/wiki/Grupo_(matem%C3%A1tica)}{grupo} es un par $(G,\cdot)$ donde $G$ es un conjunto y $\cdot :G\times G\to G$ una \href{https://es.wikipedia.org/wiki/Operaci%C3%B3n_matem%C3%A1tica}{operación binaria interna} que satisface
 \begin{enumerate}
-\item $(g_1g_2)g_3=g_1(g_2g_3)$, para todos $g_1,g_2,g_3\in G$,
-\item Existe $e\in G$ tal que $eg=ge=g$,  para todo $g\in G$.
-\item Para todo $g\in G$ existe $h\in G$ tal que $gh=hg=e$. Se acostumbra denotar $h=g^{-1}$.
+\item $(g_1\cdot g_2)\cdot g_3=g_1\cdot (g_2\cdot g_3)$, para todos $g_1,g_2,g_3\in G$,
+\item Existe $e\in G$ tal que $e\cdot g=g\cdot e=g$,  para todo $g\in G$.
+\item Para todo $g\in G$ existe $h\in G$ tal que $g\cdot h=h\cdot g=e$. Esta función $h$ se denota  $g^{-1}$.
 \end{enumerate}
 \end{definicion}
 
+Es usual omitir el punto para indicar la operación, i.e. escribimos $g\cdot h=gh$.
 
 
 
@@ -270,7 +271,18 @@ Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href
 \end{center}
 \end{ejemplo}
 
+Recordemos el siguiente concepto.
 
+\begin{definicion}[Acción de un grupo sobre un conjunto]
+Diremos que un grupo $G$ actúa sobre el conjunto $X$ si existe una operación binaria externa  $\star:G\times G\to G$ que satisface:
+\begin{enumerate}
+\item $(g_1\star g_2)\star g_3=g_1\star (g_2 \star g_3)$, para todos $g_1,g_2,g_3\in G$,
+\item Si $e$ es el neutro de $G$, $e \star x=x$,  para todo $x\in X$.
+\item Para todos $g,h\in G$ y $x\in X$,    $g\star (h\star x)=(gh)\star x$.
+\end{enumerate}
+\end{definicion}
+
+Como en el caso de grupos suele nos escribirse el símbolo de la operación binaria, i.e. se escribe $g\star x= gx$.
 
 
 
@@ -279,16 +291,9 @@ Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href
 
 \subsection{Grupos y cambios de variables}
 
-Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\Gamma$, invertibles,  de clase $C^1$, donde $\Gamma:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$.  Acostumbraremos escribir $(\hat{x},\hat{y})=\Gamma(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas e $(x,y)$ las viejas.
+Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\Gamma$, invertibles,  de clase $C^1$, donde $\Gamma:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$.  Acostumbraremos escribir $(\hat{x},\hat{y})=\Gamma(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas e $(x,y)$ las viejas. 
 
- Llamaremos $\mathscr{T}$ al conjunto de todas los cambios de variables $\Gamma$. El conjunto  $\mathscr{T}$ tiene una estructura de monoide con la operación de composición.
-
- El grupo de las transformaciones rígidas, los grupos diedrales $D_{2n}$, el grupo de todas las rotaciones alrededor del orígen son subgrupos de  $\mathscr{T}$.
-
-
-
-
- \begin{ejemplo} \textbf{Coordenadas polares.} Es más facil describir la transformación que lleva coordenadas polares en cartesinas. En este caso $(x,y)=\Gamma(r,\theta)$ y
+\begin{ejemplo} \textbf{Coordenadas polares.} Es más facil describir la transformación que lleva coordenadas polares en cartesianas. En este caso $(x,y)=\Gamma(r,\theta)$ y
 \[
 \begin{array}{ll}
 \Gamma(r,\theta)&=(r\cos(\theta),r\sen(\theta)),\\
@@ -296,44 +301,35 @@ Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son
 \Omega_2&=\rr^2-\{(x,y)|y=0,x\leq 0\}\\
 \end{array}
 \]
-
- \end{ejemplo}
+\end{ejemplo}
 
 \subsection{Grupos de Lie uniparamétricos}
 
-\begin{definicion}[Grupos de Lie uniparamétricos]
-Sea $\mathscr{T}$ el grupo de cambios de variables de $\rr^2$. Supongamos dado un homomorfismo de grupos $\Gamma:(\rr,+)\to (\mathscr{T},\circ)$.  Para $\epsilon\in\rr$ escribiremos $\Gamma_{\epsilon}=\Gamma(\epsilon)$.  Si $\Gamma_{\epsilon}(x,y)$ es diferenciable, con inversa diferenciable, respecto a $(x,y)$ y analítica respecto a $\epsilon$ diremos que $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico de simetrías}}.
-\end{definicion}
-
-
- Si $(x,y)\in\rr^2$ escribimos
-  \boxedeq{(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y).}{eq:not_sim}
- Notar que $\hat{x}$, $\hat{y}$ son funciones de $x,y$ y $\epsilon$.
-
-
-
-\begin{boite}[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-  titleboxcolor = black]{Propiedades de grupos de Lie uniparamétricos}
+\begin{definicion}[Grupos de Lie uniparamétricos]  Supongamos dada una acción del grupo  $(\rr,+)$ en $\rr^2$. En este caso vamos a adoptar una notación funcional, i.e. en lugar de escribir $\epsilon\star (x,y)$, con $\epsilon\in\rr$ y $(x,y)\in\rr^2$ pondremos $\Gamma_{\epsilon}(x,y)$. Denotaremos por $\{\Gamma_{\epsilon}\}$ a la acción introducida.  Notar que $\{\Gamma_{\epsilon}\}$  satisface que 
 \begin{enumerate}
-\item$\Gamma_{\epsilon}:\Omega_1\to\Omega_2$ es un difeomorfismo, con $\Omega_i$, $i=1,2$, abiertos de $\rr^2$.
- \item $\Gamma_{\epsilon_1}\circ \Gamma_{\epsilon_2}=\Gamma_{\epsilon_1+\epsilon_2}$.
+ \item $\forall\epsilon_1,\epsilon_2\in\rr:\Gamma_{\epsilon_1}\circ \Gamma_{\epsilon_2}=\Gamma_{\epsilon_1+\epsilon_2}$.
 
 \item $\Gamma_0=I$.
 
-\item $\left(\Gamma_{\epsilon}\right)^{-1}=\Gamma_{-\epsilon}$
+\item $\Gamma_{\epsilon}$ es invertible y $\left(\Gamma_{\epsilon}\right)^{-1}=\Gamma_{-\epsilon}$
+\end{enumerate}
 
-\item Las funciones  $\hat{x}(x,y,\epsilon)$ y $\hat{y}(x,y,\epsilon)$  se desarrollan en serie de potencias respecto a $\epsilon$. Es decir para todo $\epsilon_0\in\rr$ existen coeficientes $a_j$ y$b_j$, $j=0,1,\ldots$, y $r>0$ tal que
-\[
+La acción $\Gamma_{\epsilon}$ se denomina un  \href{http://es.wikipedia.org/wiki/Grupo_uniparamétrico}{\emph{grupo de Lie uniparamétrico}} si además:
+
+\begin{enumerate}
+\item[4.] $\forall\epsilon\in\rr:\Gamma_{\epsilon}$ es un difeomorfismo sobre $\rr^2$.
+
+
+\item[5.] Si $\Gamma_{\epsilon}(x,y)=\left(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon)\right)$ entonces   las funciones  $\hat{x}(x,y,\epsilon)$ y $\hat{y}(x,y,\epsilon)$  se desarrollan en serie de potencias respecto a $\epsilon$. Es decir para todo $\epsilon_0\in\rr$ existen coeficientes $a_j$ y $b_j$, $j=0,1,\ldots$, y $r>0$ tales que
+\begin{equation}\label{eq:des_serie}
 \begin{array}{cc}
 \hat{x}(x,y,\epsilon)&=a_0(x,y)+a_1(x,y)(\epsilon- \epsilon_0)+\cdots\\
 \hat{y}(x,y,\epsilon)&=b_0(x,y)+b_1(x,y)(\epsilon- \epsilon_0)+\cdots\\
 \end{array}
-\]
+\end{equation}
 para $|\epsilon-\epsilon_0|<r$.
 \end{enumerate}
-
-
-\end{boite}
+\end{definicion}
 
 
 
@@ -350,51 +346,62 @@ $
 \end{enumerate}
 \end{ejemplo}
 
+Vamos a desarrollar sólo el ejemplo de $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$. La propiedad 1 en la definición la chequearemos con  \texttt{SymPy}. 
+\marginpar{
+\begin{pspicture}(0,3)(1in,1in)
+      %\rput(0,1){
+      \scalebox{.5}{\psbarcode[file]{scripts/prop_grupo.py}{}{qrcode}}
+      %}
+\end{pspicture}
+}
+ \lstinputlisting[language=Python]{scripts/prop_grupo.py}
 
-Podemos usar \texttt{SymPy} para la tarea con este breve código
-\begin{lstlisting}
->>> from sympy import *
->>> T=lambda x,y,epsilon:  Matrix([x+epsilon,y])
->>> x,y,epsilon1,epsilon2=symbols('x,y,epsilon1,epsilon2')
->>> x_copete=T(x,y,epsilon1)[0]
->>> y_copete=T(x,y,epsilon1)[1]
->>> PropGrupo=T(x_copete,y_copete,epsilon2)-T(x,y,epsilon1+epsilon2)
->>> PropGrupo
-Matrix([
-[0],
-[0]])
-\end{lstlisting}
+ La propiedad 2 en la definición es evidente y la propiedad 3 es siempre consecuencia de 1. y 2. 
+Se incluyó en la lista sólo para resaltar su cumplimiento, pero no es necesario chequearla. La propiedad 4. es clara la 5. también lo es, notar que el desarrollo en serie \eqref{eq:des_serie} es válido en este caso con $a_0(x,y)=x$, $a_1(x,y)=1$, $a_j(x,y)=0$, $j\geq 2$, $b_0(x,y)=y$ y $b_j(x,y)=0$, $j\geq 1$. La justificaciones correspondientes al resto de los ejemplos queda como ejercicio.\actividad
 
 
-El mismo ejemplo lo podemos desarrollar usando expresiones en lugar del operador \texttt{lambda}.
-\begin{lstlisting}
->>> from sympy import *
->>> x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
->>> T=Matrix([x+epsilon,y])
->>> x_copete=T.subs(epsilon,epsilon1)[0]
->>> y_copete=T.subs(epsilon,epsilon1)[1]
->>> PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])-T.subs(epsilon,epsilon1+epsilon2)
->>> PropGrupo
-Matrix([
-[0],
-[0]])
-\end{lstlisting}
+ Las reflexiones en el plano, por ejemplo $\Gamma(x,y)=(-x,y)$,  no pueden  pertenecer a un  grupo de Lie uniparamétrico. Más generalmente:
+ 
+ \begin{teorema}
+   Una transformación  $T:\rr^2\to\rr^2$ tal que el determinante de la matriz Jacobiana $\det(DT)$ sea negativo en algún punto no puede pertenecer a un grupo de Lie uniparamerico. Dicho de otro modo, debe ocurrir que $\det(D\Gamma_{\epsilon})>0$ para todo $\epsilon$ y todo grupo $\{\Gamma_{\epsilon}\}$.
+ \end{teorema}
+\begin{proof}
+ Si $\Gamma_{\epsilon}$ es un grupo y supongamos por ejemplo que existe $\epsilon_0\in\rr$ y $(x_0,y_0)\in\rr^2$ tal que:
+
+\[J(x_0,y_0,\epsilon_0):=\det\begin{pmatrix} \frac{\partial\hat{x}}{\partial x}&  \frac{\partial\hat{x}}{\partial y}\\
+ \frac{\partial\hat{y}}{\partial x} &  \frac{\partial\hat{y}}{\partial y}\\
+\end{pmatrix}<0,
+\]
+donde las derivadas son tomadas en $\epsilon=\epsilon_0, x=x_0$ y $y=y_0$.
+ Por otro lado tenemos que $J(x_0,y_0,0)=1$. Como $J(x_0,y_0,\epsilon)$ es continua respecto a $\epsilon$ debería existir $\epsilon'$ con $J(x_0,y_0,\epsilon')=0$. Esto implica que la matriz jacobiana $D\Gamma_{\epsilon}$ es singular y esto contradice que $\Gamma:\rr^2\to \rr^2$ es difeomorfismo ($D\Gamma D\Gamma^{-1}=I$).
+\end{proof}
 
 
-\begin{definicion}[Grupo de simetrías de una ecuación]
- Consideremos una ecuación
-\boxedeq{y'=f(x,y).}{eq:principi}
-Una transformación $\Gamma\in \mathscr{T}$ se denomina una \emph{simetría} de la ecuación si el cambio de variables dado por $(\hat{x},\hat{y})=\Gamma(x,y)$ deja invariante  la ecuación.   El conjunto de todas las simetría de una ecuación es un subgrupo de  $( \mathscr{T},\circ)$. Lo llamaremos \emph{grupo de simetrías} de la ecuación.
+ 
+ 
+ 
 
-\end{definicion}
+
+
+ En el caso de la reflexión $\Gamma(x,y)=(x,-y)$, se  genera un grupo discreto, ya que $\Gamma^2=\Gamma\circ \Gamma=I$. Luego $\Gamma$ genera el grupo finito $G=\{I,\Gamma\}$ que es isomorfo a $\mathbb{Z}_2$. En este caso diremos que    $\{I,\Gamma\}$ es un \emph{grupo discreto}.
+
+
 
 
 
 \subsection{Grupos de simetrías de EDO}
- De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
+\begin{definicion}[Grupo de simetrías de una ecuación]
+ Consideremos una ecuación
+\boxedeq{y'=f(x,y).}{eq:principi}
+Una transformación o cambio de variables $\Gamma$ se denomina una \emph{simetría} de la ecuación si el cambio de variables dado por $(\hat{x},\hat{y})=\Gamma(x,y)$ deja invariante  la ecuación.  Diremos que un grupo de Lie uniparamétrico $\{\Gamma_{\epsilon}\}$ es un grupo uniparamétrico de simetrías de \eqref{eq:principi} si $\Gamma_{\epsilon}$ es simetría de la ecuación para cada $\epsilon$.
+
+\end{definicion}
+
+
+De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
  \boxedeq{\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}=f(\hat{x},\hat{y})}{eq:cond_sim}
 
- Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de un  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}.
+ Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de un  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}.\link
 
 
 
@@ -403,36 +410,19 @@ Una transformación $\Gamma\in \mathscr{T}$ se denomina una \emph{simetría} de 
  \begin{ejemplo} Consideremos la ecuación
    \begin{equation}\label{eq:trivial}y'=0.
     \end{equation}
+    \begin{wrapfigure}[10]{r}{5.5cm}
+   \vspace{-.5cm}\includegraphics[scale=.3]{imagenes/sol_trivial.png}
+ \end{wrapfigure}
 La condición de simetría se reduce a 
 \[
 \frac{\frac{\partial\hat{y}}{\partial x}}{\frac{\partial\hat{x}}{\partial x}}=0
 \]
-Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ es independiente de $x$. La forma general de una simetría es PUES
+Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ es independiente de $x$. De allí la forma general de una simetría es 
 \[\hat{x}=\hat{x}(x,y)\quad \hat{y}=\hat{y}(y).\]
 \end{ejemplo}
-
-
-\begin{wrapfigure}[13]{r}{5.5cm}
-   \includegraphics[scale=.3]{imagenes/sol_trivial.png}
- \end{wrapfigure}
  Hay muchas simetrías. Las traslaciones en cualquier dirección $(x,y)\mapsto (x+\alpha ,y+\beta)$ ($\alpha,\beta\in\rr$). Cambios de escala en ambos ejes  $(x,y)\mapsto (e^{\epsilon}x,y)$, $(x,y)\mapsto (x,e^{\epsilon}y)$. Reflexiones respecto ambos ejes  $(x,y)\mapsto (-x,y)$, $(x,y)\mapsto (x,-y)$.  Observar que el gráfico de las soluciones posee las mismas simetrías, pues en general \emph{las simetrías de una ecuación llevan soluciones en soluciones}.
 
- De todas las simetrías encontradas $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$, $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y  $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ se llaman \emph{triviales} pues llevan una curva solución en si misma.  Cualquier cambio de la forma $\hat{x}=\hat{x}(x,y)\quad \hat{y}=y$ es trivial.  \fbox{\begin{minipage}{\textwidth}\emph{Estamos interesados en hallar grupos de Lie uniparamétricos de simetrías no triviales.}
-    \end{minipage}
-  }
-
-
- Las reflexiones $\Gamma(x,y)=(-x,y)$  no pertenecen a tal tipo de  grupo. Para demostrar esto supongamos que  $\Gamma$ es alguna instancia de un tal grupo $\Gamma{\epsilon}$, supongamos por ejemplo que $\Gamma=\Gamma{\epsilon_0}$.  Consideramos el jacobiano de la transformación:
-
-\[J(\epsilon):=\det\begin{pmatrix} \frac{\partial\hat{x}}{\partial x}&  \frac{\partial\hat{x}}{\partial y}\\
- \frac{\partial\hat{y}}{\partial x} &  \frac{\partial\hat{y}}{\partial y}\\
-\end{pmatrix}
-\]
- Tenemos que $J(0)=1$ y $J(\epsilon_0)=-1$. Y $J(\epsilon)$ es continua respecto a $\epsilon$. Por ende existiría $\epsilon'$ con $J(\epsilon')=0$. Esto implica que la matriz jacobiana $D\Gamma$ es singular y esto contradice que $\Gamma:\rr^2\to \rr^2$ es difeomorfismo ($D\Gamma D\Gamma^{-1}=I$).
-
-
-
- $\Gamma$  genera un grupo discreto, ya que $\Gamma^2=\Gamma\circ \Gamma=I$. Luego $\Gamma$ genera el grupo $G=\{I,\Gamma\}$ que es isomorfo a $\mathbb{Z}_2$. En este caso diremos que    $\{I,\Gamma\}$ es un \emph{grupo discreto} de simetrías.
+ De todas las simetrías encontradas $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$, $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y  $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ se llaman \emph{triviales} pues llevan una curva solución en si misma.  Cualquier cambio de la forma $\hat{x}=\hat{x}(x,y)\quad \hat{y}=y$ es trivial. \emph{Estamos interesados en hallar grupos de Lie uniparamétricos de simetrías no triviales.}
 
 
 
@@ -489,20 +479,15 @@ Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrede
 
 
 Para el cálculo recurrimos a \texttt{SymPy} (usamos \texttt{x\_n} en lugar de $\hat{x}$)
-\begin{lstlisting}
-from sympy import *
-x,theta=symbols('x,theta')
-y=Function('y')(x)
-x_n=cos(theta)*x-sin(theta)*y
-y_n=sin(theta)*x+cos(theta)*y
-Expr2=y_n.diff(x)/x_n.diff(x)
-Expr3=Expr2.subs(y.diff(),\
-(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
-x_n,y_n=symbols('x_n,y_n')
-Expr4=Expr3.subs([(y, -sin(theta)*x_n+cos(theta)*y_n),\
-(x,cos(theta)*x_n+sin(theta)*y_n)])
-Expr5=simplify(Expr4)
-\end{lstlisting}
+\marginpar{
+\begin{pspicture}(0,5)(1in,1in)
+      %\rput(0,1){
+      \scalebox{.5}{\psbarcode[file]{scripts/sim_ecua1.py}{}{qrcode}}
+      %}
+\end{pspicture}
+}e
+ \lstinputlisting[language=Python]{scripts/sim_ecua1.py}
+
 
 
 
@@ -523,19 +508,14 @@ y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (
 
 
 
-
-
-{Simetrías resuelven ecuaciones}\label{pag:sim_tras}
-\textbf{Ejemplo:} Supongamos que $y'=f(x,y)$ tiene  el grupo de Lie uniparamétrico de simetrías
+\begin{ejemplo}\label{ejem:tras} Supongamos que $y'=f(x,y)$ tiene  el grupo de Lie uniparamétrico de simetrías
 \boxedeq{(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)}{eq:tras_lie}
 Usando la condición de simetrías \eqref{eq:cond_sim} tenemos
 \[f(x,y)=f(\hat{x},\hat{y})=f(x,y+\epsilon).\]
-Luego
-\[\frac{\partial f(x,y)}{\partial y}=\lim_{\epsilon\to 0}
-\frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}=0\]
-Asi $f$ es independiente de $y$: $f(x,y)=f(x)$ y la ecuación
+La igualdad vale para todo $\epsilon$, luego poniendo $\epsilon=-y$ vemos que $f(x,y)=f(x,0):=f(x)$. Vale decir que $f$ es independiente de $y$ y la ecuación
 \[y'=f(x),\]
 se resuelve simplemente integrando.
+\end{ejemplo}
 
 
 
@@ -584,6 +564,19 @@ Son circunsferencias con centro en el origen. El punto $(0,0)$ es invariante.
  Dado un grupo de Lie uniparamétrico $(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon))=\Gamma_{\epsilon}(x,y)$  definimos el campo vectorial
 \[(\xi(\hat{x},\hat{y}),\eta(\hat{x}, \hat{y}))=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right).\]
  $\xi$ y $\eta$ se llaman \emph{símbolos infinitesimales}.
+ 
+ 
+Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ tenemos las fórmulas.
+
+ 
+ \begin{equation}\label{eq:des_serie_infi}
+\begin{array}{cc}
+\hat{x}&=x+\epsilon\xi(x,y)+O(\epsilon^2)\\
+\hat{y}&=y+\epsilon\eta(x,y)+O(\epsilon^2)\\
+\end{array}
+\end{equation}
+ En un punto invariante \fbox{$\xi(x,y)=\eta(x,y)=0$}.
+ 
 \end{definicion}
 
 
@@ -593,45 +586,27 @@ Son circunsferencias con centro en el origen. El punto $(0,0)$ es invariante.
 \begin{ejemplo}
 Campo vectorial de infitesimales para las rotaciones. 
 \end{ejemplo}
-
-
-
-
-\begin{lstlisting}
-x,y,epsilon = var('x,y,epsilon')
-x_n=cos(epsilon)*x-sin(epsilon)*y
-y_n=sin(epsilon)*x+cos(epsilon)*y
-xi=x_n.diff(epsilon)(epsilon=0)
-eta=y_n.diff(epsilon)(epsilon=0)
-p=plot([])
-for x_abs in srange(0,1,.2):
-    p+=parametric_plot([x_n(x=x_abs,y=0),\
-y_n(x=x_abs,y=0)], (epsilon,0,2*pi))
-p+= plot_vector_field((xi,eta),(x,-1,1),\
-(y,-1,1))
-\end{lstlisting}
-
-
 \begin{figure}[h]
  \begin{center}
   \includegraphics[scale=.3]{imagenes/CampoVectorial.png}
  \end{center}
-\caption{Campo vectorial de infinitesimales $(\xi,\eta)$ por Sage}
+\caption{Campo vectorial de infinitesimales $(\xi,\eta)$ }
 \end{figure}
 
+\begin{definicion}
+ Más generalmente, un conjunto $C\subset\rr^2$ se dice \emph{invariante} por un grupo uniparamétrico de 
+simetrías de Lie $\Gamma_{\epsilon}$ si y sólo si $\forall \epsilon: \Gamma_{\epsilon}(C)\subset C$, i.e. las órbitas de puntos en $C$ permanecen en $C$.
+\end{definicion}
 
 
+\begin{enumerate}
+\item El conjunto unitario $\{(x,y)\}$ es invariante si y sólo si el punto $(x,y)$ 
+es invariante.
 
+\item Se $C$ es una curva plana suave, supongamos que $C$ viene dada por la ecuación implícita $g(x,y)=0$, con $\nabla g\neq 0$.  Supongamos que  $(\xi,\eta)\neq (0,0)$ sobre $C$. Entonces $C$ es invariante si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es
+paralela a $(\xi(x,y),\eta(x,y))$. La demostración de este hecho se propone como ejercicio. \actividad.  
 
- Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ :
-\[
-\begin{array}{cc}
-\hat{x}&=x+\epsilon\xi(x,y)+O(\epsilon^2)\\
-\hat{y}&=y+\epsilon\eta(x,y)+O(\epsilon^2)\\
-\end{array}
-\]
- En un punto invariante \fbox{$\xi(x,y)=\eta(x,y)=0$}.
-
+ \end{enumerate}
 
 \begin{definicion}[Curvas invariantes]
 Una curva plana $C$ se dice invariante por un grupo uniparamétrico de simetrías de Lie si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es paralela a $(\xi(x,y),\eta(x,y))$. Si $C$ es el gráfico de una función $x\mapsto y(x)$, como $(1,y'(x))$ es un vector tangente a la gráfica, la condición que $C$ es invariante se escribe
@@ -645,10 +620,19 @@ Esta se llama \emph{ecuación característica}.
 
 
 
-Si $\Gamma_{\epsilon}$ es un grupo de Lie de simetrías de $y'=f(x,y)$ entonces una solución $y(x)$ es una curva invariantes si y sólo si
-\boxedeq{\overline{Q}(x,y)=\eta(x,y)-f(x,y)\xi(x,y)\equiv 0}{eq:sol_inv}
+Sea $\Gamma_{\epsilon}$ es un grupo de Lie de simetrías de $y'=f(x,y)$. Si $y(x)$ es una curva invariante y solución de la ecuación entonces:
+\boxedeq{\overline{Q}(x,y)=\eta(x,y)-f(x,y)\xi(x,y)\equiv 0.}{eq:sol_inv}
 Se llama \emph{ecuación característica reducida}.
-\emph{Conviene tener soluciones no invariantes}
+
+El recíproco también es cierto.
+\begin{teorema}\label{teo:invariantes}
+ Supongamos que $y(x)$ es solución de la ecuación característica y que
+ \[\left.\frac{\partial \overline{Q}}{\partial y}\right|_{y=y(x)}\neq 0.\]
+ Entonces $y(x)$ es una solución invariante de la ecuación.
+\end{teorema}
+\begin{proof} Será completada más adelante.
+ 
+\end{proof}
 
 
 
@@ -668,7 +652,7 @@ Esta formada enteramente por puntos invariantes.
 
 
 
-\begin{ejemplo} Demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
+\begin{ejemplo}\actividad Demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{(e^{\epsilon}-1)x}y),\]
 para la ecuación \eqref{eq:eq_simple}.
 Para este grupo tenemos
@@ -725,21 +709,34 @@ Por otra parte  $(\xi(\hat{x},\hat{y}),\eta(\hat{x},\hat{y}))$ determinan las si
 \end{array}
 \right.
 }{eq:ecua_infinitesimales}
-\textbf{Justificación de las ecuaciones}. Si ponemos $(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)$, de la propiedad de grupo ($ \Gamma_{\Delta\epsilon} \circ  \Gamma_{\epsilon}= \Gamma_{\epsilon+\Delta\epsilon}$), deducimos 
-\[\hat{x}(\Gamma_{\epsilon}(x,y),\Delta\epsilon)=\hat{x}(x,y,\epsilon+\Delta\epsilon).\]
-Luego
-
-\[
-\begin{split}
-\frac{d\hat{x}}{d\epsilon}&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(x,y,\epsilon+\Delta\epsilon)-\hat{x}(x,y,\epsilon)  }{\Delta\epsilon}\\
-&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(\Gamma_{\epsilon}(x,y),\Delta\epsilon)  -\hat{x}(x,y,\epsilon)  }{\Delta\epsilon}\\
-&=\lim_{\Delta\epsilon\to 0}\frac{\hat{x}(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon),\Delta\epsilon)  -\hat{x}(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon),0)  }{\Delta\epsilon}\\
-&=\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}=\xi(\hat{x},\hat{y})
-\end{split}
-\]
+\textbf{Justificación de las ecuaciones.}
+De la propiedad de grupo $ \Gamma_{\epsilon_1} \circ  \Gamma_{\epsilon}=
+\Gamma_{\epsilon+\epsilon_1}$, deducimos 
+\[\hat{x}(x,y,\epsilon+\epsilon_1)=\hat{x}(\hat{x}(x,y,\epsilon),
+\hat{y}(x,y,\epsilon),\epsilon_1).\]
+Derivando respecto a $\epsilon_1$ y evaluando en $\epsilon_1=0$ justificamos las EDO en 
+\eqref{eq:ecua_infinitesimales}.
 
 
-El \emph{sistema de ecuaciones} \eqref{eq:ecua_infinitesimales}    pueden ser dificiles de resolver. Pero en algunos casos sencillos puede ser fácil.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+El \emph{sistema de ecuaciones} \eqref{eq:ecua_infinitesimales}    puede ser difícil de resolver. Pero en algunos casos puede ser posible.
 
  \begin{ejemplo} Encontrar el grupo de simetrías para los infinitesimales $\xi(x,y),\eta(x,y))=(x^2,xy)$.
    \end{ejemplo}
@@ -753,6 +750,91 @@ y
 \[ \frac{d\hat{y}}{d\epsilon}=\eta(\hat{x},\hat{y})=\hat{x}\hat{y}\text{ y }\hat{y}(x,y,0)=y
 \Rightarrow \hat{y}=\frac{y}{1-\epsilon x}\]
 
+\section{Condición de Simetría Linealizada}
+En esta sección discutiremos una técnica para encontrar simetrías de ecuaciones. 
+
+
+Desarrollando en serie de Taylor las funciones $\hat{x}$ e $\hat{y}$ en $\epsilon$ alrededror de $\epsilon=0$
+\[
+ \begin{split}
+  \hat{x}&=x+\epsilon\xi+\mathcal{O}(\epsilon^2)\\
+  \hat{y}&=y+\epsilon\eta+\mathcal{O}(\epsilon^2)
+  \end{split}
+\]
+Reemplazando en la condición de simetría, que recordemos es
+\[\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}
+ f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}
+ =f(\hat{x},\hat{y}),
+\] 
+obtenemos
+\[\frac{f+\epsilon\{\eta_x+f\eta_y\}+\mathcal{O}(\epsilon^2)}
+{1+\epsilon\{\xi_x+f\xi_y\}+\mathcal{O}(\epsilon^2)}
+=f(x+\epsilon\xi+\mathcal{O}(\epsilon^2),y+\epsilon\eta+\mathcal{O}(\epsilon^2))
+\]
+
+
+
+Desarrollando en serie de Taylor para $x$ e $y$ el segundo miembro y luego de algunas operaciones
+
+\[f+\epsilon\{\eta_x+(\eta_y-\xi_x)f-\xi_yf^2\}+\mathcal{O}(\epsilon^2)=
+ f+\epsilon\{\xi f_x+\eta f_y\}+\mathcal{O}(\epsilon^2)
+\]
+Cancelando $f$ dividiendo por $\epsilon$ y haciendo $\epsilon\to 0$ llegamos a la 
+\emph{Condición de Simetría Linealizada}
+
+\boxedeq{\eta_x+(\eta_y-\xi_x)f-\xi_yf^2=\xi f_x+\eta f_y}{eq:CondSimLin}
+
+Recordando la característica reducida $\overline{Q}= \eta-f\xi$, la fórmula anterior se escribe más sintéticamente
+\boxedeq{\overline{Q}_x+f\overline{Q}_y=f_y\overline{Q}}{eq:CondSimLin2}
+
+Cada solución de \eqref{eq:CondSimLin2} conlleva una infinita cantidad de grupos de Lie de simetrías, porque si $\overline{Q}$ resueleve  \eqref{eq:CondSimLin2}  entonces para toda función $\xi$ el par $(\xi, \overline{Q}+f\xi)$ son infinitesimales para un grupo de Lie de simetrías de la ecuación. La solución trivial $\overline{Q}\equiv 0$ de  \eqref{eq:CondSimLin2}  se corresponde con simetrías triviales. En principio podríamos utilizar el método de características, que hemos visto en la unidad anterior, para resolver la ecuación lineal en derivadas parciales de primer orden \eqref{eq:CondSimLin2} que, recordando lo visto, se puede escribir
+\[ \frac{dx}{1}=\frac{dy}{f}=\frac{d\overline{Q}}{f_y\overline{Q}}.\]
+La primera igualdad en la ecuación anterior equivales a $dy/dx=f$, que es al fin y al cabo, la ecuación que queremos resolver. Así estas consideraciones parecen habernos llevado al origen de nuestro problema. No obstante, algunas veces es posible encontrar una solución de \eqref{eq:CondSimLin} recurriendo a un ansatz.
+
+ \begin{ejemplo} Encontrar un grupo de Lie de simetrías no trivial de $y'=\frac{y}{x}+x$.
+   \end{ejemplo}
+
+ 
+ La condición de simetría linealizada es
+ \[\eta_x+(\eta_y-\xi_x)\left(\frac{y}{x}+x\right)-\xi_y\left(\frac{y}{x}+x\right)^2
+ =\xi \left(1-\frac{y}{x^2}\right)
++\frac{\eta}{x},\] 
+
+que luce intimidante. Hagamos el ansatz $\xi=0$ y $\eta=\eta(x)$. Conseguimos
+\[\eta_x-\frac{\eta}{x}=0\]
+Cuya solucion general es $\boxed{\eta=cx}$. Ahora podemos encontrar simetrías de la ecuación. Recordando \eqref{eq:ecua_infinitesimales}, tenemos
+\[
+\left\{
+\begin{array}{ll}
+\frac{d\hat{x}}{d\epsilon}&=0\\
+\frac{d\hat{y}}{d\epsilon}&=c\hat{x}\\
+\hat{x}(x,y,0)&=x\\
+\hat{y}(x,y,0)&=y\\
+\end{array}
+\right. 
+\Rightarrow 
+\left\{
+\begin{array}{ll}
+\hat{x}&=x\\
+\hat{y}&=c\epsilon x+y\\
+\end{array}
+\right.
+\]
+
+Podemos constatar de manera directa que $\hat{x}=x$ e $\hat{y}=c\epsilon x+y$ constituyen un grupo de Lie uniparamétrico de simetrías de la ecuación, para el cual $\overline{Q}\neq 0$.
+
+\textbf{Completación de la demostración  del Teorema \ref{teo:invariantes}}.
+Restaba demostrar que si $y(x)$ resuelve la ecuación $\overline{Q}(x,y(x))=0$ y $\overline{Q}_y\neq 0$ en los puntos a lo largo de la curva $(x,y(x))$ entonces $y(x)$ es solución invariante de la ecuación $y'=f$. 
+
+Por el Teorema de la función implícita,
+la condición de simetría linealizada \eqref{eq:CondSimLin2} y $\overline{Q}=0$
+\[y'(x)=-\frac{\overline{Q}_x}{\overline{Q}_y}=f-f_y\frac{\overline{Q}}{\overline{Q}_y}=f\]
+Luego $y$ es solución de la ecuación. El hecho de que es invariante es simplemente la igualdad 
+$\overline{Q}=0$.
+
+
+
+
 
 
 
@@ -761,7 +843,7 @@ y
 \section{Coordenadas canónicas}
 
 \subsection{Definición y ejemplos}
-\begin{definicion}[Coordenadas canónicas]   Diremos que las coordenadas $(r,s)$ son canónicas respecto a el grupo de Lie de simetrías $\Gamma{\epsilon}$  si en las coordenadas $(r,s)$ la acción de grupo es la traslación
+\begin{definicion}[Coordenadas canónicas]   Diremos que las coordenadas $(r,s)$ son canónicas respecto a el grupo de Lie de simetrías $\Gamma_{\epsilon}$  si en las coordenadas $(r,s)$ la acción de grupo es la traslación
 
 \boxedeq{(\hat{r},\hat{s}):= (r(\hat{x},\hat{y}),s(\hat{x},\hat{y}))=(r(x,y),s(x,y)+\epsilon).}{eq:coorcan}
 \end{definicion}
@@ -786,46 +868,46 @@ Derivando las ecuaciones \eqref{eq:coorcan} respecto a $\epsilon$ obtenemos
  Los cambios de coordenadas deben ser invertibles, de modo que pediremos la condición de no degeneración
 \boxedeq{\frac{\partial r}{\partial x}\frac{\partial s}{\partial y}-\frac{\partial r}{\partial y}\frac{\partial s}{\partial x}\neq 0}{eq:no_deg}
 
-\begin{definicion}[Coordendas canónicas generalizadas]
-Cualquier par de coordenadas que satisfacen \eqref{eq:coor_can_dif} y \eqref{eq:no_deg} se llaman canónicas.
-\end{definicion}
+% \begin{definicion}[Coordendas canónicas generalizadas]
+% Cualquier par de coordenadas que satisfacen \eqref{eq:coor_can_dif} y \eqref{eq:no_deg} se llaman canónicas.
+% \end{definicion}
 
 
 
 
 \noindent\textbf{Observaciones:}
 \begin{enumerate}
-\item El vector tangente en cualquier punto no invariante es paralelo a la curva $r=\hbox{cte}$ que pasa por ese punto. Luego esa curva es una órbita. Las órbitas son invariantes, así  $r$ se llama la \emph{coordenada invariante}. Las curvas $s=\hbox{cte}$ son transversales a las órbitas.
+\item El vector tangente en cualquier punto no invariante es paralelo a la curva $r=\hbox{cte}$ que pasa por ese punto. Luego esa curva continene las órbitas de cada punto en ella. Las órbitas son invariantes, así  $r$ se llama la \emph{coordenada invariante}. Las curvas $s=\hbox{cte}$ son transversales a las órbitas.
 \item Las coordenadas canónicas no estan definidas en un punto $(x,y)$ invariante pues en esos puntos $\xi(x,y)=\eta(x,y)=0$.
 
-\item Las coordenadas canónicas estan definidas en un entorno de cualquier   punto no invariante.
+\item Las coordenadas canónicas estan definidas en un entorno de cualquier   punto no invariante. Esta afirmación requiere una demostración que utiliza métodos y conceptos que estan fuera de los objetivos de este curso.
 
 \item Las coordenadas canónicas no son únicas. De hecho si $(r,s)$ son canónicas $(\tilde{r},\tilde{s})=(F(r),G(r)+s)$ lo son para cualquier $F$ y $G$ con $F'(r)\neq 0$ (para la no degeneración).
 
 \end{enumerate}
 
-
-
-\subsection{Generador Infinitesimal}
-
-\begin{definicion}[Generador Infinitesimal]
-Al operador diferencial
-\boxedeq{X=\xi(x,y)\frac{\partial }{\partial x}+\eta(x,y)\frac{\partial }{\partial y}}{eq:generador_infinitesimal}
-se lo suele denominar \emph{Generador Infinitesimal}. La acción del operador sobre una función $f$ diferenciable es tomar la derivada direccional en la dirección del campo $(\xi,\eta)$. 
-\end{definicion}
-
-Las ecuaciones \eqref{eq:coor_can_dif} se escriben de manera compacta
-\boxedeq{
-\begin{array}{ll}
-Xr&=0\\
-Xs&=1
-\end{array}
-}{eq:coor_can_difb}
-La primera expresa que $r$ no cambia en la dirección del campo.
-
-
-
-
+% 
+% 
+% \subsection{Generador Infinitesimal}
+% 
+% \begin{definicion}[Generador Infinitesimal]
+% Al operador diferencial
+% \boxedeq{X=\xi(x,y)\frac{\partial }{\partial x}+\eta(x,y)\frac{\partial }{\partial y}}{eq:generador_infinitesimal}
+% se lo suele denominar \emph{Generador Infinitesimal}. La acción del operador sobre una función $f$ diferenciable es tomar la derivada direccional en la dirección del campo $(\xi,\eta)$. 
+% \end{definicion}
+% 
+% Las ecuaciones \eqref{eq:coor_can_dif} se escriben de manera compacta
+% \boxedeq{
+% \begin{array}{ll}
+% Xr&=0\\
+% Xs&=1
+% \end{array}
+% }{eq:coor_can_difb}
+% La primera expresa que $r$ no cambia en la dirección del campo.
+% 
+% 
+% 
+% 
 
 
 
@@ -833,7 +915,7 @@ La primera expresa que $r$ no cambia en la dirección del campo.
 \section{Encontrando coordenadas canónicas}
 
  \subsection{Integrales primeras}
-\begin{definicion}[Integrales primera] Una integral primera de la EDO $y'=f(x,y)$ es una función $\phi(x,y)$ que es constante a lo largo de una curva solución de la EDO. Se la denomina también magnitud conservada.
+\begin{definicion}[Integrales primera] Una integral primera de la EDO $y'=f(x,y)$ es una función $\phi(x,y)$ que es constante a lo largo de cualquier curva solución de la EDO. Se la denomina también \emph{magnitud conservada}.
  \end{definicion}
 
 
@@ -842,7 +924,7 @@ La primera expresa que $r$ no cambia en la dirección del campo.
 \begin{equation}\label{eq:int_pri} \frac{dy}{dx}=\frac{\eta(x,y)}{\xi(x,y)}.
 \end{equation}
 \end{teorema}
-\textbf{Dem.} Supongamos $y(x)$ solución de la EDO, es suficiente demostrar que $\frac{d}{dx}r(x,y(x))=0$. En efecto
+\textbf{Dem.} La afirmación del teorema es consecuencia de que el campo $(\xi,\eta)$ es tangente a las curvas $r=c$, con $c$ constante. Justifiquemos el teorema del siguiente modo.  Supongamos $y(x)$ solución de la EDO, es suficiente demostrar que $\frac{d}{dx}r(x,y(x))=0$. Pero, en efecto
 \[
 \begin{array}{lll}
  \frac{d}{dx}r(x,y(x)) &=\frac{\partial r}{\partial x}+\frac{\partial s}{\partial y}y' &\text{(regla cadena)}\\
@@ -887,7 +969,7 @@ Ahora podemos aprovechar que ya conocemos $r$ y  expresar $y$ como función de $
 \end{teorema}
  
 
-En la igualdad resultante puede ser necesario reemplazar $r$ por su expresión en las variables $x,y$.
+En la igualdad resultante  reemplazamos $r$ por su expresión en las variables $x,y$.
 
 
 Si ocurriese que $\xi=0$ y $\eta\neq 0$. Entonces por \eqref{eq:int_pri} $r_y=0$, de modo que $r$ es sólo función de $x$. Se puede asumir $r=x$. Además $\eta s_y=1$, entonces
@@ -936,23 +1018,14 @@ Luego $(r,s)=(\frac{y}{x},-\frac{1}{x})$ son canónicas.
 En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordenadas canónicas allí.
 
 Lo podemos desarrollar con \texttt{SymPy}. 
-\begin{lstlisting}
->>> from sympy import *
->>> x,y,epsilon=symbols('x,y,epsilon')
->>> T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
->>> xi=T[0].diff(epsilon).subs(epsilon,0)
->>> xi
-x**2
->>> eta=T[1].diff(epsilon).subs(epsilon,0)
->>> eta/xi
-y/x
->>> y=Function('y')(x)
->>> dsolve(y.diff(x)-y/x,y)
-y(x) == C1*x
->>> Integral(1/xi,x).doit()
--1/x
-
-\end{lstlisting}
+ \lstinputlisting[language=Python]{scripts/coor_canon.py}
+\marginpar{
+\begin{pspicture}(0,-2)(1in,1in)
+      %\rput(0,1){
+      \scalebox{.5}{\psbarcode[file]{scripts/coor_canon.py}{}{qrcode}}
+      %}
+\end{pspicture}
+}
 
 
 
@@ -966,8 +1039,8 @@ Las coordenadas canónicas nos dan otra manera de encontrar simetrías a partir 
 \end{enumerate}
 
 
-\begin{ejemplo} Hallar el grupo de simetrías asociado al generador infinitesimal
-\[X=x^2\frac{\partial}{\partial x}+xy\frac{\partial}{\partial y}.\]
+\begin{ejemplo} Hallar el grupo de simetrías asociado a los infinitesimales 
+$\xi=x^2$ y $\eta=xy$.
 \end{ejemplo}
 
 
@@ -985,7 +1058,7 @@ Las coordenadas canónicas nos dan otra manera de encontrar simetrías a partir 
 
 \section{Resolviendo EDO con grupos de Lie de simetrías}
 \subsection{Método de solución}
-Finalmente, toda la teoría expuesta no permiten elaborar un método que puede resolver una ecuación dada supuesto que conocemos un grupo de Lie de simetrías de ella.  Supongamos dado  un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
+Finalmente, toda la teoría expuesta nos permite elaborar un método que puede resolver una ecuación dada supuesto que conocemos un grupo de Lie de simetrías de ella.  Supongamos dado  un grupo de Lie de simetrías $(\hat{x},\hat{y})$ de la ecuación
 \boxedeq{y'=f(x,y)}{eq:eq_princi}
  Supongamos  que las simetrías son no triviales. Según \eqref{eq:sol_inv} debemos tener
  \[\eta(x,y)\not\equiv f(x,y)\xi(x,y)\]
@@ -995,7 +1068,7 @@ Supongamos $(r,s)$ coordenadas canónicas. La ecuación en las coordenadas $(r,s
 \boxedeq{\frac{ds}{dr}=\hat{f}(r,s):=\frac{s_x+f(x,y)s_y}{r_x+f(x,y)r_y}.}{eq:prin_en_canon}
 
 Las coordenadas canónicas se definen por \eqref{eq:coorcan} de modo que el grupo de simetrías actúe por traslación $(\hat{r},\hat{s})=(r,s+\epsilon)$.
-Por los resultados de la página  \ref{pag:sim_tras}, $\hat{f}$ es independiente de $s$. Y la ecuación se reduce a
+Cómo se justifica en el Ejemplo  \ref{ejem:tras}, $\hat{f}$ es independiente de $s$, por consiguiente la ecuación se reduce a
 \boxedeq{\frac{ds}{dr}=\hat{f}(r)}{eq:ecu_prin_canonica}
 que se resuelve integrando.
 
@@ -1067,7 +1140,25 @@ La solución general es
 \subsection{Método de Lie y \texttt{SymPy}}
 \text{SymPy} Incorpora distintas estrategías para resolver ecuaciones por el método de Lie. Hay mucho por indagar al respecto, pero sólo vamos a mencionar una función para calcular los infinitesimales $(\xi,\eta)$.  Aprovechamos para mostrar como luce una consola de \texttt{ipython}, otra manera de usar \texttt{Python} y \texttt{SymPy}.
 
-\includegraphics[scale=.45]{imagenes/ipython.png}
+\begin{lstlisting}
+￼In [1]: from sympy import *
+￼In [2]: init_printing()
+￼In [3]: x=symbols('x')
+￼In [4]: y=Function('y')(x)
+￼In [5]: from sympy.solvers.ode import infinitesimals
+￼In [6]: infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
+Out[6]: 
+\end{lstlisting}
+
+\[\left [ \left \{ \eta{\left (x,y{\left (x \right )} \right )} : x y{\left (x \right )}, \quad \xi{\left (x,y{\left (x \right )} \right )} : x^{2}\right \}\right ]\]
+
+
+
+\section{Diagrama conceptual}
+
+\begin{center}
+ \includegraphics[scale=.25]{imagenes/diagrama.png}
+\end{center}
 
 
 \begin{subappendices}
@@ -1079,12 +1170,12 @@ La solución general es
 
 
 
- La  expresión \eqref{eq:gral_orden1} es más asimétrica, entre las variables $x$ e $y$ una de ellas es independiente ($x$) y la otra independiente  ($y$).  La expresión \eqref es  más simétrica, las dos variables tienen el mismo estatus.
+ La  expresión \eqref{eq:gral_orden1} es más asimétrica, entre las variables $x$ e $y$ una de ellas es independiente ($x$) y la otra independiente  ($y$).  La expresión \eqref{eq:gral_orden1_FormDif}  es  más simétrica, las dos variables tienen el mismo estatus.
 
- Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}. No disponemos del tiempo necesario para dotar con entidad matemática el concepto de forma diferencial. Tampoco  resulta de vital importancia. Pero las reglas que rigen la combinación de las formas diferenciales son muy simples y nos gustaría describir este aspecto de las formas diferenciales brevemente; como motivación para un estudio posterior más profundo y para que el lector gane en confianza en su manipulación. Daremos así una pintura de las formas diferenciales incompleta, por cuanto sólo diremos como ellas se combinan pero no contestaremos la pregunta de que son. Sólo digamos, para advertir al lector sobre los requisítos teóricos que se requieren, que las formas diferenciales se encuentran asociados al concepto de variedad diferencial, concepto este que generaliza al de curva y superficie.  Más 
+ Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}\link. No disponemos del tiempo necesario para dotar con entidad matemática el concepto de forma diferencial. Tampoco  resulta de vital importancia. Pero las reglas que rigen la combinación de las formas diferenciales son muy simples y nos gustaría describir este aspecto de las formas diferenciales brevemente; como motivación para un estudio posterior más profundo y para que el lector gane en confianza en su manipulación. Daremos así una pintura de las formas diferenciales incompleta, por cuanto sólo diremos como ellas se combinan pero no contestaremos la pregunta de que son. Sólo digamos, para advertir al lector sobre los requisítos teóricos que se requieren, que las formas diferenciales se encuentran asociados al concepto de variedad diferencial, concepto este que generaliza al de curva y superficie.  Más 
 concretamente, las formas diferenciales son funciones que toman valores en los duales de los espacios tangentes a las variedades diferenciales. En particular hay formas diferenciales asociadas a los espacios euclideo, que podemos identificar con  $\rr^n$.
 
-Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior}, que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma de 
+Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior}\link, que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma de 
 grado $k>n$ es la trivial, esto es la nula. Denotamos $\Lambda_k$ las formas de grado $k$, siendo $\Lambda =\bigoplus_{k=0}^{n}\Lambda_k$ el espacio vectorial de todas ellas. Luego $d:\Lambda\to\Lambda$ y $\wedge:\Lambda\times\Lambda\to \Lambda$. Ahora describimos unas simples reglas de las formas,  $d$ y $\wedge$.
 
 
@@ -1109,7 +1200,7 @@ grado $k>n$ es la trivial, esto es la nula. Denotamos $\Lambda_k$ las formas de 
 \end{enumerate}
 
 
-Una $k$-forma diferencial $\alpha$ se llama \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{exacta} cuando es el diferencial de una $k-1$-forma y se dice \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{cerrada} cuando $d\alpha=0$. Las propiedades de las formas implican que toda forma exacta es cerrda. Un famoso \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas#Lema_de_Poincar.C3.A9}{Lema de Poincare} trata con el recíproco de esta afirmación.
+Una $k$-forma diferencial $\alpha$ se llama \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{exacta}\link cuando es el diferencial de una $k-1$-forma y se dice \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{cerrada}\link cuando $d\alpha=0$. Las propiedades de las formas implican que toda forma exacta es cerrda. Un famoso \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas#Lema_de_Poincar.C3.A9}{Lema de Poincare}\link trata con el recíproco de esta afirmación.
 
 Las reglas anteriores permiten computar cualquiera de las operaciones.
 \begin{ejemplo} Si $\alpha=M(x,y)dx+N(x,y)dy$ es una 1-forma de $\rr^2$, entonces
@@ -1120,11 +1211,11 @@ Las reglas anteriores permiten computar cualquiera de las operaciones.
     &= \left(\frac{\partial N}{\partial x}- \frac{\partial M}{\partial y}\right) dx\wedge dy
    \end{split}
 \]
-Recordemos el famoso \href{https://es.wikipedia.org/wiki/Teorema_de_Green}{Teorema de Green}, que afirmaba que si $D\subset \rr^2$ era una región cuyo borde $C=\partial D$ era una curva cerrada simple, entonces
+Recordemos el famoso \href{https://es.wikipedia.org/wiki/Teorema_de_Green}{Teorema de Green}\link, que afirmaba que si $D\subset \rr^2$ era una región cuyo borde $C=\partial D$ era una curva cerrada simple, entonces
 \[\ointctrclockwise_{\partial D} Mdx +Ndy=\iint_D \left(\frac{\partial N}{\partial x}- \frac{\partial M}{\partial y}\right) dx dy.\]
 Utilizando formas diferenciales este resultado se escribe de la manera, mucho más compacta y sugerente
 \[\ointctrclockwise_{\partial D} \alpha = \iint_Dd\alpha,\]
-donde $\alpha =M(x,y)dx+N(x,y)dy$.  Esto es una relación clave de las formas diferenciales que se generaliza en un teorema fundamental de la matemática llamado \href{https://es.wikipedia.org/wiki/Teorema_de_Stokes}{Teorema de Stokes}.
+donde $\alpha =M(x,y)dx+N(x,y)dy$.  Esto es una relación clave de las formas diferenciales que se generaliza en un teorema fundamental de la matemática llamado \href{https://es.wikipedia.org/wiki/Teorema_de_Stokes}{Teorema de Stokes}\link.
 \end{ejemplo}
 
 
@@ -1180,7 +1271,7 @@ La forma obtenida es $-rdr+(-r^4+r^2)d\theta$.
 GAP (Groups, Algorithms, Programming) es un sistema de álgebra discreta computacional, con especial énfasis en la teoría de grupos computacional. GAP proporciona un lenguaje de programación, una biblioteca de miles de funciones implementando algoritmos algebraicos escritos en el lenguaje GAP, así como bibliotecas de datos de objetos algebraicos de gran tamaño [...] GAP se utiliza en la investigación y la enseñanza para estudiar grupos y sus representaciones, anillos, espacios vectoriales, álgebras, estructuras combinatorias, y más. El sistema, incluida la fuente, se distribuye libremente.>>
 \end{quote}
 \begin{flushright}
- \href{https://www.gap-system.org/}{(Página Oficial de GAP)}
+ \href{https://www.gap-system.org/}{(Página Oficial de GAP)}\link
 \end{flushright}
 
 Hasta donde sabemos Sympy no implementa objetos de teoría de grupos. Sin embargo existe software libre para estudiar grupos. El más conocido de ellos es GAP. Este sistema provee un lenguaje muy sencillo y transparente. Lamentablemente el estudio de esta herramienta está más allá de los alcances de este documento. Desarrollemos un simple ejemplo.
