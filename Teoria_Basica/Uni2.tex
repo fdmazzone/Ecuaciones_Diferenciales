@@ -82,7 +82,7 @@ $x$ e $y$ también se expresan en función de $\hat{x}$ e $\hat{y}$, vale decir 
           \end{array}
  \right. .
  \end{equation}
-\subsection{Cómputos de cambios de variables}\marginpar{Es costumbre recurrir a un abuso de notación que suele producir confusión al estudiante. Nos referimos a diferenciar las derivadas $\partial y/\partial x$ y  $d y/d x$. Tratándose $y$ en el caso que nos ocupa, de una función de $x$ e $\hat{y}$,    la derivada $\partial y/\partial x$ representa la derivada parcial de $y$ respecto a su primera variable. Como $\hat{y}$ es a su vez función de $x$, por  $d y/d x$ denotamos la derivada de $y$ atendiendo a que la segunda variable también depende de $x$.}
+\subsection{Cómputos de cambios de variables}\marginpar{Es costumbre recurrir a un abuso de notación que suele producir confusión al estudiante. Nos referimos a distinguir las derivadas $\partial y/\partial x$ y  $d y/d x$. Tratándose $y$ en el caso que nos ocupa, de una función de $x$ e $\hat{y}$,    la derivada $\partial y/\partial x$ representa la derivada parcial de $y$ respecto a su primera variable. Como $\hat{y}$ es a su vez función de $x$, por  $d y/d x$ denotamos la derivada de $y$ atendiendo a que la segunda variable también depende de $x$.}
 Vamos a estudiar en primer lugar como computar cambios de variables. Empezaremos por casos más sencillos hasta ir a la situación más general.
 
 \subsubsection{Cambio de la variable dependiente manteniendo la independiente}
@@ -116,7 +116,7 @@ Que es una expresión sólo en $\hat{y}$ y $x$. Parece más complicada, pero en 
 
 \end{ejemplo}
 
-\emph{Importante:} Observar\advertencia  que en un cambio de variable, ya se cambie la variable dependiente, independiente o ambas, las derivadas (tratándose de la velocidad de cambio de unas variables repecto a otras)  también hay que cambiarlas.  
+\advertencia \emph{Importante:} Observar  que en un cambio de variable, ya se cambie la variable dependiente, independiente o ambas, las derivadas (tratándose de la velocidad de cambio de unas variables repecto a otras)  también hay que cambiarlas.
 
 
 Podemos resolver los cambios de variables con \texttt{SymPy}, lo cual es muy útil por dos motivos. El primero porque nos permite hacer cambios de variables en expresiones muy grandes, resolviendo operaciones que a mano son sumamente tediosas. El segundo, y no menos importante para nosotros, es que es muy rico explorar un procedimiento enmarcándolo en un contexto muy distinto. En este caso, el procedimiento es relizar un cambio de variables y estamos explorando el mismo a través de un breve código que lo implementa en un lenguaje de programación.
@@ -211,7 +211,7 @@ Dado que el cálculo es extenso lo haremos con \texttt{SymPy}, el procedimiento 
 
 Obtenemos la siguiente expresión 
 \[\frac{dr}{d\theta}=\frac{\frac{dr}{dx}}{\frac{d\theta}{dx}}=\frac{\left(1 + \frac{1}{x^{2}} y^{2}{\left (x \right )}\right) \left(x + y{\left (x \right )} \frac{d}{d x} y{\left (x \right )}\right)}{\sqrt{x^{2} + y^{2}{\left (x \right )}} \left(\frac{1}{x} \frac{d}{d x} y{\left (x \right )} - \frac{1}{x^{2}} y{\left (x \right )}\right)}.\]
-Ahora sustituímos $y'(x)$ usando la ecuación diferencial, redefinimos $r,\theta$ fundamentalmente para limpiar el valor que tenían asignado en el código previo, que era una expresión de $x,y$, y finalmente sustituímos $x$e $y$ por su expresión en polares. 
+Ahora sustituímos $y'(x)$ usando la ecuación diferencial, redefinimos $r,\theta$ fundamentalmente para limpiar el valor que tenían asignado en el código previo, que era una expresión de $x,y$, y finalmente sustituímos $x$ e $y$ por su expresión en polares.
 
 \lstinputlisting[language=Python]{scripts/sust4.py}
 \marginpar{
@@ -231,9 +231,8 @@ x=r\cos\theta; &dx=\cos\theta dr-\sen\theta r d\theta\\
  y= r\sen\theta; & dy=\sen\theta dr+\cos\theta r d\theta\\
 \end{array}
 \]
-
- en la 1-forma:
-\[(y^3+x^2y-x-y)dx-(x^3+xy^2-x+y)dy\]
+en la 1-forma:
+\[(y^3+x^2y-x-y)dx-(x^3+xy^2-x+y)dy.\]
 
 Sympy posee un módulo para operar con formas diferenciales, en un apéndice describimos como utilizarlo para resolver este ejemplo.
 
@@ -274,9 +273,8 @@ Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href
 Recordemos el siguiente concepto.
 
 \begin{definicion}[Acción de un grupo sobre un conjunto]
-Diremos que un grupo $G$ actúa sobre el conjunto $X$ si existe una operación binaria externa  $\star:G\times G\to G$ que satisface:
+Diremos que un grupo $G$ actúa sobre el conjunto $X$ si existe una operación binaria externa  $\star:G\times X\to G$ que satisface:
 \begin{enumerate}
-\item $(g_1\star g_2)\star g_3=g_1\star (g_2 \star g_3)$, para todos $g_1,g_2,g_3\in G$,
 \item Si $e$ es el neutro de $G$, $e \star x=x$,  para todo $x\in X$.
 \item Para todos $g,h\in G$ y $x\in X$,    $g\star (h\star x)=(gh)\star x$.
 \end{enumerate}
@@ -291,7 +289,7 @@ Como en el caso de grupos suele nos escribirse el símbolo de la operación bina
 
 \subsection{Grupos y cambios de variables}
 
-Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\Gamma$, invertibles,  de clase $C^1$, donde $\Gamma:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$.  Acostumbraremos escribir $(\hat{x},\hat{y})=\Gamma(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas e $(x,y)$ las viejas. 
+Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\Gamma$, invertibles,  de clase $C^1$, donde $\Gamma:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$.  Acostumbraremos escribir $(\hat{x},\hat{y})=\Gamma(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas y $(x,y)$ las viejas.
 
 \begin{ejemplo} \textbf{Coordenadas polares.} Es más facil describir la transformación que lleva coordenadas polares en cartesianas. En este caso $(x,y)=\Gamma(r,\theta)$ y
 \[
@@ -1175,7 +1173,8 @@ Out[6]:
  Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}\link. No disponemos del tiempo necesario para dotar con entidad matemática el concepto de forma diferencial. Tampoco  resulta de vital importancia. Pero las reglas que rigen la combinación de las formas diferenciales son muy simples y nos gustaría describir este aspecto de las formas diferenciales brevemente; como motivación para un estudio posterior más profundo y para que el lector gane en confianza en su manipulación. Daremos así una pintura de las formas diferenciales incompleta, por cuanto sólo diremos como ellas se combinan pero no contestaremos la pregunta de que son. Sólo digamos, para advertir al lector sobre los requisítos teóricos que se requieren, que las formas diferenciales se encuentran asociados al concepto de variedad diferencial, concepto este que generaliza al de curva y superficie.  Más 
 concretamente, las formas diferenciales son funciones que toman valores en los duales de los espacios tangentes a las variedades diferenciales. En particular hay formas diferenciales asociadas a los espacios euclideo, que podemos identificar con  $\rr^n$.
 
-Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior}\link, que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma de 
+Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior}\link, que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma 
+de 
 grado $k>n$ es la trivial, esto es la nula. Denotamos $\Lambda_k$ las formas de grado $k$, siendo $\Lambda =\bigoplus_{k=0}^{n}\Lambda_k$ el espacio vectorial de todas ellas. Luego $d:\Lambda\to\Lambda$ y $\wedge:\Lambda\times\Lambda\to \Lambda$. Ahora describimos unas simples reglas de las formas,  $d$ y $\wedge$.
 
 
