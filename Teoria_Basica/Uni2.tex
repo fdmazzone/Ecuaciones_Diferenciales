@@ -560,7 +560,7 @@ Son circunsferencias con centro en el origen. El punto $(0,0)$ es invariante.
 
 \begin{definicion}[Campo vectorial de tangentes]
  Dado un grupo de Lie uniparamétrico $(\hat{x}(x,y,\epsilon),\hat{y}(x,y,\epsilon))=\Gamma_{\epsilon}(x,y)$  definimos el campo vectorial
-\[(\xi(\hat{x},\hat{y}),\eta(\hat{x}, \hat{y}))=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right).\]
+\[(\xi(x,y),\eta(x, y))=\left(\left.\frac{d\hat{x}}{d\epsilon}\right|_{\epsilon=0}, \left.\frac{d\hat{y}}{d\epsilon}\right|_{\epsilon=0}   \right).\]
  $\xi$ y $\eta$ se llaman \emph{símbolos infinitesimales}.
  
  
@@ -596,31 +596,32 @@ Campo vectorial de infitesimales para las rotaciones.
 simetrías de Lie $\Gamma_{\epsilon}$ si y sólo si $\forall \epsilon: \Gamma_{\epsilon}(C)\subset C$, i.e. las órbitas de puntos en $C$ permanecen en $C$.
 \end{definicion}
 
-
+\noindent\textbf{Observaciones}
 \begin{enumerate}
 \item El conjunto unitario $\{(x,y)\}$ es invariante si y sólo si el punto $(x,y)$ 
 es invariante.
 
 \item Se $C$ es una curva plana suave, supongamos que $C$ viene dada por la ecuación implícita $g(x,y)=0$, con $\nabla g\neq 0$.  Supongamos que  $(\xi,\eta)\neq (0,0)$ sobre $C$. Entonces $C$ es invariante si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es
-paralela a $(\xi(x,y),\eta(x,y))$. La demostración de este hecho se propone como ejercicio. \actividad.  
+paralela a $(\xi(x,y),\eta(x,y))$. La demostración de este hecho se propone como ejercicio. \actividad
+\item Si en particular $C$ es una curva que viene descripta como el gráfico de una función $y=h(x)$, entonces $C$ es invariante si y sólo si
+\boxedeq{Q(x,y,y')=\eta(x,y)-h'\xi(x,y)\equiv 0.}{eq:inv}
+En efecto, en este caso $g(x,y)=y-h(x)$ (notar que $\nabla g=(-h'(x),1)\neq 0$). Como $\nabla g$ es perpendicular a $C$ tenemos la ecuación \eqref{eq:inv}. La ecuación \eqref{eq:inv} se llama \emph{ecuación característica}.
+
+
+% \begin{definicion}[Curvas invariantes]
+% Una curva plana $C$ se dice invariante por un grupo uniparamétrico de simetrías de Lie si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es paralela a $(\xi(x,y),\eta(x,y))$. Si $C$ es el gráfico de una función $x\mapsto y(x)$, como $(1,y'(x))$ es un vector tangente a la gráfica, la condición que $C$ es invariante se escribe
+% \boxedeq{Q(x,y,y')=\eta(x,y)-y'\xi(x,y)\equiv 0}{eq:inv}
+% Esta se llama \emph{ecuación característica}.
+% \end{definicion}
+
+
+
+\item Si además de lo anterior, $\Gamma_{\epsilon}$ es un grupo de Lie de simetrías de $y'=f(x,y)$ e $y(x)$ es una curva invariante y solución de la ecuación entonces:
+\boxedeq{\overline{Q}(x,y)=\eta(x,y)-f(x,y)\xi(x,y)\equiv 0.}{eq:sol_inv}
+A esta ecuación la llamamos  \emph{ecuación característica reducida}.
 
  \end{enumerate}
 
-\begin{definicion}[Curvas invariantes]
-Una curva plana $C$ se dice invariante por un grupo uniparamétrico de simetrías de Lie si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es paralela a $(\xi(x,y),\eta(x,y))$. Si $C$ es el gráfico de una función $x\mapsto y(x)$, como $(1,y'(x))$ es un vector tangente a la gráfica, la condición que $C$ es invariante se escribe
-\boxedeq{Q(x,y,y')=\eta(x,y)-y'\xi(x,y)\equiv 0}{eq:inv}
-Esta se llama \emph{ecuación característica}.
-\end{definicion}
-
-
-
-
-
-
-
-Sea $\Gamma_{\epsilon}$ es un grupo de Lie de simetrías de $y'=f(x,y)$. Si $y(x)$ es una curva invariante y solución de la ecuación entonces:
-\boxedeq{\overline{Q}(x,y)=\eta(x,y)-f(x,y)\xi(x,y)\equiv 0.}{eq:sol_inv}
-Se llama \emph{ecuación característica reducida}.
 
 El recíproco también es cierto.
 \begin{teorema}\label{teo:invariantes}
