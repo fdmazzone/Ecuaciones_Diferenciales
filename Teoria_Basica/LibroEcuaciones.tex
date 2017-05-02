@@ -42,6 +42,7 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \usepackage{etoolbox}
 \usepackage{lipsum}
 \usepackage{mathtools}
+\usepackage{csquotes}
 
 \fancyfoot{}
 \fancyhead[RO,LE]{\thepage}
@@ -230,10 +231,20 @@ titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
 titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 
-\newcounter{ejemplo_cont}
+
+
+
+\newcounter{ejemplo_cont}[chapter]
 \setcounter{ejemplo_cont}{1}
 
-\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+% \makeatletter
+% \@addtoreset{ejemplo_cont}{chapter}
+% \makeatother
+
+\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{chapter}.\arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%Para escibir en clase articulo o similar
 
@@ -254,6 +265,9 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 \begin{document}
 
+
+
+
 \renewcommand{\lim}{\mathop{\rm lím}}
 \renewcommand{\inf}{\mathop{\rm ínf}}
 \renewcommand{\liminf}{\mathop{\rm líminf}}
@@ -270,9 +284,9 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 %   
 
 \include{prologo}
-\include{Uni0}
-\include{Uni1}
-\include{Uni2}
+%\include{Uni0}
+%\include{Uni1}
+%\include{Uni2}
 \include{Uni3}
 %\include{Uni4}
 %\include{Uni5}
