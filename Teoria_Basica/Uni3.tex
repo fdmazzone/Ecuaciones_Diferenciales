@@ -1,6 +1,59 @@
 \chapter{Teoremas de Existencia y Unicidad}
 \addtocounter{ejemplo_cont}{1}
 
+
+\subsection{Introducción}
+
+%\begin{quote}
+
+ \enquote{
+ El determinismo es una doctrina filosófica que sostiene que todo acontecimiento físico, incluyendo el pensamiento y acciones humanas, está causalmente determinado por la irrompible cadena causa-consecuencia, y por tanto, el estado actual \enquote{determina} en algún sentido el futuro...En física, el determinismo sobre las leyes físicas fue dominante durante siglos, siendo algunos de sus principales defensores Pierre Simon Laplace y Albert Einstein}. \cite{ wiki:determinismo}.
+ 
+\enquote{Podemos mirar el estado presente del universo como el efecto del pasado y la causa de su futuro. Se podría condensar un intelecto que en cualquier momento dado sabría todas las fuerzas que animan la naturaleza y las posiciones de los seres que la componen. Si este intelecto fuera lo suficientemente vasto para someter los datos al análisis, podría condensarse en una simple fórmula de movimiento de los grandes cuerpos del universo y del átomo más ligero; para tal intelecto nada podría ser incierto y el futuro, así como el pasado, estaría frente sus ojos}. Laplace, citado en \cite{ wiki:determinismo}.
+
+La ciencia se vale de estructuras matemáticas para describir a traves de modelos la evolución de sistemas reales. Usualmente esas estructuras son ecuaciones (diferenciales) donde el tiempo es una de sus variables. Conocer el \enquote{estado actual} de un sistema (las \enquote{posiciones} que menciona Laplace) es conocer las condiciones iniciales. Mientras que las ecuaciones en si mismas se derivan de  \enquote{las fuerzas que animan la naturaleza}.  Así, para que la matemática colabore con la filosofía determinista, debería ella misma plantear problemas deterministas.  En ese sentido, hablando específicamente de ecuaciones diferenciales, para que podamos decir que un PVI sea determinista, el problema debería tener solución (existencia de soluciones), caso contrario este PVI no produciría ninguna predicción del futuro. Pero también esta solución debería ser única (unicidad de soluciones), porque de no ser así, el problema produciría múltiples predicciones y por tanto el estado actual no determinaría el futuro. Un problema que satisfaga estas condiciones lo denominaremos \emph{bien planteado}\footnote{Es común en la literatura requerir, además de la existencia y unicidad, la estabilidad para hablar de problema bien planteado} . 
+
+Por lo expuesto, es de trascendencia para la ciencia en general que se pueda establecer que los problemas matemáticos que modelizan problemas de estas ciencias sean bien planteados. Este es el propósito de este capítulo.
+
+
+Para nuestra sorpresa, PVIs sin ningun problema aparente a la vista no son problemas bien planteados.
+
+\begin{ejemplo} Considerar el siguiente PVI:
+\[
+  \left\{
+ \begin{array}{ll}
+    y'(x)&=y(x)^{2/3}\\
+    y(0)&=0\\
+ \end{array}
+ \right.
+\]
+
+La ecuacion  s en varialbles separables. Deberíamos dividir por $y(x)$, pero notar antes de hacer ello que $y\equiv 0$ es solución. Supongamos $y(x)\neq 0$, una vez dividido
+\[\frac{dy}{y^{2/3}}=dx\Rightarrow 3y^{1/3}=x+C\Rightarrow y(x)=\left(\frac{x}{3}+C\right)^3.\]
+A pesar de la limitación original de que $y(x)\neq 0$, la expresión para $y(x)$ que hemos hallado es solución para todo $x\in\rr$. Notar que  $y(x)=0$ cuando $x=-C/3$. Sin embargo, el valor problemático $y=0$ nos trae aparejado un inesperado problema. Ocure  que la función $y_C(x):=\left(\frac{x}{3}+C\right)^3$ tiene derivada igual a cero en $x=-C/3$. Esto implica que si $C_1<C_2$ entonces la función 
+\[
+  y_{C_1,C_2}(x):=
+  \left\{
+ \begin{array}{ll}
+    y_{C_1}(x)&\hbox{ si } x\leq-C_2\\
+    0         &\hbox{ si } x\in [C_1,C_2]\\
+    y_{C_2}(x) &\hbox{ si } x\geq -C_1\\
+  \end{array}
+ \right.
+\]
+está bien definida y es diferenciable en $\rr$. Además de ello, cualquiera de estas funciones con $C_1\leq 0 \leq C_2$ resuelven el PVI.  De esta manera hemos encontrado un PVI con infinitas soluciones.
+\end{ejemplo}
+
+
+\end{psclip}
+\end{pspicture}
+\end{center}
+\caption{Ecuación $x'=\frac12(x^2-1)$}\label{fig2}
+\end{figure}
+
+
+
+
 \section{Sistemas de Ecuaciones Diferenciales}
 \subsection{Definición y ejemplos}
 Un \emph{sistema de ecuaciones diferenciales de primer orden} es un conjunto  de ecuaciones que relacionan una variable independiente, digamos $x$, un conjunto de variables dependientes, digamos $y_1(x),\ldots,y_n(x)$, y sus derivadas respecto a $x$. A las ecuaciones diferenciales con una incognita y una ecuación las denominaremos \emph{ecuaciones escalares}.
@@ -125,32 +178,18 @@ El camino inverso es más sencillo. Llamamos $z=y'$. Usando las variables $y,z$ 
 \end{ejemplo}
 
 
-\section{Determinismo y el Teorema de Existencia y Unicidad}
-
-%\begin{quote}
-
- \enquote{
- El determinismo es una doctrina filosófica que sostiene que todo acontecimiento físico, incluyendo el pensamiento y acciones humanas, está causalmente determinado por la irrompible cadena causa-consecuencia, y por tanto, el estado actual \enquote{determina} en algún sentido el futuro. Existen diferentes formulaciones de determinismo, que se diferencian en los detalles de sus afirmaciones. Para distinguir las diferentes formas de determinismo conviene clasificarlas de acuerdo con el grado de determinismo que postulan:}
-\newline
-\begin{itemize}
- \item \enquote{El determinismo fuerte sostiene que no existen sucesos genuinamente aleatorios o azarosos, y en general, el futuro es potencialmente predecible a partir del presente. El pasado también podría ser "predecible" si conocemos perfectamente una situación puntual de la cadena de causalidad. Pierre-Simon Laplace defendía este tipo de determinismo.}
- \item \enquote{El determinismo débil sostiene que es la probabilidad lo que está determinado por los hechos presentes, o que existe una fuerte correlación entre el estado presente y los estados futuros, aun admitiendo la influencia de sucesos esencialmente aleatorios e impredecibles.}
- \end{itemize}
-\enquote{...En física, el determinismo sobre las leyes físicas fue dominante durante siglos, siendo algunos de sus principales defensores Pierre Simon Laplace y Albert Einstein. Laplace, quien contribuyó enormemente al desarrollo de la física y la teoría de probabilidades, afirmó:
-
-\enquote{
-Podemos mirar el estado presente del universo como el efecto del pasado y la causa de su futuro. Se podría condensar un intelecto que en cualquier momento dado sabría todas las fuerzas que animan la naturaleza y las posiciones de los seres que la componen. Si este intelecto fuera lo suficientemente vasto para someter los datos al análisis, podría condensarse en una simple fórmula de movimiento de los grandes cuerpos del universo y del átomo más ligero; para tal intelecto nada podría ser incierto y el futuro, así como el pasado, estaría frente sus ojos.}
-    \begin{flushright}
-     Laplace
-    \end{flushright}
-
-
-%\end{quote}
+\section{Funciones Lipschitzianas}
 
 
 
 
-El determinismo
+
+
+
+
+   
+
+
 
 
 
