@@ -1,5 +1,5 @@
 \chapter{Teoremas de Existencia y Unicidad}
-\addtocounter{ejemplo_cont}{1}
+
 
 
 \subsection{Introducción}
@@ -11,7 +11,8 @@
  
 \enquote{Podemos mirar el estado presente del universo como el efecto del pasado y la causa de su futuro. Se podría condensar un intelecto que en cualquier momento dado sabría todas las fuerzas que animan la naturaleza y las posiciones de los seres que la componen. Si este intelecto fuera lo suficientemente vasto para someter los datos al análisis, podría condensarse en una simple fórmula de movimiento de los grandes cuerpos del universo y del átomo más ligero; para tal intelecto nada podría ser incierto y el futuro, así como el pasado, estaría frente sus ojos}. Laplace, citado en \cite{ wiki:determinismo}.
 
-La ciencia se vale de estructuras matemáticas para describir a traves de modelos la evolución de sistemas reales. Usualmente esas estructuras son ecuaciones (diferenciales) donde el tiempo es una de sus variables. Conocer el \enquote{estado actual} de un sistema (las \enquote{posiciones} que menciona Laplace) es conocer las condiciones iniciales. Mientras que las ecuaciones en si mismas se derivan de  \enquote{las fuerzas que animan la naturaleza}.  Así, para que la matemática colabore con la filosofía determinista, debería ella misma plantear problemas deterministas.  En ese sentido, hablando específicamente de ecuaciones diferenciales, para que podamos decir que un PVI sea determinista, el problema debería tener solución (existencia de soluciones), caso contrario este PVI no produciría ninguna predicción del futuro. Pero también esta solución debería ser única (unicidad de soluciones), porque de no ser así, el problema produciría múltiples predicciones y por tanto el estado actual no determinaría el futuro. Un problema que satisfaga estas condiciones lo denominaremos \emph{bien planteado}\footnote{Es común en la literatura requerir, además de la existencia y unicidad, la estabilidad para hablar de problema bien planteado} . 
+La ciencia se vale de estructuras matemáticas para describir a traves de modelos la evolución de sistemas reales. Usualmente esas estructuras son ecuaciones (diferenciales) donde el tiempo es una de sus variables. Conocer el \enquote{estado actual} de un sistema (las \enquote{posiciones} que menciona Laplace) es conocer las condiciones iniciales. Mientras que las ecuaciones en si mismas se derivan de  \enquote{las fuerzas que animan la naturaleza}.  Así, para que la matemática colabore con la filosofía determinista, debería ella misma plantear problemas deterministas.  En ese sentido, hablando específicamente de ecuaciones diferenciales, para que podamos decir que un PVI sea determinista, el problema debería tener solución (existencia de soluciones), caso contrario este PVI no produciría ninguna predicción del futuro. Pero también esta solución debería ser única (unicidad de soluciones), porque de no ser así, el problema produciría múltiples predicciones y por tanto el estado actual 
+no determinaría el futuro. Un problema que satisfaga estas condiciones lo denominaremos \emph{bien planteado}\footnote{Es común en la literatura requerir, además de la existencia y unicidad, la estabilidad para hablar de problema bien planteado} . 
 
 Por lo expuesto, es de trascendencia para la ciencia en general que se pueda establecer que los problemas matemáticos que modelizan problemas de estas ciencias sean bien planteados. Este es el propósito de este capítulo.
 
@@ -44,12 +45,14 @@ A pesar de la limitación original de que $y(x)\neq 0$, la expresión para $y(x)
 está bien definida y es diferenciable en $\rr$. Además de ello, cualquiera de estas funciones con $C_1\leq 0 \leq C_2$ resuelven el PVI.  De esta manera hemos encontrado un PVI con infinitas soluciones.
 \end{ejemplo}
 
+\begin{tabular}{m{6cm} m{6cm}}
+\begin{minipage}{6cm}
+  \lstinputlisting[language=Python]{scripts/no-unicidad.py}
+\end{minipage}
 
-\end{psclip}
-\end{pspicture}
-\end{center}
-\caption{Ecuación $x'=\frac12(x^2-1)$}\label{fig2}
-\end{figure}
+&
+\includegraphics[scale=.4]{imagenes/no-unicidad.png}
+ \end{tabular}
 
 
 
@@ -178,7 +181,137 @@ El camino inverso es más sencillo. Llamamos $z=y'$. Usando las variables $y,z$ 
 \end{ejemplo}
 
 
-\section{Funciones Lipschitzianas}
+\section{Método de iteraciones de Picard}
+
+En esta sección vamos a describir la estrategia que emplearemos para la demostración de la existencia de soluciones. El método que seguiremos fue ideado por \href{https://es.wikipedia.org/wiki/Charles_%C3%89mile_Picard}{Émile Picard}\link \marginpar{
+    \includegraphics[scale=.3]{imagenes/Picard.jpg}\\
+    Émile Picard (1856-1941)
+}
+
+Introducimos previamente algunas definiciones elementales.
+
+\begin{definicion}
+ Sea $\alpha$ una función  definida en un intervalo $[a,b]\subset \rr$ con valores en $\rr^n$, $n\geq 1$, tal que cada componete es una función integrable. Entonces, como es usual, escribimos
+ \[\int_a^b\alpha(s)ds=\left(\int_a^b\alpha_1(s)ds,\ldots,\int_a^b\alpha_n(s)ds\right) \]
+\end{definicion}
+
+Es un ejercicio muy sencillo \actividad demostrar que vales las propiedades elementales de las integrales, para esta extensión del concepto de integral a funciones con valores vectoriales. En particular vale el Teorema Fundamental del Cálculo: \emph{Si $\alpha$ es continuamente diferenciable entonces
+\[ \int_a^b\alpha'(s)ds=\alpha(b)-\alpha(a).\]
+}
+
+Nuestra intención es demostrar la existencia de soluciones de un PVI para el sistema de EDOs
+\boxedeq{
+\left\{
+\begin{array}{ll}
+ y'(x)&=f(x,y)\\
+ y(x_0)&=y_0\\
+\end{array}
+\right. ,
+}{eq:PVI_prin}
+
+donde $f:\Omega \subset (a,b)\times \rr^n\to \rr^n$, $\Omega$ abierto, $y:(a,b)\to \rr^n$ (se debe satisfacer que $(x,y(x))\in \Omega$, para $x\in [a,b]$), $x_0\in (a,b)$
+e $y_0\in\rr^n$ son dados con $(x_0,y_0)\in \Omega$.
+
+
+
+Integremos la ecuación diferencial en un intervalo de extremos $x_0$ y $x$ y tomando en consideeración las condiciones iniciales obtenemos una nueva ecuación para $y(x)$,  en este caso una \href{https://es.wikipedia.org/wiki/Ecuaci%C3%B3n_integral}{ecuación integral}\link :
+
+\boxedeq{
+y(x)=y_0+\int_{x_0}^xf(t,y(t))dt.
+}{eq:ecua_int}
+
+Esta ecuación presenta una estructura muy particular. Podemos pensar el miembro derecho de \eqref{eq:ecua_int} como una trasformación (función) $T$ que lleva la función $y=y(x)$ en la función
+\[
+ T(y)(x):=y_0+\int_{x_0}^xf(t,y(t))dt.
+\]
+Pensando de esta manera  \eqref{eq:ecua_int} se escribe sencillamente
+\[
+ T(y)=y.
+\]
+Vale decir, la ecuación integral expresa el hecho que $T$ lleva a la función $y$ en si misma. Esto en matemática es conocido como un \href{https://es.wikipedia.org/wiki/M%C3%A9todo_del_punto_fijo}{punto fijo}\link. En análisis numérico los puntos fijos son utilizados para resolver ecuaciones algebraicas del tipo $h(x)=x$, donde $h:\rr\to\rr$. En aquel copntexto se ve que un procedimiento para aproximar soluciones es interar la función $h$, i.e. dado un $x_0$ cualquiera considerar la sucesión de \emph{aproximaciones sucesivas}
+\[x_n=h(x_{n-1}),\quad n=1,2,\ldots.\]
+El fundamento de proceder así es que si la sucesión $x_n$ converge a algún valor $x^*$ y si $h$ es continua entonces $x^*$ resuelve $h(x)=x$ pues
+\begin{equation}
+\label{eq:pto_fijo}h(x^*)=h\left(\lim_{n\to\infty} x_n\right)=\lim_{n\to\infty} h(x_n)=\lim_{n\to\infty} x_{n+1}=x^*.
+\end{equation}
+
+Vamos a proceder por analogía y proponer el siguiente proceso iterativo que genera las funciones $\varphi_k$, $k=0,1,\ldots$:
+
+\boxedeq{
+\left\{
+\begin{array}{ll}
+\varphi_0&=y_0\\
+\varphi_{k+1}(x)&=y_0+\int_{x_0}^xf(t,\varphi_k(t))dt.\\
+\end{array}
+\right. .
+}{eq:iter_picard}
+
+Este proceso se denomina \emph{método de las aproximaciones sucesivas de Picard} y fué propuesto por E. Picard en  \cite{EmilePicard1893} y luego generalizado por \href{https://es.wikipedia.org/wiki/Ernst_Leonard_Lindel%C3%B6f}{Ernest Lindelöf}\link  en \cite{ErnestLindelof1894}. \marginpar{
+    \includegraphics[scale=.3]{imagenes/Lindelof.jpg}\\
+   Ernst L. Lindelöf (1870—1946)
+}
+
+
+
+Deberemos indagar por condiciones que nos aseguren que la sucesión $\varphi_k$ converja a una función $\varphi$ y que esta función $\varphi$ es solución del PVI. Antes de adentrarnos en los detalles de las demostraciones, constatemos que la idea funciona en algunos ejemplos sencillos.
+
+\begin{ejemplo} Resolver
+\[
+ \left\{
+ \begin{array}{ll}
+ y'(x)&=y(x)\\
+ y(0)&=y_0\\
+ \end{array}
+  \right. ,
+\]
+donde $y:\rr\to\rr$ e $y_0$ es un punto arbitrario de $\rr$.
+
+Aplicando el método de picard:
+\[
+ \begin{array}{lll}
+  \varphi_0(x)&=y_0 &\\
+  \varphi_1(x) &= y_0+\int_{0}^x \varphi_0(t)dt &= y_0(1+x)\\
+  \varphi_2(x) &= y_0+\int_{0}^x \varphi_1(t)dt &= y_0(1+x+\frac{x^2}{2})\\
+               &\,\vdots                        &\,\vdots                 \\
+  \varphi_k(x) &= y_0+\int_{0}^x \varphi_k(t)dt &= y_0(1+x+\cdots+\frac{x^k}{k!})\\
+ \end{array}
+\]
+Se aprecia que en $\varphi_k$ aparecen las sumas parciales del desarrollo en serie de Taylor alrededor de $0$ de la función exponencial. Luego tenemos que $\varphi_k$ converge a $y_0e^x$ que es justamente la solución delm PVI propuesto.
+\end{ejemplo}
+
+Más ejemplos será tratados en la actividad práctica.
+
+\section{\href{https://es.wikipedia.org/wiki/Teorema_del_punto_fijo_de_Banach}{Teorema de punto fijo Banach}}
+
+\begin{definicion} Sea $(X,d)$ un espacio métrico completo. Una función $K:X\to X$ se denominará una contracción si existe un $\theta\in [0,1)$ tal que
+\[d(K(x),K(y))\leq \theta d(x,y),\quad x,y\in X.\]
+\end{definicion}
+
+Dada una función $K:X\to X$ escribiremos
+\[K^n(x)=\underbrace{K\left( K \left( K\cdots K(x)\cdots \right)\right)}_{n-\hbox{veces}}.\]
+Cuando $n=0$ ponemos $K^0(x)=x$.
+
+\begin{teorema}[Principio de contracción de Banach]  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$  una contracción. Entonces $K$ tiene un único punto fijo $x^*$. Además para todo $x$
+\[d(K^n(x),x^*)\leq \frac{\theta^n}{1-\theta}d(K(x),x).\]
+\end{teorema}\marginpar{
+    \includegraphics[scale=.3]{imagenes/banach.jpg}\\
+   Stefan Banach (1892—1945)
+}
+\begin{proof} Sea $x\in X$ un punto arbitrario y definimos $x_n:=K^n(x)$. Entonces si $m<n$
+\[
+\begin{split}
+ d(K^n(x),K^m(x))&\leq d(K^n(x),K^{n-1}(x))+\cdots+ d(K^{m+1}(x),K^m(x))\\
+ &\leq \theta^{n-1} d(K(x),x)+\cdots + \theta^m d(K(x),x)\\
+ &\leq \frac{\theta^m}{1-\theta}d(K(x),x)
+ \end{split}
+\]
+Como $\theta<1$ vemos que si $m,n$ son suficientemente grandes podemos hacer que $ d(K^n(x),K^m(x))$ sea arbitrariamente chico. Hemos probado que la sucesión $K^n(x)$ es de Cauchy, de allí tiene límite, al que llamaremos $x^*$. Que $x^*$ es punto fijo se justifica como en \eqref{eq:pto_fijo} (notar que una contracción es continua).
+
+Que el punto fijo es único, se deduce de suponer que existe otro $z^*$ y aplicar lque $K$ es contracción
+\[d(x^* , z^*)=d(K(x^*) , K(z^*))\leq \theta d(x^* , z^*)<d(x^* , z^*).\]
+Lo que es una contradicción.
+\end{proof}
+
 
 
 
@@ -190,17 +323,6 @@ El camino inverso es más sencillo. Llamamos $z=y'$. Usando las variables $y,z$ 
    
 
 
-
-
-
-
-
-\begin{flushright}
- \cite{ wiki:determinismo}.
-\end{flushright}
-
-
-%\end{quote}
 
 
 
