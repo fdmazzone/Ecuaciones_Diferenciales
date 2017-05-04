@@ -199,6 +199,8 @@ Es un ejercicio muy sencillo \actividad demostrar que vales las propiedades elem
 \[ \int_a^b\alpha'(s)ds=\alpha(b)-\alpha(a).\]
 }
 
+Además vale la \emph{desigualdad triangular:}\actividad si $a<b$
+\[\left\|\int_a^b \alpha(s)ds\right\|\leq \int_a^b \left\|\alpha(s)\right\|ds.\]
 Nuestra intención es demostrar la existencia de soluciones de un PVI para el sistema de EDOs
 \boxedeq{
 \left\{
@@ -312,16 +314,168 @@ Que el punto fijo es único, se deduce de suponer que existe otro $z^*$ y aplica
 Lo que es una contradicción.
 \end{proof}
 
+\begin{corolario}\label{cor:banach}  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$ continua y $K^m$ contracción para algún $m\in\mathbb{N}$. Entonces $K$ tiene un único punto fijo $x^*$ y para todo $x\in X$ se tiene
+\[ \lim_{n\to\infty} K^n(x)=x^*.\]
+ \end{corolario}
+ 
+ \begin{proof} Sea $x^*$ el único punto fijo de $K^m$ dado por el principio de contracción de Banach aplicado a $K^m$. Sean $x\in X$ y $0\leq r<m$. Consideremos las sucesiones $\{K^{km+r}(x)\}_{k\in\mathbb{N}}$. Tenemos $m$ de estas sucesiones, una para cada valor de $r=0,\ldots,m-1$. Todas ellas son subsucesiones de $\{K^n(x)\}_{n\in\mathbb{N}}$. Además 
+  \[\bigcup_{r=0}^{m-1}\{K^{km+r}(x)\}_{k\in\mathbb{N}}=\{K^n(x)\}_{n\in\mathbb{N}}.\]
+  Vamos a demostrar que estas $m$ subsucesiones convergen todas a $x^*$. Esto es facil consecuencia de que $K^m$ es contracción. Pues de ello obtenemos que $\left(K^{m}\right)^n(y)\to x^*$, cuando $n\to\infty$ para todo $y\in X$. Luego
+  \[\lim_{k\to\infty}K^{km+r}(x)=\lim_{k\to\infty}\left(K^{m}\right)^k(K^r(x))=x^*.\]
+  Esto establece que $ \lim_{n\to\infty} K^n(x)=x^*$.
+  
+  Veamos que $x^*$ es punto fijo de $K$. 
+  \[K(x^*)=K\left(\lim_{n\to\infty} K^{n}(x)\right)=\lim_{n\to\infty} K\left( K^{n}(x)\right)
+  =\lim_{n\to\infty}  K^{n+1}(x)=x^*.\]
+  
+  Para la unicidad, observar que un punto fijo de $K$ lo es de $K^m$. Cómo $K^m$ tiene un único punto fijo, lo mismo podemos afirmar de $K$.
+  
+ \end{proof}
+
+
+\begin{definicion} Sea $f:\Omega \subset \rr^n\to \rr^m$. Diremos que $f$ es \emph{lipschitziana} (o que es una función Lipschitz) si existe una constante $K\geq 0$ tal que
+\[\|f(x)-f(y)\|\leq K\|x-y\|,\quad \forall x,y\in \Omega .\]
+
+Si $f:\Omega\subset\rr\times \rr^n\to\rr^m$, diremos que $f=f(t,x)$ es lipschitziana respecto a la segunda variable si existe  $K\geq 0$ tal que
+\[\|f(t,x)-f(t,y)\|\leq K\|x-y\|,\quad \forall (t,x),(t,y)\in \Omega .\]
+ 
+\end{definicion}
 
 
 
+\begin{teorema}[Picard- Lindelöf] Sean $x_0\in\rr$, $y_0\in\rr^n$ y $f:\Omega\to\rr^n$ continua y lipschitziana respecto a la segunda variable, donde $\Omega=I_a\times B_b$,  $I_a=[x_0-a,x_0+a]$ y $B_b=\{y\in\rr^n|\|y-y_0\|\leq b\}$. Como $\Omega$ es compacto y $f$ es continua, existe $M\geq 0$ tal que $\|f\|\leq M$. Entonces existe una única solución del PVI:
+\[
+ \left\{\begin{array}{ll}
+	  y'(x)&=f(x,y(x)),\\
+	  y(x_0)&=y_0\\         
+        \end{array}
+\right. ,
+\]
+en $I_{\delta}=(x_0-\delta,x_0+\delta)$ con $\delta:=\min\{a,b/M\}$.
+ \end{teorema}
+
+ \begin{proof}
+ 
+ Definamos
+\[X=C(I_a,B_b):=\{\varphi| \varphi:I_a\to B_b\hbox{ continua }\}.\]
+\begin{figure}[h]
+  \begin{center}
+\scalebox{.6} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.81)(10.393595,4.81)
+\definecolor{color123b}{rgb}{0.9098039215686274,0.8431372549019608,0.8431372549019608}
+\definecolor{color105b}{rgb}{0.8627450980392157,0.7607843137254902,0.7607843137254902}
+\psellipse[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer,fillstyle=solid,fillcolor=color105b](3.86,0.85)(0.44,1.3)
+\psellipse[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.04,0.88)(0.4,1.29)
+\psellipse[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer,fillstyle=solid,fillcolor=color123b](6.07,0.86)(0.39,1.31)
+\pspolygon[linewidth=0.04](0.0,-4.79)(0.04231884,2.37)(2.92,4.79)(2.86,-2.55)(2.88,-2.49)
+\psbezier[linewidth=0.04](1.42,2.19)(0.96,2.05)(0.94,1.23)(0.92,0.93)(0.9,0.63)(0.92,-0.31)(1.42,-0.39)
+\psbezier[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm](1.48,-0.41)(1.98,-0.27)(1.98,0.51)(1.98,0.93)(1.98,1.35)(1.9,2.27)(1.48,2.15)
+\psline[linewidth=0.04cm](1.44,2.17)(7.1,2.15)
+\psline[linewidth=0.04cm](1.44,-0.41)(7.02,-0.43)
+\psellipse[linewidth=0.04,dimen=outer](7.0,0.86)(0.54,1.29)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](7.0,0.83)(1.46,0.81)
+\psdots[dotsize=0.24](7.06,0.83)
+\psdots[dotsize=0.12](1.5,0.83)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.5,0.77)(1.78,1.97)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.3,-1.77)(9.52,-1.71)
+\usefont{T1}{ptm}{m}{n}
+\rput(2.4290624,3.5){$\mathbb{R}^n$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.3590626,1.48){$b$}
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](5.04,0.83)(5.0,-1.77)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](7.1,0.79)(7.1,-1.83)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](3.9,0.87)(3.86,-1.79)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.0590625,-1.96){$x_0$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6,-1.96){$x_0+\delta$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.8490624,-1.96){$x_0-\delta$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.5590626,0.52){$y_0$}
+\psbezier[linewidth=0.04,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.4,3.39)(5.6,3.05)(6.6,2.49)(5.52,1.77)
+\usefont{T1}{ptm}{m}{n}
+\rput(6.4590626,3.42){$\Omega$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.049064,-1.48){$\mathbb{R}$}
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](6.06,0.79)(6.08,-1.71)
+\usefont{T1}{ptm}{m}{n}
+\rput(7.2690625,-1.94){$x_0+a$}
+\psbezier[linewidth=0.04,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.36,2.51)(4.5,1.53)(5.48,2.21)(5.12,0.95)
+\psdots[dotsize=0.2](5.06,0.79)
+\usefont{T1}{ptm}{m}{n}
+\rput(4.2745314,2.78){$(x_0,y_0)$}
+\end{pspicture} 
+}
+ \caption{Caída libre}\label{fig:exi_uni}
+  \end{center}
+\end{figure}
+\begin{ejercicio} La función
+\[d(\varphi_1,\varphi_2):=\max\left\{\|\varphi_1(x)-\varphi_2(x)\| \,\big| x\in I_a\right\}\]
+  define una métrica sobre el conjunto $X$ y con esta métrica $(X,d)$ es completo. \actividad
+\end{ejercicio}
+
+Para $\varphi\in X$, definamos una nueva función $K(\phi)$ por:
+\[K(\varphi)(x)=y_0+\int_{x_0}^xf(t,\varphi(t))dt.\]
+\noindent\textbf{Afirmación 1:} $K:X\to X$. 
+
+En efecto, si $x\geq x_0$ y $x\in I_a$ (si $x\leq x_0$ queda como ejercicio\actividad)
+\[\|K(\varphi)(x)-y_0\|\leq \int_{x_0}^x\|f(t,\varphi(t))\|dt\leq M|x-x_0|\leq b.\]
+Esto muestra que $K(\varphi):I_a\to B_b$. 
+
+La continuad se establece del siguiente modo. Si $x_1<x_2$
+\[
+\|K(\varphi)(x_1)-K(\varphi)(x_2)\|\leq \int_{x_1}^{x_2}\|f(t,\varphi(t))\|dt\leq M|x_1-x_2|.\]
+
+Lo que implica la continuidad. Entonces $K(\varphi)\in X$. 
+
+\noindent\textbf{Afirmación 2:} $K^m$ es  contracción para $m$ suficientemente grande. 
+
+La afirmación es consecuencia de la siguiente desigualdad, para $\varphi_1,\varphi_2\in X$ y $x\in I_a$
+\[\|K^m(\varphi_1)(x)-K^m(\varphi)(x)\|\leq \frac{K^m|x-x_0|^m}{m!}d(\varphi_1,\varphi_2).\]
+La prueba procede por induccón sobre $m$. Cuando $m=0$ es inmediata. Supuesta válida la desigualdad para $m$ vemos que (otra vez asumimos $x_0\leq x$)
+
+\[
+  \begin{split}
+    \|K^{m+1}(\varphi_1)(x)&-K^{m+1}(\varphi)(x)\|=   \|K\left(K^{m}(\varphi_1)\right)(x)-K\left(K^{m}(\varphi)\right)(x)\|\\
+    &=\left\|   
+    \int_{x_0}^{x} f(t,K^m(\varphi_1)(t))- f(t,K^m(\varphi_2)(t)) dt
+        \right\|\\
+     &\leq    
+    \int_{x_0}^{x} \left\|f(t,K^m(\varphi_1)(t))- f(t,K^m(\varphi_2)(t))\right\| dt\\
+    &\leq     K\int_{x_0}^{x} \left\|K^m(\varphi_1)(t)- K^m(\varphi_2)(t))\right\| dt\\
+    &\leq  \frac{K^{m+1}}{m!}d(\varphi_1,\varphi_2) \int_{x_0}^{x}  |t-x_0|^m dt\\
+    &=\frac{K^{m+1}|x-x_0|^{m+1}}{(m+1)!}d(\varphi_1,\varphi_2)
+  \end{split}
+\]
+
+Notar que $K^m|x-x_0|^m/m!$ es el valor absoluto del término general de la serie de Taylor de $e^{Kx}$ alrededor de $x_0$.Como esta serie tiene radio de convergencia infinito, el término general tiende a cero. Por consiguiente existe $m$ suficientemente grande para que $K^m|x-x_0|^m/m!<1$. Para este $m$, $K^m$ será contracción. Luego, por el Corolario \ref{cor:banach},  deducimos que $K$ tiene un único punto fijo. Vale decir que existe $y\in X$ con
+\[
+ y(x)=y_0+\int_{x_0}^xf(t,y(t))dt.
+\]
+Notar que $y(x_0)=y_0$, i.e. $y$ satisface la condición inicial. Por el teorema fundamental del cálculo $y'(x)=f(x,y(x))$, i.e. $y$ satisface la ecuación y por tanto, finalmente, es solución del PVI.\end{proof}
 
 
+\begin{corolario} Sea $\Omega$ abierto de $\rr\times \rr^n$ y $f:\Omega\to\rr^n$ continua con $\partial f_j/\partial y_k)$ tambien continuas $j,k=1,\ldots,n$. Entonces para todo $(x_0,y_0)\in\Omega$ existe un entorno $V=[x_0-\delta,x_0+\delta]\times B_b(y_0)$ tal que el PVI
+ \[
+ \left\{\begin{array}{ll}
+	  y'(x)&=f(x,y(x)),\\
+	  y(x_0)&=y_0\\         
+        \end{array}
+\right. ,
+\]
+tiene solución única en $[x_0-\delta,x_0+\delta]$. Además el gráfico de esta solución está contenido en $V$..
+\end{corolario}
 
+\begin{proof} Sea $(x_0,y_0)\in\Omega$ arbitrario. Como $\Omega$ es abierto, existen $a,b>0$ tal que $[x_0-\delta,x_0+\delta]\times B_b(y_0)\subset \Omega$. Como $\partial f_j/\partial y_k)$ son continuas y $V$ es compacto, tenemos que existe $M>0$ con $|\partial f_j/\partial y_k)|\leq M$ en $V$, $j,k=1,\ldots,n$. El Teorema del valor medio para funciones en varias variables implica que existe una constante $C>0$ tal que si $(t,x),(t,z)\in V$
+\[\|f(t,x)-f(t,z)\|\leq C M\|x-z\|.\]
+i.e. $f$ es Lipschitziana respecto a la segunda variable en $V$. La conclusión del Corolario sigue del Teorema de Picard- Lindelöf. 
+\end{proof}
 
 
    
-
+\nocite{JorgeSotomayor513}.
 
 
 
