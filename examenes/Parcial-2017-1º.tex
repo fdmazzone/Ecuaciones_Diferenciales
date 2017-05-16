@@ -1,0 +1,96 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[dvips]{color}
+\setlength{\headheight}{27.08pt}
+\usepackage{fancyhdr} % controla los headers and footers.
+
+
+%%%%%%%%%%%% TAMANHO HOJA %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \vsize=27.9cm \hsize=21cm \setlength{\textwidth}{16.5cm}
+ \setlength{\textheight}{22.5cm}
+ %\addtolength{\textheight}{60pt}
+ \addtolength{\topmargin}{-30pt}
+ %\setlength{\leftmargin}{.5cm}
+ \setlength{\oddsidemargin}{0.50cm}
+ %\setlength{\oddsidemargin}{1.5in}
+ \setlength{\evensidemargin}{-1.2cm}
+ %\setlength{\evensidemargin}{1.5in}
+ \parskip6pt
+
+
+\begin{document}
+\date{}
+\begin{center}
+ {\bf \large{Ecuaciones Diferenciales}}\\
+ Final   15/05/2017
+\end{center}
+
+%\textbf{Nombre y Apellido:}
+%\bigskip
+%
+%\textbf{D.N.I.:}
+
+\begin{enumerate}
+
+\item Tres tanques dispuestos en cascadas contienen $50$ litros de salmuera e inicialmente hay en cada uno de ellos $10$ kg. de sal.
+\begin{itemize}
+\item En el tanque $1$ ingresa agua pura a razón de $1$ litro/min. Y sale por su parte inferior $1$ litro/min de salmuera.
+
+\item En el tanque $2$ ingresa la salmuera que sale del tanque $1$ y por otro  tubo un litro de agua pura. A su vez de este fluye hacia afuera $2$ litros/min de salmuera.
+
+\item En el tanque $3$ ingresa la salmuera que sale del tanque $2$ y por un conducto diferente un litro de agua pura. Y de este fluye hacia afuera $3$ litros/min de salmuera.
+\end{itemize} 
+
+Demostrar que los tres tanques contiene la misma cantidad de sal en todo momento.
+
+\item Reslover el problema 
+
+\begin{equation*}
+\left\{ \begin{array}{cc}
+-u_{x}+u_{y}=u^2 & (x,y)\in\mathbb{R}^{2}\\
+u(x,0)=\frac{1}{2}e^{-x} & x\in \mathbb{R}
+\end{array}
+\right.
+\end{equation*}
+
+\item Demostrar que toda recta que pasa por el origen interseca a las soluciones de una misma ecuación homogénea con el mismo ángulo.
+
+
+
+
+
+\item Dada la ecuación 
+\begin{equation}\label{ec1}
+M(x,y)dx+N(x,y)dy=0.
+\end{equation}
+
+\begin{itemize}
+
+\item[a)]
+ Demostrar que si $\frac{\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}}{xN-My}$ es una función radial entonces la ecuación \eqref{ec1} tiene un factor integrante radial.
+
+\item[b)] Usar el ítem \textrm{a)} para resolver $(y^3+x^2y)dx+(x^3+y^2x)dy=0$.
+
+\end{itemize}
+
+
+
+
+
+
+
+\item  Resolver la ecuación  $\frac{dy}{dx}=\frac{x y^{4}}{3} - \frac{2 y}{3 x} + \frac{1}{3 x^{3} y^{2}}$. \textbf{Ayuda:} Plantear la \emph{condición de simetría linealizada} para encontrar los infinitesimales $\xi$ y $\eta$. Hacer  el Anzats $\xi=ax+c$ y $\eta=bx+d$.
+
+
+
+\end{enumerate}
+
+\end{document} 
