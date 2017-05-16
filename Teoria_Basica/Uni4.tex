@@ -1,171 +1,3 @@
-% \documentclass{article}
-% %\documentclass[hyperref={colorlinks=true}]{beamer}
-% %\documentclass[handout,hyperref={colorlinks=true}]{beamer}
-% 
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{empheq}
-% \usepackage[spanish]{babel}
-% %\usepackage[utf8x]{inputenc}
-% \usepackage{times}
-% %\usepackage[T1]{fontenc}
-% \usepackage[latin1]{inputenc}
-% \usepackage{amssymb,amsmath,amsthm}
-% \usepackage{enumerate}
-% \usepackage{verbatim}
-% \usepackage{ esint }
-% %\usepackage{pst-all}
-% %\usepackage{pstricks-add}
-% \usepackage{array}
-% %\usepackage[T1]{fontenc}
-% \usepackage{animate}
-% %\usepackage{media9}
-% \usepackage{xparse}
-% \usepackage{listings}
-% \usepackage{ wasysym }
-% %\usepackage{sagetex}
-% \usepackage{yfonts,mathrsfs,eufrak}
-% \usepackage{hyperref}
-% \usepackage{color}
-% \usepackage{url}
-% \usepackage{theorem}
-% \usepackage{boiboites}
-% \usepackage{wrapfig}
-% \usepackage{ esint }
-% \definecolor{mygreen}{rgb}{0,0.6,0}
-% \definecolor{mygray}{rgb}{0.5,0.5,0.5}
-% \definecolor{mymauve}{rgb}{0.58,0,0.82}
-% 
-% \lstset{ %
-%   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-%   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-%   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-%   breaklines=true,                 % sets automatic line breaking
-%   captionpos=b,                    % sets the caption-position to bottom
-%   commentstyle=\color{mygreen},    % comment style
-%   deletekeywords={...},            % if you want to delete keywords from the given language
-%   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-%   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-%   frame=single,	                   % adds a frame around the code
-%   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-%   keywordstyle=\color{blue},       % keyword style
-%   language=Python,                 % the language of the code
-%   otherkeywords={*,...},           % if you want to add more keywords to the set
-%   numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
-%   numbersep=5pt,                   % how far the line-numbers are from the code
-%   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-%   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-%   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-%   showstringspaces=false,          % underline spaces within strings only
-%   showtabs=false,                  % show tabs within strings adding particular underscores
-%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-%   stringstyle=\color{mymauve},     % string literal style
-%   tabsize=2,	                   % sets default tabsize to 2 spaces
-%   title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-%   belowskip=-0.5cm
-% }
-% 
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
-% 
-% \newcommand{\com}{\mathbb{C}}
-% \newcommand{\dis}{\mathbb{D}}
-% \newcommand{\rr}{\mathbb{R}}
-% \newcommand{\oo}{\mathcal{O}}
-% %\renewcommand{\emph}[1]{\textcolor[rgb]{1,0,0}{#1}}
-% \newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-% \renewcommand{\v}[1]{\overrightarrow{#1}}
-% \renewcommand{\epsilon}{\varepsilon}
-% %\newcommand{\defverbatim}{\def{#1}}
-% \renewcommand{\b}[1]{\boldsymbol{#1}}
-% \renewenvironment{frame}[1]{}{}
-% %\newcommand{\end{proof}}{$\square$}
-% \DeclareMathOperator{\atan2}{atan2}
-% \DeclareMathOperator{\sen}{sen}
-% 
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%Colores
-% \definecolor{myblue}{rgb}{.8, .8, 1}
-% \definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
-% \definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
-% \definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
-% \definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
-% \newcommand{\dblue}{\color{dbluecolor}\bf}
-% \newcommand{\dred}{\color{dredcolor}\bf}
-% \newcommand{\dblack}{\color{dblackcolor}\bf}
-% 
-% 
-% %%%%%%%%%%Definimos una caja con color
-% \newlength\mytemplen
-% \newsavebox\mytempbox
-% \makeatletter
-% \newcommand\mybluebox{%
-% \@ifnextchar[%]
-% {\@mybluebox}%
-% {\@mybluebox[0pt]}}
-% \def\@mybluebox[#1]{%
-% \@ifnextchar[%]
-% {\@@mybluebox[#1]}%
-% {\@@mybluebox[#1][0pt]}}
-% \def\@@mybluebox[#1][#2]#3{
-% \sbox\mytempbox{#3}%
-% \mytemplen\ht\mytempbox
-% \advance\mytemplen #1\relax
-% \ht\mytempbox\mytemplen
-% \mytemplen\dp\mytempbox
-% \advance\mytemplen #2\relax
-% \dp\mytempbox\mytemplen
-% \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-% \makeatother
-% \DeclareDocumentCommand\boxedeq{ m g }{%
-% {\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-% \IfNoValueF {#2} {\label{#2}}%
-% #1
-% \end{empheq}
-% }%
-% }
-% 
-% 
-% %%%%%%%%%%%%%%%%%%
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
-% 
-% \newboxedtheorem[boxcolor=orange, background=blue!5, titlebackground=blue!20,
-% titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
-% 
-% 
-% 
-% 
-% \newcounter{ejemplo_cont}
-% \setcounter{ejemplo_cont}{1}
-% 
-% \newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%Para escibir en clase articulo o similar
-% 
-% 
-
-
-
-
 \chapter{Ecuaciones Lineales de Segundo Orden}
 %\date{}
 
@@ -206,7 +38,7 @@ donde $p,q,r$ son funciones definidas en un intervalo $I=(a,b)$ de $\rr$ con val
 
 
 \begin{teorema}[Teorema de existencia y unicidad de soluciones]
-Supongamos $p,q,r$ continuas sobre $I$. Sean $x_0\in I$ e $y_0,y_1\in\rr$ dados. Entonces existe una única solución del PVI
+Supongamos $p,q,r$ continuas y acotadas sobre $I$. Sean $x_0\in I$ e $y_0,y_1\in\rr$ dados. Entonces existe una única solución del PVI
 \[\left\{
 \begin{array}{l l l}
 \frac{d^2y}{dx^2}+&p(x)\frac{dy}{dx}+q(x)y=r(x),&x\in I\\
@@ -215,7 +47,30 @@ y'(x_0)&=y^1_0&\\
 \end{array}\right.
 \]
 \end{teorema}
-\begin{proof} Más adelante.
+\begin{proof} Es un caso particular del Teorema Picard- Lindelöf. Más específicamente de un ejercicio que se presentó en la actividad práctica. Llamando $z=y'(x)$ el PVI propuesto se convierte en un PVI asociado a un sistema de ecuaciones
+\[\left\{
+\begin{array}{l l l}
+
+y'(x)&= z(x)\\
+z'(x)&= -p(x)z(x)-q(x)y+r(x),\\
+y(x_0)&=y_0\\
+z(x_0)&=y^1_0\\
+\end{array}\right.
+\]
+
+Es un sistema de la forma $w'(x)=f(x,w(x))$ donde $w(x)=(y(x),z(x))$ y $f(x,w)=(z,-p(x)z-q(x)y+r(x)$. Vamos a chequaer que $f$ es Lipschitz respecto a la segunda variable  en $I\times \rr^2$. Si $(x,w_0),(x,w_1)\in I\times \rr^2$  ($w_0=(z_0,y_0)$ y $w_1=(z_1,w_1)$) entonces:
+\[
+\begin{split}
+  \|f(x,w_1-f(x,w_2)\|&\leq \sqrt{(z_1-z_0)^2+  (p(x)(z_1-z_0)+q(x)(y_1-y_0)^2}\\
+  &\leq
+ C\|w_1-w_0\|,
+\end{split}
+\]
+para una constante apropiada $C$ que depende de una cota de $|p(x)|,|q(x)|$, $x\in I$.
+Cómo $f$ es Lipschitz respecto a la segunda variable en todo $\rr^2$, el sistema tiene una solución definida en todo $I$.
+
+
+
 
 \end{proof}
 
@@ -271,7 +126,7 @@ si la única solución de $c_1y_1(t)+\cdots+c_ny_n(t)=0$, para $t\in I$, es $c_1
 
 
 \begin{definicion}[Definición wronskiano]
- Dadas $n$ fuciones $\{y_1,\ldots,y_n\}$ con dominio $I$ el wronskiano $W(x)=W(y_1,y_2,\ldots,y_n)(x)$ de estas funciones en un punto $x\in I$ se define por
+ Dadas $n$ fuciones $\{y_1,\ldots,y_n\}$ con dominio $I$, el wronskiano $W(x)=W(y_1,y_2,\ldots,y_n)(x)$ de estas funciones en un punto $x\in I$ se define por
 \boxedeq{W(x)=\det\begin{pmatrix}
 y_1(x) & y_2(x) & \cdots &y_n(x)\\
 y_1'(x) & y_2'(x) & \cdots &y_n'(x)\\
@@ -398,9 +253,9 @@ pero en este caso afortunadamente contamos con herramientas para resolverla pues
 variable dependiente $v$ no aparece explícitamente, sino que aparecen sus derivadas $v'$ y $v''$. Hay que intentar la sustitución $w=v'$.
 Luego
 \[
-y_1w''+(2y_1'+py_1)w=0
+y_1w'+(2y_1'+py_1)w=0
 \]
-Recordar que $y_1$ la asumimos conocida y que $p$ es obviamente conocida, así $2y_1'+py_1$ es una funcióon conocida. La ecuación es una ecuación lineal homogénea de primer orden.
+Recordar que $y_1$ la asumimos conocida, así $2y_1'+py_1$ es también una función conocida. La ecuación es una ecuación lineal homogénea de primer orden.
 Usando la fórmula para resolver este tipo de ecuación, obtenemos
 \[w(x)=Ce^{-\int \frac{y_1'}{y_1}+p dx}=Ce^{-2\ln|y_1|}e^{-\int p dx}=C\frac{1}{y_1^2}e^{-\int p dx} \]
 Es suficiente encontrar sólo una función $v$, de allí podemos tomar $C=1$.
@@ -530,11 +385,8 @@ A*a**2 + A*a*p + A*q - 1
 \end{lstlisting}
 
 
-Si $a^2+pa+q\neq 0$, encontramos la solución particular $\boxed{y(x)=\frac{1}{(a^2+pa+q)}e^{ax}}$.
-
-
-
-
+Si $a^2+pa+q\neq 0$, encontramos la solución particular
+\[\boxed{y(x)=\frac{1}{(a^2+pa+q)}e^{ax}}.\]
 \item \textbf{Caso $\b{r(x)=e^{a x}}$ y $\b{a^2+pa+q= 0}$.}
 En esta situación diremos que la ecuación está en \emph{resonancia}. Más generalmente, diremos que se presenta resonancia cuando $r(x)$ es solución
 del problema homogéneo.
