@@ -164,20 +164,30 @@ y
 \end{equation}
 Sustituyendo \eqref{sus_1} y  $z=y\sqrt{x}$ en \eqref{eq_osc} obtenemos
 \begin{equation}\label{eq_osc2}
-0=\frac{d^2z}{dx^2}+\frac{1+\epsilon}{4x^2}z=-\frac{x^{-\frac{3}{2}}}{4}y+ 
+\begin{split}
+ 0&=\frac{d^2z}{dx^2}+\frac{1+\epsilon}{4x^2}z\\
+ &=-\frac{x^{-\frac{3}{2}}}{4}y+
 x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}+\frac{1+\epsilon}{4x^2}
-x^{\frac{1}{2}}y=\boxed{\frac{\epsilon}{4}x^{-\frac{3}{2}}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}}.
+x^{\frac{1}{2}}y\\
+&=\boxed{\frac{\epsilon}{4}x^{-\frac{3}{2}}y+ x^{-\frac{1}{2}}\frac{dy}{dx} +x^{\frac{1}{2}}\frac{d^2y}{dx^2}}.
+\end{split}
 \end{equation}
 Ahora cambiemos la variable independiente por $t=\ln x$. Entonces
 \begin{equation}\label{sus_2}\frac{dy}{dx}=\frac{dy}{dt}\frac{dt}{dx}=\frac{1}{x}\frac{dy}{dt}=\boxed{
 e^{-t}\frac{dy}{dt}}.
 \end{equation}
 y
-\begin{equation}\label{sus_3}\frac{d^2y}{dx^2}=\left(\frac{d}{dx}e^{-t}\right)\frac{dy}{dt}+
-e^{-t}\frac{d}{dx}\left(\frac{dy}{dt}\right)=e^{-t}\left(\frac{-1}{x}\right)\frac{dy}{dt}+
-e^{-t}\frac{d^2y}{dt^2}\frac{1}{x}=-e^{-2t}\frac{dy}{dt}+
-e^{-2t}\frac{d^2y}{dt^2}=\boxed{e^{-2t}\left(-\frac{dy}{dt}+
+\begin{equation}\label{sus_3}
+\begin{split}
+\frac{d^2y}{dx^2}&=\left(\frac{d}{dx}e^{-t}\right)\frac{dy}{dt}+
+e^{-t}\frac{d}{dx}\left(\frac{dy}{dt}\right)\\
+&=e^{-t}\left(\frac{-1}{x}\right)\frac{dy}{dt}+
+e^{-t}\frac{d^2y}{dt^2}\frac{1}{x}\\
+&=-e^{-2t}\frac{dy}{dt}+
+e^{-2t}\frac{d^2y}{dt^2}\\
+&=\boxed{e^{-2t}\left(-\frac{dy}{dt}+
 \frac{d^2y}{dt^2}\right)}.
+\end{split}
 \end{equation}
 Sustituyendo \eqref{sus_2} y \eqref{sus_3} y $x=e^t$ en \eqref{eq_osc2}
 \[
