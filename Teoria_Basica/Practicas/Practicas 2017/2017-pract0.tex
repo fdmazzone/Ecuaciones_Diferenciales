@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+\usepackage[spanish, activeacute]{babel}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[utf8x]{inputenc}
+%\usepackage[cp1252]{inputenc}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabularx}
+%%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{ejer}
+
+{\theorembodyfont{\rmfamily}
+\newtheorem{ejercicio}[ejer]{Ejercicio}}
+%
+%\newcommand{\rr}{\mathbb{R}}
+%\newcommand{\qq}{\mathbb{Q}}
+%\newcommand{\nn}{\mathbb{N}}
+%\newcommand{\C}[1]{\overline{#1}}
+%\newcommand{\zz}{\mathbb{Z}}
+%\newcommand\eme {\mbox{\tiny\sc M}}
+%\newcommand\bfm {\mbox{\tiny\sc BFM}}
+%\newcommand\btuk {\mbox{\tiny\sc BT}}
+%\newcommand\rice {\mbox{\tiny\sc R}}
+%\newcommand\pc {\mbox{\tiny\sc PC}}
+%\newcommand\gasser {\mbox{\tiny\sc G}}
+%\newcommand\hall {\mbox{\tiny\sc H}}
+%\newcommand\h {\widehat{h}_n}
+%\newcommand\ta {\widehat{\tau}_n}
+%\newcommand\ho {h_{ {\mbox{\tiny opt}},n}}
+%\newcommand{\cs}{  \stackrel{c.s.}\longrightarrow  }
+%\newcommand{\pro}{  \stackrel{p}\longrightarrow  }
+%\newcommand{\di}{  \stackrel{d}\longrightarrow  }
+%\newcommand{\luno}{  \stackrel{L_1}\longrightarrow  }
+%\newcommand{\ldos}{  \stackrel{L_2}\longrightarrow  }
+%\newcommand{\comp}{  \stackrel{c}\longrightarrow  }
+%\newcommand{\seno}{\hbox{sen}}
+
+
+
+
+
+\begin{document}
+
+
+\hyphenation{excen-tri-ci-dad}
+ %%%%%%%%%Estilo de la pagina%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1cm}
+%
+\setlength{\extrarowheight}{5mm}
+%
+
+\noindent\begin{tabular}{m{.1\textwidth} m{.9\textwidth}}\hline\hline
+\includegraphics[scale=.4]{unrc.jpg} &
+%\begin{large}
+\begin{bfseries}  \begin{scshape}
+Facultad de Cs. Exactas, F\'isico-Qu\'imicas y Naturales\par
+        Depto de Matem\'atica.\par
+        Primer Cuatrimestre de 2017\par
+        Ecuaciones Diferenciales (1913) \par
+        Pr\'actica 0: Python.
+
+\end{scshape}
+\end{bfseries}
+%\end{large}
+\\
+\hline\hline
+\end{tabular}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+
+
+
+
+\begin{ejercicio} Hacer un programa en Python  para testear la valid\'ez de la \href{http://es.wikipedia.org/wiki/Conjetura_de_Collatz}{Conjetura de Collatz}.
+
+\end{ejercicio}
+
+\begin{ejercicio}
+Hacer un programa en Python que verifique si un n\'umero natural dado es primo es no.
+\end{ejercicio}
+
+\begin{ejercicio}
+Realizar un programa en Python que verifique, para un n\'umero natural dado, la \href{https://es.wikipedia.org/wiki/Conjetura_de_Goldbach}{Congetura de Goldbach}.
+
+ 
+\end{ejercicio}
+
+
+%Se prevé trabajar en el problema de hallar soluciones periódicas de sistemas dados por
+%campos vectoriales definidos en espacios de Sobolev-Orlicz; concretamente, sistemas del
+%tipo $\frac{d}{dt}(\frac{u'\phi(u')}{|u|'})=\nabla F(t,u(t))$, donde $\phi$ es la derivada de una N-función $\Phi$ El operador diferencial del miembro izquierdox
+%de la ecuación se suele denominar $\Phi$-Laplaciano. En trabajos anteriores se obtuvieron
+%resultados de existencia de soluciones periódicas. Se proseguirá en esta línea, tratando de
+%extender nuestros resultados. Más específicamente, planificamos: 1) abordar el caso $F$ no
+%diferenciable, usando la noción de subdiferencial de Clarke. 2) Extender resultados de
+%existencia, obtenidos en el marco del p-Laplaciano por técnicas de punto silla y por técnicas
+%de dualidad al contexto del $\Phi$-Laplaciano. Se considerará además extensiones a funciones
+%$\Phi$ anisotrópicas y a problemas en derivadas parciales.
+%En otra línea de trabajo, se aplicaran técnicas variacionales y de optimización de forma a
+%problemas de Stokes dependientes del tiempo en un dominio acotado $\Omega$ en el espacio
+%tridimensional, conteniendo un cuerpo inaccesible D que se mueve en un fluido viscoso. El
+%objetivo es determinar D o ciertos parámetros que lo describen (por ejemplo, su centro de
+%masa y su matriz de rotación) en base a datos obtenidos en alguna porción de la frontera
+%de $\Omega$.
+%Se trabajará en el problema inverso de las configuraciones centrales y colineales del
+%problema de los n-cuerpos, en especial en una conjetura de larga data.
+%
+%
+%\bigskip
+%\bigskip
+%\newpage
+%
+%En los últimos años se han utilizado ecuaciones de evolución no locales con el fin de modelar procesos de difusión, y también para el estudio de imágenes, más precisamente para realizar técnicas de deblurring  y de denoising. Cuestiones como la existencia y unicidad de soluciones para problemas a valores iniciales y de contorno, así como también la tasa de decaimiento en el infinito y aproximaciones numéricas de soluciones, y la convergencia de soluciones de problemas reescalados a soluciones de ecuaciones locales, ya han sido estudiadas para el caso en que las ecuaciones son no locales sólo en la variable espacil. Otros procesos de difusión, como por ejemplo las caminatas al azar continuas en tiempo y en espacio (CTRW), son modelados por ecuaciones integrales no locales en espacio y en tiempo, en estas los operadores involucrados son del tipo integral y actúan no sólo sobre las variables espaciales, sino también sobre la variable temporal. Para este tipo de ecuaciones, los problemas antes mencionados no han sido del todo estudiados. Por lo tanto nos proponemos estudiar problemas a valores iniciales y de contorno para ecuaciones integrales no locales en tiempo y en espacio, lineales y no lineales. Los problemas a abordar serán los siguientes: existencia y unicidad de soluciones, condiciones de contorno, tasa de decaimiento de soluciones, problemas con núcleos singulares, aproximaciones numéricas de problemas, y convergencia de soluciones de problemas reescalados a soluciones de ecuaciones locales.
+%
+%Por otro lado, Sitnikov (1960), estudió el problema de dos cuerpos en movimiento Kepleriano y una tercera partícula no-grave que se mueve en  la línea perpendicular al plano orbital por el centro de masas, y obtuvo resultados muy profundos sobre la existencia de soluciones, alguna de las cuales son periódicas. Desde entonces se han considerado problemas del tipo  de Sitnikov para más de dos masas graves que se mueven en una solución homográfica rígida plana y un cuerpo no-grave moviendosé en el espacio 3-dimensional. Para tres cuerpos, de masas iguales, moviéndose en una configuración Lagrangiana (triángulo equilatero), Soulis, Papadakis y Boutins (2008)  probaron resultados de existencia, etabilidad y bifurcaciones. También se ha estudiado el problema de  Sitnikov para $n$ masas iguales y dispuestas en los vértices de un polígono regular, y algunos casos particulares en donde los cuerpos graves son oblatos (no puntos masas). Nuestro objetivo es estudiar el problema de Sitnikov para configuraciones más generales que la configuración Lagrangiana y $n$ cuerpos de igual masa. En este contexto nos proponemos estudiar la existencia de soluciones y propiedades de las mismas para configuraciones más generales que la antes mencionadas.
+
+\end{document}
