@@ -277,25 +277,126 @@ suficientemente grande para que $t_k>t_{k_0}+s$, tendremos
 
 \begin{ejemplo} Estabilidad de los equilibrios $2k\pi$, $k\in\mathbb{Z}$, en la ecuación del péndulo
 
+\end{ejemplo}
+ \begin{sageblock}
+x,y=var('x,y')
+Eq1=y
+Eq2=-sin(x)
+Equilibrios=solve([Eq1,Eq2],[x,y])
+Equilibrios
+\end{sageblock}
+Sagemath encuentra los equilibrios $\sage{Equilibrios}$, que es su manera de expresar $x=n\pi$, $y=0$, con $n\in\mathbb{Z}$. Analicemos el equilibrio $(0,0)$. 
+
+\begin{sageblock}
+X(x,y)=[Eq1,Eq2]
+A=X.diff()(0,0)
+D=A.eigenmatrix_right()
+\end{sageblock}
+
+\[\sage{D}\]
+No  se puedo aplicar el Teorema Linearización, autovalores imaginarios puros. Vamos a usar la energía
+
+\[E=\frac{1}{2}y^2-\cos(x)\]
+
+como función de Lyapunov.
+\begin{sageblock}
+Lambda(x,y)=1/2*y^2-cos(x)
+p=plot3d(Lambda,(x,-5,5),(y,-1,1))
+\end{sageblock}
+\begin{center}
+\sageplot[][png]{plot3d(Lambda,(x,-5,5),(y,-1,1))}
+\end{center}
+Es facil demostrar que 
+\[\Lambda(x,y)>\Lambda(0,0)\quad\hbox{para } -2\pi<x<\pi,\,\, y\in\mathbb{R},(x,y)\neq(0,0)\]
+Calculamos la derivada covariante.
+
+\begin{sageblock}
+DLambdaX=Lambda.diff().dot_product(X)
+\end{sageblock}
+
+\[\sage{DLambdaX}\]
+
+Como es no positiva, $\Lambda$ es una función de Lyapunov y por consiguiente $(0,0)$ es estable. Es interesante analizar las curvas de nivel de la función de Lyapunov.
+\begin{sageblock}
+p=contour_plot(Lambda,(x,-2*pi,2*pi),(y,-3,3),contours=srange(-1,5,.2),fill=False)
+\end{sageblock}
+
+\begin{center}
+\sageplot[width=.9\linewidth][png]{p}
+\end{center}
+
+\begin{ejemplo}\emph{\cite[ Ejemplo 6.1 ]{DavidBetounes488}}
+\[X(x,y,z)=(y(z-1),x(z+1),-2xy)\]
+\begin{sageblock}
+x,y,z=var('x,y,z')
+Eq1=y*(z-1)
+Eq2=x*(z+1)
+Eq3=-2*x*y
+Equilibrios=solve([Eq1,Eq2,Eq3],[x,y,z])
+\end{sageblock}
+Encontramos los equilibrios
+\[\sage{Equilibrios}\]
+Vamos a analizar el $(0,0,0)$ Estamos en problemas para aplicar el Teorema de Linearización, ni siquiera los puntos de equilibrio estan aislados. Un teorema afirma que equilibrio hiperbólico está aislado de otros equilibrios.
+\begin{sageblock}
+X(x,y,z)=[Eq1,Eq2,Eq3]
+A=X.diff()(0,0,0)
+D=A.eigenmatrix_right()
+\end{sageblock}
+\[D=\sage{D}\]
+Como adelantamos, la linearización no es posible. Vamos a demostrar que
+\[\Lambda(x,y,z)=\frac12(x^2+y^2+z^2),\]
+es una función de Lyapunov para el equilibrio $(0,0,0)$. Claramente $\Lambda$ tiene un mínimo en $(0,0,0)$. 
+\begin{sageblock}
+Lambda(x,y,z)=1/2*(x^2+y^2+z^2)
+DX=Lambda.diff().dot_product(X).simplify_full()
+\end{sageblock}
+\[DX=\sage{DX}.\]
+Por el Teorema de Lyapunov $(0,0,0)$ es estable. Grafiquemos las superficies de nivel y algunas soluciones.
+\begin{sageblock}
+def X(t,x):
+    return [ x[1]*(x[2]-1),x[0]*(x[2]+1),-2*x[0]*x[1]]
+
+T =  ode_solver()
+T.function=X
+T.algorithm="rk8pd"
+A=[]
+T.ode_solve(y_0=[1,1,1],t_span=[0,30], num_points=100)
+a=T.solution
+Sol=[soln[1] for soln in a]
+Gra=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
+theta,phi=var('theta,phi')
+Esfe=parametric_plot3d([sqrt(3.0)*cos(theta)*sin(phi), sqrt(3.0)*sin(theta)*sin(phi), sqrt(3.0)*cos(phi)], (theta,0,2*pi), (phi,0,pi),opacity=0.4)
+Gra+=Esfe
+T.ode_solve(y_0=[1,0,sqrt(2)],t_span=[0,30], num_points=100)
+a=T.solution
+Sol=[soln[1] for soln in a]
+Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
+T.ode_solve(y_0=[1,0,-sqrt(2)],t_span=[0,30], num_points=100)
+a=T.solution
+Sol=[soln[1] for soln in a]
+Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
+T.ode_solve(y_0=[-1,0,-sqrt(2)],t_span=[0,30], num_points=100)
+a=T.solution
+Sol=[soln[1] for soln in a]
+Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
+\end{sageblock}
+\begin{center}
+\sageplot[width=.9\linewidth][png]{Gra}
+\end{center}
+
+
 
 \end{ejemplo}
- 
-
-
 
 
 
 \section{Estabilidad d órbitas periódicas}
-{Estabilidad en general}
- 
+
+\subsection{Definiciones} 
  Recordemos: si $X:\oo\to\rr^n$ es un campo de clase $C^1$ y  $x\in\oo$, entonces $I_x=(a_x,b_x)$ denota el intervalo máximo
  de definición de la solución $\gamma$ que satisface que $\gamma(0)=x$
 
-
-
-
-{Estabilidad órbitas periódicas}
- {Estabilidad de Soluciones en General}
+ \begin{definicion}[Estabilidad de Soluciones en General]
  Sea $X:\oo\to\rr^n$ es un campo de clase $C^1$ y  $c\in\oo$. Sea $\gamma:I_c\to\oo$ la solución tal que 
  $\gamma(0)=c$. Diremos que $\gamma$ es \emph{estable} si para cada $\epsilon>0$ existe $\delta>0$ con 
  $B(c,\delta)\subset\oo$ y si $x\in B(c,\delta)$ entonces:
@@ -303,22 +404,12 @@ suficientemente grande para que $t_k>t_{k_0}+s$, tendremos
   \item $[0,b_c)\subset [0,b_x)$
   \item $|\Phi_t(x)-\gamma(t)|<\epsilon$, para todo $t\in[0,b_c)$. 
  \end{enumerate}
- 
- Si además tenemos que $b_x=+\infty$ y
+  Si además tenemos que $b_x=+\infty$ y
  \[\lim_{t\to\infty}|\Phi_t(x)-\gamma(t)|=0, \]
  diremos que $\gamma$ es \emph{asintóticamente estable}.
+\end{definicion}
 
 
-  
- 
-
- 
-
-
-
-
-{Estabilidad en general}
- 
    \begin{center}
    \includegraphics[scale=0.4]{imagenes/estabilidad_gral.jpg}
    \end{center}
@@ -326,8 +417,8 @@ suficientemente grande para que $t_k>t_{k_0}+s$, tendremos
 
 
 
+\subsection{Ecuaciones Variacionales}
 
-{Estabilidad: estrategia de abordaje }
  Si desarrollamos en serie de Taylor $X$ alrededor de cualquier $x\in\oo$, tenemos para $h\in\rr^n$ chico
  \[X(x+h)=X(x)+DX(x)h+\cdots\]
 Supongamos $\gamma$ la solución de la cual queremos considerar su estabilidad, y sea $\alpha$ otra solución 
@@ -338,22 +429,6 @@ $x$ por $\gamma$ y $h$ por $\xi$ y desestimando los términos de mayor orden vem
 \[\xi'(t)=DX(\gamma(t))\xi(t).\]
 
 
-
-
-{Estabilidad: ecuaciones variacionales}
- Si desarrollamos en serie de Taylor $X$ alrededor de cualquier $x\in\oo$, tenemos para $h\in\rr^n$ chico
- \[X(x+h)=X(x)+DX(x)h+\cdots\]
-Supongamos $\gamma$ la solución de la cual queremos considerar su estabilidad, y sea $\alpha$ otra solución 
-(luego habrá que suponer que $\alpha(0)$ es cercano a $\gamma(0)$). Escribamos $\alpha=\gamma+\xi$. Se suele
-decir que $\xi$ es la variación de $\gamma$. ¿Resolverá alguna ecuación $\xi$? Reemplazando en el desarrollo de Taylor
-$x$ por $\gamma$ y $h$ por $\xi$ y desestimando los términos de mayor orden vemos $\xi$ resolvería aproximadamente
-
-\[\xi'(t)=DX(\gamma(t))\xi(t).\]
-
-
-
-{Estabilidad: ecuaciones variacionales}
-{Ecuaciones Variacionales}
 $X:\oo\to\rr^n$ es un campo de clase $C^1$ y $\gamma:I\to\oo$ una solución. A la función a valores matriciales
 $A(t)=DX(\gamma(t))$ la llamaremos \emph{matriz variacional} o \emph{matriz de \href{http://es.wikipedia.org/wiki/Monodromía}{monodromía}}. 
 
@@ -371,10 +446,65 @@ los \emph{multiplicadores característicos} de $\gamma$ como los autovalores de 
 
 
 
+\subsection{Ejemplos}
 
-{Ecuaciones variacionales ejemplos}
+\begin{ejemplo}\emph{\cite[ Ejemplo 6.3 ]{DavidBetounes488}} Considerar el sistema
+\[
+\left\{
+ \begin{array}{cc}
+  x'&=-y+xz\\
+  y'&=x+yz\\
+  z'&=-z(x^2+y^2)\\
+ \end{array}
+\right.
+\]
+Vale decir $X:\mathbb{R}^3\to\mathbb{R}^3$, es el campo
+\[X(x,y,z)=(-y+xz,x+yz,-z(x^2+y^2))\]
+Computemos la matríz Jacobiana
+\begin{sageblock}
+x,y,z,t=var('x,y,z,t')
+X(x,y,z)=(-y+x*z,x+y*z,-z*(x^2+y^2))
+DX=X.diff()(x,y,z)
+\end{sageblock}
 
-ver \href{http://sage.ccad.unrc.edu.ar/home/pub/63/}{notebook de SAGE}
+\[
+DX=\sage{DX}
+\]
+La función  $\gamma(t)=(\cos(t),\sin(t),0)$ es solución de periódica de periodo $2\pi$. Computemos la matríz de monodromía.
+\begin{sageblock}
+A=(X.diff())(cos(t),sin(t),0).simplify_trig()
+\end{sageblock}
+\[A=\sage{A}.\]
+ Las ecuaciones características
+ \begin{sageblock}
+Eq=A*vector([x,y,z]).column()
+\end{sageblock}
+\[Eq=\sage{Eq}.\]
+
+Para resolverlas notar que la tercera ecuación está desacoplada de las dos primeras.  SAGE no sabe sacar provecho de eso. Lo tenemos que ayudar un poco
+\begin{sageblock}
+t=var('t')
+x=function('x',t)
+y=function('y',t)
+z=function('z',t)
+z_sol=desolve( z.diff(t)==-z,z)
+\end{sageblock}
+\[z=\sage{z_sol}.\]
+\begin{sageblock}
+a,b,c=var('a,b,c')
+Sol=desolve_system([x.diff(t)==c*e^(-t)*cos(t)-y\
+    ,y.diff(t)==sin(t)*c*e^(-t)+x],[x,y],ivar=t,ics=[0,a,b])
+\end{sageblock}
+\[
+ \begin{array}{l}
+  \sage{Sol[0]}\\
+  \sage{Sol[1]}
+ \end{array}
+\]
+
+
+\end{ejemplo}
+
  
 
 
@@ -885,7 +1015,7 @@ de $c$  en $U\cap M_c$ tal que
 \[P(W)\subset W.\]
 Entonces $\gamma$ es orbitalmente estable. 
 
-
-
+\bibliographystyle{apalike-url}
+\bibliography{diferenciales_ecuaciones}
 
 
