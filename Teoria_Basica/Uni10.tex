@@ -501,6 +501,18 @@ Sol=desolve_system([x.diff(t)==c*e^(-t)*cos(t)-y\
   \sage{Sol[1]}
  \end{array}
 \]
+Calculamos la matriz fundamental del sistema, que resulta ser la matríz característica de $\gamma$.
+\begin{sageblock}
+c1=Sol[0].rhs()
+c2=Sol[1].rhs()
+c3=Sol[2].rhs()
+e1={a:1,b:0,c:0}
+e2={a:0,b:1,c:0}
+e3={a:0,b:0,c:1}
+G=matrix([[c1.subs_expr(e1,Sol[0].rhs().subs_expr(a==0,b==1,c==0)\
+    ,Sol[0].rhs().subs_expr(a==0,b==0,c==1)],[Sol[1].rhs().subs_expr(a==1,b==0,c==0),Sol[1].rhs().subs_expr(a==0,b==1,c==0),Sol[1].rhs().subs_expr(a==0,b==0,c==1)],[0,0,e^(-t)]])
+\end{sageblock}
+\[G=\sage{G}.\]
 
 
 \end{ejemplo}
