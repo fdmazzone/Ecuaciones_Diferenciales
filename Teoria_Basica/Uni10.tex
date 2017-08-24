@@ -631,52 +631,46 @@ Lo cual termina por mostrar que $G(t)=H(t,c)$.
 
  
  
- 
- 
+
+ \begin{teorema}
+
+
+
 Sea $f:\oo\to\tilde{\oo}$ un difeomorfismo entre abiertos de $\rr^n$, $X:\oo\to\rr^n$ un campo $C^1$ e $Y:\tilde{\oo}\to\rr^n$ su push-forward, es decir $Y=f_*(X)$.
 Sean $H^X$ y $H^Y$ las matrices de deformaciones de los campos $X$ e $Y$ respectivamente. Tambien consideramos los flujos $\Phi_t^X$ y $\Phi_t^Y$. Se tiene la siguiente 
 relación
 \begin{equation}\label{def_mat}H(t,y)=Df(\Phi^X_t(f^{-1}(y)))H(t,f^{-1}(y)) \left(Df(f^{-1}(y))\right)^{-1}.\end{equation}
 
 
-
- 
- 
-  {Invariacia de la matriz de deformaciones}
-{Invariancia de la matriz de deformaciones}
 Si $\gamma:I\to\oo$ es una solución de $x'=X(x)$, entonces $\beta=f\circ\gamma$ es solución de $y'=Y(y)$. Las matrices características 
 de $\gamma$ y $\beta$, digamos  $G^X$ y $G^Y$ respectivamente, son similares. Especificamente
 \begin{equation}\label{car_mat}G^Y(t)=D_xf(\gamma(t))G^X(t)\left(D_xf(c)\right)^{-1}.\end{equation}
 En particular si $\gamma$ es periódica de periodo $p$, $\beta$ es periódica con el mismo periodo y los multiplicadores característicos son los mismos.
 
-
+ \end{teorema}
 
 
  
-
-   {Invariacia de la matriz de deformaciones}
-\textbf{Demostración} Derivando respecto a $y$ la siguiente relación, que es sabido que ocurre,
+\begin{proof}
+ Derivando respecto a $y$ la siguiente relación, que es sabido que ocurre,
 \[\Phi_t^Y(y)=(f\circ \Phi^X_t\circ f^{-1})(y),\]
 y usando la regla de la cadena obtenemos \eqref{def_mat}. Supongamos que $\gamma(0)=c$. Entonces $\gamma(t)=\Phi^X_t(c)$, $\beta(0)=f(c)$ y $\beta(t)=\Phi_t^Y(f(c))$. 
 Luego, reemplazando $y$ por $f(c)$ en \eqref{def_mat} llegamos a  \eqref{car_mat}.  Reemplazando en esta última ecuación $t$ por el período $p$ vemos que $G^Y(p)$ y $G^X(p)$
-son similares, de allí tienen el mismo espectro.\qed
+son similares, de allí tienen el mismo espectro.\end{proof}
+ 
+ 
+ \subsection{Radio espectral}
 
- 
- 
- 
-{Radio espectral}
-{Definición: radio espectral} Sea $A\in\rr^{n\times n}$ una matriz, definimos su 
+\begin{definicion}[Radio espectral] Sea $A\in\rr^{n\times n}$ una matriz, definimos su
 \href{http://es.wikipedia.org/wiki/Radio_espectral}{radio espectral} $\rho(A)$ por
 \[
 \rho(A):= \sup\{|\lambda|: \lambda\in\sigma(A)\}.
 \]
 Aquí, como es usual, $\sigma(A)$ es el espectro de $A$.
 
+ \end{definicion}
 
 
-
-
-{Radio espectral}
 
 
 Sea $\mathcal{F}$ la familia de todas las normas sobre $\rr^n$. Si $A\in\rr^{n\times n}$ y $\|\cdot \|\in\mathcal{F}$, 
@@ -685,20 +679,21 @@ $\|\cdot\|$. Es decir
 \[\|A\|:=\sup_{\|x\|\leq 1} \|Ax\|\]
 
 
+\begin{teorema}[Una representación del radio espectral]
 
-{Teorema: una representación del radio espectral}
+
+
   Sea $A\in\rr^{n\times n}$. Entonces
 \[  \rho(A)=\inf_{\|\cdots\|\in\mathcal{F}}\|A \|. \]
 
+\end{teorema}
+
+\begin{corolario}
 
 
 
 
 
-
-{Radio espectral}
-
-{Corolarios}
 \begin{enumerate}
  \item Sea $A\in\rr^{n\times n}$ y $\epsilon>0$. Entonces existe una norma $\| \cdot\|\in\mathcal{F}$ tal que
 \[  \rho(A)\leq \|A\|<\rho(A)+\epsilon.\]
@@ -707,13 +702,11 @@ $\|\cdot\|$. Es decir
 \item Si $\rho(A)<1$ entonces $A^kx\to 0$ cuando $k\to\infty$.
 \end{enumerate}
 
-
-
- 
-
+\end{corolario}
 
  
- {Una idea general  }
+
+\subsection{Discución heurística}
 Sea $\gamma(t)$ una solución periódica de período $p$ con $\gamma(0)=c$ y $X(c)\neq 0$. Sea $\mu_1,\mu_2,\dots,\mu_n$ los autovalores de $G(p)$, 
 es decir los
 multiplicadores característicos de $\gamma$. Como $1$ es autovalor, podemos suponer $\mu_1=1$. Un autovector asociado es $X(c)$. Sea $M_c$ el hiperplano ortogonal a $X(c)$
@@ -735,12 +728,14 @@ variacionales $\xi'(t)=A(t)\xi(t)$. Como $G(t)$ es una matriz fundamental para e
 
 
 
- {Una idea general  }
-\textbf{Ejercicio:} Demostrar que si $A(t)$ es una función a valores matriciales $A:I\subset\rr\to\rr^{n\times n}$ que además es periódica con periodo $p$, 
-entonces la matriz fundamental satisface que $G(t+p)=G(t)G(p)$. En particular 
+\begin{ejercicio}
+ Demostrar que si $A(t)$ es una función a valores matriciales $A:I\subset\rr\to\rr^{n\times n}$ que además es periódica con periodo $p$,
+entonces la matriz fundamental satisface que $G(t+p)=G(t)G(p)$. En particular
 \begin{equation}\label{semigrupo}G(kp)=G(p)^k.\end{equation}
 Considerando los tiempos $t=p,2p,\ldots$ y usando \eqref{ecuaaprox}, \eqref{ecuavar} y \eqref{semigrupo} llegamos a
 \[\alpha(kp)=c+G(p)^k\xi(0),\]
+\end{ejercicio}
+
 
 Vamos a ver que todo solución cercana a $\gamma$ atraviesa $M_c$, así podremos suponer que $\xi(0)\in M_c$. Luego si $|\mu_j|<1$, $j=2,\ldots,n$, 
 entonces $\alpha(kp)\to c$. 
@@ -752,29 +747,29 @@ Esta discusión da un indicio de por que podremos esperar estabilidad si  $|\mu_
 
 
 
- {Estabilidad orbital }
-{Estabilidad orbital}
- Sea $\gamma$ una solución periódica y $\Gamma=\gamma(\rr)$. Diremos que $\gamma$ es \emph{orbitalmente estable} si para cada $\epsilon>0$ existe $\delta>0$ tal que
+\subsection{Estabilidad orbital}
+\begin{definicion}[Estabilidad orbital]
+  Sea $\gamma$ una solución periódica y $\Gamma=\gamma(\rr)$. Diremos que $\gamma$ es \emph{orbitalmente estable} si para cada $\epsilon>0$ existe $\delta>0$ tal que
  \[d(x,\Gamma)<\delta\Rightarrow d(\Phi_t(x),\Gamma)<\epsilon.\]
  Si además tenemos que
   \[\lim_{t\to +\infty}d(\Phi_t(x),\Gamma)=0,\]
   diremos que $\gamma$ es \emph{orbitalmente asintóticamente estable}
+\end{definicion}
 
 
 
 
- {Mapeo de Poincaré}
-{Teorema: Mapeo de Poincaré}
+\subsection{Mapeo de Poincaré}
+
+
+\begin{teorema}[Mapeo de Poincaré]
  Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c$ y $M_c$ como antes. Entonces existe un entorno abierto $U$ de $c$ 
  y una función $C^1$ $\tau:U\to \rr$ tal que $\tau(c)=p$
  \[\Phi_{\tau(x)}\in M_c\]
 La aplicación $P:U\cap M_c\to M_c$ dada por $P(x)=\Phi_{\tau(x)}(x)$ se llama \href{http://es.wikipedia.org/wiki/Aplicación_de_Poincaré}{Mapeo de Poincaré}.
+\end{teorema}
 
-
-
-
- {Mapeo de Poincaré}
-\textbf{Demostración} Definimos
+\begin{proof} Definimos
 \[F(t,x)=(\Phi_t(x)-c)\cdot X(x).\]
 Se tiene que $F(p,c)=0$ y que
 \[\frac{\partial}{\partial t}F(t,x)=X(\Phi_t(x))\cdot X(x).\]
@@ -782,33 +777,26 @@ Luego
 \[\frac{\partial F}{\partial t}(p,c)=|X(c)|^2>0.\]
 
 
-
-
- {Mapeo de Poincaré}
 Se satisfacen las hipótesis del teorema de la función implícita, por consiguiente existe un entorno abierto $V$ de $(p,c)$  y un entorno $U$ de $c$ tal que
 \[\{(t,x)\in V|F(t,x)=0\}=\{(t,x)|x\in U\hbox{ y }t=\tau(x)\}\]
 Vale decir $F(\tau(x),x)=0$, lo que implica $\Phi_{\tau(x)}(x)\in M_c$\qed
 
 
-
-{Mapeo de Poincaré}
  
    \begin{center}
    \includegraphics[scale=0.3]{imagenes/poincaremap.jpg}
    \end{center}
 
 
+\begin{ejemplo} Hallar el Mapeo Poincaré de
 
-
-
-
-{Un ejemplo de Mapeo Poincaré}
-\textbf{Ejemplo:} 
  \[\begin{cases} x'(t)&= x\left(t\right)^{3} + x\left(t\right)
 y\left(t\right)^{2} - b y\left(t\right) - x\left(t\right)\\
 y'(t) &= x\left(t\right)^{2} y\left(t\right) +
 y\left(t\right)^{3} + b x\left(t\right) - y\left(t\right)\\   
   \end{cases}\]
+
+
 Convirtiendo a polares
 \[
  \begin{cases}
