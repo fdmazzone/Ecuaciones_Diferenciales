@@ -505,26 +505,75 @@ Calculamos la matriz fundamental del sistema, que resulta ser la matríz caracte
 \begin{sageblock}
 c1=Sol[0].rhs()
 c2=Sol[1].rhs()
-c3=Sol[2].rhs()
+c3=c*exp(-t)
 e1={a:1,b:0,c:0}
 e2={a:0,b:1,c:0}
 e3={a:0,b:0,c:1}
-G=matrix([[c1.subs_expr(e1,Sol[0].rhs().subs_expr(a==0,b==1,c==0)\
-    ,Sol[0].rhs().subs_expr(a==0,b==0,c==1)],[Sol[1].rhs().subs_expr(a==1,b==0,c==0),Sol[1].rhs().subs_expr(a==0,b==1,c==0),Sol[1].rhs().subs_expr(a==0,b==0,c==1)],[0,0,e^(-t)]])
+G=matrix([\
+[c1.substitute(e1),c1.substitute(e2),c1.substitute(e3)]\
+,[c2.substitute(e1),c2.substitute(e2),c2.substitute(e3)]\
+,[c3.substitute(e1),c3.substitute(e2),c3.substitute(e3)]])
+
 \end{sageblock}
 \[G=\sage{G}.\]
+Por último los multiplicadores característicos
 
-
+\begin{sageblock}
+D=G.subs(t=2*pi).eigenmatrix_right()
+\end{sageblock}
+\[\sage{D}\]
 \end{ejemplo}
 
- 
+ \begin{ejemplo}\emph{\cite[ Ejemplo 6.4 ]{DavidBetounes488}} Hallar matriz de mondrom´ia y multiplicadores caracter´isiticos para el sistema 2-dimensional
+ \[
+ \begin{array}{cc}
+  x'(t)&=-x-b*y+x^3+x*y^2\\
+  y'(t)&=b*x-y+x^2*y+y^3
+ \end{array}
+ \]
+
+\begin{sageblock}
+x,y,t,b=var('x,y,t,b')
+X(x,y)=(-x-b*y+x^3+x*y^2,b*x-y+x^2*y+y^3)
+\end{sageblock}   
+
+Si se expresa el sistema en coordenandas polares se puede demostrar que $\gamma(t)=(\cos(b*t),\sin(b*t))$ es solución periódica de período $2\pi/b$. Chequeemos esta última afirmación de manera directa.
+\begin{sageblock}
+((X(cos(b*t),sin(b*t)))[0]-(cos(b*t)).diff(t)).simplify_full()
+((X(cos(b*t),sin(b*t)))[1]-(sin(b*t)).diff(t)).simplify_full()
+\end{sageblock} 
+Matríz de Monodromía
+\begin{sageblock}
+A(t)=(X.diff())(cos(b*t),sin(b*t)).simplify_trig()
+\end{sageblock} 
+\[A(t)=\sage{A(t)}.\]
+\begin{ejercicio}
+ Demostrar que la matríz característica viene dada por: 
+ \begin{sageblock}
+ G=matrix([[e^(2*t)*cos(b*t)  , -sin(b*t) ]\
+ ,[e^(2*t)*sin(b*t)  , cos(b*t) ]])
+ \end{sageblock} 
+ \[G=\sage{G}.\]
+
+\end{ejercicio}
+ Multiplicadores característicos
+  \begin{sageblock}
+D=G.subs(t==2*pi/b).eigenmatrix_right()
+ \end{sageblock} 
+  \[D=\sage{D}.\]
+
+
+ \end{ejemplo}
 
 
 
 
-{Matriz de deformaciones}
-{Matriz de deformaciones} 
- $X:\oo\to\rr^n$ es un campo de clase $C^1$ y $\Phi_t:\mathcal{D}\subset\rr\times\rr^n\to\oo$ el flujo asociado. 
+
+
+\subsection{Matriz de deformaciones} 
+
+\begin{definicion}Supongamos
+  $X:\oo\to\rr^n$ es un campo de clase $C^1$ y $\Phi_t:\mathcal{D}\subset\rr\times\rr^n\to\oo$ el flujo asociado. 
  Definimos la \emph{matriz de deformaciones} $H$ como 
  \[H(t,x)=(D_x\Phi_t)(x)=\begin{pmatrix}
                         \frac{\partial\Phi^1_t}{\partial x_1 } &\dots & \frac{\partial\Phi^1_t}{\partial x_n}\\
@@ -532,14 +581,16 @@ G=matrix([[c1.subs_expr(e1,Sol[0].rhs().subs_expr(a==0,b==1,c==0)\
                         \frac{\partial\Phi^n_t}{\partial x_1 }& \dots &\frac{\partial\Phi^n_t}{\partial x_n }\\ 
                        \end{pmatrix}
 \]
+\end{definicion}
+
+
 
 
 
 
  
 
-{Matriz de deformaciones y característica}
-{Teorema} Sea $\gamma:I\to\oo$ una solución, con $0\in I$ y $c=\gamma(0)$. La matriz característica 
+\begin{teorema}Sea $\gamma:I\to\oo$ una solución, con $0\in I$ y $c=\gamma(0)$. La matriz característica 
 $G$ de $\gamma$ coincide con la matriz de deformaciones $H$ en $c$:
 \[G(t)=H(t,c).\]
 Además
@@ -548,12 +599,13 @@ Luego si $\gamma$ es periódica de período $p$ tenemos
 \[G(p)X(c)=X(c).\]
 Entonces $1$ es un autovalor y $X(c)$ (como $\gamma$ no es equilibrio $X(c)\neq 0$) es un autovector asociado.
 En conclusión $1$ es siempre un multiplicador característico.
-
-
  
+\end{teorema}
 
-{Matriz de deformaciones y característica}
-\textbf{Demostración} Derivando respecto a $x$ la relación
+
+
+\begin{proof}
+ Derivando respecto a $x$ la relación
 
 \[\frac{d}{dt}\Phi_t(x)=X(\Phi_t(x)),\]
 Obtenemos
@@ -566,9 +618,6 @@ por $c$ arriba tenemos
 Lo cual termina por mostrar que $G(t)=H(t,c)$. 
 
 
-
-
-{Matriz de deformaciones y característica}
  Ahora derivando
  \[\gamma'(t)=X(\gamma(t)),\]
  vemos que
@@ -577,12 +626,13 @@ Lo cual termina por mostrar que $G(t)=H(t,c)$.
   Ahora como $G$ es una matriz fundamental para las ecuaciones características
   \[X(\gamma(t))=\gamma'(t)=G(t)X(c).\]
   Esto prueba la segunda afirmación. La tercera es consecuencia de que $\gamma(p)=\gamma(0)=c$.
+\end{proof}
+
+
  
  
  
  
- {Invariacia de la matriz de deformaciones}
-{Invariancia de la matriz de deformaciones}
 Sea $f:\oo\to\tilde{\oo}$ un difeomorfismo entre abiertos de $\rr^n$, $X:\oo\to\rr^n$ un campo $C^1$ e $Y:\tilde{\oo}\to\rr^n$ su push-forward, es decir $Y=f_*(X)$.
 Sean $H^X$ y $H^Y$ las matrices de deformaciones de los campos $X$ e $Y$ respectivamente. Tambien consideramos los flujos $\Phi_t^X$ y $\Phi_t^Y$. Se tiene la siguiente 
 relación
