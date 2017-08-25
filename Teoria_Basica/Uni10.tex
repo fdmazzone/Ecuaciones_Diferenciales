@@ -786,7 +786,7 @@ Vale decir $F(\tau(x),x)=0$, lo que implica $\Phi_{\tau(x)}(x)\in M_c$\qed
    \begin{center}
    \includegraphics[scale=0.3]{imagenes/poincaremap.jpg}
    \end{center}
-
+\end{proof}
 
 \begin{ejemplo} Hallar el Mapeo Poincaré de
 
@@ -798,16 +798,44 @@ y\left(t\right)^{3} + b x\left(t\right) - y\left(t\right)\\
 
 
 Convirtiendo a polares
+\begin{sageblock}
+t,b=var('t,b')
+theta=function('theta')(t)
+r=function('r')(t)
+x=r*cos(theta)
+y=r*sin(theta)
+Eq1=x.diff(t)==-x-b*y+x^3+x*y^2
+Eq2=y.diff(t)==b*x-y+x^2*y+y^3
+X,Y=var('X,Y')
+Eq1s=Eq1.substitute(theta.diff(t)==X,r.diff(t)==Y)
+Eq2s=Eq2.substitute(theta.diff(t)==X,r.diff(t)==Y)
+Eqpol=solve([Eq1s,Eq2s],[X,Y])
+Eq1Pol=Eqpol[0][0].simplify_full()\
+.substitute(X==theta.diff(t))
+Eq2Pol=Eqpol[0][1].simplify_full()\
+.substitute(Y==r.diff(t))
+
+\end{sageblock}
+
+
+\[\begin{array}{c}
+   \sage{Eq1Pol}\\
+   \sage{Eq2Pol}
+  \end{array}
+\]
+
 \[
  \begin{cases}
-  r'(t)&=r(t)(r^2(t)-r(t))\\
+  r'(t)&=r(t)^2(r(t)-1)\\
   \theta'(t)&=b.
  \end{cases}
 \]
-ver \href{http://sage.ccad.unrc.edu.ar/home/pub/63/}{Sigue en notebook de SAGE}
+Que es un sistema desacoplado que se puede resolver por técnicas elementales. En particular se demuestra que  $\gamma(t)=(x(t),y(t))=(\cos(b*t),\sin(b*t))$ es solución periódica de período $2\pi/b$.
 
+Calculemos la matríz de monodromía
 
-{Producto tensorial}
+\end{ejemplo}
+
 Dados dos vectores $a,b\in\mathbb{R}^n$ definimos su producto tensorial $a\otimes b$ como el operador lineal  $a\otimes b:\rr^n\to\rr^n$ definido por
 \[\left(a\otimes b\right)v=\left(b\cdot v\right)a,\quad \text{ para } v\in\rr^n.\]
 \textbf{Ejercicio} Demostrar que respecto a la base canónica de  $\rr^n$ la representación matricial del operador $a\otimes b$ tiene entrada $ij$
