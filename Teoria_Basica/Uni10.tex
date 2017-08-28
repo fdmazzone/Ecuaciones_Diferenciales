@@ -390,7 +390,7 @@ Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
 
 
 
-\section{Estabilidad d órbitas periódicas}
+\section{Estabilidad de órbitas periódicas}
 
 \subsection{Definiciones} 
  Recordemos: si $X:\oo\to\rr^n$ es un campo de clase $C^1$ y  $x\in\oo$, entonces $I_x=(a_x,b_x)$ denota el intervalo máximo
@@ -524,11 +524,11 @@ D=G.subs(t=2*pi).eigenmatrix_right()
 \[\sage{D}\]
 \end{ejemplo}
 
- \begin{ejemplo}\emph{\cite[ Ejemplo 6.4 ]{DavidBetounes488}} Hallar matriz de mondrom´ia y multiplicadores caracter´isiticos para el sistema 2-dimensional
+ \begin{ejemplo}\label{ej:ejemm6.4}\emph{\cite[ Ejemplo 6.4 ]{DavidBetounes488}} Hallar matriz de mondrom´ia y multiplicadores caracter´isiticos para el sistema 2-dimensional
  \[
  \begin{array}{cc}
-  x'(t)&=-x-b*y+x^3+x*y^2\\
-  y'(t)&=b*x-y+x^2*y+y^3
+  x'(t)&=-x-by+x^3+xy^2\\
+  y'(t)&=bx-y+x^2y+y^3
  \end{array}
  \]
 
@@ -539,8 +539,10 @@ X(x,y)=(-x-b*y+x^3+x*y^2,b*x-y+x^2*y+y^3)
 
 Si se expresa el sistema en coordenandas polares se puede demostrar que $\gamma(t)=(\cos(b*t),\sin(b*t))$ es solución periódica de período $2\pi/b$. Chequeemos esta última afirmación de manera directa.
 \begin{sageblock}
-((X(cos(b*t),sin(b*t)))[0]-(cos(b*t)).diff(t)).simplify_full()
-((X(cos(b*t),sin(b*t)))[1]-(sin(b*t)).diff(t)).simplify_full()
+((X(cos(b*t),sin(b*t)))[0]-(cos(b*t)).diff(t))\
+.simplify_full()
+((X(cos(b*t),sin(b*t)))[1]-(sin(b*t)).diff(t))\
+.simplify_full()
 \end{sageblock} 
 Matríz de Monodromía
 \begin{sageblock}
@@ -560,7 +562,7 @@ A(t)=(X.diff())(cos(b*t),sin(b*t)).simplify_trig()
   \begin{sageblock}
 D=G.subs(t==2*pi/b).eigenmatrix_right()
  \end{sageblock} 
-  \[D=\sage{D}.\]
+  \begin{equation}\label{eq:ejempl6.4}D=\sage{D}.\end{equation}
 
 
  \end{ejemplo}
@@ -706,7 +708,7 @@ $\|\cdot\|$. Es decir
 
  
 
-\subsection{Discución heurística}
+\subsection{Discusión heurística}
 Sea $\gamma(t)$ una solución periódica de período $p$ con $\gamma(0)=c$ y $X(c)\neq 0$. Sea $\mu_1,\mu_2,\dots,\mu_n$ los autovalores de $G(p)$, 
 es decir los
 multiplicadores característicos de $\gamma$. Como $1$ es autovalor, podemos suponer $\mu_1=1$. Un autovector asociado es $X(c)$. Sea $M_c$ el hiperplano ortogonal a $X(c)$
@@ -825,16 +827,78 @@ Eq2Pol=Eqpol[0][1].simplify_full()\
 \]
 
 
-Que es un sistema desacoplado que se puede resolver por técnicas elementales. En particular se demuestra que  $\gamma(t)=(x(t),y(t))=(\cos(b*t),\sin(b*t))$ es solución periódica de período $2\pi/b$.
+Que es un sistema desacoplado que se puede resolver por técnicas elementales. 
+\begin{sageblock}
+Sol1=desolve(Eq1Pol,theta,ivar=t)
+Sol2=desolve(Eq2Pol,r,ivar=t)
+\end{sageblock}
 
-Calculemos la matríz de monodromía
+\[\begin{array}{c}
+   \theta(t)=\sage{Sol1}\\
+   \sage{Sol2}
+  \end{array}
+\]
 
+Sage pierde la solución $r(t)\equiv 1$, además de que pierde soluciones porque toma como primitiva de $1/x$ a la función $\ln(x)$ en lugar de la función correcta $\ln(|x|)$.    Despejando $r$ a mano de la segunda ecuación, tomando en consideración el módulo omitido por Sage, obtenemos.
+
+\[
+ r(t)=\sqrt{\frac{1}{1-ke^{2t}}}
+\]
+y consecuentemente
+\begin{equation}\label{eq:flujo_ejemplo6.5}
+ \varphi(t)=\sqrt{\frac{1}{1-ke^{2t}}}(\cos(bt+c),\sen(bt+c)),
+\end{equation}
+es solución general. 
+En particular, si $k=c=0$ vemos que   $\gamma(t)=(x(t),y(t))=(\cos(bt),\sin(bt))$ es solución periódica de período $2\pi/b$. Si $k<0$ las soluciones  permanecen dentro de la circunferencia  de radio 1 y tienden a $(0,0)$ cuando $t\to+\infty$. Si $k>0$   las soluciones tienen un dominio dado por  $t<\log\frac{1}{k}$ y se escapan a $+\infty$ en tiempo finito. Todo esto indica que la solución periódica   $\gamma(t)$ es inestable. 
+\begin{wrapfigure}[15]{r}{5.5cm}
+ \includegraphics[scale=.4]{imagenes/sol_rotadas.png}
+\end{wrapfigure}
+Calculemos la matríz de monodromía. Empezamos por encontrar el flujo. Usamos sympy en lugar de Sage
+\begin{lstlisting}
+from sympy import *
+k,c,b,t,x0,y0=symbols('k,c,b,t,x0,y0')
+theta=b*t+c
+r= sqrt(-1/(k*e**( 2*t) - 1))
+SolInin=solve([r.subs(t,0)*cos(theta.subs(t,0))-x0\
+,r.subs(t,0)*sin(theta.subs(t,0))-y0],[k,c])
+\end{lstlisting}
+
+\begin{equation}\label{eq:para_ejemplo6.5}
+k=\frac{x_{0}^{2} + y_{0}^{2} - 1}{x_{0}^{2} + y_{0}^{2}}, \quad c=\operatorname{arccos}{\left (\frac{x_{0}}{\sqrt{x_{0}^{2} + y_{0}^{2}}} \right )} 
+\end{equation}
+
+
+
+
+El campo $X$ asociado al sistema satisface que $X(1,0)=(0,b)$, con lo cual el eje $x$ es el plano $M_{(0,1)}$.  Calculemos el flujo para un punto $(x_0,0)\in M_{(0,1)}$. Por 
+\eqref{eq:flujo_ejemplo6.5} y \eqref{eq:para_ejemplo6.5}
+
+\[
+  \Phi(t,0,(x_0,0))=\frac{x_0}{\sqrt{x_0^2-(x_0^2-1)e^{2t}}}(\cos(bt),\sen(bt)),
+\]
+La función de retorno $\tau(x)$ es constante en este caso $\tau(x)=2\pi/b$. Esto siempre y cuando estemos en un punto con retorno.  En el caso $x_0<1$ siempre hay retorno si $x_0>1$ debe ocurrir que $2\pi/b<\log\sqrt{\frac{x_0^2}{x_0^2-1}}$, es decir
+
+\[x_0<[1-e^{4\pi/b}]^{-1/2}=: L_b\]
+
+La aplicación de Poincare $P$ para un punto con retorno esta definida por
+\[
+  P(x)=\frac{x}{\sqrt{x^2-(x^2-1)e^{4\pi/b}}}
+\]
 \end{ejemplo}
 
-Dados dos vectores $a,b\in\mathbb{R}^n$ definimos su producto tensorial $a\otimes b$ como el operador lineal  $a\otimes b:\rr^n\to\rr^n$ definido por
+Notar que $P'(1)=e^{4\pi/b}$ que es  multiplicador característico según la ecuación \eqref{eq:ejempl6.4}. Demostrarmos que este hecho no es casual.
+
+\begin{definicion}[Producto Tensorial]
+ Dados dos vectores $a,b\in\mathbb{R}^n$ definimos su producto tensorial $a\otimes b$ como el operador lineal  $a\otimes b:\rr^n\to\rr^n$ definido por
 \[\left(a\otimes b\right)v=\left(b\cdot v\right)a,\quad \text{ para } v\in\rr^n.\]
-\textbf{Ejercicio} Demostrar que respecto a la base canónica de  $\rr^n$ la representación matricial del operador $a\otimes b$ tiene entrada $ij$
+\end{definicion}
+
+
+\begin{ejercicio}
+  Demostrar que respecto a la base canónica de  $\rr^n$ la representación matricial del operador $a\otimes b$ tiene entrada $ij$
 \[\left(a\otimes b\right)_{ij}=a_ib_j.\]
+\end{ejercicio}
+
 
 El mapeo de Poincaré $P$ está definido en $U\cap M_c$, pero podemos extenderlo $\tilde{P}:U\to\rr^n$ por
 \[\tilde{P}(x)=\Phi_{\tau(x)}(x).\]
@@ -842,16 +906,15 @@ El mapeo de Poincaré $P$ está definido en $U\cap M_c$, pero podemos extenderlo
 
 
 
-{Matriz Jacobiana Mapeo Poincaré}
-\textbf{Ejercicio:} Demostrar que
+
+\begin{ejercicio}[Matriz Jacobiana del Mapeo de Poincaré] Demostrar que
 \[D\tilde{P}(x)=X(\tilde{P}(x))\otimes\nabla\tau(x)+H(\tau(x),x),\]
 en particular
 \[D\tilde{P}(c)=X(c)\otimes\nabla\tau(c)+G(p).\]
+\end{ejercicio}
 
 
-
-{Matriz Jacobiana Mapeo Poincaré}
-{Teorema Matriz Jacobiana Mapeo Poincaré}
+\begin{teorema}[Matriz Jacobiana Mapeo Poincaré]
  Asumamos $c=0$ y $X(0)=(0,0,\ldots,0,1)$. Entonces:
  \begin{equation}\label{gp}G(p)=\begin{bmatrix}
          b_{11}&\cdots&b_{1,n-1}&0\\
@@ -870,12 +933,6 @@ en particular
 \end{equation}
 
 
-
-
-
-
-{Matriz Jacobiana Mapeo Poincaré}
-{Matriz Jacobiana Mapeo Poincaré}
 Al subespacio $M_0=\{(x_1,\ldots,x_{n-1},0)|x_i\in\rr\}$ lo identificamos con $\rr^{n-1}$ y al abierto relativo $U\cap M_0$ con un abierto $V$ de $\rr^{n-1}$. 
 Con estas identificaciones podemos pensar en el Jacobiano de $P:V\to \rr^{n-1}$ siendo este en $c=0$ dado por
  \begin{equation}\label{dp}DP(0)=\begin{bmatrix}
@@ -886,14 +943,13 @@ Con estas identificaciones podemos pensar en el Jacobiano de $P:V\to \rr^{n-1}$ 
 \end{equation}
 Luego si $\mu_1=1,\mu_2,\ldots,\mu_n$ son los multiplicadores característcos de $\gamma$ entonces $\mu_2,\ldots,\mu_n$ son autovalores de $DP(0)$.
 
+\end{teorema}
 
 
 
 
 
-
-{Matriz Jacobiana Mapeo Poincaré}
-\textbf{Demostración} Como $G(p)X(0)=X(0)$ y como $X(0)=(0,0,\ldots,0,1)$ vemos que la enésima columna de $G(p)$ es también el enésimo vector canónico. Esto justfica 
+\begin{proof} Como $G(p)X(0)=X(0)$ y como $X(0)=(0,0,\ldots,0,1)$ vemos que la enésima columna de $G(p)$ es también el enésimo vector canónico. Esto justfica 
 \eqref{gp}.
 Tenemos que
 \[
@@ -928,16 +984,15 @@ Consideramos la incrustación $i:\rr^{n-1}\to\rr^n$, dada por $i(x_1,\ldots,x_{n
          I_{n-1}\\0_{n\times (n-1)}\\
         \end{bmatrix} =B
   \]
-\qed
-
-
-{Matriz Jacobiana Mapeo Poincaré}
-\textbf{Ejercicio} ¿Cómo podemos reducir el caso general $c$ no necesariamente $0$ y $X(c)\neq 0$ al caso cosiderado? 
+\end{proof}
 
 
 
-{Teorema Estabilidad Orbital}
-{Teorema Estabilidad Orbital} 
+\begin{ejercicio} ¿Cómo podemos reducir el caso general $c$ no necesariamente $0$ y $X(c)\neq 0$ al caso cosiderado? 
+\end{ejercicio}
+
+
+\begin{teorema}[Estabilidad Orbital]
  Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. Supongamos que $n-1$ de los múltiplos 
  característicos $\mu_2,\ldots,\mu_n$ tienen módulo menor a $1$. Entonces $\gamma$ es orbitalmente estable. Además, si $|\mu_j|<a<1$, para $j=2,\ldots,n$, entonces 
  existe $L>0$ y un abierto $\Omega$, con $\Gamma\subset\Omega$ tal que si $x\in\Omega$, existe $T\in\rr$ tal que
@@ -947,14 +1002,11 @@ Consideramos la incrustación $i:\rr^{n-1}\to\rr^n$, dada por $i(x_1,\ldots,x_{n
 
  para todo $t\geq p$. El número $T$, que es  el único con la propiedad establecida (\textbf{ejercicio}), se denomina la \emph{fase asintótica} de $x$.
  
+\end{teorema}
 
 
 
-
-
-
-{Teorema Estabilidad Orbital}
-\textbf{Demostración} Como antes, asumamos $c=0$ y $X(0)=(0,0,\ldots,0,1)$. Sea $\Omega_0$ un abierto con $\Gamma\subset\Omega_0$ y $\overline{\Omega}_0$ compacto. Pongamos
+\begin{proof} Como antes, asumamos $c=0$ y $X(0)=(0,0,\ldots,0,1)$. Sea $\Omega_0$ un abierto con $\Gamma\subset\Omega_0$ y $\overline{\Omega}_0$ compacto. Pongamos
 $\Phi(t,x)=\Phi_t(x)$, entonces $\Phi:\mathcal{D}\subset\rr\times \oo\to\rr^n$. Tenemos que $\Phi^{-1}(\Omega_0)$ es un abierto y $(t,0)\in\Phi^{-1}(\Omega_0)$, para todo 
 $t\in\rr$. Luego para cada $t\in[0,2p]$ existe $(a_t,b_t)\ni t$ y $R_t>0$ tal que $(t,0)\in(a_t,b_t)\times B_{R_t}(0)\subset\Phi^{-1}(\Omega_0)$. Como $\{(a_t,b_t)\}_{t\in[0,2p]}$
 es un cubrimiento por abiertos del compacto $[0,2p]$, podemos cubrir por finitos $(a_{t_i},b_{t_i})$, $i=1,\ldots,m$. Si ahora tomamos $0<R< R_{t_i}$, $i=1,\ldots,m$, 
@@ -965,12 +1017,15 @@ tendremos que
 
 
 
-{Teorema Estabilidad Orbital}
 Sea $0\in U\subset\oo$ un entorno abierto donde está definida y es de clase $C^1$ el mapeo de retorno $\tau:U\to\rr$. Podemos asumir $B_R(0)= U$. Sea $\tilde{P}$, como antes, 
 $\tilde{P}:U\to\rr^n$ definida por $\tilde{P}(x)=\Phi(\tau(x),x)$. Por el Teorema anterior y las hipótesis sabemos que los autovalores de $DP(0)$ tienen todos módulo menor que
 $a$. Por el resultado de álgebra lineal tenemos que existe una norma $\|\cdot\|_0$ tal que
 \[\|DP(0)x\|_0<a\|x\|_0.\]
-\textbf{Ejercicio} Eligiendo $\delta>0$ suficientemente chico tendremos que  $\|x\|_0<\delta$ implica $\|P(x)\|_0\leq a\|x\|_0$. 
+
+\begin{ejercicio} Eligiendo $\delta>0$ suficientemente chico tendremos que  $\|x\|_0<\delta$ implica $\|P(x)\|_0\leq a\|x\|_0$. 
+ 
+\end{ejercicio}
+
 
 Podemos asumir $B_{\delta}(0)\subset U$, donde la bola la tomamos respecto a la norma $\|\cdot\|_0$. Como, en particular, $\|P(x)\|_0<\delta$, tendremos que $P(W)\subset W$,
 donde $W=B_{\delta}(0)\cap M_0$. Luego tenemos definida la secuencia $P^k(x)$, $x\in W$, $k=1,2,\ldots$. 
@@ -980,14 +1035,18 @@ donde $W=B_{\delta}(0)\cap M_0$. Luego tenemos definida la secuencia $P^k(x)$, $
 
 
 
-
-
-{Teorema Estabilidad Orbital}
 De la continuidad de $\tau:W\to\rr$ podemos suponer que $|\tau(x)-p|\leq p/2$ para todo $x\in W$. En particular $p/2\leq \tau(x)\leq 2p$. 
 
 Sea 
 \[\Omega:=\{\Phi_t(x)|x\in W, t\in [0,\tau(x)]\},\]
-Se tiene que $\Omega\subset \Omega_0$ y $\Omega$ es un entorno de $\Gamma$ (\textbf{Ejercicio}). 
+
+\begin{ejercicio}
+ Se tiene que $\Omega\subset \Omega_0$ y $\Omega$ es un entorno de $\Gamma$.
+\end{ejercicio}
+
+
+
+
 
 Veamos que $\Omega$ es invariante $\Phi_t(\Omega)\subset\Omega$, $t\geq 0$. Esto probará la estabilidad orbital. 
 
@@ -1003,8 +1062,9 @@ Sea $x\in\Omega$, entonces existe $w_0\in W$ y $t_0\in[0,\tau(w_0)]$ tal que $x=
 
 
 
-{Teorema Estabilidad Orbital}
-\textbf{Ejercicio:} $\Phi_{t_k}(x)=w_k\in W$, $k=1,2,\ldots$.
+\begin{ejercicio} $\Phi_{t_k}(x)=w_k\in W$, $k=1,2,\ldots$.
+ \end{ejercicio}
+
 
 Como $\tau(y)\geq p/2$, para $y\in W$, tenemos que $t_k\to\infty$. Luego $[0,\infty)\subset I_x$ y $\Phi_t(x)$, $x\in\Omega$, esta definida para $t\geq 0$. Para probar la 
 invariacia tomemos $x\in\Omega$ y $t>0$. Supongamos $t_k<t\leq t_{k+1}$, $k\geq 1$, entonces
@@ -1016,14 +1076,6 @@ Si $t\in (0,t_1)$, entonces $t+t_0<t_1+t_0=\tau(w_0)$ y
  \Phi_t(x)=\Phi_{t}\left(\Phi_{t_0}(w_0)\right)=\Phi_{t+t_0}(w_0)\in\Omega.
 \]
 
-
-
-
-
-
-
-
-{Teorema Estabilidad Orbital}
 Ahora probaremos la estabilidad orbital asintótica.  Vamos a establecer algunas desigualdades cuya justificación discutiremos en clase. La compacidad de
 $\overline{\Omega}_0$ y la continuidad de $X$ nos dan un $L_1>0$ tal que
 \[\|X(y)\|_0\leq L_1, \quad y\in\overline{\Omega}_0\]
@@ -1033,8 +1085,6 @@ Por las mismas razones existe $L_3>0$ tal  que
 \[\|\tau(y)-\tau(x)\|_0\leq L_3\|y-x\|_0\quad x,y\in \overline{B}_R(0).\] 
 
 
-
-{Teorema Estabilidad Orbital}
 Tenemos
 \[\|w_k\|_0=\|P(w_{k-1})\|_0\leq a\|w_{k-1}\|_0,\]
 Por inducción
@@ -1049,7 +1099,6 @@ Pongamos $T_k:=t_k-kp$, $k=0,1,\ldots$.
 
 
 
-{Teorema Estabilidad Orbital}
 La desigualdad anterior implica que $T_k$ es una sucesión de Cauchy, luego existe $T$ tal que $\lim T_k=T$. Este número resulta la fase de $x$. 
 
 Ahora demostremos  \eqref{est_asi}. Sea $t\geq p$ y tomemos $k\in\mathbb{N}$ con $kp\leq t<(k+1)p$. Sea $s:=t-kp$. 
@@ -1063,7 +1112,6 @@ y $\Phi_s(0)=\gamma(s)$. Como $s\in [0,p]$, se puede usar la desigualdad Lipschi
 
 
 
-{Teorema Estabilidad Orbital}
 
 Sea $s_1<s_2$  
 \[\begin{split}
@@ -1071,22 +1119,30 @@ Sea $s_1<s_2$
  &\leq \max_{[s_1,s_2]} \left\| X(\Phi_s(x) \right\|_0|s_1-s_2|\leq L_1 |s_1-s_2|.
   \end{split}
 \]
-Tomando $s_2=s+t_k$ y $s_1=s+kp+T$, en este caso $s_2-s_1=T_k-T$ y dejamos como \textbf{ejercicio} probar que
+Tomando $s_2=s+t_k$ y $s_1=s+kp+T$, en este caso $s_2-s_1=T_k-T$.
+
+\begin{ejercicio} Probar que
 \[ 
    \|\Phi_{s+t_k}(x)-\Phi_{s+kp+T}(x)\|_0 \leq L_1 |T_k-T|\leq \frac{L_1L_3\|w_0\|_0}{1-a}a^k.
  \]
+ \end{ejercicio}
 Luego
 \[ \|\Phi_{t+T}(x)-\gamma(t)\|=\|\Phi_{s+kp+T}(x)-\gamma(s)\|_0\leq Ka^{k+1}\leq Ka^{t/p}.   \]
-El caso general se aborda como es usual, mediante un push forward.\qed
+El caso general se aborda como es usual, mediante un push forward.
+\end{proof}
 
 
-{Corolario Estabilidad Orbital}
-{Corolario Estabilidad Orbital} 
- Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. 
+
+
+\begin{corolario}
+  Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. 
 Sea $P:U\cap M_c\to M_c$ el mapeo de Poincare. Supongamos que para cada entorno $\tilde{W}$ de $c$  en $U\cap M_c$ existe un entorno $W\subset\tilde{W}$
 de $c$  en $U\cap M_c$ tal que
 \[P(W)\subset W.\]
 Entonces $\gamma$ es orbitalmente estable. 
+\end{corolario}
+
+
 
 \bibliographystyle{apalike-url}
 \bibliography{diferenciales_ecuaciones}
