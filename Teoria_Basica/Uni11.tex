@@ -1,0 +1,15 @@
+
+
+ \chapter{Teorema de Linearización}
+\begin{sympyblock}
+from sympy import *
+k,c,b,t,x0,y0=symbols('k,c,b,t,x0,y0')
+theta=b*t+c
+r= sqrt(-1/(k*exp( 2*t) - 1))
+SolInin=solve([r.subs(t,0)*cos(theta.subs(t,0))-x0,r.subs(t,0)*sin(theta.subs(t,0))-y0],[k,c])
+\end{sympyblock}
+
+\[\sympy{SolInin}\]
+
+
+
