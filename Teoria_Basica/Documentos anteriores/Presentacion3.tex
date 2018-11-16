@@ -128,6 +128,18 @@ numberstyle=\footnotesize
 %%%%%%%%%%%%%%%%%%%%%%%Para clase beamer
 \newcommand{\nl}{\onslide<+-> }
 
+
+%
+% \newcounter{ejemplo_cont}[chapter]
+% \setcounter{ejemplo_cont}{1}
+
+% \makeatletter
+% \@addtoreset{ejemplo_cont}{chapter}
+% \makeatother
+
+\newenvironment{ejemplo}{\noindent\textbf{Ejemplo   .} }{ }
+
+
 \title[Teoría de Lie y ODE] % (optional, nur bei langen Titeln nötig)
 {%
 Cambios de variables, Teoría de Lie y EDO
@@ -1073,6 +1085,125 @@ y
 
 
 \end{frame}
+
+
+
+
+
+\section{Condición de Simetría Linealizada}
+\begin{frame}{Hallando simetrías de ecuaciones}
+
+
+Desarrollando en serie de Taylor las funciones $\hat{x}$ e $\hat{y}$ en $\epsilon$ alrededror de $\epsilon=0$
+\[
+ \begin{split}
+  \hat{x}&=x+\epsilon\xi+\mathcal{O}(\epsilon^2)\\
+  \hat{y}&=y+\epsilon\eta+\mathcal{O}(\epsilon^2)
+  \end{split}
+\]
+
+Reemplazando en la condición de simetría, que recordemos es
+\[\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}
+ f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}
+ =f(\hat{x},\hat{y}),
+\]
+
+\end{frame}
+
+
+
+obtenemos
+\[\frac{f+\epsilon\{\eta_x+f\eta_y\}+\mathcal{O}(\epsilon^2)}
+{1+\epsilon\{\xi_x+f\xi_y\}+\mathcal{O}(\epsilon^2)}
+=f(x+\epsilon\xi+\mathcal{O}(\epsilon^2),y+\epsilon\eta+\mathcal{O}(\epsilon^2))
+\]
+
+
+
+Desarrollando en serie de Taylor para $x$ e $y$ el segundo miembro y luego de algunas operaciones
+
+\[f+\epsilon\{\eta_x+(\eta_y-\xi_x)f-\xi_yf^2\}+\mathcal{O}(\epsilon^2)=
+ f+\epsilon\{\xi f_x+\eta f_y\}+\mathcal{O}(\epsilon^2)
+\]
+Cancelando $f$ dividiendo por $\epsilon$ y haciendo $\epsilon\to 0$ llegamos a la
+\emph{Condición de Simetría Linealizada}
+
+\boxedeq{\eta_x+(\eta_y-\xi_x)f-\xi_yf^2=\xi f_x+\eta f_y}{eq:CondSimLin}
+
+Recordando la característica reducida $\overline{Q}= \eta-f\xi$, la fórmula anterior se escribe más sintéticamente
+\boxedeq{\overline{Q}_x+f\overline{Q}_y=f_y\overline{Q}}{eq:CondSimLin2}
+
+Cada solución de \eqref{eq:CondSimLin2} conlleva una infinita cantidad de grupos de Lie de simetrías, porque si $\overline{Q}$ resueleve  \eqref{eq:CondSimLin2}  entonces para toda función $\xi$ el par $(\xi, \overline{Q}+f\xi)$ son infinitesimales para un grupo de Lie de simetrías de la ecuación. La solución trivial $\overline{Q}\equiv 0$ de  \eqref{eq:CondSimLin2}  se corresponde con simetrías triviales. En principio podríamos utilizar el método de características, que hemos visto en la unidad anterior, para resolver la ecuación lineal en derivadas parciales de primer orden \eqref{eq:CondSimLin2} que, recordando lo visto, se puede escribir
+\[ \frac{dx}{1}=\frac{dy}{f}=\frac{d\overline{Q}}{f_y\overline{Q}}.\]
+La primera igualdad en la ecuación anterior equivales a $dy/dx=f$, que es al fin y al cabo, la ecuación que queremos resolver. Así estas consideraciones parecen habernos llevado al origen de nuestro problema. No obstante, algunas veces es posible encontrar una solución de \eqref{eq:CondSimLin} recurriendo a un ansatz.
+
+ \begin{ejemplo} Encontrar un grupo de Lie de simetrías no trivial de $y'=\frac{y}{x}+x$.
+   \end{ejemplo}
+
+
+ La condición de simetría linealizada es
+ \[\eta_x+(\eta_y-\xi_x)\left(\frac{y}{x}+x\right)-\xi_y\left(\frac{y}{x}+x\right)^2
+ =\xi \left(1-\frac{y}{x^2}\right)
++\frac{\eta}{x},\]
+
+que luce intimidante. Hagamos el ansatz $\xi=0$ y $\eta=\eta(x)$. Conseguimos
+\[\eta_x-\frac{\eta}{x}=0\]
+Cuya solucion general es $\boxed{\eta=cx}$. Ahora podemos encontrar simetrías de la ecuación. Recordando \eqref{eq:ecua_infinitesimales}, tenemos
+\[
+\left\{
+\begin{array}{ll}
+\frac{d\hat{x}}{d\epsilon}&=0\\
+\frac{d\hat{y}}{d\epsilon}&=c\hat{x}\\
+\hat{x}(x,y,0)&=x\\
+\hat{y}(x,y,0)&=y\\
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{ll}
+\hat{x}&=x\\
+\hat{y}&=c\epsilon x+y\\
+\end{array}
+\right.
+\]
+
+Podemos constatar de manera directa que $\hat{x}=x$ e $\hat{y}=c\epsilon x+y$ constituyen un grupo de Lie uniparamétrico de simetrías de la ecuación, para el cual $\overline{Q}\neq 0$.
+
+\textbf{Completación de la demostración  del Teorema \ref{teo:invariantes}}.
+Restaba demostrar que si $y(x)$ resuelve la ecuación $\overline{Q}(x,y(x))=0$ y $\overline{Q}_y\neq 0$ en los puntos a lo largo de la curva $(x,y(x))$ entonces $y(x)$ es solución invariante de la ecuación $y'=f$.
+
+Por el Teorema de la función implícita,
+la condición de simetría linealizada \eqref{eq:CondSimLin2} y $\overline{Q}=0$
+\[y'(x)=-\frac{\overline{Q}_x}{\overline{Q}_y}=f-f_y\frac{\overline{Q}}{\overline{Q}_y}=f\]
+Luego $y$ es solución de la ecuación. El hecho de que es invariante es simplemente la igualdad
+$\overline{Q}=0$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Coordenadas canónicas}
