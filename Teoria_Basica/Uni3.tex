@@ -4,14 +4,20 @@
 
 \subsection{Introducción}
 
-%\begin{quote}
+\begin{quote}
 
- \enquote{
- El determinismo es una doctrina filosófica que sostiene que todo acontecimiento físico, incluyendo el pensamiento y acciones humanas, está causalmente determinado por la irrompible cadena causa-consecuencia, y por tanto, el estado actual \enquote{determina} en algún sentido el futuro...En física, el determinismo sobre las leyes físicas fue dominante durante siglos, siendo algunos de sus principales defensores Pierre Simon Laplace y Albert Einstein}. \cite{ wiki:determinismo}.
  
-\enquote{Podemos mirar el estado presente del universo como el efecto del pasado y la causa de su futuro. Se podría condensar un intelecto que en cualquier momento dado sabría todas las fuerzas que animan la naturaleza y las posiciones de los seres que la componen. Si este intelecto fuera lo suficientemente vasto para someter los datos al análisis, podría condensarse en una simple fórmula de movimiento de los grandes cuerpos del universo y del átomo más ligero; para tal intelecto nada podría ser incierto y el futuro, así como el pasado, estaría frente sus ojos}. Laplace, citado en \cite{ wiki:determinismo}.
+ <<El determinismo es una doctrina filosófica que sostiene que todo acontecimiento físico, incluyendo el pensamiento y acciones humanas, está causalmente determinado por la irrompible cadena causa-consecuencia, y por tanto, el estado actual determina en algún sentido el futuro...En física, el determinismo sobre las leyes físicas fue dominante durante siglos, siendo algunos de sus principales defensores Pierre Simon Laplace y Albert Einstein.>>
+ 
+<<Podemos mirar el estado presente del universo como el efecto del pasado y la causa de su futuro. Se podría condensar un intelecto que en cualquier momento dado sabría todas las fuerzas que animan la naturaleza y las posiciones de los seres que la componen. Si este intelecto fuera lo suficientemente vasto para someter los datos al análisis, podría condensarse en una simple fórmula de movimiento de los grandes cuerpos del universo y del átomo más ligero; para tal intelecto nada podría ser incierto y el futuro, así como el pasado, estaría frente sus ojos>>
 
-La ciencia se vale de estructuras matemáticas para describir a traves de modelos la evolución de sistemas reales. Usualmente esas estructuras son ecuaciones (diferenciales) donde el tiempo es una de sus variables. Conocer el \enquote{estado actual} de un sistema (las \enquote{posiciones} que menciona Laplace) es conocer las condiciones iniciales. Mientras que las ecuaciones en si mismas se derivan de  \enquote{las fuerzas que animan la naturaleza}.  Así, para que la matemática colabore con la filosofía determinista, debería ella misma plantear problemas deterministas.  En ese sentido, hablando específicamente de ecuaciones diferenciales, para que podamos decir que un PVI sea determinista, el problema debería tener solución (existencia de soluciones), caso contrario este PVI no produciría ninguna predicción del futuro. Pero también esta solución debería ser única (unicidad de soluciones), porque de no ser así, el problema produciría múltiples predicciones y por tanto el estado actual 
+\end{quote}
+\begin{flushright}
+Laplace, citado en \cite{ wiki:determinismo}
+\end{flushright}
+
+
+La ciencia se vale de estructuras matemáticas para describir a traves de modelos la evolución de sistemas reales. Usualmente esas estructuras son ecuaciones (diferenciales) donde el tiempo es una de sus variables. Conocer el estado actual de un sistema (las posiciones que menciona Laplace) es conocer las condiciones iniciales. Mientras que las ecuaciones en si mismas se derivan de  las fuerzas que animan la naturaleza.  Así, para que la matemática colabore con la filosofía determinista, debería ella misma plantear problemas deterministas.  En ese sentido, hablando específicamente de ecuaciones diferenciales, para que podamos decir que un PVI sea determinista, el problema debería tener solución (existencia de soluciones), caso contrario este PVI no produciría ninguna predicción del futuro. Pero también esta solución debería ser única (unicidad de soluciones), porque de no ser así, el problema produciría múltiples predicciones y por tanto el estado actual 
 no determinaría el futuro. Un problema que satisfaga estas condiciones lo denominaremos \emph{bien planteado}\footnote{Es común en la literatura requerir, además de la existencia y unicidad, la estabilidad para hablar de problema bien planteado} . 
 
 Por lo expuesto, es de trascendencia para la ciencia en general que se pueda establecer que los problemas matemáticos que modelizan problemas de estas ciencias sean bien planteados. Este es el propósito de este capítulo.
@@ -19,7 +25,7 @@ Por lo expuesto, es de trascendencia para la ciencia en general que se pueda est
 
 Para nuestra sorpresa, PVIs sin ningun problema aparente a la vista no son problemas bien planteados.
 
-\begin{ejemplo} Considerar el siguiente PVI:
+\begin{ejemplo}{} Considerar el siguiente PVI:
 \[
   \left\{
  \begin{array}{ll}
@@ -85,7 +91,7 @@ Una manera alternativa y compacta de denotar un sistema se logra introduciendo l
 
 
 
-\begin{ejemplo} \textbf{Ecuación del péndulo.} Si $x(t)$ es el ángulo que forma un péndulo, de longitud $l$, con la vertical en el tiempo $t$ y $v(t)=x'(t)$, entonces $x(t)$ y$v(t)$ deben satisfacer el siguiente sistema de  ecuaciones:
+\begin{ejemplo} [Ecuación del péndulo]{} Si $x(t)$ es el ángulo que forma un péndulo, de longitud $l$, con la vertical en el tiempo $t$ y $v(t)=x'(t)$, entonces $x(t)$ y$v(t)$ deben satisfacer el siguiente sistema de  ecuaciones:
 \begin{equation}\label{eq:sist_pend}
 \left\{
 \begin{split}
@@ -98,9 +104,9 @@ Una manera alternativa y compacta de denotar un sistema se logra introduciendo l
 \end{ejemplo}
 
 
-\begin{ejemplo} \textbf{Sistemas de ecuaciones de Lotka-Volterra}
+\begin{ejemplo}[Sistemas de ecuaciones de Lotka-Volterra]{}
  En 1925 y 1926, Alfred J. Lotka y Vito Volterra respectivamente, introdujeron
- las \href{https://es.wikipedia.org/wiki/Ecuaciones_Lotka%E2%80%93Volterra}{ecuaciones de Lotka-Volterra}\link. \marginpar{\includegraphics[scale=.28]{imagenes/Vito_Volterra.jpg}\\
+ las \href{https://es.wikipedia.org/wiki/Ecuaciones_Lotka%E2%80%93Volterra}{ecuaciones de Lotka-Volterra}. \marginpar{\includegraphics[scale=.28]{imagenes/Vito_Volterra.jpg}\\
  Vito Volterra (1860-1940)}  Se trata de un sistema de dos ecuaciones diferenciales de primer orden que se usan para describir dinámicas de sistemas biológicos en el que dos especies interactúan, una como presa y otra como depredador. Se definen como:
 \begin{equation}\label{eq:lotka_volterra}
 \left\{
@@ -156,7 +162,7 @@ Las igualdades anteriores tienen la estructura $z=G(y)$, donde $y=(y_1,\ldots,y_
 La anterior es una ecuación escalar de orden $n$ para $y_n$. Por consiguiente hemos logrado reducir el sistema de $n$-ecuaciones a una ecuación de orden $n$. Observar que si resolvemos esta ecuación, encontrando $y_n$, podemos hallar el resto de las incognitas $y_j$, $j=1,\ldots,n-1$,  usando que $y_j=H_j(y_n',y_n'',\ldots,y_n^{(n)})$.
 
 
-\begin{ejemplo} \textbf{Ecuaciones de Lotka-Volterra.} Reduzcamos las ecuaciones de Lotka-Volterra a una ecuación de orden 2 y luego revirtamos el camino.
+\begin{ejemplo}[Ecuaciones de Lotka-Volterra.]{} Reduzcamos las ecuaciones de Lotka-Volterra a una ecuación de orden 2 y luego revirtamos el camino.
 
 La primera parte la resolvemos con Sympy:
 \lstinputlisting[language=Python]{scripts/Sist-Ecua.py}
@@ -183,7 +189,7 @@ El camino inverso es más sencillo. Llamamos $z=y'$. Usando las variables $y,z$ 
 
 \section{Método de iteraciones de Picard}
 
-En esta sección vamos a describir la estrategia que emplearemos para la demostración de la existencia de soluciones. El método que seguiremos fue ideado por \href{https://es.wikipedia.org/wiki/Charles_%C3%89mile_Picard}{Émile Picard}\link \marginpar{
+En esta sección vamos a describir la estrategia que emplearemos para la demostración de la existencia de soluciones. El método que seguiremos fue ideado por \href{https://es.wikipedia.org/wiki/Charles_%C3%89mile_Picard}{Émile Picard} \marginpar{
     \includegraphics[scale=.3]{imagenes/Picard.jpg}\\
     Émile Picard (1856-1941)
 }
@@ -195,11 +201,11 @@ Introducimos previamente algunas definiciones elementales.
  \[\int_a^b\alpha(s)ds=\left(\int_a^b\alpha_1(s)ds,\ldots,\int_a^b\alpha_n(s)ds\right) \]
 \end{definicion}
 
-Es un ejercicio muy sencillo \actividad demostrar que vales las propiedades elementales de las integrales, para esta extensión del concepto de integral a funciones con valores vectoriales. En particular vale el Teorema Fundamental del Cálculo: \emph{Si $\alpha$ es continuamente diferenciable entonces
+Es un ejercicio muy sencillo  demostrar que vales las propiedades elementales de las integrales, para esta extensión del concepto de integral a funciones con valores vectoriales. En particular vale el Teorema Fundamental del Cálculo: \emph{Si $\alpha$ es continuamente diferenciable entonces
 \[ \int_a^b\alpha'(s)ds=\alpha(b)-\alpha(a).\]
 }
 
-Además vale la \emph{desigualdad triangular:}\actividad si $a<b$
+Además vale la \emph{desigualdad triangular:} si $a<b$
 \[\left\|\int_a^b \alpha(s)ds\right\|\leq \int_a^b \left\|\alpha(s)\right\|ds.\]
 Nuestra intención es demostrar la existencia de soluciones de un PVI para el sistema de EDOs
 \boxedeq{
@@ -216,7 +222,7 @@ e $y_0\in\rr^n$ son dados con $(x_0,y_0)\in \Omega$.
 
 
 
-Integremos la ecuación diferencial en un intervalo de extremos $x_0$ y $x$ y tomando en consideeración las condiciones iniciales obtenemos una nueva ecuación para $y(x)$,  en este caso una \href{https://es.wikipedia.org/wiki/Ecuaci%C3%B3n_integral}{ecuación integral}\link :
+Integremos la ecuación diferencial en un intervalo de extremos $x_0$ y $x$ y tomando en consideeración las condiciones iniciales obtenemos una nueva ecuación para $y(x)$,  en este caso una \href{https://es.wikipedia.org/wiki/Ecuaci%C3%B3n_integral}{ecuación integral} :
 
 \boxedeq{
 y(x)=y_0+\int_{x_0}^xf(t,y(t))dt.
@@ -230,7 +236,7 @@ Pensando de esta manera  \eqref{eq:ecua_int} se escribe sencillamente
 \[
  T(y)=y.
 \]
-Vale decir, la ecuación integral expresa el hecho que $T$ lleva a la función $y$ en si misma. Esto en matemática es conocido como un \href{https://es.wikipedia.org/wiki/M%C3%A9todo_del_punto_fijo}{punto fijo}\link. En análisis numérico los puntos fijos son utilizados para resolver ecuaciones algebraicas del tipo $h(x)=x$, donde $h:\rr\to\rr$. En aquel copntexto se ve que un procedimiento para aproximar soluciones es interar la función $h$, i.e. dado un $x_0$ cualquiera considerar la sucesión de \emph{aproximaciones sucesivas}
+Vale decir, la ecuación integral expresa el hecho que $T$ lleva a la función $y$ en si misma. Esto en matemática es conocido como un \href{https://es.wikipedia.org/wiki/M%C3%A9todo_del_punto_fijo}{punto fijo}. En análisis numérico los puntos fijos son utilizados para resolver ecuaciones algebraicas del tipo $h(x)=x$, donde $h:\rr\to\rr$. En aquel copntexto se ve que un procedimiento para aproximar soluciones es interar la función $h$, i.e. dado un $x_0$ cualquiera considerar la sucesión de \emph{aproximaciones sucesivas}
 \[x_n=h(x_{n-1}),\quad n=1,2,\ldots.\]
 El fundamento de proceder así es que si la sucesión $x_n$ converge a algún valor $x^*$ y si $h$ es continua entonces $x^*$ resuelve $h(x)=x$ pues
 \begin{equation}
@@ -248,7 +254,7 @@ Vamos a proceder por analogía y proponer el siguiente proceso iterativo que gen
 \right. .
 }{eq:iter_picard}
 
-Este proceso se denomina \emph{método de las aproximaciones sucesivas de Picard} y fué propuesto por E. Picard en  \cite{EmilePicard1893} y luego generalizado por \href{https://es.wikipedia.org/wiki/Ernst_Leonard_Lindel%C3%B6f}{Ernest Lindelöf}\link  en \cite{ErnestLindelof1894}. \marginpar{
+Este proceso se denomina \emph{método de las aproximaciones sucesivas de Picard} y fué propuesto por E. Picard en  \cite{EmilePicard1893} y luego generalizado por \href{https://es.wikipedia.org/wiki/Ernst_Leonard_Lindel%C3%B6f}{Ernest Lindelöf}  en \cite{ErnestLindelof1894}. \marginpar{
     \includegraphics[scale=.3]{imagenes/Lindelof.jpg}\\
    Ernst L. Lindelöf (1870—1946)
 }
@@ -257,7 +263,7 @@ Este proceso se denomina \emph{método de las aproximaciones sucesivas de Picard
 
 Deberemos indagar por condiciones que nos aseguren que la sucesión $\varphi_k$ converja a una función $\varphi$ y que esta función $\varphi$ es solución del PVI. Antes de adentrarnos en los detalles de las demostraciones, constatemos que la idea funciona en algunos ejemplos sencillos.
 
-\begin{ejemplo} Resolver
+\begin{ejemplo}{} Resolver
 \[
  \left\{
  \begin{array}{ll}
@@ -293,7 +299,7 @@ Dada una función $K:X\to X$ escribiremos
 \[K^n(x)=\underbrace{K\left( K \left( K\cdots K(x)\cdots \right)\right)}_{n-\hbox{veces}}.\]
 Cuando $n=0$ ponemos $K^0(x)=x$.
 
-\begin{teorema}[Principio de contracción de Banach]  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$  una contracción. Entonces $K$ tiene un único punto fijo $x^*$. Además para todo $x$
+\begin{teorema}[Principio de contracción de Banach]{teo:banach}  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$  una contracción. Entonces $K$ tiene un único punto fijo $x^*$. Además para todo $x$
 \[d(K^n(x),x^*)\leq \frac{\theta^n}{1-\theta}d(K(x),x).\]
 \end{teorema}\marginpar{
     \includegraphics[scale=.3]{imagenes/banach.jpg}\\
@@ -314,7 +320,7 @@ Que el punto fijo es único, se deduce de suponer que existe otro $z^*$ y aplica
 Lo que es una contradicción.
 \end{proof}
 
-\begin{corolario}\label{cor:banach}  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$ continua y $K^m$ contracción para algún $m\in\mathbb{N}$. Entonces $K$ tiene un único punto fijo $x^*$ y para todo $x\in X$ se tiene
+\begin{corolario}{cor:banach}  Sea $(X,d)$ un espacio métrico completo y $K:X\to X$ continua y $K^m$ contracción para algún $m\in\mathbb{N}$. Entonces $K$ tiene un único punto fijo $x^*$ y para todo $x\in X$ se tiene
 \[ \lim_{n\to\infty} K^n(x)=x^*.\]
  \end{corolario}
  
@@ -343,7 +349,7 @@ Si $f:\Omega\subset\rr\times \rr^n\to\rr^m$, diremos que $f=f(t,x)$ es lipschitz
 
 
 
-\begin{teorema}[Picard- Lindelöf] Sean $x_0\in\rr$, $y_0\in\rr^n$ y $f:\Omega\to\rr^n$ continua y lipschitziana respecto a la segunda variable, donde $\Omega=I_a\times B_b$,  $I_a=[x_0-a,x_0+a]$ y $B_b=\{y\in\rr^n|\|y-y_0\|\leq b\}$. Como $\Omega$ es compacto y $f$ es continua, existe $M\geq 0$ tal que $\|f\|\leq M$. Entonces existe una única solución del PVI:
+\begin{teorema}[Picard- Lindelöf]{teo:picard} Sean $x_0\in\rr$, $y_0\in\rr^n$ y $f:\Omega\to\rr^n$ continua y lipschitziana respecto a la segunda variable, donde $\Omega=I_a\times B_b$,  $I_a=[x_0-a,x_0+a]$ y $B_b=\{y\in\rr^n|\|y-y_0\|\leq b\}$. Como $\Omega$ es compacto y $f$ es continua, existe $M\geq 0$ tal que $\|f\|\leq M$. Entonces existe una única solución del PVI:
 \[
  \left\{\begin{array}{ll}
 	  y'(x)&=f(x,y(x)),\\
@@ -357,7 +363,7 @@ en $I_{\delta}=(x_0-\delta,x_0+\delta)$ con $\delta:=\min\{a,b/M\}$.
  \begin{proof}
  
  Definamos
-\[X=C(I_a,B_b):=\{\varphi| \varphi:I_a\to B_b\hbox{ continua }\}.\]
+\[X=C(I_{\delta},B_b):=\{\varphi| \varphi:I_a\to B_b\hbox{ continua }\}.\]
 \begin{figure}[h]
   \begin{center}
 \scalebox{.6} % Change this value to rescale the drawing.
@@ -408,21 +414,21 @@ en $I_{\delta}=(x_0-\delta,x_0+\delta)$ con $\delta:=\min\{a,b/M\}$.
 \rput(4.2745314,2.78){$(x_0,y_0)$}
 \end{pspicture} 
 }
- \caption{Caída libre}\label{fig:exi_uni}
+ \caption{Conjunto $I_{\delta}\times B_b$}\label{fig:exi_uni}
   \end{center}
 \end{figure}
 \begin{ejercicio} La función
-\[d(\varphi_1,\varphi_2):=\max\left\{\|\varphi_1(x)-\varphi_2(x)\| \,\big| x\in I_a\right\}\]
-  define una métrica sobre el conjunto $X$ y con esta métrica $(X,d)$ es completo. \actividad
+\[d(\varphi_1,\varphi_2):=\max\left\{\|\varphi_1(x)-\varphi_2(x)\| \,\big| x\in I_{\delta}\right\}\]
+  define una métrica sobre el conjunto $X$ y con esta métrica $(X,d)$ es completo. 
 \end{ejercicio}
 
-Para $\varphi\in X$, definamos una nueva función $K(\phi)$ por:
+Para $\varphi\in X$, definamos una nueva función $K(\varphi)$ por:
 \[K(\varphi)(x)=y_0+\int_{x_0}^xf(t,\varphi(t))dt.\]
 \noindent\textbf{Afirmación 1:} $K:X\to X$. 
 
-En efecto, si $x\geq x_0$ y $x\in I_a$ (si $x\leq x_0$ queda como ejercicio\actividad)
+En efecto, si $x\geq x_0$ y $x\in I_{\delta}$ (si $x\leq x_0$ queda como ejercicio)
 \[\|K(\varphi)(x)-y_0\|\leq \int_{x_0}^x\|f(t,\varphi(t))\|dt\leq M|x-x_0|\leq b.\]
-Esto muestra que $K(\varphi):I_a\to B_b$. 
+Esto muestra que $K(\varphi):I_{\delta}\to B_b$. 
 
 La continuad se establece del siguiente modo. Si $x_1<x_2$
 \[
@@ -432,7 +438,7 @@ Lo que implica la continuidad. Entonces $K(\varphi)\in X$.
 
 \noindent\textbf{Afirmación 2:} $K^m$ es  contracción para $m$ suficientemente grande. 
 
-La afirmación es consecuencia de la siguiente desigualdad, para $\varphi_1,\varphi_2\in X$ y $x\in I_a$
+La afirmación es consecuencia de la siguiente desigualdad, para $\varphi_1,\varphi_2\in X$ y $x\in I_{\delta}$
 \[\|K^m(\varphi_1)(x)-K^m(\varphi)(x)\|\leq \frac{K^m|x-x_0|^m}{m!}d(\varphi_1,\varphi_2).\]
 La prueba procede por induccón sobre $m$. Cuando $m=0$ es inmediata. Supuesta válida la desigualdad para $m$ vemos que (otra vez asumimos $x_0\leq x$)
 
@@ -457,7 +463,7 @@ Notar que $K^m|x-x_0|^m/m!$ es el valor absoluto del término general de la seri
 Notar que $y(x_0)=y_0$, i.e. $y$ satisface la condición inicial. Por el teorema fundamental del cálculo $y'(x)=f(x,y(x))$, i.e. $y$ satisface la ecuación y por tanto, finalmente, es solución del PVI.\end{proof}
 
 
-\begin{corolario} Sea $\Omega$ abierto de $\rr\times \rr^n$ y $f:\Omega\to\rr^n$ continua con $\partial f_j/\partial y_k)$ tambien continuas $j,k=1,\ldots,n$. Entonces para todo $(x_0,y_0)\in\Omega$ existe un entorno $V=[x_0-\delta,x_0+\delta]\times B_b(y_0)$ tal que el PVI
+\begin{corolario}{} Sea $\Omega$ abierto de $\rr\times \rr^n$ y $f:\Omega\to\rr^n$ continua con $\partial f_j/\partial y_k)$ tambien continuas $j,k=1,\ldots,n$. Entonces para todo $(x_0,y_0)\in\Omega$ existe un entorno $V=[x_0-\delta,x_0+\delta]\times B_b(y_0)$ tal que el PVI
  \[
  \left\{\begin{array}{ll}
 	  y'(x)&=f(x,y(x)),\\
@@ -468,7 +474,7 @@ Notar que $y(x_0)=y_0$, i.e. $y$ satisface la condición inicial. Por el teorema
 tiene solución única en $[x_0-\delta,x_0+\delta]$. Además el gráfico de esta solución está contenido en $V$..
 \end{corolario}
 
-\begin{proof} Sea $(x_0,y_0)\in\Omega$ arbitrario. Como $\Omega$ es abierto, existen $a,b>0$ tal que $[x_0-\delta,x_0+\delta]\times B_b(y_0)\subset \Omega$. Como $\partial f_j/\partial y_k)$ son continuas y $V$ es compacto, tenemos que existe $M>0$ con $|\partial f_j/\partial y_k)|\leq M$ en $V$, $j,k=1,\ldots,n$. El Teorema del valor medio para funciones en varias variables implica que existe una constante $C>0$ tal que si $(t,x),(t,z)\in V$
+\begin{proof} Sea $(x_0,y_0)\in\Omega$ arbitrario. Como $\Omega$ es abierto, existen $a,b>0$ tal que $[x_0-a,x_0+a]\times B_b(y_0)\subset \Omega$. Como $\partial f_j/\partial y_k)$ son continuas y $V$ es compacto, tenemos que existe $M>0$ con $|\partial f_j/\partial y_k)|\leq M$ en $V$, $j,k=1,\ldots,n$. El Teorema del valor medio para funciones en varias variables implica que existe una constante $C>0$ tal que si $(t,x),(t,z)\in V$
 \[\|f(t,x)-f(t,z)\|\leq C M\|x-z\|.\]
 i.e. $f$ es Lipschitziana respecto a la segunda variable en $V$. La conclusión del Corolario sigue del Teorema de Picard- Lindelöf. 
 \end{proof}
@@ -480,5 +486,5 @@ i.e. $f$ es Lipschitziana respecto a la segunda variable en $V$. La conclusión 
 
 
 
-  \bibliographystyle{apalike-url}
+  \bibliographystyle{apalike}
   \bibliography{diferenciales_ecuaciones,diferenciales_ecuaciones_sim}

@@ -1,11 +1,304 @@
+=>PYTHONTEX#py#default#defaultverb#0#verbatim####Uni1.tex#105#
+>>>from sympy import *
+>>>m,g,c,k,t=symbols('m,g,c,k,t')
+>>>v=m/c*g+k*exp(-c/m*t)
+>>>simplify(v.diff(t)+c/m*v)
+g
+=>PYTHONTEX#py#default#defaultverb#1#verbatim####Uni1.tex#117#
+>>>v=symbols('v',cls=Function)
+>>>EqCaida=Eq(v(t).diff(t)+c/m*v(t),g)
+>>>Vel=dsolve(EqCaida,v(t))
+>>> Vel
+v(t) == (g*m + exp(c*(C1 - t/m)))/c
+=>PYTHONTEX#py#default#defaultverb#2#verbatim####Uni1.tex#127#
+>>> type(Vel)
+<class 'sympy.core.relational.Equality'>
+=>PYTHONTEX#py#default#defaultverb#3#verbatim####Uni1.tex#445#
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+f=dsolve(MiEcua,y)
+=>PYTHONTEX#py#default#defaultverb#4#verbatim####Uni1.tex#485#
+x=symbols('x')
+f=plot(1/x,(x,-3,3),ylim=(-3,3))
+=>PYTHONTEX#py#default#defaultverb#5#verbatim####Uni1.tex#512#
+from sympy import *
+x,y=symbols('x,y')
+Rango=range(21)
+L=[tan(pi*k/21.0) for k in Rango]
+p=plot(L[0]*x,(x,-2,2),show=False,xlim=(-2,2),\
+ylim=(-2,2),aspect_ratio=(1,1))
+for pend in L[1:]:
+    p1=plot(pend*x,(x,-2,2),show=False,\
+xlim=(-2,2),ylim=(-2,2),aspect_ratio=(1,1))
+    p.append(p1[0])
+for r in range(1,10):
+    p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
+show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
+    p.append(p1[0])
+p.show()
+=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#613#
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+tipo=classify_ode(MiEcua,y)
+=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1735#
+theta=symbols('theta')
+from sympy.plotting import *
+plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
+=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1757#
+x,c=symbols('x,c')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
+f=dsolve(MiEcua,y,hint='separable')
+=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1836#
+from sympy import *
+from sympy.diffgeom.rn import R2
+eq=(-sqrt(R2.x**2+R2.y**2)+R2.x)*R2.dx+R2.y*R2.dy
+M=eq.rcall(R2.e_theta)
+N=eq.rcall(R2.e_r)
+x,y,theta=symbols('x,y,theta')
+r=symbols('r',positive=True)
+subst={R2.x:r*cos(theta),R2.y:r*sin(theta),R2.theta:theta,R2.r:r}
+M=M.subs(subst).simplify()
+N=N.subs(subst).simplify()
+mu=(N.diff(theta)-M.diff(r))/M
+FactInt=exp(Integral(mu,r).doit())
+phi=(M/r).integrate(theta)
+g=Function('g')(r)
+phi=phi+g
+dsolve(phi.diff(r)-N/r,g)
+phi=(M/r).integrate(theta)+r
+phi
+=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1858#
+latex(phi)
+=>PYTHONTEX#sympy#default#default#0#block####Uni2.tex#126#
+x=symbols('x') #unico simbolo primitivo
+y_n=Function('y_n')(x) #variables nuevas, funciones de x
+y=exp(y_n)/x #relacion entre y, y_n
+eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0) #la ecuacion
+eq1=simplify(eq) # simplifica expresiones
+=>PYTHONTEX#sympy#default#default#1#i####Uni2.tex#135#
+eq1
+=>PYTHONTEX#sympy#default#default#2#block####Uni2.tex#166#
+x,x_n=symbols('x,x_n')
+x_n=acos(x)
+y=Function('y')(x_n)
+Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
+xn=symbols('xn')
+Eq=Ecuacion.subs(x,cos(xn))
+=>PYTHONTEX#sympy#default#default#3#i####Uni2.tex#176#
+latex(Eq)
+=>PYTHONTEX#sympy#default#default#4#block####Uni2.tex#202#
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff(x)/theta.diff(x)
+=>PYTHONTEX#sympy#default#default#5#i####Uni2.tex#213#
+latex(Expr2)
+=>PYTHONTEX#sympy#default#default#6#block####Uni2.tex#216#
+Expr3=Expr2.subs(y.diff(x),(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+r,theta=symbols('r,theta',positive=True)
+Expr4=Expr3.subs([(y,r*sin(theta)),(x,r*cos(theta))])
+Expr5=simplify(Expr4)
+=>PYTHONTEX#sympy#default#default#7#block####Uni2.tex#349#
+x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
+T=Matrix([x+epsilon,y])
+x_copete=T.subs(epsilon,epsilon1)[0]
+y_copete=T.subs(epsilon,epsilon1)[1]
+PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])\
+-T.subs(epsilon,epsilon1+epsilon2)
+=>PYTHONTEX#sympy#default#default#8#i####Uni2.tex#358#
+latex(PropGrupo)
+=>PYTHONTEX#sympy#default#default#9#block####Uni2.tex#487#
+x,theta=symbols('x,theta')
+y=Function('y')(x)
+x_n=cos(theta)*x-sin(theta)*y
+y_n=sin(theta)*x+cos(theta)*y
+Expr2=y_n.diff(x)/x_n.diff(x)
+Expr3=Expr2.subs(y.diff(),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+x_n,y_n=symbols('x_n,y_n')
+Expr4=Expr3.subs([(y, -sin(theta)*x_n+cos(theta)*y_n),\
+(x,cos(theta)*x_n+sin(theta)*y_n)])
+Expr5=simplify(Expr4)
+=>PYTHONTEX#sympy#default#default#10#i####Uni2.tex#510#
+latex(Expr5)
+=>PYTHONTEX#sympy#default#default#11#block####Uni2.tex#839#
+from sympy import *
+init_printing()
+x,y=symbols('x,y',real=True)
+f=(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y)
+=>PYTHONTEX#sympy#default#default#12#block####Uni2.tex#852#
+a,b,c,d,h,k=symbols('a,b,c,d,h,k',real=True)
+xi=a*x+b*y+h
+eta=c*x+d*y+k
+Q=eta-f*xi
+=>PYTHONTEX#sympy#default#default#13#block####Uni2.tex#860#
+CondSim=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSim=simplify(CondSim)
+=>PYTHONTEX#sympy#default#default#14#block####Uni2.tex#869#
+P1,P2=fraction(CondSim)
+P1
+=>PYTHONTEX#sympy#default#default#15#block####Uni2.tex#888#
+P1.subs(y,0).collect(x)
+=>PYTHONTEX#sympy#default#default#16#block####Uni2.tex#897#
+P11=P1.subs({h:0,k:0,d:-a,c:-2*a-b})
+P11.subs(y,1).collect(x)
+=>PYTHONTEX#sympy#default#default#17#block####Uni2.tex#903#
+xi=xi.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+eta=eta.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+xi,eta
+=>PYTHONTEX#sympy#default#default#18#block####Uni2.tex#909#
+CondSimLin=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSimLin.simplify()
+=>PYTHONTEX#sympy#default#default#19#block####Uni2.tex#1090#
+x,y,epsilon=symbols('x,y,epsilon')
+T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
+xi=T[0].diff(epsilon).subs(epsilon,0)
+print(xi)
+eta=T[1].diff(epsilon).subs(epsilon,0)
+print(eta/xi)
+y=Function('z')(x)
+sol=dsolve(y.diff(x)-y/x,y)
+print(sol)
+Integral(1/xi,x).doit()
+=>PYTHONTEX#sympy#default#default#20#block####Uni2.tex#1217#
+x=symbols('x')
+y=Function('y')(x)
+from sympy.solvers.ode import infinitesimals
+xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
+
+=>PYTHONTEX#sympy#default#default#21#i####Uni2.tex#1225#
+latex(xi_eta)
+=>PYTHONTEX#py#default#defaultverb#9#verbatim####Apendice0.tex#176#
+'''
+Comentario  largo en un script de Python
+'''
+print "Hola mundo" # Comentario corto
+=>PYTHONTEX#py#default#defaultverb#10#verbatim####Apendice0.tex#202#
+x = 1
+x = "texto"
+=>PYTHONTEX#pycon#default#default#0#console####Apendice0.tex#229#
+x=1
+type(x)
+x='Ecuaciones'
+type(x)
+=>PYTHONTEX#pycon#default#default#1#console####Apendice0.tex#263#
+lista = ["abc", 42, 3.1415]
+lista[0] # Acceder a un elemento por su indice
+lista[-1] # Acceder a un elemento usando un indice negativo
+lista.append(True) # Agregar un elemento al final de la lista
+lista
+del lista[3] # Borra un elemento de la lista usando un indice
+lista[0] = "xyz" # Re-asignar el valor del primer elemento
+lista[0:2]#elementos del indice "0" al "1"
+lista_anidada = [lista, [True, 42L]] #Es posible anidar listas
+lista_anidada
+lista_anidada[1][0] #accede lista dentro de otra lista
+=>PYTHONTEX#pycon#default#default#2#console####Apendice0.tex#277#
+tupla = ("abc", 42, 3.1415)
+tupla[0] # Acceder a un elemento por su indice
+del tupla[0] # No es posible borrar ni agregar
+tupla[0] = "xyz" # Tampoco es posible re-asignar
+tupla[0:2] # elementos del indice "0" al "2" sin incluir
+tupla_anidada = (tupla, (True, 3.1415)) # es posible anidar
+1, 2, 3, "abc" # Esto tambien es una tupla
+(1) #  no es una tupla, ya que no posee al menos una coma
+(1,) # si es una tupla
+(1, 2) # Con mas de un elemento no es necesaria la coma final
+(1, 2,) # Aunque agregarla no modifica el resultado
+=>PYTHONTEX#pycon#default#default#3#console####Apendice0.tex#305#
+dicci = {"cadena": "abc", "numero": 42, "lista": [True, 42L]}
+dicci["cadena"] # Usando una clave, se accede a su valor
+dicci["lista"][0]
+dicci["cadena"] = "xyz" # Re-asignar el valor de una clave
+dicci["cadena"]
+dicci["decimal"] = 3.1415927 # nuevo elemento clave:valor
+dicci["decimal"]
+dicci_mixto = {"tupla": (True, 3.1415), "diccionario": dicci}
+dicci_mixto["diccionario"]["lista"][1]
+dicci = {("abc",): 42} # tupla puede ser clave
+dicci = {["abc"]: 42} # una clave no puede ser lista
+=>PYTHONTEX#py#default#defaultverb#11#v####Apendice0.tex#324#
+range(n)
+=>PYTHONTEX#pycon#default#default#4#console####Apendice0.tex#326#
+range(5) #
+[i*i for i in range(5)]
+lista = [(i, i + 2) for i in range(5)]
+lista
+=>PYTHONTEX#pycon#default#default#5#console####Apendice0.tex#347#
+def suma(x, y = 2): #el argumento y tiene un valor por defecto
+    return x + y # Retornar la suma
+
+suma(4) # La variable "y" no se modifica, siendo su valor: 2
+suma(4, 10) # La variable "y" si se modifica
+=>PYTHONTEX#pycon#default#default#6#console####Apendice0.tex#356#
+suma = lambda x, y = 2: x + y
+suma(4) # La variable "y" no se modifica
+suma(4, 10) # La variable "y" si se modifica
+=>PYTHONTEX#py#default#defaultverb#12#v####Apendice0.tex#363#
+if
+=>PYTHONTEX#py#default#defaultverb#13#v####Apendice0.tex#364#
+True
+=>PYTHONTEX#py#default#defaultverb#14#v####Apendice0.tex#364#
+elif
+=>PYTHONTEX#py#default#defaultverb#15#v####Apendice0.tex#364#
+else
+=>PYTHONTEX#pycon#default#default#7#console####Apendice0.tex#368#
+verdadero = True
+if verdadero: # No es necesario poner "verdadero == True"
+    print "Verdadero"
+
+else:
+    print "Falso"
+
+lenguaje = "Python"
+if lenguaje == "C":
+    print "Lenguaje de programacion: C"
+elif lenguaje == "Python": # tantos "elif" como se quiera
+    print "Lenguaje de programacion: Python"
+else:
+    print "Lenguaje de programacion: indefinido"
+
+if verdadero and lenguaje == "Python":
+    print "Verdadero y Lenguaje de programacion: Python"
+
+=>PYTHONTEX#py#default#defaultverb#16#v####Apendice0.tex#395#
+for
+=>PYTHONTEX#py#default#defaultverb#17#v####Apendice0.tex#398#
+for
+=>PYTHONTEX#py#default#defaultverb#18#v####Apendice0.tex#399#
+in
+=>PYTHONTEX#pycon#default#default#8#console####Apendice0.tex#403#
+lista = ["a", "b", "c"]
+for i in lista: # Iteramos sobre una lista, que es iterable
+    print i
+
+cadena = "abc"
+for i in cadena: # Iteramos sobre una cadena, que es iterable
+    print i # una coma al final evita un salto de linea
+
+=>PYTHONTEX#py#default#defaultverb#19#v####Apendice0.tex#416#
+while
+=>PYTHONTEX#py#default#defaultverb#20#v####Apendice0.tex#418#
+while
+=>PYTHONTEX#pycon#default#default#9#console####Apendice0.tex#420#
+numero = 0
+while numero < 3:
+    print numero
+    numero += 1
+
 =>PYTHONTEX:SETTINGS#
-version=v0.12
+version=0.16
 outputdir=pythontex-files-LibroEcuaciones
-workingdir=pythontex-files-LibroEcuaciones
+workingdir=.
+workingdirset=false
 gobble=none
 rerun=default
 hashdependencies=default
-makestderr=false
+makestderr=true
 stderrfilename=full
 keeptemps=none
 pyfuture=default

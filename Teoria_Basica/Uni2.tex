@@ -1,6 +1,6 @@
 \chapter{Teoría de Lie y ecuaciones diferenciales}
 
-
+% 
 \section{Introducción histórica}
 
 
@@ -54,6 +54,8 @@ with Mathematica\textregistered\\
 
 \section{Cambios de Variables}
 
+
+
 Vamos a seguir estudiando ecuaciones no lineales de primer orden
 
 \boxedeq{\frac{dy}{dx}=f(x,y)}{eq:gral_orden1}
@@ -102,7 +104,7 @@ Que es una expresión sólo en $\hat{y}$ y $x$. Parece más complicada, pero en 
 
 
 
-\begin{ejemplo} Hacer el cambio de variable propuesto en la  ecuación indicada
+\begin{ejemplo}{} Hacer el cambio de variable propuesto en la  ecuación indicada
 \[y=\frac{e^{\hat{y}}}{x}\quad\text{en}\quad  y'=\left[\ln(xy)\right]^2xy-\frac{y}{x}.\]
  1) Expresemos $dy/dx$ sólo con $x$, $\hat{y}$ y $d\hat{y}/dx$.
 \[\frac{dy}{dx}=-\frac{e^{\hat{y}}}{x^2}+\frac{e^{\hat{y}}}{x}\frac{d\hat{y}}{dx}.\]
@@ -116,28 +118,26 @@ Que es una expresión sólo en $\hat{y}$ y $x$. Parece más complicada, pero en 
 
 \end{ejemplo}
 
-\advertencia \emph{Importante:} Observar  que en un cambio de variable, ya se cambie la variable dependiente, independiente o ambas, las derivadas (tratándose de la velocidad de cambio de unas variables repecto a otras)  también hay que cambiarlas.
+  \emph{Importante:} Observar  que en un cambio de variable, ya se cambie la variable dependiente, independiente o ambas, las derivadas (tratándose de la velocidad de cambio de unas variables repecto a otras)  también hay que cambiarlas.
 
 
 Podemos resolver los cambios de variables con \texttt{SymPy}, lo cual es muy útil por dos motivos. El primero porque nos permite hacer cambios de variables en expresiones muy grandes, resolviendo operaciones que a mano son sumamente tediosas. El segundo, y no menos importante para nosotros, es que es muy rico explorar un procedimiento enmarcándolo en un contexto muy distinto. En este caso, el procedimiento es relizar un cambio de variables y estamos explorando el mismo a través de un breve código que lo implementa en un lenguaje de programación.
 
-\lstinputlisting[language=Python]{scripts/sust1.py}
-\marginpar{
-\begin{pspicture}(0,0)(1in,2in)
-      %\rput(0,1){
-      \scalebox{.7}{\psbarcode[file]{scripts/sust1.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
+\begin{sympyblock}[][frame=single]
+x=symbols('x') #unico simbolo primitivo
+y_n=Function('y_n')(x) #variables nuevas, funciones de x
+y=exp(y_n)/x #relacion entre y, y_n
+eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0) #la ecuacion
+eq1=simplify(eq) # simplifica expresiones
+\end{sympyblock}
 Obtenemos la ecuación
-\[\frac{1}{x} \left(- x \log^{2}{\left (e^{\operatorname{y\_n}{\left (x \right )
-}} \right )} + \frac{d}{d x} \operatorname{y\_n}{\left (x \right )}\right) e^{
-\operatorname{y\_n}{\left (x \right )}} = 0\]
+
+\[\sympy{eq1},\]
 que \texttt{SymPy} no simplifica a nuestro gusto
 
-
-
-
+% 
+% 
+% 
 \subsubsection{Cambio de la variable independiente manteniendo la dependiente}
 
 Supongamos  $\hat{x}=\hat{x}(x)$. Usamos la relación
@@ -149,7 +149,7 @@ Que es una expresión sólo en $\hat{x}$ e $y$. Describir el procedimiento  en g
 
 
 
-\begin{ejemplo} Hacer el cambio de variable en la  ecuación indicados
+\begin{ejemplo}{} Hacer el cambio de variable en la  ecuación indicados
 \[x=\cos \hat{x}\quad\text{en}\quad  -\frac{dy}{dx}+\frac{x}{\sqrt{1-x^2}}y=0.\]
 1) $\hat{x}=\arcsen x$
 \[\frac{dy}{dx}=\frac{dy}{d\hat{x}} \frac{d\hat{x}}{dx}  =-\frac{1}{\sqrt{1-x^2}}\frac{dy}{d\hat{x}}.\]
@@ -161,20 +161,19 @@ Que es una expresión sólo en $\hat{x}$ e $y$. Describir el procedimiento  en g
 \end{ejemplo}
 
 
-Para hacer esto con \texttt{SymPy} (de ahora en más omitiremos la sentencia de importanción del módulo, esta operación se hace sólo una vez por sesion).
-\lstinputlisting[language=Python]{scripts/sust2.py}
-\marginpar{
-\begin{pspicture}(0,0)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.7}{\psbarcode[file]{scripts/sust2.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
+Para hacer esto con \texttt{SymPy} (de ahora en más omitiremos la sentencia de importanción del módulo, esta operación se hace sólo una vez por sesión).
+
+\begin{sympyblock}[][frame=single]
+x,x_n=symbols('x,x_n')
+x_n=acos(x)
+y=Function('y')(x_n)
+Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
+xn=symbols('xn')
+Eq=Ecuacion.subs(x,cos(xn))
+\end{sympyblock}
+
 Obtenemos la ecuación
-\[\frac{y{\left (\operatorname{acos}{\left (\cos{\left (xn \right )} \right )} \right )} \cos{\left (xn \right )}}{\sqrt{- \cos^{2}{\left (xn \right )} + 1}}
-+ \frac{1}{\sqrt{- \cos^{2}{\left (xn \right )} + 1}} \left. \frac{d}{d \xi_{1
-}} y{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\operatorname{acos}{
-\left (\cos{\left (xn \right )} \right )} }}\]
+\[\sympy{latex(Eq)}\]
 Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, esto ocurre aún con aquellas expresiones que parece muy evidente como se simplifican. El caso es que la operación de simplificación es por un lado  subjetiva, depende de un supuesto tácito de a que expresión se quiere arribar y por otro algunas expresiones, por ejemplo $\ln\exp(z)$, se simplifican en determinados campos numéricos y en otros no. En el caso del ejemplo $\ln\exp(z)$, la expresión es simplificable si $z\in\rr$, pero no lo es si por ejemplo $z\in\mathbb{C}$. De modo que no puede esperarse que Sympy efectúe esta simplificación a menos que conozca que se trabaja en el campo numérico indicado. Hay que distinguir que supuestos tácitos está haciendo uno y hay que indicarselos a Sympy.    El lector debe tener en cuenta que en ningún momento uno le dijo a \texttt{SymPy} que tipo de ente estaba manipulando en expresiones del tipo \texttt{x\_n=acos(x)}. Puede parecer natural que se trata de números reales, no obstante esta 
 información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el habría de entender que \texttt{x} es real? Si al fin y al cabo \texttt{x\_n=acos(x)} tiene sentido si \texttt{x} es complejo y aún si es una matríz. Muchas veces las operaciones que se simplifican en un campo no lo pueden hacer en otro. El comando  \texttt{symbols} tiene la opción de informar a \texttt{SymPy} que tipo de ente representa \texttt{x} de la siguiente forma
 \texttt{x=symbols('x',real=True)}. De esta forma se consiguen mejores resultados en las simplificaciones.
@@ -192,7 +191,7 @@ información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el 
 
 
 
-\begin{ejemplo}\label{ej:cambio_forma} Transformar a polares
+\begin{ejemplo}{ej:cambio_forma} Transformar a polares
  \[
   \frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.
  \]
@@ -200,27 +199,28 @@ información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el 
 
 Dado que el cálculo es extenso lo haremos con \texttt{SymPy}, el procedimiento seguido ilustra como hacerlo a mano. Es ilustrativo hacer esto último para apreciar la utilidad de usar un sistema de álgebra computacional (SAC) como \texttt{SymPy}.
 
-\lstinputlisting[language=Python]{scripts/sust3.py}
-\marginpar{
-\begin{pspicture}(0,-.5)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.7}{\psbarcode[file]{scripts/sust3.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
+\begin{sympyblock}[][frame=single]
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff(x)/theta.diff(x)
+\end{sympyblock}
+
+
 
 Obtenemos la siguiente expresión 
-\[\frac{dr}{d\theta}=\frac{\frac{dr}{dx}}{\frac{d\theta}{dx}}=\frac{\left(1 + \frac{1}{x^{2}} y^{2}{\left (x \right )}\right) \left(x + y{\left (x \right )} \frac{d}{d x} y{\left (x \right )}\right)}{\sqrt{x^{2} + y^{2}{\left (x \right )}} \left(\frac{1}{x} \frac{d}{d x} y{\left (x \right )} - \frac{1}{x^{2}} y{\left (x \right )}\right)}.\]
+\[\sympy{latex(Expr2)}.\]
 Ahora sustituímos $y'(x)$ usando la ecuación diferencial, redefinimos $r,\theta$ fundamentalmente para limpiar el valor que tenían asignado en el código previo, que era una expresión de $x,y$, y finalmente sustituímos $x$ e $y$ por su expresión en polares.
 
-\lstinputlisting[language=Python]{scripts/sust4.py}
-\marginpar{
-\begin{pspicture}(0,-.5)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.6}{\psbarcode[file]{scripts/sust4.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
+\begin{sympyblock}[][frame=single]
+Expr3=Expr2.subs(y.diff(x),(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+r,theta=symbols('r,theta',positive=True)
+Expr4=Expr3.subs([(y,r*sin(theta)),(x,r*cos(theta))])
+Expr5=simplify(Expr4)
+\end{sympyblock}
+
+
  Encontramos que en polares la ecuación es mucho más simple
 \[\frac{dr}{d\theta}=-r^3+r.\]
 
@@ -255,16 +255,16 @@ Es usual omitir el punto para indicar la operación, i.e. escribimos $g\cdot h=g
 
 
 
-\begin{ejemplo} Sea $\Pi$ un plano euclideano y $G$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo. Entonces $G$ es un grupo con la operación de composición. Se llama el \emph{grupo de transformaciones rígidas}.
+\begin{ejemplo}{} Sea $\Pi$ un plano euclideano y $G$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo. Entonces $G$ es un grupo con la operación de composición. Se llama el \emph{grupo de transformaciones rígidas}.
  \end{ejemplo}
 
 
-\begin{ejemplo}  Sea $X=\{x_1,\ldots,x_n\}$ un conjunto de $n$ elementos y $S_n$ definido por
+\begin{ejemplo}{}  Sea $X=\{x_1,\ldots,x_n\}$ un conjunto de $n$ elementos y $S_n$ definido por
 \[S_n=\{\sigma|\sigma:X\to X\hbox{ y }\sigma \hbox{ es biyectiva }\}\]
 Entonces $S_n$ es un grupo  con la operación de composición. Se denomina \href{http://es.wikipedia.org/wiki/Grupo_simétrico}{\emph{grupo simétrico}}.
  \end{ejemplo}
 
-\begin{ejemplo} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$. Para un triángulo equilatero:
+\begin{ejemplo}{} Sea $\Delta$ un polígono regular de $n$ lados  en un plano euclideano $\Pi$ y $D_{2n}$ el conjunto de todas las transformaciones rígidas de $\Pi$ en si mismo que llevan $\Delta$ en si mismo. $D_{2n}$ se llama el \href{http://es.wikipedia.org/wiki/Grupo_diedral}{\emph{grupo diedral}}  de orden $2n$. Para un triángulo equilatero:
 \begin{center}
 \includegraphics[scale=.4]{imagenes/SimTria.jpg}
 \end{center}
@@ -291,7 +291,7 @@ Como en el caso de grupos suele nos escribirse el símbolo de la operación bina
 
 Los cambios de variables de un conjunto de dos variables, digamos $x$ e $y$, son funciones $\Gamma$, invertibles,  de clase $C^1$, donde $\Gamma:\Omega_1\to\Omega_2$, con $\Omega_1,\Omega_2$ abiertos de $\rr^2$.  Acostumbraremos escribir $(\hat{x},\hat{y})=\Gamma(x,y)$ y diremos que $(\hat{x},\hat{y})$ son la variables nuevas y $(x,y)$ las viejas.
 
-\begin{ejemplo} \textbf{Coordenadas polares.} Es más facil describir la transformación que lleva coordenadas polares en cartesianas. En este caso $(x,y)=\Gamma(r,\theta)$ y
+\begin{ejemplo}{} \textbf{Coordenadas polares.} Es más facil describir la transformación que lleva coordenadas polares en cartesianas. En este caso $(x,y)=\Gamma(r,\theta)$ y
 \[
 \begin{array}{ll}
 \Gamma(r,\theta)&=(r\cos(\theta),r\sen(\theta)),\\
@@ -331,7 +331,7 @@ para $|\epsilon-\epsilon_0|<r$.
 
 
 
-\begin{ejemplo} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
+\begin{ejemplo}{} Demostrar que las siguientes aplicaciones inducen grupos de Lie uniparamétricos
 \begin{enumerate}
 \item $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$ y $\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)$.
 \item $\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,y)$
@@ -345,22 +345,26 @@ $
 \end{ejemplo}
 
 Vamos a desarrollar sólo el ejemplo de $\Gamma_{\epsilon}(x,y)=(x+\epsilon,y)$. La propiedad 1 en la definición la chequearemos con  \texttt{SymPy}. 
-\marginpar{
-\begin{pspicture}(0,3)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.5}{\psbarcode[file]{scripts/prop_grupo.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
- \lstinputlisting[language=Python]{scripts/prop_grupo.py}
+
+\begin{sympyblock}[][frame=single]
+x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
+T=Matrix([x+epsilon,y])
+x_copete=T.subs(epsilon,epsilon1)[0]
+y_copete=T.subs(epsilon,epsilon1)[1]
+PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])\
+-T.subs(epsilon,epsilon1+epsilon2)
+\end{sympyblock}
+
+\[\sympy{latex(PropGrupo)}.\]
+
 
  La propiedad 2 en la definición es evidente y la propiedad 3 es siempre consecuencia de 1. y 2. 
-Se incluyó en la lista sólo para resaltar su cumplimiento, pero no es necesario chequearla. La propiedad 4. es clara la 5. también lo es, notar que el desarrollo en serie \eqref{eq:des_serie} es válido en este caso con $a_0(x,y)=x$, $a_1(x,y)=1$, $a_j(x,y)=0$, $j\geq 2$, $b_0(x,y)=y$ y $b_j(x,y)=0$, $j\geq 1$. La justificaciones correspondientes al resto de los ejemplos queda como ejercicio.\actividad
+Se incluyó en la lista sólo para resaltar su cumplimiento, pero no es necesario chequearla. La propiedad 4. es clara la 5. también lo es, notar que el desarrollo en serie \eqref{eq:des_serie} es válido en este caso con $a_0(x,y)=x$, $a_1(x,y)=1$, $a_j(x,y)=0$, $j\geq 2$, $b_0(x,y)=y$ y $b_j(x,y)=0$, $j\geq 1$. La justificaciones correspondientes al resto de los ejemplos queda como ejercicio.
 
 
  Las reflexiones en el plano, por ejemplo $\Gamma(x,y)=(-x,y)$,  no pueden  pertenecer a un  grupo de Lie uniparamétrico. Más generalmente:
  
- \begin{teorema}
+ \begin{teorema}{}
    Una transformación  $T:\rr^2\to\rr^2$ tal que el determinante de la matriz Jacobiana $\det(DT)$ sea negativo en algún punto no puede pertenecer a un grupo de Lie uniparamerico. Dicho de otro modo, debe ocurrir que $\det(D\Gamma_{\epsilon})>0$ para todo $\epsilon$ y todo grupo $\{\Gamma_{\epsilon}\}$.
  \end{teorema}
 \begin{proof}
@@ -399,13 +403,13 @@ Una transformación o cambio de variables $\Gamma$ se denomina una \emph{simetr�
 De acuerdo con \eqref{eq:subsder} para que $(\hat{x},\hat{y})=\Gamma(x,y)$ sea una simetría de \eqref{eq:principi} se debe cumplir que
  \boxedeq{\frac{\frac{\partial\hat{y}}{\partial x}+\frac{\partial\hat{y}}{\partial y}f(x,y)}{\frac{\partial\hat{x}}{\partial x}+\frac{\partial\hat{x}}{\partial y}f(x,y)}=f(\hat{x},\hat{y})}{eq:cond_sim}
 
- Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de un  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}.\link
+ Esta ecuación se llama \emph{condición de simetría}. Es una ecuación en derivadas parciales, en principio más compleja que la ecuación original. Tiene varios grados de libertad, por lo que suele haber muchas simetrías.  Es común que encontremos soluciones a  traves de un  \href{http://es.wikipedia.org/wiki/Ansatz}{ansatz}. 
 
 
 
 
 
- \begin{ejemplo} Consideremos la ecuación
+ \begin{ejemplo}{} Consideremos la ecuación
    \begin{equation}\label{eq:trivial}y'=0.
     \end{equation}
     \begin{wrapfigure}[10]{r}{5.5cm}
@@ -425,7 +429,7 @@ Debemos tener que $\frac{\partial\hat{y}}{\partial x}=0$. Vale decir $\hat{y}$ e
 
 
 
- \begin{ejemplo} Hallar simetrías de
+ \begin{ejemplo}{} Hallar simetrías de
 \[\frac{dy}{dx}=f(x).\]
 \end{ejemplo}
 De acuerdo con \eqref{eq:subsder} se debe cumplir que
@@ -454,9 +458,11 @@ Soluciones de $y'=x^3-x$ &\hspace{-1.5cm}Soluciones de $y'=y^3-y$
 
 
 
-\begin{ejemplo}
+\begin{ejemplo}{}
  Demostrar que las rotaciones alrededor del origen es un grupo de Lie uniparamétrico de simetrías de
- \[\frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.\]
+ \begin{equation}\label{eq:ejemplo_polar}
+  \frac{dy}{dx}=\frac{y^3+x^2y-x-y}{x^3+xy^2-x+y}.
+ \end{equation}
 \end{ejemplo}
 Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrededor del origen. Es un ejercicio demostrar que  $\{\Gamma_{\epsilon}|\epsilon\in\rr\}$ es un grupo uniparamétrico de simetrías. Se tiene la representación matricial
 \[
@@ -477,14 +483,22 @@ Sea $\Gamma_{\epsilon}$ la transformación que rota un ángulo $\epsilon$ alrede
 
 
 Para el cálculo recurrimos a \texttt{SymPy} (usamos \texttt{x\_n} en lugar de $\hat{x}$)
-\marginpar{
-\begin{pspicture}(0,5)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.5}{\psbarcode[file]{scripts/sim_ecua1.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}e
- \lstinputlisting[language=Python]{scripts/sim_ecua1.py}
+
+\begin{sympyblock}[][frame=single]
+x,theta=symbols('x,theta')
+y=Function('y')(x)
+x_n=cos(theta)*x-sin(theta)*y
+y_n=sin(theta)*x+cos(theta)*y
+Expr2=y_n.diff(x)/x_n.diff(x)
+Expr3=Expr2.subs(y.diff(),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+x_n,y_n=symbols('x_n,y_n')
+Expr4=Expr3.subs([(y, -sin(theta)*x_n+cos(theta)*y_n),\
+(x,cos(theta)*x_n+sin(theta)*y_n)])
+Expr5=simplify(Expr4) 
+\end{sympyblock}
+
+
 
 
 
@@ -493,8 +507,7 @@ Para el cálculo recurrimos a \texttt{SymPy} (usamos \texttt{x\_n} en lugar de $
  \includegraphics[scale=.4]{imagenes/sol_rotadas.png}
 \end{wrapfigure}
 La ecuación resultante es \emph{la misma}
-\[\frac{dy_n}{dx_n}=\frac{x_{n}^{2} y_{n} - x_{n} + y_{n}^{3} - y_{n}}{x_{n}^{3} + x_{n} y_{n}^{2}
-    - x_{n} + y_{n}}.\]
+\[\sympy{latex(Expr5)}\]
 A la misma conclusión arribábamos si recordabamos que en en coordenadas polares la ecuación se escribe
 \[\frac{dr}{d\theta}=r-r^3,\]
 y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (r,\theta+\epsilon)$. Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
@@ -506,7 +519,7 @@ y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (
 
 
 
-\begin{ejemplo}\label{ejem:tras} Supongamos que $y'=f(x,y)$ tiene  el grupo de Lie uniparamétrico de simetrías
+\begin{ejemplo}{ejem:tras} Supongamos que $y'=f(x,y)$ tiene  el grupo de Lie uniparamétrico de simetrías
 \boxedeq{(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(x,y+\epsilon)}{eq:tras_lie}
 Usando la condición de simetrías \eqref{eq:cond_sim} tenemos
 \[f(x,y)=f(\hat{x},\hat{y})=f(x,y+\epsilon).\]
@@ -545,7 +558,7 @@ Un punto $(x,y)$ se llama invariante si su órbita se reduce a $\{(x,y)\}$, vale
 
 
 
-\begin{ejemplo} La órbita de $(x,y)$ bajo la acción del grupo  de Lie uniparamétrico
+\begin{ejemplo}{} La órbita de $(x,y)$ bajo la acción del grupo  de Lie uniparamétrico
 \[
 \Gamma_{\epsilon}(x,y)= \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
@@ -581,7 +594,7 @@ Como $\hat{x},\hat{y}$ eran analíticas respecto a $\epsilon$ tenemos las fórmu
 
 
 
-\begin{ejemplo}
+\begin{ejemplo}{}
 Campo vectorial de infitesimales para las rotaciones. 
 \end{ejemplo}
 \begin{figure}[h]
@@ -602,17 +615,13 @@ simetrías de Lie $\Gamma_{\epsilon}$ si y sólo si $\forall \epsilon: \Gamma_{\
 es invariante.
 
 \item Se $C$ es una curva plana suave, supongamos que $C$ viene dada por la ecuación implícita $g(x,y)=0$, con $\nabla g\neq 0$.  Supongamos que  $(\xi,\eta)\neq (0,0)$ sobre $C$. Entonces $C$ es invariante si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es
-paralela a $(\xi(x,y),\eta(x,y))$. La demostración de este hecho se propone como ejercicio. \actividad
+paralela a $(\xi(x,y),\eta(x,y))$. La demostración de este hecho se propone como ejercicio.  
 \item Si en particular $C$ es una curva que viene descripta como el gráfico de una función $y=h(x)$, entonces $C$ es invariante si y sólo si
 \boxedeq{Q(x,y,y')=\eta(x,y)-h'\xi(x,y)\equiv 0.}{eq:inv}
 En efecto, en este caso $g(x,y)=y-h(x)$ (notar que $\nabla g=(-h'(x),1)\neq 0$). Como $\nabla g$ es perpendicular a $C$ tenemos la ecuación \eqref{eq:inv}. La ecuación \eqref{eq:inv} se llama \emph{ecuación característica}.
 
 
-% \begin{definicion}[Curvas invariantes]
-% Una curva plana $C$ se dice invariante por un grupo uniparamétrico de simetrías de Lie si y sólo si la tangente a  $C$ en cada punto $(x,y)$ es paralela a $(\xi(x,y),\eta(x,y))$. Si $C$ es el gráfico de una función $x\mapsto y(x)$, como $(1,y'(x))$ es un vector tangente a la gráfica, la condición que $C$ es invariante se escribe
-% \boxedeq{Q(x,y,y')=\eta(x,y)-y'\xi(x,y)\equiv 0}{eq:inv}
-% Esta se llama \emph{ecuación característica}.
-% \end{definicion}
+
 
 
 
@@ -624,7 +633,7 @@ A esta ecuación la llamamos  \emph{ecuación característica reducida}.
 
 
 El recíproco también es cierto.
-\begin{teorema}\label{teo:invariantes}
+\begin{teorema}{teo:invariantes}
  Supongamos que $y(x)$ es solución de la ecuación característica y que
  \[\left.\frac{\partial \overline{Q}}{\partial y}\right|_{y=y(x)}\neq 0.\]
  Entonces $y(x)$ es una solución invariante de la ecuación.
@@ -636,7 +645,7 @@ El recíproco también es cierto.
 
 
 
-\begin{ejemplo} La EDO
+\begin{ejemplo}{} La EDO
 \begin{equation}\label{eq:eq_simple}y'=y
  \end{equation}
 tiene simetrías de escala
@@ -651,7 +660,7 @@ Esta formada enteramente por puntos invariantes.
 
 
 
-\begin{ejemplo}\actividad Demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
+\begin{ejemplo}{} Demostrar que la siguiente expresión es un grupo de Lie uniparamétrico de simetrías
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{(e^{\epsilon}-1)x}y),\]
 para la ecuación \eqref{eq:eq_simple}.
 Para este grupo tenemos
@@ -680,7 +689,7 @@ Buscamos el cambio de variables inverso
 
 Las soluciones son $y=ke^x$, sustituímos en esta expresión, luego de unas operaciones, llegamos a $\hat{y}=ke^{\hat{x}}$.
 
-\begin{ejemplo} La ecuación de Riccati
+\begin{ejemplo}{} La ecuación de Riccati
 \[y'=xy^2-\frac{2y}{x}-\frac{1}{x^3},\quad x\neq 0\] 
  Tiene el grupo de Lie de simetrías
 \[(\hat{x},\hat{y})=\Gamma_{\epsilon}(x,y)=(e^{\epsilon}x,e^{-2\epsilon}y).\]
@@ -737,7 +746,7 @@ Derivando respecto a $\epsilon_1$ y evaluando en $\epsilon_1=0$ justificamos las
 
 El \emph{sistema de ecuaciones} \eqref{eq:ecua_infinitesimales}    puede ser difícil de resolver. Pero en algunos casos puede ser posible.
 
- \begin{ejemplo} Encontrar el grupo de simetrías para los infinitesimales $\xi(x,y),\eta(x,y))=(x^2,xy)$.
+ \begin{ejemplo}{} Encontrar el grupo de simetrías para los infinitesimales $\xi(x,y),\eta(x,y))=(x^2,xy)$.
    \end{ejemplo}
 
 
@@ -790,8 +799,9 @@ Cada solución de \eqref{eq:CondSimLin2} conlleva una infinita cantidad de grupo
 \[ \frac{dx}{1}=\frac{dy}{f}=\frac{d\overline{Q}}{f_y\overline{Q}}.\]
 La primera igualdad en la ecuación anterior equivales a $dy/dx=f$, que es al fin y al cabo, la ecuación que queremos resolver. Así estas consideraciones parecen habernos llevado al origen de nuestro problema. No obstante, algunas veces es posible encontrar una solución de \eqref{eq:CondSimLin} recurriendo a un ansatz.
 
- \begin{ejemplo} Encontrar un grupo de Lie de simetrías no trivial de $y'=\frac{y}{x}+x$.
+ \begin{ejemplo}{} Encontrar un grupo de Lie de simetrías no trivial de $y'=\frac{y}{x}+x$.
    \end{ejemplo}
+
 
  
  La condición de simetría linealizada es
@@ -822,6 +832,89 @@ Cuya solucion general es $\boxed{\eta=cx}$. Ahora podemos encontrar simetrías d
 
 Podemos constatar de manera directa que $\hat{x}=x$ e $\hat{y}=c\epsilon x+y$ constituyen un grupo de Lie uniparamétrico de simetrías de la ecuación, para el cual $\overline{Q}\neq 0$.
 
+
+ \begin{ejemplo}{} Encontrar valiendose de SymPy los infinitesimales  de la ecuación \eqref{eq:ejemplo_polar}.
+   \end{ejemplo}
+   
+\begin{sympyblock}[][frame=single]
+from sympy import *
+init_printing()
+x,y=symbols('x,y',real=True)
+f=(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y)
+\end{sympyblock}
+
+Cómo en muchos otras situaciones que se presentan cuando intentamos resolver de manera exacta ecuaciones diferenciales,  debemos recurrrir a una heurística \marginpar{\textbf{Heurística:} ...significa «hallar, inventar» (etimología que comparte con eureka)... Cuando se usa como sustantivo, se refiere a la disciplina, el arte o la ciencia del descubrimiento... Cuando aparece como adjetivo, se refiere a cosas más concretas, como estrategias, reglas, silogismos y conclusiones heurísticas. Estos dos usos están íntimamente relacionados, ya que la heurística usualmente propone estrategias que guían el descubrimiento. El término fue utilizado por Albert Einstein en la publicación sobre efecto fotoeléctrico (1905). 
+\begin{flushright}
+ Wikipedia
+\end{flushright}
+ } con el objeto de resolver  el problema. Por ejemplo, SymPy incorpora una estrategia de busqueda entre distintos candidatos a infinitesimales, ver \cite{Lie_Sympy,cheb1997computer} para los detalles. Por ejemplo, la primer heurística que se enumera en \cite{Lie_Sympy} es la que usamos en el ejemplo anterior, es decir $\xi=0$ y $\eta=\eta(x)$. En el ejemplo actual, vamos a usar la siguiente heurística
+ \[\xi=ax+by+h,\quad \eta=cx+dy+k.\]
+\begin{sympyblock}[][frame=single]
+a,b,c,d,h,k=symbols('a,b,c,d,h,k',real=True)
+xi=a*x+b*y+h
+eta=c*x+d*y+k
+Q=eta-f*xi
+\end{sympyblock}
+
+Reemplazamos el valor de $Q$ en la condición de simetría linealizada.
+\begin{sympyblock}[][frame=single]
+CondSim=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSim=simplify(CondSim)
+\end{sympyblock}
+Llegamos a una ecuación de la forma
+\[
+ \frac{P_1(x,y)}{P_2(x,y)}=0,
+\]
+donde $P_1$ y $P_2$  son polinomios bivariados. Obviamente sólo nos interesa $P_1$, que podemos extraer de la siguiente forma 
+\begin{sympyblock}[][frame=single]
+P1,P2=fraction(CondSim)
+P1
+\end{sympyblock}
+Obtenemos la siguiente expresión  monstruosa de $P_1$, que sólo reproducimos a modo anecdótico
+
+\[
+\begin{split}
+P_1 =&- a x^{4} - 2 a x^{2} y^{2} - a x^{2} + 2 a x y - a y^{4} + a y^{2} - b x^{2} - 2 b x y\\
+&+ b y^{2} - c x^{2} - 2 c x y+ c y^{2} - d x^{4} - 2 d x^{2} y^{2}
++ d x^{2} - 2 d x y\\
+&- d y^{4} - d y^{2} + h x^{4} y - 2 h x^{3} + 2 h x^{2} y^{3} - 2 h x^{2} y - 2 h x y^{2} + h y^{5}\\
+&- 2 h y^{3} + 2 h y - k x^{5} - 2 k x^{3} y^{2} + 2 k x^{3} - 2 k x^{2} y - k x y^{4} + 2 k x y^{2}\\
+&- 2 k x - 2 k y^{3}
+\end{split}
+\]
+
+Hay que resolver $P_1=0$. A pesar de la apariencia atemorizante de esta ecuación, es completamente inofensiva si tenemos en mente que el ``juego'' consiste en hallar los coeficientes $a,b,c,d,h,k$ que resuelven la ecuación para todo $x$ e $y$. De modo que podemos reemplazar $x$ e $y$ por distintos valores y resolver las ecuaciones resultantes. En el código debajo usamos el método \texttt{collect(x)} que agrupa los términos de una expresión que tienen la misma potencia para $x$.
+
+\begin{sympyblock}[][frame=single]
+P1.subs(y,0).collect(x)
+\end{sympyblock}
+Resulta
+\[
+ 0=- k x^{5} - 2 k x + x^{4} (- a - d) + x^{3} (- 2 h + 2 k) + x^{2} (- a - b - c + d)
+\]
+Es un polinomio en $x$ que debería ser identicamente $0$, debe para ello tener todos los coeficientes iguales a $0$. Inferimos  inmediatamente de esto que $k=h=0$, $d=-a$ y $c=-2a-b$. Reemplacemos ahora $y$ por $1$.  
+
+\begin{sympyblock}[][frame=single]
+P11=P1.subs({h:0,k:0,d:-a,c:-2*a-b})
+P11.subs(y,1).collect(x)
+\end{sympyblock}
+Resulta en la expresión $8ax$,  que si es identicamente $0$ fuerza  que $a=0$. Luego $d=0$ y $c=-b$. El valor de $c$ es arbitrario, se puede elegir cualquiera, elejimos $c=1$ y por consiguiente $b=-1$.   
+ 
+ \begin{sympyblock}[][frame=single]
+xi=xi.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+eta=eta.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+xi,eta
+\end{sympyblock}
+Cocnluímos $\xi=-y$ y $\eta=x$. Todavía no estamos seguros que estos $\xi$ y $\eta$ resuelvan nuestro problema. El razonamiento anterior está incompleto sino chequeamos que la solución obtenida resuelve la ecuación de simetría linealizada para todo $x$ e $y$, esto porque con la metodología  utilizada solo estamos seguros que los valores obtenidos para los coeficientes   solucionan el problema en los valores que elegimos para $y$ ($y=0$ e $y=1$). Ahora podemos chequear que en realidad se resuelve la ecuación de simetría linealizada para cualquier valor de $x$ e $y$.  
+ \begin{sympyblock}[][frame=single]
+CondSimLin=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSimLin.simplify()
+\end{sympyblock}
+
+
+Que definitivamente establece que la elección que hemos hecho resuelve el problema.
+
+ 
 \textbf{Completación de la demostración  del Teorema \ref{teo:invariantes}}.
 Restaba demostrar que si $y(x)$ resuelve la ecuación $\overline{Q}(x,y(x))=0$ y $\overline{Q}_y\neq 0$ en los puntos a lo largo de la curva $(x,y(x))$ entonces $y(x)$ es solución invariante de la ecuación $y'=f$. 
 
@@ -846,7 +939,7 @@ $\overline{Q}=0$.
 
 \boxedeq{(\hat{r},\hat{s}):= (r(\hat{x},\hat{y}),s(\hat{x},\hat{y}))=(r(x,y),s(x,y)+\epsilon).}{eq:coorcan}
 \end{definicion}
- \begin{ejemplo} Las coordenadas polares son canónicas respecto al grupo de Lie de rotaciones. Las rotaciones en coordenadas cartesianas y polares se escriben
+ \begin{ejemplo}{} Las coordenadas polares son canónicas respecto al grupo de Lie de rotaciones. Las rotaciones en coordenadas cartesianas y polares se escriben
 \[
  \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
@@ -867,9 +960,6 @@ Derivando las ecuaciones \eqref{eq:coorcan} respecto a $\epsilon$ obtenemos
  Los cambios de coordenadas deben ser invertibles, de modo que pediremos la condición de no degeneración
 \boxedeq{\frac{\partial r}{\partial x}\frac{\partial s}{\partial y}-\frac{\partial r}{\partial y}\frac{\partial s}{\partial x}\neq 0}{eq:no_deg}
 
-% \begin{definicion}[Coordendas canónicas generalizadas]
-% Cualquier par de coordenadas que satisfacen \eqref{eq:coor_can_dif} y \eqref{eq:no_deg} se llaman canónicas.
-% \end{definicion}
 
 
 
@@ -885,28 +975,7 @@ Derivando las ecuaciones \eqref{eq:coorcan} respecto a $\epsilon$ obtenemos
 
 \end{enumerate}
 
-% 
-% 
-% \subsection{Generador Infinitesimal}
-% 
-% \begin{definicion}[Generador Infinitesimal]
-% Al operador diferencial
-% \boxedeq{X=\xi(x,y)\frac{\partial }{\partial x}+\eta(x,y)\frac{\partial }{\partial y}}{eq:generador_infinitesimal}
-% se lo suele denominar \emph{Generador Infinitesimal}. La acción del operador sobre una función $f$ diferenciable es tomar la derivada direccional en la dirección del campo $(\xi,\eta)$. 
-% \end{definicion}
-% 
-% Las ecuaciones \eqref{eq:coor_can_dif} se escriben de manera compacta
-% \boxedeq{
-% \begin{array}{ll}
-% Xr&=0\\
-% Xs&=1
-% \end{array}
-% }{eq:coor_can_difb}
-% La primera expresa que $r$ no cambia en la dirección del campo.
-% 
-% 
-% 
-% 
+
 
 
 
@@ -919,7 +988,7 @@ Derivando las ecuaciones \eqref{eq:coorcan} respecto a $\epsilon$ obtenemos
 
 
 
- \begin{teorema}[Propiedad de conservación de coordenadas canónicas] Si $(r,s)$ son coordenadas canónicas de una grupo de Lie de simetrías entonces $r$ es una integral primera de la ecuación
+ \begin{teorema}[Propiedad de conservación de coordenadas canónicas]{} Si $(r,s)$ son coordenadas canónicas de una grupo de Lie de simetrías entonces $r$ es una integral primera de la ecuación
 \begin{equation}\label{eq:int_pri} \frac{dy}{dx}=\frac{\eta(x,y)}{\xi(x,y)}.
 \end{equation}
 \end{teorema}
@@ -933,7 +1002,7 @@ Derivando las ecuaciones \eqref{eq:coorcan} respecto a $\epsilon$ obtenemos
 \]
 \qed
 
-\begin{ejemplo} Ya conocemos las coordenadas canónicas de las rotaciones,
+\begin{ejemplo}{} Ya conocemos las coordenadas canónicas de las rotaciones,
  \[
  \begin{pmatrix} \hat{x}\\ \hat{y}
 \end{pmatrix}=\begin{pmatrix} \cos(\epsilon) & -\sen(\epsilon)
@@ -963,7 +1032,7 @@ La coordenada $r$ es constante sobre los puntos en la gráfica de una solución 
 \end{equation}
 Ahora podemos aprovechar que ya conocemos $r$ y  expresar $y$ como función de $r,x$. Luego
 
-\begin{teorema}[Expresión para $s$]
+\begin{teorema}[Expresión para $s$]{}
 \boxedeq{s=\int\frac{ds}{dx}dx=\int\frac{dx}{\xi(x,y(r,x))}.}{eq:expr_coor_s}
 \end{teorema}
  
@@ -975,14 +1044,14 @@ Si ocurriese que $\xi=0$ y $\eta\neq 0$. Entonces por \eqref{eq:int_pri} $r_y=0$
 \boxedeq{s=\int\frac{dy}{\eta(r,y)} .}{eq:s_xi_0}
 
 
-\begin{ejemplo} Retornando al ejemplo de las rotaciones, donde hallamos que $r=\sqrt(x^2+y^2)$, vemos que
+\begin{ejemplo}{} Retornando al ejemplo de las rotaciones, donde hallamos que $r=\sqrt(x^2+y^2)$, vemos que
 \[s=\int\frac{dx}{-y}=-\int\frac{dx}{\sqrt{r^2-x^2}}=\arccos\left(\frac{x}{r}\right).\]
 Por consiguiente  $s$ es el ángulo polar.
 \end{ejemplo}
 
 
 \label{pag_ejem_canon1}
-\begin{ejemplo} Encontrar coordenadas canónicas para el grupo de Lie de simetrías
+\begin{ejemplo}{} Encontrar coordenadas canónicas para el grupo de Lie de simetrías
 \[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{k\epsilon}y)\quad k>0.\]
 \end{ejemplo}
 El vector tangente es
@@ -1002,7 +1071,7 @@ Son canónicas, están definidas en $x=0$ pero no en $y=0$.
 
 %%%%%%%%%%%%%
 
-\begin{ejemplo} Encontrar coordenadas canónicas para
+\begin{ejemplo}{} Encontrar coordenadas canónicas para
 \[(\hat{x},\hat{y})=\left( \frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}\right).\]
 \end{ejemplo}
 
@@ -1017,14 +1086,20 @@ Luego $(r,s)=(\frac{y}{x},-\frac{1}{x})$ son canónicas.
 En este caso los puntos sobre $x=0$ son invariantes, no podemos definir coordenadas canónicas allí.
 
 Lo podemos desarrollar con \texttt{SymPy}. 
- \lstinputlisting[language=Python]{scripts/coor_canon.py}
-\marginpar{
-\begin{pspicture}(0,-2)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.5}{\psbarcode[file]{scripts/coor_canon.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
+
+\begin{sympyblock}[][frame=single]
+x,y,epsilon=symbols('x,y,epsilon')
+T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
+xi=T[0].diff(epsilon).subs(epsilon,0)
+print(xi)
+eta=T[1].diff(epsilon).subs(epsilon,0)
+print(eta/xi)
+y=Function('z')(x)
+sol=dsolve(y.diff(x)-y/x,y)
+print(sol)
+Integral(1/xi,x).doit()
+\end{sympyblock}
+
 
 
 
@@ -1038,7 +1113,7 @@ Las coordenadas canónicas nos dan otra manera de encontrar simetrías a partir 
 \end{enumerate}
 
 
-\begin{ejemplo} Hallar el grupo de simetrías asociado a los infinitesimales 
+\begin{ejemplo}{} Hallar el grupo de simetrías asociado a los infinitesimales 
 $\xi=x^2$ y $\eta=xy$.
 \end{ejemplo}
 
@@ -1072,7 +1147,7 @@ Cómo se justifica en el Ejemplo  \ref{ejem:tras}, $\hat{f}$ es independiente de
 que se resuelve integrando.
 
 
-\begin{ejemplo} Resolver
+\begin{ejemplo}{} Resolver
 \[y'=xy^2-\frac{2y}{x}-\frac{1}{x^3},\quad x\neq 0,\]
 sabiendo que la ecuación es invariante para el grupo de simetrías
 \[(\hat{x},\hat{y})=(e^{\epsilon}x,e^{-2\epsilon}y).\]
@@ -1107,7 +1182,7 @@ Que además son solución de la ecuación diferencial. La curva $y=-1/x^2$ se ob
 
 
 
-\begin{ejemplo} Resolver
+\begin{ejemplo}{} Resolver
 \[y'=\frac{y+1}{x}+\frac{y^2}{x^3},\quad x\neq 0,\]
 sabiendo que la ecuación es invariante para el grupo de simetrías
 \[(\hat{x},\hat{y})=\left(\frac{x}{1-\epsilon x},\frac{y}{1-\epsilon x}   \right).\]
@@ -1123,7 +1198,7 @@ cuya solución es
 
 
 \subsection{Ecuaciones homogéneas}
-\begin{ejemplo} En este ejemplo deduciremos nuevamente el método de solución de ecuaciones homogéneas apelando a las simetrías. Es decir, queremos resolver la ecuación
+\begin{ejemplo}{} En este ejemplo deduciremos nuevamente el método de solución de ecuaciones homogéneas apelando a las simetrías. Es decir, queremos resolver la ecuación
 \boxedeq{y'=F\left(\frac{y}{x}\right).}{eq:homogenea}
 \end{ejemplo}
 Aquí tenemos el Grupo de Lie de simetrías de cambio de escalas
@@ -1139,17 +1214,15 @@ La solución general es
 \subsection{Método de Lie y \texttt{SymPy}}
 \text{SymPy} Incorpora distintas estrategías para resolver ecuaciones por el método de Lie. Hay mucho por indagar al respecto, pero sólo vamos a mencionar una función para calcular los infinitesimales $(\xi,\eta)$.  Aprovechamos para mostrar como luce una consola de \texttt{ipython}, otra manera de usar \texttt{Python} y \texttt{SymPy}.
 
-\begin{lstlisting}
-￼In [1]: from sympy import *
-￼In [2]: init_printing()
-￼In [3]: x=symbols('x')
-￼In [4]: y=Function('y')(x)
-￼In [5]: from sympy.solvers.ode import infinitesimals
-￼In [6]: infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
-Out[6]: 
-\end{lstlisting}
+\begin{sympyblock}[][frame=single]
+x=symbols('x')
+y=Function('y')(x)
+from sympy.solvers.ode import infinitesimals
+xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
+ 
+\end{sympyblock}
 
-\[\left [ \left \{ \eta{\left (x,y{\left (x \right )} \right )} : x y{\left (x \right )}, \quad \xi{\left (x,y{\left (x \right )} \right )} : x^{2}\right \}\right ]\]
+\[\sympy{latex(xi_eta)}\]
 
 
 
@@ -1163,7 +1236,7 @@ Out[6]:
 \begin{subappendices}
  
 
-\section{Formas Diferenciales, una introducción ingenua}\label{section:fromas}
+\section{Formas Diferenciales, una introducción ingenua}%\label{section:fromas}
 
 
 
@@ -1171,10 +1244,10 @@ Out[6]:
 
  La  expresión \eqref{eq:gral_orden1} es más asimétrica, entre las variables $x$ e $y$ una de ellas es independiente ($x$) y la otra independiente  ($y$).  La expresión \eqref{eq:gral_orden1_FormDif}  es  más simétrica, las dos variables tienen el mismo estatus.
 
- Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial}\link. No disponemos del tiempo necesario para dotar con entidad matemática el concepto de forma diferencial. Tampoco  resulta de vital importancia. Pero las reglas que rigen la combinación de las formas diferenciales son muy simples y nos gustaría describir este aspecto de las formas diferenciales brevemente; como motivación para un estudio posterior más profundo y para que el lector gane en confianza en su manipulación. Daremos así una pintura de las formas diferenciales incompleta, por cuanto sólo diremos como ellas se combinan pero no contestaremos la pregunta de que son. Sólo digamos, para advertir al lector sobre los requisítos teóricos que se requieren, que las formas diferenciales se encuentran asociados al concepto de variedad diferencial, concepto este que generaliza al de curva y superficie.  Más 
+ Las expresiones del tipo \eqref{eq:gral_orden1_FormDif} representan un ente matemático importante llamado \href{http://es.wikipedia.org/wiki/Forma_diferencial}{forma diferencial} . No disponemos del tiempo necesario para dotar con entidad matemática el concepto de forma diferencial. Tampoco  resulta de vital importancia. Pero las reglas que rigen la combinación de las formas diferenciales son muy simples y nos gustaría describir este aspecto de las formas diferenciales brevemente; como motivación para un estudio posterior más profundo y para que el lector gane en confianza en su manipulación. Daremos así una pintura de las formas diferenciales incompleta, por cuanto sólo diremos como ellas se combinan pero no contestaremos la pregunta de que son. Sólo digamos, para advertir al lector sobre los requisítos teóricos que se requieren, que las formas diferenciales se encuentran asociados al concepto de variedad diferencial, concepto este que generaliza al de curva y superficie.  Más 
 concretamente, las formas diferenciales son funciones que toman valores en los duales de los espacios tangentes a las variedades diferenciales. En particular hay formas diferenciales asociadas a los espacios euclideo, que podemos identificar con  $\rr^n$.
 
-Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior}\link, que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma 
+Aqui vamos a pensar a las formas diferenciales como objetos puramente formales sobre los que actúa un operador $d$, leyes de composición internas y externas. Se construyen formas diferenciales invocando un sistema de coordenadas $x_1,\ldots,x_n$. Estas coordenadas, deben ser coordenadas de alguna variedad diferencial, pero, por simplicidad, supondremos que son coordenadas cartesianas ortogonales de un espacio euclideo. Las formas diferenciales forman un espacio vectorial con una operación de suma $+$ y producto por un escalar. Además tienen definido un producto $\wedge$, llamado \href{https://es.wikipedia.org/wiki/Producto_exterior}{producto exterior} , que posee  algunas particularidades.  Como los polinomios, las formas diferenciales tienen grado. Por eso se dice que forman un álgebra graduada. A diferencia de los polinomios, este grado no supera la dimensión $n$ del espacio ($\rr^n$ o más generalmente una variedad) a la que están asociadas. Para ser más exactas, la única forma 
 de 
 grado $k>n$ es la trivial, esto es la nula. Denotamos $\Lambda_k$ las formas de grado $k$, siendo $\Lambda =\bigoplus_{k=0}^{n}\Lambda_k$ el espacio vectorial de todas ellas. Luego $d:\Lambda\to\Lambda$ y $\wedge:\Lambda\times\Lambda\to \Lambda$. Ahora describimos unas simples reglas de las formas,  $d$ y $\wedge$.
 
@@ -1200,10 +1273,10 @@ grado $k>n$ es la trivial, esto es la nula. Denotamos $\Lambda_k$ las formas de 
 \end{enumerate}
 
 
-Una $k$-forma diferencial $\alpha$ se llama \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{exacta}\link cuando es el diferencial de una $k-1$-forma y se dice \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{cerrada}\link cuando $d\alpha=0$. Las propiedades de las formas implican que toda forma exacta es cerrda. Un famoso \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas#Lema_de_Poincar.C3.A9}{Lema de Poincare}\link trata con el recíproco de esta afirmación.
+Una $k$-forma diferencial $\alpha$ se llama \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{exacta}  cuando es el diferencial de una $k-1$-forma y se dice \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas}{cerrada}  cuando $d\alpha=0$. Las propiedades de las formas implican que toda forma exacta es cerrda. Un famoso \href{https://es.wikipedia.org/wiki/Formas_diferenciales_cerradas_y_exactas#Lema_de_Poincar.C3.A9}{Lema de Poincare}  trata con el recíproco de esta afirmación.
 
 Las reglas anteriores permiten computar cualquiera de las operaciones.
-\begin{ejemplo} Si $\alpha=M(x,y)dx+N(x,y)dy$ es una 1-forma de $\rr^2$, entonces
+\begin{ejemplo}{} Si $\alpha=M(x,y)dx+N(x,y)dy$ es una 1-forma de $\rr^2$, entonces
 \[ \begin{split}
     d\alpha&=dM\wedge dx-Md^2x + dN\wedge dy-Nd^2y\\
     &=\left(\frac{\partial M}{\partial x}dx+ \frac{\partial M}{\partial y}dy\right)\wedge dx+
@@ -1211,17 +1284,17 @@ Las reglas anteriores permiten computar cualquiera de las operaciones.
     &= \left(\frac{\partial N}{\partial x}- \frac{\partial M}{\partial y}\right) dx\wedge dy
    \end{split}
 \]
-Recordemos el famoso \href{https://es.wikipedia.org/wiki/Teorema_de_Green}{Teorema de Green}\link, que afirmaba que si $D\subset \rr^2$ era una región cuyo borde $C=\partial D$ era una curva cerrada simple, entonces
+Recordemos el famoso \href{https://es.wikipedia.org/wiki/Teorema_de_Green}{Teorema de Green} , que afirmaba que si $D\subset \rr^2$ era una región cuyo borde $C=\partial D$ era una curva cerrada simple, entonces
 \[\ointctrclockwise_{\partial D} Mdx +Ndy=\iint_D \left(\frac{\partial N}{\partial x}- \frac{\partial M}{\partial y}\right) dx dy.\]
 Utilizando formas diferenciales este resultado se escribe de la manera, mucho más compacta y sugerente
 \[\ointctrclockwise_{\partial D} \alpha = \iint_Dd\alpha,\]
-donde $\alpha =M(x,y)dx+N(x,y)dy$.  Esto es una relación clave de las formas diferenciales que se generaliza en un teorema fundamental de la matemática llamado \href{https://es.wikipedia.org/wiki/Teorema_de_Stokes}{Teorema de Stokes}\link.
+donde $\alpha =M(x,y)dx+N(x,y)dy$.  Esto es una relación clave de las formas diferenciales que se generaliza en un teorema fundamental de la matemática llamado \href{https://es.wikipedia.org/wiki/Teorema_de_Stokes}{Teorema de Stokes} .
 \end{ejemplo}
 
 
 
 
-\begin{ejemplo} Computemos $d^2g$, cuando $g$ es una función (0-forma).
+\begin{ejemplo}{} Computemos $d^2g$, cuando $g$ es una función (0-forma).
 
 \[
 \begin{split}
@@ -1250,13 +1323,6 @@ así también las formas $dr$ y $d\theta$ (\texttt{R2.dr}, \texttt{R2.dtheta}). 
 En el siguiente código, luego de las sentencias de importanción, cada línea efectúa lo siguiente: 4-define la forma diferencial en coordenadas cartesianas, 5 y 6-calcula el valor de M y N en coordenadas polares --$Md\theta+N dr$--. Sin embargo el resultado, todavía tiene apelaciones a las coordenadas $x$ e $y$. Por este motivo en las líneas 7 y 8 introducimos los símbolos $r$ y $theta$ y en las líneas 9 a 11 sustituímos $x$ e $y$ por $r\cos\theta$ y $r\sen\theta$ respectivamente. Hay que notar que los simbolos que introdujimos $r$ y $\theta$ son diferentes de \texttt{R2.theta} y \texttt{R2.r}, a los que sympy despliega en negritas en la consola de ipython.  Por ese motivo, también sustituímos   \texttt{R2.theta} y \texttt{R2.r} por $\theta$ y $r$ respectivamente.
 
  \lstinputlisting[language=Python]{scripts/sust_formas.py}
-\marginpar{
-\begin{pspicture}(0,-2)(1in,1in)
-      %\rput(0,1){
-      \scalebox{.5}{\psbarcode[file]{scripts/sust_formas.py}{}{qrcode}}
-      %}
-\end{pspicture}
-}
 
 La forma obtenida es $-rdr+(-r^4+r^2)d\theta$.
 
@@ -1271,12 +1337,12 @@ La forma obtenida es $-rdr+(-r^4+r^2)d\theta$.
 GAP (Groups, Algorithms, Programming) es un sistema de álgebra discreta computacional, con especial énfasis en la teoría de grupos computacional. GAP proporciona un lenguaje de programación, una biblioteca de miles de funciones implementando algoritmos algebraicos escritos en el lenguaje GAP, así como bibliotecas de datos de objetos algebraicos de gran tamaño [...] GAP se utiliza en la investigación y la enseñanza para estudiar grupos y sus representaciones, anillos, espacios vectoriales, álgebras, estructuras combinatorias, y más. El sistema, incluida la fuente, se distribuye libremente.>>
 \end{quote}
 \begin{flushright}
- \href{https://www.gap-system.org/}{(Página Oficial de GAP)}\link
+ \href{https://www.gap-system.org/}{(Página Oficial de GAP)} 
 \end{flushright}
 
 Hasta donde sabemos Sympy no implementa objetos de teoría de grupos. Sin embargo existe software libre para estudiar grupos. El más conocido de ellos es GAP. Este sistema provee un lenguaje muy sencillo y transparente. Lamentablemente el estudio de esta herramienta está más allá de los alcances de este documento. Desarrollemos un simple ejemplo.
 
-\begin{ejemplo} En el siguiente ejemplo de sesión con línea de comandos de GAP introducimos sentencias que quedan indicadas en cada línea iniciada con el símbolo de sistema (prompt) \verb~>gap~. Las líneas que no inician con el símbolo de sistema indican la salida correspondiente a la sentencia que antecede dichas líneas. En línea 1 introducimos el grupo simétrico de orden 3 y lo llamamos \texttt{G}. En línea 3 pedimos que nos enumere los elementos de \texttt{G}. En línea 5, introducimos el elemento de \texttt{G} que en notación cíclica se escribe $(1,3,2)$. En líneas 7 y 9 calculamos potencias de \texttt{r}. En 11 definimos como \texttt{H} el subgrupo generado por
+\begin{ejemplo}{} En el siguiente ejemplo de sesión con línea de comandos de GAP introducimos sentencias que quedan indicadas en cada línea iniciada con el símbolo de sistema (prompt) \verb~>gap~. Las líneas que no inician con el símbolo de sistema indican la salida correspondiente a la sentencia que antecede dichas líneas. En línea 1 introducimos el grupo simétrico de orden 3 y lo llamamos \texttt{G}. En línea 3 pedimos que nos enumere los elementos de \texttt{G}. En línea 5, introducimos el elemento de \texttt{G} que en notación cíclica se escribe $(1,3,2)$. En líneas 7 y 9 calculamos potencias de \texttt{r}. En 11 definimos como \texttt{H} el subgrupo generado por
 \texttt{r} y en 13 enumeramos los elementos de \texttt{H}. En 15 averiguamos si \texttt{H} es normal. Siendo este el caso, podemos calcular el grupo cociente en 17 y lo llamos \texttt{K}. Por último averiguamos el orden de \texttt{K} en 19.
 
 
@@ -1287,7 +1353,7 @@ Hasta donde sabemos Sympy no implementa objetos de teoría de grupos. Sin embarg
 
 \end{subappendices}
 \nocite{*}
-  \bibliographystyle{apalike-url}
+  \bibliographystyle{apalike}
   \bibliography{Grupos_Simetrias.bib}
 
 

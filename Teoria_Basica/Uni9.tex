@@ -19,7 +19,7 @@ su intervalo de definición por
 $I_{\varphi}=(a_{\varphi},b_{\varphi})$. Las soluciones a
 ecuaciones autónomas tienen la siguiente  propiedad.
 
-\begin{teorema}\label{invartras} Si $\varphi$ es solución de \eqref{ecuaaut}
+\begin{teorema}{invartras} Si $\varphi$ es solución de \eqref{ecuaaut}
 entonces $\psi(t)=\varphi(t+c)$ es también solución e
 $I_{\psi}=I_{\varphi}-c$.
 \end{teorema}
@@ -29,42 +29,42 @@ $I_{\psi}=I_{\varphi}-c$.
 \]
 \end{demo}
 Vemos así que toda trasladada, sobre el eje $t$, de una solución
-es también solución. Si $x^0\in\oo$ satisface que $f(x^0)=0$
-entonces $\p(t)\equiv x^0$ es una solución. Dado que esta solución
+es también solución. Si $x^0\in\Omega$ satisface que $f(x^0)=0$
+entonces $\varphi(t)\equiv x^0$ es una solución. Dado que esta solución
 no experimenta cambios con el tiempo, $x^0$ se denomina
 \emph{punto de equilibrio} del sistema \eqref{ecuaaut}. El teorema
 anterior tiene la siguiente consecuencia.
 
-\begin{teorema}\label{orbitasnoencuentran} Si $\p$ y $\psi$ son soluciones de
-\eqref{ecuaaut} y $\p(t_0)=\psi(t_1)$ entonces existe un $c\in\rr$
-tal que $\p(t)=\psi(t+c)$.
+\begin{teorema}{orbitasnoencuentran} Si $\varphi$ y $\psi$ son soluciones de
+\eqref{ecuaaut} y $\varphi(t_0)=\psi(t_1)$ entonces existe un $c\in\rr$
+tal que $\varphi(t)=\psi(t+c)$.
 \end{teorema}
 \begin{demo} Por el Teorema \ref{invartras}, la función
 $\psi_1(t):=\psi(t+t_1-t_0)$ es solución y, por hipótesis,
-$\psi_1(t_0)=\p(t_0)$, así, por unicidad, $\p(t)=\psi_1(t)$ para
+$\psi_1(t_0)=\varphi(t_0)$, así, por unicidad, $\varphi(t)=\psi_1(t)$ para
 todo $t$. \end{demo}
 
-\begin{corolario} Si $\p$ es solución de \eqref{ecuaaut} y
-$\p(t_0)=\p(t_1)$ para ciertos $t_0\neq t_1$ entonces $\p$ es
+\begin{corolario}{} Si $\varphi$ es solución de \eqref{ecuaaut} y
+$\varphi(t_0)=\varphi(t_1)$ para ciertos $t_0\neq t_1$ entonces $\varphi$ es
 periódica.
 \end{corolario}
-\begin{demo} Por el teorema anterior aplicado a $\psi=\p$
-obtenemos $\p(t)=\p(t+c)$, luego $\p$ es periódica.\end{demo}
+\begin{demo} Por el teorema anterior aplicado a $\psi=\varphi$
+obtenemos $\varphi(t)=\varphi(t+c)$, luego $\varphi$ es periódica.\end{demo}
 
 
 \section{Ecuaciones unidimensionales}
 
-\begin{ejemplo}Considerar la ecuación
+\begin{ejemplo}{}Considerar la ecuación
 \[
     x'=x,\quad x\in\rr,
 \]
-que tiene por solución general $\p(t)=Ce^t$. Notar que el conjunto
+que tiene por solución general $\varphi(t)=Ce^t$. Notar que el conjunto
 $\Omega$, en este caso $\Omega=\rr$, queda dividido en tres
 regiones $(-\infty,0)$, $\{0\}$ y $(0,\infty)$. Cada una de estas
 tres regiones es imagen de soluciones, por ejemplo $(0,+\infty)$
 es imagen de las soluciones positivas. Notar que hay una cantidad
 infinita de soluciones positivas, de hecho está la solución
-$\p_0(t)=e^t$ y todas sus trasladadas.
+$\varphi_0(t)=e^t$ y todas sus trasladadas.
 
 \begin{figure}[h]
 \begin{center}
@@ -96,7 +96,7 @@ punto de equilibrio.
 \end{ejemplo}
 
 
-\begin{ejemplo} Consideremos ahora
+\begin{ejemplo}{} Consideremos ahora
 \[
     x'=\frac12(x^2-1).
 \]
@@ -148,7 +148,7 @@ $(-1,1)$. Los puntos $-1$ y $1$ son de equilibrio de la ecuación.
 \end{figure}
 
 Como muestra la figura \ref{fig2}, ahora tenemos dividido
-$\oo=\rr$ en cinco regiones $(-\infty,-1)$, $\{-1\}$, $(-1,1)$,
+$\Omega=\rr$ en cinco regiones $(-\infty,-1)$, $\{-1\}$, $(-1,1)$,
 $\{1\}$ y $(1,+\infty)$. Las propiedades cualitativas de cualquier
 solución en cualquiera de estas ramas son determinadas por las de
 cualquier solución fija en una de estas ramas, ya que una es una
@@ -159,13 +159,13 @@ un intervalo $(a,+\infty)$ el siguiente límite
 $x^0:=\lim_{t\to+\infty}x(t)$ debe existir. Si $x^0\in\rr$
 entonces, por el ejercicio \ref{ejerptoequi}, debe ser un punto de
 equilibrio, de lo contrario $x^0=\pm\infty$. Notar que, como toda
-solución máxima $\p(t)$ satisface que $(t,\p(t))$ se sale de
-cualquier compacto contenido en $\rr\times\oo$, se tiene que si
-$\p(t_0)$ está entre dos puntos de equilibrio, $\p(t)$ permanece
-entre ellos para todo tiempo e $I_{\p}=\rr$.  En el ejemplo, como
-$f(x)<0$ en $(-1,1)$ debemos tener que una solución $\p$ tal que
-$\p(t_0)\in (-1,1)$ está definida en $\rr$ y
-$1=\lim_{t\to-\infty}\p(t)$ y $-1=\lim_{t\to +\infty}\p(t)$. Toda
+solución máxima $\varphi(t)$ satisface que $(t,\varphi(t))$ se sale de
+cualquier compacto contenido en $\rr\times\Omega$, se tiene que si
+$\varphi(t_0)$ está entre dos puntos de equilibrio, $\varphi(t)$ permanece
+entre ellos para todo tiempo e $I_{\varphi}=\rr$.  En el ejemplo, como
+$f(x)<0$ en $(-1,1)$ debemos tener que una solución $\varphi$ tal que
+$\varphi(t_0)\in (-1,1)$ está definida en $\rr$ y
+$1=\lim_{t\to-\infty}\varphi(t)$ y $-1=\lim_{t\to +\infty}\varphi(t)$. Toda
 esta información cualitativa la podemos representar en el eje $x$
 como en la figura \ref{retrato1}. Las flechas indican la dirección
 en que las soluciones recorren la región. Este tipo de
@@ -240,9 +240,9 @@ de fases d). En este caso diremos que las tres ecuaciones son
 \section{Sistemas autónomos planos}
 Ahora consideraremos la ecuación
 \begin{equation}\label{sisautplano}
-    x'=f(x),\quad f:\oo\to\rr^2,
+    x'=f(x),\quad f:\Omega\to\rr^2,
 \end{equation}
-donde $\oo$ es un abierto de $\rr^2$.  En un sistema autónomo
+donde $\Omega$ es un abierto de $\rr^2$.  En un sistema autónomo
 unidimensional el retrato de fases queda completamente determinado
 por la cantidad de puntos de equilibrio
  y el comportamiento de las soluciones cerca de sus puntos
@@ -259,12 +259,12 @@ global.
 \subsection{Técnicas elementales}
 
 Como en el caso de un sistema unidimensional, las soluciones de
-\ref{sisautplano} determinarán regiones de $\oo$. Como
+\ref{sisautplano} determinarán regiones de $\Omega$. Como
 consecuencia del Teorema \ref{orbitasnoencuentran} obtenemos que
 estas regiones son disjuntas. Cada una de ellas es la imagen de
-alguna solución $\p$, y por ende también de cualquier trasladada
-de $\p$. En símbolos estas regiones son los conjuntos
-$\p(I_{\p})$, con $\p$ solución. Es por ello que estas regiones
+alguna solución $\varphi$, y por ende también de cualquier trasladada
+de $\varphi$. En símbolos estas regiones son los conjuntos
+$\varphi(I_{\varphi})$, con $\varphi$ solución. Es por ello que estas regiones
 son curvas de $\rr^2$ y nos referiremos a ellas como
 \emph{trayectorias} u \emph{órbitas}\index{orbitas@órbitas} de
 \eqref{sisautplano}. Algunas veces es relativamente  sencillo
@@ -282,7 +282,7 @@ incluyen
 
 
 
-\begin{ejemplo}\textbf{Ecuación del péndulo.} Consideremos la ecuación del péndulo plano
+\begin{ejemplo}{}\textbf{Ecuación del péndulo.} Consideremos la ecuación del péndulo plano
 \begin{equation}\label{ecuapend}
 \left\{%
 \begin{array}{l}
@@ -400,7 +400,7 @@ No obstante en los sistemas no lineales pueden aparecer otros
 comportamientos en rededor de los puntos de equilibrio que
 aquellos ejemplificados en los sistemas lineales.
 
-\begin{ejemplo}\label{nadanada} Consideremos el sistema
+\begin{ejemplo}{nadanada} Consideremos el sistema
 \begin{equation}\label{nada}
 \left\{%
 \begin{array}{l}
@@ -495,7 +495,7 @@ puntos de equilibrio que forman una recta de $\rr^2$. En un
 sistema no lineal autónomo podemos tener infinitos puntos de
 equilibrios aislados.
 
-\begin{ejemplo} Consideremos el sistema
+\begin{ejemplo}{} Consideremos el sistema
 \begin{equation}\label{senos}
 \left\{%
 \begin{array}{l}
@@ -609,7 +609,7 @@ x_2$}\label{senitos}
 
 Veamos un último ejemplo ilustrando un cambio de variables.
 
-\begin{ejemplo}\label{espira} Consideremos el sistema:
+\begin{ejemplo}{espira} Consideremos el sistema:
 
 \begin{equation}\label{espirales}
 \left\{%
@@ -732,7 +732,7 @@ cerca de los puntos de equilibrio. Como ya dijimos, esto es
 insuficiente para analizar los retratos de fases de sistemas no
 lineales. Expliquemos brevemente esta técnica. Sea la ecuación
 \begin{equation}\label{sisnolineal2}
-x'=f(x)\quad f:\oo\subset\rr^2\to\rr^2
+x'=f(x)\quad f:\Omega\subset\rr^2\to\rr^2
  \end{equation}
  y $x^0=(x_1^0,x_2^0)$ un punto de equilibrio. Aproximando el campo $f$
 por su polinomio de Taylor de grado 1 y recordando que $f(x^0)=0$
@@ -949,9 +949,9 @@ algunos conceptos.
 El concepto de \emph{flujo} es una manera nueva de mirar las
 soluciones de la ecuación diferencial
 \begin{equation}\label{sisautrn}
-    x'=f(x)\quad f:\oo\subset\rr^n\to\rr^n.
+    x'=f(x)\quad f:\Omega\subset\rr^n\to\rr^n.
 \end{equation}
- El flujo es una función $\Phi_t:\oo\to\oo$, es decir una
+ El flujo es una función $\Phi_t:\Omega\to\Omega$, es decir una
  transformación (movimiento) del espacio de fases $\rr^n$.
  Supongamos que la ecuación \eqref{sisautrn} corresponda a las trayectoria
  seguida por una partícula que obedece cierta ley física.
@@ -961,12 +961,12 @@ soluciones de la ecuación diferencial
  inicial (es lo mismo ver como evoluciona la partícula de $x$ a
  $\Phi_t(x)$ hoy o mañana). La definición del flujo es pues:
  \begin{definicion} Definimos el flujo $\Phi$ de la ecuación
- \eqref{sisautrn} por $\Phi_t(x)=\p(t)$, donde $\p$ es solución de
- \eqref{sisautrn} y $\p(0)=x$.
+ \eqref{sisautrn} por $\Phi_t(x)=\varphi(t)$, donde $\varphi$ es solución de
+ \eqref{sisautrn} y $\varphi(0)=x$.
 \end{definicion}
 Notar que para tener definido $\Phi_t(x)$ debemos tener que $t\in
-I_{\p}$.
-\begin{teorema}
+I_{\varphi}$.
+\begin{teorema}{}
 El flujo tiene las siguientes propiedades.
 \begin{enumerate}
     \item\label{grupo} $\Phi_t\circ\Phi_s=\Phi_{t+s}$,
@@ -975,11 +975,11 @@ El flujo tiene las siguientes propiedades.
 \end{enumerate}
 \end{teorema}
 \begin{demo}
-Para demostrar la primera propiedad tomemos $\p$ solución de
-\eqref{sisautrn} con $t\in I_{\p}$ y $\p(0)=x$ y $\psi$ solución
+Para demostrar la primera propiedad tomemos $\varphi$ solución de
+\eqref{sisautrn} con $t\in I_{\varphi}$ y $\varphi(0)=x$ y $\psi$ solución
 con $s\in I_{\psi}$ y $\psi(0)=\Phi_t(x)$. Luego
-$\p(t)=\Phi_t(x)=\psi(0)$ y por el Teorema
-\ref{orbitasnoencuentran} debemos tener $\p(t+s)=\psi(s)$ que es
+$\varphi(t)=\Phi_t(x)=\psi(0)$ y por el Teorema
+\ref{orbitasnoencuentran} debemos tener $\varphi(t+s)=\psi(s)$ que es
 la igualdad \ref{grupo}. La propiedad \ref{grupo3} es inmediata de
 la definición. Para la propiedad en \ref{grupo2} notemos que por
 \ref{grupo} y \ref{grupo3} $\Phi_t$ tiene por inversa $\Phi_{-t}$.
@@ -1000,7 +1000,7 @@ El siguiente concepto de \emph{conjunto invariante} desempeña un
 rol importante.
 
 \begin{definicion} Sea $\Phi_t$ el flujo asociado a la ecuación
-\eqref{sisautrn}. Un conjunto $S\subset\oo$ se dirá invariante por
+\eqref{sisautrn}. Un conjunto $S\subset\Omega$ se dirá invariante por
 $\Phi$ si $\Phi_t(x)\in S$, para cada $x\in S$ y para cada $t$ tal
 que tengamos definido $\Phi_t(x)$.
 \end{definicion}
@@ -1009,13 +1009,13 @@ momento está dentro de él lo está, y estuvo, siempre. Análogamente
 podemos definir \emph{conjunto invariante hacia el futuro}
 
 \hyphenation{su-pon-ga-mos}
-\begin{definicion} Diremos que $S\subset \oo$ es invariante hacia el
+\begin{definicion} Diremos que $S\subset \Omega$ es invariante hacia el
 futuro si $\Phi_t(x)\in S$, para cada $x\in S$ y para cada $t>0$
 tal que $\Phi_t(x)$ este definida.
 \end{definicion}
 
 Una condición que utilizaremos para demostrar la invariancia hacia
-el futuro de un conjunto abierto $S\subset\oo$ viene de una
+el futuro de un conjunto abierto $S\subset\Omega$ viene de una
 intuición geométrica clara. Supongamos que en cada punto $x\in
 \partial S$ el campo $f(x)$ apunta hacia dentro del conjunto $S$,
 en ese caso podemos intuir que el conjunto es invariante hacia el
@@ -1037,7 +1037,7 @@ Vale decir $S(x^0,v,\theta,h)$ corresponde a todos los puntos $x$
 tales que $x-x^0$ forma un ángulo menor a $\arccos\theta$ con $v$
 y que $x\in B(x^0,h)$.
 
-\begin{teorema}\label{conjuninva} Sea $S\subset\oo$ un conjunto abierto y supongamos
+\begin{teorema}{conjuninva} Sea $S\subset\Omega$ un conjunto abierto y supongamos
 que para cada $x^0\in\partial S$ existen un $1\geq\theta>0$ y
 $h>0$ tales que   $S(x^0,f(x^0),\theta,h)\subset S$ (vale decir,
 no sólo $f(x^0)$ sino todo un cono apunta hacia el interior),
@@ -1052,11 +1052,11 @@ entonces $S$ es invariante hacia el futuro.
  entonces por continuidad y como $\partial S$ es cerrado
  $x^0=\Phi_{t_1}(x)\in\partial S$. Además, de la definición
  $\Phi_s(x)\notin S$, cuando $s>t_1$. Sean $\theta$ y $h$
- los parámetros de las hipótesis del teorema. Pongamos $\p(t)=\Phi_{t+t_1}(x)$ y
- desarrollemos $\p$ por su polinomio de Taylor de grado 1 alrededor de $t=0$:
+ los parámetros de las hipótesis del teorema. Pongamos $\varphi(t)=\Phi_{t+t_1}(x)$ y
+ desarrollemos $\varphi$ por su polinomio de Taylor de grado 1 alrededor de $t=0$:
  \begin{equation}\label{taylorlinea}
    \begin{split}
-    \p(t)&=x^0+t\p'(0)+R(t)\\
+    \varphi(t)&=x^0+t\varphi'(0)+R(t)\\
     &=x^0+tf(x^0)+R(t)\quad\hbox{con }\|R(t)\|/t\to 0\hbox{ cuando
     }t\to 0.
    \end{split}
@@ -1068,25 +1068,25 @@ pequeño para que
 \|R(t)\|\leq \epsilon t, \]
  para $0<t<\delta$, entonces
 \[
-    \|\p(t)-x^0\|\leq t\|f(x^0)\|+\|R(t)\|\leq
+    \|\varphi(t)-x^0\|\leq t\|f(x^0)\|+\|R(t)\|\leq
     t\|f(x^0)\|+\epsilon t.
 \]
-para $0<t<\delta $. Así tendremos $\|\p(t)-x^0\|\leq h$ eligiendo
+para $0<t<\delta $. Así tendremos $\|\varphi(t)-x^0\|\leq h$ eligiendo
 $\delta$ suficientemente pequeño. Entonces
 \[
     \begin{split}
-    (\p(t)-x^0)\cdot f(x^0)&\geq t\|f(x^0)\|^2-\|R(t)\| \|f(x^0)\|\\
+    (\varphi(t)-x^0)\cdot f(x^0)&\geq t\|f(x^0)\|^2-\|R(t)\| \|f(x^0)\|\\
     &\geq t\|f(x^0)\|^2-\epsilon t \|f(x^0)\|\\
     &\geq\theta t\|f(x^0)\|^2+ (1-\theta)t\|f(x^0)\|^2-\frac{(1-\theta)}{2} t\|f(x^0)\|^2\\
     &\geq\theta t\|f(x^0)\|^2+
     \frac{(1-\theta)}{2}t\|f(x^0)\|^2\\
      &\geq\theta t\|f(x^0)\|^2+
     \epsilon t\|f(x^0)\|\\
-    &\geq \theta\|\p(t)-x^0\|\|f(x^0)\|
+    &\geq \theta\|\varphi(t)-x^0\|\|f(x^0)\|
     \end{split}
 \]
 
-De esta manera vemos que $\p(t)=\Phi_{t+t_1}(x)\in
+De esta manera vemos que $\varphi(t)=\Phi_{t+t_1}(x)\in
 S(x^0,f(x^0),\theta,h)\subset S$ para $0<t<\delta$ y esto
 contradice la elección de $t_1$. \end{demo}
 
@@ -1097,7 +1097,7 @@ que, en ciertos casos, el retrato de fases de un sistema se
 comporta de manera similar a su linearización. Sólo demostraremos
 el caso de nodos estables, otros casos quedarán como ejercicio.
 Consideremos $f$ una campo de clase $C^1$ definido sobre
-$\oo\subset\rr^2$. Supongamos que $x^0$ es un punto de equilibrio
+$\Omega\subset\rr^2$. Supongamos que $x^0$ es un punto de equilibrio
 \emph{aislado} de $f$, es decir $f(x^0)=0$ y existe una bola
 $B(x^0,\delta)$ tal que dentro de esta bola el único equilibrio es
 $x^0$. A lo largo de esta sección vamos a considerar la
@@ -1127,7 +1127,7 @@ Para un vector no nulo $v$ escribiremos $\arg v=v/\|v\|$, el valor
 $\arg v$ se puede identificar continuamente con un único ángulo
 $\theta$ cuando $\theta\in (-\pi,\pi)$.
 
-\begin{lema}\label{simple=aislado} Un punto de equilibrio simple es aislado. Además
+\begin{lema}{simple=aislado} Un punto de equilibrio simple es aislado. Además
 \[
     \lim\limits_{\|x\|\to
     0}\frac{\|f(x)\|}{\|Ax\|}=1\quad\hbox{y}\quad
@@ -1192,7 +1192,7 @@ equilibrio $0$ en la dirección de $v$ si $\arg(x(t))\to v$ cuando
 $t\to\infty$.
 \end{definicion}
 
-\begin{teorema}\label{solentra} Sea $x(t)$ que entra a $0$ cuando $t\to\infty$ en
+\begin{teorema}{solentra} Sea $x(t)$ que entra a $0$ cuando $t\to\infty$ en
 la dirección de $v$, entonces $v$ es un autovector de $A=Df(0)$.
 \end{teorema}
 
@@ -1322,7 +1322,7 @@ Vamos a considerar por separado la linearización de sistemas
 \eqref{sisautparalinea} para  tipos distintos (no todos) del
 sistema linearizado \eqref{sisautparalineab}.
 
-\begin{teorema}[Nodos estables] Supongamos que $f(0)=0$ y que
+\begin{teorema}[Nodos estables]{} Supongamos que $f(0)=0$ y que
 \eqref{sisautparalineab} tiene un nodo estable en $0$, es decir
 $A$ tiene autovalores reales distintos y negativos
 $\lambda_1<\lambda_2<0$. Entonces existe $\delta>0$ tal que si
@@ -1621,7 +1621,7 @@ trayectoria entra al origen en la dirección de $e_1$.\end{demo}
 
 Para puntos sillas tenemos el siguiente teorema.
 
-\begin{teorema}[Sillas]\label{teoremalineasillas} Supongamos que $f(0)=0$ y que
+\begin{teorema}[Sillas]{teoremalineasillas} Supongamos que $f(0)=0$ y que
 \eqref{sisautparalineab} tiene un punto silla en $0$, es decir $A$
 tiene autovalores reales de distinto signo
 $\lambda_1<0<\lambda_2$. Consideremos las regiones $A_2(\eta)$ y
@@ -1644,7 +1644,7 @@ existe $\delta>0$ tal que:
 
 Por último mencionamos el siguiente teorema.
 
-\begin{teorema}[Focos]\label{teoremalineafocos} Supongamos que $f(0)=0$ y que
+\begin{teorema}[Focos]{teoremalineafocos} Supongamos que $f(0)=0$ y que
 \eqref{sisautparalineab} tiene un foco estable en $0$, es decir
 $A$ tiene autovalores complejos conjugados $\lambda=a\pm bi$ con
 $a<0$ y $b>0$. Entonces existe $\delta>0$ tal que:
@@ -2100,13 +2100,13 @@ como se observa el equilibrio $E_4$ ahora es estable.
 
 
 \section*{Ejercicios}
-\begin{ejercicio}\label{ejerptoequi} Sea $\p$ una solución de $x'=f(x)$ con
+\begin{ejercicio}{ejerptoequi} Sea $\varphi$ una solución de $x'=f(x)$ con
 $f:\Omega\subset\rr^n\to\rr^n$. Demostrar que si el
-$\lim_{t\to+\infty}\p(t)$ existe y es un punto $x^0$ en $\Omega$
+$\lim_{t\to+\infty}\varphi(t)$ existe y es un punto $x^0$ en $\Omega$
 entonces $x^0$ es un punto de equilibrio.
 \end{ejercicio}
 
-\begin{ejercicio}\label{linearizadocentro} Demostrar que los
+\begin{ejercicio}{linearizadocentro} Demostrar que los
 siguientes sistemas
 \[
     \left\{%
@@ -2125,12 +2125,12 @@ tienen la  misma linearización en su equilibrio común $(0,0)$ pero
 se comportan de manera cualitativamente diferente allí.
 \end{ejercicio}
 
-\begin{ejercicio} Analizar todas las posibles formas en que una
+\begin{ejercicio}{} Analizar todas las posibles formas en que una
 solución a un sistema lineal $x'=Ax$, con $A\in\rr^{2\times 2}$ no
 singular, puede entrar a $0$
 \end{ejercicio}
 
-\begin{ejercicio} Hacer el retrato de fases de los siguientes
+\begin{ejercicio}{} Hacer el retrato de fases de los siguientes
 sistemas:
 \begin{enumerate}
 \item   $\left\{%
@@ -2160,7 +2160,7 @@ $
 \end{enumerate}
 \end{ejercicio}
 
-\begin{ejercicio} En el modelo de dos especies \eqref{equa2espe}
+\begin{ejercicio}{} En el modelo de dos especies \eqref{equa2espe}
 suponer que las desigualdades \eqref{magrel} son invertidas.
 Demostrar que el retrato de fases es como se muestra en la figura
 \ref{modbiob}.
@@ -2169,13 +2169,13 @@ Demostrar que el retrato de fases es como se muestra en la figura
 
 
 
-\begin{ejercicio} Demostrar los teoremas \ref{teoremalineasillas}
+\begin{ejercicio}{} Demostrar los teoremas \ref{teoremalineasillas}
 y \ref{teoremalineafocos}.
 \end{ejercicio}
 
 
 
-\begin{ejercicio} Sea $f$ una funci'on continua definida en un
+\begin{ejercicio}{} Sea $f$ una funci'on continua definida en un
 abierto $D$ de $\mathbb{R}^n$. Supongamos que existe una funci'on
 $\varphi:D\to\mathbb{R}$ tal que $f=\nabla\varphi$. Demostrar que
 $x'=f(x)$ no posee 'orbitas peri'odicas. Si $f$ tiene s'olo puntos
@@ -2189,7 +2189,7 @@ para toda trayectoria, esto es $\varphi(x(t))$ es creciente.
 
 \end{ejercicio}
 
-\begin{ejercicio} Sea $\Phi_t(x)$ el flujo generado por un campo
+\begin{ejercicio}{} Sea $\Phi_t(x)$ el flujo generado por un campo
 $f$ continuo. Un subconjunto $S\subset\mathbb{R}^n$ se llama
 \emph{minimal} de $f$ si es invariante, compacto y no contiene
 subconjuntos propios de esas caracter'isticas. Demostrar que en
@@ -2199,7 +2199,7 @@ cierto esto?
 
 \end{ejercicio}
 
-\begin{ejercicio} Determinar los conjuntos $\Omega[x]$ para el
+\begin{ejercicio}{} Determinar los conjuntos $\Omega[x]$ para el
 sistema
 \[
   \left\{%
@@ -2211,7 +2211,7 @@ sistema
 \]
 \end{ejercicio}
 
-\begin{ejercicio} Encontrar $\Omega[x]$ para el siguiente
+\begin{ejercicio}{} Encontrar $\Omega[x]$ para el siguiente
 campo $f=(f_1,f_2)$
  definido sobre $\mathbb{R}^2$:
 \[
@@ -2224,7 +2224,7 @@ campo $f=(f_1,f_2)$
 \]
 \end{ejercicio}
 
-\begin{ejercicio} Idem ejercicios anteriores para el sistema
+\begin{ejercicio}{} Idem ejercicios anteriores para el sistema
  \[
    \left\{%
  \begin{array}{ll}
@@ -2235,7 +2235,7 @@ campo $f=(f_1,f_2)$
  \]
 \end{ejercicio}
 
-\begin{ejercicio} \emph{Criterio de Bendixson} Si $f=(f_1,f_2)$ es
+\begin{ejercicio}{} \emph{Criterio de Bendixson} Si $f=(f_1,f_2)$ es
 un campo de clase $C^1$ en $D\subset\mathbb{R}^2$, con $D$ abierto
 y simplemente conexo, y
 \[
@@ -2244,7 +2244,7 @@ y simplemente conexo, y
  entonces $f$ no tiene 'orbitas
 peri'odicas. \emph{Sugerencia:} Aplicar el teorema de Green.
 \end{ejercicio}
-\begin{ejercicio} Determinar los puntos de equilibrio del
+\begin{ejercicio}{} Determinar los puntos de equilibrio del
  sistema correspondiente al p'edulo con fricci'on:
 \[
     \left\{%
@@ -2259,7 +2259,7 @@ peri'odicas. \emph{Sugerencia:} Aplicar el teorema de Green.
 
 
 
-\begin{ejercicio}\emph{ Sistemas  conservativos unidimensionales}
+\begin{ejercicio}{}\emph{ Sistemas  conservativos unidimensionales}
 Considerar la ecuaci'on
 \[
     x''=F(x),
@@ -2307,7 +2307,7 @@ acorde a $U(x_0)$ sea un m'inimo o un m'aximo relativo.
 
 \end{ejercicio}
 
-\begin{ejercicio} Utilizando el ejercicio anterior determinar el
+\begin{ejercicio}{} Utilizando el ejercicio anterior determinar el
 espacio de fases de las siguientes ecuaciones:
 \begin{enumerate}
 \item $x''=-x$ (resorte).
@@ -2320,7 +2320,7 @@ espacio de fases de las siguientes ecuaciones:
 
 
 
-\begin{ejercicio} Sea $f:D\to\mathbb{R}^n$ una campo vectorial
+\begin{ejercicio}{} Sea $f:D\to\mathbb{R}^n$ una campo vectorial
 continuo. Una funci'on $E:D\to\mathbb{R}$ se llama integral
 primera de $f$ en $D$ si:
 \begin{enumerate}
@@ -2393,7 +2393,7 @@ original.
 \end{ejercicio}
 
 
-\begin{ejercicio} Consideremos las ecuaciones de Lotka-Volterra:
+\begin{ejercicio}{} Consideremos las ecuaciones de Lotka-Volterra:
 \[
     \left\{%
 \begin{array}{ll}
@@ -2414,7 +2414,7 @@ $(\gamma/\delta, \alpha/\beta)$
     E=-y^{\alpha}x^{\gamma}e^{-\beta y}e^{-\delta x}
  \]
 \end{ejercicio}
-\begin{ejercicio} Demostrar que el origen es un punto de
+\begin{ejercicio}{} Demostrar que el origen es un punto de
 equilibrio asint'oticamente estable de:
 \[
     \left\{%
@@ -2427,14 +2427,14 @@ equilibrio asint'oticamente estable de:
 
 \end{ejercicio}
 
-\begin{ejercicio} Sea $f:\mathbb{R}^n\to\mathbb{R}$ continua y
+\begin{ejercicio}{} Sea $f:\mathbb{R}^n\to\mathbb{R}$ continua y
 supongamos que $f(0)=0$ y $\langle x,f(x)\rangle<0$ $\forall x\neq
 0$. Demostrar que $x\mapsto |x|^2$ es una funci'on de Liapunov
 estricta para el sistema $x'=f(x)$.
 
 \end{ejercicio}
 
-\begin{ejercicio}
+\begin{ejercicio}{}
 Sea $x_0$ un punto de equilibrio de $x'=f(x)$,
 $f:D\to\mathbb{R}^n$ continua, $D\subset\mathbb{R}^n$ abierto. Sea
 $V:U\to\mathbb{R}$ una funci'on de Liapunov en $x_0$. Supongamos
@@ -2445,7 +2445,7 @@ $x_0$ es asintoticamente estable.
 \end{ejercicio}
 
 
-\begin{ejercicio}
+\begin{ejercicio}{}
 Sea $x_0$ un punto de equilibrio de $x'=f(x)$,
  $f:D\to\mathbb{R}^n$ continua, $D\subset\mathbb{R}^n$ abierto.
  Sea $V$ una funci'on de clase $C^1$ definida en un entorno de
@@ -2455,7 +2455,7 @@ Sea $x_0$ un punto de equilibrio de $x'=f(x)$,
 
 \end{ejercicio}
 
-\begin{ejercicio}
+\begin{ejercicio}{}
 Sea $x_0$ un punto de equilibrio de $x'=f(x)$,
 $f:D\to\mathbb{R}^n$ continua, $D\subset\mathbb{R}^n$ abierto. Sea
 $V:U\to\mathbb{R}$ una funci'on de Liapunov estricta de $x_0$.
@@ -2465,7 +2465,7 @@ $x_0$.
 
 \end{ejercicio}
 
-\begin{ejercicio} Sea $D\subset\mathbb{R}^n$ abierto y
+\begin{ejercicio}{} Sea $D\subset\mathbb{R}^n$ abierto y
 $V:D\to\mathbb{R}$ una funci'on de clase $C^1$. Consideremos el
 sistema
 \[
@@ -2482,7 +2482,7 @@ Demostrar que
 \end{enumerate}
 \end{ejercicio}
 
-\begin{ejercicio} Sea $V:D\to\mathbb{R}$ una funci'on $C^1$, con
+\begin{ejercicio}{} Sea $V:D\to\mathbb{R}$ una funci'on $C^1$, con
 $D\subset\mathbb{R}^n$ abierto. Sea $y$ un punto $\omega$-l'imite
 de una trayectoria del campo $-\nabla V$. Entonces $y$ es un punto
  de equilibrio de este campo. \emph{Sugerencia:} Demostrar que $V$
@@ -2490,7 +2490,7 @@ de una trayectoria del campo $-\nabla V$. Entonces $y$ es un punto
 
 \end{ejercicio}
 
-\begin{ejercicio} Considerar una part'icula moviendos'e bajo la
+\begin{ejercicio}{} Considerar una part'icula moviendos'e bajo la
 influencia de una funci'on potencial $P:D\to\mathbb{R}$ de clase
 $C^1$, $D\subset\mathbb{R}^3$ abierto. El sistema din'amico
 correspondiente es:
@@ -2507,7 +2507,7 @@ equilibrio $(x_0,0)$ del sistema es estable si $x_0$ es un m'inimo
 local estricto de $P$.
 \end{ejercicio}
 
-\begin{ejercicio} Sea $f:\mathbb{R}^n\to\mathbb{R}^n$ tal que
+\begin{ejercicio}{} Sea $f:\mathbb{R}^n\to\mathbb{R}^n$ tal que
 $f(0)=0$. La soluci'on $0$ de $x'=f(x)$ se dice globalmente
 estable cuando es estable y $x(t)\to 0$ para $t\to\infty$ para
 toda otra soluci'on $x(t)$. Sea $V:\mathbb{R}^n\to\mathbb{R}$ una

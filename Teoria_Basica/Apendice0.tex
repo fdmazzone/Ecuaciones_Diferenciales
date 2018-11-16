@@ -1,0 +1,440 @@
+\appendix
+\chapter{Breve introducci\'on a Python y SymPy}
+
+
+
+
+\section{Descripción}
+\href{https://www.python.org/}{Python} es un lenguaje de programación interpretado, 
+abierto, facil de aprender, potente y portátil. Es utilizado en proyectos de todo tipo, 
+no sólo aplicaciones científicas.
+\marginnote{
+\begin{center}
+ \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{imagenes/python-logo.png}
+\end{center}
+}
+
+
+
+\href{http://www.scipy.org/}{SciPy}, 
+Python científico, es un conjunto de módulos de python para distintos tipos de cálculos. 
+Está integrado por los módulos, SymPy (para cálculos simbólicos), 
+numpy (cálculos numéricos), matplotlib (gráficos) entre otros.  
+En este curso sólo usaremos SymPy.
+\marginnote{
+\begin{center}
+\adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{imagenes/scipy_logo.png}
+\end{center}
+}
+
+
+\href{http://www.sympy.org/}{SymPy}
+es una biblioteca de Python para matemática simbólica. Su objetivo es convertirse en 
+un sistema de álgebra computacional (SAC) completo, manteniendo el código lo más simple 
+posible para que sea comprensible y fácilmente extensible. SymPy está escrito enteramente 
+en Python y no requiere de ninguna biblioteca externa.
+\marginnote{
+  \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{imagenes/sympy_logo.png}
+  \end{center}
+}
+% 
+% 
+
+
+
+\href{http://matplotlib.org/}{Matplotlib} es una biblioteca de trazado de gráficos de Python que produce figuras de calidad de publicación en una variedad de formatos impresos y entornos interactivos a través de plataformas. Matplotlib se puede utilizar en scripts Python, en el shell Python e IPython, el portátil jupyter, servidores de aplicaciones web.
+\marginnote{\begin{center}
+  \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/matplotlib.jpg}
+   \end{center}
+}
+
+
+
+
+
+
+% 
+% \section{Local y online} 
+% 
+% Se pueden usar todos los recursos anteriores de dos formas
+% \begin{enumerate}
+% \item Instalando el software necesario en una computadora. Nos referiremos a este modo como de acceso local.
+% 
+% \item A traves de trasacciones en línea que permiten usar una computadora remota que ejecuta las instrucciones y programas que se tipean en una página web con la que se interactúa usualmente por medio de un navegador.  Hay varios sitios que ofrecen este servicio. 
+%Sugerimos la \href{https://cloud.sagemath.com/}{SageMathCloud}. El usuario debe registrase.
+% \end{enumerate}
+% 
+
+
+\section{Instalación}
+
+
+Son muchas las componentes requeridas para poder ejecutar los programas con los que trabajaremos 
+en esta asignatura. Hay que instalar un interprete de python, los módulos que utilizaremos 
+(sympy, matplotlib), es útil utilizar entornos integrados de desarrollo (IDE), que facilitan al usuario
+editores de código fuente (especializados con la sintáxis de python), consolas de comandos
+mejoradas (ipython, qt, etc). Otro recurso que se dispone son las notebooks, de las cuales 
+hablaremos más adelante. Sería engorroso instalar todas estas componentes, que muchas veces 
+tienen orígenes en desarrolladores diferentes, de manera independiente. Para nuestra fortuna
+existen, las así llamadas, \emph{distribuciones}. Estas en algunos casos son archivos ejecutables que instalan todas 
+las componentes necesarias, o al menos muchas  de ellas, de un determinada aplicación.
+Recomendamos las siguientes distribuciones.  
+
+\subsection{\href{https://www.continuum.io/downloads}{Anaconda}} 
+La versión de código abierto de Anaconda es una distribución de alto rendimiento de Python y R 
+e incluye más de 100 de los paquetes científicos más populares asociados a estos lenguajes.
+%\reversemarginpar\marginpar{\includegraphics[scale=.12]{imagenes/library.png} } 
+Además, se puede acceder a más de 720 paquetes que pueden ser fácilmente instalados con Conda, 
+ un programa incluído en Anaconda para la gestión de paquetes.
+ Anaconda tiene licencia BSD que da permiso para utilizar Anaconda comercialmente 
+ y para su redistribución. Al día que se escriben estas líneas, anaconda parece la opción más 
+ sencilla y completa para instalar todos los recursos necesarios para desarrollar los contenidos de 
+ estas notas. Existen versiones para linux, OS X y Windows. 
+\marginnote{
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/anaconda.png}
+}
+
+
+
+\subsection{Windows} Hay distribuciones específicas para distintos sistemas operativos. La distribución  \href{https://code.google.com/p/pythonxy/}{python(x,y)}  instala el interprete de python y todos los módulos de scipy. Además el entorno de desarrollo integrado (IDE) spyder.
+\marginnote{\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/windows-logo.png}}
+
+
+\subsection{linux} Aquí todo es más sencillo, el interprete de python suele venir con 
+la distribución del SO y se pueden instalar los módulos, SymPy, NumPy, etc, 
+recurriendo al administrador de paquetes o tipeando la sentencia adecuada en la línea 
+de comandos.  
+\marginnote{\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/linux.jpeg}}
+
+\subsection{Android} \href{http://qpython.com/}{Qpython} es una aplicación que permite ejecutar código python y una versión básica de sympy desde tablets y smartphones. Se descarga desde la plataforma \href{https://play.google.com/store/apps/details?id=com.hipipal.qpyplus}{google play}.
+\marginnote{\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/android.jpg}}. 
+
+\subsection{\href{https://es.wikipedia.org/wiki/Computación_en_la_nube}{Computación en la nube}}
+
+En los últimos tiempos se ha popularizado el uso de la computación en la nube. Esto se trata de servidores que algunas empresas o asociaciones sin fines de lucro facilitan en la web para ejecutar programas en diversos lenguajes. Citamos como ejemplo \href{http://www.cocalc.com}{cocalc}. Una vez registrado en el sitio se pueden subir o crear notebooks de jupyter. Soporta varios lenguajes, incluído Python y sus librerías.  Como uno utiliza los recursos instalados en el servidor, no se necesita tener instalado ningún interprete de los lenguajes. Sólo se necesita un navegador web actualizado. De este modo pueden ejecutarse programas desde un smartphone o tablet. 
+
+
+
+\section{Forma de trabajo: por medio de scripts e interactiva}
+
+
+Se puede trabajar de tres formas
+
+\begin{enumerate}
+\item Interactivamente, ingresando sentencias, de a una por vez, en la línea de comandos y obteniendo respuestas. Se requiere una consola.
+
+\item Haciendo un script (programa) donde se guardan todas las sentencias que se desea ejecutar. Posteriormente este script se puede ejecutar, ya sea desde la línea de comandos o desde un IDE (spyder) oprimiendo un botón de ejecución.
+
+\item En una notebook. Se hacen celdas que contienen porciones de código que pueden ejecutarse.
+
+\end{enumerate}
+
+
+
+
+
+\section{Características sobresalientes del lenguaje}
+
+Seguiremos en esta exposición a \cite{wiki_python} de manera cercana. 
+Las principales características del lenguaje son:
+
+\normalmarginpar
+\begin{itemize}
+\item Interpretado. Es necesario un conjunto de programas, 
+el interprete, que entienda el código python y ejecute las acciones contenidas en él.
+\item Implementa  tipos dinámicos.
+\item  Multiparadigma, ya que soporta orientación a objetos, programación imperativa y, en menor medida, programación funcional.
+\item Multiplataforma.
+
+\item Es comprendido  con facilidad. Usa  palabras donde otros lenguajes utilizarían símbolos. Por ejemplo, los operadores lógicos \verb~!, || y \&\&~ en Python se escriben not, or y and, respectivamente.
+
+
+\item  El contenido de los bloques de código (bucles, funciones, clases, etc.) es delimitado mediante espacios o tabuladores.
+
+\item Empieza a contar desde cero (elementos en listas, vectores, etc).
+
+
+
+\end{itemize}
+
+
+
+
+\section{Elementos del Lenguaje}
+
+\subsection{Comentarios}
+
+Hay dos formas de producir comentarios, texto que el interprete  no ejecuta y que sirve para entender un programa.
+
+Para comentarios largos se utilizan las tildes: \linebreak\verb~''' comentario '''~ .
+
+
+ La segunda notación utiliza el símbolo \verb~#~, no necesita símbolo de finalización 
+ pues se extiende hasta el final de la línea.
+
+ \begin{pyverbatim}
+'''
+Comentario  largo en un script de Python
+'''
+print "Hola mundo" # Comentario corto
+\end{pyverbatim}
+
+
+
+
+El intérprete no tiene en cuenta los comentarios, lo cual es útil si deseamos poner información adicional en nuestro código como, por ejemplo, una explicación sobre el comportamiento de una sección del programa.
+
+
+
+
+
+
+
+
+\subsection{Variables}
+Las variables se definen de forma dinámica, lo que significa que no se tiene que especificar cuál es su tipo de antemano y que una variable puede tomar distintos valores en distintos momentos de un programa, incluso puede tomar
+ un tipo diferente al que tenía previamente. \emph{Se usa el símbolo = para asignar valores a variables.}
+ Es importante distinguir este = (de asignación) con el igual que es utilizado para definir igualdades en sympy, para ecuaciones por ejemplo.
+
+
+
+\begin{pyverbatim}
+x = 1
+x = "texto" 
+\end{pyverbatim}
+Esto es posible porque los tipos son asignados
+dinamicamente
+
+\subsection{Tipo de datos}
+
+Python implementa diferentes tipos de datos. Para la noción de \emph{tipos de datos} en 
+general 
+ver \cite{wiki:tipo_dato}. A continuación describimos sumariamente algunos de los tipos 
+más comunes presentes en Python. Cuando se utilizan módulos específicos (p. ej. sympy) la 
+diversidad  de tipos de datos se expande, con la incorporación de tipos con significación
+matemática, p.ej. matrices,  expresiones algebraicas, etc. 
+
+
+\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{imagenes/tipo_datos.jpg}
+
+Se clasifican en:
+\begin{description}
+ \item[Mutable] si su contenido puede cambiarse.
+ \item[Inmutable] si su contenido no puede cambiarse.
+\end{description}
+
+Se usa el comando \verb~\type~ para averiguar que tipo de dato contiene una variable
+
+ \begin{pyconsole}
+x=1
+type(x)
+x='Ecuaciones'
+type(x)
+\end{pyconsole}
+
+
+
+
+
+\subsection{Listas y tuplas}
+
+
+\begin{itemize}
+
+\item Es una estructura de dato, que contiene, como su nombre lo indica, listas de otros datos en cierto orden. Listas y tuplas son muy similares.
+
+\item Para declarar una lista se usan los corchetes [], en cambio, para declarar una tupla se usan los paréntesis (). En ambos casos los elementos se separan por comas, y en el caso de las tuplas es necesario que tengan como mínimo una coma.
+
+\item    Tanto las listas como las tuplas pueden contener elementos de diferentes tipos. No obstante las listas suelen usarse para elementos del mismo tipo en cantidad variable mientras que las tuplas se reservan para elementos distintos en cantidad fija.
+    
+\item Para acceder a los elementos de una lista o tupla se utiliza un índice entero (empezando por "0", no por "1"). Se pueden utilizar índices negativos para acceder elementos a partir del final.
+
+
+\item Las listas se caracterizan por ser mutables, mientras que las tuplas son inmutables.
+
+\end{itemize}
+
+
+
+
+
+
+\begin{pyconsole}
+lista = ["abc", 42, 3.1415]
+lista[0] # Acceder a un elemento por su indice
+lista[-1] # Acceder a un elemento usando un indice negativo
+lista.append(True) # Agregar un elemento al final de la lista
+lista
+del lista[3] # Borra un elemento de la lista usando un indice
+lista[0] = "xyz" # Re-asignar el valor del primer elemento
+lista[0:2]#elementos del indice "0" al "1" 
+lista_anidada = [lista, [True, 42L]] #Es posible anidar listas
+lista_anidada
+lista_anidada[1][0] #accede lista dentro de otra lista
+\end{pyconsole}
+
+\begin{pyconsole}
+tupla = ("abc", 42, 3.1415)
+tupla[0] # Acceder a un elemento por su indice
+del tupla[0] # No es posible borrar ni agregar
+tupla[0] = "xyz" # Tampoco es posible re-asignar
+tupla[0:2] # elementos del indice "0" al "2" sin incluir
+tupla_anidada = (tupla, (True, 3.1415)) # es posible anidar
+1, 2, 3, "abc" # Esto tambien es una tupla
+(1) #  no es una tupla, ya que no posee al menos una coma
+(1,) # si es una tupla
+(1, 2) # Con mas de un elemento no es necesaria la coma final
+(1, 2,) # Aunque agregarla no modifica el resultado
+\end{pyconsole}
+
+\subsection{Diccionarios}
+\begin{itemize}
+\item    Para declarar un diccionario se usan las llaves \verb~{}~. Contienen elementos separados por comas, donde cada elemento está formado por un par clave:valor (el símbolo : separa la clave de su valor correspondiente).
+ \item   Los diccionarios son mutables, es decir, se puede cambiar el contenido de un valor en tiempo de ejecución.
+\item    En cambio, las claves de un diccionario deben ser inmutables. Esto quiere decir, por ejemplo, que no podremos usar ni listas ni diccionarios como claves.
+\item    El valor asociado a una clave puede ser de cualquier tipo de dato, incluso un diccionario.
+
+\end{itemize}
+
+
+
+
+
+
+\begin{pyconsole}
+dicci = {"cadena": "abc", "numero": 42, "lista": [True, 42L]}
+dicci["cadena"] # Usando una clave, se accede a su valor
+dicci["lista"][0]
+dicci["cadena"] = "xyz" # Re-asignar el valor de una clave
+dicci["cadena"]
+dicci["decimal"] = 3.1415927 # nuevo elemento clave:valor
+dicci["decimal"]
+dicci_mixto = {"tupla": (True, 3.1415), "diccionario": dicci}
+dicci_mixto["diccionario"]["lista"][1]
+dicci = {("abc",): 42} # tupla puede ser clave 
+dicci = {["abc"]: 42} # una clave no puede ser lista
+\end{pyconsole}
+
+
+
+\subsection{Listas por comprensión}
+Una lista por comprensión es una expresión compacta para definir listas. Al igual que el operador lambda, aparece en lenguajes funcionales. Ejemplos:
+
+\pyv{range(n)} devuelve una lista, empezando en 0 y terminando en $n-1$.
+
+\begin{pyconsole}
+range(5) #  
+[i*i for i in range(5)]
+lista = [(i, i + 2) for i in range(5)]
+lista
+\end{pyconsole}
+
+
+
+\subsection{Funciones}
+\begin{itemize}
+
+  \item  Las funciones se definen con la palabra clave \verb~def~, seguida del nombre de
+  la función y sus parámetros. 
+  Otra forma de escribir funciones, aunque menos utilizada, es con la palabra clave \verb~lambda~ (que aparece en lenguajes funcionales como Lisp). Generalemente esta forma es apropiada para funciones que es posible definir en una sola línea.
+  
+  
+  \item  El valor devuelto en las funciones con \verb~def~ será el dado con la instrucción \verb~return~.
+  \end{itemize}
+
+
+\begin{pyconsole}
+def suma(x, y = 2): #el argumento y tiene un valor por defecto
+    return x + y # Retornar la suma
+
+suma(4) # La variable "y" no se modifica, siendo su valor: 2
+suma(4, 10) # La variable "y" si se modifica
+\end{pyconsole}
+
+
+\begin{pyconsole}
+suma = lambda x, y = 2: x + y
+suma(4) # La variable "y" no se modifica
+suma(4, 10) # La variable "y" si se modifica
+\end{pyconsole}
+
+\subsection{Condicionales}
+ Una sentencia condicional (\pyv{if} \verb~condicion~) ejecuta su bloque de código interno 
+ sólo si \verb~condicion~ tiene el valor booleano \pyv{True}.  Condiciones adicionales, si las hay, se introducen usando \pyv{elif} seguida de la condición y su bloque de código. Todas las condiciones se evalúan secuencialmente hasta encontrar la primera que sea verdadera, y su bloque de código asociado es el único que se ejecuta. Opcionalmente, puede haber un bloque final (la palabra clave \pyv{else} seguida de un bloque de código) que se ejecuta sólo cuando todas las condiciones fueron falsas.
+
+
+
+\begin{pyconsole}
+verdadero = True
+if verdadero: # No es necesario poner "verdadero == True"
+    print "Verdadero"
+
+else:
+    print "Falso"
+
+lenguaje = "Python"
+if lenguaje == "C": 
+    print "Lenguaje de programacion: C"
+elif lenguaje == "Python": # tantos "elif" como se quiera
+    print "Lenguaje de programacion: Python"
+else: 
+    print "Lenguaje de programacion: indefinido"
+
+if verdadero and lenguaje == "Python": 
+    print "Verdadero y Lenguaje de programacion: Python"
+
+\end{pyconsole}
+
+
+
+
+
+
+\subsection{Bucles}
+El bucle \pyv{for} es similar a  otros lenguajes. Recorre un objeto \emph{iterable},
+esto es  una lista o una tupla, y por cada elemento del iterable 
+ejecuta el bloque de código interno. 
+Se define con la palabra clave \pyv{for} seguida de un nombre de variable, 
+seguido de \pyv{in} seguido del iterable, y finalmente el bloque de código interno. 
+En cada iteración, el elemento siguiente del iterable se asigna al nombre de variable 
+especificado:
+
+\begin{pyconsole}
+lista = ["a", "b", "c"]
+for i in lista: # Iteramos sobre una lista, que es iterable
+    print i
+
+cadena = "abc"
+for i in cadena: # Iteramos sobre una cadena, que es iterable
+    print i # una coma al final evita un salto de linea
+
+\end{pyconsole}
+
+
+
+El bucle \pyv{while} evalúa una condición y, si es verdadera, ejecuta el bloque
+de código interno. Continúa evaluando y ejecutando mientras la condición sea verdadera.
+Se define con la palabra clave \pyv{while} seguida de la condición, y a continuación 
+el bloque de código interno:
+\begin{pyconsole}
+numero = 0
+while numero < 3:
+    print numero
+    numero += 1  
+
+\end{pyconsole}
+
+
+% 
+%  \bibliographystyle{plain}
+%  \bibliography{biblio}
+% 
+% 
+% \end{document}
+
+%\bibliographystyle{plain}%{apalike-url}
+%\bibliography{biblio,diferenciales_ecuaciones,diferenciales_ecuaciones_sim}
+
+
+

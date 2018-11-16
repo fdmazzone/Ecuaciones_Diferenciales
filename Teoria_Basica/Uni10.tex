@@ -27,11 +27,11 @@
 
 \subsection{Definiciones}
 
-\begin{definicion}{Estabilidad de puntos de equilibrio} 
-	      Supongamos $\oo\subset\rr^n$ abierto, $X:\oo\to\rr^n$ un campo vectorial independiente del tiempo, 
-	      $\Phi_t(x)$ el flujo asociado a  $X$ 	      y $c\in \oo$ 
+\begin{definicion}[Estabilidad de puntos de equilibrio] 
+	      Supongamos $\Omega\subset\rr^n$ abierto, $X:\Omega\to\rr^n$ un campo vectorial independiente del tiempo, 
+	      $\Phi_t(x)$ el flujo asociado a  $X$ 	      y $c\in \Omega$ 
 	      un equilibrio ($X(c)=0$). Llamamos $I_x=(a_x,b_x)$ al intervalo máximo donde esta definida la solución 
-	      que en $t=0$ pasa por $x\in\oo$. El equilibrio $c$ se dice estable si para todo $\epsilon>0$ existe 
+	      que en $t=0$ pasa por $x\in\Omega$. El equilibrio $c$ se dice estable si para todo $\epsilon>0$ existe 
 	      $\delta>0$ tal que 
 	      \[|x-c|<\delta\Rightarrow \forall t\in [0,b_x):|\Phi_t(x)-c|<\epsilon.\]
 \end{definicion}		
@@ -49,11 +49,11 @@
   
 
 
-\begin{definicion}[Inestabilidad en puntos de equilibrio] 
+\begin{definicion}[Inestabilidad en puntos de equilibrio]{}
 	      Un punto de equilibrio $c$ se dice \emph{inestable} si no es estable.
  \end{definicion}            
 
-\begin{ejercicio} Un punto de equilibrio $c$ es inestable si y sólo si existe
+\begin{ejercicio}{} Un punto de equilibrio $c$ es inestable si y sólo si existe
                un $\epsilon>0$,  una sucesión  de puntos $\{x_n\}$ y de tiempos $\{t_n\}$ tal que $t_n\in [0,b_{x_n})$, 
 		$x_n\to c$ y $|\Phi_{t_n}(x_n)-c|\geq \epsilon$.
 	    
@@ -63,14 +63,14 @@
 
  \noindent\emph{Observación.} Si $c$  es un punto de equilibrio estable de $X:\mathcal{O}\to\rr^n$ entonces $b_x=+\infty$.
  
-Esta afirmación necesita una demostración. Tomemos $\epsilon>0$ tal que $\overline{B}(c,\epsilon)\subset\oo$. 
+Esta afirmación necesita una demostración. Tomemos $\epsilon>0$ tal que $\overline{B}(c,\epsilon)\subset\Omega$. 
 Por definición de estabilidad, existe $\delta>0$ tal que si $|x-c|<\delta$ y $t\in[0,b_x)$ entonces
 $\Phi_t(x)\in B(c,\epsilon)$. Luego la imagen por la solución del intervalo $[0,b_x)$ está contenido dentro
 de un compacto. Esto implica que $b_x=\infty$. 
  
 
-\begin{definicion}[Estabilidad asintótica]
- {Definición: estabilidad asintótica} Un punto de equilibrio $c\in\oo$ se dice 
+\begin{definicion}[Estabilidad asintótica]{}
+ {Definición: estabilidad asintótica} Un punto de equilibrio $c\in\Omega$ se dice 
   \emph{asintóticamente estable} si es estable y existe $\delta>0$ tal que
   \[x\in B(c,\delta)\Rightarrow \lim_{t\to\infty}\Phi_t(x)=0.\]
   \end{definicion}  
@@ -80,7 +80,7 @@ de un compacto. Esto implica que $b_x=\infty$.
  \subsection{Estabilidad via linealización}
  
 
-\begin{teorema}[Estabilidad asintótica de sistemas lineales]
+\begin{teorema}[Estabilidad asintótica de sistemas lineales]{}
  Consideremos el sistema lineal $x'=Ax$, $A\in\rr^{n\times n}$.  Son equivalentes
   \begin{enumerate}
    \item El sistema lineal $x'=Ax$, $A\in\rr^{n\times n}$, tiene un equilibrio asintóticamente estable en $0$.
@@ -94,15 +94,15 @@ de un compacto. Esto implica que $b_x=\infty$.
  
 
 
- \begin{teorema}[Invariancia de la estabilidad por equivalencias topológicas] Sean $X:\oo\to\rr^n$ e 
-  $Y:\oo'\to\rr^n$ dos campos $C^1$ topológicamente equivalentes. Sea $f:\oo\to\oo'$ un homeomorfismo 
-  que realiza esta equivalencia topológica entre $X$ e $Y$. Sea $c\in\oo$ un punto de equilibrio de $X$, recordar que
+ \begin{teorema}[Invariancia de la estabilidad por equivalencias topológicas]{} Sean $X:\Omega\to\rr^n$ e 
+  $Y:\Omega'\to\rr^n$ dos campos $C^1$ topológicamente equivalentes. Sea $f:\Omega\to\Omega'$ un homeomorfismo 
+  que realiza esta equivalencia topológica entre $X$ e $Y$. Sea $c\in\Omega$ un punto de equilibrio de $X$, recordar que
   $b:=f(c)$ lo es de $Y$. Entonces tenemos que  $c$ es (asintóticamente) estable  si y sólo si $d$ es 
   (asintóticamente) estable.
 \end{teorema}
 \begin{proof}
  Seguir los siguientes pasos. Demostrar  como  \emph{ejercicio} que si $\Phi_t^X$ y $\Phi_t^Y$ son los flujos asociados
- a $X$ e $Y$ respectivamente, entonces para cada $y\in\oo'$ y $t\in I_y$ vale que:
+ a $X$ e $Y$ respectivamente, entonces para cada $y\in\Omega'$ y $t\in I_y$ vale que:
  \[\Phi_t^Y=f\circ\Phi_t^X\circ f^{-1}.\]
  Suponer $c$ estable y tomar $\epsilon>0$. Como $f$ es continua, $f^{-1}(B(b,\epsilon))$ es abierto
  y de allí existe $\epsilon_0>0$ tal que $B(c,\epsilon_0)\subset f^{-1}( B(b,\epsilon))$. Como  $c$ es estable, existe 
@@ -128,8 +128,8 @@ que si $y\in B(b,\delta)$ entonces
  
 \end{proof}
 
-\begin{corolario}
-Supongamos que $c$ es un punto de equilibrio de $X:\oo\to\rr^n$. Supongamos que todos las partes reales de
+\begin{corolario}{}
+Supongamos que $c$ es un punto de equilibrio de $X:\Omega\to\rr^n$. Supongamos que todos las partes reales de
  autovalores de 
  $DX(c)$ son negativas. Entonces $c$ es asintóticamente estable. Si en cambio, algún autovalor tiene parte real
  positiva, $c$ es inestable.
@@ -150,11 +150,11 @@ El método de Lyapunov está basado en la introducción de ciertas funciones, ca
  cuando existe una función de Lyapunov ni tampoco como puede ser obtenida.
 
 
-\begin{definicion}[\href{http://es.wikipedia.org/wiki/Derivada_covariante}{derivada covariante}]
-               Sea $X:\oo\to\rr^n$ un campo vectorial sobre el abierto $\oo\subset\rr^n$. La 
+\begin{definicion}[\href{http://es.wikipedia.org/wiki/Derivada_covariante}{derivada covariante}]{}
+               Sea $X:\Omega\to\rr^n$ un campo vectorial sobre el abierto $\Omega\subset\rr^n$. La 
                \href{http://es.wikipedia.org/wiki/Derivada_covariante}{derivada covariante} respecto a $X$
                se simboliza por $\nabla_X$ y es un operador (difrencial) que actua sobre campos escalares 
-               $F:\oo\to\rr$. Se define por
+               $F:\Omega\to\rr$. Se define por
                \[
                \nabla_XF(x)=X\cdot\nabla F=\sum_{j=1}^nX_j(x) \frac{\partial F}{\partial x_j}(x).
                 \]
@@ -164,7 +164,7 @@ El método de Lyapunov está basado en la introducción de ciertas funciones, ca
 
 
 
-\begin{ejercicio} Demostrar que
+\begin{ejercicio}{} Demostrar que
   \begin{enumerate}
     \item La derivada covariante de $F$ representa la variación de $F$ a lo largo de una 
    trayectoria del flujo asociado a $X$. En otros términos
@@ -175,9 +175,9 @@ El método de Lyapunov está basado en la introducción de ciertas funciones, ca
 \end{ejercicio}
 
 
-\begin{definicion}[\href{http://es.wikipedia.org/wiki/Función_de_Lyapunov}{Función de Lyapunov}]
-               Sea $X:\oo\to\rr^n$ un campo vectorial sobre el abierto $\oo\subset\rr^n$ y $c$ un punto de equilibrio.
-               Una función, de clase $C^1$, $\Lambda:U\to\rr$, donde $U\subset\oo$ es  abierto y $c\in U$, se denomina
+\begin{definicion}[\href{http://es.wikipedia.org/wiki/Función_de_Lyapunov}{Función de Lyapunov}]{}
+               Sea $X:\Omega\to\rr^n$ un campo vectorial sobre el abierto $\Omega\subset\rr^n$ y $c$ un punto de equilibrio.
+               Una función, de clase $C^1$, $\Lambda:U\to\rr$, donde $U\subset\Omega$ es  abierto y $c\in U$, se denomina
                \href{http://es.wikipedia.org/wiki/Función_de_Lyapunov}{Función de Lyapunov} para $c$ si satisface
                \begin{enumerate}
                  \item $\Lambda(c)<\Lambda(x)$ para todo $x\in U\setminus\{c\}$.
@@ -203,9 +203,9 @@ El método de Lyapunov está basado en la introducción de ciertas funciones, ca
  y que $\Lambda(\Phi_t^X(x))$ es decreciente respecto al tiempo.  Esta observación es la idea clave para demostrar el Teorema de Estabilidad de Lyapunov.
 
 
-\begin{teorema}[Teorema de Estabilidad  de Lyapunov]
-  Sea $X:\oo\to\rr^n$ un campo vectorial sobre el abierto $\oo\subset\rr^n$ y $c$ un punto de equilibrio.
-               Supongamos que $\Lambda:U\to\rr$, con $U\subset\oo$ abierto y $c\in U$, es una
+\begin{teorema}[Teorema de Estabilidad  de Lyapunov]{}
+  Sea $X:\Omega\to\rr^n$ un campo vectorial sobre el abierto $\Omega\subset\rr^n$ y $c$ un punto de equilibrio.
+               Supongamos que $\Lambda:U\to\rr$, con $U\subset\Omega$ abierto y $c\in U$, es una
                \href{http://es.wikipedia.org/wiki/Función_de_Lyapunov}{Función de Lyapunov} para $c$. Entonces $c$ 
                es un equilibrio estable. Si $\Lambda$ es una función de Lyapunov estricta para $c$, entonces $c$ es 
                asintóticamente estable.
@@ -275,34 +275,34 @@ suficientemente grande para que $t_k>t_{k_0}+s$, tendremos
 
 \subsection{Método de Lyapunov: Ejemplos}
 
-\begin{ejemplo} Estabilidad de los equilibrios $2k\pi$, $k\in\mathbb{Z}$, en la ecuación del péndulo
+\begin{ejemplo}{} Estabilidad de los equilibrios $2k\pi$, $k\in\mathbb{Z}$, en la ecuación del péndulo
 
 \end{ejemplo}
- \begin{sageblock}
+\begin{lstlisting}
 x,y=var('x,y')
 Eq1=y
 Eq2=-sin(x)
 Equilibrios=solve([Eq1,Eq2],[x,y])
 Equilibrios
-\end{sageblock}
-Sagemath encuentra los equilibrios $\sage{Equilibrios}$, que es su manera de expresar $x=n\pi$, $y=0$, con $n\in\mathbb{Z}$. Analicemos el equilibrio $(0,0)$. 
+\end{lstlisting}
+Sympy encuentra los equilibrios $\sage{Equilibrios}$, que es su manera de expresar $x=n\pi$, $y=0$, con $n\in\mathbb{Z}$. Analicemos el equilibrio $(0,0)$. 
 
-\begin{sageblock}
-X(x,y)=[Eq1,Eq2]
-A=X.diff()(0,0)
-D=A.eigenmatrix_right()
-\end{sageblock}
+\begin{lstlisting}
+X=Matrix([Eq1,Eq2])
+A=X.jacobian([x,y]).subs({x:0,y:0})
+D=A.eigenvals()
+\end{lstlisting}
 
-\[\sage{D}\]
-No  se puedo aplicar el Teorema Linearización, autovalores imaginarios puros. Vamos a usar la energía
+Los autovalores son $\sympy{D}$. No  se puede aplicar el Teorema Linearización, autovalores imaginarios puros. Vamos a usar la energía
 
 \[E=\frac{1}{2}y^2-\cos(x)\]
 
 como función de Lyapunov.
-\begin{sageblock}
-Lambda(x,y)=1/2*y^2-cos(x)
+\begin{lstlisting}
+from sympy.plotting import plot3d
+Lambda=1.0/2*y**2-cos(x)
 p=plot3d(Lambda,(x,-5,5),(y,-1,1))
-\end{sageblock}
+\end{lstlisting}
 \begin{center}
 \sageplot[][png]{plot3d(Lambda,(x,-5,5),(y,-1,1))}
 \end{center}
@@ -310,49 +310,49 @@ Es facil demostrar que
 \[\Lambda(x,y)>\Lambda(0,0)\quad\hbox{para } -2\pi<x<\pi,\,\, y\in\mathbb{R},(x,y)\neq(0,0)\]
 Calculamos la derivada covariante.
 
-\begin{sageblock}
+\begin{lstlisting}
 DLambdaX=Lambda.diff().dot_product(X)
-\end{sageblock}
+\end{lstlisting}
 
 \[\sage{DLambdaX}\]
 
 Como es no positiva, $\Lambda$ es una función de Lyapunov y por consiguiente $(0,0)$ es estable. Es interesante analizar las curvas de nivel de la función de Lyapunov.
-\begin{sageblock}
+\begin{lstlisting}
 p=contour_plot(Lambda,(x,-2*pi,2*pi),(y,-3,3),contours=srange(-1,5,.2),fill=False)
-\end{sageblock}
+\end{lstlisting}
 
 \begin{center}
 \sageplot[width=.9\linewidth][png]{p}
 \end{center}
 
-\begin{ejemplo}\emph{\cite[ Ejemplo 6.1 ]{DavidBetounes488}}
+\begin{ejemplo}{}\emph{\cite[ Ejemplo 6.1 ]{DavidBetounes488}}
 \[X(x,y,z)=(y(z-1),x(z+1),-2xy)\]
-\begin{sageblock}
+\begin{lstlisting}
 x,y,z=var('x,y,z')
 Eq1=y*(z-1)
 Eq2=x*(z+1)
 Eq3=-2*x*y
 Equilibrios=solve([Eq1,Eq2,Eq3],[x,y,z])
-\end{sageblock}
+\end{lstlisting}
 Encontramos los equilibrios
 \[\sage{Equilibrios}\]
 Vamos a analizar el $(0,0,0)$ Estamos en problemas para aplicar el Teorema de Linearización, ni siquiera los puntos de equilibrio estan aislados. Un teorema afirma que equilibrio hiperbólico está aislado de otros equilibrios.
-\begin{sageblock}
+\begin{lstlisting}
 X(x,y,z)=[Eq1,Eq2,Eq3]
 A=X.diff()(0,0,0)
 D=A.eigenmatrix_right()
-\end{sageblock}
+\end{lstlisting}
 \[D=\sage{D}\]
 Como adelantamos, la linearización no es posible. Vamos a demostrar que
 \[\Lambda(x,y,z)=\frac12(x^2+y^2+z^2),\]
 es una función de Lyapunov para el equilibrio $(0,0,0)$. Claramente $\Lambda$ tiene un mínimo en $(0,0,0)$. 
-\begin{sageblock}
+\begin{lstlisting}
 Lambda(x,y,z)=1/2*(x^2+y^2+z^2)
 DX=Lambda.diff().dot_product(X).simplify_full()
-\end{sageblock}
+\end{lstlisting}
 \[DX=\sage{DX}.\]
 Por el Teorema de Lyapunov $(0,0,0)$ es estable. Grafiquemos las superficies de nivel y algunas soluciones.
-\begin{sageblock}
+\begin{lstlisting}
 def X(t,x):
     return [ x[1]*(x[2]-1),x[0]*(x[2]+1),-2*x[0]*x[1]]
 
@@ -379,7 +379,7 @@ T.ode_solve(y_0=[-1,0,-sqrt(2)],t_span=[0,30], num_points=100)
 a=T.solution
 Sol=[soln[1] for soln in a]
 Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
-\end{sageblock}
+\end{lstlisting}
 \begin{center}
 \sageplot[width=.9\linewidth][png]{Gra}
 \end{center}
@@ -393,13 +393,13 @@ Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
 \section{Estabilidad de órbitas periódicas}
 
 \subsection{Definiciones} 
- Recordemos: si $X:\oo\to\rr^n$ es un campo de clase $C^1$ y  $x\in\oo$, entonces $I_x=(a_x,b_x)$ denota el intervalo máximo
+ Recordemos: si $X:\Omega\to\rr^n$ es un campo de clase $C^1$ y  $x\in\Omega$, entonces $I_x=(a_x,b_x)$ denota el intervalo máximo
  de definición de la solución $\gamma$ que satisface que $\gamma(0)=x$
 
- \begin{definicion}[Estabilidad de Soluciones en General]
- Sea $X:\oo\to\rr^n$ es un campo de clase $C^1$ y  $c\in\oo$. Sea $\gamma:I_c\to\oo$ la solución tal que 
+ \begin{definicion}[Estabilidad de Soluciones en General]{}
+ Sea $X:\Omega\to\rr^n$ es un campo de clase $C^1$ y  $c\in\Omega$. Sea $\gamma:I_c\to\Omega$ la solución tal que 
  $\gamma(0)=c$. Diremos que $\gamma$ es \emph{estable} si para cada $\epsilon>0$ existe $\delta>0$ con 
- $B(c,\delta)\subset\oo$ y si $x\in B(c,\delta)$ entonces:
+ $B(c,\delta)\subset\Omega$ y si $x\in B(c,\delta)$ entonces:
  \begin{enumerate}
   \item $[0,b_c)\subset [0,b_x)$
   \item $|\Phi_t(x)-\gamma(t)|<\epsilon$, para todo $t\in[0,b_c)$. 
@@ -419,7 +419,7 @@ Gra+=list_plot(Sol,plotjoined=True,thickness=.5,rgbcolor=(1,0,0))
 
 \subsection{Ecuaciones Variacionales}
 
- Si desarrollamos en serie de Taylor $X$ alrededor de cualquier $x\in\oo$, tenemos para $h\in\rr^n$ chico
+ Si desarrollamos en serie de Taylor $X$ alrededor de cualquier $x\in\Omega$, tenemos para $h\in\rr^n$ chico
  \[X(x+h)=X(x)+DX(x)h+\cdots\]
 Supongamos $\gamma$ la solución de la cual queremos considerar su estabilidad, y sea $\alpha$ otra solución 
 (luego habrá que suponer que $\alpha(0)$ es cercano a $\gamma(0)$). Escribamos $\alpha=\gamma+\xi$. Se suele
@@ -429,7 +429,7 @@ $x$ por $\gamma$ y $h$ por $\xi$ y desestimando los términos de mayor orden vem
 \[\xi'(t)=DX(\gamma(t))\xi(t).\]
 
 
-$X:\oo\to\rr^n$ es un campo de clase $C^1$ y $\gamma:I\to\oo$ una solución. A la función a valores matriciales
+$X:\Omega\to\rr^n$ es un campo de clase $C^1$ y $\gamma:I\to\Omega$ una solución. A la función a valores matriciales
 $A(t)=DX(\gamma(t))$ la llamaremos \emph{matriz variacional} o \emph{matriz de \href{http://es.wikipedia.org/wiki/Monodromía}{monodromía}}. 
 
 El sistema lineal asociado
@@ -448,7 +448,7 @@ los \emph{multiplicadores característicos} de $\gamma$ como los autovalores de 
 
 \subsection{Ejemplos}
 
-\begin{ejemplo}\emph{\cite[ Ejemplo 6.3 ]{DavidBetounes488}} Considerar el sistema
+\begin{ejemplo}{}\emph{\cite[ Ejemplo 6.3 ]{DavidBetounes488}} Considerar el sistema
 \[
 \left\{
  \begin{array}{cc}
@@ -461,40 +461,40 @@ los \emph{multiplicadores característicos} de $\gamma$ como los autovalores de 
 Vale decir $X:\mathbb{R}^3\to\mathbb{R}^3$, es el campo
 \[X(x,y,z)=(-y+xz,x+yz,-z(x^2+y^2))\]
 Computemos la matríz Jacobiana
-\begin{sageblock}
+\begin{lstlisting}
 x,y,z,t=var('x,y,z,t')
 X(x,y,z)=(-y+x*z,x+y*z,-z*(x^2+y^2))
 DX=X.diff()(x,y,z)
-\end{sageblock}
+\end{lstlisting}
 
 \[
 DX=\sage{DX}
 \]
 La función  $\gamma(t)=(\cos(t),\sin(t),0)$ es solución de periódica de periodo $2\pi$. Computemos la matríz de monodromía.
-\begin{sageblock}
+\begin{lstlisting}
 A=(X.diff())(cos(t),sin(t),0).simplify_trig()
-\end{sageblock}
+\end{lstlisting}
 \[A=\sage{A}.\]
  Las ecuaciones características
- \begin{sageblock}
+\begin{lstlisting}
 Eq=A*vector([x,y,z]).column()
-\end{sageblock}
+\end{lstlisting}
 \[Eq=\sage{Eq}.\]
 
 Para resolverlas notar que la tercera ecuación está desacoplada de las dos primeras.  SAGE no sabe sacar provecho de eso. Lo tenemos que ayudar un poco
-\begin{sageblock}
+\begin{lstlisting}
 t=var('t')
 x=function('x',t)
 y=function('y',t)
 z=function('z',t)
 z_sol=desolve( z.diff(t)==-z,z)
-\end{sageblock}
+\end{lstlisting}
 \[z=\sage{z_sol}.\]
-\begin{sageblock}
+\begin{lstlisting}
 a,b,c=var('a,b,c')
 Sol=desolve_system([x.diff(t)==c*e^(-t)*cos(t)-y\
     ,y.diff(t)==sin(t)*c*e^(-t)+x],[x,y],ivar=t,ics=[0,a,b])
-\end{sageblock}
+\end{lstlisting}
 \[
  \begin{array}{l}
   \sage{Sol[0]}\\
@@ -502,7 +502,7 @@ Sol=desolve_system([x.diff(t)==c*e^(-t)*cos(t)-y\
  \end{array}
 \]
 Calculamos la matriz fundamental del sistema, que resulta ser la matríz característica de $\gamma$.
-\begin{sageblock}
+\begin{lstlisting}
 c1=Sol[0].rhs()
 c2=Sol[1].rhs()
 c3=c*exp(-t)
@@ -514,17 +514,17 @@ G=matrix([\
 ,[c2.substitute(e1),c2.substitute(e2),c2.substitute(e3)]\
 ,[c3.substitute(e1),c3.substitute(e2),c3.substitute(e3)]])
 
-\end{sageblock}
+\end{lstlisting}
 \[G=\sage{G}.\]
 Por último los multiplicadores característicos
 
-\begin{sageblock}
+\begin{lstlisting}
 D=G.subs(t=2*pi).eigenmatrix_right()
-\end{sageblock}
+\end{lstlisting}
 \[\sage{D}\]
 \end{ejemplo}
 
- \begin{ejemplo}\label{ej:ejemm6.4}\emph{\cite[ Ejemplo 6.4 ]{DavidBetounes488}} Hallar matriz de mondrom´ia y multiplicadores caracter´isiticos para el sistema 2-dimensional
+ \begin{ejemplo}{ej:ejemm6.4}\emph{\cite[ Ejemplo 6.4 ]{DavidBetounes488}} Hallar matriz de mondrom´ia y multiplicadores caracter´isiticos para el sistema 2-dimensional
  \[
  \begin{array}{cc}
   x'(t)&=-x-by+x^3+xy^2\\
@@ -532,36 +532,36 @@ D=G.subs(t=2*pi).eigenmatrix_right()
  \end{array}
  \]
 
-\begin{sageblock}
+\begin{lstlisting}
 x,y,t,b=var('x,y,t,b')
 X(x,y)=(-x-b*y+x^3+x*y^2,b*x-y+x^2*y+y^3)
-\end{sageblock}   
+\end{lstlisting}   
 
 Si se expresa el sistema en coordenandas polares se puede demostrar que $\gamma(t)=(\cos(b*t),\sin(b*t))$ es solución periódica de período $2\pi/b$. Chequeemos esta última afirmación de manera directa.
-\begin{sageblock}
+\begin{lstlisting}
 ((X(cos(b*t),sin(b*t)))[0]-(cos(b*t)).diff(t))\
 .simplify_full()
 ((X(cos(b*t),sin(b*t)))[1]-(sin(b*t)).diff(t))\
 .simplify_full()
-\end{sageblock} 
+\end{lstlisting} 
 Matríz de Monodromía
-\begin{sageblock}
+\begin{lstlisting}
 A(t)=(X.diff())(cos(b*t),sin(b*t)).simplify_trig()
-\end{sageblock} 
+\end{lstlisting} 
 \[A(t)=\sage{A(t)}.\]
-\begin{ejercicio}
+\begin{ejercicio}{}
  Demostrar que la matríz característica viene dada por: 
- \begin{sageblock}
+\begin{lstlisting}
  G=matrix([[e^(2*t)*cos(b*t)  , -sin(b*t) ]\
  ,[e^(2*t)*sin(b*t)  , cos(b*t) ]])
- \end{sageblock} 
+ \end{lstlisting} 
  \[G=\sage{G}.\]
 
 \end{ejercicio}
  Multiplicadores característicos
-  \begin{sageblock}
+ \begin{lstlisting}
 D=G.subs(t==2*pi/b).eigenmatrix_right()
- \end{sageblock} 
+ \end{lstlisting} 
   \begin{equation}\label{eq:ejempl6.4}D=\sage{D}.\end{equation}
 
 
@@ -574,8 +574,8 @@ D=G.subs(t==2*pi/b).eigenmatrix_right()
 
 \subsection{Matriz de deformaciones} 
 
-\begin{definicion}Supongamos
-  $X:\oo\to\rr^n$ es un campo de clase $C^1$ y $\Phi_t:\mathcal{D}\subset\rr\times\rr^n\to\oo$ el flujo asociado. 
+\begin{definicion}{}Supongamos
+  $X:\Omega\to\rr^n$ es un campo de clase $C^1$ y $\Phi_t:\mathcal{D}\subset\rr\times\rr^n\to\Omega$ el flujo asociado. 
  Definimos la \emph{matriz de deformaciones} $H$ como 
  \[H(t,x)=(D_x\Phi_t)(x)=\begin{pmatrix}
                         \frac{\partial\Phi^1_t}{\partial x_1 } &\dots & \frac{\partial\Phi^1_t}{\partial x_n}\\
@@ -592,7 +592,7 @@ D=G.subs(t==2*pi/b).eigenmatrix_right()
 
  
 
-\begin{teorema}Sea $\gamma:I\to\oo$ una solución, con $0\in I$ y $c=\gamma(0)$. La matriz característica 
+\begin{teorema}{}Sea $\gamma:I\to\Omega$ una solución, con $0\in I$ y $c=\gamma(0)$. La matriz característica 
 $G$ de $\gamma$ coincide con la matriz de deformaciones $H$ en $c$:
 \[G(t)=H(t,c).\]
 Además
@@ -634,17 +634,17 @@ Lo cual termina por mostrar que $G(t)=H(t,c)$.
  
  
 
- \begin{teorema}
+ \begin{teorema}{}
 
 
 
-Sea $f:\oo\to\tilde{\oo}$ un difeomorfismo entre abiertos de $\rr^n$, $X:\oo\to\rr^n$ un campo $C^1$ e $Y:\tilde{\oo}\to\rr^n$ su push-forward, es decir $Y=f_*(X)$.
+Sea $f:\Omega\to\tilde{\Omega}$ un difeomorfismo entre abiertos de $\rr^n$, $X:\Omega\to\rr^n$ un campo $C^1$ e $Y:\tilde{\Omega}\to\rr^n$ su push-forward, es decir $Y=f_*(X)$.
 Sean $H^X$ y $H^Y$ las matrices de deformaciones de los campos $X$ e $Y$ respectivamente. Tambien consideramos los flujos $\Phi_t^X$ y $\Phi_t^Y$. Se tiene la siguiente 
 relación
 \begin{equation}\label{def_mat}H(t,y)=Df(\Phi^X_t(f^{-1}(y)))H(t,f^{-1}(y)) \left(Df(f^{-1}(y))\right)^{-1}.\end{equation}
 
 
-Si $\gamma:I\to\oo$ es una solución de $x'=X(x)$, entonces $\beta=f\circ\gamma$ es solución de $y'=Y(y)$. Las matrices características 
+Si $\gamma:I\to\Omega$ es una solución de $x'=X(x)$, entonces $\beta=f\circ\gamma$ es solución de $y'=Y(y)$. Las matrices características 
 de $\gamma$ y $\beta$, digamos  $G^X$ y $G^Y$ respectivamente, son similares. Especificamente
 \begin{equation}\label{car_mat}G^Y(t)=D_xf(\gamma(t))G^X(t)\left(D_xf(c)\right)^{-1}.\end{equation}
 En particular si $\gamma$ es periódica de periodo $p$, $\beta$ es periódica con el mismo periodo y los multiplicadores característicos son los mismos.
@@ -663,7 +663,7 @@ son similares, de allí tienen el mismo espectro.\end{proof}
  
  \subsection{Radio espectral}
 
-\begin{definicion}[Radio espectral] Sea $A\in\rr^{n\times n}$ una matriz, definimos su
+\begin{definicion}[Radio espectral]{} Sea $A\in\rr^{n\times n}$ una matriz, definimos su
 \href{http://es.wikipedia.org/wiki/Radio_espectral}{radio espectral} $\rho(A)$ por
 \[
 \rho(A):= \sup\{|\lambda|: \lambda\in\sigma(A)\}.
@@ -681,7 +681,7 @@ $\|\cdot\|$. Es decir
 \[\|A\|:=\sup_{\|x\|\leq 1} \|Ax\|\]
 
 
-\begin{teorema}[Una representación del radio espectral]
+\begin{teorema}[Una representación del radio espectral]{}
 
 
 
@@ -690,7 +690,7 @@ $\|\cdot\|$. Es decir
 
 \end{teorema}
 
-\begin{corolario}
+\begin{corolario}{}
 
 
 
@@ -730,7 +730,7 @@ variacionales $\xi'(t)=A(t)\xi(t)$. Como $G(t)$ es una matriz fundamental para e
 
 
 
-\begin{ejercicio}
+\begin{ejercicio}{}
  Demostrar que si $A(t)$ es una función a valores matriciales $A:I\subset\rr\to\rr^{n\times n}$ que además es periódica con periodo $p$,
 entonces la matriz fundamental satisface que $G(t+p)=G(t)G(p)$. En particular
 \begin{equation}\label{semigrupo}G(kp)=G(p)^k.\end{equation}
@@ -750,7 +750,7 @@ Esta discusión da un indicio de por que podremos esperar estabilidad si  $|\mu_
 
 
 \subsection{Estabilidad orbital}
-\begin{definicion}[Estabilidad orbital]
+\begin{definicion}[Estabilidad orbital]{}
   Sea $\gamma$ una solución periódica y $\Gamma=\gamma(\rr)$. Diremos que $\gamma$ es \emph{orbitalmente estable} si para cada $\epsilon>0$ existe $\delta>0$ tal que
  \[d(x,\Gamma)<\delta\Rightarrow d(\Phi_t(x),\Gamma)<\epsilon.\]
  Si además tenemos que
@@ -764,8 +764,8 @@ Esta discusión da un indicio de por que podremos esperar estabilidad si  $|\mu_
 \subsection{Mapeo de Poincaré}
 
 
-\begin{teorema}[Mapeo de Poincaré]
- Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c$ y $M_c$ como antes. Entonces existe un entorno abierto $U$ de $c$ 
+\begin{teorema}[Mapeo de Poincaré]{}
+ Sea $\gamma:\rr\to\Omega$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\Omega\to \rr^n$. Sea $c$ y $M_c$ como antes. Entonces existe un entorno abierto $U$ de $c$ 
  y una función $C^1$ $\tau:U\to \rr$ tal que $\tau(c)=p$
  \[\Phi_{\tau(x)}\in M_c\]
 La aplicación $P:U\cap M_c\to M_c$ dada por $P(x)=\Phi_{\tau(x)}(x)$ se llama \href{http://es.wikipedia.org/wiki/Aplicación_de_Poincaré}{Mapeo de Poincaré}.
@@ -790,7 +790,7 @@ Vale decir $F(\tau(x),x)=0$, lo que implica $\Phi_{\tau(x)}(x)\in M_c$\qed
    \end{center}
 \end{proof}
 
-\begin{ejemplo} Hallar el Mapeo Poincaré de
+\begin{ejemplo}{} Hallar el Mapeo Poincaré de
 
  \[\begin{cases} x'(t)&= x\left(t\right)^{3} + x\left(t\right)
 y\left(t\right)^{2} - b y\left(t\right) - x\left(t\right)\\
@@ -800,7 +800,7 @@ y\left(t\right)^{3} + b x\left(t\right) - y\left(t\right)\\
 
 
 Convirtiendo a polares
-\begin{sageblock}
+\begin{lstlisting}
 t,b=var('t,b')
 theta=function('theta')(t)
 r=function('r')(t)
@@ -817,7 +817,7 @@ Eq1Pol=Eqpol[0][0].simplify_full()\
 Eq2Pol=Eqpol[0][1].simplify_full()\
 .substitute(Y==r.diff(t))
 
-\end{sageblock}
+\end{lstlisting}
 
 
 \[\begin{array}{c}
@@ -828,10 +828,10 @@ Eq2Pol=Eqpol[0][1].simplify_full()\
 
 
 Que es un sistema desacoplado que se puede resolver por técnicas elementales. 
-\begin{sageblock}
+\begin{lstlisting}
 Sol1=desolve(Eq1Pol,theta,ivar=t)
 Sol2=desolve(Eq2Pol,r,ivar=t)
-\end{sageblock}
+\end{lstlisting}
 
 \[\begin{array}{c}
    \theta(t)=\sage{Sol1}\\
@@ -888,13 +888,13 @@ La aplicación de Poincare $P$ para un punto con retorno esta definida por
 
 Notar que $P'(1)=e^{4\pi/b}$ que es  multiplicador característico según la ecuación \eqref{eq:ejempl6.4}. Demostrarmos que este hecho no es casual.
 
-\begin{definicion}[Producto Tensorial]
+\begin{definicion}[Producto Tensorial]{}
  Dados dos vectores $a,b\in\mathbb{R}^n$ definimos su producto tensorial $a\otimes b$ como el operador lineal  $a\otimes b:\rr^n\to\rr^n$ definido por
 \[\left(a\otimes b\right)v=\left(b\cdot v\right)a,\quad \text{ para } v\in\rr^n.\]
 \end{definicion}
 
 
-\begin{ejercicio}
+\begin{ejercicio}{}
   Demostrar que respecto a la base canónica de  $\rr^n$ la representación matricial del operador $a\otimes b$ tiene entrada $ij$
 \[\left(a\otimes b\right)_{ij}=a_ib_j.\]
 \end{ejercicio}
@@ -907,14 +907,14 @@ El mapeo de Poincaré $P$ está definido en $U\cap M_c$, pero podemos extenderlo
 
 
 
-\begin{ejercicio}[Matriz Jacobiana del Mapeo de Poincaré] Demostrar que
+\begin{ejercicio}[Matriz Jacobiana del Mapeo de Poincaré]{} Demostrar que
 \[D\tilde{P}(x)=X(\tilde{P}(x))\otimes\nabla\tau(x)+H(\tau(x),x),\]
 en particular
 \[D\tilde{P}(c)=X(c)\otimes\nabla\tau(c)+G(p).\]
 \end{ejercicio}
 
 
-\begin{teorema}[Matriz Jacobiana Mapeo Poincaré]
+\begin{teorema}[Matriz Jacobiana Mapeo Poincaré]{}
  Asumamos $c=0$ y $X(0)=(0,0,\ldots,0,1)$. Entonces:
  \begin{equation}\label{gp}G(p)=\begin{bmatrix}
          b_{11}&\cdots&b_{1,n-1}&0\\
@@ -988,12 +988,12 @@ Consideramos la incrustación $i:\rr^{n-1}\to\rr^n$, dada por $i(x_1,\ldots,x_{n
 
 
 
-\begin{ejercicio} ¿Cómo podemos reducir el caso general $c$ no necesariamente $0$ y $X(c)\neq 0$ al caso cosiderado? 
+\begin{ejercicio}{} ¿Cómo podemos reducir el caso general $c$ no necesariamente $0$ y $X(c)\neq 0$ al caso cosiderado? 
 \end{ejercicio}
 
 
-\begin{teorema}[Estabilidad Orbital]
- Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. Supongamos que $n-1$ de los múltiplos 
+\begin{teorema}[Estabilidad Orbital]{}
+ Sea $\gamma:\rr\to\Omega$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\Omega\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. Supongamos que $n-1$ de los múltiplos 
  característicos $\mu_2,\ldots,\mu_n$ tienen módulo menor a $1$. Entonces $\gamma$ es orbitalmente estable. Además, si $|\mu_j|<a<1$, para $j=2,\ldots,n$, entonces 
  existe $L>0$ y un abierto $\Omega$, con $\Gamma\subset\Omega$ tal que si $x\in\Omega$, existe $T\in\rr$ tal que
  \begin{equation}\label{est_asi}
@@ -1007,7 +1007,7 @@ Consideramos la incrustación $i:\rr^{n-1}\to\rr^n$, dada por $i(x_1,\ldots,x_{n
 
 
 \begin{proof} Como antes, asumamos $c=0$ y $X(0)=(0,0,\ldots,0,1)$. Sea $\Omega_0$ un abierto con $\Gamma\subset\Omega_0$ y $\overline{\Omega}_0$ compacto. Pongamos
-$\Phi(t,x)=\Phi_t(x)$, entonces $\Phi:\mathcal{D}\subset\rr\times \oo\to\rr^n$. Tenemos que $\Phi^{-1}(\Omega_0)$ es un abierto y $(t,0)\in\Phi^{-1}(\Omega_0)$, para todo 
+$\Phi(t,x)=\Phi_t(x)$, entonces $\Phi:\mathcal{D}\subset\rr\times \Omega\to\rr^n$. Tenemos que $\Phi^{-1}(\Omega_0)$ es un abierto y $(t,0)\in\Phi^{-1}(\Omega_0)$, para todo 
 $t\in\rr$. Luego para cada $t\in[0,2p]$ existe $(a_t,b_t)\ni t$ y $R_t>0$ tal que $(t,0)\in(a_t,b_t)\times B_{R_t}(0)\subset\Phi^{-1}(\Omega_0)$. Como $\{(a_t,b_t)\}_{t\in[0,2p]}$
 es un cubrimiento por abiertos del compacto $[0,2p]$, podemos cubrir por finitos $(a_{t_i},b_{t_i})$, $i=1,\ldots,m$. Si ahora tomamos $0<R< R_{t_i}$, $i=1,\ldots,m$, 
 tendremos que
@@ -1017,12 +1017,12 @@ tendremos que
 
 
 
-Sea $0\in U\subset\oo$ un entorno abierto donde está definida y es de clase $C^1$ el mapeo de retorno $\tau:U\to\rr$. Podemos asumir $B_R(0)= U$. Sea $\tilde{P}$, como antes, 
+Sea $0\in U\subset\Omega$ un entorno abierto donde está definida y es de clase $C^1$ el mapeo de retorno $\tau:U\to\rr$. Podemos asumir $B_R(0)= U$. Sea $\tilde{P}$, como antes, 
 $\tilde{P}:U\to\rr^n$ definida por $\tilde{P}(x)=\Phi(\tau(x),x)$. Por el Teorema anterior y las hipótesis sabemos que los autovalores de $DP(0)$ tienen todos módulo menor que
 $a$. Por el resultado de álgebra lineal tenemos que existe una norma $\|\cdot\|_0$ tal que
 \[\|DP(0)x\|_0<a\|x\|_0.\]
 
-\begin{ejercicio} Eligiendo $\delta>0$ suficientemente chico tendremos que  $\|x\|_0<\delta$ implica $\|P(x)\|_0\leq a\|x\|_0$. 
+\begin{ejercicio}{} Eligiendo $\delta>0$ suficientemente chico tendremos que  $\|x\|_0<\delta$ implica $\|P(x)\|_0\leq a\|x\|_0$. 
  
 \end{ejercicio}
 
@@ -1040,7 +1040,7 @@ De la continuidad de $\tau:W\to\rr$ podemos suponer que $|\tau(x)-p|\leq p/2$ pa
 Sea 
 \[\Omega:=\{\Phi_t(x)|x\in W, t\in [0,\tau(x)]\},\]
 
-\begin{ejercicio}
+\begin{ejercicio}{}
  Se tiene que $\Omega\subset \Omega_0$ y $\Omega$ es un entorno de $\Gamma$.
 \end{ejercicio}
 
@@ -1062,7 +1062,7 @@ Sea $x\in\Omega$, entonces existe $w_0\in W$ y $t_0\in[0,\tau(w_0)]$ tal que $x=
 
 
 
-\begin{ejercicio} $\Phi_{t_k}(x)=w_k\in W$, $k=1,2,\ldots$.
+\begin{ejercicio}{} $\Phi_{t_k}(x)=w_k\in W$, $k=1,2,\ldots$.
  \end{ejercicio}
 
 
@@ -1121,7 +1121,7 @@ Sea $s_1<s_2$
 \]
 Tomando $s_2=s+t_k$ y $s_1=s+kp+T$, en este caso $s_2-s_1=T_k-T$.
 
-\begin{ejercicio} Probar que
+\begin{ejercicio}{} Probar que
 \[ 
    \|\Phi_{s+t_k}(x)-\Phi_{s+kp+T}(x)\|_0 \leq L_1 |T_k-T|\leq \frac{L_1L_3\|w_0\|_0}{1-a}a^k.
  \]
@@ -1134,8 +1134,8 @@ El caso general se aborda como es usual, mediante un push forward.
 
 
 
-\begin{corolario}
-  Sea $\gamma:\rr\to\oo$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\oo\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. 
+\begin{corolario}{}
+  Sea $\gamma:\rr\to\Omega$ una solución de período $p$ del sistema $x'=X(x)$, donde $X:\Omega\to \rr^n$. Sea $c=\gamma(0)$ y $M_c$ como antes. 
 Sea $P:U\cap M_c\to M_c$ el mapeo de Poincare. Supongamos que para cada entorno $\tilde{W}$ de $c$  en $U\cap M_c$ existe un entorno $W\subset\tilde{W}$
 de $c$  en $U\cap M_c$ tal que
 \[P(W)\subset W.\]
