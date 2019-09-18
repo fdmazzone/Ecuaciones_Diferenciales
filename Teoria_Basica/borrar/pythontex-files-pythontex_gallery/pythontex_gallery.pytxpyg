@@ -1,0 +1,272 @@
+
+\makeatletter
+\def\PYGdefault@reset{\let\PYGdefault@it=\relax \let\PYGdefault@bf=\relax%
+    \let\PYGdefault@ul=\relax \let\PYGdefault@tc=\relax%
+    \let\PYGdefault@bc=\relax \let\PYGdefault@ff=\relax}
+\def\PYGdefault@tok#1{\csname PYGdefault@tok@#1\endcsname}
+\def\PYGdefault@toks#1+{\ifx\relax#1\empty\else%
+    \PYGdefault@tok{#1}\expandafter\PYGdefault@toks\fi}
+\def\PYGdefault@do#1{\PYGdefault@bc{\PYGdefault@tc{\PYGdefault@ul{%
+    \PYGdefault@it{\PYGdefault@bf{\PYGdefault@ff{#1}}}}}}}
+\def\PYGdefault#1#2{\PYGdefault@reset\PYGdefault@toks#1+\relax+\PYGdefault@do{#2}}
+
+\expandafter\def\csname PYGdefault@tok@gd\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gu\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gt\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gs\endcsname{\let\PYGdefault@bf=\textbf}
+\expandafter\def\csname PYGdefault@tok@gr\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@cm\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@vg\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@vi\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@vm\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@mh\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@cs\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ge\endcsname{\let\PYGdefault@it=\textit}
+\expandafter\def\csname PYGdefault@tok@vc\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@il\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@go\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PYGdefault@tok@cp\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gi\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gh\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ni\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nl\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nn\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@no\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@na\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nb\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nc\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nd\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ne\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nf\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@si\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PYGdefault@tok@s2\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nt\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@nv\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@s1\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@dl\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ch\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@m\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@gp\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sh\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ow\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sx\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@bp\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@c1\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@fm\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@o\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kc\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@c\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@mf\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@err\endcsname{\def\PYGdefault@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PYGdefault@tok@mb\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@ss\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sr\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PYGdefault@tok@mo\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kd\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@mi\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kn\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@cpf\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kr\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@s\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kp\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@w\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PYGdefault@tok@kt\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sc\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sb\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sa\endcsname{\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@k\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PYGdefault@tok@se\endcsname{\let\PYGdefault@bf=\textbf\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PYGdefault@tok@sd\endcsname{\let\PYGdefault@it=\textit\def\PYGdefault@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYGdefaultZbs{\char`\\}
+\def\PYGdefaultZus{\char`\_}
+\def\PYGdefaultZob{\char`\{}
+\def\PYGdefaultZcb{\char`\}}
+\def\PYGdefaultZca{\char`\^}
+\def\PYGdefaultZam{\char`\&}
+\def\PYGdefaultZlt{\char`\<}
+\def\PYGdefaultZgt{\char`\>}
+\def\PYGdefaultZsh{\char`\#}
+\def\PYGdefaultZpc{\char`\%}
+\def\PYGdefaultZdl{\char`\$}
+\def\PYGdefaultZhy{\char`\-}
+\def\PYGdefaultZsq{\char`\'}
+\def\PYGdefaultZdq{\char`\"}
+\def\PYGdefaultZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYGdefaultZat{@}
+\def\PYGdefaultZlb{[}
+\def\PYGdefaultZrb{]}
+\makeatother
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@pylab@default@5@0}
+\PYGdefault{n}{rc}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{text}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{usetex}\PYGdefault{o}{=}\PYGdefault{n+nb+bp}{True}\PYGdefault{p}{)}
+\PYGdefault{n}{rc}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{font}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{family}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{serif}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{rc}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{font}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{size}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{10.0}\PYGdefault{p}{)}
+\PYGdefault{n}{rc}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{legend}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{fontsize}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{10.0}\PYGdefault{p}{)}
+\PYGdefault{n}{rc}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{font}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{weight}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{normal}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{linspace}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{,} \PYGdefault{l+m+mi}{10}\PYGdefault{p}{)}
+\PYGdefault{n}{figure}\PYGdefault{p}{(}\PYGdefault{n}{figsize}\PYGdefault{o}{=}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{4}\PYGdefault{p}{,} \PYGdefault{l+m+mf}{2.5}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\PYGdefault{n}{plot}\PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{sin}\PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{n}{label}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZdl{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{sin(x)\PYGdefaultZdl{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{xlabel}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZdl{}x}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{mathrm\PYGdefaultZob{}\PYGdefaultZhy{}axis\PYGdefaultZcb{}\PYGdefaultZdl{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{ylabel}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZdl{}y}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{mathrm\PYGdefaultZob{}\PYGdefaultZhy{}axis\PYGdefaultZcb{}\PYGdefaultZdl{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{legend}\PYGdefault{p}{(}\PYGdefault{n}{loc}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{lower right}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{savefig}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{myplot.pdf}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{bbox\PYGdefaultZus{}inches}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{tight}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@3verb@0}
+\PYGdefault{k}{\PYGdefaultZbs{}pycon}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@py@errorsession@9@0}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{123}
+\PYGdefault{n}{y} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{345}
+\PYGdefault{n}{z} \PYGdefault{o}{=} \PYGdefault{n}{x} \PYGdefault{o}{+} \PYGdefault{n}{y} \PYGdefault{o}{+}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@1verb@2}
+\PYGdefault{k}{\PYGdefaultZbs{}py}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@pycon@default@3@1}
+\PYGdefault{g+go}{468}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@pycon@default@3@0}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{123}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{n}{y} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{345}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{n}{z} \PYGdefault{o}{=} \PYGdefault{n}{x} \PYGdefault{o}{+} \PYGdefault{n}{y}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{n}{z}
+\PYGdefault{g+go}{468}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{k}{def} \PYGdefault{n+nf}{f}\PYGdefault{p}{(}\PYGdefault{n}{expr}\PYGdefault{p}{)}\PYGdefault{p}{:}
+\PYGdefault{g+gp}{... }    \PYGdefault{k}{return}\PYGdefault{p}{(}\PYGdefault{n}{expr}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{4}\PYGdefault{p}{)}
+\PYGdefault{g+gp}{... }
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{n}{f}\PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\PYGdefault{g+go}{228886641}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{Python says hi from the console!}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{g+go}{Python says hi from the console!}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGpycon@default@2verb@0}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{err}{â}\PYGdefault{err}{æ}\PYGdefault{err}{é}\PYGdefault{err}{ö}\PYGdefault{err}{ø} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{123}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{err}{ß}\PYGdefault{err}{ç}\PYGdefault{err}{ñ}\PYGdefault{err}{ð}\PYGdefault{err}{Š} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{456}
+\PYGdefault{g+gp}{\PYGdefaultZgt{}\PYGdefaultZgt{}\PYGdefaultZgt{} }\PYGdefault{err}{â}\PYGdefault{err}{æ}\PYGdefault{err}{é}\PYGdefault{err}{ö}\PYGdefault{err}{ø} \PYGdefault{o}{+} \PYGdefault{err}{ß}\PYGdefault{err}{ç}\PYGdefault{err}{ñ}\PYGdefault{err}{ð}\PYGdefault{err}{Š}
+\PYGdefault{g+go}{579}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@sympy@default@8@0}
+\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{z} \PYGdefault{o}{=} \PYGdefault{n}{symbols}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{x,y,z}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{f} \PYGdefault{o}{=} \PYGdefault{n}{Symbol}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{f(x,y,z)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Define limits of integration}
+\PYGdefault{n}{x\PYGdefaultZus{}llim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{0}
+\PYGdefault{n}{x\PYGdefaultZus{}ulim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{2}
+\PYGdefault{n}{y\PYGdefaultZus{}llim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{0}
+\PYGdefault{n}{y\PYGdefaultZus{}ulim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{3}
+\PYGdefault{n}{z\PYGdefaultZus{}llim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{0}
+\PYGdefault{n}{z\PYGdefaultZus{}ulim} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{4}
+
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{begin\PYGdefaultZob{}align*\PYGdefaultZcb{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Notice how I define f as a symbol, then later as an actual function}
+\PYGdefault{n}{left} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\PYGdefault{n}{f} \PYGdefault{o}{=} \PYGdefault{n}{x}\PYGdefault{o}{*}\PYGdefault{n}{y} \PYGdefault{o}{+} \PYGdefault{n}{y}\PYGdefault{o}{*}\PYGdefault{n}{sin}\PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{n}{cos}\PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{o}{+}\PYGdefault{n}{y}\PYGdefault{p}{)}
+\PYGdefault{n}{right} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{left}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{right}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} For each step, I move limits from an outer integral to an inner, evaluated}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} integral until the outer integral is no longer needed}
+\PYGdefault{n}{right} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}\PYGdefault{o}{.}\PYGdefault{n}{doit}\PYGdefault{p}{(}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,}
+                 \PYGdefault{p}{(}\PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{right}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{n}{right} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}\PYGdefault{o}{.}\PYGdefault{n}{doit}\PYGdefault{p}{(}\PYGdefault{p}{)}\PYGdefault{p}{,}
+                 \PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{right}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{n}{right} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{z}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{z\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{y}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{y\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{,}
+                 \PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}llim}\PYGdefault{p}{,} \PYGdefault{n}{x\PYGdefaultZus{}ulim}\PYGdefault{p}{)}\PYGdefault{p}{)}\PYGdefault{o}{.}\PYGdefault{n}{doit}\PYGdefault{p}{(}\PYGdefault{p}{)}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{right}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n}{N}\PYGdefault{p}{(}\PYGdefault{n}{right}\PYGdefault{p}{)}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{end\PYGdefaultZob{}align*\PYGdefaultZcb{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@py@default@1@0}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{Python says hi!}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@py@default@1@1}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n+nb}{str}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{2}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{endinput}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@py@default@1@2}
+\PYGdefault{n}{mytext} \PYGdefault{o}{=} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZdl{}1 + 1 = \PYGdefaultZob{}0\PYGdefaultZcb{}\PYGdefaultZdl{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{o}{.}\PYGdefault{n}{format}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{1} \PYGdefault{o}{+} \PYGdefault{l+m+mi}{1}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@2verb@0}
+\PYGdefault{k}{\PYGdefaultZbs{}pygment}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@1verb@0}
+\PYGdefault{k}{\PYGdefaultZbs{}py}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@1verb@1}
+\PYGdefault{k}{\PYGdefaultZbs{}py}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@sympy@default@7@0}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{re} \PYGdefault{k+kn}{import} \PYGdefault{n}{sub}
+
+\PYGdefault{n}{var}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{x}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Create a list of functions to include in the table}
+\PYGdefault{n}{funcs} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{sin(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{cos(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{tan(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,}
+         \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{sin(x)**2}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{cos(x)**2}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{tan(x)**2}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,}
+         \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{asin(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{acos(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{atan(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,}
+         \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{sinh(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{cosh(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{tanh(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{]}
+
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{begin\PYGdefaultZob{}align*\PYGdefaultZcb{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{k}{for} \PYGdefault{n}{func} \PYGdefault{o+ow}{in} \PYGdefault{n}{funcs}\PYGdefault{p}{:}
+    \PYGdefault{c+c1}{\PYGdefaultZsh{} Put in some vertical space when switching to arc and hyperbolic funcs}
+    \PYGdefault{k}{if} \PYGdefault{n}{func} \PYGdefault{o}{==} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{asin(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o+ow}{or} \PYGdefault{n}{func} \PYGdefault{o}{==} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{sinh(x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{:}
+        \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+    \PYGdefault{n}{myderiv} \PYGdefault{o}{=} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{Derivative(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{func} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{, x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}
+    \PYGdefault{n}{myint} \PYGdefault{o}{=} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{Integral(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+} \PYGdefault{n}{func} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{, x)}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}
+    \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n+nb}{eval}\PYGdefault{p}{(}\PYGdefault{n}{myderiv}\PYGdefault{p}{)}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+}
+            \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n+nb}{eval}\PYGdefault{p}{(}\PYGdefault{n}{myderiv} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{.doit()}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{quad \PYGdefaultZam{} }\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{quad}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+    \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n+nb}{eval}\PYGdefault{p}{(}\PYGdefault{n}{myint}\PYGdefault{p}{)}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZam{}=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}} \PYGdefault{o}{+}
+            \PYGdefault{n}{latex}\PYGdefault{p}{(}\PYGdefault{n+nb}{eval}\PYGdefault{p}{(}\PYGdefault{n}{myint}\PYGdefault{o}{+}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{.doit()}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{end\PYGdefaultZob{}align*\PYGdefaultZcb{}}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@pylab@default@6@0}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{scipy.integrate} \PYGdefault{k+kn}{import} \PYGdefault{n}{quad}
+\PYGdefault{n}{myintegral} \PYGdefault{o}{=} \PYGdefault{n}{quad}\PYGdefault{p}{(}\PYGdefault{k}{lambda} \PYGdefault{n}{x}\PYGdefault{p}{:} \PYGdefault{n}{e}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{n}{x}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{,} \PYGdefault{l+m+mi}{0}\PYGdefault{p}{,} \PYGdefault{n}{inf}\PYGdefault{p}{)}\PYGdefault{p}{[}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{]}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@5verb@0}
+\PYGdefault{k}{\PYGdefaultZbs{}textwidth}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@PYGlatex@default@5verb@1}
+\PYGdefault{k}{\PYGdefaultZbs{}setpythontexcontext}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@sympy@default@4@5}
+\PYGdefault{n}{phi} \PYGdefault{o}{=} \PYGdefault{n}{Symbol}\PYGdefault{p}{(}\PYGdefault{l+s+sa}{r}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{\PYGdefaultZbs{}}\PYGdefault{l+s+s1}{phi}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{h} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{exp}\PYGdefault{p}{(}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{n}{phi}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}\PYGdefault{p}{,} \PYGdefault{p}{(}\PYGdefault{n}{phi}\PYGdefault{p}{,} \PYGdefault{l+m+mi}{0}\PYGdefault{p}{,} \PYGdefault{n}{oo}\PYGdefault{p}{)}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@sympy@default@4@2}
+\PYGdefault{n}{f} \PYGdefault{o}{=} \PYGdefault{n}{x}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{3} \PYGdefault{o}{+} \PYGdefault{n}{cos}\PYGdefault{p}{(}\PYGdefault{n}{x}\PYGdefault{p}{)}\PYGdefault{o}{*}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{5}
+\PYGdefault{n}{g} \PYGdefault{o}{=} \PYGdefault{n}{Integral}\PYGdefault{p}{(}\PYGdefault{n}{f}\PYGdefault{p}{,} \PYGdefault{n}{x}\PYGdefault{p}{)}
+\end{pytx@SaveVerbatim}
+
+\begin{pytx@SaveVerbatim}[commandchars=\\\{\}]{pytx@sympy@default@4@0}
+\PYGdefault{n}{var}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{l+s+s1}{x, y, z}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{z} \PYGdefault{o}{=} \PYGdefault{n}{x} \PYGdefault{o}{+} \PYGdefault{n}{y}
+\end{pytx@SaveVerbatim}
+

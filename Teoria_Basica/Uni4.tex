@@ -25,7 +25,7 @@ Francis Collins
 
 
 
-\begin{definicion}[Ecuación lineal general de segundo orden]
+\begin{definicion}[Ecuación lineal general de segundo orden]{}
  \boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=r(x),}{ec_2_gen}
 donde $p,q,r$ son funciones definidas en un intervalo $I=(a,b)$ de $\rr$ con valores en $\rr$.Si $r\equiv 0$ se llama homogénea
 \boxedeq{\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,}{ec_2_gen_hom}
@@ -37,7 +37,7 @@ donde $p,q,r$ son funciones definidas en un intervalo $I=(a,b)$ de $\rr$ con val
 
 
 
-\begin{teorema}[Teorema de existencia y unicidad de soluciones]
+\begin{teorema}[Teorema de existencia y unicidad de soluciones]{}
 Supongamos $p,q,r$ continuas y acotadas sobre $I$. Sean $x_0\in I$ e $y_0,y_1\in\rr$ dados. Entonces existe una única solución del PVI
 \[\left\{
 \begin{array}{l l l}
@@ -76,7 +76,7 @@ Cómo $f$ es Lipschitz respecto a la segunda variable en todo $\rr^2$, el sistem
 
 
 \section{Estructura del conjunto de soluciones}
-\begin{teorema}
+\begin{teorema}{}
 Si $y_1$ e $y_2$ son soluciones de \eqref{ec_2_gen_hom} y $c_1,c_2\in\rr$ entonces $c_1y_1+c_2y_2$ es solución. Vale decir, el conjunto de soluciones
 es un espacio vectorial. En particular $y\equiv 0$ es una solución, a la que llameremos \emph{trivial}.
 \end{teorema}
@@ -89,7 +89,7 @@ $L[c_1y_1+c_2y_2]=c_1L[y_1]+c_2L[y_2]=0.$
 \end{proof}
 
 
-\begin{teorema}
+\begin{teorema}{}
  Supongamos que $y_p$ es una solución particular de \eqref{ec_2_gen} y que $y_g=y_g(x,c_1,c_2)$ es una solución
 general de \eqref{ec_2_gen_hom}. Entonces $y=y_p+y_g$ es solución general de \eqref{ec_2_gen}.
 \end{teorema}
@@ -117,7 +117,7 @@ precisamente dos constantes de integración. De modo que podemos conjeturar que 
 Hay una situación especial, si, por ejemplo, $y_1=ky_2$, $k\in\rr$,entonces $c_1y_1+c_2y_2=(c_1k+c_2)y_2=cy_2$. Vale decir la combinación lineal \eqref{comb_lin}
 termina siendo sólo combinación lineal de la función $y_2$ y por ende siendo esencialmente una expresión uniparamétrica.
 
-\begin{definicion}[Independencia lineal]
+\begin{definicion}[Independencia lineal]{}
  Un conjunto finito de funciones $\{y_1,\ldots,y_n\}$ se dirá linealmente independiente sobre un conjunto $I$,
 si la única solución de $c_1y_1(t)+\cdots+c_ny_n(t)=0$, para $t\in I$, es $c_1=c_2=\cdots=c_n=0$.
 \end{definicion}
@@ -125,7 +125,7 @@ si la única solución de $c_1y_1(t)+\cdots+c_ny_n(t)=0$, para $t\in I$, es $c_1
 
 
 
-\begin{definicion}[Definición wronskiano]
+\begin{definicion}[Definición wronskiano]{}
  Dadas $n$ fuciones $\{y_1,\ldots,y_n\}$ con dominio $I$, el wronskiano $W(x)=W(y_1,y_2,\ldots,y_n)(x)$ de estas funciones en un punto $x\in I$ se define por
 \boxedeq{W(x)=\det\begin{pmatrix}
 y_1(x) & y_2(x) & \cdots &y_n(x)\\
@@ -165,7 +165,7 @@ y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \cdots &y_n^{(n-1)}(x_0)\\
 Como por hipótesis la matríz es no singular, debe ocurrir que $c_1=c_2=\cdots c_n=0$.
 \end{proof}
 
-\begin{teorema}[Teorema. Propiedades wronskiano II, Fórmula de Abel]
+\begin{teorema}[Teorema. Propiedades wronskiano II, Fórmula de Abel]{}
  Supongamos que $y_1$ e $y_2$ son solución de
 \begin{equation}\label{eq2orden}\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,\quad x\in I=(a,b)\end{equation}
 Entonces existe $c\in\rr$ que satisface
@@ -185,7 +185,7 @@ Derivando y usando \eqref{eq2orden}
 Vale decir $W$ resuelve la ecuación $W'=-pW$ la cual es facilmente resoluble, mostrando su resolución que se satisface \eqref{formu_abel}
 \end{proof}
 
-\begin{teorema}[Propiedades wronskiano III]
+\begin{teorema}[Propiedades wronskiano III]{}
  Sean $y_1$ e $y_2$ soluciones de \eqref{eq2orden}. Entonces son equivalentes
 \begin{enumerate}
 \item\label{item1} $y_1$ e $y_2$ son linealmente indepenientes en $I$.
@@ -201,7 +201,7 @@ resuelven el mismo pvi. Por lo tanto $y_2(x)=ky_1(x)$ para todo $x$. Lo que nos 
 \end{proof}
 
 
-\begin{teorema}[Estructura del conjunto de soluciones, ecuación  homogénea]
+\begin{teorema}[Estructura del conjunto de soluciones, ecuación  homogénea]{}
  Si $y_1$ e $y_2$ son soluciones linealmente independientes de
 \[\frac{d^2y}{dx^2}+p(x)\frac{dy}{dx}+q(x)y=0,\quad x\in I=(a,b)\]
 entonces
@@ -273,7 +273,7 @@ método anterior encontramos dos soluciones independientes.
 \section{Ecuaciones homogéneas con coeficientes constantes}
 
 Consideramos la ecuación
-\boxedeq{y''+py'+qy=0,\quad p,q\in\rr}\label{2orden_coef_ctes}
+\boxedeq{y''+py'+qy=0,\quad p,q\in\rr}{2orden_coef_ctes}
 Propongamos una solución de la forma
 \[\boxed{y(x)=e^{\lambda x},\quad \lambda\in\mathbb{C}}\]
 Reemplazando en la ecuación
@@ -650,7 +650,7 @@ y
 Usando estas fórmulas y \eqref{eq:var_param0} obtenemos una solución particular del sistema. La solución general es la suma de la particular más
 una solución general del homogéneo. Esta última solución general se escribe como una combinación lineal genérica entre $y_1$ e $y_2$.
 
-\begin{ejemplo} Resolver el siguiente pvi $y''+y=\csc x$,
+\begin{ejemplo}{} Resolver el siguiente pvi $y''+y=\csc x$,
 $y\left(\tfrac{\pi}{2}\right)=0$ y $y'\left(\tfrac{\pi}{2}\right)=1$.
 La ecuación homogénea asociada tiene el par $y_1(x)=\cos(x)$ e $y_1(x)=\sen(x)$
    de soluciones linealmente independientes.   El wronskiano es $W\equiv 1$ y
@@ -1287,7 +1287,7 @@ que su solución se aparta del tema de las ecuaciones diferenciales.
 \section{Ecuaciones lineales de orden superior}
 
 
-\begin{definicion}[Ecuación lineal general de orden $n$]
+\begin{definicion}[Ecuación lineal general de orden $n$]{}
 Es una ecuación de la forma
 \boxedeq{y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=r(x)}{eq:ecua_lin_gen_orden_n}
 donde $p_i,r$, $i=0,\ldots,n-1$ son funciones definidas en un intervalo $I$
@@ -1299,7 +1299,7 @@ estos resultados.
 
 \subsection{Existencia y unicidad de soluciones}
 
-\begin{teorema}[Teorema de existencia y unicidad de soluciones]
+\begin{teorema}[Teorema de existencia y unicidad de soluciones]{}
  Supongamos $p_i,r$, $i=0,\ldots,n-1$ continuas sobre $I$. Sean $x_0\in I$ e $y_0,y_1,\ldots y_{n-1}\in\rr$ dados. Entonces existe una única solución del PVI
  \[\left\{
  \begin{array}{l l l}
@@ -1316,7 +1316,7 @@ estos resultados.
 
 \subsection{Estructura del conjunto de soluciones}
 
-\begin{teorema}[Estructura conjunto de soluciones ecuaciones homogéneas]
+\begin{teorema}[Estructura conjunto de soluciones ecuaciones homogéneas]{}
 Supongamos $y_1,y_2,\ldots,y_n$ soluciones linealmente independientes de
 \[y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=0.\]
 Entonces
@@ -1326,7 +1326,7 @@ es solución general. Vale decir, el conjunto de soluciones es un espacio vector
 
 
 
-\begin{teorema}[Estructura conjunto de soluciones ecuaciones no homogéneas]
+\begin{teorema}[Estructura conjunto de soluciones ecuaciones no homogéneas]{}
 Una solución general de la ecuación no homogénea
 \[y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=r(x),\]
 es la suma de una solución particular de esta ecuación más una solución general de la ecuación homogénea asociada.
@@ -1337,7 +1337,7 @@ es la suma de una solución particular de esta ecuación más una solución gene
 
 
 
-\begin{teorema}[Fórmula Abel]
+\begin{teorema}[Fórmula Abel]{}
 Si $y_1,y_2,\ldots,y_n$ son soluciONES de la ecuación  homogénea
 \boxedeq{y^{(n)}(x)+p_{n-1}(x)y^{(n-1)}(x)+\cdots+p_0(x)y(x)=0,}{eq:lin_hom_orden_n}
 Entonces el Wronskiano satisface
@@ -1473,7 +1473,7 @@ La solución es una superposición de ondas con frecuencias \href{http://es.wiki
 
 ¿Tendra el sistema de osciladores acoplados soluciones periódicas? Notar que una superposición de funciones periódicas no necesariamente es periódica.   La pregunta nos lleva a una pregunta más general. Si $f,g:\rr\to\rr$ son funciones periódicas de período $T_1$ y $T_2$, será $f+g$ períodica. La respuesta es el teorema de abajo.
 
-\begin{teorema}  Si $f,g:\rr\to\rr$ son funciones no constantes, periódicas y continuas de período $T_1$ y $T_2$, la función $f+g$ será períodica si y sólo si $T_1$ y $T_2$ son conmensurables.
+\begin{teorema}{}  Si $f,g:\rr\to\rr$ son funciones no constantes, periódicas y continuas de período $T_1$ y $T_2$, la función $f+g$ será períodica si y sólo si $T_1$ y $T_2$ son conmensurables.
 \end{teorema}
 
 \begin{proof} La demostración descansa sobre varios hechos, que poco tienen que ver con las ecuaciones diferenciales. Pero, el teorema nos parece tan interesante, que vamos a dar algunos detalles y otros los dejaremos como ejercicio.

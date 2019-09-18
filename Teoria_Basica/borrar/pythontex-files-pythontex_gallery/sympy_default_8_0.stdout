@@ -1,0 +1,7 @@
+\begin{align*}
+\int_{0}^{4}\int_{0}^{3}\int_{0}^{2} f(x,y,z)\, dx\, dy\, dz&=\int_{0}^{4}\int_{0}^{3}\int_{0}^{2} \left(x y + y \sin{\left (z \right )} + \cos{\left (x + y \right )}\right)\, dx\, dy\, dz\\
+&=\int_{0}^{3}\int_{0}^{2} \left(4 x y - y \cos{\left (4 \right )} + y + 4 \cos{\left (x + y \right )}\right)\, dx\, dy\\
+&=\int_{0}^{2} \left(18 x - 4 \sin{\left (x \right )} + 4 \sin{\left (x + 3 \right )} - \frac{9 \cos{\left (4 \right )}}{2} + \frac{9}{2}\right)\, dx\\
+&=4 \cos{\left (3 \right )} + 4 \cos{\left (2 \right )} - 4 \cos{\left (5 \right )} - 9 \cos{\left (4 \right )} + 41\\
+&=40.1235865133293\\
+\end{align*}

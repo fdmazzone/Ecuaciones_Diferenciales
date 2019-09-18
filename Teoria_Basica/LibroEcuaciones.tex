@@ -2,54 +2,107 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pst-all} %pstricks graficos
+\let\clipbox\relax
+% \usepackage{pgf,tikz,pgfplots} %tikz graficos
+% \pgfplotsset{compat=1.15}
+% \usetikzlibrary{arrows}
+
+
+% Engine-specific settings
+% Detect pdftex/xetex/luatex, and load appropriate font packages.
+% This is inspired by the approach in the iftex package.
+% pdftex:
+\ifx\pdfmatch\undefined
+\else
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+\fi
+% xetex:
+\ifx\XeTeXinterchartoks\undefined
+\else
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX}
+\fi
+% luatex:
+\ifx\directlua\undefined
+\else
+    \usepackage{fontspec}
+\fi
+% End engine-specific settings
+
+
+
+
+
+% 
+% 
 \usepackage{empheq}
 \usepackage[spanish]{babel}
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
 \usepackage{amssymb,amsmath,amsthm}
-\usepackage{enumerate}
-\usepackage{verbatim}
-\usepackage{ esint }
-\usepackage{pst-all}
-%\usepackage{pstricks-add}
+% \usepackage{enumerate}
+% \usepackage{verbatim}
 \usepackage{array}
+\usepackage{hyperref}
+\usepackage[a4paper,driver=xetex,top=2.5cm, bottom=2.7cm,%
+ layouthoffset=10mm, left=1.5cm, right=6.2cm,marginparwidth=3.5cm]{geometry}
+\usepackage{fancyhdr} %Encabezados mejorados
+% \usepackage{marginnote} % Notas al margen mejoradas
+\usepackage{titlesec} %para encabezados
+
+\usepackage{imakeidx} %supongo que para indices multiples
+\usepackage[makestderr]{pythontex}%Ejecutar python dentro latex
+\usepackage{sagetex}
+\usepackage{diagrams}%diagramas comutativos
+% %
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[breakable,many]{tcolorbox}
+\tcbset{nobeforeafter} % prevents tcolorboxes being placing in paragraphs
+\usepackage{float}
+\floatplacement{figure}{H} % forces figures to be placed at the correct location
+\usepackage{graphicx}
+%     % We will generate all images so they have a width \maxwidth. This means
+%     % that they will get their normal width if they fit onto the page, but
+%     % are scaled down if they would overflow the margins.
+\usepackage{adjustbox} % Used to constrain images to a maximum size 
+% \usepackage{textcomp} % defines textquotesingle
+%     % Hack from http://tex.stackexchange.com/a/47451/13684:
+% \AtBeginDocument{%
+% \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+%     }
+% \usepackage{upquote} % Upright quotes for verbatim code
+% \usepackage{eurosym} % defines \euro
+% \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+% %\usepackage{fancyvrb} % verbatim replacement that allows latex
+% \usepackage{grffile} % extends the file name processing of package graphics 
+%                          % to support a larger range 
+%     % The hyperref package gives us a pdf with properly built
+%     % internal navigation ('pdf bookmarks' for the table of contents,
+%     % internal cross-reference links, web links for URLs, etc.)
+%     
+% \usepackage{longtable} % longtable support required by pandoc >1.10
+% \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+% \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+%                                 % normalem makes italics be italics, not underlines
+% \usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{esint}
 \usepackage{animate}
-\usepackage{xparse}
+\usepackage{chngcntr}
+\usepackage{appendix}
 \usepackage{listings}
 \usepackage{ wasysym }
-\usepackage{yfonts,mathrsfs,eufrak}
-\usepackage{hyperref}
-\usepackage{color}
-\usepackage{url}
-\usepackage{theorem}
-\usepackage{boiboites}
-\usepackage{wrapfig}
-\usepackage[spanish]{varioref}
-\usepackage{fontspec}
-\usepackage[a4paper,driver=xetex,top=2.5cm, bottom=2.7cm,%
-layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
-\usepackage{pst-barcode}
-\usepackage{fancyhdr}
 \usepackage{marginnote}
- \usepackage{titlesec}
-%%%%%%%%%%%%%%  Configuración página
-\usepackage{natbib}
-\usepackage{chapterbib}
-\usepackage{fontawesome}
-\usepackage{xcolor}
-\usepackage{appendix}
-\usepackage{chngcntr}
-\usepackage{etoolbox}
-\usepackage{lipsum}
-\usepackage{mathtools}
-\usepackage{csquotes}
-%\usepackage{pstricks-add}
-\usepackage{sagetex}
 
-%\usepackage{sympytex}
-%\usepackage{pythontex}
+% 
+% %%%%%%%%%% Nuevos Entornos-Comandos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+% %\input{entornos_comandos.tex}
+\input{ComandosEstilosTeoremas.tex}
+
+%%%%%%%%%%%%% Configuracion para notebook importadas
 
 
+%%%%%%%%%%%%Configuración Encabezados Página
 \fancyfoot{}
 \fancyhead[RO,LE]{\thepage}
 \fancyhead[LO]{\leftmark}
@@ -59,6 +112,8 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \titleformat{\section}
   {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
 
+  
+%%%%%%%%%%%%Configuracion Apéndices %%%%%%%%%%%%%%%%%%%%%%%%55555  
 \AtBeginEnvironment{subappendices}{%
 \chapter*{Apéndices}
 \addcontentsline{toc}{chapter}{Apéndices}
@@ -66,197 +121,27 @@ layouthoffset=10mm, left=2.3cm, right=6.2cm]{geometry}
 \counterwithin{table}{section}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%Colores
-%Sugeridos por CEPEIPER
-% \definecolor{color1}{rgb}{0.24,0.45,0.42}
-% \definecolor{color2}{rgb}{0.44,0.62,0.42}
-% \definecolor{color3}{rgb}{0.28, 0.51, .68}
-% \definecolor{color4}{rgb}{0.29,0.3,0.57}
-% \definecolor{color5}{rgb}{0.7,0.24,0.24}
-% \definecolor{color6}{rgb}{0.72,0.4,0.28}
-% \definecolor{color7}{rgb}{0.84,0.66,0.21}
-% \definecolor{color8}{rgb}{0.3,0.29,0.28}
-
-
-\definecolor{color1}{rgb}{0.48,0.89,0.84}
-\definecolor{color2}{rgb}{0.48,0.89,0.84}
-\definecolor{color3}{rgb}{0.28, 0.51, .68}
-\definecolor{color4}{rgb}{0.29,0.3,0.57}
-\definecolor{color5}{rgb}{0.7,0.24,0.24}
-\definecolor{color6}{rgb}{0.72,0.4,0.28}
-\definecolor{color7}{rgb}{0.84,0.66,0.21}
-\definecolor{color8}{HTML}{8E87C1}
-
-
-%%%%%%%%%%%%%%%%%%%%%% Configuracion listing
-
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{color2},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-  language=Python,                 % the language of the code
-  otherkeywords={symbols,dsolve,solve,Eq, simplify, subs, plot,Function},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{color3}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{color4},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
-
-\lstdefinelanguage{GAP}{%
-  morekeywords={%
-    Assert,Info,IsBound,QUIT,%
-    TryNextMethod,Unbind,and,break,%
-    continue,do,elif,%
-    else,end,false,fi,for,%
-    function,if,in,local,%
-    mod,not,od,or,%
-    quit,rec,repeat,return,%
-    then,true,until,while,SymmetricGroup,Elements,Subgroup,IsNormal,FactorGroup,>gap%
-  },%
-  sensitive,%
-  morecomment=[l]\#,%
-  morestring=[b]",%
-  morestring=[b]',%
-}[keywords,comments,strings]
-
-%%%%%%%%%%%%%Configuración de fuente para XeLaTeX
-
-%\setsansfont{Roboto Condensed}
-\setsansfont{Gentium Basic}
-
-\renewcommand{\familydefault}{\sfdefault}
-
-
-%\renewcommand{\section}[1]{\section{#1}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%Nuevos comandos entornos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{demo}{\noindent\emph{Dem.}}{$\square$ \newline\vspace{5pt}}
-
-\newcommand{\com}{\mathbb{C}}
-\newcommand{\dis}{\mathbb{D}}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\oo}{\mathcal{O}}
-\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
-\renewcommand{\v}[1]{\overrightarrow{#1}}
-\renewcommand{\epsilon}{\varepsilon}
-\newcommand{\p}{\varphi}
-\renewcommand{\b}[1]{\boldsymbol{#1}}
-\renewenvironment{frame}[1]{}{}
-\newcommand{\link}{\reversemarginpar\marginnote{%\fontsize{24}{24                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-%}\selectfont
-\faExternalLink} %
-\normalmarginpar
-}
-\newcommand{\advertencia}{\reversemarginpar\marginnote{%\fontsize{11}{11}\selectfont
-\faBolt}%
-\normalmarginpar }
-\newcommand{\lectura}{\reversemarginpar\marginnote{%\fontsize{11}{11}\selectfont
-\faBook}%
-\normalmarginpar}
-\newcommand{\actividad}{\reversemarginpar\marginnote{%\fontsize{11}{11}\selectfont
-\faCogs}%
-\normalmarginpar}
-
-%\renewcommand{\lim}{displaystyle\lim}
-\DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\sen}{sen}
-
-
-
-%%%%%%%%%%Definimos una caja con color
-\newlength\mytemplen
-\newsavebox\mytempbox
-\makeatletter
-\newcommand\mybluebox{%
-\@ifnextchar[%]
-{\@mybluebox}%
-{\@mybluebox[0pt]}}
-\def\@mybluebox[#1]{%
-\@ifnextchar[%]
-{\@@mybluebox[#1]}%
-{\@@mybluebox[#1][0pt]}}
-\def\@@mybluebox[#1][#2]#3{
-\sbox\mytempbox{#3}%
-\mytemplen\ht\mytempbox
-\advance\mytemplen #1\relax
-\ht\mytempbox\mytemplen
-\mytemplen\dp\mytempbox
-\advance\mytemplen #2\relax
-\dp\mytempbox\mytemplen
-\colorbox{color1}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
-\makeatother
-\DeclareDocumentCommand\boxedeq{ m g }{%
-{\begin{empheq}[box={\mybluebox[2pt][2pt]}]{equation}% #1%
-\IfNoValueF {#2} {\label{#2}}%
-#1
-\end{empheq}
-}%
-}
-
-
-%%%%%%%%%%%%%%%%%%
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{problema}{Problema}{thcounter1}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{teorema}{Teorema}{thcounter2}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{definicion}{Definici\'on}{thcounter3}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{lema}{Lema}{thcounter4}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{corolario}{Corolario}{thcounter5}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{proposicion}{Proposici\'on}{thcounter6}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{codigo}{Función SymPy}{}
-
-\newboxedtheorem[boxcolor=color1, background=color2, titlebackground=color1,
-titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 
 
 
 
-\newcounter{ejemplo_cont}[chapter]
-\setcounter{ejemplo_cont}{1}
 
-% \makeatletter
-% \@addtoreset{ejemplo_cont}{chapter}
-% \makeatother
-
-\newenvironment{ejemplo}{\noindent\textbf{Ejemplo  \arabic{chapter}.\arabic{ejemplo_cont}.} }{\addtocounter{ejemplo_cont}{1}}
+% %%%%%%%%%%%%%Configuración de fuente para XeLaTeX
 
 
+% %\setromanfont[Mapping=tex-text]{Oswald-Light}
+\setmainfont{Roboto Condensed}
+% %\setsansfont{Gentium Basic}
+% %\setsansfont{FreeMono}
+%\setromanfont{Oswald-Light}
+%\setromanfont{Comfortaa}
+ %
+%
+% \renewcommand{\familydefault}{\sfdefault}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%Para escibir en clase articulo o similar
 
-
-
+%%%%%%%%%%%%%%%%%   Titulo  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -269,18 +154,20 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%   Indices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeindex[title=Indice Conceptos]
+\makeindex[name=personas,title=Indice de Personas,columns=3]
+\makeindex[name=simbolos,title=Indice Símbolos,columns=3]
 \begin{document}
 
 
 
-
-\renewcommand{\lim}{\mathop{\rm lím}}
-\renewcommand{\inf}{\mathop{\rm ínf}}
-\renewcommand{\liminf}{\mathop{\rm líminf}}
-\renewcommand{\limsup}{\mathop{\rm límsup}}
-\renewcommand{\min}{\mathop{\rm mín}}
-\renewcommand{\max}{\mathop{\rm máx}}
+% \renewcommand{\lim}{\mathop{\rm lím}}
+% \renewcommand{\inf}{\mathop{\rm ínf}}
+% \renewcommand{\liminf}{\mathop{\rm líminf}}
+% \renewcommand{\limsup}{\mathop{\rm límsup}}
+% \renewcommand{\min}{\mathop{\rm mín}}
+% \renewcommand{\max}{\mathop{\rm máx}}
 \fontsize{11pt}{11pt}\selectfont
 
 \pagestyle{fancy}
@@ -290,8 +177,12 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
  \tableofcontents
 %   
 
+%%%%%%%%%%%   Para ehjecutar python
+%   /usr/share/texlive/texmf-dist/scripts/pythontex/pythontex.py LibroEcuaciones
+
+
+
 \include{prologo}
-\include{Uni0}
 \include{Uni1}
 \include{Uni2}
 \include{Uni3}
@@ -300,9 +191,8 @@ titleboxcolor = black,thcounter=section]{ejercicio}{Ejercicio}{}
 \include{Uni6}
 \include{Uni7}
 \include{Uni9}
-%\include{Uni10}
-%\include{Uni11}
-
+\include{Uni10}  %%   (Hay que convertir todos los bloques sage a pytho)
+%\include{Apendice0}
 
 
 \end{document}

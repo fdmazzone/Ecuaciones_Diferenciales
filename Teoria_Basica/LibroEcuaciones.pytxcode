@@ -1,11 +1,188 @@
+=>PYTHONTEX#py#default#defaultverb#0#verbatim####Uni1.tex#105#
+>>>from sympy import *
+>>>m,g,c,k,t=symbols('m,g,c,k,t')
+>>>v=m/c*g+k*exp(-c/m*t)
+>>>simplify(v.diff(t)+c/m*v)
+g
+=>PYTHONTEX#py#default#defaultverb#1#verbatim####Uni1.tex#117#
+>>>v=symbols('v',cls=Function)
+>>>EqCaida=Eq(v(t).diff(t)+c/m*v(t),g)
+>>>Vel=dsolve(EqCaida,v(t))
+>>> Vel
+v(t) == (g*m + exp(c*(C1 - t/m)))/c
+=>PYTHONTEX#py#default#defaultverb#2#verbatim####Uni1.tex#127#
+>>> type(Vel)
+<class 'sympy.core.relational.Equality'>
+=>PYTHONTEX#py#default#defaultverb#3#verbatim####Uni1.tex#445#
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+f=dsolve(MiEcua,y)
+=>PYTHONTEX#py#default#defaultverb#4#verbatim####Uni1.tex#485#
+x=symbols('x')
+f=plot(1/x,(x,-3,3),ylim=(-3,3))
+=>PYTHONTEX#py#default#defaultverb#5#verbatim####Uni1.tex#512#
+from sympy import *
+x,y=symbols('x,y')
+Rango=range(21)
+L=[tan(pi*k/21.0) for k in Rango]
+p=plot(L[0]*x,(x,-2,2),show=False,xlim=(-2,2),\
+ylim=(-2,2),aspect_ratio=(1,1))
+for pend in L[1:]:
+    p1=plot(pend*x,(x,-2,2),show=False,\
+xlim=(-2,2),ylim=(-2,2),aspect_ratio=(1,1))
+    p.append(p1[0])
+for r in range(1,10):
+    p1=plot_implicit(Eq(x**2 + y**2, 0.2*r),\
+show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
+    p.append(p1[0])
+p.show()
+=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#613#
+x=symbols('x')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),y/x)
+tipo=classify_ode(MiEcua,y)
+=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1735#
+theta=symbols('theta')
+from sympy.plotting import *
+plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
+=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1757#
+x,c=symbols('x,c')
+y=Function('y')(x)
+MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
+f=dsolve(MiEcua,y,hint='separable')
+=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1836#
+from sympy import *
+from sympy.diffgeom.rn import R2
+eq=(-sqrt(R2.x**2+R2.y**2)+R2.x)*R2.dx+R2.y*R2.dy
+M=eq.rcall(R2.e_theta)
+N=eq.rcall(R2.e_r)
+x,y,theta=symbols('x,y,theta')
+r=symbols('r',positive=True)
+subst={R2.x:r*cos(theta),R2.y:r*sin(theta),R2.theta:theta,R2.r:r}
+M=M.subs(subst).simplify()
+N=N.subs(subst).simplify()
+mu=(N.diff(theta)-M.diff(r))/M
+FactInt=exp(Integral(mu,r).doit())
+phi=(M/r).integrate(theta)
+g=Function('g')(r)
+phi=phi+g
+dsolve(phi.diff(r)-N/r,g)
+phi=(M/r).integrate(theta)+r
+phi
+=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1858#
+latex(phi)
+=>PYTHONTEX#sympy#default#default#0#block####Uni2.tex#126#
+x=symbols('x') #unico simbolo primitivo
+y_n=Function('y_n')(x) #variables nuevas, funciones de x
+y=exp(y_n)/x #relacion entre y, y_n
+eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0) #la ecuacion
+eq1=simplify(eq) # simplifica expresiones
+=>PYTHONTEX#sympy#default#default#1#i####Uni2.tex#135#
+eq1
+=>PYTHONTEX#sympy#default#default#2#block####Uni2.tex#166#
+x,x_n=symbols('x,x_n')
+x_n=acos(x)
+y=Function('y')(x_n)
+Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
+xn=symbols('xn')
+Eq=Ecuacion.subs(x,cos(xn))
+=>PYTHONTEX#sympy#default#default#3#i####Uni2.tex#176#
+latex(Eq)
+=>PYTHONTEX#sympy#default#default#4#block####Uni2.tex#202#
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff(x)/theta.diff(x)
+=>PYTHONTEX#sympy#default#default#5#i####Uni2.tex#213#
+latex(Expr2)
+=>PYTHONTEX#sympy#default#default#6#block####Uni2.tex#216#
+Expr3=Expr2.subs(y.diff(x),(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+r,theta=symbols('r,theta',positive=True)
+Expr4=Expr3.subs([(y,r*sin(theta)),(x,r*cos(theta))])
+Expr5=simplify(Expr4)
+=>PYTHONTEX#sympy#default#default#7#block####Uni2.tex#349#
+x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
+T=Matrix([x+epsilon,y])
+x_copete=T.subs(epsilon,epsilon1)[0]
+y_copete=T.subs(epsilon,epsilon1)[1]
+PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])\
+-T.subs(epsilon,epsilon1+epsilon2)
+=>PYTHONTEX#sympy#default#default#8#i####Uni2.tex#358#
+latex(PropGrupo)
+=>PYTHONTEX#sympy#default#default#9#block####Uni2.tex#487#
+x,theta=symbols('x,theta')
+y=Function('y')(x)
+x_n=cos(theta)*x-sin(theta)*y
+y_n=sin(theta)*x+cos(theta)*y
+Expr2=y_n.diff(x)/x_n.diff(x)
+Expr3=Expr2.subs(y.diff(),\
+(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
+x_n,y_n=symbols('x_n,y_n')
+Expr4=Expr3.subs([(y, -sin(theta)*x_n+cos(theta)*y_n),\
+(x,cos(theta)*x_n+sin(theta)*y_n)])
+Expr5=simplify(Expr4)
+=>PYTHONTEX#sympy#default#default#10#i####Uni2.tex#510#
+latex(Expr5)
+=>PYTHONTEX#sympy#default#default#11#block####Uni2.tex#839#
+from sympy import *
+init_printing()
+x,y=symbols('x,y',real=True)
+f=(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y)
+=>PYTHONTEX#sympy#default#default#12#block####Uni2.tex#852#
+a,b,c,d,h,k=symbols('a,b,c,d,h,k',real=True)
+xi=a*x+b*y+h
+eta=c*x+d*y+k
+Q=eta-f*xi
+=>PYTHONTEX#sympy#default#default#13#block####Uni2.tex#860#
+CondSim=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSim=simplify(CondSim)
+=>PYTHONTEX#sympy#default#default#14#block####Uni2.tex#869#
+P1,P2=fraction(CondSim)
+P1
+=>PYTHONTEX#sympy#default#default#15#block####Uni2.tex#888#
+P1.subs(y,0).collect(x)
+=>PYTHONTEX#sympy#default#default#16#block####Uni2.tex#897#
+P11=P1.subs({h:0,k:0,d:-a,c:-2*a-b})
+P11.subs(y,1).collect(x)
+=>PYTHONTEX#sympy#default#default#17#block####Uni2.tex#903#
+xi=xi.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+eta=eta.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
+xi,eta
+=>PYTHONTEX#sympy#default#default#18#block####Uni2.tex#909#
+CondSimLin=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
+CondSimLin.simplify()
+=>PYTHONTEX#sympy#default#default#19#block####Uni2.tex#1090#
+x,y,epsilon=symbols('x,y,epsilon')
+T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
+xi=T[0].diff(epsilon).subs(epsilon,0)
+print(xi)
+eta=T[1].diff(epsilon).subs(epsilon,0)
+print(eta/xi)
+y=Function('z')(x)
+sol=dsolve(y.diff(x)-y/x,y)
+print(sol)
+Integral(1/xi,x).doit()
+=>PYTHONTEX#sympy#default#default#20#block####Uni2.tex#1217#
+x=symbols('x')
+y=Function('y')(x)
+from sympy.solvers.ode import infinitesimals
+xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
+
+=>PYTHONTEX#sympy#default#default#21#i####Uni2.tex#1225#
+latex(xi_eta)
+=>PYTHONTEX#sympy#default#default#22#i####Uni10.tex#296#
+D
 =>PYTHONTEX:SETTINGS#
-version=v0.12
+version=0.16
 outputdir=pythontex-files-LibroEcuaciones
-workingdir=pythontex-files-LibroEcuaciones
+workingdir=.
+workingdirset=false
 gobble=none
 rerun=default
 hashdependencies=default
-makestderr=false
+makestderr=true
 stderrfilename=full
 keeptemps=none
 pyfuture=default

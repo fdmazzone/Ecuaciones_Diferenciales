@@ -14,7 +14,7 @@
 
 En esta sección recordamos algunos conceptos y teoremas sobre series de potencias. Dado que este tema es motivo de un estudio más profundo en otras materias de la licenciatura en matemática omitimos algunas demostraciones.
 \subsection{Definición} %Primer Frame para información personal.
-\begin{definicion} Una serie de potencias es una serie de la forma:
+\begin{definicion}{} Una serie de potencias es una serie de la forma:
 \[
 	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n
 \]
@@ -24,7 +24,7 @@ donde $a_n$, $n=0,1,\ldots$, $z_0$ y $z$ son elementos de $\com$.
 
 Estamos interesados en determinar los valores de $z$ para los cuales   una serie converge.
 
-\begin{ejemplo} La serie geométrica
+\begin{ejemplo}{} La serie geométrica
 \[
 	\sum\limits_{n=0}^{\infty}z^n,
 \]
@@ -33,7 +33,7 @@ es una serie de potencias. Aquí  $a_n=1$, $n=0,1,\ldots$ y $z_0=0$. Esta serie 
 y no converge para cualquier otro valor de $z\in\com$.
 \end{ejemplo}
 
-\begin{ejemplo} Supongamos $f:I\to\rr$, donde $I$ es un intervalo abierto $I=(a,b)$ y que $f$ tiene derivadas de todo orden en  $z_0\in I$. Entonces es posible construir la serie de Taylor de $f$ en $z_0$ que es una serie de potencias. Recordemos que esta serie es
+\begin{ejemplo}{} Supongamos $f:I\to\rr$, donde $I$ es un intervalo abierto $I=(a,b)$ y que $f$ tiene derivadas de todo orden en  $z_0\in I$. Entonces es posible construir la serie de Taylor de $f$ en $z_0$ que es una serie de potencias. Recordemos que esta serie es
 \[S(f,z_0,z)=\sum\limits_{n=0}^{\infty}\frac{f^{(n)}(z_0)}{n!}(z-z_0)^n.\]
 \end{ejemplo}
 
@@ -43,7 +43,7 @@ y no converge para cualquier otro valor de $z\in\com$.
 \subsection{Límites superior e inferior}
 
 
-\begin{definicion} Dada una sucesión de números reales $x_n$,
+\begin{definicion}{} Dada una sucesión de números reales $x_n$,
  consideramos una nueva sucesión:
 
 \[
@@ -60,7 +60,7 @@ La nueva sucesión de reales $A_n$ es  no creciente ($A_n\geq A_{n+1}$), luego t
 
 Tomando ínfimo en lugar de supremo conseguimos \emph{el límite inferior} ($\liminf$).
 \end{definicion}
-\begin{ejemplo}  Si $x_n=(-1)^n$, entonces
+\begin{ejemplo}{}  Si $x_n=(-1)^n$, entonces
 \[
 	\{x_n,x_{n+1},\ldots\}=\{\pm1,\mp1,\pm1,\ldots\}.
 \]
@@ -69,7 +69,7 @@ El supremo de este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1.
 
 
 
-\begin{ejemplo}  Si $x_n=1/n$, si $n$ es par y $x_n=1$ si $n$ es impar, entonces el conjunto
+\begin{ejemplo}{}  Si $x_n=1/n$, si $n$ es par y $x_n=1$ si $n$ es impar, entonces el conjunto
 
 \[
 	\{x_n,x_{n+1},\ldots\}
@@ -77,7 +77,7 @@ El supremo de este conjunto  es para todo $n$ igual a 1 y el ínfimo igual a -1.
 tiene por supremo 1 y el ínfimo igual a $0$ . Luego $\liminf x_n=0$ y $\limsup x_n=1$.
 \end{ejemplo}
 
-\begin{teorema}\textbf{Propiedades} Sea $x_n$  e $y_n$ dos sucesiones de números reales, entonces:
+\begin{teorema}[Propiedades]{} Sea $x_n$  e $y_n$ dos sucesiones de números reales, entonces:
 
 \begin{enumerate}
 	\item El $\limsup x_n$ y el $\liminf x_n$  existen si se permite que $\pm\infty$ sean sus posibles valores.
@@ -94,7 +94,7 @@ tiene por supremo 1 y el ínfimo igual a $0$ . Luego $\liminf x_n=0$ y $\limsup 
 \subsection{Radio de convergencia}
 
 
-\begin{definicion} Dada la serie de potencias
+\begin{definicion}{} Dada la serie de potencias
 \[
 	\sum\limits_{n=0}^{\infty}a_n(z-z_0)^n,
 \]
@@ -108,7 +108,7 @@ definimos el \emph{radio de convergencia} $R$ de la siguiente forma:
 
 \end{definicion}
 
-\begin{ejemplo} La serie
+\begin{ejemplo}{} La serie
 \[
 	\sum\limits_{n=0}^{\infty}z^n,
 \]
@@ -118,7 +118,7 @@ tiene radio de convergencia:
 Luego $R=1$.
 \end{ejemplo}
 
-\begin{ejemplo} La serie
+\begin{ejemplo}{} La serie
 \[
 	\sum\limits_{n=0}^{\infty}\bigg(\frac{1}{M}\bigg)^nz^n,
 \]
@@ -129,7 +129,7 @@ Luego $R=M$.
 
 \end{ejemplo}
 
-\begin{ejemplo} Fijemos $M>0$ y $n$ un natural tal que $[n/2] >M$ (aquí $[x]$ es la parte entera de $x$). Entonces,
+\begin{ejemplo}{} Fijemos $M>0$ y $n$ un natural tal que $[n/2] >M$ (aquí $[x]$ es la parte entera de $x$). Entonces,
 como $n-[n/2]\geq [n/2]>M$
 
 \[
@@ -228,7 +228,7 @@ Esto muestra que $f'(z_0)=g(z_0)$ y por consiguiente $f$ es derivavble.
 \begin{corolario}  Una serie de potencias es infinitamente diferenciable. Las sucesivas derivadas se obtienen derivando término a término la serie. El radio de convergencia se conserva.
 \end{corolario}
 
-\begin{ejemplo}  Hemos visto que la serie:
+\begin{ejemplo}{}  Hemos visto que la serie:
 \[
 	f(z)=\sum_{n=0}^{\infty}\frac{1}{n!}z^n
 \]
@@ -239,7 +239,7 @@ Lo que nos dice que $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. L
 \boxedeq{e^z=\sum_{n=0}^{\infty}\frac{1}{n!}z^n}{eq:exp}
 \end{ejemplo}
 \subsection{Funciones analíticas}
-\begin{definicion} Una función $f:\Omega\subset\com\to\com$ se dirá analítica si para cada $z_0\in\Omega$, existe  $R>0$ y $a_n\in\com$, tal que:
+\begin{definicion}{} Una función $f:\Omega\subset\com\to\com$ se dirá analítica si para cada $z_0\in\Omega$, existe  $R>0$ y $a_n\in\com$, tal que:
 
 \[ f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n,\quad\hbox{para } |z-z_0|<R \]
 \end{definicion}
@@ -252,7 +252,7 @@ Lo que nos dice que $f$ resuelve la simple ecuación diferencial $f'(z)=f(z)$. L
 para los coeficientes $a_n$.
 \end{ejercicio}
 
- \begin{teorema}\label{teor_oper_series}\textbf{Operaciones entre series de potencias} Supongamos que $f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n$ y  $g(z)=\sum_{n=0}^{\infty}b_n(z-z_0)^n$ son series de potencias con radio de convergencia mayor o igual a $R>0$. Entonces $f+g$ y $fg$ son funciones analíticas que tienen por desarrollo en serie
+ \begin{teorema}[Operaciones entre series de potencias]{teor_oper_series} Supongamos que $f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n$ y  $g(z)=\sum_{n=0}^{\infty}b_n(z-z_0)^n$ son series de potencias con radio de convergencia mayor o igual a $R>0$. Entonces $f+g$ y $fg$ son funciones analíticas que tienen por desarrollo en serie
 \[
     \begin{split}
       (f+g)(z)&=\sum_{n=0}^{\infty}(a_n+b_n)(z-z_0)^n\\
@@ -279,7 +279,7 @@ remplazar $y(x)$ por este desarrollo en  en la ecuación (1) y tratar de resolve
 
 
 
-\begin{ejemplo} Hallar el desarrollo en serie de la solución del siguiente pvi
+\begin{ejemplo}{} Hallar el desarrollo en serie de la solución del siguiente pvi
 \[\left\{\begin{array}{l l} y'&=y\\ y(0)&=1\end{array}\right.\]
 La solución, es bien sabido, es $y(x)=e^x$,  pero pretendemos reencontrarla por el método expuesto. Escribimos
 \[\begin{split}
@@ -328,7 +328,7 @@ Vemos que la solución es
 \subsection{Relaciones de recurrencia}
 
 La expresión $a_{n+1}=\frac{a_{n}}{n+1}$ es un ejemplo de \href{http://es.wikipedia.org/wiki/Relación_de_recurrencia}{relación de recurrencia}.
-\begin{definicion} Una  relación de recurrencia para una sucesión $b_n$ de números reales es una sucesión de
+\begin{definicion}{} Una  relación de recurrencia para una sucesión $b_n$ de números reales es una sucesión de
 funciones $f_n:\rr^n\to\rr$ que relaciona $b_{n+1}$ con los términos anteriores de la sucesión por medio de
 la expresión
 \begin{equation}\label{eq:recu} b_{n+1}=f_n(b_1,\ldots,b_n).
@@ -339,7 +339,7 @@ Resolver una relación de recurrencia es encontrar una fórmula explícita de $b
 
 Hay técnicas y métodos para resolver relaciones de recurrencia que guardan analogías con técnicas y métodos de resolver ecuaciones diferenciales.  No vamos a desarrollar este importante tema en este curso, sugerimos la \href{http://es.wikipedia.org/wiki/Relación_de_recurrencia}{correspondiente wiki} en la wikipedia. Sólo agregamos que  SymPy resuelve relaciones recurrentes a través del comando \texttt{rsolve}.
 
-\begin{ejemplo} Resolvamos con SymPy la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$.
+\begin{ejemplo}{} Resolvamos con SymPy la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$.
 \begin{lstlisting}
 from sympy import *
 n=symbols('n',integer=True)
@@ -372,7 +372,7 @@ Los primeros números de Fibonacci que
 
  Se puede utilizar el método de coeficientes indeterminados para encontrar desarrollos en serie de una función  $f$. La técnica consiste en encontrar un pvi que satisfaga $f$ y le aplicamos el método de coeficientes indeterminados a ese pvi.
 
-\begin{ejemplo}  Encontrar el desarrollo en serie de la función
+\begin{ejemplo}{}  Encontrar el desarrollo en serie de la función
 \[y(x)=(1+x)^p\quad p\in\rr\]
 La función $y(x)$ resuelve el pvi  $(1+x)y'(x)=py$, $y(0)=1$. apliquemos el método de coeficientes indeterminados a este pvi.
 Como
@@ -425,7 +425,7 @@ y.subs(a_sol)
 
 \subsection{Oscilador armónico}
 
-\begin{ejemplo} Consideremos la ecuación
+\begin{ejemplo}{} Consideremos la ecuación
 \[y''+\omega^2y=0.\]
 Esta es una ecuación de segundo orden. Veamos si el método de coeficientes indeterminados nos lleva a la solución. Se tiene
 \[\begin{split}
@@ -469,7 +469,7 @@ y.subs(a_sol)
 
 \subsection{Ecuación de Legendre. Primera aproximación}
 
-\begin{ejemplo} Consideremos la \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{ecuación de Legendre}.
+\begin{ejemplo}{} Consideremos la \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{ecuación de Legendre}.
 \boxedeq{(1-x^2)y''-2xy'+p(p+1)y=0,}{eq:ecua_lege}
 donde $p>0$. Esta ecuación aparece en muchas aplicaciones, por ejemplo en muchos problemas que involucran funciones definidas en esferas, como es el caso de los modos normales de vibración de una esfera y en problemas de potenciales esféricos
 
@@ -596,24 +596,24 @@ p.show()
 \section{Teorema fundamental sobre puntos ordinarios}
 
 
-\begin{definicion} Dada la ecuación diferencial
+\begin{definicion}{} Dada la ecuación diferencial
 \[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
 donde $p,q$ son funciones   definidas en algún intervalo abierto $I$, diremos que $x_0\in I$ es un \emph{punto ordinario} de la ecuación si $p$ y $q$ son analíticas en $x_0$. Un punto no ordinario se llama \emph{singular}.
 \end{definicion}
 
-\begin{ejemplo} En la ecuación del oscilador armónico
+\begin{ejemplo}{} En la ecuación del oscilador armónico
 \[y''+\omega^2 y=0 \]
 todo punto es ordinario.
 \end{ejemplo}
 
-\begin{ejemplo} En la ecuación de Legendre
+\begin{ejemplo}{} En la ecuación de Legendre
 \[(1-x^2)y''-2xy'+p(p+1)y=0 \]
 $1$ y $-1$ son puntos singulares, otros valores de $x$ son puntos ordinarios.
 \end{ejemplo}
 
 Antes de ir al Teorema más importante de esta sección vamos a enunciar un  lema que nos resultará útil.
 
-\begin{lema}\label{lema:comp_recu}\textbf{Comparación.} Supongamos que tenemos una relación de recurrencia
+\begin{lema}[Comparación]{lema:comp_recu}  Supongamos que tenemos una relación de recurrencia
  \begin{equation}\label{eq:recu2} a_{n}=f_n(a_0,\ldots,a_{n-1})\quad n\geq 2\end{equation}
 donde las funciones $f_n$ son crecientes respecto a sus todas las variables. Si la sucesión  $\{a_n\}$ resuelve \eqref{eq:recu2}, la sucesión  $\{b_n\}$ resuelve la desigualdad
  \[b_{n}\leq f_n(b_0,\ldots,b_{n-1})\quad n\geq 2 \]
@@ -624,7 +624,7 @@ Es muy sencilla y la dejamos de ejercicio (evidentemenete hay que utilizar el pr
 \end{demo}
 
 
-\begin{teorema}\textbf{Teorema Fundamental Sobre Puntos Ordinarios.}\label{eq:teor_ptos_ord} Sea $x_0$ un punto ordinario de la ecuación
+\begin{teorema}[Teorema Fundamental Sobre Puntos Ordinarios.]{eq:teor_ptos_ord} Sea $x_0$ un punto ordinario de la ecuación
 \[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
 y sean $a_0,a_1\in\mathbb{R}$. Existe una solución de la ecuación que es analítica en un entorno de $x_0$ y que satisface $y(x_0)=a_0$ e $y'(x_0)=a_1$. El radio de convergencia del desarrollo en serie de $y$ es al menos tan grande como el mínimo de los radios de convergencia de los desarrollos en serie de $p$ y $q$.
 \end{teorema}
@@ -690,7 +690,7 @@ Luego la serie $\sum_{n=0}^{\infty}b_nx^n$ converge para $|x|<r$. Como $|a_n|\le
 \section{Puntos singulares, método de Frobenius}
 
 \subsection{Series de Frobenius}
-\begin{definicion}\textbf{ Sigularidades, Polos.} Sea $f$ definida en un intervalo abierto $I$ con valores en $\rr$. Diremos que $f$ posee un \emph{polo de orden $k$} en $x_0\in\rr$, si la función $(x-x_0)^kf(x)$ es analítica en un entorno de $x_0$. Vale decir que $(x-x_0)^kf(x)$ se desarrolla en serie de potencias.
+\begin{definicion}[Sigularidades, Polos.]{} Sea $f$ definida en un intervalo abierto $I$ con valores en $\rr$. Diremos que $f$ posee un \emph{polo de orden $k$} en $x_0\in\rr$, si la función $(x-x_0)^kf(x)$ es analítica en un entorno de $x_0$. Vale decir que $(x-x_0)^kf(x)$ se desarrolla en serie de potencias.
 \[(x-x_0)^kf(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^n.\]
 En consecuencia
 \[f(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^{n-k}=\frac{a_0}{(x-x_0)^k}+\cdots+\frac{a_{k-1}}{(x-x_0)}+a_k+a_{k+1}(x-x_0)+\cdots.\]
@@ -701,7 +701,7 @@ Cuando el orden de un polo es $1$ se lo denomina \emph{polo simple}.
 
 
 
-\begin{definicion} Un punto singular $x_0$ de la ecuación
+\begin{definicion}{} Un punto singular $x_0$ de la ecuación
 \[y''(x)+p(x)y'(x)+q(x)y(x)=0\]
 se llama singular regular si $p(x)$ tiene un polo a lo sumo simple en $x_0$ y $q(x)$ tiene un polo a lo sumo de orden $2$ en $x_0$. Es decir
 \[(x-x_0)p(x)\quad\hbox{y}\quad (x-x_0)^2q(x)\]
@@ -709,18 +709,18 @@ son analíticas en $x_0$.
 \end{definicion}
 Algunas de las ecuaciones más importantes de la Física-Matemática tienen puntos singulares regulares.
 
-\begin{ejemplo} 1 y -1 son puntos singulares regulares de la ecuación de Legendre de orden $p$
+\begin{ejemplo}{} 1 y -1 son puntos singulares regulares de la ecuación de Legendre de orden $p$
 \[y''-\frac{2x}{1-x^2}y'+\frac{p(p+1)}{1-x^2}y=0\]
 \end{ejemplo}
 
 
-\begin{ejemplo} 0 es un punto singular regular de la ecuación de Bessel de orden $p$
+\begin{ejemplo}{} 0 es un punto singular regular de la ecuación de Bessel de orden $p$
 \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
 \end{ejemplo}
 
 El método de coeficientes indeterminados puede fallar en los puntos donde $p$ y $q$ tienen polos. En su lugar vamos a proponer otro tipo de desarrollo en serie. Lo vamos a motivar con un ejemplo.
 
-\begin{ejemplo} Consideremos la ecuación de Euler, para $p,q\in\rr$
+\begin{ejemplo}{} Consideremos la ecuación de Euler, para $p,q\in\rr$
 \[y''+\frac{p}{x}y'+\frac{q}{x^2}y=0\]
 o equivalentemente
 \[x^2y''+pxy'+qy=0\]
@@ -765,7 +765,7 @@ Estas funciones, a menos que $s_1$ y $s_2$ sean enteros positivos, ya no son ana
 
 De modo que, como era de suponer, no podremos encontrar en general en un punto singular una solución analítica.  Vamos a intentar flexibilizar nuestro método para incluir otro tipo de desarrollo en serie, que está inspirado en los resultados obtenidos para la ecuación de Euler.
 
-\begin{definicion} A una expresión de la forma
+\begin{definicion}{} A una expresión de la forma
  \[y(x)=(x-x_0)^m(a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots),\]
 donde $m\in\rr$ y $a_0\neq 0$, lo llamaremos \emph{Serie de Frobenius}.
 \end{definicion}
@@ -773,7 +773,7 @@ Las series de Frobenius no son series de potencias ni de Laurent ya que en ellas
 
 El método de Frobenius consiste en proponer como solución de una ecuación diferencial una serie de Frobenius. Este método tiene éxito, por ejemplo, en los puntos sigulares regulares de ecuaciones diferenciales lineales de segundo orden.
 
-\begin{ejemplo} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
+\begin{ejemplo}{} En este ejemplo ilustramos el método de Frobenius. Consideremos la ecuación
 \begin{equation}\label{eq:ejem_sim}y''+\left(\frac{1}{2x}+1\right)y'-\left(\frac{1}{2x^2}\right)y=0.
 \end{equation}
 Notar que $x=0$ es regular singular. Desarrollaremos el método de Frobenius, primero ``a mano'' y por último con SymPy.
@@ -903,7 +903,7 @@ y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
 
 \subsubsection{Relaciones de recurrencia y solución por el método de Frobenius}
 
-\begin{definicion} Recordemos a la ecuación de Bessel de orden $p$ ($p>0$)
+\begin{definicion}{} Recordemos a la ecuación de Bessel de orden $p$ ($p>0$)
  \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
 \end{definicion}
 
@@ -1006,7 +1006,7 @@ Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la e
 \[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
 No obstante, nos previene utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no es claro que significa $p!$. El propósito de esta subsección es introducir una extensión de la función factorial a una función de variable real.
 
-\begin{definicion}\label{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por
+\begin{definicion}{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por
 \begin{equation}\label{eq:gamma}\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt
 \end{equation}
 \end{definicion}
@@ -1038,7 +1038,7 @@ Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula 
 \end{figure}
 Ahora estamos en condiciones de definir la función de Bessel de primera espacie que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
 
-\begin{definicion}\label{def:bessel_primera} Definimos la función de Bessel de primera especie como
+\begin{definicion}{def:bessel_primera} Definimos la función de Bessel de primera especie como
 \[J_p(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(p+n+1)}\left(\frac{x}{2}\right)^{2n+p}\]
 \end{definicion}
 
@@ -1089,7 +1089,7 @@ Estas relaciones siguen el mismo patrón que la relación de recurrencia \eqref{
 se puede anular y esto  impediría que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la diferencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo remarcamos porque veremos más adelante que en general es un problema que la diferencia de las raíces de la ecuación indicial sean negativas. También $p=0$ es una situación problemática, dado que en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$.
 
 Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
-\begin{definicion}\label{def:bessel_segunda} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$) como
+\begin{definicion}{def:bessel_segunda} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$) como
 \[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
 \end{definicion}
 Grafiquemos algunas de estas funciones de Bessel, la función de Bessel $J$ que habíamos introducido en SymPy arriba, sigue siendo útil.
@@ -1162,7 +1162,7 @@ Entonces las ecuaciones \eqref{eq:recu_gral_frob} se escriben
 \boxedeq{f(m+n)a_n=-\sum_{k=0}^{n-1}a_k\left[p_{n-k}(m+k) +
 q_{n-k}\right],\quad n=0,1,\ldots}{eq:recu_gral_frob_2}
 La primera de estas ecuaciones es
-\begin{definicion} Definimos la  ecuación indicial por
+\begin{definicion}{} Definimos la  ecuación indicial por
 \begin{equation}\label{eq:eq_indicial}
   f(m)=m(m-1)+p_0m+q_0=0.
 \end{equation}
@@ -1243,7 +1243,7 @@ La segunda solución $y_2$ es la suma de una serie de Frobenius, con $m=m_2$, y 
 
 Hemos discutido con cierto detalle las posibles soluciones de las ecuaciones de recurrencia. No resta considerar la cuestión de la convergencia de las series. Esto lo tratamos en el siguiente teorema.
 
-\begin{teorema} Supongamos $x=0$ un punto regular singular de la ecuación
+\begin{teorema}{} Supongamos $x=0$ un punto regular singular de la ecuación
 \begin{equation}\label{eq:dif_2_orden} y''+p(x)y'+q(x)y=0.
 \end{equation}
 Supongamos que $xp(x)$ y $x^2q(x)$ poseen los  siguientes desarrollos en serie
@@ -1298,7 +1298,7 @@ También recordemos de \eqref{eq:rel_recu_-p_a}  la ecuación
 \[-a_1(2p-1)=0,\]
 que  implica $a_1=0$, puesto que $p$ es entero y por ende $p\neq\frac12$. Como consecuencia de la relación de recurrencia  \eqref{eq:rel_recu_-p} tenemos $a_n=0$ para todo $n$ impar. Para afirmar esto último tomamos en cuenta que al ser $p$ entero  $2p-n\neq 0$ cuando $n$ es impar.   Cuando  $n$ es par y más en concreto $n=2p$ la relación de recurrencia \eqref{eq:rel_recu_-p} toma la forma $a_{n-2}=0$. Ahora si $a_{n-2}=0$ entonces \eqref{eq:rel_recu_-p} implica que $a_{n-4}=a_{n-6}=\cdots a_0=0$. Eligiendo $a_n$ arbitrariamente y al resto de los $a_k$ con $k$ par mayor a $n$ de modo que se satisfaga la relación de recurrencia se llega a una solución en serie de Frobenius. 
 Lamentablemente esta segunda solución es esencialmente la misma  que $J_p$. Esto ya lo hemos 
-discutido en sección \vref{pag:apar_sol}.  De modo que cuando $p$ 
+discutido en sección \ref{pag:apar_sol}.  De modo que cuando $p$ 
 es entero positivo no tenemos una segunda solución en serie de Frobenius.
 
 Más adelante volveremos al caso $p$ entero. Ahora consideremos $p=\frac{2k+1}{2}$ con $k$ entero $k\geq 0$.  Reemplazando $p$ en \eqref{eq:rel_recu_-p}  por este valor y reemplazando $n$ por $2k+1$, concluímos $a_{2k-1}=0$. Ahora iterando la relación de recurrencia $a_{2k-3}=\cdots=a_1=0$. La situación es parecida al caso anterior, podemos elegir $a_{2k+1}$ libremente, vamos a elegirlo igual a $0$. Esto anula todos los coeficientes $a_n$ con $n$ impar. Pero la diferencia con el caso anterior es que podemos elegir libremente $a_0$. Llegamos así a la misma solución de la Definición \ref{def:bessel_segunda}. En síntesis \emph{para todo $p$ que no es un entero no negativo, tenemos el par de soluciones linealmente independientes $J_p$ y $J_{-p}$ tales que
@@ -1307,7 +1307,7 @@ es la solución general de la ecuación de Bessel}
 
 Ahora volvamos al caso $p\in\mathbb{Z}$ para encontrar una segunda solución  linealmente independiente de $J_p$. Podríamos buscar esta solución apelando a la expresión \eqref{eq:des_enter}, pero es costumbre buscar de otra manera esta segunda solución y vamos a discutir brevemente,  sin justificar todos los detalles,  esta otra forma. La idea es expresar la segunda solución para  $p=n\in\mathbb{Z}$ como límite de soluciones  de la forma  \eqref{eq:sol_gen_bessel_1} cuando $p\to n$. Más concretamente.
 
-\begin{definicion} Para $p\notin\mathbb{Z}$ definimos la función de Bessel $Y_p$ de segunda especie por
+\begin{definicion}{} Para $p\notin\mathbb{Z}$ definimos la función de Bessel $Y_p$ de segunda especie por
 \begin{equation}\label{eq:bessel_2_especie}
 Y_p=\frac{\cos p\pi J_p-J_{-p}}{\sen p\pi}.
 \end{equation}

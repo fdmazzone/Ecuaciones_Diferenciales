@@ -1,0 +1,23 @@
+%Last time of file creation:  1568455381.01
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@1}
+\frac{\left(- x \log{\left (e^{\operatorname{y_{n}}{\left (x \right )}} \right )}^{2} + \frac{d}{d x} \operatorname{y_{n}}{\left (x \right )}\right) e^{\operatorname{y_{n}}{\left (x \right )}}}{x} = 0\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@3}
+\frac{y{\left (\operatorname{acos}{\left (\cos{\left (xn \right )} \right )} \right )}}{\sqrt{- \cos^{2}{\left (xn \right )} + 1}} + \frac{\left. \frac{d}{d \xi_{1}} y{\left (\xi_{1} \right )} \right|_{\substack{ \xi_{1}=\operatorname{acos}{\left (\cos{\left (xn \right )} \right )} }}}{\sqrt{- \cos^{2}{\left (xn \right )} + 1}}\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@5}
+\frac{\left(1 + \frac{y^{2}{\left (x \right )}}{x^{2}}\right) \left(x + y{\left (x \right )} \frac{d}{d x} y{\left (x \right )}\right)}{\sqrt{x^{2} + y^{2}{\left (x \right )}} \left(\frac{\frac{d}{d x} y{\left (x \right )}}{x} - \frac{y{\left (x \right )}}{x^{2}}\right)}\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@8}
+\left[\begin{matrix}0\\0\end{matrix}\right]\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@10}
+\frac{x_{n}^{2} y_{n} - x_{n} + y_{n}^{3} - y_{n}}{x_{n}^{3} + x_{n} y_{n}^{2} - x_{n} + y_{n}}\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@sympy@default@default@21}
+\left [ \left \{ \eta{\left (x,y{\left (x \right )} \right )} : x y{\left (x \right )}, \quad \xi{\left (x,y{\left (x \right )} \right )} : x^{2}\right \}\right ]\endpytx@SVMCR
+
+\pytx@SVMCR{pytx@MCR@py@default@default@1}
+- r \cos{\left (\theta \right )} + r\endpytx@SVMCR
+
