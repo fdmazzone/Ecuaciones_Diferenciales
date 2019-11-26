@@ -172,8 +172,124 @@ xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
 
 =>PYTHONTEX#sympy#default#default#21#i####Uni2.tex#1225#
 latex(xi_eta)
-=>PYTHONTEX#sympy#default#default#22#i####Uni10.tex#296#
-D
+=>PYTHONTEX#py#default#defaultverb#9#verbatim####Apendice0.tex#176#
+'''
+Comentario  largo en un script de Python
+'''
+print "Hola mundo" # Comentario corto
+=>PYTHONTEX#py#default#defaultverb#10#verbatim####Apendice0.tex#202#
+x = 1
+x = "texto"
+=>PYTHONTEX#pycon#default#default#0#console####Apendice0.tex#229#
+x=1
+type(x)
+x='Ecuaciones'
+type(x)
+=>PYTHONTEX#pycon#default#default#1#console####Apendice0.tex#263#
+lista = ["abc", 42, 3.1415]
+lista[0] # Acceder a un elemento por su indice
+lista[-1] # Acceder a un elemento usando un indice negativo
+lista.append(True) # Agregar un elemento al final de la lista
+lista
+del lista[3] # Borra un elemento de la lista usando un indice
+lista[0] = "xyz" # Re-asignar el valor del primer elemento
+lista[0:2]#elementos del indice "0" al "1"
+lista_anidada = [lista, [True, 42L]] #Es posible anidar listas
+lista_anidada
+lista_anidada[1][0] #accede lista dentro de otra lista
+=>PYTHONTEX#pycon#default#default#2#console####Apendice0.tex#277#
+tupla = ("abc", 42, 3.1415)
+tupla[0] # Acceder a un elemento por su indice
+del tupla[0] # No es posible borrar ni agregar
+tupla[0] = "xyz" # Tampoco es posible re-asignar
+tupla[0:2] # elementos del indice "0" al "2" sin incluir
+tupla_anidada = (tupla, (True, 3.1415)) # es posible anidar
+1, 2, 3, "abc" # Esto tambien es una tupla
+(1) #  no es una tupla, ya que no posee al menos una coma
+(1,) # si es una tupla
+(1, 2) # Con mas de un elemento no es necesaria la coma final
+(1, 2,) # Aunque agregarla no modifica el resultado
+=>PYTHONTEX#pycon#default#default#3#console####Apendice0.tex#305#
+dicci = {"cadena": "abc", "numero": 42, "lista": [True, 42L]}
+dicci["cadena"] # Usando una clave, se accede a su valor
+dicci["lista"][0]
+dicci["cadena"] = "xyz" # Re-asignar el valor de una clave
+dicci["cadena"]
+dicci["decimal"] = 3.1415927 # nuevo elemento clave:valor
+dicci["decimal"]
+dicci_mixto = {"tupla": (True, 3.1415), "diccionario": dicci}
+dicci_mixto["diccionario"]["lista"][1]
+dicci = {("abc",): 42} # tupla puede ser clave
+dicci = {["abc"]: 42} # una clave no puede ser lista
+=>PYTHONTEX#py#default#defaultverb#11#v####Apendice0.tex#324#
+range(n)
+=>PYTHONTEX#pycon#default#default#4#console####Apendice0.tex#326#
+range(5) #
+[i*i for i in range(5)]
+lista = [(i, i + 2) for i in range(5)]
+lista
+=>PYTHONTEX#pycon#default#default#5#console####Apendice0.tex#347#
+def suma(x, y = 2): #el argumento y tiene un valor por defecto
+    return x + y # Retornar la suma
+
+suma(4) # La variable "y" no se modifica, siendo su valor: 2
+suma(4, 10) # La variable "y" si se modifica
+=>PYTHONTEX#pycon#default#default#6#console####Apendice0.tex#356#
+suma = lambda x, y = 2: x + y
+suma(4) # La variable "y" no se modifica
+suma(4, 10) # La variable "y" si se modifica
+=>PYTHONTEX#py#default#defaultverb#12#v####Apendice0.tex#363#
+if
+=>PYTHONTEX#py#default#defaultverb#13#v####Apendice0.tex#364#
+True
+=>PYTHONTEX#py#default#defaultverb#14#v####Apendice0.tex#364#
+elif
+=>PYTHONTEX#py#default#defaultverb#15#v####Apendice0.tex#364#
+else
+=>PYTHONTEX#pycon#default#default#7#console####Apendice0.tex#368#
+verdadero = True
+if verdadero: # No es necesario poner "verdadero == True"
+    print "Verdadero"
+
+else:
+    print "Falso"
+
+lenguaje = "Python"
+if lenguaje == "C":
+    print "Lenguaje de programacion: C"
+elif lenguaje == "Python": # tantos "elif" como se quiera
+    print "Lenguaje de programacion: Python"
+else:
+    print "Lenguaje de programacion: indefinido"
+
+if verdadero and lenguaje == "Python":
+    print "Verdadero y Lenguaje de programacion: Python"
+
+=>PYTHONTEX#py#default#defaultverb#16#v####Apendice0.tex#395#
+for
+=>PYTHONTEX#py#default#defaultverb#17#v####Apendice0.tex#398#
+for
+=>PYTHONTEX#py#default#defaultverb#18#v####Apendice0.tex#399#
+in
+=>PYTHONTEX#pycon#default#default#8#console####Apendice0.tex#403#
+lista = ["a", "b", "c"]
+for i in lista: # Iteramos sobre una lista, que es iterable
+    print i
+
+cadena = "abc"
+for i in cadena: # Iteramos sobre una cadena, que es iterable
+    print i # una coma al final evita un salto de linea
+
+=>PYTHONTEX#py#default#defaultverb#19#v####Apendice0.tex#416#
+while
+=>PYTHONTEX#py#default#defaultverb#20#v####Apendice0.tex#418#
+while
+=>PYTHONTEX#pycon#default#default#9#console####Apendice0.tex#420#
+numero = 0
+while numero < 3:
+    print numero
+    numero += 1
+
 =>PYTHONTEX:SETTINGS#
 version=0.16
 outputdir=pythontex-files-LibroEcuaciones

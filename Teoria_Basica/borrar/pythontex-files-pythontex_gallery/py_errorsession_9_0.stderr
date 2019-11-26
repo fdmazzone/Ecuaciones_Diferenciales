@@ -1,4 +1,0 @@
-  File "py_errorsession_9.py", line 3
-    z = x + y +
-              ^
-SyntaxError: invalid syntax
