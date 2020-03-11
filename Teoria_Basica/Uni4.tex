@@ -177,7 +177,7 @@ Esta expresión se denomina \href{http://en.wikipedia.org/wiki/Abel's_identity}{
 \begin{proof} Tenemos que
 \[W(x)=y_1(x)y_2'(x)-y_1'(x)y_2(x).\]
 Derivando y usando \eqref{eq2orden}
-\[\begin{split}W'(x)&=y_1y_2''-y_1y_2''\\
+\[\begin{split}W'(x)&=y_1y_2''-y_1''y_2\\
 &=y_1(-py_2'-qy_2)-y_2(-py_1'-qy_1)\\
 &=-pW.
 \end{split}
@@ -284,7 +284,7 @@ Tenemos tres casos acorde al valor de $\Delta:=p^2-4c$
 
 \begin{enumerate}
 
-\item \noindent \textbf{ $\b{\Delta=p^2-4c>0}$, raices reales distintas $\b{\lambda_1$, $\lambda_2}$}. Este es el caso más sencillo de todos, obtenemos las soluciones
+\item \noindent \textbf{ $\b{\Delta=p^2-4q>0}$, raices reales distintas $\b{\lambda_1$, $\lambda_2}$}. Este es el caso más sencillo de todos, obtenemos las soluciones
 \[y_1(x)=e^{\lambda_1 x}\quad\text{y}\quad y_2(x)=e^{\lambda_2 x}.\]
 Para chequear la independencia
 \[\frac{y_2}{y_1}=e^{(\lambda_2-\lambda_1)x}\neq\text{cte}.\]
@@ -293,7 +293,7 @@ Luego
 es solución general
 
 
-\item \noindent  \textbf{$\b{\Delta=p^2-4c<0}$, raices complejas conjugadas $\lambda_1=\mu+i\nu$, $\lambda_2=\mu-i\nu$, $\mu,\nu\in\rr$}.
+\item \noindent  \textbf{$\b{\Delta=p^2-4q<0}$, raices complejas conjugadas $\lambda_1=\mu+i\nu$, $\lambda_2=\mu-i\nu$, $\mu,\nu\in\rr$}.
 Proponemos una solución de la forma
 \[
 y(x)=e^{\mu x}v(x)
@@ -1086,7 +1086,7 @@ Según la Ley de Gravitación Universal, la magnitud de la fuerza de gravedad es
 A la constante de proporcionalidad la llamaremos, como es costumbre, $G$. La dirección de la fuerza gravitatoria es la de la recta que une los dos astros y
 el sentido es tal que la fuerza es atractiva entre los cuerpos. Vale decir, la dirección y sentido de la
 fuerza de gravedad vienen dados por el versor $-\v{r}/r$, donde $r=|\v{r}|$. Luego se debe satisfacer que
-\[Gm_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
+\[m_{\earth}\frac{d^2\v{r}}{dt^2}=-\frac{Gm_{\earth}m_{\sun}}{r^2}\frac{\v{r}}{r}=-Gm_{\earth}m_{\sun}\frac{\v{r}}{r^3}. \]
 
 
 Es decir

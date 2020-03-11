@@ -1,0 +1,5 @@
+x=symbols('x')
+y=Function('y')(x)
+r=sqrt(x**2+y**2)
+theta=atan(y/x)
+Expr2=r.diff(x)/theta.diff(x)
