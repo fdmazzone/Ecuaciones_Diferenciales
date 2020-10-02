@@ -340,10 +340,10 @@ Lo que es una contradicción.
 
 
 \begin{definicion} Sea $f:\Omega \subset \rr^n\to \rr^m$. Diremos que $f$ es \emph{lipschitziana} (o que es una función Lipschitz) si existe una constante $K\geq 0$ tal que
-\[\|f(x)-f(y)\|\leq K\|x-y\|,\quad \forall x,y\in \Omega .\]
+\[\|f(x)-f(y)\|\leq L\|x-y\|,\quad \forall x,y\in \Omega .\]
 
 Si $f:\Omega\subset\rr\times \rr^n\to\rr^m$, diremos que $f=f(t,x)$ es lipschitziana respecto a la segunda variable si existe  $K\geq 0$ tal que
-\[\|f(t,x)-f(t,y)\|\leq K\|x-y\|,\quad \forall (t,x),(t,y)\in \Omega .\]
+\[\|f(t,x)-f(t,y)\|\leq L\|x-y\|,\quad \forall (t,x),(t,y)\in \Omega .\]
  
 \end{definicion}
 
@@ -439,7 +439,7 @@ Lo que implica la continuidad. Entonces $K(\varphi)\in X$.
 \noindent\textbf{Afirmación 2:} $K^m$ es  contracción para $m$ suficientemente grande. 
 
 La afirmación es consecuencia de la siguiente desigualdad, para $\varphi_1,\varphi_2\in X$ y $x\in I_{\delta}$
-\[\|K^m(\varphi_1)(x)-K^m(\varphi)(x)\|\leq \frac{K^m|x-x_0|^m}{m!}d(\varphi_1,\varphi_2).\]
+\[\|K^m(\varphi_1)(x)-K^m(\varphi)(x)\|\leq \frac{L^m|x-x_0|^m}{m!}d(\varphi_1,\varphi_2).\]
 La prueba procede por induccón sobre $m$. Cuando $m=0$ es inmediata. Supuesta válida la desigualdad para $m$ vemos que (otra vez asumimos $x_0\leq x$)
 
 \[
@@ -450,13 +450,13 @@ La prueba procede por induccón sobre $m$. Cuando $m=0$ es inmediata. Supuesta v
         \right\|\\
      &\leq    
     \int_{x_0}^{x} \left\|f(t,K^m(\varphi_1)(t))- f(t,K^m(\varphi_2)(t))\right\| dt\\
-    &\leq     K\int_{x_0}^{x} \left\|K^m(\varphi_1)(t)- K^m(\varphi_2)(t))\right\| dt\\
-    &\leq  \frac{K^{m+1}}{m!}d(\varphi_1,\varphi_2) \int_{x_0}^{x}  |t-x_0|^m dt\\
-    &=\frac{K^{m+1}|x-x_0|^{m+1}}{(m+1)!}d(\varphi_1,\varphi_2)
+    &\leq     L\int_{x_0}^{x} \left\|K^m(\varphi_1)(t)- K^m(\varphi_2)(t))\right\| dt\\
+    &\leq  \frac{L^{m+1}}{m!}d(\varphi_1,\varphi_2) \int_{x_0}^{x}  |t-x_0|^m dt\\
+    &=\frac{L^{m+1}|x-x_0|^{m+1}}{(m+1)!}d(\varphi_1,\varphi_2)
   \end{split}
 \]
 
-Notar que $K^m|x-x_0|^m/m!$ es el valor absoluto del término general de la serie de Taylor de $e^{Kx}$ alrededor de $x_0$.Como esta serie tiene radio de convergencia infinito, el término general tiende a cero. Por consiguiente existe $m$ suficientemente grande para que $K^m|x-x_0|^m/m!<1$. Para este $m$, $K^m$ será contracción. Luego, por el Corolario \ref{cor:banach},  deducimos que $K$ tiene un único punto fijo. Vale decir que existe $y\in X$ con
+Notar que $L^m|x-x_0|^m/m!$ es el valor absoluto del término general de la serie de Taylor de $e^{Lx}$ alrededor de $x_0$.Como esta serie tiene radio de convergencia infinito, el término general tiende a cero. Por consiguiente existe $m$ suficientemente grande para que $L^m|x-x_0|^m/m!<1$. Para este $m$, $K^m$ será contracción. Luego, por el Corolario \ref{cor:banach},  deducimos que $K$ tiene un único punto fijo. Vale decir que existe $y\in X$ con
 \[
  y(x)=y_0+\int_{x_0}^xf(t,y(t))dt.
 \]

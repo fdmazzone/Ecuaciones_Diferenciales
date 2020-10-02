@@ -37,21 +37,21 @@ for r in range(1,10):
 show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
     p.append(p1[0])
 p.show()
-=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#613#
+=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#612#
 x=symbols('x')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),y/x)
 tipo=classify_ode(MiEcua,y)
-=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1735#
+=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1734#
 theta=symbols('theta')
 from sympy.plotting import *
 plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
-=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1757#
+=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1756#
 x,c=symbols('x,c')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
 f=dsolve(MiEcua,y,hint='separable')
-=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1836#
+=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1835#
 from sympy import *
 from sympy.diffgeom.rn import R2
 eq=(-sqrt(R2.x**2+R2.y**2)+R2.x)*R2.dx+R2.y*R2.dy
@@ -70,7 +70,7 @@ phi=phi+g
 dsolve(phi.diff(r)-N/r,g)
 phi=(M/r).integrate(theta)+r
 phi
-=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1858#
+=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1857#
 latex(phi)
 =>PYTHONTEX#sympy#default#default#0#block####Uni2.tex#126#
 x=symbols('x') #unico simbolo primitivo
@@ -291,7 +291,7 @@ while numero < 3:
     numero += 1
 
 =>PYTHONTEX:SETTINGS#
-version=0.16
+version=0.14
 outputdir=pythontex-files-LibroEcuaciones
 workingdir=.
 workingdirset=false
