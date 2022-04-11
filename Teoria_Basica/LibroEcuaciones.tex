@@ -1,7 +1,14 @@
 \documentclass[oneside]{book}
 
+%%%%%%%%%%%%%% INSTRUCCIONES COMPILACION %%%%%%%%%%%%%%%%%%%%%%
+%lUEGO DE EJECUTAR XELATEX EJECUTAR 
+%/usr/share/texlive/texmf-dist/scripts/pythontex/pythontex3.py LibroEcuaciones
+%sage LibroEcuaciones.sagetex.sage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Paquetes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage[pdf]{pstricks}
+%\usepackage{pstricks-add,pst-math,pst-xkey,pst-pdf,auto-pst-pdf}
 \usepackage{pst-all} %pstricks graficos
 \let\clipbox\relax
 % \usepackage{pgf,tikz,pgfplots} %tikz graficos
@@ -52,7 +59,7 @@
 
 \usepackage{imakeidx} %supongo que para indices multiples
 \usepackage[makestderr]{pythontex}%Ejecutar python dentro latex
-%\usepackage{sagetex}
+\usepackage{sagetex}
 %\usepackage{diagrams}%diagramas comutativos
 % %
 \usepackage[framemethod=TikZ]{mdframed}
@@ -93,7 +100,8 @@
 \usepackage{listings}
 \usepackage{ wasysym }
 \usepackage{marginnote}
-
+\usepackage{subcaption}%Para figuras multiples
+\usepackage{morewrites}
 % 
 % %%%%%%%%%% Nuevos Entornos-Comandos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % %\input{entornos_comandos.tex}
@@ -158,6 +166,10 @@
 \makeindex[title=Indice Conceptos]
 \makeindex[name=personas,title=Indice de Personas,columns=3]
 \makeindex[name=simbolos,title=Indice Símbolos,columns=3]
+
+
+
+
 \begin{document}
 
 
@@ -178,11 +190,11 @@
 %   
 
 %%%%%%%%%%%   Para ehjecutar python
-%   /usr/share/texlive/texmf-dist/scripts/pythontex/pythontex.py LibroEcuaciones
+%   /usr/share/texlive/texmf-dist/scripts/pythontex/pythontex3.py LibroEcuaciones
 
 
 
-\include{prologo}
+%\include{prologo}
 \include{Uni1}
 \include{Uni2}
 \include{Uni3}
@@ -190,9 +202,13 @@
 \include{Uni5}
 \include{Uni6}
 \include{Uni7}
-%\include{Uni9}
-%\include{Uni10}  %%   (Hay que convertir todos los bloques sage a pytho)
-\include{Apendice0}
+\include{Uni8}
+\include{Uni9}
+\include{Uni10}  %%   (Hay que convertir todos los bloques sage a pytho)
+% \include{Apendice0}
+
+
+
 
 
 \end{document}

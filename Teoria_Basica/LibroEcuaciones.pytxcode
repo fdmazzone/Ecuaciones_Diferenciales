@@ -13,15 +13,15 @@ v(t) == (g*m + exp(c*(C1 - t/m)))/c
 =>PYTHONTEX#py#default#defaultverb#2#verbatim####Uni1.tex#127#
 >>> type(Vel)
 <class 'sympy.core.relational.Equality'>
-=>PYTHONTEX#py#default#defaultverb#3#verbatim####Uni1.tex#445#
+=>PYTHONTEX#py#default#defaultverb#3#verbatim####Uni1.tex#448#
 x=symbols('x')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),y/x)
 f=dsolve(MiEcua,y)
-=>PYTHONTEX#py#default#defaultverb#4#verbatim####Uni1.tex#485#
+=>PYTHONTEX#py#default#defaultverb#4#verbatim####Uni1.tex#488#
 x=symbols('x')
 f=plot(1/x,(x,-3,3),ylim=(-3,3))
-=>PYTHONTEX#py#default#defaultverb#5#verbatim####Uni1.tex#512#
+=>PYTHONTEX#py#default#defaultverb#5#verbatim####Uni1.tex#515#
 from sympy import *
 x,y=symbols('x,y')
 Rango=range(21)
@@ -37,21 +37,21 @@ for r in range(1,10):
 show=False,aspect_ratio=(1,1),xlim=(-2,2),ylim=(-2,2))
     p.append(p1[0])
 p.show()
-=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#612#
+=>PYTHONTEX#py#default#defaultverb#6#verbatim####Uni1.tex#615#
 x=symbols('x')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),y/x)
 tipo=classify_ode(MiEcua,y)
-=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1734#
+=>PYTHONTEX#py#default#defaultverb#7#verbatim####Uni1.tex#1737#
 theta=symbols('theta')
 from sympy.plotting import *
 plot_parametric(theta-sin(theta),1-cos(theta),(theta,0,10*pi))
-=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1756#
+=>PYTHONTEX#py#default#defaultverb#8#verbatim####Uni1.tex#1759#
 x,c=symbols('x,c')
 y=Function('y')(x)
 MiEcua=Eq(y.diff(x),sqrt((c-y)/y))
 f=dsolve(MiEcua,y,hint='separable')
-=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1835#
+=>PYTHONTEX#py#default#default#0#block####Uni1.tex#1838#
 from sympy import *
 from sympy.diffgeom.rn import R2
 eq=(-sqrt(R2.x**2+R2.y**2)+R2.x)*R2.dx+R2.y*R2.dy
@@ -70,48 +70,49 @@ phi=phi+g
 dsolve(phi.diff(r)-N/r,g)
 phi=(M/r).integrate(theta)+r
 phi
-=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1857#
+=>PYTHONTEX#py#default#default#1#i####Uni1.tex#1860#
 latex(phi)
 =>PYTHONTEX#sympy#default#default#0#block####Uni2.tex#126#
+from sympy import *
 x=symbols('x') #unico simbolo primitivo
 y_n=Function('y_n')(x) #variables nuevas, funciones de x
 y=exp(y_n)/x #relacion entre y, y_n
 eq=Eq(y.diff(x)-(ln(x*y))**2*x*y+y/x,0) #la ecuacion
 eq1=simplify(eq) # simplifica expresiones
-=>PYTHONTEX#sympy#default#default#1#i####Uni2.tex#135#
+=>PYTHONTEX#sympy#default#default#1#i####Uni2.tex#136#
 eq1
-=>PYTHONTEX#sympy#default#default#2#block####Uni2.tex#166#
-x,x_n=symbols('x,x_n')
+=>PYTHONTEX#sympy#default#default#2#block####Uni2.tex#167#
+x=symbols('x')
 x_n=acos(x)
 y=Function('y')(x_n)
 Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
 xn=symbols('xn')
 Eq=Ecuacion.subs(x,cos(xn))
-=>PYTHONTEX#sympy#default#default#3#i####Uni2.tex#176#
-latex(Eq)
-=>PYTHONTEX#sympy#default#default#4#block####Uni2.tex#202#
+=>PYTHONTEX#sympy#default#default#3#i####Uni2.tex#178#
+Eq
+=>PYTHONTEX#sympy#default#default#4#block####Uni2.tex#207#
 x=symbols('x')
 y=Function('y')(x)
 r=sqrt(x**2+y**2)
 theta=atan(y/x)
 Expr2=r.diff(x)/theta.diff(x)
-=>PYTHONTEX#sympy#default#default#5#i####Uni2.tex#213#
-latex(Expr2)
-=>PYTHONTEX#sympy#default#default#6#block####Uni2.tex#216#
+=>PYTHONTEX#sympy#default#default#5#i####Uni2.tex#218#
+Expr2
+=>PYTHONTEX#sympy#default#default#6#block####Uni2.tex#221#
 Expr3=Expr2.subs(y.diff(x),(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y))
 r,theta=symbols('r,theta',positive=True)
 Expr4=Expr3.subs([(y,r*sin(theta)),(x,r*cos(theta))])
 Expr5=simplify(Expr4)
-=>PYTHONTEX#sympy#default#default#7#block####Uni2.tex#349#
+=>PYTHONTEX#sympy#default#default#7#block####Uni2.tex#354#
 x,y,epsilon,epsilon1,epsilon2=symbols('x,y,epsilon,epsilon1,epsilon2')
 T=Matrix([x+epsilon,y])
 x_copete=T.subs(epsilon,epsilon1)[0]
 y_copete=T.subs(epsilon,epsilon1)[1]
 PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])\
 -T.subs(epsilon,epsilon1+epsilon2)
-=>PYTHONTEX#sympy#default#default#8#i####Uni2.tex#358#
-latex(PropGrupo)
-=>PYTHONTEX#sympy#default#default#9#block####Uni2.tex#487#
+=>PYTHONTEX#sympy#default#default#8#i####Uni2.tex#363#
+PropGrupo
+=>PYTHONTEX#sympy#default#default#9#block####Uni2.tex#492#
 x,theta=symbols('x,theta')
 y=Function('y')(x)
 x_n=cos(theta)*x-sin(theta)*y
@@ -123,37 +124,37 @@ x_n,y_n=symbols('x_n,y_n')
 Expr4=Expr3.subs([(y, -sin(theta)*x_n+cos(theta)*y_n),\
 (x,cos(theta)*x_n+sin(theta)*y_n)])
 Expr5=simplify(Expr4)
-=>PYTHONTEX#sympy#default#default#10#i####Uni2.tex#510#
-latex(Expr5)
-=>PYTHONTEX#sympy#default#default#11#block####Uni2.tex#839#
+=>PYTHONTEX#sympy#default#default#10#i####Uni2.tex#515#
+Expr5
+=>PYTHONTEX#sympy#default#default#11#block####Uni2.tex#844#
 from sympy import *
 init_printing()
 x,y=symbols('x,y',real=True)
 f=(y**3+x**2*y-x-y)/(x**3+x*y**2-x+y)
-=>PYTHONTEX#sympy#default#default#12#block####Uni2.tex#852#
+=>PYTHONTEX#sympy#default#default#12#block####Uni2.tex#857#
 a,b,c,d,h,k=symbols('a,b,c,d,h,k',real=True)
 xi=a*x+b*y+h
 eta=c*x+d*y+k
 Q=eta-f*xi
-=>PYTHONTEX#sympy#default#default#13#block####Uni2.tex#860#
+=>PYTHONTEX#sympy#default#default#13#block####Uni2.tex#865#
 CondSim=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
 CondSim=simplify(CondSim)
-=>PYTHONTEX#sympy#default#default#14#block####Uni2.tex#869#
+=>PYTHONTEX#sympy#default#default#14#block####Uni2.tex#874#
 P1,P2=fraction(CondSim)
 P1
-=>PYTHONTEX#sympy#default#default#15#block####Uni2.tex#888#
+=>PYTHONTEX#sympy#default#default#15#block####Uni2.tex#893#
 P1.subs(y,0).collect(x)
-=>PYTHONTEX#sympy#default#default#16#block####Uni2.tex#897#
+=>PYTHONTEX#sympy#default#default#16#block####Uni2.tex#902#
 P11=P1.subs({h:0,k:0,d:-a,c:-2*a-b})
 P11.subs(y,1).collect(x)
-=>PYTHONTEX#sympy#default#default#17#block####Uni2.tex#903#
+=>PYTHONTEX#sympy#default#default#17#block####Uni2.tex#908#
 xi=xi.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
 eta=eta.subs({d:0,a:0,b:-1,c:1,h:0,k:0})
 xi,eta
-=>PYTHONTEX#sympy#default#default#18#block####Uni2.tex#909#
+=>PYTHONTEX#sympy#default#default#18#block####Uni2.tex#914#
 CondSimLin=Q.diff(x)+f*Q.diff(y)-f.diff(y)*Q
 CondSimLin.simplify()
-=>PYTHONTEX#sympy#default#default#19#block####Uni2.tex#1090#
+=>PYTHONTEX#sympy#default#default#19#block####Uni2.tex#1095#
 x,y,epsilon=symbols('x,y,epsilon')
 T=Matrix([x/(1-epsilon*x),y/(1-epsilon*x)])
 xi=T[0].diff(epsilon).subs(epsilon,0)
@@ -164,134 +165,245 @@ y=Function('z')(x)
 sol=dsolve(y.diff(x)-y/x,y)
 print(sol)
 Integral(1/xi,x).doit()
-=>PYTHONTEX#sympy#default#default#20#block####Uni2.tex#1217#
+=>PYTHONTEX#sympy#default#default#20#block####Uni2.tex#1222#
 x=symbols('x')
 y=Function('y')(x)
 from sympy.solvers.ode import infinitesimals
 xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
 
-=>PYTHONTEX#sympy#default#default#21#i####Uni2.tex#1225#
-latex(xi_eta)
-=>PYTHONTEX#py#default#defaultverb#9#verbatim####Apendice0.tex#176#
-'''
-Comentario  largo en un script de Python
-'''
-print "Hola mundo" # Comentario corto
-=>PYTHONTEX#py#default#defaultverb#10#verbatim####Apendice0.tex#202#
-x = 1
-x = "texto"
-=>PYTHONTEX#pycon#default#default#0#console####Apendice0.tex#229#
-x=1
-type(x)
-x='Ecuaciones'
-type(x)
-=>PYTHONTEX#pycon#default#default#1#console####Apendice0.tex#263#
-lista = ["abc", 42, 3.1415]
-lista[0] # Acceder a un elemento por su indice
-lista[-1] # Acceder a un elemento usando un indice negativo
-lista.append(True) # Agregar un elemento al final de la lista
-lista
-del lista[3] # Borra un elemento de la lista usando un indice
-lista[0] = "xyz" # Re-asignar el valor del primer elemento
-lista[0:2]#elementos del indice "0" al "1"
-lista_anidada = [lista, [True, 42L]] #Es posible anidar listas
-lista_anidada
-lista_anidada[1][0] #accede lista dentro de otra lista
-=>PYTHONTEX#pycon#default#default#2#console####Apendice0.tex#277#
-tupla = ("abc", 42, 3.1415)
-tupla[0] # Acceder a un elemento por su indice
-del tupla[0] # No es posible borrar ni agregar
-tupla[0] = "xyz" # Tampoco es posible re-asignar
-tupla[0:2] # elementos del indice "0" al "2" sin incluir
-tupla_anidada = (tupla, (True, 3.1415)) # es posible anidar
-1, 2, 3, "abc" # Esto tambien es una tupla
-(1) #  no es una tupla, ya que no posee al menos una coma
-(1,) # si es una tupla
-(1, 2) # Con mas de un elemento no es necesaria la coma final
-(1, 2,) # Aunque agregarla no modifica el resultado
-=>PYTHONTEX#pycon#default#default#3#console####Apendice0.tex#305#
-dicci = {"cadena": "abc", "numero": 42, "lista": [True, 42L]}
-dicci["cadena"] # Usando una clave, se accede a su valor
-dicci["lista"][0]
-dicci["cadena"] = "xyz" # Re-asignar el valor de una clave
-dicci["cadena"]
-dicci["decimal"] = 3.1415927 # nuevo elemento clave:valor
-dicci["decimal"]
-dicci_mixto = {"tupla": (True, 3.1415), "diccionario": dicci}
-dicci_mixto["diccionario"]["lista"][1]
-dicci = {("abc",): 42} # tupla puede ser clave
-dicci = {["abc"]: 42} # una clave no puede ser lista
-=>PYTHONTEX#py#default#defaultverb#11#v####Apendice0.tex#324#
-range(n)
-=>PYTHONTEX#pycon#default#default#4#console####Apendice0.tex#326#
-range(5) #
-[i*i for i in range(5)]
-lista = [(i, i + 2) for i in range(5)]
-lista
-=>PYTHONTEX#pycon#default#default#5#console####Apendice0.tex#347#
-def suma(x, y = 2): #el argumento y tiene un valor por defecto
-    return x + y # Retornar la suma
-
-suma(4) # La variable "y" no se modifica, siendo su valor: 2
-suma(4, 10) # La variable "y" si se modifica
-=>PYTHONTEX#pycon#default#default#6#console####Apendice0.tex#356#
-suma = lambda x, y = 2: x + y
-suma(4) # La variable "y" no se modifica
-suma(4, 10) # La variable "y" si se modifica
-=>PYTHONTEX#py#default#defaultverb#12#v####Apendice0.tex#363#
-if
-=>PYTHONTEX#py#default#defaultverb#13#v####Apendice0.tex#364#
-True
-=>PYTHONTEX#py#default#defaultverb#14#v####Apendice0.tex#364#
-elif
-=>PYTHONTEX#py#default#defaultverb#15#v####Apendice0.tex#364#
-else
-=>PYTHONTEX#pycon#default#default#7#console####Apendice0.tex#368#
-verdadero = True
-if verdadero: # No es necesario poner "verdadero == True"
-    print "Verdadero"
-
-else:
-    print "Falso"
-
-lenguaje = "Python"
-if lenguaje == "C":
-    print "Lenguaje de programacion: C"
-elif lenguaje == "Python": # tantos "elif" como se quiera
-    print "Lenguaje de programacion: Python"
-else:
-    print "Lenguaje de programacion: indefinido"
-
-if verdadero and lenguaje == "Python":
-    print "Verdadero y Lenguaje de programacion: Python"
-
-=>PYTHONTEX#py#default#defaultverb#16#v####Apendice0.tex#395#
-for
-=>PYTHONTEX#py#default#defaultverb#17#v####Apendice0.tex#398#
-for
-=>PYTHONTEX#py#default#defaultverb#18#v####Apendice0.tex#399#
-in
-=>PYTHONTEX#pycon#default#default#8#console####Apendice0.tex#403#
-lista = ["a", "b", "c"]
-for i in lista: # Iteramos sobre una lista, que es iterable
-    print i
-
-cadena = "abc"
-for i in cadena: # Iteramos sobre una cadena, que es iterable
-    print i # una coma al final evita un salto de linea
-
-=>PYTHONTEX#py#default#defaultverb#19#v####Apendice0.tex#416#
-while
-=>PYTHONTEX#py#default#defaultverb#20#v####Apendice0.tex#418#
-while
-=>PYTHONTEX#pycon#default#default#9#console####Apendice0.tex#420#
-numero = 0
-while numero < 3:
-    print numero
-    numero += 1
-
+=>PYTHONTEX#sympy#default#default#21#i####Uni2.tex#1230#
+xi_eta
+=>PYTHONTEX#sympy#default#default#22#block####Uni8.tex#652#
+from sympy import *
+omega,t=symbols('omega,t')
+A=Matrix([[0, 1],[-omega**2,0]])
+G=t**0*A**0
+for j in range(1,10):
+    G=G+t**j*A**j/factorial(j)
+=>PYTHONTEX#sympy#default#default#23#i####Uni8.tex#663#
+G
+=>PYTHONTEX#sympy#default#defaultverb#0#verbatim####Uni8.tex#1014#
+from sympy import *
+t=symbols('t')
+H=Matrix([[1, 0],[0,1]])
+R=Matrix([[cos(t), sin(t)],[-sin(t),cos(t)]])
+G=H*R*H.inv()
+Phi=G*Matrix([[.1],[0]])
+P=plot_parametric(Phi[0],Phi[1],(t,0,2*pi),show=False,\
+    aspect_ratio=(1,1))
+X=[0.1*n for n in range(1,20)]
+for x0 in X:
+    Phi=G*Matrix([[x0],[0]])
+    P.append(plot_parametric(Phi[0],Phi[1],(t,0,2*pi),\
+        show=False,aspect_ratio=(1,1))[0])
+P.show()
+=>PYTHONTEX#sympy#default#default#24#block####Uni8.tex#1196#
+A=Matrix([[-2, -1],[0,-1]])
+delta=A.det()
+tau=A.trace()
+delta>0,delta<tau**2/4
+=>PYTHONTEX#sympy#default#default#25#i####Uni8.tex#1202#
+delta>0
+=>PYTHONTEX#sympy#default#default#26#i####Uni8.tex#1202#
+delta<tau**2/4
+=>PYTHONTEX#sympy#default#default#27#block####Uni8.tex#1203#
+P,D=A.diagonalize()
+=>PYTHONTEX#sympy#default#default#28#i####Uni8.tex#1208#
+P
+=>PYTHONTEX#sympy#default#default#29#i####Uni8.tex#1208#
+D
+=>PYTHONTEX#sympy#default#default#30#block####Uni8.tex#1211#
+tau<0
+=>PYTHONTEX#sympy#default#default#31#i####Uni8.tex#1214#
+tau<0
+=>PYTHONTEX#sympy#default#default#32#block####Uni8.tex#1392#
+A=Matrix([[1, 4], [-2, -3]])
+delta=A.det()
+tau=A.trace()
+delta>0,delta>tau**2/4
+=>PYTHONTEX#sympy#default#default#33#i####Uni8.tex#1399#
+delta>0
+=>PYTHONTEX#sympy#default#default#34#i####Uni8.tex#1399#
+delta>tau**2/4
+=>PYTHONTEX#sympy#default#default#35#block####Uni8.tex#1400#
+V,D=A.diagonalize()
+=>PYTHONTEX#sympy#default#default#36#i####Uni8.tex#1405#
+V
+=>PYTHONTEX#sympy#default#default#37#i####Uni8.tex#1405#
+D
+=>PYTHONTEX#sympy#default#default#38#block####Uni8.tex#1410#
+P=Matrix([re(V[:,0]).T,im(V[:,0]).T])
+=>PYTHONTEX#sympy#default#default#39#i####Uni8.tex#1414#
+P
+=>PYTHONTEX#sympy#default#default#40#block####Uni8.tex#1416#
+J=P.inv()*A*P
+=>PYTHONTEX#sympy#default#default#41#i####Uni8.tex#1420#
+J
+=>PYTHONTEX#sympy#default#default#42#i####Uni8.tex#1435#
+P
+=>PYTHONTEX#sympy#default#default#43#i####Uni8.tex#1435#
+P.inv()
+=>PYTHONTEX#sympy#default#default#44#i####Uni8.tex#1435#
+P*Matrix([[cos(-2*t) , sin(-2*t)], [-sin(-2*t),cos(-2*t)]])*P.inv()
+=>PYTHONTEX#sympy#default#default#42#i####Uni8.tex#1435#
+P
+=>PYTHONTEX#sympy#default#default#43#i####Uni8.tex#1435#
+P.inv()
+=>PYTHONTEX#sympy#default#default#44#i####Uni8.tex#1435#
+P*Matrix([[cos(-2*t) , sin(-2*t)], [-sin(-2*t),cos(-2*t)]])*P.inv()
+=>PYTHONTEX#sympy#default#default#45#block####Uni8.tex#1440#
+t=symbols('t',real=True)
+G=exp(t*A)
+=>PYTHONTEX#sympy#default#default#46#i####Uni8.tex#1446#
+G
+=>PYTHONTEX#sympy#default#default#47#block####Uni8.tex#1544#
+from sympy import *
+A=Rational(1,90)*Matrix([[-55, 68, -44],\
+    [-124, 53, -56],\
+    [-2, 46, -7]])
+P1,J1=A.jordan_form()
+=>PYTHONTEX#sympy#default#default#48#i####Uni8.tex#1553#
+P1
+=>PYTHONTEX#sympy#default#default#49#i####Uni8.tex#1553#
+J1
+=>PYTHONTEX#sympy#default#default#50#i####Uni8.tex#1558#
+ {J1[i,i] for i in range(3)} 
+=>PYTHONTEX#sympy#default#default#51#block####Uni8.tex#1562#
+P=Matrix([P1[:,0].T,re(P1[:,2]).T,im(P1[:,2]).T]).T
+J=P.inv()*A*P
+=>PYTHONTEX#sympy#default#default#52#i####Uni8.tex#1568#
+P
+=>PYTHONTEX#sympy#default#default#53#i####Uni8.tex#1568#
+J
+=>PYTHONTEX#sympy#default#default#54#i####Uni8.tex#1572#
+P[:,1]
+=>PYTHONTEX#sympy#default#default#55#i####Uni8.tex#1572#
+P[:,2]
+=>PYTHONTEX#sympy#default#default#56#i####Uni8.tex#1576#
+P[:,0]
+=>PYTHONTEX#sympy#default#default#57#code####Uni8.tex#1581#
+t=symbols('t',real=True)
+etJ=exp(t*J)
+=>PYTHONTEX#sympy#default#default#58#i####Uni8.tex#1588#
+etJ
+=>PYTHONTEX#sympy#default#default#59#i####Uni8.tex#1596#
+P
+=>PYTHONTEX#sympy#default#default#60#i####Uni8.tex#1596#
+etJ
+=>PYTHONTEX#sympy#default#default#61#i####Uni8.tex#1596#
+P.inv()
+=>PYTHONTEX#sympy#default#default#59#i####Uni8.tex#1596#
+P
+=>PYTHONTEX#sympy#default#default#60#i####Uni8.tex#1596#
+etJ
+=>PYTHONTEX#sympy#default#default#61#i####Uni8.tex#1596#
+P.inv()
+=>PYTHONTEX#sympy#default#defaultverb#1#verbatim####Uni8.tex#1601#
+from sympy.plotting import plot3d_parametric_line
+G=exp(t*A)
+sol=G*P[:,2]
+p=plot3d_parametric_line(sol[0],sol[1],sol[2],\
+    (t,-10,12),line_color='blue')
+sol=G*P[:,0]
+p.append(plot3d_parametric_line(sol[0],sol[1],sol[2],\
+    (t,-100,12),line_color='red')[0])
+sol=G*(P[:,0]+P[:,2])
+p.append(plot3d_parametric_line(sol[0],sol[1],sol[2],\
+    (t,-10,12),line_color='green')[0])
+p.show()
+=>PYTHONTEX#sympy#default#default#62#code####Uni8.tex#1632#
+J=Matrix([[-1,1,0,0], [0,-1,0,0],[0,0,1,-2],[0,0,2,1]])
+P=Matrix([[-1,1,3,0], [0,-1,0,1],[0,-5,1,-2],[-2,3,2,1]])
+A=P.inv()*J*P
+=>PYTHONTEX#sympy#default#default#63#i####Uni8.tex#1639#
+A
+=>PYTHONTEX#sympy#default#default#64#block####Uni8.tex#1642#
+from sympy import *
+A=Rational(1,13)*Matrix([[11, 115, -56, 61],\
+    [-6, 20, 1, 14],\
+    [10, 23, -32, 20],\
+    [-6, 33, 1, 1]])
+P1,J1=A.jordan_form()
+=>PYTHONTEX#sympy#default#default#65#i####Uni8.tex#1655#
+ {J1[i,i] for i in range(4)} 
+=>PYTHONTEX#sympy#default#default#66#block####Uni8.tex#1659#
+P=Matrix([P1[:,0].T,P1[:,1].T,re(P1[:,3]).T,im(P1[:,3]).T]).T
+J=P.inv()*A*P
+=>PYTHONTEX#sympy#default#default#67#i####Uni8.tex#1666#
+P
+=>PYTHONTEX#sympy#default#default#68#i####Uni8.tex#1666#
+J
+=>PYTHONTEX#sympy#default#default#69#i####Uni8.tex#1670#
+P[:,2]
+=>PYTHONTEX#sympy#default#default#70#i####Uni8.tex#1670#
+P[:,3]
+=>PYTHONTEX#sympy#default#default#71#i####Uni8.tex#1674#
+P[:,0]
+=>PYTHONTEX#sympy#default#default#72#i####Uni8.tex#1674#
+P[:,1]
+=>PYTHONTEX#sympy#default#default#73#code####Uni8.tex#1679#
+t=symbols('t',real=True)
+etJ=exp(t*J)
+=>PYTHONTEX#sympy#default#default#74#i####Uni8.tex#1686#
+etJ
+=>PYTHONTEX#sympy#default#default#75#i####Uni8.tex#1694#
+P
+=>PYTHONTEX#sympy#default#default#76#i####Uni8.tex#1694#
+etJ
+=>PYTHONTEX#sympy#default#default#77#i####Uni8.tex#1694#
+P.inv()
+=>PYTHONTEX#sympy#default#default#75#i####Uni8.tex#1694#
+P
+=>PYTHONTEX#sympy#default#default#76#i####Uni8.tex#1694#
+etJ
+=>PYTHONTEX#sympy#default#default#77#i####Uni8.tex#1694#
+P.inv()
+=>PYTHONTEX#sympy#default#default#78#code####Uni8.tex#1706#
+J=Matrix([[-1,1,1,0], [-1,-1,0,1],[0,0,-1,1],[0,0,-1,-1]])
+P=Matrix([[-1,1,3,0], [0,-1,0,1],[0,-5,1,-2],[-2,3,2,1]])
+A=P.inv()*J*P
+=>PYTHONTEX#sympy#default#default#79#i####Uni8.tex#1713#
+A
+=>PYTHONTEX#sympy#default#default#80#block####Uni8.tex#1716#
+from sympy import *
+A=Rational(1,26)*Matrix([[-8, -244, 18, -70],\
+[15, -69, 2, -15],\
+[1, -119, -12, -27],\
+[-11, 9, -24, -15]])
+P1,J1=A.jordan_form()
+=>PYTHONTEX#sympy#default#default#81#i####Uni8.tex#1729#
+ {J1[i,i] for i in range(4)} 
+=>PYTHONTEX#sympy#default#default#82#i####Uni8.tex#1731#
+J1[0,0]
+=>PYTHONTEX#sympy#default#default#83#i####Uni8.tex#1731#
+J1[0,0]
+=>PYTHONTEX#sympy#default#default#84#block####Uni8.tex#1733#
+P=Matrix([re(P1[:,0]).T,im(P1[:,0]).T,re(P1[:,1]).T,\
+    im(P1[:,1]).T]).T
+J=P.inv()*A*P
+=>PYTHONTEX#sympy#default#default#85#i####Uni8.tex#1741#
+P
+=>PYTHONTEX#sympy#default#default#86#i####Uni8.tex#1741#
+J
+=>PYTHONTEX#sympy#default#default#87#code####Uni8.tex#1745#
+t=symbols('t',real=True)
+etJ=exp(t*J)
+=>PYTHONTEX#sympy#default#default#88#i####Uni8.tex#1752#
+etJ
+=>PYTHONTEX#sympy#default#default#89#i####Uni8.tex#1760#
+P
+=>PYTHONTEX#sympy#default#default#90#i####Uni8.tex#1760#
+etJ
+=>PYTHONTEX#sympy#default#default#91#i####Uni8.tex#1760#
+P.inv()
+=>PYTHONTEX#sympy#default#default#89#i####Uni8.tex#1760#
+P
+=>PYTHONTEX#sympy#default#default#90#i####Uni8.tex#1760#
+etJ
+=>PYTHONTEX#sympy#default#default#91#i####Uni8.tex#1760#
+P.inv()
 =>PYTHONTEX:SETTINGS#
-version=0.14
+version=0.16
 outputdir=pythontex-files-LibroEcuaciones
 workingdir=.
 workingdirset=false

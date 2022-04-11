@@ -124,6 +124,7 @@ Que es una expresión sólo en $\hat{y}$ y $x$. Parece más complicada, pero en 
 Podemos resolver los cambios de variables con \texttt{SymPy}, lo cual es muy útil por dos motivos. El primero porque nos permite hacer cambios de variables en expresiones muy grandes, resolviendo operaciones que a mano son sumamente tediosas. El segundo, y no menos importante para nosotros, es que es muy rico explorar un procedimiento enmarcándolo en un contexto muy distinto. En este caso, el procedimiento es relizar un cambio de variables y estamos explorando el mismo a través de un breve código que lo implementa en un lenguaje de programación.
 
 \begin{sympyblock}[][frame=single]
+from sympy import *
 x=symbols('x') #unico simbolo primitivo
 y_n=Function('y_n')(x) #variables nuevas, funciones de x
 y=exp(y_n)/x #relacion entre y, y_n
@@ -164,7 +165,7 @@ Que es una expresión sólo en $\hat{x}$ e $y$. Describir el procedimiento  en g
 Para hacer esto con \texttt{SymPy} (de ahora en más omitiremos la sentencia de importanción del módulo, esta operación se hace sólo una vez por sesión).
 
 \begin{sympyblock}[][frame=single]
-x,x_n=symbols('x,x_n')
+x=symbols('x')
 x_n=acos(x)
 y=Function('y')(x_n)
 Ecuacion=-y.diff()+1/(sqrt(1-x**2))*y
@@ -173,7 +174,11 @@ Eq=Ecuacion.subs(x,cos(xn))
 \end{sympyblock}
 
 Obtenemos la ecuación
-\[\sympy{latex(Eq)}\]
+
+\[\sympy{Eq}\]
+
+hola
+
 Nuevamente \texttt{SymPy} no simplifica a nuestro gusto, esto ocurre aún con aquellas expresiones que parece muy evidente como se simplifican. El caso es que la operación de simplificación es por un lado  subjetiva, depende de un supuesto tácito de a que expresión se quiere arribar y por otro algunas expresiones, por ejemplo $\ln\exp(z)$, se simplifican en determinados campos numéricos y en otros no. En el caso del ejemplo $\ln\exp(z)$, la expresión es simplificable si $z\in\rr$, pero no lo es si por ejemplo $z\in\mathbb{C}$. De modo que no puede esperarse que Sympy efectúe esta simplificación a menos que conozca que se trabaja en el campo numérico indicado. Hay que distinguir que supuestos tácitos está haciendo uno y hay que indicarselos a Sympy.    El lector debe tener en cuenta que en ningún momento uno le dijo a \texttt{SymPy} que tipo de ente estaba manipulando en expresiones del tipo \texttt{x\_n=acos(x)}. Puede parecer natural que se trata de números reales, no obstante esta 
 información nunca fue comunicada al interprete de \texttt{SymPy}. ¿Porqué el habría de entender que \texttt{x} es real? Si al fin y al cabo \texttt{x\_n=acos(x)} tiene sentido si \texttt{x} es complejo y aún si es una matríz. Muchas veces las operaciones que se simplifican en un campo no lo pueden hacer en otro. El comando  \texttt{symbols} tiene la opción de informar a \texttt{SymPy} que tipo de ente representa \texttt{x} de la siguiente forma
 \texttt{x=symbols('x',real=True)}. De esta forma se consiguen mejores resultados en las simplificaciones.
@@ -210,7 +215,7 @@ Expr2=r.diff(x)/theta.diff(x)
 
 
 Obtenemos la siguiente expresión 
-\[\sympy{latex(Expr2)}.\]
+\[\sympy{Expr2}.\]
 Ahora sustituímos $y'(x)$ usando la ecuación diferencial, redefinimos $r,\theta$ fundamentalmente para limpiar el valor que tenían asignado en el código previo, que era una expresión de $x,y$, y finalmente sustituímos $x$ e $y$ por su expresión en polares.
 
 \begin{sympyblock}[][frame=single]
@@ -355,7 +360,7 @@ PropGrupo=T.subs([(x,x_copete),(y,y_copete),(epsilon,epsilon2)])\
 -T.subs(epsilon,epsilon1+epsilon2)
 \end{sympyblock}
 
-\[\sympy{latex(PropGrupo)}.\]
+\[\sympy{PropGrupo}.\]
 
 
  La propiedad 2 en la definición es evidente y la propiedad 3 es siempre consecuencia de 1. y 2. 
@@ -507,7 +512,7 @@ Expr5=simplify(Expr4)
  \includegraphics[scale=.4]{imagenes/sol_rotadas.png}
 \end{wrapfigure}
 La ecuación resultante es \emph{la misma}
-\[\sympy{latex(Expr5)}\]
+\[\sympy{Expr5}\]
 A la misma conclusión arribábamos si recordabamos que en en coordenadas polares la ecuación se escribe
 \[\frac{dr}{d\theta}=r-r^3,\]
 y que esta ecuación tiene las simetrías $\Gamma_{\epsilon}:(r,\theta)\mapsto (r,\theta+\epsilon)$. Si rotamos un ángulo fijo el gráfico de una solución obtenemos el gráfico de otra solución.
@@ -1222,7 +1227,7 @@ xi_eta=infinitesimals((y+1)/x+y**2/x**3-y.diff(x))
  
 \end{sympyblock}
 
-\[\sympy{latex(xi_eta)}\]
+\[\sympy{xi_eta}\]
 
 
 
