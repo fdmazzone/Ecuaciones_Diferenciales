@@ -5,9 +5,6 @@
 \chapter[Series de Potencias y de Frobenius]{Métodos de desarrollo en serie de potencias y en serie de Frobenius}
 %\date{}
 
-%\begin{document}
-
-%\tableofcontents
 
 
  \section{Series de potencias}
@@ -304,16 +301,6 @@ Pero $a_0=y(0)=1$. Luego
 
 
 
-\begin{lstlisting}
-a=symbols('a0:6')
-x=symbols('x')
-y=sum([a[i]*x**i for i in range(6)])
-Ecua=y.diff(x)-y
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(6)]
-Ecuaciones=Ecuaciones[:-1]+[a[0]-1]
-a_sol=solve(Ecuaciones,a)
-y.subs(a_sol)
-\end{lstlisting}
 
 
 Vemos que la solución es
@@ -340,29 +327,17 @@ Resolver una relación de recurrencia es encontrar una fórmula explícita de $b
 Hay técnicas y métodos para resolver relaciones de recurrencia que guardan analogías con técnicas y métodos de resolver ecuaciones diferenciales.  No vamos a desarrollar este importante tema en este curso, sugerimos la \href{http://es.wikipedia.org/wiki/Relación_de_recurrencia}{correspondiente wiki} en la wikipedia. Sólo agregamos que  SymPy resuelve relaciones recurrentes a través del comando \texttt{rsolve}.
 
 \begin{ejemplo}{} Resolvamos con SymPy la sucesión de Fibonacci $a_{n+2}=a_{n+1}+a_n$.
-\begin{lstlisting}
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
 from sympy import *
 n=symbols('n',integer=True)
 y = Function('y')
 f=Equality(y(n),y(n-1)+y(n-2))
-rsolve(f,y(n))
-\end{lstlisting}
+sol=rsolve(f,y(n))
+\end{sympyblock}
 
  El resultado es
- \boxedeq{a_n=C_0\left(\frac12+\frac{\sqrt{5}}{2}\right)^n +
- C_1\left(\frac12-\frac{\sqrt{5}}{2}\right)^n  }{}
-Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de los $k$  anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$.
-
-\begin{lstlisting}
-C0,C1=symbols('C0,C1')
-A=C0*(1/2+sqrt(5)/2)**n+C1*(1/2-sqrt(5)/2)**n
-Cval=solve([A.subs(n,0)-1,A.subs(n,1)-1],[C0,C1])
-Fib=A.subs(Cval)
-[Fib.subs(n,i).expand() for i in range(10)]
-\end{lstlisting}
-
-
-Los primeros números de Fibonacci que
+ \boxedeq{a_n=\sympy{sol} }{}
+Las constantes arbitrarias $C_0$ y $C_1$ aparecen porque una relación de recurrencia no tiene una única solución. Se dice que una relación de recurrencia tiene orden $k$ o es de $k$-términos si el coeficiente $a_n$ se expresa en función de los $k$  anteriores. En general la solución general de una relación de recurrencia de $k$-términos tiene $k$ constantes arbitrarias. Por consiguiente, si queremos una única solución debemos tener $k$ relaciones extras. Usualmente esto se consigue dando los valores de los $k$-primeros términos $a_0,\ldots,a_k$. Por ejemplo, en  la sucesión de Fibonacci si pedimos $a_0=a_1=1$ entonces los primeros números de Fibonacci son
 
 \[ [1,1,2,3,5,8,13,21,34,55] \]
 
@@ -406,21 +381,6 @@ Luego la serie tiene radio de convergencia 1.  Hemos demostrado asi que vale la 
 Esta importante serie se denomina \href{http://en.wikipedia.org/wiki/Binomial_series}{serie binomial}.
 
 
-\begin{lstlisting}
-a=symbols('a0:6')
-x,p=symbols('x,p')
-y=sum([a[i]*x**i for i in range(6)])
-Ecua=(1+x)*y.diff(x)-p*y
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(6)]
-Ecuaciones=Ecuaciones[:-1]+[a[0]-1]
-a_sol=solve(Ecuaciones,a)
-y.subs(a_sol)
-\end{lstlisting}
-
-
-
-\boxedeq{y(x)=\frac{1}{6} \, {\left(p - 1\right)} {\left(p - 2\right)} p x^{3} + \frac{1}{2} \, {\left(p - 1\right)} p x^{2} + p x + 1}{}
-
 \end{ejemplo}
 
 \subsection{Oscilador armónico}
@@ -432,7 +392,8 @@ Esta es una ecuación de segundo orden. Veamos si el método de coeficientes ind
     \omega^2y&=\omega^2a_0+\omega^2a_1x+\omega^2a_2x^2+\cdots+\omega^2a_nx^n+\cdots\\
   y''&=2a_2+2\cdot 3a_3x+\cdots+(n+1)(n+2)a_{n+2}x^n+\cdots\\
 --&---------------------------\\
-0=y''+\omega^2y =& (\omega^2a_0+2a_2)+(\omega^2a_1+2\cdot 3a_3)x+\cdots +(\omega^2a_n+(n+1)(n+2)a_{n+2})x^n+\cdots
+0=y''+\omega^2y =& (\omega^2a_0+2a_2)+(\omega^2a_1+2\cdot 3a_3)x+\cdots\\&
++(\omega^2a_n+(n+1)(n+2)a_{n+2})x^n+\cdots
   \end{split}
 \]
 Encontramos la relación de recurrencia de dos términos
@@ -450,19 +411,6 @@ Agrupando los términos pares y los impares de la serie de potencias resultante 
  }{}
 La última igualdad es conocida de las asignaturas de análisis. Es facil verificar, lo dejamos de ejercicio, que las series involucradas tienen radio de convergencia infinito.
 
-Podemos hacer los cálculos anteriores con SAGE
-
-\begin{lstlisting}
-a=symbols('a0:10')
-orden=10
-x,omega=symbols('x,omega')
-y=sum([a[i]*x**i for i in range(orden)])
-Ecua=y.diff(x,2)+omega**2*y
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
-Ecuaciones=Ecuaciones[:-2]
-a_sol=solve(Ecuaciones,a[2:])
-y.subs(a_sol)
-\end{lstlisting}
 
 
 \end{ejemplo}
@@ -493,36 +441,8 @@ De modo que la serie tiene radio de convergencia 1. La misma situación ocurre c
 \[y''-\frac{2x}{(1-x^2)}y'+\frac{p(p+1)}{(1-x^2)}y=0.\]
 Se observa que $1$ y $-1$ son puntos singulares de la ecuación.
 
-Podemos relacionar cualquier coeficiente de índice par $a_{2k}$ con el $a_0$ y cualquiera con índice impar $a_{2k+1}$ con el $a_1$. Esto lo resolveremos con SymPy
+Podemos relacionar cualquier coeficiente de índice par $a_{2k}$ con el $a_0$ y cualquiera con índice impar $a_{2k+1}$ con el $a_1$. 
 
-\begin{lstlisting}
-a=symbols('a0:10')
-orden=10
-x,p=symbols('x,p')
-y=sum([a[i]*x**i for i in range(orden)])
-Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+p*(p+1)*y
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
-Ecuaciones=Ecuaciones[:-2]
-a_sol=solve(Ecuaciones,a[2:])
-{ind:a_sol[ind].factor() for ind in a[2:]}
-
-\end{lstlisting}
-
-\[
-\begin{split}
-a_{2} &=- \frac{a_{0} p}{2} \left(p + 1\right),\\
-a_{3} &=- \frac{a_{1}}{6} \left(p - 1\right) \left(p + 2\right),\\
-a_{4} &=\frac{a_{0} p}{24} \left(p - 2\right) \left(p + 1\right) \left(p + 3\right), \\
-a_{5} &=\frac{a_{1}}{120} \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right),\\
-a_{6} &=- \frac{a_{0} p}{720} \left(p - 4\right) \left(p - 2\right) \left(p + 1\right) \left(p + 3\right) \left(p + 5\right), \\
-a_{7} &=- \frac{a_{1}}{5040} \left(p - 5\right) \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right) \left(p + 6\right),\\
-a_{8} &=\frac{a_{0} p}{40320} \left(p - 6\right) \left(p - 4\right) \left(p - 2\right) \left(p + 1\right) \left(p + 3\right) \left(p + 5\right) \left(p + 7\right), \\
-a_{9} &=\frac{a_{1}}{362880} \left(p - 7\right) \left(p - 5\right) \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right) \left(p + 6\right) \left(p + 8\right).
-\end{split}
-\]
-
-
-En general
 \[a_{2n}=\frac{(p+1)(p_0+3)\cdots (p+2n-1) \times p(p-2)\cdots (p-2n+2)}{(2n)!}a_0\]
 y
 \[a_{2n+1}=\frac{(p+2)(p+4)\cdots (p+2n) \times (p-1)(p-3)\cdots (p-2n+1)}{(2n+1)!}a_1\]
@@ -530,10 +450,9 @@ Podemos elegir $a_0$ y $a_1$ de manera arbitraria (esto está de acuerdo con que
 
 Un caso especial se plantea cuando  $p\in\mathbb{N}$. En esa situación vemos que infinitos de los $a_n$ resultan iguales a cero. De hecho una de las series, la de términos impares o la de términos pares acorde a que $p$ sea par o impar respectivamente,  se trunca. Supongamos que esto ocurre con la serie de términos impares, es decir $p$ es entero positivo impar. Si ahora tomamos $a_0=0$ toda la serie de términos pares se hará cero. Para $a_1$ elijo algún valor no nulo y esto me garantiza que los términos impares son no nulos hasta el término $a_{n}$, pero a partir de allí también se hacen cero. Es usual elegir $a_1$ para que $y(1)=1$. Nos queda definida así una función polinómica que se denomina \href{http://es.wikipedia.org/wiki/Polinomios_de_Legendre}{polinomio de Legendre} y se denota por $P_p$. Cuando $p$ es par hacemos una construcción análoga, quedando un polinomio $P_p$, con todas potencias pares, tal que $P_p(1)=1$.
 
-Todos estos cálculos los programamos en la siguiente función de SymPy. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
+Los primeros polinomios de Legendre son:
 
-
-\begin{lstlisting}
+\begin{sympycode}
 def Legendre(n):
     orden=n+2
     a=symbols('a0:%s' %orden)
@@ -550,42 +469,19 @@ def Legendre(n):
     y=y.subs(Sol_a_n)
     sol=solve(y.subs(x,1)-1,s)
     return y.subs(s,sol[0])
-\end{lstlisting}
 
-Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{Legendre.py} y está en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
+print('\\begin{align*}')
+for n in range(1,10):
+    print(r'P_'+str(n)+'(x)&='+latex(Legendre(n)) + r'\\')
+print('\\end{align*}')
+\end{sympycode}
 
-\begin{lstlisting}
-import os
-os.chdir('/home/fdmazzone/Git/Ecuaciones_Diferenciales/scripts')
-from Legendre import Legendre
-\end{lstlisting}
-
-
-Con la ayuda de esta función podemos generar rápidamente una tabla de polinomios de Legendre
-\begin{lstlisting}
-for n in range(1,6):
-...     Legendre(n)
-...
-x
-3*x**2/2 - 1/2
-5*x**3/2 - 3*x/2
-35*x**4/8 - 15*x**2/4 + 3/8
-63*x**5/8 - 35*x**3/4 + 15*x/8
-\end{lstlisting}
-y graficarlos
-\begin{lstlisting}
-for n in range(2,8):
-...     p1=plot(Legendre(n),(x,-1,1),show=False)
-...     p.append(p1[0])
-...
-p.show()
-\end{lstlisting}
-
+Sus gráficas sobre el intervalo $[-1,]$ se muestran en la figura \ref{fig:legendre}.
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=.25]{imagenes/legendre.png}
-\caption{Polinomios de Legendre hasta el orden 8}
+\includegraphics[scale=.5]{imagenes/legendre.png}
+\caption{Polinomios de Legendre hasta el orden 8}\label{fig:legendre}
 \end{center}
 \end{figure}
 
@@ -736,17 +632,7 @@ Aquí  asumimos $x>0$. Seguramente, a esta altura del curso,  el alumno ya hizo 
 \[y''+(p-1)y'+qy=0.\]
 Cuya ecuación característica es
 \[\lambda^2+(p-1)\lambda+q=0\]
-Resolviendo esta ecuación con SymPy
-
-\begin{lstlisting}
-s,p,q=symbols('s,p,q')
-Raices=solve(s**2+(p-1)*s+q,s)
-Raices[0]
--p/2 - sqrt(p**2 - 2*p - 4*q + 1)/2 + 1/2
-Raices[1]
--p/2 + sqrt(p**2 - 2*p - 4*q + 1)/2 + 1/2
-\end{lstlisting}
-Obtenemos las raíces
+Resolviendo esta ecuación 
 \[s_1= -\frac{p-1}{2} - \frac{\sqrt{p^2 - 2p - 4q + 1}}{2}   \quad\text{y}\quad s_2=-\frac{p-1}{2} +\frac{\sqrt{p^2 - 2p - 4q + 1}}{2} .\]
  Si $s_1\neq s_2$ dos soluciones linealmente independientes son:
 \[y_1(z)=e^{s_1z}\quad\hbox{y}\quad y_2(z)=e^{s_2z}\]
@@ -786,22 +672,27 @@ y calculamos
     \begin{split}
      -\frac{1}{2x^2}y&=-\sum_{n=0}^{\infty}\frac{a_n}{2}x^{m+n-2}=-\frac{a_0}{2}x^{m-2}
 -\frac{a_1}{2}x^{m-1}-\cdots-\frac{a_{n+2}}{2}x^{m+n}-\cdots\\
-      y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
-      \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
+      y'&=\sum_{n=0}^{\infty}(m+n)a_{n}x^{m+n-1}\\
+      &=ma_0x^{m-1}+(m+1)a_1x^m+\cdots+(m+n+1)a_{n+1}x^{m+n}+\cdots\\
+      \frac{1}{2x}y'&=\sum_{n=0}^{\infty}\frac{(m+n)a_{n}}{2}x^{m+n-2}\\
+      &=\frac{ma_0}{2}x^{m-2}+\frac{(m+1)a_1}{2}x^{m-1}+\cdots+\frac{(m+n+2)a_{n+2}}{2}x^{m+n}+\cdots\\
       y''&=\sum_{n=0}^{\infty}(m+n)(m+n-1)a_{n}x^{m+n-2}\\
-&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots+(m+n+2)(m+n+1)a_{n+2}x^{m+n}+\cdots.
+&= m(m-1)a_0x^{m-2}+(m+1)ma_1x^{m-1}+\cdots\\
+&+(m+n+2)(m+n+1)a_{n+2}x^{m+n}+\cdots.
     \end{split}
 \]
 Sumando las cuatro igualdades miembro a miembro y sustiyendo en \eqref{eq:ejem_sim}
 
-\[
-  \begin{split}
-    0=& \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}  + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2}+ (m+1)ma_1 \right)x^{m-1}+\cdots \\
-  &+\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{n+2} \right)x^{m+n}+\cdots\\
- =&\frac12\left(2m+1\right)(m-1) a_0x^{m-2}+ \frac{1}{2} \, {\left( 2 \, a_{0} + (1+2(m+1))\, a_{1}\right)}m x^{m-1}+\cdots\\
- &+\frac12\left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1)x^{m+n}+\cdots.
-  \end{split}
-\]
+
+\begin{multline*}
+    0= \left(-\frac{1}{2} +\frac{m}{2}+m(m-1)\right)a_0x^{m-2}\\
+    + \left(-\frac{a_1}{2}+ma_0+\frac{(m+1)a_1}{2}+ (m+1)ma_1 \right)x^{m-1}+\cdots \\
+  +\left( -\frac{a_{n+2}}{2}+(m+n+1)a_{n+1}+ \right.\\
+  \left.  \frac{(m+n+2)a_{n+2}}{2}+(m+n+2)(m+n+1)a_{n+2} \right)x^{m+n}+\cdots\\
+ =\frac12\left(2m+1\right)(m-1) a_0x^{m-2}+ \\\frac{1}{2} \, {\left( 2 \, a_{0} + (1+2(m+1))\, a_{1}\right)}m x^{m-1}+\cdots\\
+ +\frac12\left(   2a_{n+1}+ (2(m+n+2)+1)a_{n+2}  \right)(m+n+1)x^{m+n}+\cdots.
+\end{multline*}
+
 Igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
 
 \begin{equation}\label{eq:ecua_ejem_frob}
@@ -815,7 +706,7 @@ Igualando a cero los coeficientes de cada exponente obtenemos las ecuaciones
 Despejando de la última ecuación nos queda la relación de recurrencia de un término
 \boxedeq{a_{n+2}=-\frac{2a_{n+1}}{2(m+n+2)+1}.}{eq:recu_ecua_ejem_frob}
 Para llegar a esta igualdad debimos suponer $2(m+n+2)+1\neq 0$.
-La primera de las ecuaciones en \eqref{eq:ecua_ejem_frob} es importante puesto que determina el valor de $m$. Se llama ecuación indicial. Vemos que si tomamos $m=1$ o $m=-1/2$ se resuelve la primera ecuacion. Supongamos $m=1$. Entonces \eqref{eq:recu_ecua_ejem_frob} se transforma en
+La primera de las ecuaciones en \eqref{eq:ecua_ejem_frob} es importante puesto que determina el valor de $m$. Se llama \emph{ecuación indicial}\index{ecuación indicial}. Vemos que si tomamos $m=1$ o $m=-1/2$ se resuelve la primera ecuacion. Supongamos $m=1$. Entonces \eqref{eq:recu_ecua_ejem_frob} se transforma en
 \[
 a_{n+2}=-\frac{2a_{n+1}}{2n+7},\quad n=-1,0,\ldots.
 \]
@@ -836,66 +727,6 @@ Conseguimos la solución
 \boxedeq{y_2(x)=x^{-\frac12}\sum_{n=0}^{\infty}\frac{(-1)^n}{n!}x^n=\frac{e^{-x}}{\sqrt{x}}}{}
 Estas dos soluciones son linealmente independientes. Para justificar esta afirmación basta ver que $y_1(0)=0$ y $\lim_{x\to 0+}y_2(x)=+\infty$. Estas igualdades hacen imposible la relación $c_1y_1+c_2y_2=0$ a menos que $c_1=c_2=0$.
 
-Resolvamos el ejemplo con SymPy.
-
-\begin{lstlisting}
-orden=5
-a=symbols('a0:%s' %orden)
-x,m=symbols('x,m')
-y=x**m*sum([a[i]*x**i for i in range(orden)])
-Ecua=y.diff(x,2)+(1/(2*x)+1)*y.diff(x,1)-(1/(2*x**2))*y
-#Dividimos por m-2 asi todos los exponentes son enteros positivos
-Ecua=Ecua/x**(m-2)
-Ecua=Ecua.expand()
-Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
-for ec in Ecuaciones:
-...     ec
-...
-a0*m**2 - a0*m/2 - a0/2
-a0*m + a1*m**2 + 3*a1*m/2
-a1*m + a1 + a2*m**2 + 7*a2*m/2 + 5*a2/2
-a2*m + 2*a2 + a3*m**2 + 11*a3*m/2 + 7*a3
-a3*m + 3*a3 + a4*m**2 + 15*a4*m/2 + 27*a4/2
-
-\end{lstlisting}
-
-Con esta parte del script hemos generado la lista de las 5 primeras ecuaciones.
-Resolvamos la ecuación indicial
-
-\begin{lstlisting}
-Sol_Ecua_Ind=solve(Ecuaciones[0],m)
-Sol_Ecua_Ind
-[-1/2, 1]
-\end{lstlisting}
-
-Sustituyamos los valores de $m$ en la lista de ecuaciones, agreguemos la ecuación $a_0=1$, resolvamos para los $a_i$ y sustituyamos la solución en $y$. Obtenemos la primer solución (truncada)
-\begin{lstlisting}
-Ecuaciones1=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in Ecuaciones]
-Ecuaciones1
-[0, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
-Ecuaciones1[0]=a[0]-1
-Ecuaciones1
-[a0 - 1, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
-sol=solve(Ecuaciones1,a)
-y1=y.subs(sol).subs(m,Sol_Ecua_Ind[1])
-y1
-x*(16*x**4/3465 - 8*x**3/315 + 4*x**2/35 - 2*x/5 + 1)
-
-
-\end{lstlisting}
-La segunda solución se obtinene
-\begin{lstlisting}
-Ecuaciones2=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in Ecuaciones]
-Ecuaciones2
-[0, -a0/2 - a1/2, a1/2 + a2, 3*a2/2 + 9*a3/2, 5*a3/2 + 10*a4]
-Ecuaciones2[0]=a[0]-1
-sol=solve(Ecuaciones2,a)
-y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
-(x**4/24 - x**3/6 + x**2/2 - x + 1)/sqrt(x)
-
-\end{lstlisting}
-
-
 
 \end{ejemplo}
 
@@ -903,81 +734,44 @@ y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
 
 \subsubsection{Relaciones de recurrencia y solución por el método de Frobenius}
 
-\begin{definicion}{} Recordemos a la ecuación de Bessel de orden $p$ ($p>0$)
- \[y''+\frac{1}{x}y'+\left(1-\frac{p^2}{x^2}\right)y=0\]
+\begin{definicion}{} Recordemos a la ecuación de Bessel\index{Ecuación!Bessel} de orden $p$ ($p>0$)
+ \begin{equation}\label{eq:bessel3}x^{2} y^{\prime \prime}+x y^{\prime}+\left(x^{2}-p^{2}\right) y=0\end{equation}
 \end{definicion}
 
-En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Trabajeremos exclusivamente con SymPy.
+En $x=0$ la ecuación de Bessel tiene un punto  singular regular. Vamos a aplicarle el método de Frobenius. Suponemos que 
+$$
+y=x^{m} \sum_{n=0}^\infty a_{n} x^{n}=\sum_{n=0}^\infty a_{n} x^{n+m}
+$$
+es solución, donde $a_{0} \neq 0$ y la serie de potencias converge para  $x$. Calculado
+$$
+\begin{aligned} 
+y^{\prime}&=\sum_{n=0}^\infty(n+m) a_{n} x^{n+m-1},\\
+y^{\prime \prime}&=\sum_{n=0}^\infty(n+m-1)(n+m) a_{n} x^{n+m-2},\\
+x^{2} y^{\prime \prime} &=\sum_{n=0}^\infty(n+m-1)(n+m) a_{n} x^{n+m} \\
+x y^{\prime} &=\sum_{n=0}^\infty(n+m) a_{n} x^{n+m}\\
+x^{2} y &=\sum_{n=2}^\infty a_{n-2} x^{n+m} \\
+-p^{2} y &=\sum_{n=0}^\infty-p^{2} a_{n} x^{n+m}\\
+\end{aligned}
+$$
+Sumando esas series e igualando a cero el coeficiente de $x^{n+m}$ se obtiene
+\begin{equation}\label{eq:recu_bessel_gen}
+\begin{aligned} 
+    (m^2-p^2)a_0&=0\\
+    ((m+1)^2-p^2)a_1&=0 \\
+    ((n+m)^2-p^2) a_{n}+a_{n-2}&=0\quad n\geq 2.
+\end{aligned}
+\end{equation}
+La primera es la ecuación indicial para la ecuación de Bessel y como $a_0\neq 0$ entonces se infiere que 
 
-\begin{lstlisting}
-orden=8
-a,x,m,p=symbols(['a0:%s' %orden, 'x','m','p'] )
-y=x**m*sum([a[i]*x**i for i in range(orden)])
-EDif=y.diff(x,2)+1/x*y.diff(x,1)+(1-p**2/x**2)*y
-EDif=(EDif/x**(m-2)).simplify()
-ECoef=[EDif.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
-SolEInd=solve(ECoef[0],m)
-\end{lstlisting}
+$$ m=p  \vee m=-p .$$
 
-Las raíces de la ecuación indicial son
-\boxedeq{m=p\quad\text{y}\quad m=-p}{eq:sol_ec_ind}
-Vamos a trabajar con la raíz $m=p$.
+Consideremos el caso que $m=p$. Se tiene que $(2p+1)a_1=0$. Podría ocurrir que $p=-1/2$ o también que $a_1=0$. El caso $p=\pm1/2$ lo vamos a trabajar en un ejercicio. Supongamos pues  $a_1=0$. La ecuación en recurrencia se transforma, luego de sustituir $m$ por $p$
 
-\begin{lstlisting}
-ECoefA=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in ECoef]
-for ec in ECoefA:
-...     pprint(ec)
+$$
+a_{n}=-\frac{a_{n-2}}{n(2 p+n)}
+$$
+Ahora, como $a_{1}=0$,  aplicando repetidas veces la recurrencia se deduce que $a_{n}=0$ para todo $n$ impar. Reemplazamos $n\leftrightarrow 2n$ en la relación de recurrencia 
 
-\end{lstlisting}
-
-\[
-\begin{split}
- 0 & = 0\\
-0&=2 a_{1} p + a_{1}\\
-0&=a_{0} + 4 a_{2} p + 4 a_{2}\\
-0&=a_{1} + 6 a_{3} p + 9 a_{3}\\
-0&=a_{2} + 8 a_{4} p + 16 a_{4}\\
-0&=a_{3} + 10 a_{5} p + 25 a_{5}\\
-0&=a_{4} + 12 a_{6} p + 36 a_{6}\\
-0&=a_{5} + 14 a_{7} p + 49 a_{7}\\
-\end{split}
-\]
-
-
-
-Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$, i.e. que son relaciones de dos términos.  Podemos hacer explícita la relación
-
-\begin{lstlisting}
-for i in range(1,orden):
-    iter=solve(ECoefA[i],a[i])[0].factor()
-    print str(a[i])+'='+str(iter)
-a1=0
-a2=-a0/(4*(p + 1))
-a3=-a1/(3*(2*p + 3))
-a4=-a2/(8*(p + 2))
-a5=-a3/(5*(2*p + 5))
-a6=-a4/(12*(p + 3))
-a7=-a5/(7*(2*p + 7))
-\end{lstlisting}
-
- La ecuación $a_1(2p+1)=0$ no fue correctamente resuelta por SymPy. SymPy consigna la solución $a_1=0$, pero si  $p=-1/2$ cualquier $a_1$ es solución. Este caso lo estudiaremos separadamente después, por ahora supondremos $p\neq -1/2$. Luego la primera ecuación implica que $a_1=0$ y por consiguiente, puesto que todo $a_n$, con $n$ impar, se relaciona con $a_1$ vamos a tener que $a_n=0$ cuando $n$ es impar. Más abajo veremos que SymPy confirma esta aseveración. Ahora resolvamos las ecuaciones, en el sentido de expresar todos los coeficientes en función de $a_0$. No pedimos que nos resuelva la ecuación para $a_0$, pues, como dijimos, $a_0$ es arbitrario.
-
-
-\begin{lstlisting}
-sol=solve(ECoefA,a[1:])
-for i in sol:
-...     print str(i)+'='+str(sol[i].factor())
-...
-a1=0
-a5=0
-a7=0
-a2=-a0/(4*(p + 1))
-a6=-a0/(384*(p + 1)*(p + 2)*(p + 3))
-a3=0
-a4=a0/(32*(p + 1)*(p + 2))
-
-\end{lstlisting}
-No queda muy claro cual es la ley que siguen los números 4, 32, 384, etc. que aparecen en el denominador. De modo que nos asitiremos ``manualmente'' a partir de la relación de recurrencia que es
 \boxedeq{a_{2n}=-\frac{1}{4n(p+n)}a_{2n-2}}{eq:recu_bessel}
 Iterando esta relación
 \[
@@ -989,22 +783,15 @@ Iterando esta relación
 \]
 Obtenemos la solución
 \boxedeq{y(x)=x^p\sum_{n=0}^{\infty}\frac{(-1)^na_0}{4^nn!(p+n)(p+n-1)\cdots (p+1)}x^{2n}}{eq:sol_bessel_1}
-Más adelante veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
-\begin{lstlisting}
-y.subs(sol)
-\end{lstlisting}
 
-\[
-x^{m} \left(- \frac{a_{0} x^{6}}{384 \left(p + 1\right) \left(p + 2\right) \left(p + 3\right)} + \frac{a_{0} x^{4}}{32 \left(p + 1\right) \left(p + 2\right)
-} - \frac{a_{0} x^{2}}{4 p + 4} + a_{0}\right),
-\]
-el output confirma \eqref{eq:sol_bessel_1}.
+En la próxima sección veremos que cierta elección especial de $a_0$ no lleva a lo que denominaremos funciones de Bessel.
+ 
 
 \subsubsection{Función Gamma y la función de Bessel de primera especie}
 
-Nuestro obtjetivo es encontrar dos soluciones linealmente independientes de la ecuación de Bessel. Hemos encontrado una que corresponde a la solución de la ecuación de índices $m=p$, la otra surgirá de la solución $m=-p$. Pero aún nos restaría elegir el valor de $a_0$. El criterio que utilizaremos para elegirlo será que nos simplifique lo más posible la expresión  \eqref{eq:sol_bessel_1}. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresión quedaría
+Vamos a elegir un  valor de $a_0$ apropiado de modo que la expresión de la solución \eqref{eq:sol_bessel_1} sea más simple. Si $p$ fuese un entero positivo, eligiendo $a_0$ como $1/2^pp!$ la expresión quedaría
 \[y(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!(p+n)!}\left(\frac{x}{2}\right)^{2n+p}\]
-No obstante, nos previene utilizar este $a_0$ el hecho de que $p$ podría no ser entero, y en ese caso no es claro que significa $p!$. El propósito de esta subsección es introducir una extensión de la función factorial a una función de variable real.
+Con el objeto de considerar  $p$  no entero, vamos a generalizar la función facorial a números reales. 
 
 \begin{definicion}{def:gamma} Para $p>0$ definimos la \emph{función Gamma} por
 \begin{equation}\label{eq:gamma}\Gamma(p):=\int_0^{\infty}t^{p-1}e^{-t}dt
@@ -1036,25 +823,18 @@ Ahora podemos extender $\Gamma$ a $p\in (-2,1)$. Pues  podemos usar la fórmula 
 \caption{La función gamma $\Gamma$}
 \end{center}
 \end{figure}
-Ahora estamos en condiciones de definir la función de Bessel de primera espacie que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
+Ahora estamos en condiciones de definir la \emph{función de Bessel de primera especie} \index{Función!Bessel de primera especie} que resulta de tomar $a_0$ como $1/2^p\Gamma(p+1)$.
 
 \begin{definicion}{def:bessel_primera} Definimos la función de Bessel de primera especie como
-\[J_p(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(p+n+1)}\left(\frac{x}{2}\right)^{2n+p}\]
+\begin{equation}\label{eq:func_bessel_1e}
+ J_p(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(p+n+1)}\left(\frac{x}{2}\right)^{2n+p}
+\end{equation}
+ 
 \end{definicion}
 
 
-Una aproximación a esta función se programa en SymPy de manera muy sencilla. Una vez definida esta función podemos aprovecharla  para graficar varias funciones de Bessel de distintos órdenes.
+En la figura \ref{fig:bessel} se muestran diversos gráficos de funciones de Bessel obteneidos con sympy (ver apéndice).
 
-\begin{lstlisting}
-p,x=symbols('p,x')
-J= sum([(-1)**n/factorial(n)/gamma(p+n+1)*(x/2)**(2*n+p) for n in range(30)])
-p1=plot(J.subs(p,1),(x,0,20),line_color=(1,0,0))
-p2=plot(J.subs(p,2),(x,0,20),line_color=(0,1,0))[0]
-p1.append(p2)
-p2=plot(J.subs(p,3),(x,0,20),line_color=(0,0,1))[0]
-p1.append(p2)
-p1.show()
-\end{lstlisting}
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=.5]{imagenes/bessel.png}
@@ -1068,46 +848,56 @@ p1.show()
 
 
 
-Ahora consideremos la solución $m=-p$ de la ecuación indicial.
-\begin{lstlisting}
-ECoefB=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in ECoef]
-for i in range(1,orden):
-    iter=solve(ECoefB[i],a[i])[0].factor()
-    print str(a[i])+'='+str(iter)
+Ahora consideremos la solución $m=-p$ de la ecuación indicial. Notar que la fórmula \eqref{eq:func_bessel_1e} continúa teniendo sentido a menos que $-p+n+1=0$, cosa que puede ocurrir cuando $p\in\mathbb{N}$.  
 
-a1=0
-a2=a0/(4*(p - 1))
-a3=a1/(3*(2*p - 3))
-a4=a2/(8*(p - 2))
-a5=a3/(5*(2*p - 5))
-a6=a4/(12*(p - 3))
-a7=a5/(7*(2*p - 7))
-
-\end{lstlisting}
-Estas relaciones siguen el mismo patrón que la relación de recurrencia \eqref{eq:recu_bessel} con $-p$ en lugar de $p$. No obstante, la situación para la raíz $-p$ no es exactamente igual a la de la raíz $p$. La diferencia radica en que cuando $p\in\frac12\mathbb{N}=\frac12,1,\frac32,\ldots$  la expresión en el denominador en la relación
-\boxedeq{a_{n}=\frac{a_{n-2}}{n(2p-n)}}{eq:rel_recu_bess-p}
-se puede anular y esto  impediría que pasasemos de miembro esta expresión como hicimos. Notar que este problema ocurre cuando la diferencia de las dos raíces $p-(-p)=2p$ es un entero positivo.  Esto último lo remarcamos porque veremos más adelante que en general es un problema que la diferencia de las raíces de la ecuación indicial sean negativas. También $p=0$ es una situación problemática, dado que en este caso $p=-p$ y por consiguiente no estamos en condiciones de encontrar una solución linealmente independiente de $J_0$. En síntesis $p=0,\frac12,1,\frac32,\ldots$ son valores problemáticos para $p$.
-
-Cuando $p$ no es uno de los valores problemáticos, estamos en condiciones de definir
-\begin{definicion}{def:bessel_segunda} Definimos la función de Bessel de primera especie $J_{-p}$ ($p\notin\frac12\mathbb{N}$) como
-\[J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}\]
+\begin{definicion}{def:bessel_segunda} Si $p\notin\mathbb{N}$   definimos la función de Bessel de primera especie $J_{-p}$  como
+\begin{equation}\label{eq:func_bessel_2e}J_{-p}(x)=\sum_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(-p+n+1)}\left(\frac{x}{2}\right)^{2n-p}
+\end{equation}
 \end{definicion}
-Grafiquemos algunas de estas funciones de Bessel, la función de Bessel $J$ que habíamos introducido en SymPy arriba, sigue siendo útil.
-\begin{lstlisting}
-p1=plot(J.subs(p,-1.0/3),(x,0,20),line_color=(1,0,0),ylim=(-2,2))
-p2=plot(J.subs(p,-2.0/3),(x,0,20),line_color=(0,1,0),ylim=(-2,2))
-p3=plot(J.subs(p,-5.0/3),(x,0,20),line_color=(0,0,1),ylim=(-2,2))
-p1.append(p3[0])
-p1.append(p3[0])
-\end{lstlisting}
+
+Cuando $p\notin \nn\cup\{0\}$, la función $J_{-p}$ es no acotada cuando $x\to 0$ y esto es razón suficiente para asegurar que es linealmente independientes con $J_p$. En la figura \ref{fig:bessel2esp} graficamos algunas de estas funciones de Bessel. La soluci{on general de la ecuaci{on de Bessel para $0<p\notin\mathbb{N}$ es enconces
+
+\[y(x)=c_1J_p(x)+c_2 J_{-p}(x).\]
+Es una función acotada si y solo si $c_2=0$. 
+
+
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=.5]{imagenes/bessel2.png}
 \end{center}
-\caption{Funciones de Bessel $J_{-1/3}$, $J_{-2/3}$ y $J_{-5/3}$.}
+\caption{Funciones de Bessel $J_{-1/3}$, $J_{-2/3}$ y $J_{-5/3}$.}\label{fig:bessel2esp}
 \end{figure}
+
+El caso $p=0$  continua siendo problemático dado que obviamente $J_p=J_{-p}$ y no generamos una solución linealmente independiente de la que ya teníamos. 
+
+
+
+
 Más adelante vamos a seguir estudiando con más profundidad la ecuación de Bessel.
+
+
+\begin{observacion} Es importante enfatizar que todas las series anteriores tienen un caracter formal. Cuando decimos esto entendemos que son resultado de la aplicación del método de coeficientes indeterminados, pero todavía no está establecido que estas series representen una solución, ni tampoco siquiera que las series converjan en un disco de radio positivo. Por lo tanto podría darse el caso que estas series no definan una función más allá de $x=0$. Esta problemática la abordamos en la sección siguiente.  
+ 
+\end{observacion}
+
+\begin{ejercicio}{} Proponiendo una solución de la forma $y(x)=)v(x)\sqrt{x}$ econtrar de otra manera una solución de la ecuación de Bessel de orden $p=1/2$. Usar la relación $\Gamma(1/2)=\sqrt{\pi}$ para concluir
+
+\[J_{\frac{1}{2}}=\sqrt{\frac{2}{\pi x}}\sen(x),\quad J_{-\frac{1}{2}}=\sqrt{\frac{2}{\pi x}}\cos(x).\]
+
+\end{ejercicio}
+
+
+\begin{ejercicio}{} Recordando que $\Gamma$ tiene polos en $-n=0,1,2,\ldots$  escribamos 
+\[
+ \frac{1}{\Gamma(-n)}=0,\quad \text{cuando } n\in\mathbb{N}.
+\]
+Con esta suposición la fórmula \eqref{def:bessel_segunda} tendría sentido aún con $p\in\mathbb{N}$. Demostrar que $J_{-n}=(-1)^nJ_n$. En conclusión de esta manera se encuentra una solución linealmente dependiente con $J_n$. 
+\end{ejercicio}
+
+
+
+
 
 \subsection{Teorema fundamental sobre puntos singulares regulares}\label{eq:sec_teor_fund_frob}
 Habiendo visto algunos ejemplos, ahora pasaremos a discutir la situación general del método de Frobenius.
@@ -1186,61 +976,6 @@ Si $m_1-m_2:=n_0\in\mathbb{Z}$, entonces la situación es diferente. Si, en part
 
 
 
-
-Supongamos $n_0>0$.  Cuando $n=n_0$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte, como ya se dijo, en \eqref{eq:ec_enter} con $m_2$ en lugar de $m$.\label{pag:apar_sol} Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolvería la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
-\begin{equation}\label{eq:iter_m1}
-  \begin{split}
-    f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]=-a_{n_0}[p_1m_1+q_1]\\
-   f(m_1+2) a_{n_0+2}&=-\sum_{k=0}^{n_0+1}a_k\left[p_{n_0+2-k}(m_2+k) + q_{n_0+2-k}\right]\\
-                   &=-a_{n_0}[p_2m_1+q_2]-a_{n_0+1}[p_1(m_1+1)+q_0]\\
-                   &\,\,\,\vdots
-  \end{split}
-\end{equation}
-Como se ve, la iteración termina siendo la misma que la correpondiente iteración para la raíz $m_1$. Además tendríamos que el desarrollo en serie
-\[y(x)=x^{m_2}\sum_{n=0}^{\infty}a_nx^n=x^{m_2}\sum_{n=n_0}^{\infty}a_nx^n
- =x^{m_2+n_0}\sum_{n=0}^{\infty}a_{n+n_0}x^n
-=x^{m_1}\sum_{n=0}^{\infty}b_nx^n
-,\]
-donde $b_n:=a_{n+n_0}$ resuelve el esquema de iteración \eqref{eq:iter_m1} que, como dijimos, es el esquema de iteración correspondiente a $m=m_1$. Vale decir que elegir  $0=a_0=\cdots=a_{n_0-1}$ nos lleva a una solución linealmente dependiente con la solución que ya encontramos para $m=m_1$. Podríamos tener la suerte que eligiendo $a_0\neq 0$ se satisfaga la ecuación \eqref{eq:ec_enter} con $m=m_2$ y $n=n_0$. Si esto ocurre podemos elegir $a_{n_0}$ arbitrariamente, por ejemplo $a_{n_0}=0$, y continuar la iteración. Obtenemos una solución que es linealmente independiente   de la correspondiente a $m_1$. En síntesis, \emph{si $n_0:=m_1-m_2\in\mathbb{Z}$, si $a_0\neq 0$ es eligido arbitrariamente, si  $a_1,\ldots,a_{n_0-1}$ son hallados mediante \eqref{eq:recu_gral_frob} y si se satisface  \eqref{eq:ec_enter} tenemos una segunda solución en serie de Frobenius para $m=m_2$}
-
-Si falla esta última condición ya no hay otra solución en serie de Frobenius. Se puede encontrar un desarrollo, que ya no constituye una serie de Frobenius,  para otra solución de la siguiente forma empleando el método de reducción de orden a partir de la solución conocida $y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n$. Este método no decía que la otra solución venía dada a partir de las relaciones
-\[y_2(x)=v(x)y_1(x),\quad\text{donde  } v'(x)=\frac{1}{y_1^2}e^{-\int p(x)dx}.\]
-Teniendo en cuenta que
-\[p(x)=\sum_{n=0}^{\infty}p_nx^{n-1}=\frac{p_0}{x}+p_1+p_2x+\cdots.\]
-Vemos que
-\[
-   \begin{split}
-     v'(x)&=\frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-\int \left(\frac{p_0}{x}+p_1+p_2x+\cdots \right)dx}\\
-  &= \frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-p_0 \ln x -p_1x-\cdots }\\
-  &= \frac{1}{x^{2m_1+p_0}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{ -p_1x-\cdots }
-   \end{split}
-\]
-
-Ahora la función
-\[
-  g(x)= \frac{ e^{ -p_1x-\cdots } }{\left(\sum_{n=0}^{\infty}a_nx^n\right)^2},
-\]
-es analítica en $0$ puesto que el denominador no se anula en cero. Por consiguiente tenemos un desarrollo en serie
-\[ g(x)=\sum_{n=0}^{\infty}b_nx^n, \quad b_0\neq 0.\]
-En la práctica encontrar este desarrollo en serie de manera explícita puede ser muy difícil. Llamemos $k:=2m_1+p_0$. Por la conocida fórmula para la suma de las raíces de una ecuación de segundo grado, se tiene que $m_1+m_2=1-p_0$.  Luego  $2m_1+p_0=2m_1+1-m_1-m_2=m_1-m_2+1\in\mathbb{N}$.
-
-Tenemos que
-\[v'(x)=\frac{b_0}{x^k}+ \frac{b_1}{x^{k-1}}+\cdots+\frac{b_{k-1}}{x}+b_{k}+\cdots\]
-Entonces
-\[v(x)=\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\]
-Reemplazando esta identidad en la expresión para $y_2$,
-\[
-   \begin{split}
-     y_2&=vy_1\\
-&=y_1\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\right)\\
-       &=b_{k-1}\ln x y_1+ x^{m_1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}\cdots\right)\\
-       &=b_{k-1}\ln x y_1+ x^{m_1-k+1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)}+ \frac{b_1}{(-k+2)}x+\cdots\right)\\
-   \end{split}
-\]
-Ahora $m_1-k+1=m_1-2m_1-p_0+1=-p_0-m_1+1$. Es sabido que la suma de las raices $m_1+m_2$ es igual a $-p_0+1$, es decir $m_1=-p_0+1-m_2$. Entonces $m_1-k+1=m_2$. Obtenemos una solución de la forma
-\boxedeq{y_2(x)=b_{k-1}y_1\ln x+x^{m_2}\sum_{n=0}^{\infty}c_nx^n.}{eq:des_enter}
-La segunda solución $y_2$ es la suma de una serie de Frobenius, con $m=m_2$, y un multiplo de la función $y_1\ln x$. Esta última función no se puede desarrollar en serie de potencias alrededor de $0$.
-
 Hemos discutido con cierto detalle las posibles soluciones de las ecuaciones de recurrencia. No resta considerar la cuestión de la convergencia de las series. Esto lo tratamos en el siguiente teorema.
 
 \begin{teorema}{} Supongamos $x=0$ un punto regular singular de la ecuación
@@ -1287,44 +1022,441 @@ Restaría considerar el caso $m=m_2$ cuando $m_1-m_2$ no es entero. Pero la demo
 
 \end{demo}
 
-\subsection{Funciones de Bessel  de segunda especie}
 
-En la subsección \ref{sec:bessel_1} discutimos sobre soluciones de la ecuación de Bessel de orden $p\geq 0$. Obtuvimos la solución en serie de Frobenius asociada a la solución de la ecuación indicial $m=p$ \eqref{eq:sol_ec_ind}, dada en la Definición \ref{def:bessel_primera}. Esta solución es llamada función de Bessel de primera especie y es denotada por $J_p$. Es bueno decir que esta función es continua en $0$ y $J_p(0)=0$. Para la segunda solución de la ecuación indicial $m=-p$, hemos dicho también que para $p\neq 0,\frac12,1,\frac32,\ldots$ hay otra solución linealmente independiente de $J_p$. Esta solución se denomina también función de Bessel de primera especie, se denota $J_{-p}$ y es una función no acotada en $0$.  Según lo que hemos expresado en la Subsección \ref{eq:sec_teor_fund_frob}, aún en el caso $p=0,\frac12,1,\frac32,\ldots$ tenemos esperanzas de encontrar una solución en serie de Frobenius o al menos una solución de la forma \eqref{eq:des_enter}. Este tipo de
-soluciones es lo que discutiremos en esta subsección.
+\subsection{Caso raíces que difieren en un entero}
 
-Empecemos suponiendo $p$ entero positivo. A partir de \eqref{eq:recu_-p} sabemos que la fórmula de recurrencia para $m=-p$ es
-\boxedeq{n(2p-n) a_{n} = a_{n-2},\quad n\geq 2}{eq:rel_recu_-p}
-También recordemos de \eqref{eq:rel_recu_-p_a}  la ecuación
-\[-a_1(2p-1)=0,\]
-que  implica $a_1=0$, puesto que $p$ es entero y por ende $p\neq\frac12$. Como consecuencia de la relación de recurrencia  \eqref{eq:rel_recu_-p} tenemos $a_n=0$ para todo $n$ impar. Para afirmar esto último tomamos en cuenta que al ser $p$ entero  $2p-n\neq 0$ cuando $n$ es impar.   Cuando  $n$ es par y más en concreto $n=2p$ la relación de recurrencia \eqref{eq:rel_recu_-p} toma la forma $a_{n-2}=0$. Ahora si $a_{n-2}=0$ entonces \eqref{eq:rel_recu_-p} implica que $a_{n-4}=a_{n-6}=\cdots a_0=0$. Eligiendo $a_n$ arbitrariamente y al resto de los $a_k$ con $k$ par mayor a $n$ de modo que se satisfaga la relación de recurrencia se llega a una solución en serie de Frobenius. 
-Lamentablemente esta segunda solución es esencialmente la misma  que $J_p$. Esto ya lo hemos 
-discutido en sección \ref{pag:apar_sol}.  De modo que cuando $p$ 
-es entero positivo no tenemos una segunda solución en serie de Frobenius.
+Cuando  $n_0:=m_1-m_2\in \mathbb{N}\cup\{0\}$ la ecuación de recurrencia  \eqref{eq:recu_gral_frob_2} se convierte en \label{pag:apar_sol} con $m_2$ y $n_0$ en lugar de $m$ y $n$ respectivamente, la cual puede ser imposible de satisfacer. 
+ 
+ Una aparente solución sería tomar  $0=a_0=\cdots=a_{n_0-1}$ que resolverían la ecuación conflictiva. Podríamos elegir $a_{n_0}\neq 0$ arbitrariamente y continuar la iteración
+\begin{equation}\label{eq:iter_m1}
+  \begin{split}
+    f(m_1+1)a_{n_0+1}&=-\sum_{k=0}^{n_0}a_k\left[p_{n_0+1-k}(m_2+k) + q_{n_0+1-k}\right]=-a_{n_0}[p_1m_1+q_1]\\
+   f(m_1+2) a_{n_0+2}&=-\sum_{k=0}^{n_0+1}a_k\left[p_{n_0+2-k}(m_2+k) + q_{n_0+2-k}\right]\\
+                   &=-a_{n_0}[p_2m_1+q_2]-a_{n_0+1}[p_1(m_1+1)+q_0]\\
+                   &\,\,\,\vdots
+  \end{split}
+\end{equation}
+Como se ve, la iteración termina siendo la misma que la correpondiente iteración para la raíz $m_1$. Además tendríamos que el desarrollo en serie
+\[y(x)=x^{m_2}\sum_{n=0}^{\infty}a_nx^n=x^{m_2}\sum_{n=n_0}^{\infty}a_nx^n
+ =x^{m_2+n_0}\sum_{n=0}^{\infty}a_{n+n_0}x^n
+=x^{m_1}\sum_{n=0}^{\infty}b_nx^n
+,\]
+donde $b_n:=a_{n+n_0}$ resuelve el esquema de iteración \eqref{eq:iter_m1} que, como dijimos, es el esquema de iteración correspondiente a $m=m_1$. Vale decir que elegir  $0=a_0=\cdots=a_{n_0-1}$ nos lleva a una solución linealmente dependiente con la solución que ya encontramos para $m=m_1$. 
 
-Más adelante volveremos al caso $p$ entero. Ahora consideremos $p=\frac{2k+1}{2}$ con $k$ entero $k\geq 0$.  Reemplazando $p$ en \eqref{eq:rel_recu_-p}  por este valor y reemplazando $n$ por $2k+1$, concluímos $a_{2k-1}=0$. Ahora iterando la relación de recurrencia $a_{2k-3}=\cdots=a_1=0$. La situación es parecida al caso anterior, podemos elegir $a_{2k+1}$ libremente, vamos a elegirlo igual a $0$. Esto anula todos los coeficientes $a_n$ con $n$ impar. Pero la diferencia con el caso anterior es que podemos elegir libremente $a_0$. Llegamos así a la misma solución de la Definición \ref{def:bessel_segunda}. En síntesis \emph{para todo $p$ que no es un entero no negativo, tenemos el par de soluciones linealmente independientes $J_p$ y $J_{-p}$ tales que
-\boxedeq{y=c_1J_p+c_2J_{-p}}{eq:sol_gen_bessel_1}
-es la solución general de la ecuación de Bessel}
+Podríamos tener la suerte que eligiendo $a_0\neq 0$ se satisfaga la ecuación \eqref{eq:ec_enter} con $m=m_2$ y $n=n_0$. Si esto ocurre podemos elegir $a_{n_0}$ arbitrariamente, por ejemplo $a_{n_0}=0$, y continuar la iteración. Obtenemos una solución que es linealmente independiente   de la correspondiente a $m_1$. En síntesis, \emph{si $n_0:=m_1-m_2\in\mathbb{Z}$, si $a_0\neq 0$ es eligido arbitrariamente, si  $a_1,\ldots,a_{n_0-1}$ son hallados mediante \eqref{eq:recu_gral_frob} y si se satisface  \eqref{eq:ec_enter} tenemos una segunda solución en serie de Frobenius para $m=m_2$}. Esta situación ocurría con la ecuación de Bessel cuando $p=(2k-1)/2$, $k\in\mathbb{N}$. 
 
-Ahora volvamos al caso $p\in\mathbb{Z}$ para encontrar una segunda solución  linealmente independiente de $J_p$. Podríamos buscar esta solución apelando a la expresión \eqref{eq:des_enter}, pero es costumbre buscar de otra manera esta segunda solución y vamos a discutir brevemente,  sin justificar todos los detalles,  esta otra forma. La idea es expresar la segunda solución para  $p=n\in\mathbb{Z}$ como límite de soluciones  de la forma  \eqref{eq:sol_gen_bessel_1} cuando $p\to n$. Más concretamente.
+Si falla esta última condición ya no hay otra solución en serie de Frobenius. Se puede encontrar otro  desarrollo, emparentado pero que ya no constituye una serie de Frobenius. Una manera de llegar a este es aplicando el método de reducción de orden a partir de la solución conocida $y_1=x^{m_1}\sum_{n=0}^{\infty}a_nx^n$. Este método nos decía que la otra solución venía dada a partir de las relaciones
+\[y_2(x)=v(x)y_1(x),\quad\text{donde  } v'(x)=\frac{1}{y_1^2}e^{-\int p(x)dx}.\]
+Teniendo en cuenta que
+\[p(x)=\sum_{n=0}^{\infty}p_nx^{n-1}=\frac{p_0}{x}+p_1+p_2x+\cdots.\]
+Vemos que
+\[
+   \begin{split}
+     v'(x)&=\frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-\int \left(\frac{p_0}{x}+p_1+p_2x+\cdots \right)dx}\\
+  &= \frac{1}{x^{2m_1}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{-p_0 \ln x -p_1x-\cdots }\\
+  &= \frac{1}{x^{2m_1+p_0}\left(\sum_{n=0}^{\infty}a_nx^n\right)^2}e^{ -p_1x-\cdots }
+   \end{split}
+\]
 
-\begin{definicion}{} Para $p\notin\mathbb{Z}$ definimos la función de Bessel $Y_p$ de segunda especie por
+Ahora la función
+\[
+  g(x)= \frac{ e^{ -p_1x-\cdots } }{\left(\sum_{n=0}^{\infty}a_nx^n\right)^2},
+\]
+es analítica en $0$ puesto que el denominador no se anula en cero. Por consiguiente tenemos un desarrollo en serie
+\[ g(x)=\sum_{n=0}^{\infty}b_nx^n, \quad b_0\neq 0.\]
+En la práctica encontrar este desarrollo en serie de manera explícita puede ser muy difícil. Llamemos $k:=2m_1+p_0$. Por la conocida fórmula para la suma de las raíces de una ecuación de segundo grado, se tiene que $m_1+m_2=1-p_0$.  Luego  $2m_1+p_0=2m_1+1-m_1-m_2=m_1-m_2+1\in\mathbb{N}$.
+
+Tenemos que
+\[v'(x)=\frac{b_0}{x^k}+ \frac{b_1}{x^{k-1}}+\cdots+\frac{b_{k-1}}{x}+b_{k}+\cdots\]
+Entonces
+\[v(x)=\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\]
+Reemplazando esta identidad en la expresión para $y_2$,
+\[
+   \begin{split}
+     y_2&=vy_1\\
+&=y_1\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}+\cdots+b_{k-1}\ln x+b_{k}x+\cdots\right)\\
+       &=b_{k-1}\ln x y_1+ x^{m_1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)x^{k-1}}+ \frac{b_1}{(-k+2)x^{k-2}}\cdots\right)\\
+       &=b_{k-1}\ln x y_1+ x^{m_1-k+1}\sum_{n=0}^{\infty}a_nx^n\left(\frac{b_0}{(-k+1)}+ \frac{b_1}{(-k+2)}x+\cdots\right)\\
+   \end{split}
+\]
+Ahora $m_1-k+1=m_1-2m_1-p_0+1=-p_0-m_1+1$. Es sabido que la suma de las raices $m_1+m_2$ es igual a $-p_0+1$, es decir $m_1=-p_0+1-m_2$. Entonces $m_1-k+1=m_2$. Obtenemos una solución de la forma
+\boxedeq{y_2(x)=b_{k-1}y_1\ln x+x^{m_2}\sum_{n=0}^{\infty}c_nx^n.}{eq:des_enter}
+La segunda solución $y_2$ es la suma de una serie de Frobenius, con $m=m_2$, y un múltiplo de la función $y_1\ln x$. Esta última función no se puede desarrollar en serie de potencias alrededor de $0$.
+
+En un caso particular se puede hallar los coeficientes $b_{k-1}$ y $c_n$ por el método de coeficientes indeterminados. Hay fórmulas para estos coeficientes, que en algunos casos pueden ser útiles. Vamos a obtener algunas de estás. 
+
+Tratemos primero la situación cuando tenemos una única raiz $m_1=m_2$. Notar que en este caso $k=1$ y $b_{k-1}=b_0=g(0)=1/a_0^2\neq 0$. En este caso el término logarítmico siempre está presente. Sólo restan determinar los $c_n$, $n\geq 1$.    
+
+Para un valor arbitrario de $m$ tal que $m_1-m\notin\mathbb{N}$, escribamos 
+\begin{equation}\label{eq:2da_sol_bessel}
+ y(x;m)=x^m\left(1+\sum_{n=1}^\infty a_n(m)x^n \right),
+\end{equation}
+donde $a_n$ son la solución de la ecuación en recurrencia \eqref{eq:recu_gral_frob_2} con $a_0=1$. Se tiene que
+
+\begin{ejercicio}{} Demostrar que 
+ \[
+ y''+p(x)y'+q(x)y=x^{m-2}(m-m_1)^2.
+\]
+Notar que la fórmula anterior vuelve a verificar que $y(x;m_1)$ es solución.
+ \end{ejercicio}
+
+Derivando respecto a $m$
+
+ \[
+ \left(\frac{\partial y}{\partial m}
+ \right)''+p\left(\frac{\partial y}{\partial m}
+ \right)'+q\left(\frac{\partial y}{\partial m}
+ \right)=x^{m-2}(m-m_1)^2\ln x + 2x^{m-2}(m-m_1).
+\]
+El miembro derecho es cero cuando $m=m_1$. De esta manera se puede obtener una segunda solución
+
+\begin{multline}\label{eq:bessel_2_sol_p=0}
+ y_2(x)=\frac{\partial y(x;m)}{\partial m}\bigg|_{m=m_1}\\
+ =x^m\ln x\left(1+\sum_{n=1}^\infty a_n(m)x^n \right)+ x^m\left(\sum_{n=1}^\infty\frac{\partial a_n(m)}{\partial m}\bigg|_{m=m_1} x^n \right)\\
+ =\ln x y_1(x)+ x^m\left(\sum_{n=1}^\infty\frac{\partial a_n(m)}{\partial m}\bigg|_{m=m_1} x^n \right).
+\end{multline}
+Llegamos a la conclusión que los coeficientes en \eqref{eq:des_enter} vienen dados cuando $m_1=m_2$ por
+ \boxedeq{b_{k-1}=b_0=1,c_0=1, \quad c_n=\frac{\partial a_n(m)}{\partial m}\bigg|_{m=m_1},\quad n=1,2,\ldots .}{eq:for_coef1}
+ 
+La dificultad de esta fórmula es que requiere resolvere la relación de recurrencia para $m$ arbitrario y esto puede resultar más dificil que cuando $m$ era solución de la ecuación indicial. 
+
+
+En el caso de que las raíces de la ecuación indicial satisfagan que $0<k-1=m_1-m_2\in\mathbb{N}$, calculos similares, aunque bastante m{as arduos muestran que los coeficientes en \eqref{eq:des_enter} se obtienen mediante las fórmulas
+
+
+\begin{empheq}[box=\tcbhighmath]{align}\label{eq:for_coef1}
+b_{k-1} & =\lim_{m\to m_2}(m-m_2)a_{k-1}(m),\\c_0& =1,\quad c_n=\frac{\partial (m-m_2)a_n(m)}{\partial m}\bigg|_{m=m_2}, n=1,\ldots.
+ \end{empheq} 
+
+\subsection{Funciones de Bessel  de segunda especie, funciones de Neumann} \index{Función!Bessel de segunda especie}\index{Función!Neumann}
+
+Vamos a ejemplificar los resultados de la subsección anterior para lograr una expresión para una solución de la ecuación de Bessel de orden $0$ linealmente independiente con $J_0$. 
+
+Reemplazando $p$ por $0$ en las relaciones \eqref{eq:recu_bessel_gen} y despejando, llegamos cuando $m\neq 0$ a
+ 
+ \[
+ \begin{array}{ll}
+  (m+1)^2a_1=0\\
+  a_n=-\frac{1}{(n+m)^2}a_{n-2}
+\end{array}
+\]
+
+Se infiere que $a_1\equiv a_3\equiv\cdots \equiv 0$ y consecuentemente las derivadas de estas funciones respecto a $m$ también son nulas. Para los valores pares
+
+\begin{equation}\label{eq:calc_Y0}
+ a_{2 n}(m)=\frac{(-1)^{n} a_{0}}{(2 n+m)^{2}(2 n-2+m)^{2} \cdots(4+m)^{2}(2+m)^{2}}, \quad n=1,2,3, \ldots
+\end{equation}
+
+
+
+Debemos determinar $a_n'(0)$, este cálculo puede efectuarse considerando la función
+$$
+f(x)=\left(x-\alpha_{1}\right)^{\beta_{1}}\left(x-\alpha_{2}\right)^{\beta_{2}}\left(x-\alpha_{3}\right)^{\beta_{3}} \cdots\left(x-\alpha_{n}\right)^{\beta_{n}},
+$$
+entonces
+$$
+\begin{aligned}
+f^{\prime}(x)=& \beta_{1}\left(x-\alpha_{1}\right)^{\beta_{1}-1}\left[\left(x-\alpha_{2}\right)^{\beta_{2}} \cdots\left(x-\alpha_{n}\right)^{\beta_{n}}\right] \\
+&+\beta_{2}\left(x-\alpha_{2}\right)^{\beta_{2}-1}\left[\left(x-\alpha_{1}\right)^{\beta_{1}}\left(x-\alpha_{3}\right)^{\beta_{3}} \cdots\left(x-\alpha_{n}\right)^{\beta_{n}}\right]+\cdots .
+\end{aligned}
+$$
+De donde, para $x$ no igual a $\alpha_{1}, \alpha_{2}, \ldots, \alpha_{n}$
+$$
+\frac{f^{\prime}(x)}{f(x)}=\frac{\beta_{1}}{x-\alpha_{1}}+\frac{\beta_{2}}{x-\alpha_{2}}+\cdots+\frac{\beta_{n}}{x-\alpha_{n}} .
+$$
+Aplicado a \eqref{eq:calc_Y0}
+$$
+\frac{a_{2 n}^{\prime}(m)}{a_{2 n}(m)}=-2\left(\frac{1}{2 n+m}+\frac{1}{2 n-2+m}+\cdots+\frac{1}{2+m}\right),
+$$
+Entonces
+$$
+a_{2 n}^{\prime}(0)=-2\left[\frac{1}{2 n}+\frac{1}{2(n-1)}+\frac{1}{2(n-2)}+\cdots+\frac{1}{2}\right] a_{2 n}(0)
+$$
+
+De la fórmula \eqref{eq:func_bessel_1e} inferimos que $a_{2n}(0)=(-1)^n/2^{2n}(n!)^2$, luego
+$$
+a_{2 n}^{\prime}(0)=-H_{n} \frac{(-1)^{n} a_{0}}{2^{2 n}(n !)^{2}}, \quad n=1,2,3, \ldots
+$$
+donde
+$$
+H_{n}=\frac{1}{n}+\frac{1}{n-1}+\cdots+\frac{1}{2}+1
+$$
+
+Usando las identidades \eqref{eq:bessel_2_sol_p=0}, \eqref{eq:for_coef1}, tomando  $a_{0}=1$ y  $y_{1}(x)=J_0(x)$ se obtiene
+$$
+y_{2}(x)=J_{0}(x) \ln x+\sum_{n=1}^{\infty} \frac{(-1)^{n+1} H_{n}}{2^{2 n}(n !)^{2}} x^{2 n}, \quad x>0 .
+$$
+En vez de $y_{2}$, como  segunda solución suele usarse la siguiente combinación lineal entre $J_{0}$ e $y_{2}$. La misma se conoce como función de Bessel de segunda clase de orden cero o función de Neumann de orden $0$.  Se denota por $Y_{0}$ y se define de la siguiente forma
+$$
+Y_{0}(x)=\frac{2}{\pi}\left[y_{2}(x)+(\gamma-\ln 2) J_{0}(x)\right],
+$$
+donde  $\gamma$ es la \emph{constante de Euler-Máscheroni}\index{Constante!Euler-Máscheroni} que se define por la ecuación
+$$
+\gamma=\lim _{n \rightarrow \infty}\left(H_{n}-\ln n\right) \cong 0.5772 \text {. }
+$$
+De manera explícita
+$$
+Y_{0}(x)=\frac{2}{\pi}\left[\left(\gamma+\ln \frac{x}{2}\right) J_{0}(x)+\sum_{m=1}^{\infty} \frac{(-1)^{m+1} H_{m}}{2^{2 m}(m !)^{2}} x^{2 m}\right], \quad x>0
+$$
+
+Las funciones de Neumann se definen para cualquier orden $p$. Se suele seguir otro camino que exponemos de manera breve
+
+
+\begin{definicion}{} Para $0<p\notin\mathbb{N}$ definimos la \emph{función de Bessel  de segunda especie}  o \emph{función de Neumann } $Y_p$ por
 \begin{equation}\label{eq:bessel_2_especie}
 Y_p=\frac{\cos p\pi J_p-J_{-p}}{\sen p\pi}.
 \end{equation}
 \end{definicion}
 
-La función $Y_p$ es una solución puesto que es una expresión del tipo \eqref{eq:sol_gen_bessel_1}. Además es no acotada cerca de $0$ dado que $J_p$ es acotada y $J_{-p}$ no. La razón de esta llamativa definición es el siguiente resultado.
+La función $Y_p$ es una solución no acotada cerca de $0$ dado que $J_p$ es acotada y $J_{-p}$ no. La razón de esta llamativa definición es el siguiente resultado.
 
-\begin{lema} Para $n$ entero no negativo,  el  límite $\lim_{p\to n}Y_p$ existe. Por consiguiente, podemos definir
+\begin{lema}{lem:func_bessel_2_e} Para $n$ entero no negativo,  el  límite $\lim_{p\to n}Y_p$ existe. Por consiguiente, podemos definir
 \begin{equation}\label{eq:bessel_2_especie_b}
 Y_n(x):=\lim_{p\to n}Y_p(x).
 \end{equation}
 Esta función es solución de la ecuación de Bessel de orden $n$ y se denomina, también, función de Bessel de segunda especie. También resulta ser una función no acotada cerca de $0$ y por consiguiente, linealmente idependiente de $J_n$.
 \end{lema}
 
+\begin{proof} La omitiremos. \end{proof}
+\iffalse 
+
+% \begin{lstlisting}
+% a=symbols('a0:6')
+% x=symbols('x')
+% y=sum([a[i]*x**i for i in range(6)])
+% Ecua=y.diff(x)-y
+% Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(6)]
+% Ecuaciones=Ecuaciones[:-1]+[a[0]-1]
+% a_sol=solve(Ecuaciones,a)
+% y.subs(a_sol)
+% \end{lstlisting}
+
+% 
+% \begin{lstlisting}
+% a=symbols('a0:6')
+% x,p=symbols('x,p')
+% y=sum([a[i]*x**i for i in range(6)])
+% Ecua=(1+x)*y.diff(x)-p*y
+% Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(6)]
+% Ecuaciones=Ecuaciones[:-1]+[a[0]-1]
+% a_sol=solve(Ecuaciones,a)
+% y.subs(a_sol)
+% \end{lstlisting}
+% 
+% 
+% 
+% \boxedeq{y(x)=\frac{1}{6} \, {\left(p - 1\right)} {\left(p - 2\right)} p x^{3} + \frac{1}{2} \, {\left(p - 1\right)} p x^{2} + p x + 1}{}
+
+% 
+% Podemos hacer los cálculos anteriores con SAGE
+% 
+% \begin{lstlisting}
+% a=symbols('a0:10')
+% orden=10
+% x,omega=symbols('x,omega')
+% y=sum([a[i]*x**i for i in range(orden)])
+% Ecua=y.diff(x,2)+omega**2*y
+% Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+% Ecuaciones=Ecuaciones[:-2]
+% a_sol=solve(Ecuaciones,a[2:])
+% y.subs(a_sol)
+% \end{lstlisting}
+ 
+
+% 
+% Esto lo resolveremos con SymPy
+% 
+% \begin{lstlisting}
+% a=symbols('a0:10')
+% orden=10
+% x,p=symbols('x,p')
+% y=sum([a[i]*x**i for i in range(orden)])
+% Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+p*(p+1)*y
+% Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+% Ecuaciones=Ecuaciones[:-2]
+% a_sol=solve(Ecuaciones,a[2:])
+% {ind:a_sol[ind].factor() for ind in a[2:]}
+% 
+% \end{lstlisting}
+% 
+% \[
+% \begin{split}
+% a_{2} &=- \frac{a_{0} p}{2} \left(p + 1\right),\\
+% a_{3} &=- \frac{a_{1}}{6} \left(p - 1\right) \left(p + 2\right),\\
+% a_{4} &=\frac{a_{0} p}{24} \left(p - 2\right) \left(p + 1\right) \left(p + 3\right), \\
+% a_{5} &=\frac{a_{1}}{120} \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right),\\
+% a_{6} &=- \frac{a_{0} p}{720} \left(p - 4\right) \left(p - 2\right) \left(p + 1\right) \left(p + 3\right) \left(p + 5\right), \\
+% a_{7} &=- \frac{a_{1}}{5040} \left(p - 5\right) \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right) \left(p + 6\right),\\
+% a_{8} &=\frac{a_{0} p}{40320} \left(p - 6\right) \left(p - 4\right) \left(p - 2\right) \left(p + 1\right) \left(p + 3\right) \left(p + 5\right) \left(p + 7\right), \\
+% a_{9} &=\frac{a_{1}}{362880} \left(p - 7\right) \left(p - 5\right) \left(p - 3\right) \left(p - 1\right) \left(p + 2\right) \left(p + 4\right) \left(p + 6\right) \left(p + 8\right).
+% \end{split}
+% \]
+% 
+% 
+% En general
+
+% 
+% Todos estos cálculos los programamos en la siguiente función de SymPy. Esta función tiene un argumento $n$ que debe ser un número natural y devuelve el correspondiente polinomio de Legendre.
+% 
+% 
+% \begin{lstlisting}
+% def Legendre(n):
+%     orden=n+2
+%     a=symbols('a0:%s' %orden)
+%     x=symbols('x')
+%     y=sum([a[i]*x**i for i in range(orden)])
+%     Ecua=(1-x**2)*y.diff(x,2)-2*x*y.diff(x)+n*(n+1)*y
+%     Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden-2)]
+%     s=symbols('s')
+%     if n%2==0:
+%         Ecuaciones+=[a[0]-s,a[1]]
+%     else:
+%         Ecuaciones+=[a[0],a[1]-s]
+%     Sol_a_n=solve(Ecuaciones,a)
+%     y=y.subs(Sol_a_n)
+%     sol=solve(y.subs(x,1)-1,s)
+%     return y.subs(s,sol[0])
+% \end{lstlisting}
+% 
+% Esto es una función de Python. Se pueden copiar las lineas de arriba en una consola de Python, pero lo más usual es preparar un archivo aparte que luego se carga en una sesión de SymPy.  Las sentencias para cargar el archivo son las dadas aquí debajo, donde hemos supuesto que el archivo se llama \texttt{Legendre.py} y está en el directorio \texttt{/home/fdmazzone/Git/Ecuaciones\_Diferenciales/scripts}
+
+% 
+% Resolvamos el ejemplo con SymPy.
+% 
+% \begin{lstlisting}
+% orden=5
+% a=symbols('a0:%s' %orden)
+% x,m=symbols('x,m')
+% y=x**m*sum([a[i]*x**i for i in range(orden)])
+% Ecua=y.diff(x,2)+(1/(2*x)+1)*y.diff(x,1)-(1/(2*x**2))*y
+% #Dividimos por m-2 asi todos los exponentes son enteros positivos
+% Ecua=Ecua/x**(m-2)
+% Ecua=Ecua.expand()
+% Ecuaciones=[Ecua.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+% for ec in Ecuaciones:
+% ...     ec
+% ...
+% a0*m**2 - a0*m/2 - a0/2
+% a0*m + a1*m**2 + 3*a1*m/2
+% a1*m + a1 + a2*m**2 + 7*a2*m/2 + 5*a2/2
+% a2*m + 2*a2 + a3*m**2 + 11*a3*m/2 + 7*a3
+% a3*m + 3*a3 + a4*m**2 + 15*a4*m/2 + 27*a4/2
+% 
+% \end{lstlisting}
+% 
+% Con esta parte del script hemos generado la lista de las 5 primeras ecuaciones.
+% Resolvamos la ecuación indicial
+% 
+% \begin{lstlisting}
+% Sol_Ecua_Ind=solve(Ecuaciones[0],m)
+% Sol_Ecua_Ind
+% [-1/2, 1]
+% \end{lstlisting}
+% 
+% Sustituyamos los valores de $m$ en la lista de ecuaciones, agreguemos la ecuación $a_0=1$, resolvamos para los $a_i$ y sustituyamos la solución en $y$. Obtenemos la primer solución (truncada)
+% \begin{lstlisting}
+% Ecuaciones1=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in Ecuaciones]
+% Ecuaciones1
+% [0, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
+% Ecuaciones1[0]=a[0]-1
+% Ecuaciones1
+% [a0 - 1, a0 + 5*a1/2, 2*a1 + 7*a2, 3*a2 + 27*a3/2, 4*a3 + 22*a4]
+% sol=solve(Ecuaciones1,a)
+% y1=y.subs(sol).subs(m,Sol_Ecua_Ind[1])
+% y1
+% x*(16*x**4/3465 - 8*x**3/315 + 4*x**2/35 - 2*x/5 + 1)
+% 
+% 
+% \end{lstlisting}
+% La segunda solución se obtinene
+% \begin{lstlisting}
+% Ecuaciones2=[ec.subs(m,Sol_Ecua_Ind[0]) for ec in Ecuaciones]
+% Ecuaciones2
+% [0, -a0/2 - a1/2, a1/2 + a2, 3*a2/2 + 9*a3/2, 5*a3/2 + 10*a4]
+% Ecuaciones2[0]=a[0]-1
+% sol=solve(Ecuaciones2,a)
+% y2=y.subs(sol).subs(m,Sol_Ecua_Ind[0])
+% (x**4/24 - x**3/6 + x**2/2 - x + 1)/sqrt(x)
+% 
+% \end{lstlisting}
+
+
+\begin{sympycode}
+orden=5
+a,x,m,p=symbols(['a0:%s' %orden, 'x','m','p'],positive=True )
+y=x**m*sum([a[i]*x**i for i in range(orden)])
+EDif1=y.diff(x,2)+1/x*y.diff(x,1)+(1-p**2/x**2)*y
+EDif2=(EDif1/x**(m-2)).simplify()
+ECoef=[EDif2.diff(x,i).subs(x,0)/factorial(i) for i in range(orden)]
+SolEInd=solve(ECoef[0],m)
 
 
 
 
+
+\end{sympycode}
+
+Sutituyendo 
+$$y=\sympy{y.expand()}+\cdots$$ 
+en \eqref{eq:bessel3},  agrupando potencias iguales de $x$ y dividiendo por $x^{m-2}$ obtememos
+\[
+ \sympy{EDif2.collect(x).factor()}
+\]
+
+
+
+Las raíces de la ecuación indicial son
+\boxedeq{m=p\quad\text{y}\quad m=-p}{eq:sol_ec_ind}
+Vamos a trabajar con la raíz $m=p$.
+
+\begin{lstlisting}
+ECoefA=[ec.subs(m,Sol_Ecua_Ind[1]) for ec in ECoef]
+for ec in ECoefA:
+...     pprint(ec)
+
+\end{lstlisting}
+
+\[
+\begin{split}
+ 0 & = 0\\
+0&=2 a_{1} p + a_{1}\\
+0&=a_{0} + 4 a_{2} p + 4 a_{2}\\
+0&=a_{1} + 6 a_{3} p + 9 a_{3}\\
+0&=a_{2} + 8 a_{4} p + 16 a_{4}\\
+0&=a_{3} + 10 a_{5} p + 25 a_{5}\\
+0&=a_{4} + 12 a_{6} p + 36 a_{6}\\
+0&=a_{5} + 14 a_{7} p + 49 a_{7}\\
+\end{split}
+\]
+
+
+
+Se puede observar que estas ecuaciones relacionan  $a_n$ con $a_{n-2}$, i.e. que son relaciones de dos términos.  Podemos hacer explícita la relación
+
+\begin{lstlisting}
+for i in range(1,orden):
+    iter=solve(ECoefA[i],a[i])[0].factor()
+    print str(a[i])+'='+str(iter)
+a1=0
+a2=-a0/(4*(p + 1))
+a3=-a1/(3*(2*p + 3))
+a4=-a2/(8*(p + 2))
+a5=-a3/(5*(2*p + 5))
+a6=-a4/(12*(p + 3))
+a7=-a5/(7*(2*p + 7))
+\end{lstlisting}
+ 
+\begin{lstlisting}
+p,x=symbols('p,x')
+J= sum([(-1)**n/factorial(n)/gamma(p+n+1)*(x/2)**(2*n+p) for n in range(30)])
+p1=plot(J.subs(p,1),(x,0,20),line_color=(1,0,0))
+p2=plot(J.subs(p,2),(x,0,20),line_color=(0,1,0))[0]
+p1.append(p2)
+p2=plot(J.subs(p,3),(x,0,20),line_color=(0,0,1))[0]
+p1.append(p2)
+p1.show()
+\end{lstlisting}
+
+\fi
 
 %\end{document}

@@ -63,6 +63,16 @@ Multiplicando por $r^2/R\Theta$ y depejando los términos conteniendo $\Theta$
 \begin{equation}\label{eq:ecua_aux_3} 
 \frac{r^2R''}{R} +\frac{rR'}{R}+\omega^2r^2=-\frac{\Theta''}{\Theta}.
 \end{equation}
+
+
+
+
+
+
+
+
+
+
 Ahora se razona como lo hemos hecho con la ecuación \eqref{eq:sep_var}. Cada miembro depende de variables independientes entre si, esto es de $r$ el primer miembro y de $\theta$ el segundo. Para que la igualdad sea posible las funciones deben ser constantes. Luego debe existir $\mu$ tal que
 \begin{align}
 %\begin{split} 
@@ -83,6 +93,11 @@ La función $\Theta$ al depender de $\theta$ debería ser periódica de periodo 
 \[\Theta(\theta)= c_1\cos n\theta+c_2\sen n\theta.\]
 Nuestras suposiciones no  determinan el valor de las constantes $c_1$ y $c_2$. Obtendremos dos soluciones linealmente independientes eligiendo $k_1=0$ y $k_2=1$ o permutando estos valores. Vamos a seguir ilustrando el método con la segunda elección, es decir
 \boxedeq{\Theta(\theta)= \cos n\theta }{sol_theta2}
+
+
+
+
+
  Reemplazando $\mu$ por $n^2$ en \eqref{eq:ecua_aux_4} 
 \begin{equation}\label{eq:ecua_aux_6}r^2R'' +rR'+(\omega^2r^2-n^2) R=0,\end{equation}
 que se parece mucho a la ecuación de Besssel. De hecho si $\omega$ fuese 1 sería exactamente la ecuación de Bessel. La podemos convertir facilmente en la ecuación de Bessel por el cambio de variable independiente $s=\omega r$. Tenemos 
@@ -92,6 +107,12 @@ y
 Reemplazando las igualdades anteriores y $r$ por $s/\omega$ en \eqref{eq:ecua_aux_6} llegamos a
 \[s^2R''(s)+sR'+(s^2-n^2)R=0\]
 Que es la ecuación de Bessel de orden $n$. Como el orden es precisamente un entero hemos visto que la ecuación tiene como par de soluciones linealmente independientes la función de Bessel de primera especie $J_n$ que es analítica en $0$ y la función de Bessel de segunda especie $Y_n$ que es no acotada en $0$. Debería ocurrir entonces que $R=c_1J_p+c_2Y_p$. Pero de ser $c_2\neq 0$ tendríamos que $R$ sería no acotada y esto implicaría que la membrana sería la gráfica de una función no acotada, cosa que no se condice con nuestra idea de lo que es una membrana. De modo que estas soluciones, que matemáticamente son correctas, las descartamos por carecer de significado físico. Sin perder generalidad, supongamos $c_1=1$. Así tenemos que $R$ como función de $s$ es $J_n(s)$. Retornando a la variable $r$
+
+
+
+
+
+
 \boxedeq{R(r)=J_n(\omega r)}{sol_R}
 Ahora la condición de contorno \eqref{eq:cond_contor} implica que
 \boxedeq{J(\omega)=0}{eq:cer_bessel}
