@@ -1,5 +1,13 @@
 *.*~
 
+##  Directorios
+Teoria_Basica/Practicas/
+presentaciones/
+Teoria_Basica/sage-plots-for-LibroEcuaciones.tex/
+Teoria_Basica/pythontex-files-LibroEcuaciones/
+Teoria_Basica/auxiliares-tex/
+Teoria_Basica/.ipynb_checkpoints/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -31,6 +39,7 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+*.mw
 
 ## Auxiliary and intermediate files from other packages:
 
