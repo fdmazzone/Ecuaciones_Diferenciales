@@ -6,13 +6,12 @@ Problemas de Sturm-Liouville
 
 
 \section{Problemas físicos que llevan a problemas de Sturm-Liouville}
-{Ecuación del Calor}
 
-\emph{Bibliografía}
-R. Kent Nagle, Edward B. Saff \& Arthur David Snider. Ecuaciones diferenciales y problemas con valores en la frontera
+ 
 
 
-Recordemos la ecuación diferencial del Calor \emph{Acordate repasar deducción}
+
+Recordemos la ecuación diferencial del Calor  
 
 \[ \frac{\partial c\rho u}{\partial t}-\operatorname{div}( k \nabla u)=S \]
 
@@ -30,16 +29,10 @@ $c, \rho, k, S$ son funciones del tiempo $t$ y el espacio $(x,y,z)$.
 
 
 
-{Ley Enfriamiento de Newton}
-
-
 En algunos problemas la fuente externa $S$  además de contener términos $h(x,y,y,t)$ que dependen de la posición y el tiempo contiene otros que dependen de  la temperatura $u$. 
 
 
-Por ejemplo en la \emph{Ley Enfriamiento de Newton} el calor que ingresa a un cuerpo  es proporcional a la diferencia de temperatura entre el cuerpo y el medio circundante. 
-
-
- La ecuación se transforma
+Por ejemplo en la \emph{Ley Enfriamiento de Newton}\index{Ley!Enfriamiento de Newton} el calor que ingresa a un cuerpo  es proporcional a la diferencia de temperatura entre el cuerpo y el medio circundante.  La ecuación se transforma
 
  \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:calor+newton}
  \frac{\partial c\rho u}{\partial t}- \dive k \nabla u - q u=h.
@@ -48,8 +41,6 @@ Por ejemplo en la \emph{Ley Enfriamiento de Newton} el calor que ingresa a un cu
 También $q$ podría ser función de $t$ y $(x,y,z)$.
 
 
-
-{Ecuación del calor uni-dimensional}
 
 Para mayor simplicidad nos restringiremos al caso de un alambre recto y tan delgado que la asumimos uni-dimensional. La única variable espacial es $x\in [a,b]$ y $t>0$.
 
@@ -60,16 +51,14 @@ Para mayor simplicidad nos restringiremos al caso de un alambre recto y tan delg
  }
  
  
+ 
 
-
-{Condiciones de contorno e iniciales}
-
-\textbf{Condiciones de contorno: en $x=a$ o $x=b$}
+Para tener un problema bien panteado debemos introducir \emph{Condiciones de contorno: en $x=a$ o $x=b$} \index{Condiciones! contorno}. Hay de varios tipos
 
 \begin{description}
  \item[ Extremos fijos (Dirichlet)] $u=0$
  \item[Alambre aislado (Neuman)]   $\partial u / \partial x=0$
- \item[Condiciones mixtas] $\partial u / \partial x+c u=0$.
+ \item[Condiciones Robin] $\partial u / \partial x+c u=0$.
 \end{description}
 
 Para generalizar la situación, supondremos
@@ -80,20 +69,18 @@ Para generalizar la situación, supondremos
 \end{array}
 \right.\end{empheq}
   
-\textbf{Condiciones iniciales}
+  
+También debemos conocer \emph{Condiciones iniciales}\index{Condiciones!iniciales}
 $$u(x,0)=f(x)$$
    
  
-
-
-{Problema}
 
 Para simplificar nuestro problema supondremos que $h(x, t) \equiv 0$. 
 Vamos a estudiar el siguiente problema de contorno y valores iniciales.
 
 
 
-{\small
+{
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:calor_main}  
 \left\{
         \begin{array}{ll}
@@ -113,13 +100,11 @@ donde $r(x)=c(x) \rho(x)$ y $p(x)=k(x)$.
 
    
  
-
-
-{Problemas Sturm-Liouville}
+ 
 
 \begin{ejercicio}{}[Separación Variables]
  
-Supongamos $u(x, t)=y(x) T(t)$ resuelve la ecuación,  reemplazando en la ecuación principal demostrar  que existe $\lambda\in\rr$ (es un número por determinar)
+Supongamos $u(x, t)=y(x) T(t)$ resuelve la ecuación. Demostrar  que existe $\lambda\in\rr$ (es un número por determinar)
 \[
  \left\{
         \begin{array}{ll}
@@ -140,9 +125,9 @@ Excluimos las condiciones triviales en la frontera, donde $a_{1}=a_{2}=0$ o $b_{
  
  
 
-\subsection{Clasificación}
-{Clasificación problemas Sturm-Liouville}
-\begin{definicion}
+\subsection{Clasificación problemas Sturm-Liouville}
+
+\begin{definicion}{}
  Cuando:
  \begin{itemize}
   \item  $p(x), q(x)$ y $r(x)$ son continuas en $[a, b]$, 
@@ -166,12 +151,7 @@ Decimos que la ecuación es \emph{singular} si:
 
 
  
- 
-
-{Clasificación problemas Sturm-Liouville}
-
-
-\textbf{Ejemplo (problema singular):} Problema contorno para la Ecuación de Bessel en $[0,b]$
+  \begin{ejemplo}{}[\textbf{Ejemplo (problema singular)}] Problema contorno para la Ecuación de Bessel en $[0,b]$
 
 \[
  \left\{
@@ -184,7 +164,7 @@ Decimos que la ecuación es \emph{singular} si:
 \]
 
 Este problema surge al estudiar el flujo de calor en un cilindro. En este caso, $p(x)=r(x)=x$, que se anula en $x=0$. 
-
+\end{ejemplo}
  
 
 \section{Problemas de contorno} 
@@ -207,21 +187,19 @@ Supongamos el problema de contorno
 
 Estas son condiciones de contorno lineales. Cuando $c_{1}=c_{2}=0$, decimos que las condiciones de contorno  son \emph{homogéneas}; en caso contrario, son \emph{no homogéneas}.
 
-
-
-{Clasificación condiciones de contorno}
+ 
 Ciertas condiciones en la frontera aparecen con frecuencia en las aplicaciones; estas condiciones son
 
 \begin{description}
- \item[Separadas:]<+->
+ \item[Separadas:]
  \[\begin{split}
     a_{1} y(a)+a_{2} y^{\prime}(a)&=c_{1},\\
     b_{1} y(b)+b_{2} y^{\prime}(b)&=c_{2}
    \end{split}
 \]
-\item[Dirichlet:]<+-> $$y(a)=c_{1},\quad y(b)=c_{2} .$$
-\item[Neumann:]<+-> $$y^{\prime}(a)=c_{1},\quad y^{\prime}(b)=c_{2}$$.
-\item[Periódicas]<+-> 
+\item[Dirichlet:] $$y(a)=c_{1},\quad y(b)=c_{2} .$$
+\item[Neumann:] $$y^{\prime}(a)=c_{1},\quad y^{\prime}(b)=c_{2}$$.
+\item[Periódicas] 
 $$
 \begin{aligned}
 &y(-T)=y(T), \quad y^{\prime}(-T)=y^{\prime}(T), \\
@@ -234,8 +212,7 @@ donde el periodo es $2 T$
 
 
 \subsection{Conjunto de soluciones}
-
-{Conjunto de soluciones}
+ 
 
 Hay tres posibilidades para la ecuación homogénea con condiciones homogéneas en la frontera
 \[
@@ -407,16 +384,14 @@ Los problemas de Sturm-Liouville con valores en la frontera   son ejemplos de pr
 La importancia de los problemas de valores propios es que surgen al usar el método de separación de variables para resolver ecuaciones diferenciales parciales.
 
 
-\textbf{Ejemplo (de unidad 7)}
+\begin{ejemplo}{} En el problema
 $$
 \left\{\begin{array}{r}
 X^{\prime \prime}+\lambda X=0 \\
 X(0)=X(L)=0
 \end{array}\right.
 $$
-
-Se concluyó
-
+se tiene que
 
 $$
 \lambda=\left(\frac{n \pi}{L}\right)^{2} \quad n=1,2, \ldots
@@ -427,12 +402,9 @@ X_{n}(x)=\operatorname{sen}\left(\frac{n \pi x}{L}\right), \quad n=1,2, \ldots
 $$
 son las correspondientes autofunciones.
 
+\end{ejemplo}
 
-
- 
-
-{ Ejemplo 2}
-En la unidad 7 se vió que el problema 
+\begin{ejemplo}{} El problema 
 $$
 \left\{\begin{array}{l}
 X^{\prime \prime}+\lambda X=0\quad 0<x<L \\
@@ -440,22 +412,20 @@ X^{\prime}(0)=X^{\prime}(L)=0
 \end{array} \right.
 $$
 
-tenía los autovalores y autofunciones 
+tiene los autovalores y autofunciones 
 $$
 \lambda=\left(\frac{n \pi}{L}\right)^{2} \quad n=0,1,2,3, \ldots \quad \text { y } X(x)=\cos \left(\frac{n \pi x}{L}\right)
 $$
 respectivamente 
 
 
-
+\end{ejemplo}
 
 
 
  
 
-{Ejemplo 3}
-
- Determinar todos los valores propios reales y funciones propias correspondientes para
+\begin{ejemplo}{}  Determinar todos los valores propios reales y funciones propias correspondientes para
  
  $$
 \left\{\begin{array}{l}
@@ -464,8 +434,9 @@ respectivamente
 \end{array} \right.
 $$
 
+\end{ejemplo}
 
-\textbf{Solución.} Ecuación característica 
+  Ecuación característica 
 
 $$r^{2}+\lambda=0.$$
 
@@ -480,10 +451,6 @@ Solución general:
 $$y(x)=c_{1} e^{\mu x}+c_{2} e^{-\mu x}.$$ 
 
 
-
- 
-
-{Ejemplo 3 (continuación)}
 Equivalentemente 
 
 $$y(x)=C_{1} \cosh \mu x+C_{2} \senh \mu x.$$
@@ -506,22 +473,14 @@ es decir, $\mu$ debe satisfacer
  
 
 
- 
-
-{Ejemplo 3 (continuación)}
- 
 
 En el plano $\mu y$, la recta $y=\mu / 3$ corta a la curva $y=\tanh \mu \pi$ sólo una vez para $\mu>0$ (véase la figura). Por lo tanto, sólo existe una solución positiva de, que denotaremos $\mu_{0}$.
 
 
-\includegraphics[scale=.8]{tanh.png}
+\includegraphics[scale=.8]{imagenes/tanh.png}
 
 En resumen, el problema con valores en la frontera (20)-(21) tiene un valor propio negativo $\lambda_{0}=-\mu_{0}^{2}$, tal que $\tan \mu_{0} \pi=\mu_{0} / 3$, y las funciones propias correspondientes son $y_{0}(x)=c_{0} \operatorname{senh} \mu_{0} x$, con $c_{0} \neq 0$ arbitrario.
 
-
-
-{Ejemplo 3 (continuación)}
- 
 
 \textbf{Conclusión.} En el caso $\lambda<0$ el problema con valores en la frontera tiene un valor propio negativo 
 $$\lambda_{0}=-\mu_{0}^{2},$$
@@ -534,9 +493,6 @@ $$y_{0}(x)=c_{0} \operatorname{senh} \mu_{0} x,\quad c_{0} \in\rr.$$
  
 
 
- 
-
-{Ejemplo 3 (continuación)}
 \textbf{Caso 2. $\lambda=0$.} Cero es una raíz doble de la ecuación auxiliar, la solución general es:
 
 $$y(x)=c_{1} x+c_{2}.$$ 
@@ -552,8 +508,6 @@ No tenemos funciones propias.
 
 
  
-
-{Ejemplo 3 (continuación)}
 \textbf{Caso 3. $\lambda=\mu^{2}>0$  para $\mu>0$.} Raíces:
 
 $$r=\pm \mu i,$$
@@ -575,12 +529,12 @@ $$\tan \mu \pi=\frac{1}{3} \mu.$$
 
  
 
-
+\begin{figure}[h]
+ \begin{center}
+  \includegraphics[scale=.6]{imagenes/tanh2.png}
+ \end{center}
+\end{figure}
  
-
-{Ejemplo 3 (continuación)}
-\includegraphics[scale=.6]{tanh2.png}
-
 Hay una infinidad de soluciones $\mu_{1}<\mu_{2}<\ldots $ por ende de autovalores $\lambda_{n}=\mu_{n}^{2}, n=1,2,3, \ldots$ con autofunciones correspondientes  
 
 $$y_{n}(x)=c_{2}\sen \mu_{n} x, \hbox{ con }c_{2} \neq 0,$$  
@@ -592,12 +546,7 @@ $$y_{n}(x)=c_{2}\sen \mu_{n} x, \hbox{ con }c_{2} \neq 0,$$
 
 \section{Problemas regulares de Sturm-Liouville}
 
-
-
  
-
-{Problemas regulares de Sturm-Liouville}
-
 Retornemos al problema general de hallar los valores propios y funciones propias de:
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:sl_main2}  
 \left\{
@@ -621,10 +570,7 @@ donde
 
 
 
- 
-
-{Llevando a la forma de Sturm-Liouville}
-
+  
 \textbf{Disgresión:} cualquier ecuación de la forma 
 \begin{equation}\label{eq:20gral}
     A_{2}(x) y^{\prime \prime}(x)+A_{1}(x) y^{\prime}(x)+A_{0}(x) y(x)+\lambda \rho(x) y(x)=0
@@ -648,9 +594,6 @@ Pero en general, $A_{2}^{\prime} \neq A_{1}$, de modo que este método directo n
 
 
  
-
-{Llevando a la forma de Sturm-Liouville}
-
 \tikz[baseline]{
       \node[fill=frametit, square,anchor=base] (t0)
            {Idea!}} Buscar
@@ -724,7 +667,7 @@ $$\tikz[baseline]{
 $$
 
 
-\begin{block}{Teorema [Identidad de lagrange]}  Sean $u$ y $v$ funciones con segundas derivadas continuas en el intervalo $[a, b]$. Entonces,
+\begin{teorema}{teo:iden_lagra}[\textbf{Identidad de Lagrange}]  Sean $u$ y $v$ funciones con segundas derivadas continuas en el intervalo $[a, b]$. Entonces,
 
 $$\tikz[baseline]{
       \node[fill=frametit, square,anchor=base] (t0)
@@ -732,7 +675,7 @@ $$\tikz[baseline]{
     }} $$
 donde el \emph{wronskiano} de $u$ y $v$ se define
 $W[u, v]=u v^{\prime}-v u^{\prime}$  
-\end{block}
+\end{teorema}
 
 
  
@@ -762,7 +705,7 @@ $$
 {Fórmula de Green}
 
 
-\begin{block}{Corolario [Fórmula de Green]}
+\begin{corolario}{cor:for_green}[\textbf{Fórmula de Green}]
  Sean $u$ y $v$ funciones con segundas derivadas continuas en el intervalo $[a, b]$. Entonces,
  
  \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:for_green_1}\int_{a}^{b}(u L[v]-v L[u])(x) d x=\left.(p W[u, v])(x)\right|_{a} ^{b}.
@@ -773,7 +716,7 @@ Si además u y $v$ satisfacen las condiciones en la frontera de \eqref{eq:sl_mai
 
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:for_green_2}\int_{a}^{b}(u L[v]-v L[u])(x) d x=0.
 \end{empheq}
-\end{block}
+\end{corolario}
 
 
  
@@ -817,10 +760,9 @@ $$
 
 
 \section{Operadores autoadjuntos}
-\subsection{Definiciones}
-{Producto interno}
+ 
 
-\begin{block}{Producto interno}
+\begin{definicion}{def:prod_int}[\textbf{Producto interno}]
 Para $f,g\in L^2([a,b])$ se define
 
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:pro_int}
@@ -831,7 +773,7 @@ entonces
 
 $$(\cdot, \cdot):L^2([a,b])\times L^2([a,b])\to\rr$$ 
 es un producto interior en $L^2([a,b])$ 
-\end{block}
+\end{definicion}
 
 
 
@@ -849,8 +791,8 @@ Ecuación \eqref{eq:for_green_2} Equivale
 \end{equation}
 
 
-\begin{block}{Definición [Operadores autoadjuntos]} Un operador diferencial lineal $L$ que satisface \eqref{eq:autoadjunto} para todas las funciones $u$ y $v$ en su dominio se llama un \emph{operador autoadjunto. }
-\end{block}
+\begin{definicion}{def:autoadj}[Operadores autoadjuntos] Un operador diferencial lineal $L$ que satisface \eqref{eq:autoadjunto} para todas las funciones $u$ y $v$ en su dominio se llama un \emph{operador autoadjunto. }
+\end{definicion}
 
 
 
@@ -860,11 +802,11 @@ Ecuación \eqref{eq:for_green_2} Equivale
 
 
 \subsection{Autoadjunción $\Rightarrow \lambda\in\rr$}  
-{Autoadjunción $\Rightarrow \lambda\in\rr$}
 
-\begin{block}{Teorema} Los valores propios de un problema regular de Sturm-Liouville \eqref{eq:sl_main2}  son reales y tienen funciones propias con valores reales.
+
+\begin{teorema}{teo_aut_real}{\textbf{[Autoadjunción $\Rightarrow \lambda\in\rr$]}} Los valores propios de un problema regular de Sturm-Liouville \eqref{eq:sl_main2}  son reales y tienen funciones propias con valores reales.
  
-\end{block}
+\end{teorema}
 
 
 \textbf{Demostración.} Supongamos que $\lambda\in \mathbb{C}$ es un valor propio, con función propia $\phi(x)$, la que puede asumir valores complejos. Es decir,
@@ -911,13 +853,13 @@ Tomando partes real e imaginaria de  $\phi$ obtenemos  funciones propias con val
 {Multiplicidad de autovalores}
 
 
-\begin{block}{Definición [Autovalores simples]} Si todas las funciones propias asociadas a un valor propio particular son sólo múltiplos escalares entre sí, entonces el valor propio se llama \emph{simple}.
-\end{block}
+\begin{definicion}{def:aut_simple}{\textbf{[Autovalores simples]}} Si todas las funciones propias asociadas a un valor propio particular son sólo múltiplos escalares entre sí, entonces el valor propio se llama \emph{simple}.
+\end{definicion}
 
 
-\begin{block}{Teorema [Autovalores simples]}
+\begin{teorema}{teo:aut_simple}{\textbf{[Teorema [Autovalores simples]}}
 Todos los valores propios del problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2} son simples.
-\end{block}
+\end{teorema}
 
 
 
@@ -945,20 +887,16 @@ Si el wronskiano de dos soluciones de una ecuación lineal homogénea de segundo
 \subsection{Ortogonalidad}
 
 {Ortogonalidad}
-\begin{block}{Teorema [Ortogonalidad]} Las funciones propias que corresponden a valores propios distintos
+\begin{teorema}{teo:ortogonalidad}{\textbf{[Ortogonalidad]}} Las funciones propias que corresponden a valores propios distintos
 de un problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2} son \emph{ortogonales} con respecto de la función de ponderación $r(x)$ en $[a, b]$. Vale decir si $\phi$ y $\psi$ son autofunciones asociadas a los autovalores $\lambda$ y $\mu$ con $\lambda\neq \mu$ entonces
 
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:ortogo}
  \int_{a}^{b} \phi(x) \psi(x) r(x) d x=0.
 \end{empheq} 
-\end{block}
+\end{teorema}
 
  
-
-
-{Ortogonalidad}
-
-
+ 
 \textbf{Demostración.} Tenemos
 
 $$L[\phi]=-\lambda r \phi\quad\hbox{ y }\quad L[\psi]=-\mu r \psi.$$
@@ -978,9 +916,6 @@ $$
 \qed
  
 
-
-{Ortogonalidad, Ejemplo}
-
 \textbf{Ejercicio} Demostrar que el problema
 $$y^{\prime \prime}+\lambda y=0 ; \quad y(0)=y(\pi)=0$$
 
@@ -991,22 +926,20 @@ tiene autovalores  $\lambda_{n}=n^{2}, n=1,2$, $3, \ldots$, con funciones propia
  
  \subsection{Desarrollo en serie de autofunciones}
  
- {Infinitud de autovalores}
+ 
  
 
- \begin{block}{Teorema} Los valores propios del problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2} forman una sucesión numerable y creciente
+ \begin{teorema}{teo:->inf}{} Los valores propios del problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2} forman una sucesión numerable y creciente
 $$\lambda_{1}<\lambda_{2}<\lambda_{3}<\cdots$$
 con:
 $$\lim _{n \rightarrow \infty} \lambda_{n}=+\infty.$$
-\end{block}
+\end{teorema}
 
 
 
 \textbf{Demostración}. Será omitida, ver por ejemplo Garrett Birkhoff y Gian-Carlo Rota. Ordinary Differential Equations
 
-
-
- {Desarrollos en serie}
+ 
  Si $\lambda_{1}<\lambda_{2}<\lambda_{3}<\cdots$ son valores propios del problema \eqref{eq:sl_main2} con funciones propias  $\left\{\phi_{n}(x)\right\}_{n=1}^{\infty}$,  ortonormales respecto  a $r(x)$ en $[a, b]$:
 
  $$\int_{a}^{b} \phi_{n}(x) \phi_{m}(x) r(x) d x= \begin{cases}0, & m \neq n, \\ 1, & m=n,\end{cases}.$$ 
@@ -1023,9 +956,7 @@ donde
 c_{n}=\int_{a}^{b} f(x) \phi_{n}(x) r(x) d x.
 \end{empheq}
 
-
-
- {Ortonormalización}
+ 
 
 
  \textbf{Observación} Podemos usar las funciones propias para formar un \emph{sistema ortonormal} con respecto de $r(x)$,  normalizando a cada función propia $\phi_{n}$, de modo que
@@ -1045,19 +976,17 @@ $ funciones propias ortogonles respecto $r(x) \equiv 1$ en $[0, \pi]$.
 \end{itemize}
 
 
-
- {Desarrollos en serie}
  
- \begin{block}{Teorema}  Sea $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ un sistema ortonormal de funciones propias para el problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2}, entonces $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ es completo en el conjunto de funciones continuas de cuadrado integrable en $[a,b]$, es decir si $f$ es continua:
+ 
+ \begin{teorema}{teo:completitud}  Sea $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ un sistema ortonormal de funciones propias para el problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2}, entonces $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ es completo en el conjunto de funciones continuas de cuadrado integrable en $[a,b]$, es decir si $f$ es continua:
   $$f(x)=\sum_{n=1}^{\infty} c_{n} \phi_{n}(x), \quad a \leq x \leq b,$$
   donde la convergencia de la serie es en media. Si además $f^{\prime}$ continua por partes  en $[a, b]$ y satisface las condiciones en la frontera la serie converge uniformemente en $[a, b]$.
- \end{block}
+ \end{teorema}
  
  
  \textbf{Demostración.}  Será omitida, ver por ejemplo Garrett Birkhoff y Gian-Carlo Rota. Ordinary Differential Equations
  
-
- {Desarrollos en serie}
+ 
 Expresar
 $$\small
 f(x)= \begin{cases}2 x / \pi, & 0 \leq x \leq \pi / 2 \\ 1, & \pi / 2 \leq x \leq \pi\end{cases}
@@ -1073,10 +1002,7 @@ c_{n}=& \int_{0}^{\pi} f(x) \sqrt{2 / \pi} \operatorname{sen}\left(\frac{2 n-1}{
 &-\left.\left(\frac{2}{\pi}\right)^{1 / 2}\left[\frac{2}{2 n-1} \cos \left(\frac{2 n-1}{2} x\right)\right]\right|_{\pi / 2} ^{\pi},
 \end{aligned}
 $$
- 
-
- {Desarrollos en serie}
- 
+  
  Entonces 
 $$c_{n}=\frac{2^{7 / 2}}{\pi^{3 / 2}(2 n-1)^{2}} \operatorname{sen}\left(\frac{n \pi}{2}-\frac{\pi}{4}\right),\quad n=1,2,3, \ldots .$$
 Por lo tanto,
@@ -1089,25 +1015,22 @@ $$
  Como $f(0)=0$ y $f^{\prime}(\pi)=0, f$ satisface las condiciones en la frontera. Además, $f$ es continua y $f^{\prime}$ es continua por partes en $[0, \pi]$. Por lo tanto, la serie en converge uniformemente a $f$ en $[0, \pi]$.
 
 
- 
+  
 
- {Otro resultado de convergencia}
-
-\begin{block}{Teorema} Sea $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ una sucesión ortonormal de funciones propias para el problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2}. Sean $f$ y $f^{\prime}$ continuas por partes en $[a, b]$. Entonces, para cualquier $x$ en $(a, b)$,
+\begin{teorema}{teo:completitud2} Sea $\left\{\phi_{n}\right\}_{n=1}^{\infty}$ una sucesión ortonormal de funciones propias para el problema regular de Sturm-Liouville con valores en la frontera \eqref{eq:sl_main2}. Sean $f$ y $f^{\prime}$ continuas por partes en $[a, b]$. Entonces, para cualquier $x$ en $(a, b)$,
 \begin{empheq}[box=\tcbhighmath]{equation}\label{eq:conv_dis}
 \sum_{n=1}^{\infty} c_{n} \phi_{n}(x)=\frac{1}{2}\left[f\left(x^{+}\right)+f\left(x^{-}\right)\right],
 \end{empheq}
 donde las $c_{n}$ están dadas por la fórmula \eqref{eq:coef_fou}. 
-\end{block}
+\end{teorema}
  
 
 
 \section{Aplicaciones}
 
 \subsection{Vibraciones longitudinales de barras}
- 
-{Ecuación vibraciones longitudinales}
 
+Este ejemplo fu tomado de \cite{C.HenryEdwards482}.
 
 \emph{Bibliografía}
 Charles Henry Edwards y David E. Penney. \emph{Ecuaciones diferenciales y problemas con valores en la frontera}.
@@ -1115,12 +1038,12 @@ Charles Henry Edwards y David E. Penney. \emph{Ecuaciones diferenciales y proble
 
 \begin{itemize}
     \item Cuerda elástica situada en el intervalo $[0,L]$ del eje $x$ cuando no está estirada con área de sección transversal $A$ y densidad $\delta$.
-    \itemSolo hay vibraciones longitudinales de la cuerda. $u(x, t):$  desplazamiento de la sección transversal  en el tiempo $t$, cuya posición es $x$ cuando la barra no está estirada. La posición en el tiempo $t$ de la sección transversal $x$ es $x+u(x, t)$.
+    \item Solo hay vibraciones longitudinales de la cuerda. $u(x, t):$  desplazamiento de la sección transversal  en el tiempo $t$, cuya posición es $x$ cuando la barra no está estirada. La posición en el tiempo $t$ de la sección transversal $x$ es $x+u(x, t)$.
 \end{itemize}
 
 
 \begin{center}
-\includegraphics[scale=.5]{barra.png}
+\includegraphics[scale=.5]{imagenes/barra.png}
 \end{center}
 
 
@@ -1159,7 +1082,7 @@ $$
 Supongamos una cuerda  donde su extremo $x=0$ está fijo y una masa $m$ está adherida a su otro extremo que es libre. 
 
 \begin{center}
-\includegraphics[scale=.4]{barra2.png}
+\includegraphics[scale=.4]{imagenes/barra2.png}
 \end{center}
 
 
@@ -1265,7 +1188,7 @@ $$
  
 {Ejemplo vibraciones longitudinales}
 \begin{center}
-\includegraphics[scale=.8]{barra3.png}
+\includegraphics[scale=.8]{imagenes/barra3.png}
 \end{center}
 
  
@@ -1402,11 +1325,9 @@ $$
 
  
   
-{Condiciones singulares en la frontera}
+ 
 
-
-
-\begin{block}{Lema} Cualquiera de las  condiciones siguientes garantizan la ecuación \eqref{eq:cond_suf} en $a$:
+\begin{lema}{lem:fron_sing} Cualquiera de las  condiciones siguientes garantizan la ecuación \eqref{eq:cond_suf} en $a$:
     \begin{enumerate}
         \item $\lim _{x \rightarrow a^{+}} p(x)=p(a)$ existe y $u, v$ satisfacen la condición en la frontera
             \begin{equation}\label{eq:con_cont_1}
@@ -1422,20 +1343,13 @@ $$
                 \lim _{x \rightarrow a^{+}} \sqrt{p(x)} y(x)=0 \hbox{ y }\lim _{x \rightarrow a^{+}} \sqrt{p(x)} y^{\prime}(x)=0
             \end{equation}
        \end{enumerate}
-\end{block}
+\end{lema}
 
 
 
 
 
- 
-  
-{Condiciones singulares en la frontera}
-
-
-\textbf{Demostración.}
-
-(1) Sin pérdida de generalidad, suponemos que $a_{1} \neq 0$, Entonces,  implica que $u(a)=-\left(a_{2} / a_{1}\right) u^{\prime}(a)$ y $v(a)=-\left(a_{2} / a_{1}\right) v^{\prime}(a)$. Al sustituir
+ \begin{proof} (1) Sin pérdida de generalidad, suponemos que $a_{1} \neq 0$, Entonces,  implica que $u(a)=-\left(a_{2} / a_{1}\right) u^{\prime}(a)$ y $v(a)=-\left(a_{2} / a_{1}\right) v^{\prime}(a)$. Al sustituir
 
 $$
 \begin{aligned}
@@ -1451,10 +1365,6 @@ $$
 
 
 
- 
-  
-{Condiciones singulares en la frontera}
-
 (3) Si $u$ y $v$ satisfacen \eqref{eq:con_cont_3}, entonces 
 $$
 \begin{aligned}
@@ -1466,13 +1376,12 @@ $$
 Por lo tanto, se cumple la ecuación \eqref{eq:cond_suf}.
 
 
-Se puede establecer  similarmente las mismas afirmaciones para el punto $b$ 
-
+Se puede establecer  similarmente las mismas afirmaciones para el punto $b$.
+\end{proof}
  
 
  \subsection{ Ecuación de Bessel}
- 
-{Ejemplo: Ecuación de Bessel}
+  
  
 Un problema singular de Sturm-Liouville con valores en la frontera típico asociado a la ecuación de Bessel de orden $\nu$ es
 
@@ -1523,16 +1432,13 @@ $$
  
  
  
-\begin{block}{Teorema} 
+\begin{teorema}{teo:ceros_bess} 
 La función de Bessel $J_{\nu}$ tiene una sucesión creciente de ceros reales:
 $$
 0<\alpha_{\nu 1}<\alpha_{\nu 2}<\alpha_{\nu 3}<\cdots
 $$
-\end{block}
+\end{teorema}
 
- 
-
-{Ejemplo: Ecuación de Bessel}
 
 Por lo tanto, 
 
@@ -1697,8 +1603,8 @@ Viene gobernada por la ecuación de \emph{ondas bidimensional}
 \textbf{Suposiciones.}
 \begin{itemize}
  \item No actúa otra fuerza más que la tensión de la membrana.
- \itemEl material de esta membrana es uniforme.
- \itemLa dirección de desplazamientos de un punto sobre la membrana es perpendiculares al plano que contiene al aro de sujeción. 
+ \item El material de esta membrana es uniforme.
+ \item La dirección de desplazamientos de un punto sobre la membrana es perpendiculares al plano que contiene al aro de sujeción. 
  \item El aro de sujeción  se supone de radio $1$ y centro en $(0,0)$ y está contenido en el plano $x,y$. 
  \item $B$ denota la bola de centro $(0,0)$ y radio $1$.  
  
@@ -1764,7 +1670,7 @@ Esto implica  $T''/T$  y  $\Delta v/v$ son constantes. Existe $\lambda$ tal que
  
 {Positividad del autovalor}
 
-\begin{block}{Ejercicio}
+\begin{ejercicio}{}
 a) Sean $u,v\in C^1(\Omega)\cap C(\overline{\Omega})$.  Aplicar ejercicio de identidad de Green a) con $M=uv$ y $N=0$ y deducir la  \emph{fórmula de integración por partes}
  \[
   \iint_{\Omega}uv_xdxdy=-\iint_{\Omega}u_xvdxdy+\oint uvn_xds,
@@ -1777,15 +1683,11 @@ b) Suponer $v\not\equiv 0$. Multiplicar la ecuación \eqref{eq:eq_xy} por  $v$ l
 \]
 
 
-\end{block}
+\end{ejercicio}
 
  
   
  
- 
-{condiciones de contorno  }
-
-
 
 Las condiciones de contorno  
 
@@ -1797,7 +1699,7 @@ La condición inicial \eqref{eq:cod_ini_2} implica
 \[
  u_t(x,y,0)=v(x,y)T'(0)=0\Rightarrow\tikzmarkin<3->{b1} T'(0)=0\hbox{ en } \partial B\tikzmarkend{b1}
 \]
-\onslide<4->
+
 No es posible satisfacer las condiciones iniciales  con la función propuesta, pues
 \[
  u(x,y,0)=v(x,y)T(0)=f(x,y).
@@ -1961,14 +1863,9 @@ $n=0,k=0$ & $n=0,k=1$ & $n=1,k=1$
 \end{tabular}
 
     
-    
-    
+     
 
- 
- 
-{Ortogonalidad} 
-
-\begin{block}{Ejercicio} 
+\begin{ejercicio}{} 
 La familia de funciones $\{v_{1nk}\}_{n,k=0}^\infty\cup \{v_{2nk}\}_{n,k=0}^\infty$ es ortogonal en $B$ con ponderación $r$. Es decir si $(n,k)\neq(n',k')$
 \begin{empheq}[box=\tcbhighmath]{equation}
  \int_0^{2\pi}\int_0^1\cos(n\theta)\cos(n'\theta)J_n(\omega_kr) J_{n'}(\omega_{k'}r)r d\theta dr=0 
@@ -1979,16 +1876,13 @@ y $\forall (n,k),(n',k')$
 \end{empheq}
 
  
-\end{block}
+\end{ejercicio}
 
 
    
    
-   
-{Desarrollo en serie, completitud} 
 
-\begin{block}{Teorema}
-
+\begin{teorema}{teo:complet_bessel}
 La familia de funciones $\{v_{1nk}\}_{n,k=0}^\infty\cup \{v_{2nk}\}_{n,k=0}^\infty$ es un sistema  ortogonal completo  en $B$ con ponderación $r$. Si $f:B\to\rr$ es una función continua de cuadrado integrable  entonces
 
 \begin{empheq}[box=\tcbhighmath]{equation}
@@ -2003,7 +1897,7 @@ Con convergencia en media. Los coeficientes vienen dados por
 \end{empheq}
 
  
-\end{block}
+\end{teorema}
 
    
    
@@ -2021,4 +1915,6 @@ Esta $u$ será solución pues es una suma de soluciones, satisface que $u=0$ en 
 $$f(x,y)=u(x,y,0),$$
 y el Teorema anterior nos dice como elegir $a_{nk},b_{nk}$ para conseguir esto. 
    
- 
+\section{Lecturas recomendadas}
+
+\cite{R.KentNagle1305}

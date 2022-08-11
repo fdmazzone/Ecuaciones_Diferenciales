@@ -11,10 +11,18 @@
 %\usepackage{pstricks-add,pst-math,pst-xkey,pst-pdf,auto-pst-pdf}
 \usepackage{pst-all} %pstricks graficos
 \let\clipbox\relax
-% \usepackage{pgf,tikz,pgfplots} %tikz graficos
+\usepackage{tikz} %tikz graficos
 % \pgfplotsset{compat=1.15}
-% \usetikzlibrary{arrows}
+\usepackage[customcolors]{hf-tikz}
+%\usetikzlibrary{arrows}
+%\usetikzlibrary{decorations}
+%\usetikzlibrary{decorations.pathmorphing}
 
+% library for star node
+%\usetikzlibrary{shapes.geometric}
+
+% library for computation of coordinates
+%\usetikzlibrary{calc}
 
 % Engine-specific settings
 % Detect pdftex/xetex/luatex, and load appropriate font packages.
@@ -194,22 +202,22 @@
 
 
 
-% \include{prologo}
-% \include{Uni1}
-% \include{Uni2}
-% \include{Uni3}
-% \include{Uni4}
-% \include{Uni5}
-% \include{Uni6}
+%\include{prologo}
+\include{Uni1}
+\include{Uni2}
+\include{Uni3}
+\include{Uni4}
+\include{Uni5}
+\include{Uni6}
  \include{Uni6b}
-% \include{Uni7}
-% \include{Uni8}
-% \include{Uni9}
-%  \include{Uni10}  %%   (Hay que convertir todos los bloques sage a pytho)
+\include{Uni7}
+\include{Uni8}
+\include{Uni9}
+ \include{Uni10}  %%   (Hay que convertir todos los bloques sage a pytho)
 %\include{Apendice0}
+ 
+  \bibliographystyle{plain}
+  \bibliography{Grupos_Simetrias,biblio,diferenciales_ecuaciones}
 
-
-
-
-
+\printindex
 \end{document}
