@@ -45,6 +45,153 @@ se tranforma en un sistema mediante $ x_{1}=x, x_{2}=x'$
 \]
 \end{ejemplo}
 
+\section{Ejemplos}
+
+
+ \subsection{Resortes acoplados}
+ 
+
+\includegraphics[scale=.5]{/home/fernando/fer/Docencia/grado/EcuacionesDiferenciales/Materiales/Teoria_Basica/imagenes/osci_aco.png}
+
+
+
+\begin{equation}
+\begin{split} 
+             m_1x''(t)&=-k_1x +k_3(y-x) \\
+             m_2y''(t)&=-k_3(y-x)-k_2y 
+\end{split}\tag{SL}
+\end{equation}
+ 
+ 
+Convertimos en un sistema de primer orden.
+
+$$x_1=x, x_2=x', x_3=y \text{ y } x_4=y'.$$
+
+\begin{equation} 
+\left\{
+\begin{split} 
+            x_1'&=x_2\\
+            x_2'&=-\frac{k_1}{m_1}x_1 +\frac{k_3}{m_1}(x_3-x_1) \\
+            x_3'&=x_4\\
+            x_4'&=-\frac{k_3}{m_2}(x_3-x_1)-\frac{k_2}{m_2}x_3 
+\end{split} 
+\right.
+\end{equation}
+
+\subsection{Modelos Compartimentados}
+ 
+ 
+ \begin{enumerate}
+  \item Se representan gráficamente como un conjunto de cajas \emph{compartimentos} conectados por flechas. 
+  \item Puede haber flechas que nacen o  apuntan a un espacio vacío.
+ \item Una sustancia viaja por las cajas siguiendo estas flechas. Si la flecha termina en un espacio vacío indica que la sustancia abandona el conjunto de compartimentos. Si la flecha viene del vacío quiere decir que la sustancia ingresa del exterior.
+ \item  En cada momento $t$ la sustacia  en cierta caja abandona esta caja siguiendo la dirección de las flechas a una tasa dada.
+ \item Si la tasa es proporcional a la cantidad de sustancia que hay en las cajas el \emph{modelo es lineal}.
+ \end{enumerate}
+ 
+
+
+ \ctikzfig{/home/fernando/fer/Docencia/grado/EcuacionesDiferenciales/Materiales/presentaciones/compartimentos}
+ 
+ \begin{empheq}[left=\empheqlbrace,]{align*}
+ x_1'(t)&=-(k_{12}+k_{13})x_1(t)+k_{31}x_3(t)\\
+ x_2'(t)&=-k_{23}x_2(t)+k_{12}x_1(t)+q(t)\\
+ x'_3(t)&= (k_{13}+k_{23})x_1(t)-(k_{31}+k_{30})x_3(t)
+ \label{eq:sist_comp}
+   \end{empheq}
+
+\subsection{Un estudio de caso: plomo en sangre}
+   
+\begin{enumerate}
+     \item El plomo es una sustancia tóxica.
+     \item Ingresa al torrente sanguíneo desde el aire, agua y  comida.
+     \item Se deposita en tejidos, especialmente huesos.
+     \item Parte del plomo es eliminado por los riñones.
+     \item Otra parte es eliminado con las uñas, pelo y el sudor.
+\end{enumerate}
+
+
+
+
+ \begin{empheq}[left=\empheqlbrace,]{align*}
+ x_1'(t)&=-(k_{01}+k_{21}+k_{31})x_1(t)+k_{13}x_3(t)+k_{12}x_2(t)+I\\
+ x_2'(t)&=-(k_{12}+k_{02})x_2(t)+k_{21}x_1(t)\\
+ x'_3(t)&= -k_{13}x_3(t)+k_{31}x_1(t)
+   \end{empheq}
+
+\ctikzfig{/home/fernando/fer/Docencia/grado/EcuacionesDiferenciales/Materiales/presentaciones/plomo}
+
+ 
+\vspace{-20cm}
+ 
+
+
+ 
+ Michael Rabinowitz, George Wetherill, and Joel Kopple.  Estudio controlado de absorción y secreción de plomo del sur de California. Estimaron  $I$ en microgramos/día y las tasas  $k_{j i}$ in 1/día. Los resultados:
+ 
+$$
+\begin{aligned}
+I_1 &=49.3 ; \quad k_{01}=0.0211, \quad k_{21}=0.0111, \quad k_{31}=0.0039 \\
+k_{02} &=0.0162, \quad k_{12}=0.0124, \quad k_{13}=0.000035
+\end{aligned}
+$$
+
+Resolvemos numéricamente el modelo en un periodo de 800 días con dos condiciones iniciales diferentes
+\[
+ x(0)=(0,0,0),\quad x(0)=(1800,800,1000).
+\]
+ 
+
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+from scipy.integrate import odeint 
+import numpy as np
+import matplotlib.pyplot as plt
+\end{sympyblock}
+
+
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+def ecuacion(x,t,k,I):
+    x1,x2,x3=x
+    k01,k21,k31,k02,k12,k13=k
+    x1prima=-(k01+k21+k31)*x1+k13*x3+k12*x2+I
+    x2prima=-(k12+k02)*x2+k21*x1
+    x3prima= -k13*x3+k31*x1
+    return x1prima, x2prima, x3prima 
+\end{sympyblock}
+
+ 
+
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+I=49.3
+k=0.0211,0.0111,0.0039,.0162,0.0124,0.000035 
+t=np.linspace(0,800,101)
+x0=[0,0,0]
+x=odeint(ecuacion,x0,t,args=(k,I))
+fig, ax = plt.subplots(1,1)
+ax.plot(t,x[:,0],marker='o')
+ax.plot(t,x[:,1],marker='^')
+ax.plot(t,x[:,2],marker='s')
+\end{sympyblock}
+ 
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+x0=[1800,800,1000]
+x=odeint(ecuacion,x0,t,args=(k,I))
+ax.plot(t,x[:,0],marker='>')
+ax.plot(t,x[:,1],marker='<')
+ax.plot(t,x[:,2],marker='+')
+ax.legend(('Sangre1','Tejidos1','Huesos1',\
+    'Sangre2','Tejidos2','Huesos2'))
+plt.savefig('plomo2.pdf', bbox_inches='tight')
+\end{sympyblock}
+
+\begin{center}
+\includegraphics[scale=.5]{plomo2.pdf}
+\end{center}
+ 
+
+ La conclusión del análisis es que sin importar la condición inicial el plomo en sangre se estaliliza en un valor de 1800$\mu$g y en tejidos 800$\mu$g. El plomo en huesos parece crecer a infinito.
+
+
 
 
 
@@ -1122,7 +1269,7 @@ Recordemos que las variables originales están relacionadas con $y$ por medio de
 \end{center}
 \end{figure}
 
-\subsection{Caso $\delta=0$}  La matríz es singular vanuos a  dejar como  ejercicio el estudio de este caso. Observar que el nucle de la matriz es no trivial y si $(x_1^0,x_2^0)\in\operatorname{Ker}A$ entonces $x(t)\equiv(x_1^0,x_2^0)$ es solución estacionaria. En este caso hay más equilibrios que el $(0,0)$. La figura \ref{fig:lineadeg} representa un retrato de fases de un sistema de estas características.
+\subsection{Caso $\delta=0$}  La matríz es singular vanuos a  dejar como  ejercicio el estudio de este caso. Observar que el nucleo de la matriz es no trivial y si $(x_1^0,x_2^0)\in\operatorname{Ker}A$ entonces $x(t)\equiv(x_1^0,x_2^0)$ es solución estacionaria. En este caso hay más equilibrios que el $(0,0)$. La figura \ref{fig:lineadeg} representa un retrato de fases de un sistema de estas características.
 
 
 \begin{figure}[h]
@@ -1768,6 +1915,235 @@ La matriz que resulta de la multiplicación de matrices del último término es 
 
 
 
+\begin{ejemplo}{} \textbf{Osciladores acoplados}
+ 
+$$
+\begin{bmatrix}
+\dot{x}_1\\
+\dot{x}_2\\
+\dot{x}_3\\
+\dot{x}_4\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+ 0 & 1 & 0 & 0\\
+ -(\frac{k_1}{m_1}+\frac{k_3}{m_1}) & 0 & \frac{k_3}{m_1} & 0\\
+ 0&0&0&1\\
+  \frac{k_3}{m_2} & 0 &  -(\frac{k_3}{m_2}+\frac{k_2}{m_2}) & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+{x}_1\\
+{x}_2\\
+{x}_3\\
+{x}_4\\
+\end{bmatrix}
+$$ 
+ 
+Usamos todos los parámetros iguales a 1.
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+k1,k2,k3,m1,m2=symbols('k1,k2,k3,m1,m2',\
+    positive=True)
+A=Matrix([[0,1,0,0],\
+          [-(k1/m1+k3/m1), 0, k3/m1, 0],\
+          [0,0,0,1],[k3/m2, 0, -(k3/m2+k2/m2),0] ])
+A=A.subs({k1:1,k2:1,k3:1,m1:1,m2:1})
+P,D=A.jordan_form()
+\end{sympyblock}
+ 
+ $$P=\sympy{P},\quad D=\sympy{D}.$$
+ 
+ Podemos considerar los autovalores $i$ y $\sqrt{3}i$. Tenemos $\mu_1=0$, $\nu_1=1$, $\mu_2=0$, $\nu_2=\sqrt{3}$. Además
+$$
+Q_1=\begin{pmatrix}
+        0\\
+        1  \\
+        0\\
+        1\\
+   \end{pmatrix},\quad
+R_1=\begin{pmatrix}
+        -1\\
+        0 \\
+        -1\\
+        0\\
+   \end{pmatrix},\quad
+Q_2=\begin{pmatrix}
+        0\\
+        -1  \\
+        0\\
+        1\\
+   \end{pmatrix},\quad
+R_2=\begin{pmatrix}
+        \frac{\sqrt{3}}{3}\\
+        0 \\
+        -\frac{\sqrt{3}}{3}\\
+        0\\
+   \end{pmatrix},
+$$ 
+ Obtenemos que la solución general se escribe:
+
+$$
+\varphi(t)=c_1\begin{pmatrix}
+        \operatorname{sen} t\\
+        \cos  t \\
+        \operatorname{sen} t\\
+        \cos  t\\
+   \end{pmatrix}
+   +
+c_2\begin{pmatrix}
+        -\cos  t \\
+        \operatorname{sen} t\\
+         -\cos  t\\
+         \operatorname{sen} t\\
+     \end{pmatrix}+
+c_3\begin{pmatrix}
+        -\operatorname{sen}\frac{\sqrt{3}}{3}t\\
+        -\cos \frac{\sqrt{3}}{3} t \\
+        \operatorname{sen}\frac{\sqrt{3}}{3} t\\
+        \cos \frac{\sqrt{3}}{3} t\\
+   \end{pmatrix}
+   +
+c_4\begin{pmatrix}
+        \cos \frac{\sqrt{3}}{3} t \\
+        -\operatorname{sen}\frac{\sqrt{3}}{3} t\\
+         -\cos \frac{\sqrt{3}}{3} t\\
+         \operatorname{sen}\frac{\sqrt{3}}{3} t\\
+     \end{pmatrix}
+$$
+ 
+
+Si tomamos $c_3=c_4=0$ la solución  resultará $2\pi$ periódica. 
+Observar que en este caso $x=y$ los desplazamientos son iguales.
+
+Si tomamos $c_1=c_2=0$ la solución  resultará $2\pi/\sqrt{3}$ 
+periódica. Observar que en este caso $x=-y$ los desplazamientos
+son opuestos.
+
+La superposición de dos funciones oscilatorias con frecuencias cuyo 
+cociente es un número irracional no resulta periódica (para una 
+demostración ver apuntes Ecuaciones Diferenciales 1913). Entonces
+$c_3=c_4=0$, $c_1=c_2=0$ son las únicas elecciones que nos dan una 
+solución periódica. Se llaman \emph{modos normales de vibración}. 
+ 
+\end{ejemplo}
+
+\begin{ejemplo}{}\textbf{Plomo en sangre}
+  
+ \begin{quote}
+<<Este mal condicionamiento hace que sea muy difícil desarrollar un 
+algoritmo numérico robusto para la forma normal de Jordan, 
+ya que el resultado depende críticamente de si se considera 
+que dos valores propios son iguales. 
+Por esta razón, la forma normal de Jordan suele evitarse 
+en el análisis numérico....>>
+ \end{quote}
+ 
+  \begin{flushright}
+   \href{https://en.wikipedia.org/wiki/Jordan_normal_form}{Wikipedia}
+  \end{flushright}
+
+\emph{Numpy no implementa Formas de Jordan. 
+Con flotantes Sympy tiene dificultades con la función 
+\texttt{jordan\_form} }
+  
+ 
+ 
+ 
+Vamos a resolver el problema de plomo en sangre con $x(0)=(0,0,0)$.
+
+Usaremos la función  \texttt{diagonalize} 
+  
+
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+I=49.3
+k01,k21,k31,k02,k12,k13=0.0211,0.0111,0.0039,\
+    .0162,0.0124,0.000035 
+A=Matrix([[ -(k01+k21+k31), k12, k13],\
+    [k21,-(k12+k02), 0],\
+    [k31,0,-k13]])
+P,D=A.diagonalize()
+\end{sympyblock}
+
+\begin{sympycode}
+P=P.applyfunc(lambda x: N(x,4))
+D=D.applyfunc(lambda x: N(x,4))
+\end{sympycode}
+
+
+
+ $$\small P=\sympy{P},$$
+ 
+ $$\small D=\sympy{D}.$$
+ 
+ 
+ 
+Escribimos la fórmula para el problema no homogéneo.
+
+\begin{sympyblock}[][numbers=left,frame=single,framesep=5mm]
+t,s=symbols('t,s',real=True)
+G=P*exp(D*t)*P.inv()
+Ginv=P*exp(-D*s)*P.inv()
+B=Matrix([[I],[0],[0]])
+x=G*(Integral(Ginv*B,(s,0,t)).doit()).simplify()
+\end{sympyblock}
+ 
+
+
+
+    \begin{eqnarray*}
+       x_1(t)=& \tikz[baseline]{
+                                \node[fill=yellow, rectangle,anchor=base] (A)
+                      {\textcolor{black}%
+                      {$8.656 \cdot 10^{-14} e^{0.0247 t}$}}
+                      }&\text{(Errores redondeo?)}
+                      \\
+              &
+              \tikz[baseline]{
+                                \node[fill=yellow, rectangle,anchor=base] (A)
+                      {\textcolor{black}%
+                      {$+ 1800.0$}}}& \text{(cantidad límite)} \\
+              &- 718.2 e^{- 0.0447 t}&\\ 
+              &+ 2.842 \cdot 10^{-14} e^{- 0.0447 t}&\\
+              &- 1.362 \cdot 10^{-13} e^{- 0.0247 t}&\\
+              &- 856.8 e^{- 0.02 t} &\\
+              &+ 4.263 \cdot 10^{-14} e^{- 0.0199 t}& \\
+              &- 224.9 e^{- 3.063 \cdot 10^{-5} t}&\\
+    \end{eqnarray*}
+    
+
+  
+ 
+
+\emph{Conclusión:} La concentración límite en sangre es de 1800$\mu$g.
+
+
+ 
+
+    \begin{eqnarray*}
+       x_2(t)=&\tikz[baseline]{
+                                \node[fill=yellow, rectangle,anchor=base] (A)
+                      {\textcolor{black}%
+                      {$1.137 \cdot 10^{-13} e^{0.0247 t}$}}
+                      }&\text{(Errores redondeo?)}
+                \\
+               & 
+               \tikz[baseline]{
+                                \node[fill=yellow, rectangle,anchor=base] (A)
+                      {\textcolor{black}%
+                      {$+ 701.8$}}}& \text{(cantidad límite)} \\               
+               & + 496.1 e^{- 0.0447 t}&\\
+               &- 1.421 \cdot 10^{-14} e^{- 0.0447 t}&\\
+               &+ 1.137 \cdot 10^{-13} e^{- 0.0247 t}&\\
+               &- 1111.0 e^{- 0.02 t}&\\
+               &+ 7.105 \cdot 10^{-14} e^{- 0.01996 t}&\\
+               &- 87.37 e^{- 3.0636 \cdot 10^{-5} t}&
+    \end{eqnarray*}
+ 
+\emph{Conclusión:} La concentración límite en tejidos es de 701.8$\mu$g.
+  
+ 
+
+
+\end{ejemplo}
 
 
 
@@ -1844,6 +2220,9 @@ b) Demostrar la afirmación del inciso a).
  \end{ejercicio}
 
 
+ 
+ 
+ 
  
  
 
