@@ -209,16 +209,47 @@ print('\\begin{align*}')
 for n in range(1,10):
     print(r'P_'+str(n)+'(x)&='+latex(Legendre(n)) + r'\\')
 print('\\end{align*}')
-=>PYTHONTEX#sympy#default#default#25#block####Uni8.tex#652#
+=>PYTHONTEX#sympy#default#default#25#block####Uni8.tex#145#
+from scipy.integrate import odeint
+import numpy as np
+import matplotlib.pyplot as plt
+=>PYTHONTEX#sympy#default#default#26#block####Uni8.tex#152#
+def ecuacion(x,t,k,I):
+    x1,x2,x3=x
+    k01,k21,k31,k02,k12,k13=k
+    x1prima=-(k01+k21+k31)*x1+k13*x3+k12*x2+I
+    x2prima=-(k12+k02)*x2+k21*x1
+    x3prima= -k13*x3+k31*x1
+    return x1prima, x2prima, x3prima
+=>PYTHONTEX#sympy#default#default#27#block####Uni8.tex#164#
+I=49.3
+k=0.0211,0.0111,0.0039,.0162,0.0124,0.000035
+t=np.linspace(0,800,101)
+x0=[0,0,0]
+x=odeint(ecuacion,x0,t,args=(k,I))
+fig, ax = plt.subplots(1,1)
+ax.plot(t,x[:,0],marker='o')
+ax.plot(t,x[:,1],marker='^')
+ax.plot(t,x[:,2],marker='s')
+=>PYTHONTEX#sympy#default#default#28#block####Uni8.tex#176#
+x0=[1800,800,1000]
+x=odeint(ecuacion,x0,t,args=(k,I))
+ax.plot(t,x[:,0],marker='>')
+ax.plot(t,x[:,1],marker='<')
+ax.plot(t,x[:,2],marker='+')
+ax.legend(('Sangre1','Tejidos1','Huesos1',\
+    'Sangre2','Tejidos2','Huesos2'))
+plt.savefig('plomo2.pdf', bbox_inches='tight')
+=>PYTHONTEX#sympy#default#default#29#block####Uni8.tex#799#
 from sympy import *
 omega,t=symbols('omega,t')
 A=Matrix([[0, 1],[-omega**2,0]])
 G=t**0*A**0
 for j in range(1,10):
     G=G+t**j*A**j/factorial(j)
-=>PYTHONTEX#sympy#default#default#26#i####Uni8.tex#663#
+=>PYTHONTEX#sympy#default#default#30#i####Uni8.tex#810#
 G
-=>PYTHONTEX#sympy#default#defaultverb#0#verbatim####Uni8.tex#1014#
+=>PYTHONTEX#sympy#default#defaultverb#0#verbatim####Uni8.tex#1161#
 from sympy import *
 t=symbols('t')
 H=Matrix([[1, 0],[0,1]])
@@ -233,108 +264,108 @@ for x0 in X:
     P.append(plot_parametric(Phi[0],Phi[1],(t,0,2*pi),\
         show=False,aspect_ratio=(1,1))[0])
 P.show()
-=>PYTHONTEX#sympy#default#default#27#block####Uni8.tex#1196#
+=>PYTHONTEX#sympy#default#default#31#block####Uni8.tex#1343#
 A=Matrix([[-2, -1],[0,-1]])
 delta=A.det()
 tau=A.trace()
 delta>0,delta<tau**2/4
-=>PYTHONTEX#sympy#default#default#28#i####Uni8.tex#1202#
+=>PYTHONTEX#sympy#default#default#32#i####Uni8.tex#1349#
 delta>0
-=>PYTHONTEX#sympy#default#default#29#i####Uni8.tex#1202#
+=>PYTHONTEX#sympy#default#default#33#i####Uni8.tex#1349#
 delta<tau**2/4
-=>PYTHONTEX#sympy#default#default#30#block####Uni8.tex#1203#
+=>PYTHONTEX#sympy#default#default#34#block####Uni8.tex#1350#
 P,D=A.diagonalize()
-=>PYTHONTEX#sympy#default#default#31#i####Uni8.tex#1208#
+=>PYTHONTEX#sympy#default#default#35#i####Uni8.tex#1355#
 P
-=>PYTHONTEX#sympy#default#default#32#i####Uni8.tex#1208#
+=>PYTHONTEX#sympy#default#default#36#i####Uni8.tex#1355#
 D
-=>PYTHONTEX#sympy#default#default#33#block####Uni8.tex#1211#
+=>PYTHONTEX#sympy#default#default#37#block####Uni8.tex#1358#
 tau<0
-=>PYTHONTEX#sympy#default#default#34#i####Uni8.tex#1214#
+=>PYTHONTEX#sympy#default#default#38#i####Uni8.tex#1361#
 tau<0
-=>PYTHONTEX#sympy#default#default#35#block####Uni8.tex#1392#
+=>PYTHONTEX#sympy#default#default#39#block####Uni8.tex#1539#
 A=Matrix([[1, 4], [-2, -3]])
 delta=A.det()
 tau=A.trace()
 delta>0,delta>tau**2/4
-=>PYTHONTEX#sympy#default#default#36#i####Uni8.tex#1399#
+=>PYTHONTEX#sympy#default#default#40#i####Uni8.tex#1546#
 delta>0
-=>PYTHONTEX#sympy#default#default#37#i####Uni8.tex#1399#
+=>PYTHONTEX#sympy#default#default#41#i####Uni8.tex#1546#
 delta>tau**2/4
-=>PYTHONTEX#sympy#default#default#38#block####Uni8.tex#1400#
+=>PYTHONTEX#sympy#default#default#42#block####Uni8.tex#1547#
 V,D=A.diagonalize()
-=>PYTHONTEX#sympy#default#default#39#i####Uni8.tex#1405#
+=>PYTHONTEX#sympy#default#default#43#i####Uni8.tex#1552#
 V
-=>PYTHONTEX#sympy#default#default#40#i####Uni8.tex#1405#
+=>PYTHONTEX#sympy#default#default#44#i####Uni8.tex#1552#
 D
-=>PYTHONTEX#sympy#default#default#41#block####Uni8.tex#1410#
+=>PYTHONTEX#sympy#default#default#45#block####Uni8.tex#1557#
 P=Matrix([re(V[:,0]).T,im(V[:,0]).T])
-=>PYTHONTEX#sympy#default#default#42#i####Uni8.tex#1414#
+=>PYTHONTEX#sympy#default#default#46#i####Uni8.tex#1561#
 P
-=>PYTHONTEX#sympy#default#default#43#block####Uni8.tex#1416#
+=>PYTHONTEX#sympy#default#default#47#block####Uni8.tex#1563#
 J=P.inv()*A*P
-=>PYTHONTEX#sympy#default#default#44#i####Uni8.tex#1420#
+=>PYTHONTEX#sympy#default#default#48#i####Uni8.tex#1567#
 J
-=>PYTHONTEX#sympy#default#default#45#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#49#i####Uni8.tex#1582#
 P
-=>PYTHONTEX#sympy#default#default#46#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#50#i####Uni8.tex#1582#
 P.inv()
-=>PYTHONTEX#sympy#default#default#47#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#51#i####Uni8.tex#1582#
 P*Matrix([[cos(-2*t) , sin(-2*t)], [-sin(-2*t),cos(-2*t)]])*P.inv()
-=>PYTHONTEX#sympy#default#default#45#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#49#i####Uni8.tex#1582#
 P
-=>PYTHONTEX#sympy#default#default#46#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#50#i####Uni8.tex#1582#
 P.inv()
-=>PYTHONTEX#sympy#default#default#47#i####Uni8.tex#1435#
+=>PYTHONTEX#sympy#default#default#51#i####Uni8.tex#1582#
 P*Matrix([[cos(-2*t) , sin(-2*t)], [-sin(-2*t),cos(-2*t)]])*P.inv()
-=>PYTHONTEX#sympy#default#default#48#block####Uni8.tex#1440#
+=>PYTHONTEX#sympy#default#default#52#block####Uni8.tex#1587#
 t=symbols('t',real=True)
 G=exp(t*A)
-=>PYTHONTEX#sympy#default#default#49#i####Uni8.tex#1446#
+=>PYTHONTEX#sympy#default#default#53#i####Uni8.tex#1593#
 G
-=>PYTHONTEX#sympy#default#default#50#block####Uni8.tex#1544#
+=>PYTHONTEX#sympy#default#default#54#block####Uni8.tex#1691#
 from sympy import *
 A=Rational(1,90)*Matrix([[-55, 68, -44],\
     [-124, 53, -56],\
     [-2, 46, -7]])
 P1,J1=A.jordan_form()
-=>PYTHONTEX#sympy#default#default#51#i####Uni8.tex#1553#
+=>PYTHONTEX#sympy#default#default#55#i####Uni8.tex#1700#
 P1
-=>PYTHONTEX#sympy#default#default#52#i####Uni8.tex#1553#
+=>PYTHONTEX#sympy#default#default#56#i####Uni8.tex#1700#
 J1
-=>PYTHONTEX#sympy#default#default#53#i####Uni8.tex#1558#
+=>PYTHONTEX#sympy#default#default#57#i####Uni8.tex#1705#
  {J1[i,i] for i in range(3)} 
-=>PYTHONTEX#sympy#default#default#54#block####Uni8.tex#1562#
+=>PYTHONTEX#sympy#default#default#58#block####Uni8.tex#1709#
 P=Matrix([P1[:,0].T,re(P1[:,2]).T,im(P1[:,2]).T]).T
 J=P.inv()*A*P
-=>PYTHONTEX#sympy#default#default#55#i####Uni8.tex#1568#
+=>PYTHONTEX#sympy#default#default#59#i####Uni8.tex#1715#
 P
-=>PYTHONTEX#sympy#default#default#56#i####Uni8.tex#1568#
+=>PYTHONTEX#sympy#default#default#60#i####Uni8.tex#1715#
 J
-=>PYTHONTEX#sympy#default#default#57#i####Uni8.tex#1572#
+=>PYTHONTEX#sympy#default#default#61#i####Uni8.tex#1719#
 P[:,1]
-=>PYTHONTEX#sympy#default#default#58#i####Uni8.tex#1572#
+=>PYTHONTEX#sympy#default#default#62#i####Uni8.tex#1719#
 P[:,2]
-=>PYTHONTEX#sympy#default#default#59#i####Uni8.tex#1576#
+=>PYTHONTEX#sympy#default#default#63#i####Uni8.tex#1723#
 P[:,0]
-=>PYTHONTEX#sympy#default#default#60#code####Uni8.tex#1581#
+=>PYTHONTEX#sympy#default#default#64#code####Uni8.tex#1728#
 t=symbols('t',real=True)
 etJ=exp(t*J)
-=>PYTHONTEX#sympy#default#default#61#i####Uni8.tex#1588#
+=>PYTHONTEX#sympy#default#default#65#i####Uni8.tex#1735#
 etJ
-=>PYTHONTEX#sympy#default#default#62#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#66#i####Uni8.tex#1743#
 P
-=>PYTHONTEX#sympy#default#default#63#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#67#i####Uni8.tex#1743#
 etJ
-=>PYTHONTEX#sympy#default#default#64#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#68#i####Uni8.tex#1743#
 P.inv()
-=>PYTHONTEX#sympy#default#default#62#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#66#i####Uni8.tex#1743#
 P
-=>PYTHONTEX#sympy#default#default#63#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#67#i####Uni8.tex#1743#
 etJ
-=>PYTHONTEX#sympy#default#default#64#i####Uni8.tex#1596#
+=>PYTHONTEX#sympy#default#default#68#i####Uni8.tex#1743#
 P.inv()
-=>PYTHONTEX#sympy#default#defaultverb#1#verbatim####Uni8.tex#1601#
+=>PYTHONTEX#sympy#default#defaultverb#1#verbatim####Uni8.tex#1748#
 from sympy.plotting import plot3d_parametric_line
 G=exp(t*A)
 sol=G*P[:,2]
@@ -347,97 +378,130 @@ sol=G*(P[:,0]+P[:,2])
 p.append(plot3d_parametric_line(sol[0],sol[1],sol[2],\
     (t,-10,12),line_color='green')[0])
 p.show()
-=>PYTHONTEX#sympy#default#default#65#code####Uni8.tex#1632#
+=>PYTHONTEX#sympy#default#default#69#code####Uni8.tex#1779#
 J=Matrix([[-1,1,0,0], [0,-1,0,0],[0,0,1,-2],[0,0,2,1]])
 P=Matrix([[-1,1,3,0], [0,-1,0,1],[0,-5,1,-2],[-2,3,2,1]])
 A=P.inv()*J*P
-=>PYTHONTEX#sympy#default#default#66#i####Uni8.tex#1639#
+=>PYTHONTEX#sympy#default#default#70#i####Uni8.tex#1786#
 A
-=>PYTHONTEX#sympy#default#default#67#block####Uni8.tex#1642#
+=>PYTHONTEX#sympy#default#default#71#block####Uni8.tex#1789#
 from sympy import *
 A=Rational(1,13)*Matrix([[11, 115, -56, 61],\
     [-6, 20, 1, 14],\
     [10, 23, -32, 20],\
     [-6, 33, 1, 1]])
 P1,J1=A.jordan_form()
-=>PYTHONTEX#sympy#default#default#68#i####Uni8.tex#1655#
+=>PYTHONTEX#sympy#default#default#72#i####Uni8.tex#1802#
  {J1[i,i] for i in range(4)} 
-=>PYTHONTEX#sympy#default#default#69#block####Uni8.tex#1659#
+=>PYTHONTEX#sympy#default#default#73#block####Uni8.tex#1806#
 P=Matrix([P1[:,0].T,P1[:,1].T,re(P1[:,3]).T,im(P1[:,3]).T]).T
 J=P.inv()*A*P
-=>PYTHONTEX#sympy#default#default#70#i####Uni8.tex#1666#
+=>PYTHONTEX#sympy#default#default#74#i####Uni8.tex#1813#
 P
-=>PYTHONTEX#sympy#default#default#71#i####Uni8.tex#1666#
+=>PYTHONTEX#sympy#default#default#75#i####Uni8.tex#1813#
 J
-=>PYTHONTEX#sympy#default#default#72#i####Uni8.tex#1670#
+=>PYTHONTEX#sympy#default#default#76#i####Uni8.tex#1817#
 P[:,2]
-=>PYTHONTEX#sympy#default#default#73#i####Uni8.tex#1670#
+=>PYTHONTEX#sympy#default#default#77#i####Uni8.tex#1817#
 P[:,3]
-=>PYTHONTEX#sympy#default#default#74#i####Uni8.tex#1674#
+=>PYTHONTEX#sympy#default#default#78#i####Uni8.tex#1821#
 P[:,0]
-=>PYTHONTEX#sympy#default#default#75#i####Uni8.tex#1674#
+=>PYTHONTEX#sympy#default#default#79#i####Uni8.tex#1821#
 P[:,1]
-=>PYTHONTEX#sympy#default#default#76#code####Uni8.tex#1679#
+=>PYTHONTEX#sympy#default#default#80#code####Uni8.tex#1826#
 t=symbols('t',real=True)
 etJ=exp(t*J)
-=>PYTHONTEX#sympy#default#default#77#i####Uni8.tex#1686#
+=>PYTHONTEX#sympy#default#default#81#i####Uni8.tex#1833#
 etJ
-=>PYTHONTEX#sympy#default#default#78#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#82#i####Uni8.tex#1841#
 P
-=>PYTHONTEX#sympy#default#default#79#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#83#i####Uni8.tex#1841#
 etJ
-=>PYTHONTEX#sympy#default#default#80#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#84#i####Uni8.tex#1841#
 P.inv()
-=>PYTHONTEX#sympy#default#default#78#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#82#i####Uni8.tex#1841#
 P
-=>PYTHONTEX#sympy#default#default#79#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#83#i####Uni8.tex#1841#
 etJ
-=>PYTHONTEX#sympy#default#default#80#i####Uni8.tex#1694#
+=>PYTHONTEX#sympy#default#default#84#i####Uni8.tex#1841#
 P.inv()
-=>PYTHONTEX#sympy#default#default#81#code####Uni8.tex#1706#
+=>PYTHONTEX#sympy#default#default#85#code####Uni8.tex#1853#
 J=Matrix([[-1,1,1,0], [-1,-1,0,1],[0,0,-1,1],[0,0,-1,-1]])
 P=Matrix([[-1,1,3,0], [0,-1,0,1],[0,-5,1,-2],[-2,3,2,1]])
 A=P.inv()*J*P
-=>PYTHONTEX#sympy#default#default#82#i####Uni8.tex#1713#
+=>PYTHONTEX#sympy#default#default#86#i####Uni8.tex#1860#
 A
-=>PYTHONTEX#sympy#default#default#83#block####Uni8.tex#1716#
+=>PYTHONTEX#sympy#default#default#87#block####Uni8.tex#1863#
 from sympy import *
 A=Rational(1,26)*Matrix([[-8, -244, 18, -70],\
 [15, -69, 2, -15],\
 [1, -119, -12, -27],\
 [-11, 9, -24, -15]])
 P1,J1=A.jordan_form()
-=>PYTHONTEX#sympy#default#default#84#i####Uni8.tex#1729#
+=>PYTHONTEX#sympy#default#default#88#i####Uni8.tex#1876#
  {J1[i,i] for i in range(4)} 
-=>PYTHONTEX#sympy#default#default#85#i####Uni8.tex#1731#
+=>PYTHONTEX#sympy#default#default#89#i####Uni8.tex#1878#
 J1[0,0]
-=>PYTHONTEX#sympy#default#default#86#i####Uni8.tex#1731#
+=>PYTHONTEX#sympy#default#default#90#i####Uni8.tex#1878#
 J1[0,0]
-=>PYTHONTEX#sympy#default#default#87#block####Uni8.tex#1733#
+=>PYTHONTEX#sympy#default#default#91#block####Uni8.tex#1880#
 P=Matrix([re(P1[:,0]).T,im(P1[:,0]).T,re(P1[:,1]).T,\
     im(P1[:,1]).T]).T
 J=P.inv()*A*P
-=>PYTHONTEX#sympy#default#default#88#i####Uni8.tex#1741#
+=>PYTHONTEX#sympy#default#default#92#i####Uni8.tex#1888#
 P
-=>PYTHONTEX#sympy#default#default#89#i####Uni8.tex#1741#
+=>PYTHONTEX#sympy#default#default#93#i####Uni8.tex#1888#
 J
-=>PYTHONTEX#sympy#default#default#90#code####Uni8.tex#1745#
+=>PYTHONTEX#sympy#default#default#94#code####Uni8.tex#1892#
 t=symbols('t',real=True)
 etJ=exp(t*J)
-=>PYTHONTEX#sympy#default#default#91#i####Uni8.tex#1752#
+=>PYTHONTEX#sympy#default#default#95#i####Uni8.tex#1899#
 etJ
-=>PYTHONTEX#sympy#default#default#92#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#96#i####Uni8.tex#1907#
 P
-=>PYTHONTEX#sympy#default#default#93#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#97#i####Uni8.tex#1907#
 etJ
-=>PYTHONTEX#sympy#default#default#94#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#98#i####Uni8.tex#1907#
 P.inv()
-=>PYTHONTEX#sympy#default#default#92#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#96#i####Uni8.tex#1907#
 P
-=>PYTHONTEX#sympy#default#default#93#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#97#i####Uni8.tex#1907#
 etJ
-=>PYTHONTEX#sympy#default#default#94#i####Uni8.tex#1760#
+=>PYTHONTEX#sympy#default#default#98#i####Uni8.tex#1907#
 P.inv()
+=>PYTHONTEX#sympy#default#default#99#block####Uni8.tex#1943#
+k1,k2,k3,m1,m2=symbols('k1,k2,k3,m1,m2',\
+    positive=True)
+A=Matrix([[0,1,0,0],\
+          [-(k1/m1+k3/m1), 0, k3/m1, 0],\
+          [0,0,0,1],[k3/m2, 0, -(k3/m2+k2/m2),0] ])
+A=A.subs({k1:1,k2:1,k3:1,m1:1,m2:1})
+P,D=A.jordan_form()
+=>PYTHONTEX#sympy#default#default#100#i####Uni8.tex#1953#
+P
+=>PYTHONTEX#sympy#default#default#101#i####Uni8.tex#1953#
+D
+=>PYTHONTEX#sympy#default#default#102#block####Uni8.tex#2056#
+I=49.3
+k01,k21,k31,k02,k12,k13=0.0211,0.0111,0.0039,\
+    .0162,0.0124,0.000035
+A=Matrix([[ -(k01+k21+k31), k12, k13],\
+    [k21,-(k12+k02), 0],\
+    [k31,0,-k13]])
+P,D=A.diagonalize()
+=>PYTHONTEX#sympy#default#default#103#code####Uni8.tex#2066#
+P=P.applyfunc(lambda x: N(x,4))
+D=D.applyfunc(lambda x: N(x,4))
+=>PYTHONTEX#sympy#default#default#104#i####Uni8.tex#2073#
+P
+=>PYTHONTEX#sympy#default#default#105#i####Uni8.tex#2075#
+D
+=>PYTHONTEX#sympy#default#default#106#block####Uni8.tex#2081#
+t,s=symbols('t,s',real=True)
+G=P*exp(D*t)*P.inv()
+Ginv=P*exp(-D*s)*P.inv()
+B=Matrix([[I],[0],[0]])
+x=G*(Integral(Ginv*B,(s,0,t)).doit()).simplify()
 =>PYTHONTEX#py#default#defaultverb#9#verbatim####Apendice0.tex#179#
 '''
 Comentario  largo en un script de Python
@@ -555,6 +619,96 @@ while numero < 3:
     print(numero)
     numero += 1
 
+=>PYTHONTEX#sympy#default#default#107#block####Apendice0.tex#443#
+x=symbols('x')
+type(x)
+=>PYTHONTEX#sympy#default#default#108#block####Apendice0.tex#450#
+f=(x**3+3*x)**4-(x-1)*3+8
+=>PYTHONTEX#sympy#default#default#109#i####Apendice0.tex#454#
+f
+=>PYTHONTEX#sympy#default#default#110#block####Apendice0.tex#456#
+type(f)
+=>PYTHONTEX#sympy#default#default#111#block####Apendice0.tex#462#
+g=f.expand()
+=>PYTHONTEX#sympy#default#default#112#i####Apendice0.tex#466#
+g
+=>PYTHONTEX#sympy#default#default#113#block####Apendice0.tex#468#
+h=f.diff(x,12)
+=>PYTHONTEX#sympy#default#default#114#i####Apendice0.tex#471#
+h
+=>PYTHONTEX#sympy#default#defaultverb#2#verbatim####Apendice0.tex#473#
+plot(f,(x,0,1))
+=>PYTHONTEX#sympy#default#default#115#block####Apendice0.tex#485#
+a=symbols('a1:6')
+=>PYTHONTEX#sympy#default#default#116#i####Apendice0.tex#488#
+a
+=>PYTHONTEX#sympy#default#default#117#block####Apendice0.tex#490#
+a=symbols('a:2:2')
+=>PYTHONTEX#sympy#default#default#118#i####Apendice0.tex#493#
+a
+=>PYTHONTEX#sympy#default#default#119#block####Apendice0.tex#495#
+b=Matrix(a).reshape(2,2)
+=>PYTHONTEX#sympy#default#default#120#i####Apendice0.tex#500#
+b
+=>PYTHONTEX#sympy#default#default#121#block####Apendice0.tex#503#
+type(b)
+=>PYTHONTEX#sympy#default#default#122#block####Apendice0.tex#509#
+lam=symbols('lambda')
+p=(b-lam*eye(2)).det() #eye=indentidad
+=>PYTHONTEX#sympy#default#default#123#i####Apendice0.tex#514#
+p
+=>PYTHONTEX#sympy#default#default#124#block####Apendice0.tex#520#
+soluciones=solve(p,lam)
+=>PYTHONTEX#sympy#default#default#125#i####Apendice0.tex#527#
+soluciones[0]
+=>PYTHONTEX#sympy#default#default#126#i####Apendice0.tex#527#
+soluciones[1]
+=>PYTHONTEX#sympy#default#default#125#i####Apendice0.tex#527#
+soluciones[0]
+=>PYTHONTEX#sympy#default#default#126#i####Apendice0.tex#527#
+soluciones[1]
+=>PYTHONTEX#sympy#default#default#127#block####Apendice0.tex#530#
+M=[Rational(1,i+j) for i in range(1,5) for j in range(1,5)]
+M=Matrix(M).reshape(4,4)
+=>PYTHONTEX#sympy#default#default#128#i####Apendice0.tex#536#
+M
+=>PYTHONTEX#sympy#default#default#129#block####Apendice0.tex#540#
+type(Rational(1,3))
+=>PYTHONTEX#sympy#default#default#130#block####Apendice0.tex#546#
+lam=symbols('lambda')
+p=(M-lam*eye(4)).det()
+=>PYTHONTEX#sympy#default#default#131#i####Apendice0.tex#552#
+p
+=>PYTHONTEX#sympy#default#default#132#block####Apendice0.tex#558#
+p,q=symbols('p,q')
+r=p>>q
+=>PYTHONTEX#sympy#default#default#133#i####Apendice0.tex#563#
+r
+=>PYTHONTEX#sympy#default#default#134#block####Apendice0.tex#565#
+r=simplify((p>>q)&(q>>p))
+=>PYTHONTEX#sympy#default#default#135#i####Apendice0.tex#568#
+r
+=>PYTHONTEX#sympy#default#default#136#block####Apendice0.tex#571#
+L=[r.subs({p:i,q:j}) for i in (True,False) for j in (True,False)]
+=>PYTHONTEX#sympy#default#default#137#i####Apendice0.tex#575#
+L
+=>PYTHONTEX#sympy#default#default#138#block####Apendice0.tex#580#
+x,y,z=symbols('x,y,z')
+lam=symbols('lambda')
+g1=2*x*z+2*y*z+x*y-12
+f=x*y*z-lam*g1
+Eq1=[f.diff(h) for h in (x,y,z)]
+Eq2=Eq1+[g1]
+sol=solve(Eq2,[x,y,z,lam])
+=>PYTHONTEX#sympy#default#default#139#i####Apendice0.tex#590#
+sol
+=>PYTHONTEX#py#default#default#2#block####Apendice0.tex#599#
+import numpy as np
+import sympy as sp
+=>PYTHONTEX#py#default#default#3#block####Apendice0.tex#607#
+np.sin(1)
+=>PYTHONTEX#py#default#default#4#i####Apendice0.tex#611#
+np.sin(1)
 =>PYTHONTEX:SETTINGS#
 version=0.17
 outputdir=pythontex-files-LibroEcuaciones
